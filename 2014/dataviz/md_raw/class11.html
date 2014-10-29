@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>class10.html</title>
+  <meta name="generator" content="Haroopad 0.12.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>div.oembedall-githubrepos{border:1px solid #DDD;border-radius:4px;list-style-type:none;margin:0 0 10px;padding:8px 10px 0;font:13.34px/1.4 helvetica,arial,freesans,clean,sans-serif;width:452px;background-color:#fff}div.oembedall-githubrepos .oembedall-body{background:-moz-linear-gradient(center top,#FAFAFA,#EFEFEF) repeat scroll 0 0 transparent;background:-webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#EFEFEF));border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #EEE;margin-left:-10px;margin-top:8px;padding:5px 10px;width:100%}div.oembedall-githubrepos h3{font-size:14px;margin:0;padding-left:18px;white-space:nowrap}div.oembedall-githubrepos p.oembedall-description{color:#444;font-size:12px;margin:0 0 3px}div.oembedall-githubrepos p.oembedall-updated-at{color:#888;font-size:11px;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats{border:medium none;float:right;font-size:11px;font-weight:700;padding-left:15px;position:relative;z-index:5;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats li{border:medium none;color:#666;display:inline-block;list-style-type:none;margin:0!important}div.oembedall-githubrepos ul.oembedall-repo-stats li a{background-color:transparent;border:medium none;color:#666!important;background-position:5px -2px;background-repeat:no-repeat;border-left:1px solid #DDD;display:inline-block;height:21px;line-height:21px;padding:0 5px 0 23px}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a{border-left:medium none;margin-right:-3px}div.oembedall-githubrepos ul.oembedall-repo-stats li a:hover{background:none no-repeat scroll 5px -27px #4183C4;color:#FFF!important;text-decoration:none}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a:hover{border-bottom-left-radius:3px;border-top-left-radius:3px}ul.oembedall-repo-stats li:last-child a:hover{border-bottom-right-radius:3px;border-top-right-radius:3px}span.oembedall-closehide{background-color:#aaa;border-radius:2px;cursor:pointer;margin-right:3px}div.oembedall-container{margin-top:5px;text-align:left}.oembedall-ljuser{font-weight:700}.oembedall-ljuser img{vertical-align:bottom;border:0;padding-right:1px}.oembedall-stoqembed{border-bottom:1px dotted #999;float:left;overflow:hidden;width:730px;line-height:1;background:none repeat scroll 0 0 #FFF;color:#000;font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;font-size:80%;text-align:left;margin:0;padding:0}.oembedall-stoqembed a{color:#07C;text-decoration:none;margin:0;padding:0}.oembedall-stoqembed a:hover{text-decoration:underline}.oembedall-stoqembed a:visited{color:#4A6B82}.oembedall-stoqembed h3{font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;font-size:130%;font-weight:700;margin:0;padding:0}.oembedall-stoqembed .oembedall-reputation-score{color:#444;font-size:120%;font-weight:700;margin-right:2px}.oembedall-stoqembed .oembedall-user-info{height:35px;width:185px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-gravatar32{float:left;height:32px;width:32px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-details{float:left;margin-left:5px;overflow:hidden;white-space:nowrap;width:145px}.oembedall-stoqembed .oembedall-question-hyperlink{font-weight:700}.oembedall-stoqembed .oembedall-stats{background:none repeat scroll 0 0 #EEE;margin:0 0 0 7px;padding:4px 7px 6px;width:58px}.oembedall-stoqembed .oembedall-statscontainer{float:left;margin-right:8px;width:86px}.oembedall-stoqembed .oembedall-votes{color:#555;padding:0 0 7px;text-align:center}.oembedall-stoqembed .oembedall-vote-count-post{font-size:240%;color:#808185;display:block;font-weight:700}.oembedall-stoqembed .oembedall-views{color:#999;padding-top:4px;text-align:center}.oembedall-stoqembed .oembedall-status{margin-top:-3px;padding:4px 0;text-align:center;background:none repeat scroll 0 0 #75845C;color:#FFF}.oembedall-stoqembed .oembedall-status strong{color:#FFF;display:block;font-size:140%}.oembedall-stoqembed .oembedall-summary{float:left;width:635px}.oembedall-stoqembed .oembedall-excerpt{line-height:1.2;margin:0;padding:0 0 5px}.oembedall-stoqembed .oembedall-tags{float:left;line-height:18px}.oembedall-stoqembed .oembedall-tags a:hover{text-decoration:none}.oembedall-stoqembed .oembedall-post-tag{background-color:#E0EAF1;border-bottom:1px solid #3E6D8E;border-right:1px solid #7F9FB6;color:#3E6D8E;font-size:90%;line-height:2.4;margin:2px 2px 2px 0;padding:3px 4px;text-decoration:none;white-space:nowrap}.oembedall-stoqembed .oembedall-post-tag:hover{background-color:#3E6D8E;border-bottom:1px solid #37607D;border-right:1px solid #37607D;color:#E0EAF1}.oembedall-stoqembed .oembedall-fr{float:right}.oembedall-stoqembed .oembedall-statsarrow{background-image:url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3);background-repeat:no-repeat;overflow:hidden;background-position:0 -435px;float:right;height:13px;margin-top:12px;width:7px}.oembedall-facebook1{border:#1A3C6C solid 1px;padding:0;font:13.34px/1.4 verdana;width:500px}.oembedall-facebook2{background-color:#627add}.oembedall-facebook2 a{color:#e8e8e8;text-decoration:none}.oembedall-facebookBody{background-color:#fff;vertical-align:top;padding:5px}.oembedall-facebookBody .contents{display:inline-block;width:100%}.oembedall-facebookBody div img{float:left;margin-right:5px}div.oembedall-lanyard{-webkit-box-shadow:none;-webkit-transition-delay:0s;-webkit-transition-duration:.4000000059604645s;-webkit-transition-property:width;-webkit-transition-timing-function:cubic-bezier(0.42,0,.58,1);background-attachment:scroll;background-clip:border-box;background-color:transparent;background-image:none;background-origin:padding-box;border-bottom-width:0;border-left-width:0;border-right-width:0;border-top-width:0;box-shadow:none;color:#112644;display:block;float:left;font-family:'Trebuchet MS',Trebuchet,sans-serif;font-size:16px;height:253px;line-height:19px;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;max-width:none;min-height:0;outline-color:#112644;outline-style:none;outline-width:0;overflow-x:visible;overflow-y:visible;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;position:relative;text-align:left;vertical-align:baseline;width:804px}div.oembedall-lanyard .tagline{font-size:1.5em}div.oembedall-lanyard .wrapper{overflow:hidden;clear:both}div.oembedall-lanyard .split{float:left;display:inline}div.oembedall-lanyard .prominent-place .flag:active,div.oembedall-lanyard .prominent-place .flag:focus,div.oembedall-lanyard .prominent-place .flag:hover,div.oembedall-lanyard .prominent-place .flag:link,div.oembedall-lanyard .prominent-place .flag:visited{float:left;display:block;width:48px;height:48px;position:relative;top:-5px;margin-right:10px}div.oembedall-lanyard .place-context{font-size:.889em}div.oembedall-lanyard .prominent-place .sub-place{display:block}div.oembedall-lanyard .prominent-place{font-size:1.125em;line-height:1.1em;font-weight:400}div.oembedall-lanyard .main-date{color:#8CB4E0;font-weight:700;line-height:1.1}div.oembedall-lanyard .first{width:48.57%;margin:0 0 0 2.857%}html{height:100%}body{margin:0!important;padding:5px 20px 26px!important;background-color:#fff;font-family:"Lucida Grande","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Lucida Sans Unicode",Helvetica,Arial,sans-serif;font-size:.9em;overflow-x:hidden;overflow-y:auto}br,h1,h2,h3,h4,h5,h6{clear:both}hr.page{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:3px;padding:0}hr.underscore{border:0 none!important;height:30px;padding:0;-webkit-margin-before:0;-webkit-margin-after:0}body >:first-child{margin-top:0!important}img.plugin{box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:3px}iframe{border:0}figure{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}kbd{border:1px solid #aaa;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:1px 2px 2px #ddd;-webkit-box-shadow:1px 2px 2px #ddd;box-shadow:1px 2px 2px #ddd;background-color:#f9f9f9;background-image:-moz-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-o-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-webkit-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:linear-gradient(top,#eee,#f9f9f9,#eee);padding:1px 3px;font-family:inherit;font-size:.85em}.oembeded .oembed_photo{display:inline-block}img[data-echo]{margin:25px 0;width:100px;height:100px;background:#fff url(../img/ajax.gif) no-repeat center center}.spinner{display:inline-block;width:10px;height:10px;margin-bottom:-.1em;border:2px solid rgba(0,0,0,.5);border-top-color:transparent;border-radius:100%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}.spinner:after{content:'';display:block;width:0;height:0;position:absolute;top:-6px;left:0;border:4px solid transparent;border-bottom-color:rgba(0,0,0,.5);-webkit-transform:rotate(45deg);transform:rotate(45deg)}@-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}p.toc{margin:0!important}p.toc ul{padding-left:10px}p.toc>ul{padding:10px;margin:0 10px;display:inline-block;border:1px solid #ededed;border-radius:5px}p.toc li,p.toc ul{list-style-type:none}p.toc li{width:100%;padding:0;overflow:hidden}p.toc li a::after{content:"."}p.toc li a:before{content:"• "}p.toc h5{text-transform:uppercase}p.toc .title{float:left;padding-right:3px}p.toc .number{margin:0;float:right;padding-left:3px;background:#fff;display:none}.markdown{padding:20px}.markdown a{text-decoration:none;vertical-align:baseline}.markdown a:hover{text-decoration:underline}.markdown h1{font-size:2.2em;font-weight:700;margin:1.5em 0 1em}.markdown h2{font-size:1.8em;font-weight:700;margin:1.275em 0 .85em}.markdown h3{font-size:1.6em;font-weight:700;margin:1.125em 0 .75em}.markdown h4{font-size:1.4em;font-weight:700;margin:.99em 0 .66em}.markdown h5{font-size:1.2em;font-weight:700;margin:.855em 0 .57em}.markdown h6{font-size:1em;font-weight:700;margin:.75em 0 .5em}.markdown h1+p,.markdown h1:first-child,.markdown h2+p,.markdown h2:first-child,.markdown h3+p,.markdown h3:first-child,.markdown h4+p,.markdown h4:first-child,.markdown h5+p,.markdown h5:first-child,.markdown h6+p,.markdown h6:first-child{margin-top:0}.markdown hr{border:1px solid #ccc}.markdown p{margin:1em 0;word-wrap:break-word}.markdown ol{list-style-type:decimal}.markdown li{display:list-item;line-height:1.4em}.markdown blockquote{margin:1em 20px}.markdown blockquote>:first-child{margin-top:0}.markdown blockquote>:last-child{margin-bottom:0}.markdown blockquote cite:before{content:'\2014 \00A0'}.markdown .code{border-radius:3px;word-break:break-all;word-wrap:break-word}.markdown pre{border-radius:3px;word-break:break-all;word-wrap:break-word;overflow:auto}.markdown pre code{display:block}.markdown pre>code{border:1px solid #ccc;white-space:pre;padding:.5em;margin:0}.markdown code{border-radius:3px;word-break:break-all;word-wrap:break-word;border:1px solid #ccc;padding:0 5px;margin:0 2px}.markdown img{max-width:100%}.markdown table{padding:0;border-collapse:collapse;border-spacing:0}.markdown table tr td,.markdown table tr th{border:1px solid #ccc;margin:0;padding:6px 13px}.markdown table tr th{font-weight:700}.markdown table tr th>:first-child{margin-top:0}.markdown table tr th>:last-child{margin-bottom:0}.markdown table tr td>:first-child{margin-top:0}.markdown table tr td>:last-child{margin-bottom:0}.markdown em.underline{font-style:normal;text-decoration:underline}.markdown strong.highlight{color:#000;padding:0 5px;background-color:#fdffb6;-webkit-box-shadow:#fdffb6 0 0 5px;-moz-box-shadow:#fdffb6 0 0 5px;box-shadow:#fdffb6 0 0 5px}.clearness{padding:20px;color:#737373;font-size:15px;font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",AppleSDGothicNeo-Medium,'Segoe UI','Malgun Gothic',Verdana,Tahoma,sans-serif;background:#fff;-webkit-font-smoothing:antialiased}.clearness a{color:#1e6ea7}.clearness a:hover{color:#268bd2}.clearness h1,.clearness h2,.clearness h3,.clearness h4,.clearness h5{color:#404040}.clearness h2{border-bottom:1px solid #ccc;line-height:1.7em}.clearness h6{color:#666}.clearness hr{border:1px solid #e6e6e6}.clearness pre>code{font-size:.9em;font-family:Consolas,Inconsolata,Courier,monospace}.clearness blockquote{padding:0 15px;font-style:italic}.clearness blockquote:before{content:"\201C";font-size:40px;margin-left:-20px;color:#aaa}.clearness table{background-color:#fff;border-collapse:separate;border-spacing:2px}.clearness table tr td,.clearness table tr th{border:0;padding:.2em 1em}.clearness table tr th{border-bottom:1px solid #bfbfbf}.clearness table tr td{border-bottom:1px solid #d9d9d9}.clearness table tr:nth-child(2n){background-color:#fff}.hljs{display:block;overflow-x:auto;padding:.5em;background:#f0f0f0;-webkit-text-size-adjust:none}.clojure .hljs-built_in,.hljs,.hljs-subst,.hljs-tag .hljs-title,.lisp .hljs-title,.nginx .hljs-title{color:#000}.apache .hljs-cbracket,.apache .hljs-tag,.asciidoc .hljs-header,.bash .hljs-variable,.coffeescript .hljs-attribute,.django .hljs-variable,.erlang_repl .hljs-function_or_atom,.haml .hljs-symbol,.hljs-addition,.hljs-constant,.hljs-flow,.hljs-parent,.hljs-pragma,.hljs-preprocessor,.hljs-rules .hljs-value,.hljs-stream,.hljs-string,.hljs-tag .hljs-value,.hljs-template_tag,.hljs-title,.markdown .hljs-header,.ruby .hljs-symbol,.ruby .hljs-symbol .hljs-string,.smalltalk .hljs-class,.tex .hljs-command,.tex .hljs-special{color:#800}.asciidoc .hljs-blockquote,.diff .hljs-header,.hljs-annotation,.hljs-chunk,.hljs-comment,.hljs-template_comment,.markdown .hljs-blockquote,.smartquote{color:#888}.asciidoc .hljs-bullet,.asciidoc .hljs-link_url,.go .hljs-constant,.hljs-change,.hljs-date,.hljs-hexcolor,.hljs-literal,.hljs-number,.hljs-regexp,.lasso .hljs-variable,.makefile .hljs-variable,.markdown .hljs-bullet,.markdown .hljs-link_url,.smalltalk .hljs-char,.smalltalk .hljs-symbol{color:#080}.apache .hljs-sqbracket,.asciidoc .hljs-attribute,.asciidoc .hljs-link_label,.clojure .hljs-attribute,.coffeescript .hljs-property,.erlang_repl .hljs-reserved,.haml .hljs-bullet,.hljs-array,.hljs-attr_selector,.hljs-decorator,.hljs-deletion,.hljs-doctype,.hljs-envvar,.hljs-filter .hljs-argument,.hljs-important,.hljs-javadoc,.hljs-label,.hljs-localvars,.hljs-phony,.hljs-pi,.hljs-prompt,.hljs-pseudo,.hljs-shebang,.lasso .hljs-attribute,.markdown .hljs-link_label,.nginx .hljs-built_in,.ruby .hljs-string,.tex .hljs-formula,.vhdl .hljs-attribute{color:#88f}.apache .hljs-tag,.asciidoc .hljs-strong,.bash .hljs-variable,.css .hljs-tag,.hljs-built_in,.hljs-id,.hljs-javadoctag,.hljs-keyword,.hljs-phpdoc,.hljs-request,.hljs-status,.hljs-title,.hljs-type,.hljs-typename,.hljs-winutils,.hljs-yardoctag,.markdown .hljs-strong,.smalltalk .hljs-class,.tex .hljs-command{font-weight:700}.asciidoc .hljs-emphasis,.markdown .hljs-emphasis{font-style:italic}.nginx .hljs-built_in{font-weight:400}.coffeescript .javascript,.javascript .xml,.lasso .markup,.tex .hljs-formula,.xml .css,.xml .hljs-cdata,.xml .javascript,.xml .vbscript{opacity:.5}footer{position:fixed;font-size:.8em;text-align:right;bottom:0;margin-left:-25px;height:20px;width:100%}</style>
+</head>
+<body class="markdown clearness">
+
+  <h1 id="making-interactive-maps"><a name="making-interactive-maps" href="#making-interactive-maps"></a>Making interactive maps</h1><p><a href="https://www.mapbox.com/account/apps/">https://www.mapbox.com/account/apps/</a></p><h3 id="introducing-tilemill"><a name="introducing-tilemill" href="#introducing-tilemill"></a>Introducing Tilemill</h3><h3 id="make-a-tilemill-map-using-the-seismic-hazard-and-earthquakes-data"><a name="make-a-tilemill-map-using-the-seismic-hazard-and-earthquakes-data" href="#make-a-tilemill-map-using-the-seismic-hazard-and-earthquakes-data"></a>Make a Tilemill map using the seismic hazard and earthquakes data</h3><p>Prepare the data.</p><p>LibreOffice Calc</p><pre><code class="excel hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Excel&quot;&gt;=SQRT(10^[A2])/200
+&lt;/code&gt;&lt;/pre&gt;">=SQRT(10^[A2])/200
+</code></pre><pre><code class="excel hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Excel&quot;&gt;=DATE(A2,B2,C2)
+&lt;/code&gt;&lt;/pre&gt;">=DATE(A2,B2,C2)
+</code></pre><p>Sorted by magnitude, descending - important for tooltip.</p><p>delete to remove background color</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;Map {
+  background-color: #b8dee6;
+}
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">Map</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#b8dee6</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Import shapefile, default:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#seismicriskclip {
+  line-color:#594;
+  line-width:0.5;
+  polygon-opacity:1;
+  polygon-fill:#ae8;
+}
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#seismicriskclip</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">line-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#594</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-width</span>:<span class="hljs-value"><span class="hljs-number">0.5</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">polygon-opacity</span>:<span class="hljs-value"><span class="hljs-number">1</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"><span class="hljs-hexcolor">#ae8</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Edit to:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#seismicriskclip {  
+  line-width:0;
+  polygon-opacity:0.7;
+  [ACC_VAL &amp;gt;= 0] { polygon-fill:#fee5d9; }
+  [ACC_VAL &amp;gt;= 20] { polygon-fill:#fcae91; }
+  [ACC_VAL &amp;gt;= 40] { polygon-fill:#fb6a4a; }
+  [ACC_VAL &amp;gt;= 60] { polygon-fill:#de2d26; }
+  [ACC_VAL &amp;gt;= 80] { polygon-fill:#a50f15; }
+}
+&lt;/code&gt;&lt;/pre&gt;">#seismicriskclip {  
+  line-width:0;
+  polygon-opacity:0.7;
+  [ACC_VAL &gt;= 0] { polygon-fill:#fee5d9; }
+  [ACC_VAL &gt;= 20] { polygon-fill:#fcae91; }
+  [ACC_VAL &gt;= 40] { polygon-fill:#fb6a4a; }
+  [ACC_VAL &gt;= 60] { polygon-fill:#de2d26; }
+  [ACC_VAL &gt;= 80] { polygon-fill:#a50f15; }
+}
+</code></pre><p>Import CSV, default:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes196420135 {
+  marker-width:6;
+  marker-fill:#f45;
+  marker-line-color:#813;
+  marker-allow-overlap:true;
+}
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#quakes196420135</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value"><span class="hljs-number">6</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"><span class="hljs-hexcolor">#f45</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-line-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#813</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-allow-overlap</span>:<span class="hljs-value">true</span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Edit to:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes196420135 {
+  marker-width:[amplit]*2;
+  marker-fill:#ffffff;
+  marker-line-color:#000000;
+  marker-allow-overlap:true;
+  marker-opacity: 0.5;
+  marker-line-opacity: 0.5;
+}
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#quakes196420135</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value">[amplit]*<span class="hljs-number">2</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"><span class="hljs-hexcolor">#ffffff</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-line-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#000000</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-allow-overlap</span>:<span class="hljs-value">true</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.5</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">marker-line-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.5</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Legend:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;strong&amp;gt;Seismic risk:&amp;lt;/strong&amp;gt; &amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;
+Low &amp;lt;span style=&quot;color:#fee5d9&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+&amp;lt;span style=&quot;color:#fcae91&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+&amp;lt;span style=&quot;color:#fb6a4A&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+&amp;lt;span style=&quot;color:#de2d26&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+&amp;lt;span style=&quot;color:#a50f15&quot;&amp;gt;▉&amp;lt;/span&amp;gt; High&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;
+Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the amplitude of ground shaking. Roll over/tap each quake for details.
+&lt;/code&gt;&lt;/pre&gt;">strong&gt;Seismic risk:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+Low <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fee5d9"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fcae91"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fb6a4A"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#de2d26"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#a50f15"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span> High<span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the amplitude of ground shaking. Roll over/tap each quake for details.
+</code></pre><p>Teaser:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;strong&amp;gt;Date:&amp;lt;/strong&amp;gt; {{{date}}} &amp;lt;br /&amp;gt;
+&amp;lt;strong&amp;gt;Magnitude:&amp;lt;/strong&amp;gt; {{{mag}}} &amp;lt;br /&amp;gt;
+&amp;lt;strong&amp;gt;Depth:&amp;lt;/strong&amp;gt; {{{depth}}} kilometers
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> {{{date}}} <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Magnitude:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> {{{mag}}} <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Depth:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> {{{depth}}} kilometers
+</code></pre><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+    &amp;lt;meta charset=utf-8 /&amp;gt;
+    &amp;lt;title&amp;gt;Seismic hazards in the continental U.S.&amp;lt;/title&amp;gt;
+    &amp;lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1,maximum-scale=1,user-scalable=no&quot; /&amp;gt;
+    &amp;lt;script src=&quot;https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;link href=&quot;https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css&quot; rel=&quot;stylesheet&quot; /&amp;gt;
+
+    &amp;lt;style&amp;gt;
+      body { margin:0; padding:0; }
+      #map { position:absolute; top:0; bottom:0; width:100%; }
+    &amp;lt;/style&amp;gt;
+
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+    &amp;lt;div id=&quot;map&quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+    &amp;lt;script&amp;gt;
+        L.mapbox.accessToken = &quot;&amp;lt;Your access token&amp;gt;&quot;;
+
+        var map = L.mapbox.map(&quot;map&quot;, &quot;mapbox.world-print,&amp;lt;Your map&amp;gt;&quot;, {maxZoom: 6, minZoom: 4})
+            .setView([40, -100], 5);
+    &amp;lt;/script&amp;gt;
+
+&amp;lt;/body&amp;gt;
+
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Seismic hazards in the continental U.S.<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"initial-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"https://api.tiles.mapbox.com/mapbox.js/v2.1.4/mapbox.css"</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> /&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+      <span class="hljs-tag">body</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule">}</span></span>
+      <span class="hljs-id">#map</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value">absolute</span></span>; <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span>; <span class="hljs-rule">}</span></span>
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"map"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+        L.mapbox.accessToken = <span class="hljs-string">"&lt;Your access token&gt;"</span>;
+
+        <span class="hljs-keyword">var</span> map = L.mapbox.map(<span class="hljs-string">"map"</span>, <span class="hljs-string">"mapbox.world-print,&lt;Your map&gt;"</span>, {maxZoom: <span class="hljs-number">6</span>, minZoom: <span class="hljs-number">4</span>})
+            .setView([<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>], <span class="hljs-number">5</span>);
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>Mapbox basemaps: <a href="http://a.tiles.mapbox.com/v3/mapbox/maps.html">http://a.tiles.mapbox.com/v3/mapbox/maps.html</a></p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+    &amp;lt;meta charset=utf-8 /&amp;gt;
+    &amp;lt;title&amp;gt;Seismic hazards in the continental U.S.&amp;lt;/title&amp;gt;
+    &amp;lt;meta name=&quot;viewport&quot; content=&quot;initial-scale=1,maximum-scale=1,user-scalable=no&quot; /&amp;gt;
+    &amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://code.jquery.com/jquery.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot; http://leafletjs.com/dist/leaflet.css&quot; /&amp;gt;
+    &amp;lt;script src=&quot;http://leafletjs.com/dist/leaflet.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;src/leaflet.ajax.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;src/leaflet-providers.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;src/date-format.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;data/seismic_risk.js&quot;&amp;gt;&amp;lt;/script&amp;gt;    
+
+    &amp;lt;style&amp;gt;
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%}
+        #legend {
+            background: #ffffff;
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            padding: 0px 10px;
+            width: 260px;
+            font-family: arial;
+            font-size: small;
+            -webkit-border-radius:4px 4px 4px 4px;
+            border-radius:4px 4px 4px 4px;        
+            -webkit-box-shadow: 0px 1px 5px rgba(153,153,153,1);
+            -moz-box-shadow: 0px 1px 5px rgba(153,153,153,1);
+            box-shadow: 0px 1px 5px rgba(153,153,153,1)
+        }
+    &amp;lt;/style&amp;gt;
+
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+    &amp;lt;div id=&quot;map&quot;&amp;gt;
+
+        &amp;lt;script src=&quot;maps.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div id=&quot;legend&quot;&amp;gt;
+
+        &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Seismic risk:&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
+        &amp;lt;p&amp;gt;Low
+        &amp;lt;span style=&quot;color:#fee5d9&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#fcae91&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#fb6a4A&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#de2d26&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#a50f15&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        High&amp;lt;/p&amp;gt;
+        &amp;lt;p&amp;gt;Circles show quakes of magnitude 5 or greater, from 1965 to present, scaled by the amplitude of ground shaking. Click on each quake for details.&amp;lt;/p&amp;gt;
+
+    &amp;lt;/div&amp;gt;
+
+&amp;lt;/body&amp;gt;
+
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Seismic hazards in the continental U.S.<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"initial-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://code.jquery.com/jquery.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">" http://leafletjs.com/dist/leaflet.css"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://leafletjs.com/dist/leaflet.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/leaflet.ajax.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/leaflet-providers.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/date-format.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"data/seismic_risk.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>    
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+        <span class="hljs-tag">body</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule">}</span></span>
+        <span class="hljs-id">#map</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value">absolute</span></span>; <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span></span>}
+        <span class="hljs-id">#legend</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ffffff</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"> <span class="hljs-number">30px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">10px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">260px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> small</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">-webkit-border-radius</span>:<span class="hljs-value"><span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"><span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span></span></span>;        
+            <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">-moz-box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)</span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)
+        </span></span></span>}
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"map"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"maps.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"legend"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Seismic risk:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Low
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fee5d9"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fcae91"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fb6a4A"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#de2d26"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#a50f15"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+        High<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Circles show quakes of magnitude 5 or greater, from 1965 to present, scaled by the amplitude of ground shaking. Click on each quake for details.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>And here is <code>maps.js</code>:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var earth = L.tileLayer.provider(&quot;MapQuestOpen.Aerial&quot;);
+
+var bwmap = L.tileLayer(&quot;https://{s}.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png&quot;, {
+    attribution: &quot;&amp;lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&amp;gt;Terms &amp;amp;amp; Feedback&amp;lt;/a&amp;gt;&quot;
+});
+
+function getColor(a) {
+            return a &amp;gt; 79 ? &quot;#a50f15&quot;:
+                   a &amp;gt; 59 ? &quot;#de2d26&quot; :
+                   a &amp;gt; 39  ? &quot;#fb6a4A&quot; :
+                   a &amp;gt; 19 ? &quot;#fcae91&quot; :
+                   &quot;#fee5d9&quot;;    
+        }
+
+function style(feature) {
+                return {
+                    fillColor: getColor(feature.properties.ACC_VAL),
+                    color: getColor(feature.properties.ACC_VAL),
+                    weight: 1,
+                    opacity: 0.4,
+                    fillOpacity: 0.7
+                };
+            }
+
+// var seismic = L.geoJson(seismic_risk);
+
+var seismic = L.geoJson(seismic_risk, {style:style});
+
+var quakedataUrl = &quot;http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;amp;minmagnitude=5&amp;amp;format=geojson&amp;amp;latitude=39.828175&amp;amp;longitude=-98.5795&amp;amp;maxradiuskm=6000&amp;amp;orderby=magnitude&amp;amp;callback=&quot;
+
+var quakes = L.geoJson.ajax(quakedataUrl, {
+
+            dataType:&quot;jsonp&quot;,
+
+            onEachFeature: popupText,
+
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: Math.sqrt(Math.pow(10, feature.properties.mag)/50000),
+                    fillColor: &quot;#fff&quot;,
+                    color: &quot;#000&quot;,
+                    weight: 1,
+                    opacity: 0.2,
+                    fillOpacity: 0.5
+                });
+            }
+            });
+
+function  popupText (feature, layer) {
+     var date = new Date(feature.properties.time)
+     var dateString = date.format(&quot;mmm d, yyyy&quot;)
+     layer.bindPopup(&quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot; + dateString + &quot;&amp;lt;br /&amp;gt;&quot;
+                    + &quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot; + feature.properties.mag + &quot;&amp;lt;br /&amp;gt;&quot;
+                    + &quot;&amp;lt;strong&amp;gt;Depth: &amp;lt;/strong&amp;gt;&quot; + feature.geometry.coordinates[2] + &quot; kilometers&quot;)
+}
+
+var map = L.map(&quot;map&quot;, {
+    center: new L.LatLng(40, -100),
+    zoom: 5, 
+    maxZoom: 6,
+    minZoom: 4,
+    maxBounds: ([
+    [-10, -160],
+    [70, -40]
+    ]),
+    layers: [bwmap, seismic, quakes] 
+});
+
+var baseMaps = {
+    &quot;Satellite&quot;: earth,
+    &quot;Map&quot;: bwmap
+};
+
+var overlayMaps = {
+    &quot;Earthquakes&quot;: quakes,
+    &quot;Seismic risk&quot;: seismic
+};
+
+var layersControl = new L.Control.Layers(baseMaps, overlayMaps, {collapsed: false});
+map.addControl(layersControl);
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> earth = L.tileLayer.provider(<span class="hljs-string">"MapQuestOpen.Aerial"</span>);
+
+<span class="hljs-keyword">var</span> bwmap = L.tileLayer(<span class="hljs-string">"https://{s}.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png"</span>, {
+    attribution: <span class="hljs-string">"&lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&gt;Terms &amp;amp; Feedback&lt;/a&gt;"</span>
+});
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getColor</span><span class="hljs-params">(a)</span> </span>{
+            <span class="hljs-keyword">return</span> a &gt; <span class="hljs-number">79</span> ? <span class="hljs-string">"#a50f15"</span>:
+                   a &gt; <span class="hljs-number">59</span> ? <span class="hljs-string">"#de2d26"</span> :
+                   a &gt; <span class="hljs-number">39</span>  ? <span class="hljs-string">"#fb6a4A"</span> :
+                   a &gt; <span class="hljs-number">19</span> ? <span class="hljs-string">"#fcae91"</span> :
+                   <span class="hljs-string">"#fee5d9"</span>;    
+        }
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">style</span><span class="hljs-params">(feature)</span> </span>{
+                <span class="hljs-keyword">return</span> {
+                    fillColor: getColor(feature.properties.ACC_VAL),
+                    color: getColor(feature.properties.ACC_VAL),
+                    weight: <span class="hljs-number">1</span>,
+                    opacity: <span class="hljs-number">0.4</span>,
+                    fillOpacity: <span class="hljs-number">0.7</span>
+                };
+            }
+
+<span class="hljs-comment">// var seismic = L.geoJson(seismic_risk);</span>
+
+<span class="hljs-keyword">var</span> seismic = L.geoJson(seismic_risk, {style:style});
+
+<span class="hljs-keyword">var</span> quakedataUrl = <span class="hljs-string">"http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;minmagnitude=5&amp;format=geojson&amp;latitude=39.828175&amp;longitude=-98.5795&amp;maxradiuskm=6000&amp;orderby=magnitude&amp;callback="</span>
+
+<span class="hljs-keyword">var</span> quakes = L.geoJson.ajax(quakedataUrl, {
+
+            dataType:<span class="hljs-string">"jsonp"</span>,
+
+            onEachFeature: popupText,
+
+            pointToLayer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(feature, latlng)</span> </span>{
+                <span class="hljs-keyword">return</span> L.circleMarker(latlng, {
+                    radius: <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">10</span>, feature.properties.mag)/<span class="hljs-number">50000</span>),
+                    fillColor: <span class="hljs-string">"#fff"</span>,
+                    color: <span class="hljs-string">"#000"</span>,
+                    weight: <span class="hljs-number">1</span>,
+                    opacity: <span class="hljs-number">0.2</span>,
+                    fillOpacity: <span class="hljs-number">0.5</span>
+                });
+            }
+            });
+
+<span class="hljs-function"><span class="hljs-keyword">function</span>  <span class="hljs-title">popupText</span> <span class="hljs-params">(feature, layer)</span> </span>{
+     <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(feature.properties.time)
+     <span class="hljs-keyword">var</span> dateString = date.format(<span class="hljs-string">"mmm d, yyyy"</span>)
+     layer.bindPopup(<span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span> + dateString + <span class="hljs-string">"&lt;br /&gt;"</span>
+                    + <span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span> + feature.properties.mag + <span class="hljs-string">"&lt;br /&gt;"</span>
+                    + <span class="hljs-string">"&lt;strong&gt;Depth: &lt;/strong&gt;"</span> + feature.geometry.coordinates[<span class="hljs-number">2</span>] + <span class="hljs-string">" kilometers"</span>)
+}
+
+<span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
+    center: <span class="hljs-keyword">new</span> L.LatLng(<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>),
+    zoom: <span class="hljs-number">5</span>, 
+    maxZoom: <span class="hljs-number">6</span>,
+    minZoom: <span class="hljs-number">4</span>,
+    maxBounds: ([
+    [-<span class="hljs-number">10</span>, -<span class="hljs-number">160</span>],
+    [<span class="hljs-number">70</span>, -<span class="hljs-number">40</span>]
+    ]),
+    layers: [bwmap, seismic, quakes] 
+});
+
+<span class="hljs-keyword">var</span> baseMaps = {
+    <span class="hljs-string">"Satellite"</span>: earth,
+    <span class="hljs-string">"Map"</span>: bwmap
+};
+
+<span class="hljs-keyword">var</span> overlayMaps = {
+    <span class="hljs-string">"Earthquakes"</span>: quakes,
+    <span class="hljs-string">"Seismic risk"</span>: seismic
+};
+
+<span class="hljs-keyword">var</span> layersControl = <span class="hljs-keyword">new</span> L.Control.Layers(baseMaps, overlayMaps, {collapsed: <span class="hljs-literal">false</span>});
+map.addControl(layersControl);
+</code></pre>
+
+<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
+</body>
+</html>
