@@ -70,29 +70,26 @@
 
 	<div class="container all">
 
-  <h1 id="making-interactive-maps"><a name="making-interactive-maps" href="#making-interactive-maps"></a>Making interactive maps</h1><p><a href="https://www.mapbox.com/account/apps/">https://www.mapbox.com/account/apps/</a></p><h3 id="introducing-tilemill"><a name="introducing-tilemill" href="#introducing-tilemill"></a>Introducing Tilemill</h3><h3 id="make-a-tilemill-map-using-the-seismic-hazard-and-earthquakes-data"><a name="make-a-tilemill-map-using-the-seismic-hazard-and-earthquakes-data" href="#make-a-tilemill-map-using-the-seismic-hazard-and-earthquakes-data"></a>Make a Tilemill map using the seismic hazard and earthquakes data</h3><p>Prepare the data.</p><p>LibreOffice Calc</p><pre><code class="excel hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Excel&quot;&gt;=SQRT(10^[A2])/200
-&lt;/code&gt;&lt;/pre&gt;">=SQRT(10^[A2])/200
-</code></pre><pre><code class="excel hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Excel&quot;&gt;=DATE(A2,B2,C2)
-&lt;/code&gt;&lt;/pre&gt;">=DATE(A2,B2,C2)
-</code></pre><p>Sorted by magnitude, descending - important for tooltip.</p><p>delete to remove background color</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;Map {
+
+  <h1 id="making-interactive-maps"><a name="making-interactive-maps" href="#making-interactive-maps"></a>Making interactive maps</h1><p>In this class we will make zoomable interactive versions of the static seismic risk and earthquakes map we made using QGIS in week 9.</p><p>We will do this two ways. First, we will design a “tileset” from the data using TileMill. We will save this on Mapbox’s servers, and then make a webpage displaying the tiles over a basemap. To do this we will use <a href="https://www.mapbox.com/mapbox.js/">Mapbox.js</a>, a JavaScript code library for making interactive maps. You will need a Mapbox account: Go to the <a href="https://www.mapbox.com/">Mapbox website</a>, click the <code>Sign up</code> button at top right, and follow the instructions to obtain a free “Starter” plan.</p><p>Then we will create a very similar map entirely from GeoJSON, so there is no need to host a tileset on Mapbox’s servers (which can become costly for maps that receive high traffic). We will also include a call to the U.S. Geological Survey’s API to obtain the earthquakes data in real time. This means that each time the map loads in a user’s web browser, it will automatically include any new quakes that meet our search criteria, rather than reflecting a static snapshot of the data from the time we made the map.</p><p>This will demonstrate the value of working with an API to obtain data for online interactives, where this is possible, rather than using a static dataset that will not update.</p><p>We will make the second map using <a href="http://leafletjs.com/">Leaflet</a>, the most widely-used JavaScript code library for making interactive online maps. (Mapbox.js is built on top of Leaflet, so the two are very similar.)</p><h3 id="introducing-tilemill"><a name="introducing-tilemill" href="#introducing-tilemill"></a>Introducing TileMill</h3><p><a href="https://www.mapbox.com/tilemill/">TileMill</a> is a design studio for making customized tilesets, which function like the tiles that power Google or Bing Maps, as we saw in week 8:</p><p><img src="img/class8_21.jpg" alt=""></p><p>(Source: <a href="http://msdn.microsoft.com/en-us/library/bb259689.aspx">Microsoft Developer Network</a>)</p><p>You can design tilesets that include basemaps, or you can design a tileset to work as an overlay, placing it over an existing online basemap. We will do the latter.</p><p>TileMill can handle various types of geodata, including shapefiles and GeoJSON. It can also work with CSV files including fields containing latitude and longitude co-ordinates. By default, it makes maps in the Google Mercator projection used for most zoomable online maps. (It is possible to “hack” your project to make a tileset in another map projection, but we will not do that today.)</p><p>Tilesets are styled using a language called <a href="https://www.mapbox.com/tilemill/docs/manual/carto/">CartoCSS</a>, which is very similar to the standard CSS used to style web pages. If you have any experience using CSS for web design, you should find TileMill simple and intuitive to work with.</p><h3 id="authorize-tilemill-to-save-tilesets-to-your-mapbox-account"><a name="authorize-tilemill-to-save-tilesets-to-your-mapbox-account" href="#authorize-tilemill-to-save-tilesets-to-your-mapbox-account"></a>Authorize TileMill to save tilesets to your Mapbox account</h3><p>Before saving a tileset to the Mapbox cloud, you need to authorize TileMill to save to your Mapbox account. Select <code>TileMill&gt;Preferences</code> from the top menu, click the <code>Authorize</code> button, and you will be sent to the Mapbox website, where you will need to enter your account details:</p><p><img src="img/class11_13.jpg" alt=""></p><p>Click <code>Allow</code> at the next screen, and TileMill should be authorized to save to your account.</p><h3 id="the-data-we-will-import-into-tilemill"><a name="the-data-we-will-import-into-tilemill" href="#the-data-we-will-import-into-tilemill"></a>The data we will import into TileMill</h3><p>Download the data we will use today from <a href="./data/earthquakes.zip">here</a>. The folder <code>data_for_tilemill</code> contains two files: <code>seismic_risk.geojson</code>, which is a version of the seismic risk layer we worked with in QGIS in week 9, saved as GeoJSON; and <code>quakes.csv</code>, which is based on the same earthquakes data we worked with previously.</p><p>However, I have edited the second file in LibreOffice Calc. First, I created a new field called <code>amplit</code> from the existing field <code>mag</code>, for earthquake magnitude, using the spreadsheet formula: <code>=SQRT(10^[A2])</code>.</p><p>Here, <code>A2</code> would be replaced by the co-ordinate for the first cell in the <code>mag</code> field, and then the formula would be copied down the rest of the new column. <code>10^A2</code> is the same formula for converting earthquake magnitude into amount of ground shaking that we used in week 9. But notice that I then took the square root of that number using the function <code>SQRT()</code>. This is because TileMill sets the size of circles by their width/diameter, or twice their radius. As we noted in week 2, the area of a circle is given by the formula: <code>area = π * radius^2</code>. So when scaling circles using radius or diameter, we need to use the square root of the data values to get the circles to scale correctly, by area.</p><p>I also made a new column giving the dates in a format that can be read easily by people, rather than the standard format understood by data analysis software. This is because we are going to display the dates, along with other data, when a user hovers over each quake.</p><h3 id="use-tilemill-to-design-a-tileset-displaying-the-seismic-hazard-and-earthquakes-data"><a name="use-tilemill-to-design-a-tileset-displaying-the-seismic-hazard-and-earthquakes-data" href="#use-tilemill-to-design-a-tileset-displaying-the-seismic-hazard-and-earthquakes-data"></a>Use TileMill to design a tileset displaying the seismic hazard and earthquakes data</h3><p>Launch TileMill, and click the <code>New project</code> button at top left. Fill in the dialog box that appears as follows:</p><p><img src="img/class11_1.jpg" alt=""></p><p>Choose a simple, abbreviated <code>Filename</code> with no spaces; <code>Name</code> can be more descriptive. If you leave <code>Default data</code> checked, the project will automatically be created with a world map showing country borders. That can be useful if you want to style your own basemap. However, as we are just making a data overlay, we don’t want this option.</p><p>Click <code>Add</code> and a new project should appear. Click on the new project to open it up, and you should see a screen like this:</p><p><img src="img/class11_2.jpg" alt=""></p><p>The left side of the screen shows the map we are making, currently just a blue background, and the right side shows the CartoCSS used to style the map, defining that background color by its HEX value:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;Map {
   background-color: #b8dee6;
 }
 &lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">Map</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#b8dee6</span></span></span>;
 <span class="hljs-rule">}</span></span>
-</code></pre><p>Import shapefile, default:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#seismicriskclip {
+</code></pre><p>We don’t need a background, so we can simply delete this code. Save the project using <code>⌘-S</code> and the background will disappear.</p><p>To import geodata, click the <code>Layers</code> button:</p><p><img src="img/class11_3.jpg" alt=""></p><p>Then click <code>+ Add layer</code>, and at the next dialog box <code>Browse</code> to where you saved the two files. Select <code>seismic_risk.geojson</code> and click <code>Done</code>:</p><p><img src="img/class11_4.jpg" alt=""></p><p>At the next dialog box, click <code>Save &amp; Style</code>, and the data should load into the map. Use the zoom controls and pan, like you would on a Google Map, to get it in central view, filling most of the map panel:</p><p><img src="img/class11_5.jpg" alt=""></p><p>The default green colors are defined by this CartoCSS:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#seismicrisk {
   line-color:#594;
   line-width:0.5;
   polygon-opacity:1;
   polygon-fill:#ae8;
 }
-&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#seismicriskclip</span> <span class="hljs-rules">{
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#seismicrisk</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">line-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#594</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">line-width</span>:<span class="hljs-value"><span class="hljs-number">0.5</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">polygon-opacity</span>:<span class="hljs-value"><span class="hljs-number">1</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"><span class="hljs-hexcolor">#ae8</span></span></span>;
 <span class="hljs-rule">}</span></span>
-</code></pre><p>Edit to:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#seismicriskclip {  
+</code></pre><p>In the <code>Layers</code> panel, click on the data table symbol (<img src="img/class11_6.jpg" alt="">) to see that the data contains a field called <code>ACC_VAL</code>, as for the shapefile in week 9.</p><p>Close that table, and then edit the CartoCSS for the seismic risk layer to the following:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#seismicrisk {
   line-width:0;
   polygon-opacity:0.7;
   [ACC_VAL &amp;gt;= 0] { polygon-fill:#fee5d9; }
@@ -101,67 +98,76 @@
   [ACC_VAL &amp;gt;= 60] { polygon-fill:#de2d26; }
   [ACC_VAL &amp;gt;= 80] { polygon-fill:#a50f15; }
 }
-&lt;/code&gt;&lt;/pre&gt;">#seismicriskclip {  
-  line-width:0;
-  polygon-opacity:0.7;
-  [ACC_VAL &gt;= 0] { polygon-fill:#fee5d9; }
-  [ACC_VAL &gt;= 20] { polygon-fill:#fcae91; }
-  [ACC_VAL &gt;= 40] { polygon-fill:#fb6a4a; }
-  [ACC_VAL &gt;= 60] { polygon-fill:#de2d26; }
-  [ACC_VAL &gt;= 80] { polygon-fill:#a50f15; }
+&lt;/code&gt;&lt;/pre&gt;"><strong>#seismicrisk</strong> {
+  line-width:<span class="hljs-number">0</span>;
+  polygon-opacity:<span class="hljs-number">0.7</span>;
+  [ACC_VAL &gt;= <span class="hljs-number">0</span>] { polygon-fill:<span class="hljs-hexcolor">#fee5d9</span>; }
+  [ACC_VAL &gt;= <span class="hljs-number">20</span>] { polygon-fill:<span class="hljs-hexcolor">#fcae91</span>; }
+  [ACC_VAL &gt;= <span class="hljs-number">40</span>] { polygon-fill:<span class="hljs-hexcolor">#fb6a4a</span>; }
+  [ACC_VAL &gt;= <span class="hljs-number">60</span>] { polygon-fill:<span class="hljs-hexcolor">#de2d26</span>; }
+  [ACC_VAL &gt;= <span class="hljs-number">80</span>] { polygon-fill:<span class="hljs-hexcolor">#a50f15</span>; }
 }
-</code></pre><p>Import CSV, default:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes196420135 {
+</code></pre><p>This reduces the width of the lines to zero, and makes the polygons partially transparent, so the base map will later be visible through the layer. It then applies some conditional styling, based on values of <code>ACC_VAL</code>, to apply the same <a href="http://colorbrewer2.org/">ColorBrewer</a> scheme we used for the static map in week 9, using the colors’ HEX vales.</p><p>Save the project using <code>⌘-S</code> and the layer will take on the style defined by the CartoCSS:</p><p><img src="img/class11_7.jpg" alt=""></p><p>In the <code>Layers</code> panel, click <code>+ Add layer</code> and import <code>quakes.csv</code> in the same way as before. The map should populate with points:</p><p><img src="img/class11_8.jpg" alt=""></p><p>Their style is defined by this default CartoCSS:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes {
   marker-width:6;
   marker-fill:#f45;
   marker-line-color:#813;
   marker-allow-overlap:true;
 }
-&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#quakes196420135</span> <span class="hljs-rules">{
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#quakes</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value"><span class="hljs-number">6</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"><span class="hljs-hexcolor">#f45</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-line-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#813</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-allow-overlap</span>:<span class="hljs-value">true</span></span>;
 <span class="hljs-rule">}</span></span>
-</code></pre><p>Edit to:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes196420135 {
-  marker-width:[amplit]*2;
+</code></pre><p>Again, we will edit this, to the following:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes {
+  marker-width:[amplit]/120;
   marker-fill:#ffffff;
   marker-line-color:#000000;
   marker-allow-overlap:true;
   marker-opacity: 0.5;
   marker-line-opacity: 0.5;
 }
-&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#quakes196420135</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value">[amplit]*<span class="hljs-number">2</span></span></span>;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-id">#quakes</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value">[amplit]/<span class="hljs-number">120</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"><span class="hljs-hexcolor">#ffffff</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-line-color</span>:<span class="hljs-value"><span class="hljs-hexcolor">#000000</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-allow-overlap</span>:<span class="hljs-value">true</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.5</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">marker-line-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.5</span></span></span>;
 <span class="hljs-rule">}</span></span>
-</code></pre><p>Legend:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;strong&amp;gt;Seismic risk:&amp;lt;/strong&amp;gt; &amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;
-Low &amp;lt;span style=&quot;color:#fee5d9&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+</code></pre><p>This scales the diameter of the circles by the field <code>amplit</code>, divided by 120 to give a reasonable display — a value I settled on through trial and error. It fills the markers with white, gives them a black border, and then makes the circles semi-transparent by applying 50% opacity to both fill and line.</p><p>The map should now look like this:</p><p><img src="img/class11_9.jpg" alt=""></p><p>We have only explored some of the options available in CartoCSS, which allows for many possibilities, including adjusting the visibility or appearance of features at different zoom levels. See <a href="https://github.com/mapbox/carto/blob/master/docs/latest.md">here</a> for a complete CartoCSS reference.</p><p>Having styled the map, we will now add a legend and a tooltip to be displayed when each quake is hovered over (or tapped, on mobile devices). To add these features, click on this icon:</p><p><img src="img/class11_10.jpg" alt=""></p><p>In the <code>Legend</code> tab, enter the following HTML:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Seismic risk:&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/br&amp;gt;
+&amp;lt;p&amp;gt;Low
+&amp;lt;span style=&quot;color:#fee5d9&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
 &amp;lt;span style=&quot;color:#fcae91&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
 &amp;lt;span style=&quot;color:#fb6a4A&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
 &amp;lt;span style=&quot;color:#de2d26&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
-&amp;lt;span style=&quot;color:#a50f15&quot;&amp;gt;▉&amp;lt;/span&amp;gt; High&amp;lt;br /&amp;gt;&amp;lt;br /&amp;gt;
-Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the amplitude of ground shaking. Roll over/tap each quake for details.
-&lt;/code&gt;&lt;/pre&gt;">strong&gt;Seismic risk:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
-Low <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fee5d9"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+&amp;lt;span style=&quot;color:#a50f15&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+High&amp;lt;/p&amp;gt;&amp;lt;br /&amp;gt;
+&amp;lt;p&amp;gt;Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the amount of ground shaking. Hover over/tap each quake for details.&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Seismic risk:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">br</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Low
+<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fee5d9"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fcae91"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fb6a4A"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#de2d26"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#a50f15"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span> High<span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
-Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the amplitude of ground shaking. Roll over/tap each quake for details.
-</code></pre><p>Teaser:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;strong&amp;gt;Date:&amp;lt;/strong&amp;gt; {{{date}}} &amp;lt;br /&amp;gt;
+<span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#a50f15"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+High<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the amount of ground shaking. Hover over/tap each quake for details.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+</code></pre><p>Note that ▉ is the Unicode character for a <a href="http://www.fileformat.info/info/unicode/char/25a0/index.htm">filled square</a>.</p><p>In the <code>Teaser</code> tab, set <code>quakes</code> as the layer to use for interaction data, using the control at bottom left:</p><p><img src="img/class11_11.jpg" alt=""></p><p>Then enter the following HTML:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;strong&amp;gt;Date:&amp;lt;/strong&amp;gt; {{{date}}} &amp;lt;br /&amp;gt;
 &amp;lt;strong&amp;gt;Magnitude:&amp;lt;/strong&amp;gt; {{{mag}}} &amp;lt;br /&amp;gt;
 &amp;lt;strong&amp;gt;Depth:&amp;lt;/strong&amp;gt; {{{depth}}} kilometers
 &lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Date:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> {{{date}}} <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Magnitude:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> {{{mag}}} <span class="hljs-tag">&lt;<span class="hljs-title">br</span> /&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Depth:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span> {{{depth}}} kilometers
-</code></pre><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+</code></pre><p>Here the moustache tags, <code>{{{ }}}</code>, enclose the names of fields from the data. When a user hovers over (or taps, on a mobile device) each circle, the corresponding data for that quake will appear.</p><p>Save the project using <code>⌘-S</code>, close the <code>Templates</code> panel, and the map should look like this:</p><p><img src="img/class11_12.jpg" alt=""></p><p>Now click on the <code>Settings</code> icon at top right ( <img src="img/class11_14.jpg" alt=""> )and zoom the map to level 4. Click on the existing center pin to remove it:</p><p><img src="img/class11_15.jpg" alt=""></p><p>Another pin, at the correct zoom level, should appear. Pan the map so the area we want to display is in view and click somewhere in the center of the United States to move the center pin to that position.</p><p>Then adjust the <code>Project settings</code> to the following:</p><p><img src="img/class11_16.jpg" alt=""></p><p>This limits the tileset that will be saved to zoom levels 3 through 6, and sets the initial map view centered at a latitude of 40 degrees North and a longitude of 100 degrees West, displayed at zoom level 4.</p><p>Click <code>Save</code> to save these settings, then select <code>Export&gt;Upload</code> and and click the <code>Upload</code> button. The tileset should now upload to your Mapbox account. When the upload is complete, click <code>View</code> to see the online map.</p><p>You can now quit TileMill.</p><h3 id="make-a-simple-web-page-to-display-the-tileset-over-a-basemap"><a name="make-a-simple-web-page-to-display-the-tileset-over-a-basemap" href="#make-a-simple-web-page-to-display-the-tileset-over-a-basemap"></a>Make a simple web page to display the tileset over a basemap</h3><p>Launch TextWrangler or another text editor optimized for authoring web pages (<strong>not</strong> TextEdit!).</p><p>First paste the following to set up the document as a web page, saving it with an appropriate name, such as <code>seismic.html</code>:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html&amp;gt;
 
-&amp;lt;head&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>Between the <code>&lt;html&gt; &lt;/html&gt;</code> tags, paste this HTML:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;head&amp;gt;
 
     &amp;lt;meta charset=utf-8 /&amp;gt;
     &amp;lt;title&amp;gt;Seismic hazards in the continental U.S.&amp;lt;/title&amp;gt;
@@ -175,25 +181,7 @@ Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the 
     &amp;lt;/style&amp;gt;
 
 &amp;lt;/head&amp;gt;
-
-&amp;lt;body&amp;gt;
-
-    &amp;lt;div id=&quot;map&quot;&amp;gt;&amp;lt;/div&amp;gt;
-
-    &amp;lt;script&amp;gt;
-        L.mapbox.accessToken = &quot;&amp;lt;Your access token&amp;gt;&quot;;
-
-        var map = L.mapbox.map(&quot;map&quot;, &quot;mapbox.world-print,&amp;lt;Your map&amp;gt;&quot;, {maxZoom: 6, minZoom: 4})
-            .setView([40, -100], 5);
-    &amp;lt;/script&amp;gt;
-
-&amp;lt;/body&amp;gt;
-
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Seismic hazards in the continental U.S.<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
@@ -207,25 +195,45 @@ Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the 
     </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+</code></pre><p>This should look familiar if you have previously authored any web pages. It is the head for the webpage, containing some basic settings and loading resources that will be used by the page. It accesses Mapbox.js, which we will use to set up and control the map, and there is also a link to a Mapbox CSS stylesheet.</p><p>The code between the <code>&lt;style&gt; &lt;/style&gt;</code> tags is some very simple CSS to make the map display full screen.</p><p>Beneath the page head, but above the closing <code>&lt;/html&gt;</code> tag, paste the code for the body of the web page:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;body&amp;gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    &amp;lt;div id=&quot;map&quot;&amp;gt;&amp;lt;/div&amp;gt;
+
+    &amp;lt;script&amp;gt;
+        L.mapbox.accessToken = &quot;*Your access token*&quot;;
+
+        var map = L.mapbox.map(&quot;map&quot;, &quot;mapbox.world-bright,*Your map*&quot;, {maxZoom: 6, minZoom: 3})
+            .setView([40, -100], 4);
+    &amp;lt;/script&amp;gt;
+
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"map"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
-        L.mapbox.accessToken = <span class="hljs-string">"&lt;Your access token&gt;"</span>;
+        L.mapbox.accessToken = <span class="hljs-string">"*Your access token*"</span>;
 
-        <span class="hljs-keyword">var</span> map = L.mapbox.map(<span class="hljs-string">"map"</span>, <span class="hljs-string">"mapbox.world-print,&lt;Your map&gt;"</span>, {maxZoom: <span class="hljs-number">6</span>, minZoom: <span class="hljs-number">4</span>})
-            .setView([<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>], <span class="hljs-number">5</span>);
+        <span class="hljs-keyword">var</span> map = L.mapbox.map(<span class="hljs-string">"map"</span>, <span class="hljs-string">"mapbox.world-bright,*Your map*"</span>, {maxZoom: <span class="hljs-number">6</span>, minZoom: <span class="hljs-number">3</span>})
+            .setView([<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>], <span class="hljs-number">4</span>);
     </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre><p>Mapbox basemaps: <a href="http://a.tiles.mapbox.com/v3/mapbox/maps.html">http://a.tiles.mapbox.com/v3/mapbox/maps.html</a></p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+</code></pre><p>This code first sets up a div to contain the map.</p><p>The code between the <code>&lt;script&gt; &lt;/script&gt;</code> tags is some simple JavaScript telling Mapbox.js how to set up the map.</p><p>You will need to replace <code>*Your access token*</code> with the token for your account. Sign in on the <a href="https://www.mapbox.com/">Mapbox website</a>, then click on the <code>Apps</code> tab:</p><p><img src="img/class11_17.jpg" alt=""></p><p>Copy the <code>Default public token</code> and paste it in place of <code>*Your access token*</code>.</p><p>The code to set up the map first calls in a free Mapbox basemap (see <a href="http://a.tiles.mapbox.com/v3/mapbox/maps.html">here</a> for others you can use), and then adds your tileset over that. You will need to replace <code>*Your map*</code> with the id for your map.</p><p>If the url for your map on the Mapbox website is of the form <code>http://a.tiles.mapbox.com/v3/paldhous.us_seismic/page.html</code>, then the id is: <code>paldhous.us_seismic</code>.</p><p>The code also restricts zooming to between levels 3 and 6, the limits we set in TileMill for the tileset, and again sets the initial view to to zoom level 4, centered on a latitude of 40 degrees North and a longitude of 100 degrees West.</p><p>Save your HTML file, open it in a web browser, and you should see a map that looks like this:</p><p><img src="img/class11_18.jpg" alt=""></p><h3 id="make-a-leaflet-map-using-geojson-and-the-u.s.-geological-survey-earthquakes-api"><a name="make-a-leaflet-map-using-geojson-and-the-u.s.-geological-survey-earthquakes-api" href="#make-a-leaflet-map-using-geojson-and-the-u.s.-geological-survey-earthquakes-api"></a>Make a Leaflet map using GeoJSON and the U.S. Geological Survey earthquakes API</h3><p>Now we will make a similar map with the data layers made entirely from GeoJSON. We will do this in the <code>map</code> folder. Notice that it contains two subfolders, <code>data</code> and <code>src</code>. The first contains a single file <code>seismic_risk.js</code>. This contains the seismic risk GeoJSON data we earlier imported into TileMill, declared as a JavaScript variable by pasting it into the following code:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var seismic_risk =
+//GeoJSON pasted here
+;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> seismic_risk =
+<span class="hljs-comment">//GeoJSON pasted here</span>
+;
+</code></pre><p>The <code>src</code> folder contains two JavaScript files, <code>date-format.js</code> and <code>leaflet.ajax.min.js</code>. The first is a <a href="http://blog.stevenlevithan.com/archives/date-time-format">script by web developer Steven Levithan</a>, which we will use to format dates. The second is a <a href="https://github.com/calvinmetcalf/leaflet-ajax">Leaflet plugin</a>, which turns GeoJSON returned by an API into a Leaflet map layer.</p><p>(Note, Leaflet has many useful plugins that extend its basic functionality. View them <a href="http://leafletjs.com/plugins.html">here</a>.)</p><p>First we need to set up a web page for our map. In TextWrangler or another text editor, paste the following into a new document, saving it as <code>index.html</code> in the main <code>map</code> folder:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
 &amp;lt;html&amp;gt;
 
-&amp;lt;head&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>Now paste the following code, for the head of the web page, between the <code>&lt;html&gt; &lt;/html&gt;</code> tags:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;head&amp;gt;
 
     &amp;lt;meta charset=utf-8 /&amp;gt;
     &amp;lt;title&amp;gt;Seismic hazards in the continental U.S.&amp;lt;/title&amp;gt;
@@ -234,61 +242,38 @@ Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the 
     &amp;lt;link rel=&quot;stylesheet&quot; href=&quot; http://leafletjs.com/dist/leaflet.css&quot; /&amp;gt;
     &amp;lt;script src=&quot;http://leafletjs.com/dist/leaflet.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
     &amp;lt;script src=&quot;src/leaflet.ajax.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;src/leaflet-providers.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;src/date-format.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
-    &amp;lt;script src=&quot;data/seismic_risk.js&quot;&amp;gt;&amp;lt;/script&amp;gt;    
+    &amp;lt;script src=&quot;src/date.format.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;data/seismic_risk.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
 
     &amp;lt;style&amp;gt;
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%}
+        body {margin:0; padding:0;}
+        #map {position:absolute; top:0; bottom:0; width:100%;}
         #legend {
             background: #ffffff;
             position: absolute;
             bottom: 30px;
-            right: 10px;
+            left: 10px;
             padding: 0px 10px;
-            width: 260px;
+            width: 200px;
             font-family: arial;
             font-size: small;
             -webkit-border-radius:4px 4px 4px 4px;
-            border-radius:4px 4px 4px 4px;        
+            border-radius:4px 4px 4px 4px;
             -webkit-box-shadow: 0px 1px 5px rgba(153,153,153,1);
             -moz-box-shadow: 0px 1px 5px rgba(153,153,153,1);
-            box-shadow: 0px 1px 5px rgba(153,153,153,1)
+            box-shadow: 0px 1px 5px rgba(153,153,153,1);
+        }
+        @media (max-width:767px) {
+        #legend-text {display:none;}
+        #legend {width: 140px;}
+        }
+        @media (min-width:768px) {
+        #legend-text-alt {display:none;}
         }
     &amp;lt;/style&amp;gt;
 
 &amp;lt;/head&amp;gt;
-
-&amp;lt;body&amp;gt;
-
-    &amp;lt;div id=&quot;map&quot;&amp;gt;
-
-        &amp;lt;script src=&quot;maps.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
-
-    &amp;lt;/div&amp;gt;
-
-    &amp;lt;div id=&quot;legend&quot;&amp;gt;
-
-        &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Seismic risk:&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
-        &amp;lt;p&amp;gt;Low
-        &amp;lt;span style=&quot;color:#fee5d9&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
-        &amp;lt;span style=&quot;color:#fcae91&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
-        &amp;lt;span style=&quot;color:#fb6a4A&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
-        &amp;lt;span style=&quot;color:#de2d26&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
-        &amp;lt;span style=&quot;color:#a50f15&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
-        High&amp;lt;/p&amp;gt;
-        &amp;lt;p&amp;gt;Circles show quakes of magnitude 5 or greater, from 1965 to present, scaled by the amplitude of ground shaking. Click on each quake for details.&amp;lt;/p&amp;gt;
-
-    &amp;lt;/div&amp;gt;
-
-&amp;lt;/body&amp;gt;
-
-&amp;lt;/html&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
-
-<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Seismic hazards in the continental U.S.<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
@@ -297,42 +282,72 @@ Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the 
     <span class="hljs-tag">&lt;<span class="hljs-title">link</span> <span class="hljs-attribute">rel</span>=<span class="hljs-value">"stylesheet"</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">" http://leafletjs.com/dist/leaflet.css"</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://leafletjs.com/dist/leaflet.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/leaflet.ajax.min.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/leaflet-providers.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/date-format.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"data/seismic_risk.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>    
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/date.format.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"data/seismic_risk.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
-        <span class="hljs-tag">body</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule">}</span></span>
-        <span class="hljs-id">#map</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value">absolute</span></span>; <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span></span>}
+        <span class="hljs-tag">body</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;<span class="hljs-rule">}</span></span>
+        <span class="hljs-id">#map</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value">absolute</span></span>; <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>; <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"><span class="hljs-number">100%</span></span></span>;<span class="hljs-rule">}</span></span>
         <span class="hljs-id">#legend</span> <span class="hljs-rules">{
             <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ffffff</span></span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">bottom</span>:<span class="hljs-value"> <span class="hljs-number">30px</span></span></span>;
-            <span class="hljs-rule"><span class="hljs-attribute">right</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">10px</span></span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">10px</span></span></span>;
-            <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">260px</span></span></span>;
+            <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">200px</span></span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> small</span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">-webkit-border-radius</span>:<span class="hljs-value"><span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span></span></span>;
-            <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"><span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span></span></span>;        
+            <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"><span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span> <span class="hljs-number">4px</span></span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">-webkit-box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)</span></span>;
             <span class="hljs-rule"><span class="hljs-attribute">-moz-box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)</span></span>;
-            <span class="hljs-rule"><span class="hljs-attribute">box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)
-        </span></span></span>}
+            <span class="hljs-rule"><span class="hljs-attribute">box-shadow</span>:<span class="hljs-value"> <span class="hljs-number">0px</span> <span class="hljs-number">1px</span> <span class="hljs-number">5px</span> <span class="hljs-function">rgba</span>(<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">153</span>,<span class="hljs-number">1</span>)</span></span>;
+        <span class="hljs-rule">}</span></span>
+        <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (max-width:<span class="hljs-number">767px</span>) </span>{
+        <span class="hljs-id">#legend-text</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value">none</span></span>;<span class="hljs-rule">}</span></span>
+        <span class="hljs-id">#legend</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">140px</span></span></span>;<span class="hljs-rule">}</span></span>
+        }
+        <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> (min-width:<span class="hljs-number">768px</span>) </span>{
+        <span class="hljs-id">#legend-text-alt</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value">none</span></span>;<span class="hljs-rule">}</span></span>
+        }
     </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+</code></pre><p>This loads the resources we will need to make the map, including Leaflet and its associated CSS stylesheet, the two JavaScript files in our <code>src</code> folder, and the seismic risk data. It also loads <a href="http://jquery.com/">jQuery</a>, which we will use later to give the map some basic responsive design.</p><p>The CSS in between the <code>&lt;style&gt; &lt;/style&gt;</code> tags is as for the previous map, plus style for a legend, which will make it look consistent with Leaflet’s map controls. Note also the <code>@media</code> rules at the end, which will display different text on the legend for different screen sizes, and shrink the size of the legend box on small screens. (All of this CSS could be placed into an external stylesheet, if you wished.)</p><p>Now, beneath the head, but above the closing <code>&lt;/html&gt;</code> tag, paste the following HTML for the body of the web page:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;body&amp;gt;
 
-<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+    &amp;lt;div id=&quot;map&quot;&amp;gt;
+
+        &amp;lt;script src=&quot;src/maps.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div id=&quot;legend&quot;&amp;gt;
+        &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Seismic risk:&amp;lt;/strong&amp;gt;&amp;lt;/p&amp;gt;
+        &amp;lt;p&amp;gt;Low
+        &amp;lt;span style=&quot;color:#fee5d9&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#fcae91&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#fb6a4A&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#de2d26&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        &amp;lt;span style=&quot;color:#a50f15&quot;&amp;gt;▉&amp;lt;/span&amp;gt;
+        High&amp;lt;/p&amp;gt;
+        &amp;lt;div id=&quot;legend-text&quot;&amp;gt;
+            &amp;lt;p&amp;gt;Circles show significant quakes, from 1965 to present, scaled by the amount of ground shaking. Click/tap for details.&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+        &amp;lt;div id=&quot;legend-text-alt&quot;&amp;gt;
+            &amp;lt;p&amp;gt;Tap quakes for details.&amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+&amp;lt;/body&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"map"</span>&gt;</span>
 
-        <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"maps.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/maps.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"legend"</span>&gt;</span>
-
         <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Seismic risk:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Low
         <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#fee5d9"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
@@ -341,28 +356,127 @@ Circles show quakes of magnitude 5 or greater, from 1964 to 2013, scaled by the 
         <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#de2d26"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">"color:#a50f15"</span>&gt;</span>▉<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
         High<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Circles show quakes of magnitude 5 or greater, from 1965 to present, scaled by the amplitude of ground shaking. Click on each quake for details.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"legend-text"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Circles show significant quakes, from 1965 to present, scaled by the amount of ground shaking. Click/tap for details.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"legend-text-alt"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Tap quakes for details.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
 
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
-
-<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
-</code></pre><p>And here is <code>maps.js</code>:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var earth = L.tileLayer.provider(&quot;MapQuestOpen.Aerial&quot;);
-
-var bwmap = L.tileLayer(&quot;https://{s}.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png&quot;, {
+</code></pre><p>The HTML for the legend div is very similar to the code we used earlier to make a legend in TileMill, but note the two versions of the div containing the text describing the quakes, the second much condensed for small screens.</p><p>As before, there is a div to contain the map, but the JavaScript to control the map will be loaded in from the file we now need to create, called <code>maps.js</code>. So open a new document in your text editor, and save it under this name in the <code>src</code> subfolder.</p><p>Now paste the following into the <code>maps.js</code> file:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// creates two basemap layers
+var bright = L.tileLayer(&quot;https://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png&quot;, {
     attribution: &quot;&amp;lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&amp;gt;Terms &amp;amp;amp; Feedback&amp;lt;/a&amp;gt;&quot;
 });
+var satellite = L.tileLayer(&quot;https://{s}.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul-bw/{z}/{x}/{y}.png&quot;, {
+    attribution: &quot;&amp;lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&amp;gt;Terms &amp;amp;amp; Feedback&amp;lt;/a&amp;gt;&quot;
+});
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// creates two basemap layers</span>
+<span class="hljs-keyword">var</span> bright = L.tileLayer(<span class="hljs-string">"https://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png"</span>, {
+    attribution: <span class="hljs-string">"&lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&gt;Terms &amp;amp; Feedback&lt;/a&gt;"</span>
+});
+<span class="hljs-keyword">var</span> satellite = L.tileLayer(<span class="hljs-string">"https://{s}.tiles.mapbox.com/v3/mapbox.blue-marble-topo-jul-bw/{z}/{x}/{y}.png"</span>, {
+    attribution: <span class="hljs-string">"&lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&gt;Terms &amp;amp; Feedback&lt;/a&gt;"</span>
+});
+</code></pre><p>This declares two JavaScript variables, <code>bright</code> and <code>satellite</code>, which correspond to Mapbox tilesets, converted to Leaflet map layers. We will use these as basemaps. You are not limited to using Mapbox tilesets: For example, this code would create an OpenStreetMap layer:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var osm = L.tileLayer(&quot;http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png&quot;, {
+    attribution: &quot;&amp;lt;a href='http://openstreetmap.org'&amp;gt;OpenStreetMap&amp;lt;/a&amp;gt; contributors,&amp;lt;a href='http://creativecommons.org/licenses/by-sa/2.0/'&amp;gt; CC-BY-SA&amp;lt;/a&amp;gt;&quot;
+});
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> osm = L.tileLayer(<span class="hljs-string">"http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"</span>, {
+    attribution: <span class="hljs-string">"&lt;a href='http://openstreetmap.org'&gt;OpenStreetMap&lt;/a&gt; contributors,&lt;a href='http://creativecommons.org/licenses/by-sa/2.0/'&gt; CC-BY-SA&lt;/a&gt;"</span>
+});
+</code></pre><p>The <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet providers</a> plugin can also be useful for identifying basemaps, and adding them to your projects; see <a href="https://github.com/leaflet-extras/leaflet-providers">the demo</a>.</p><p>Now paste this code into the file:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// creates the map and sets initial view, including layers to be displayed, plus limits for zoom and maximum extent
+var map = L.map(&quot;map&quot;, {
+    center: new L.LatLng(40, -100),
+    zoom: 4
+    maxZoom: 6,
+    minZoom: 3,
+    maxBounds: ([
+    [-10, -160],
+    [70, -40]
+    ]),
+    layers: [bright]
+});
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// creates the map and sets initial view, including layers to be displayed, plus limits for zoom and maximum extent</span>
+<span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
+    center: <span class="hljs-keyword">new</span> L.LatLng(<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>),
+    zoom: <span class="hljs-number">4</span>
+    maxZoom: <span class="hljs-number">6</span>,
+    minZoom: <span class="hljs-number">3</span>,
+    maxBounds: ([
+    [-<span class="hljs-number">10</span>, -<span class="hljs-number">160</span>],
+    [<span class="hljs-number">70</span>, -<span class="hljs-number">40</span>]
+    ]),
+    layers: [bright]
+});
+</code></pre><p>This creates the map, setting its initial zoom level to 4, and the minimum and maximum zoom levels to 3 and 6 respectively. It centers the initial view at a latitude of 40 degrees North and a longitude of 100 degrees west. You will notice the similarity to the Mapbox.js code we used previously.</p><p><code>maxBounds</code> sets southwest and northeast co-ordinates for the maximum extent of the map view: If a user tries to pan the map beyond these limits, it will spring back to the allowed view. The last line loads the <code>bright</code> layer we created above.</p><p>Next, paste this code into the file:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// Defines the two basemaps
+var baseMaps = {
+    &quot;Satellite&quot;: satellite,
+    &quot;Map&quot;: bright
+};
 
+// Defines the overlay maps. For now this variable is empty, because we haven't created any overlay layers
+var overlayMaps = {
+
+};
+
+// Adds a Leaflet layer control, using basemaps and overlay maps defined above
+var layersControl = new L.Control.Layers(baseMaps, overlayMaps, {collapsed: false});
+map.addControl(layersControl);
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// Defines the two basemaps</span>
+<span class="hljs-keyword">var</span> baseMaps = {
+    <span class="hljs-string">"Satellite"</span>: satellite,
+    <span class="hljs-string">"Map"</span>: bright
+};
+
+<span class="hljs-comment">// Defines the overlay maps. For now this variable is empty, because we haven't created any overlay layers</span>
+<span class="hljs-keyword">var</span> overlayMaps = {
+
+};
+
+<span class="hljs-comment">// Adds a Leaflet layer control, using basemaps and overlay maps defined above</span>
+<span class="hljs-keyword">var</span> layersControl = <span class="hljs-keyword">new</span> L.Control.Layers(baseMaps, overlayMaps, {collapsed: <span class="hljs-literal">false</span>});
+map.addControl(layersControl);
+</code></pre><p>This sets up a Leaflet layer control, allowing users to switch between the two basemaps. Later it will also allow them to adjust the visibility of the overlay layers showing earthquakes and siesmic risk.</p><p>Save the <code>maps.js</code> file then open <code>index.html</code> in your web browser. The following map should appear:</p><p><img src="img/class11_19.jpg" alt=""></p><p>Notice how you can switch between the two basemap layers. See what happens if you replace  <code>{collapsed: false}</code> with <code>{collapsed: true}</code> in the <code>layersControl</code> code.</p><p>Now we will add the seismic risk layer. First add this code directly under the code creating the basemaps, to create a GeoJSON layer from the <code>siesmic_risk</code> variable defined in the file <code>seismic.js</code>:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var seismic = L.geoJson(seismic_risk);
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> seismic = L.geoJson(seismic_risk);
+</code></pre><p>Now add this layer to the code defining the overlay maps:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var overlayMaps = {
+     &quot;Seismic risk&quot;: seismic
+};
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> overlayMaps = {
+     <span class="hljs-string">"Seismic risk"</span>: seismic
+};
+</code></pre><p>Also add it to the layers that will display when the map loads:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var map = L.map(&quot;map&quot;, {
+    center: new L.LatLng(40, -100),
+    zoom: 4, 
+    maxZoom: 6,
+    minZoom: 3,
+    maxBounds: ([
+    [-10, -160],
+    [70, -40]
+    ]),
+    layers: [bright, seismic] 
+});
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
+    center: <span class="hljs-keyword">new</span> L.LatLng(<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>),
+    zoom: <span class="hljs-number">4</span>, 
+    maxZoom: <span class="hljs-number">6</span>,
+    minZoom: <span class="hljs-number">3</span>,
+    maxBounds: ([
+    [-<span class="hljs-number">10</span>, -<span class="hljs-number">160</span>],
+    [<span class="hljs-number">70</span>, -<span class="hljs-number">40</span>]
+    ]),
+    layers: [bright, seismic] 
+});
+</code></pre><p>Save the <code>maps.js</code> file, refresh <code>index.html</code> in your web browser, and the map should look like this:</p><p><img src="img/class11_20.jpg" alt=""></p><p>This is how unstyled GeoJSON appears on a Leaflet map, so now we need to style it. To do that, remove the single line of code creating the <code>seismic</code> layer, and replace it with this:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// functions to style the seismic risk layer
 function getColor(a) {
             return a &amp;gt; 79 ? &quot;#a50f15&quot;:
                    a &amp;gt; 59 ? &quot;#de2d26&quot; :
                    a &amp;gt; 39  ? &quot;#fb6a4A&quot; :
                    a &amp;gt; 19 ? &quot;#fcae91&quot; :
-                   &quot;#fee5d9&quot;;    
-        }
+                   &quot;#fee5d9&quot;;
+            }
 
-function style(feature) {
+function getStyle(feature) {
                 return {
                     fillColor: getColor(feature.properties.ACC_VAL),
                     color: getColor(feature.properties.ACC_VAL),
@@ -372,18 +486,46 @@ function style(feature) {
                 };
             }
 
-// var seismic = L.geoJson(seismic_risk);
 
-var seismic = L.geoJson(seismic_risk, {style:style});
+// the seismic risks layer, styled using functions above
+var seismic = L.geoJson(seismic_risk, {style:getStyle});
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// functions to style the seismic risk layer</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getColor</span><span class="hljs-params">(a)</span> </span>{
+            <span class="hljs-keyword">return</span> a &gt; <span class="hljs-number">79</span> ? <span class="hljs-string">"#a50f15"</span>:
+                   a &gt; <span class="hljs-number">59</span> ? <span class="hljs-string">"#de2d26"</span> :
+                   a &gt; <span class="hljs-number">39</span>  ? <span class="hljs-string">"#fb6a4A"</span> :
+                   a &gt; <span class="hljs-number">19</span> ? <span class="hljs-string">"#fcae91"</span> :
+                   <span class="hljs-string">"#fee5d9"</span>;
+            }
 
-var quakedataUrl = &quot;http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;amp;minmagnitude=5&amp;amp;format=geojson&amp;amp;latitude=39.828175&amp;amp;longitude=-98.5795&amp;amp;maxradiuskm=6000&amp;amp;orderby=magnitude&amp;amp;callback=&quot;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getStyle</span><span class="hljs-params">(feature)</span> </span>{
+                <span class="hljs-keyword">return</span> {
+                    fillColor: getColor(feature.properties.ACC_VAL),
+                    color: getColor(feature.properties.ACC_VAL),
+                    weight: <span class="hljs-number">1</span>,
+                    opacity: <span class="hljs-number">0.4</span>,
+                    fillOpacity: <span class="hljs-number">0.7</span>
+                };
+            }
 
+
+<span class="hljs-comment">// the seismic risks layer, styled using functions above</span>
+<span class="hljs-keyword">var</span> seismic = L.geoJson(seismic_risk, {style:getStyle});
+</code></pre><p>The <code>getColor</code> function is fairly easy to understand: it gets the HEX values for the same ColorBrewer color scheme we used previously, according to the values listed.</p><p>The <code>getStyle</code> function applies <code>getColor</code> to values for ACC_VAL in the data, so that these colors are assigned to both the lines and the fill for the polygons. Here is the GeoJSON for one of the polygons in the seismic risk data, which should make the logic of <code>feature.properties.ACC_VAL</code> easy to follow:</p><pre><code class="json hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JSON&quot;&gt;{ &quot;type&quot;: &quot;Feature&quot;, &quot;properties&quot;: { &quot;ACC_VAL&quot;: 18, &quot;VALLEY&quot;: 0 }, &quot;geometry&quot;: { &quot;type&quot;: &quot;Polygon&quot;, &quot;coordinates&quot;: [ [ [ -78.0, 37.365031051635675 ], [ -78.017343139648474, 37.367344284057566 ], [ -78.03101501464846, 37.368985366821327 ], [ -78.1, 37.378542709350597 ], [ -78.116345214843804, 37.383655929565464 ], [ -78.143249511718778, 37.393249893188475 ], [ -78.153375244140662, 37.396623611450167 ], [ -78.162326049804719, 37.400000381469681 ], [ -78.189303588867219, 37.410696029663058 ], [ -78.2, 37.415526199340775 ], [ -78.221560668945358, 37.428441238403309 ], [ -78.251376342773483, 37.448622512817352 ], [ -78.28023071289067, 37.469771194458019 ], [ -78.3, 37.486327743530268 ], [ -78.307220458984403, 37.492779159545904 ], [ -78.31434020996096, 37.500000381469711 ], [ -78.328512573242222, 37.52148780822754 ], [ -78.338735961914111, 37.538737106323218 ], [ -78.347268676757835, 37.552730941772467 ], [ -78.365298461914108, 37.584701156616219 ], [ -78.373092651367216, 37.600000381469691 ], [ -78.384274291992242, 37.700000381469692 ], [ -78.376583862304742, 37.726585769653305 ], [ -78.364724731445349, 37.764723587036102 ], [ -78.352359008789094, 37.800000381469708 ], [ -78.330413818359403, 37.830413436889629 ], [ -78.307797241210977, 37.857796096801799 ], [ -78.3, 37.866172409057668 ], [ -78.282803344726617, 37.882802963256815 ], [ -78.262322998046912, 37.900000381469667 ], [ -78.255227661132849, 37.905229568481374 ], [ -78.225012207031298, 37.925011825561469 ], [ -78.2, 37.939875411987288 ], [ -78.192904663085983, 37.942905044555616 ], [ -78.156692504882855, 37.956692123413085 ], [ -78.136401367187545, 37.963599014282224 ], [ -78.119662475585969, 37.969662094116181 ], [ -78.1, 37.975945663452194 ], [ -78.034487915039108, 37.984489059448194 ], [ -78.0, 37.988642501831045 ], [ -77.9, 37.981746292114266 ], [ -77.87483520507817, 37.975164413452106 ], [ -77.835671997070349, 37.964329910278302 ], [ -77.8, 37.95324516296386 ], [ -77.797760009765668, 37.952238845825171 ], [ -77.764578247070361, 37.935423660278325 ], [ -77.732861328125054, 37.917139053344741 ], [ -77.706625366210972, 37.900000381469667 ], [ -77.702761840820344, 37.897238540649404 ], [ -77.7, 37.894968795776357 ], [ -77.677008056640673, 37.872991561889677 ], [ -77.653109741210969, 37.846889114379856 ], [ -77.630596923828179, 37.819403457641613 ], [ -77.616723632812537, 37.800000381469708 ], [ -77.611972045898469, 37.788029098510783 ], [ -77.59919433593754, 37.750805282592765 ], [ -77.586868286132841, 37.713131332397516 ], [ -77.583099365234418, 37.700000381469692 ], [ -77.593188476562545, 37.600000381469691 ], [ -77.595449829101597, 37.595450210571244 ], [ -77.612869262695341, 37.56286964416509 ], [ -77.631304931640656, 37.53130607604983 ], [ -77.651373291015673, 37.500000381469711 ], [ -77.676461791992224, 37.476461410522433 ], [ -77.7, 37.456859207153336 ], [ -77.703982543945358, 37.453983688354448 ], [ -77.73429870605473, 37.434299087524423 ], [ -77.765908813476599, 37.415910720825217 ], [ -77.796795654296929, 37.40000038146971 ], [ -77.8, 37.3985080718994 ], [ -77.837515258789097, 37.387516403198234 ], [ -77.876998901367216, 37.376997756957984 ], [ -77.9, 37.371197891235305 ], [ -78.0, 37.365031051635675 ] ], [ [ -78.0, 37.425953292846657 ], [ -77.9, 37.433411788940397 ], [ -77.887353515625023, 37.437353134155259 ], [ -77.85, 37.449983596801772 ], [ -77.813735961914105, 37.46373786926268 ], [ -77.8, 37.469122695922827 ], [ -77.78084106445317, 37.480842971801749 ], [ -77.751492309570352, 37.500000381469697 ], [ -77.727679443359406, 37.5276798248291 ], [ -77.70921325683598, 37.550000381469644 ], [ -77.7, 37.561656570434536 ], [ -77.684979248046929, 37.584979629516589 ], [ -77.675885009765665, 37.600000381469691 ], [ -77.666900634765668, 37.700000381469692 ], [ -77.676461791992224, 37.723538589477528 ], [ -77.687655639648483, 37.75000038146969 ], [ -77.691400146484412, 37.758599472045923 ], [ -77.7, 37.776056289672859 ], [ -77.708975219726597, 37.791025924682565 ], [ -77.714547729492224, 37.800000381469708 ], [ -77.733038330078159, 37.816961288452141 ], [ -77.75, 37.831132888793981 ], [ -77.760403442382852, 37.839598464965789 ], [ -77.773834228515668, 37.850000381469719 ], [ -77.788818359375028, 37.861182022094717 ], [ -77.8, 37.868613815307633 ], [ -77.822052001953153, 37.877946853637681 ], [ -77.857522583007849, 37.892478561401362 ], [ -77.876547241210972, 37.900000381469667 ], [ -77.89393920898442, 37.906061935424759 ], [ -77.9, 37.907944107055656 ], [ -77.938540649414094, 37.91146049499514 ], [ -78.0, 37.916647720336911 ], [ -78.057867431640673, 37.907867813110393 ], [ -78.1, 37.900716781616204 ], [ -78.101760864257841, 37.900000381469667 ], [ -78.134426879882867, 37.884426498413127 ], [ -78.167617797851591, 37.867616653442333 ], [ -78.2, 37.849556350707999 ], [ -78.226348876953168, 37.826350021362302 ], [ -78.25, 37.804281234741175 ], [ -78.254208374023477, 37.800000381469708 ], [ -78.269543457031304, 37.769543838501008 ], [ -78.278686523437528, 37.75000038146969 ], [ -78.285430908203168, 37.735432052612317 ], [ -78.3, 37.702294540405298 ], [ -78.300872802734403, 37.700000381469692 ], [ -78.288168334960986, 37.600000381469691 ], [ -78.272650146484423, 37.577350234985381 ], [ -78.251855468750037, 37.54814491271965 ], [ -78.229464721679733, 37.520535659789999 ], [ -78.212561035156298, 37.500000381469711 ], [ -78.205477905273469, 37.494522476196252 ], [ -78.2, 37.490776443481408 ], [ -78.17280273437504, 37.477198410034219 ], [ -78.139053344726605, 37.460947799682621 ], [ -78.115493774414105, 37.450000381469707 ], [ -78.104769897460983, 37.445229721069339 ], [ -78.1, 37.443348312377921 ], [ -78.06331176757817, 37.436689376831055 ], [ -78.0, 37.425953292846657 ] ] ] } }
+&lt;/code&gt;&lt;/pre&gt;">{ "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"Feature"</span></span>, "<span class="hljs-attribute">properties</span>": <span class="hljs-value">{ "<span class="hljs-attribute">ACC_VAL</span>": <span class="hljs-value"><span class="hljs-number">18</span></span>, "<span class="hljs-attribute">VALLEY</span>": <span class="hljs-value"><span class="hljs-number">0</span> </span>}</span>, "<span class="hljs-attribute">geometry</span>": <span class="hljs-value">{ "<span class="hljs-attribute">type</span>": <span class="hljs-value"><span class="hljs-string">"Polygon"</span></span>, "<span class="hljs-attribute">coordinates</span>": <span class="hljs-value">[ [ [ -<span class="hljs-number">78.0</span>, <span class="hljs-number">37.365031051635675</span> ], [ -<span class="hljs-number">78.017343139648474</span>, <span class="hljs-number">37.367344284057566</span> ], [ -<span class="hljs-number">78.03101501464846</span>, <span class="hljs-number">37.368985366821327</span> ], [ -<span class="hljs-number">78.1</span>, <span class="hljs-number">37.378542709350597</span> ], [ -<span class="hljs-number">78.116345214843804</span>, <span class="hljs-number">37.383655929565464</span> ], [ -<span class="hljs-number">78.143249511718778</span>, <span class="hljs-number">37.393249893188475</span> ], [ -<span class="hljs-number">78.153375244140662</span>, <span class="hljs-number">37.396623611450167</span> ], [ -<span class="hljs-number">78.162326049804719</span>, <span class="hljs-number">37.400000381469681</span> ], [ -<span class="hljs-number">78.189303588867219</span>, <span class="hljs-number">37.410696029663058</span> ], [ -<span class="hljs-number">78.2</span>, <span class="hljs-number">37.415526199340775</span> ], [ -<span class="hljs-number">78.221560668945358</span>, <span class="hljs-number">37.428441238403309</span> ], [ -<span class="hljs-number">78.251376342773483</span>, <span class="hljs-number">37.448622512817352</span> ], [ -<span class="hljs-number">78.28023071289067</span>, <span class="hljs-number">37.469771194458019</span> ], [ -<span class="hljs-number">78.3</span>, <span class="hljs-number">37.486327743530268</span> ], [ -<span class="hljs-number">78.307220458984403</span>, <span class="hljs-number">37.492779159545904</span> ], [ -<span class="hljs-number">78.31434020996096</span>, <span class="hljs-number">37.500000381469711</span> ], [ -<span class="hljs-number">78.328512573242222</span>, <span class="hljs-number">37.52148780822754</span> ], [ -<span class="hljs-number">78.338735961914111</span>, <span class="hljs-number">37.538737106323218</span> ], [ -<span class="hljs-number">78.347268676757835</span>, <span class="hljs-number">37.552730941772467</span> ], [ -<span class="hljs-number">78.365298461914108</span>, <span class="hljs-number">37.584701156616219</span> ], [ -<span class="hljs-number">78.373092651367216</span>, <span class="hljs-number">37.600000381469691</span> ], [ -<span class="hljs-number">78.384274291992242</span>, <span class="hljs-number">37.700000381469692</span> ], [ -<span class="hljs-number">78.376583862304742</span>, <span class="hljs-number">37.726585769653305</span> ], [ -<span class="hljs-number">78.364724731445349</span>, <span class="hljs-number">37.764723587036102</span> ], [ -<span class="hljs-number">78.352359008789094</span>, <span class="hljs-number">37.800000381469708</span> ], [ -<span class="hljs-number">78.330413818359403</span>, <span class="hljs-number">37.830413436889629</span> ], [ -<span class="hljs-number">78.307797241210977</span>, <span class="hljs-number">37.857796096801799</span> ], [ -<span class="hljs-number">78.3</span>, <span class="hljs-number">37.866172409057668</span> ], [ -<span class="hljs-number">78.282803344726617</span>, <span class="hljs-number">37.882802963256815</span> ], [ -<span class="hljs-number">78.262322998046912</span>, <span class="hljs-number">37.900000381469667</span> ], [ -<span class="hljs-number">78.255227661132849</span>, <span class="hljs-number">37.905229568481374</span> ], [ -<span class="hljs-number">78.225012207031298</span>, <span class="hljs-number">37.925011825561469</span> ], [ -<span class="hljs-number">78.2</span>, <span class="hljs-number">37.939875411987288</span> ], [ -<span class="hljs-number">78.192904663085983</span>, <span class="hljs-number">37.942905044555616</span> ], [ -<span class="hljs-number">78.156692504882855</span>, <span class="hljs-number">37.956692123413085</span> ], [ -<span class="hljs-number">78.136401367187545</span>, <span class="hljs-number">37.963599014282224</span> ], [ -<span class="hljs-number">78.119662475585969</span>, <span class="hljs-number">37.969662094116181</span> ], [ -<span class="hljs-number">78.1</span>, <span class="hljs-number">37.975945663452194</span> ], [ -<span class="hljs-number">78.034487915039108</span>, <span class="hljs-number">37.984489059448194</span> ], [ -<span class="hljs-number">78.0</span>, <span class="hljs-number">37.988642501831045</span> ], [ -<span class="hljs-number">77.9</span>, <span class="hljs-number">37.981746292114266</span> ], [ -<span class="hljs-number">77.87483520507817</span>, <span class="hljs-number">37.975164413452106</span> ], [ -<span class="hljs-number">77.835671997070349</span>, <span class="hljs-number">37.964329910278302</span> ], [ -<span class="hljs-number">77.8</span>, <span class="hljs-number">37.95324516296386</span> ], [ -<span class="hljs-number">77.797760009765668</span>, <span class="hljs-number">37.952238845825171</span> ], [ -<span class="hljs-number">77.764578247070361</span>, <span class="hljs-number">37.935423660278325</span> ], [ -<span class="hljs-number">77.732861328125054</span>, <span class="hljs-number">37.917139053344741</span> ], [ -<span class="hljs-number">77.706625366210972</span>, <span class="hljs-number">37.900000381469667</span> ], [ -<span class="hljs-number">77.702761840820344</span>, <span class="hljs-number">37.897238540649404</span> ], [ -<span class="hljs-number">77.7</span>, <span class="hljs-number">37.894968795776357</span> ], [ -<span class="hljs-number">77.677008056640673</span>, <span class="hljs-number">37.872991561889677</span> ], [ -<span class="hljs-number">77.653109741210969</span>, <span class="hljs-number">37.846889114379856</span> ], [ -<span class="hljs-number">77.630596923828179</span>, <span class="hljs-number">37.819403457641613</span> ], [ -<span class="hljs-number">77.616723632812537</span>, <span class="hljs-number">37.800000381469708</span> ], [ -<span class="hljs-number">77.611972045898469</span>, <span class="hljs-number">37.788029098510783</span> ], [ -<span class="hljs-number">77.59919433593754</span>, <span class="hljs-number">37.750805282592765</span> ], [ -<span class="hljs-number">77.586868286132841</span>, <span class="hljs-number">37.713131332397516</span> ], [ -<span class="hljs-number">77.583099365234418</span>, <span class="hljs-number">37.700000381469692</span> ], [ -<span class="hljs-number">77.593188476562545</span>, <span class="hljs-number">37.600000381469691</span> ], [ -<span class="hljs-number">77.595449829101597</span>, <span class="hljs-number">37.595450210571244</span> ], [ -<span class="hljs-number">77.612869262695341</span>, <span class="hljs-number">37.56286964416509</span> ], [ -<span class="hljs-number">77.631304931640656</span>, <span class="hljs-number">37.53130607604983</span> ], [ -<span class="hljs-number">77.651373291015673</span>, <span class="hljs-number">37.500000381469711</span> ], [ -<span class="hljs-number">77.676461791992224</span>, <span class="hljs-number">37.476461410522433</span> ], [ -<span class="hljs-number">77.7</span>, <span class="hljs-number">37.456859207153336</span> ], [ -<span class="hljs-number">77.703982543945358</span>, <span class="hljs-number">37.453983688354448</span> ], [ -<span class="hljs-number">77.73429870605473</span>, <span class="hljs-number">37.434299087524423</span> ], [ -<span class="hljs-number">77.765908813476599</span>, <span class="hljs-number">37.415910720825217</span> ], [ -<span class="hljs-number">77.796795654296929</span>, <span class="hljs-number">37.40000038146971</span> ], [ -<span class="hljs-number">77.8</span>, <span class="hljs-number">37.3985080718994</span> ], [ -<span class="hljs-number">77.837515258789097</span>, <span class="hljs-number">37.387516403198234</span> ], [ -<span class="hljs-number">77.876998901367216</span>, <span class="hljs-number">37.376997756957984</span> ], [ -<span class="hljs-number">77.9</span>, <span class="hljs-number">37.371197891235305</span> ], [ -<span class="hljs-number">78.0</span>, <span class="hljs-number">37.365031051635675</span> ] ], [ [ -<span class="hljs-number">78.0</span>, <span class="hljs-number">37.425953292846657</span> ], [ -<span class="hljs-number">77.9</span>, <span class="hljs-number">37.433411788940397</span> ], [ -<span class="hljs-number">77.887353515625023</span>, <span class="hljs-number">37.437353134155259</span> ], [ -<span class="hljs-number">77.85</span>, <span class="hljs-number">37.449983596801772</span> ], [ -<span class="hljs-number">77.813735961914105</span>, <span class="hljs-number">37.46373786926268</span> ], [ -<span class="hljs-number">77.8</span>, <span class="hljs-number">37.469122695922827</span> ], [ -<span class="hljs-number">77.78084106445317</span>, <span class="hljs-number">37.480842971801749</span> ], [ -<span class="hljs-number">77.751492309570352</span>, <span class="hljs-number">37.500000381469697</span> ], [ -<span class="hljs-number">77.727679443359406</span>, <span class="hljs-number">37.5276798248291</span> ], [ -<span class="hljs-number">77.70921325683598</span>, <span class="hljs-number">37.550000381469644</span> ], [ -<span class="hljs-number">77.7</span>, <span class="hljs-number">37.561656570434536</span> ], [ -<span class="hljs-number">77.684979248046929</span>, <span class="hljs-number">37.584979629516589</span> ], [ -<span class="hljs-number">77.675885009765665</span>, <span class="hljs-number">37.600000381469691</span> ], [ -<span class="hljs-number">77.666900634765668</span>, <span class="hljs-number">37.700000381469692</span> ], [ -<span class="hljs-number">77.676461791992224</span>, <span class="hljs-number">37.723538589477528</span> ], [ -<span class="hljs-number">77.687655639648483</span>, <span class="hljs-number">37.75000038146969</span> ], [ -<span class="hljs-number">77.691400146484412</span>, <span class="hljs-number">37.758599472045923</span> ], [ -<span class="hljs-number">77.7</span>, <span class="hljs-number">37.776056289672859</span> ], [ -<span class="hljs-number">77.708975219726597</span>, <span class="hljs-number">37.791025924682565</span> ], [ -<span class="hljs-number">77.714547729492224</span>, <span class="hljs-number">37.800000381469708</span> ], [ -<span class="hljs-number">77.733038330078159</span>, <span class="hljs-number">37.816961288452141</span> ], [ -<span class="hljs-number">77.75</span>, <span class="hljs-number">37.831132888793981</span> ], [ -<span class="hljs-number">77.760403442382852</span>, <span class="hljs-number">37.839598464965789</span> ], [ -<span class="hljs-number">77.773834228515668</span>, <span class="hljs-number">37.850000381469719</span> ], [ -<span class="hljs-number">77.788818359375028</span>, <span class="hljs-number">37.861182022094717</span> ], [ -<span class="hljs-number">77.8</span>, <span class="hljs-number">37.868613815307633</span> ], [ -<span class="hljs-number">77.822052001953153</span>, <span class="hljs-number">37.877946853637681</span> ], [ -<span class="hljs-number">77.857522583007849</span>, <span class="hljs-number">37.892478561401362</span> ], [ -<span class="hljs-number">77.876547241210972</span>, <span class="hljs-number">37.900000381469667</span> ], [ -<span class="hljs-number">77.89393920898442</span>, <span class="hljs-number">37.906061935424759</span> ], [ -<span class="hljs-number">77.9</span>, <span class="hljs-number">37.907944107055656</span> ], [ -<span class="hljs-number">77.938540649414094</span>, <span class="hljs-number">37.91146049499514</span> ], [ -<span class="hljs-number">78.0</span>, <span class="hljs-number">37.916647720336911</span> ], [ -<span class="hljs-number">78.057867431640673</span>, <span class="hljs-number">37.907867813110393</span> ], [ -<span class="hljs-number">78.1</span>, <span class="hljs-number">37.900716781616204</span> ], [ -<span class="hljs-number">78.101760864257841</span>, <span class="hljs-number">37.900000381469667</span> ], [ -<span class="hljs-number">78.134426879882867</span>, <span class="hljs-number">37.884426498413127</span> ], [ -<span class="hljs-number">78.167617797851591</span>, <span class="hljs-number">37.867616653442333</span> ], [ -<span class="hljs-number">78.2</span>, <span class="hljs-number">37.849556350707999</span> ], [ -<span class="hljs-number">78.226348876953168</span>, <span class="hljs-number">37.826350021362302</span> ], [ -<span class="hljs-number">78.25</span>, <span class="hljs-number">37.804281234741175</span> ], [ -<span class="hljs-number">78.254208374023477</span>, <span class="hljs-number">37.800000381469708</span> ], [ -<span class="hljs-number">78.269543457031304</span>, <span class="hljs-number">37.769543838501008</span> ], [ -<span class="hljs-number">78.278686523437528</span>, <span class="hljs-number">37.75000038146969</span> ], [ -<span class="hljs-number">78.285430908203168</span>, <span class="hljs-number">37.735432052612317</span> ], [ -<span class="hljs-number">78.3</span>, <span class="hljs-number">37.702294540405298</span> ], [ -<span class="hljs-number">78.300872802734403</span>, <span class="hljs-number">37.700000381469692</span> ], [ -<span class="hljs-number">78.288168334960986</span>, <span class="hljs-number">37.600000381469691</span> ], [ -<span class="hljs-number">78.272650146484423</span>, <span class="hljs-number">37.577350234985381</span> ], [ -<span class="hljs-number">78.251855468750037</span>, <span class="hljs-number">37.54814491271965</span> ], [ -<span class="hljs-number">78.229464721679733</span>, <span class="hljs-number">37.520535659789999</span> ], [ -<span class="hljs-number">78.212561035156298</span>, <span class="hljs-number">37.500000381469711</span> ], [ -<span class="hljs-number">78.205477905273469</span>, <span class="hljs-number">37.494522476196252</span> ], [ -<span class="hljs-number">78.2</span>, <span class="hljs-number">37.490776443481408</span> ], [ -<span class="hljs-number">78.17280273437504</span>, <span class="hljs-number">37.477198410034219</span> ], [ -<span class="hljs-number">78.139053344726605</span>, <span class="hljs-number">37.460947799682621</span> ], [ -<span class="hljs-number">78.115493774414105</span>, <span class="hljs-number">37.450000381469707</span> ], [ -<span class="hljs-number">78.104769897460983</span>, <span class="hljs-number">37.445229721069339</span> ], [ -<span class="hljs-number">78.1</span>, <span class="hljs-number">37.443348312377921</span> ], [ -<span class="hljs-number">78.06331176757817</span>, <span class="hljs-number">37.436689376831055</span> ], [ -<span class="hljs-number">78.0</span>, <span class="hljs-number">37.425953292846657</span> ] ] ] </span>} </span>}
+</code></pre><p>In addition, <code>weight</code> sets the width of the lines, <code>opacity</code> sets the transparency for the lines, and <code>fillOpacity</code> sets the transparency for the polygon fills. I settled on these values through trial and error, seeking the most atttractive display.</p><p>The last line creates the seismic risk layer as before, but this time applies the <code>getStyle</code> function to style the GeoJSON. Save the <code>maps.js</code> file, refresh <code>index.html</code> in your browser, and the map should look like this:</p><p><img src="img/class11_21.jpg" alt=""></p><p>Now we need to to add the layer for the quakes, which is achieved with this code:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// the url to send to the USGS API
+var quakedataUrl = &quot;http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;amp;minmagnitude=6&amp;amp;format=geojson&amp;amp;latitude=39.828175&amp;amp;longitude=-98.5795&amp;amp;maxradiuskm=6000&amp;amp;orderby=magnitude&amp;amp;callback=&quot;
+
+
+// the quakes layer, uses leaflet.ajax to make API call
 var quakes = L.geoJson.ajax(quakedataUrl, {
 
             dataType:&quot;jsonp&quot;,
 
+            // calls the function below to create on-click pop-up for each quake
             onEachFeature: popupText,
 
+            // makes points into circle markers and styles them, scaling using JavaScript Math; magnitude value for each quake from parsed JSON
             pointToLayer: function (feature, latlng) {
                 return L.circleMarker(latlng, {
                     radius: Math.sqrt(Math.pow(10, feature.properties.mag)/50000),
@@ -396,74 +538,28 @@ var quakes = L.geoJson.ajax(quakedataUrl, {
             }
             });
 
+// function to write HTML for pop-ups; date, magnitude and depth values for each quake from parsed JSON
 function  popupText (feature, layer) {
      var date = new Date(feature.properties.time)
+     // uses date-format to format the date
      var dateString = date.format(&quot;mmm d, yyyy&quot;)
      layer.bindPopup(&quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot; + dateString + &quot;&amp;lt;br /&amp;gt;&quot;
                     + &quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot; + feature.properties.mag + &quot;&amp;lt;br /&amp;gt;&quot;
                     + &quot;&amp;lt;strong&amp;gt;Depth: &amp;lt;/strong&amp;gt;&quot; + feature.geometry.coordinates[2] + &quot; kilometers&quot;)
 }
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// the url to send to the USGS API</span>
+<span class="hljs-keyword">var</span> quakedataUrl = <span class="hljs-string">"http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;minmagnitude=6&amp;format=geojson&amp;latitude=39.828175&amp;longitude=-98.5795&amp;maxradiuskm=6000&amp;orderby=magnitude&amp;callback="</span>
 
-var map = L.map(&quot;map&quot;, {
-    center: new L.LatLng(40, -100),
-    zoom: 5, 
-    maxZoom: 6,
-    minZoom: 4,
-    maxBounds: ([
-    [-10, -160],
-    [70, -40]
-    ]),
-    layers: [bwmap, seismic, quakes] 
-});
 
-var baseMaps = {
-    &quot;Satellite&quot;: earth,
-    &quot;Map&quot;: bwmap
-};
-
-var overlayMaps = {
-    &quot;Earthquakes&quot;: quakes,
-    &quot;Seismic risk&quot;: seismic
-};
-
-var layersControl = new L.Control.Layers(baseMaps, overlayMaps, {collapsed: false});
-map.addControl(layersControl);
-&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> earth = L.tileLayer.provider(<span class="hljs-string">"MapQuestOpen.Aerial"</span>);
-
-<span class="hljs-keyword">var</span> bwmap = L.tileLayer(<span class="hljs-string">"https://{s}.tiles.mapbox.com/v3/mapbox.world-print/{z}/{x}/{y}.png"</span>, {
-    attribution: <span class="hljs-string">"&lt;a href='http://www.mapbox.com/about/maps/' target='_blank'&gt;Terms &amp;amp; Feedback&lt;/a&gt;"</span>
-});
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getColor</span><span class="hljs-params">(a)</span> </span>{
-            <span class="hljs-keyword">return</span> a &gt; <span class="hljs-number">79</span> ? <span class="hljs-string">"#a50f15"</span>:
-                   a &gt; <span class="hljs-number">59</span> ? <span class="hljs-string">"#de2d26"</span> :
-                   a &gt; <span class="hljs-number">39</span>  ? <span class="hljs-string">"#fb6a4A"</span> :
-                   a &gt; <span class="hljs-number">19</span> ? <span class="hljs-string">"#fcae91"</span> :
-                   <span class="hljs-string">"#fee5d9"</span>;    
-        }
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">style</span><span class="hljs-params">(feature)</span> </span>{
-                <span class="hljs-keyword">return</span> {
-                    fillColor: getColor(feature.properties.ACC_VAL),
-                    color: getColor(feature.properties.ACC_VAL),
-                    weight: <span class="hljs-number">1</span>,
-                    opacity: <span class="hljs-number">0.4</span>,
-                    fillOpacity: <span class="hljs-number">0.7</span>
-                };
-            }
-
-<span class="hljs-comment">// var seismic = L.geoJson(seismic_risk);</span>
-
-<span class="hljs-keyword">var</span> seismic = L.geoJson(seismic_risk, {style:style});
-
-<span class="hljs-keyword">var</span> quakedataUrl = <span class="hljs-string">"http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;minmagnitude=5&amp;format=geojson&amp;latitude=39.828175&amp;longitude=-98.5795&amp;maxradiuskm=6000&amp;orderby=magnitude&amp;callback="</span>
-
+<span class="hljs-comment">// the quakes layer, uses leaflet.ajax to make API call</span>
 <span class="hljs-keyword">var</span> quakes = L.geoJson.ajax(quakedataUrl, {
 
             dataType:<span class="hljs-string">"jsonp"</span>,
 
+            <span class="hljs-comment">// calls the function below to create on-click pop-up for each quake</span>
             onEachFeature: popupText,
 
+            <span class="hljs-comment">// makes points into circle markers and styles them, scaling using JavaScript Math; magnitude value for each quake from parsed JSON</span>
             pointToLayer: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(feature, latlng)</span> </span>{
                 <span class="hljs-keyword">return</span> L.circleMarker(latlng, {
                     radius: <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">10</span>, feature.properties.mag)/<span class="hljs-number">50000</span>),
@@ -476,43 +572,87 @@ map.addControl(layersControl);
             }
             });
 
+<span class="hljs-comment">// function to write HTML for pop-ups; date, magnitude and depth values for each quake from parsed JSON</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span>  <span class="hljs-title">popupText</span> <span class="hljs-params">(feature, layer)</span> </span>{
      <span class="hljs-keyword">var</span> date = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(feature.properties.time)
+     <span class="hljs-comment">// uses date-format to format the date</span>
      <span class="hljs-keyword">var</span> dateString = date.format(<span class="hljs-string">"mmm d, yyyy"</span>)
      layer.bindPopup(<span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span> + dateString + <span class="hljs-string">"&lt;br /&gt;"</span>
                     + <span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span> + feature.properties.mag + <span class="hljs-string">"&lt;br /&gt;"</span>
                     + <span class="hljs-string">"&lt;strong&gt;Depth: &lt;/strong&gt;"</span> + feature.geometry.coordinates[<span class="hljs-number">2</span>] + <span class="hljs-string">" kilometers"</span>)
 }
-
-<span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
+</code></pre><p>This code starts by declaring the variable <code>quakedataUrl</code>, which will return from the U.S. Geological Survey earthquakes API GeoJSON for quakes over the same area as we considered previously. This time I have asked for quakes of magnitude 6 and above, to limit the amount of data returned, which will help the map load more quickly — you can experiment with different values here. I have set the start date as the beginning of 1965 with no end date, which means the map will always include the most recent quakes in the USGS data each time it loads.</p><p>The second section of code uses the Leaflet Ajax plugin, in the file <code>leaflet.ajax.min.js</code>, to call the USGS API and convert the data returned into a Leaflet GeoJSON layer. The <code>pointToLayer</code> function turns each feature into a circle marker, styled as defined in the code.</p><p>Here is the GeoJSON for one of the quakes, which should make the code easier to follow:</p><pre><code class="json hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JSON&quot;&gt;{&quot;type&quot;:&quot;Feature&quot;,&quot;properties&quot;:{&quot;mag&quot;:6.5,&quot;place&quot;:&quot;Seattle-Tacoma urban area, Washington&quot;,&quot;time&quot;:-147515475000,&quot;updated&quot;:1408399017684,&quot;tz&quot;:null,&quot;url&quot;:&quot;http://comcat.cr.usgs.gov/earthquakes/eventpage/centennial19650429152845&quot;,&quot;detail&quot;:&quot;http://comcat.cr.usgs.gov/fdsnws/event/1/query?eventid=centennial19650429152845&amp;amp;format=geojson&quot;,&quot;felt&quot;:175,&quot;cdi&quot;:8.6,&quot;mmi&quot;:7.19,&quot;alert&quot;:null,&quot;status&quot;:&quot;reviewed&quot;,&quot;tsunami&quot;:null,&quot;sig&quot;:800,&quot;net&quot;:&quot;centennial&quot;,&quot;code&quot;:&quot;19650429152845&quot;,&quot;ids&quot;:&quot;,uutacoma65,atlas19650429152845,centennial19650429152845,&quot;,&quot;sources&quot;:&quot;,uu,atlas,centennial,&quot;,&quot;types&quot;:&quot;,dyfi,origin,shakemap,trump,&quot;,&quot;nst&quot;:203,&quot;dmin&quot;:null,&quot;rms&quot;:null,&quot;gap&quot;:null,&quot;magType&quot;:&quot;mb&quot;,&quot;type&quot;:&quot;earthquake&quot;,&quot;title&quot;:&quot;M 6.5 - Seattle-Tacoma urban area, Washington&quot;},&quot;geometry&quot;:{&quot;type&quot;:&quot;Point&quot;,&quot;coordinates&quot;:[-122.333,47.317,65.7]},&quot;id&quot;:&quot;centennial19650429152845&quot;}
+&lt;/code&gt;&lt;/pre&gt;">{"<span class="hljs-attribute">type</span>":<span class="hljs-value"><span class="hljs-string">"Feature"</span></span>,"<span class="hljs-attribute">properties</span>":<span class="hljs-value">{"<span class="hljs-attribute">mag</span>":<span class="hljs-value"><span class="hljs-number">6.5</span></span>,"<span class="hljs-attribute">place</span>":<span class="hljs-value"><span class="hljs-string">"Seattle-Tacoma urban area, Washington"</span></span>,"<span class="hljs-attribute">time</span>":<span class="hljs-value">-<span class="hljs-number">147515475000</span></span>,"<span class="hljs-attribute">updated</span>":<span class="hljs-value"><span class="hljs-number">1408399017684</span></span>,"<span class="hljs-attribute">tz</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,"<span class="hljs-attribute">url</span>":<span class="hljs-value"><span class="hljs-string">"http://comcat.cr.usgs.gov/earthquakes/eventpage/centennial19650429152845"</span></span>,"<span class="hljs-attribute">detail</span>":<span class="hljs-value"><span class="hljs-string">"http://comcat.cr.usgs.gov/fdsnws/event/1/query?eventid=centennial19650429152845&amp;format=geojson"</span></span>,"<span class="hljs-attribute">felt</span>":<span class="hljs-value"><span class="hljs-number">175</span></span>,"<span class="hljs-attribute">cdi</span>":<span class="hljs-value"><span class="hljs-number">8.6</span></span>,"<span class="hljs-attribute">mmi</span>":<span class="hljs-value"><span class="hljs-number">7.19</span></span>,"<span class="hljs-attribute">alert</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,"<span class="hljs-attribute">status</span>":<span class="hljs-value"><span class="hljs-string">"reviewed"</span></span>,"<span class="hljs-attribute">tsunami</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,"<span class="hljs-attribute">sig</span>":<span class="hljs-value"><span class="hljs-number">800</span></span>,"<span class="hljs-attribute">net</span>":<span class="hljs-value"><span class="hljs-string">"centennial"</span></span>,"<span class="hljs-attribute">code</span>":<span class="hljs-value"><span class="hljs-string">"19650429152845"</span></span>,"<span class="hljs-attribute">ids</span>":<span class="hljs-value"><span class="hljs-string">",uutacoma65,atlas19650429152845,centennial19650429152845,"</span></span>,"<span class="hljs-attribute">sources</span>":<span class="hljs-value"><span class="hljs-string">",uu,atlas,centennial,"</span></span>,"<span class="hljs-attribute">types</span>":<span class="hljs-value"><span class="hljs-string">",dyfi,origin,shakemap,trump,"</span></span>,"<span class="hljs-attribute">nst</span>":<span class="hljs-value"><span class="hljs-number">203</span></span>,"<span class="hljs-attribute">dmin</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,"<span class="hljs-attribute">rms</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,"<span class="hljs-attribute">gap</span>":<span class="hljs-value"><span class="hljs-literal">null</span></span>,"<span class="hljs-attribute">magType</span>":<span class="hljs-value"><span class="hljs-string">"mb"</span></span>,"<span class="hljs-attribute">type</span>":<span class="hljs-value"><span class="hljs-string">"earthquake"</span></span>,"<span class="hljs-attribute">title</span>":<span class="hljs-value"><span class="hljs-string">"M 6.5 - Seattle-Tacoma urban area, Washington"</span></span>}</span>,"<span class="hljs-attribute">geometry</span>":<span class="hljs-value">{"<span class="hljs-attribute">type</span>":<span class="hljs-value"><span class="hljs-string">"Point"</span></span>,"<span class="hljs-attribute">coordinates</span>":<span class="hljs-value">[-<span class="hljs-number">122.333</span>,<span class="hljs-number">47.317</span>,<span class="hljs-number">65.7</span>]</span>}</span>,"<span class="hljs-attribute">id</span>":<span class="hljs-value"><span class="hljs-string">"centennial19650429152845"</span></span>}
+</code></pre><p>Scroll to the right of this code, and notice that the quake has three <code>coordinates</code>: The first two are its longitude and latitude; the third is its depth in kilometers. <code>latlng</code> centers each circle on the latitude and  longitude <code>coordinates</code>.</p><p><code>fillColor</code>, <code>color</code>, <code>weight</code>, <code>opacity</code> and <code>fillOpacity</code> are doing the same jobs as in the code that styled the seismic risk layer.</p><p>The size of the circles is set by this line of code:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;radius: Math.sqrt(Math.pow(10, feature.properties.mag)/50000),
+&lt;/code&gt;&lt;/pre&gt;">radius: <span class="hljs-built_in">Math</span>.sqrt(<span class="hljs-built_in">Math</span>.pow(<span class="hljs-number">10</span>, feature.properties.mag)/<span class="hljs-number">50000</span>),
+</code></pre><p>This uses <a href="http://www.w3schools.com/jsref/jsref_obj_math.asp">JavaScript Math</a> to scale the circles according to their magnitude, or <code>mag</code>, so that their area corresponds to the amount of ground shaking. Leaflet sets the size of a circle by its radius, so to do this we need to raise ten to the power of each quake’s magnitude, and then take the square root of this number. I also divided by 50,000 to give the circles a reasonable size when added to the map. Again, I settled on this value by trial and error.</p><p>The <code>popupText</code> function writes some html for the pop-up that will appear when the user clicks on each quake. <code>onEachFeature</code> applies this function to each of the circles on the map.</p><p>JavaScript indexes start at 0, so <code>feature.geometry.coordinates[2]</code> returns the third item from the <code>coordinates</code> for each quake, which is the depth, as required.</p><p>Look again at the GeoJSON above, and you will see no date, but instead a <code>time</code>, given as <code>-147515475000</code>. JavaScript calculates dates and time in milliseconds, relative to the start of 1970. Here is how to convert a JavaScript time to a date, demonstrated at <a href="http://jsfiddle.net/">JSFiddle</a>:</p><p><img src="img/class11_22.jpg" alt=""></p><p>Notice that the <code>popupText</code> function similarly uses <code>new Date</code> to convert the JavaScript times into dates, and then formats these using the <code>date.format</code> function, from the script in the <code>date.format.js</code> file.</p><p>Again, add the new quakes layer to the code defining the overlay maps:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var overlayMaps = {
+    &quot;Earthquakes&quot;: quakes,
+    &quot;Seismic risk&quot;: seismic
+};
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> overlayMaps = {
+    <span class="hljs-string">"Earthquakes"</span>: quakes,
+    <span class="hljs-string">"Seismic risk"</span>: seismic
+};
+</code></pre><p>Also add it to the layers that will display when the map loads:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var map = L.map(&quot;map&quot;, {
+    center: new L.LatLng(40, -100),
+    zoom: 4, 
+    maxZoom: 6,
+    minZoom: 3,
+    maxBounds: ([
+    [-10, -160],
+    [70, -40]
+    ]),
+    layers: [bright, seismic, quakes]
+});
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
     center: <span class="hljs-keyword">new</span> L.LatLng(<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>),
-    zoom: <span class="hljs-number">5</span>, 
+    zoom: <span class="hljs-number">4</span>, 
     maxZoom: <span class="hljs-number">6</span>,
-    minZoom: <span class="hljs-number">4</span>,
+    minZoom: <span class="hljs-number">3</span>,
     maxBounds: ([
     [-<span class="hljs-number">10</span>, -<span class="hljs-number">160</span>],
     [<span class="hljs-number">70</span>, -<span class="hljs-number">40</span>]
     ]),
-    layers: [bwmap, seismic, quakes] 
+    layers: [bright, seismic, quakes]
 });
+</code></pre><p>Finally, paste this code at the end of the <code>maps.js</code> file, to give the map some basic responsive design, altering zoom level depending on the size of the user’s screen/browser windows:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// Uses jQuery to add some responsive design, resetting zoom levels for small and very large screens
+function responsive() {
+     width = $( window ).width();
+     height = $( window ).height();
+    if (width &amp;lt; 768) {
+        // set the zoom level to 3
+        map.setZoom(3);
+    } else if (width &amp;gt; 1500) {
+        // set the zoom level to 5
+        map.setZoom(5);
+    } else {
+        map.setZoom(4);
+    }
+ }
 
-<span class="hljs-keyword">var</span> baseMaps = {
-    <span class="hljs-string">"Satellite"</span>: earth,
-    <span class="hljs-string">"Map"</span>: bwmap
-};
+  // applies the function above both on initial load and window resize
+   $(window).ready(responsive).resize(responsive);
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// Uses jQuery to add some responsive design, resetting zoom levels for small and very large screens</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">responsive</span><span class="hljs-params">()</span> </span>{
+     width = $( <span class="hljs-built_in">window</span> ).width();
+     height = $( <span class="hljs-built_in">window</span> ).height();
+    <span class="hljs-keyword">if</span> (width &lt; <span class="hljs-number">768</span>) {
+        <span class="hljs-comment">// set the zoom level to 3</span>
+        map.setZoom(<span class="hljs-number">3</span>);
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (width &gt; <span class="hljs-number">1500</span>) {
+        <span class="hljs-comment">// set the zoom level to 5</span>
+        map.setZoom(<span class="hljs-number">5</span>);
+    } <span class="hljs-keyword">else</span> {
+        map.setZoom(<span class="hljs-number">4</span>);
+    }
+ }
 
-<span class="hljs-keyword">var</span> overlayMaps = {
-    <span class="hljs-string">"Earthquakes"</span>: quakes,
-    <span class="hljs-string">"Seismic risk"</span>: seismic
-};
-
-<span class="hljs-keyword">var</span> layersControl = <span class="hljs-keyword">new</span> L.Control.Layers(baseMaps, overlayMaps, {collapsed: <span class="hljs-literal">false</span>});
-map.addControl(layersControl);
-</code></pre>
-
-<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
-</body>
-</html>
+  <span class="hljs-comment">// applies the function above both on initial load and window resize</span>
+   $(<span class="hljs-built_in">window</span>).ready(responsive).resize(responsive);
+</code></pre><p>Save the <code>maps.js</code> file and refresh <code>index.html</code> in your web browser. The finished map should look like this:</p><p><img src="img/class11_23.jpg" alt=""></p><p>Notice that visibility for each overlay layer can be turned on and off using the checkboxes on the Leaflet layers control.</p><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
+<li>Send me your finished online Leaflet map, i.e. zip the <code>map</code> folder and email that to me.</li>
+<li>Continue working on your final project, sending me a progress report.</li>
+</ul><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="https://www.mapbox.com/tilemill/docs/manual/">TileMill manual</a></p><p><a href="https://github.com/mapbox/carto/blob/master/docs/latest.md">CartoCSS reference</a></p><p><a href="https://www.mapbox.com/mapbox.js/">Documentation for Mapbox.js code</a> (includes <a href="https://www.mapbox.com/mapbox.js/example/v1.0.0/">examples</a> and <a href="https://www.mapbox.com/mapbox.js/plugins/">plugins</a>)</p><p><a href="http://leafletjs.com/examples.html">Leaflet tutorials</a></p><p><a href="http://leafletjs.com/reference.html">Documentation for Leaflet code</a></p><p><a href="http://leafletjs.com/plugins.html">Leaflet plugins</a></p>
 
 
 	</div> <!-- /.container all -->
