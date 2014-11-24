@@ -400,7 +400,7 @@
             <span class="hljs-keyword">var</span> yScale = d3.scale.linear()
                      .domain([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
                      .range([h - padding, padding]);
-</code></pre><p>Then, immediately below, add this code to create and format the axes:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Add axes
+</code></pre><p>Then, at the end of the script, add this code to create and format the axes:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Add axes
             var xAxis = d3.svg.axis()
                   .scale(xScale)
                   .orient(&quot;bottom&quot;)
@@ -597,7 +597,7 @@
 &amp;lt;!--
     &amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
  --&amp;gt;
-    &amp;lt;script src=&quot;d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src=&quot;src/d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
 
    &amp;lt;style&amp;gt;
 
@@ -721,7 +721,7 @@
 <span class="hljs-comment">&lt;!--
     &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
  --&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"d3.min.js"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/d3.min.js"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 
    <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
 
@@ -1141,6 +1141,7 @@
     #y2013 {
          position: relative;
         left: 60px;
+    }
 &lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-id">#select</span> <span class="hljs-rules">{
         <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
         <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
@@ -1154,7 +1155,8 @@
     <span class="hljs-id">#y2013</span> <span class="hljs-rules">{
          <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
         <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">60px</span></span></span>;
-</span></code></pre><p>Save <code>gender_pay.html</code> and refresh your browser. The buttons don’t yet do anything, but the chart should now look like this:</p><p><img src="img/class13_18.jpg" alt=""></p><p>To switch between the years, add the following beneath the code adding the circles:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                    //transition between views when buttons are clicked
+    <span class="hljs-rule">}</span></span>
+</code></pre><p>Save <code>gender_pay.html</code> and refresh your browser. The buttons don’t yet do anything, but the chart should now look like this:</p><p><img src="img/class13_18.jpg" alt=""></p><p>To switch between the years, add the following beneath the code adding the circles:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                    //transition between views when buttons are clicked
                     d3.select(&quot;#y2012&quot;).on(&quot;click&quot;, function() {
                         svg.selectAll(&quot;circle&quot;)
                             .data(gender_pay.filter(function (d) { return (d.year==2012); }))

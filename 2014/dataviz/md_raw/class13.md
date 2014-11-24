@@ -356,7 +356,7 @@ Now we need to use this new variable to adjust the scales, so that the ranges gi
                      .range([h - padding, padding]);
 ```
 
-Then, immediately below, add this code to create and format the axes:
+Then, at the end of the script, add this code to create and format the axes:
 
 ```Javascript
 			//Add axes
@@ -556,7 +556,7 @@ As we are again making a scatter plot, we can recycle much of the code we just u
 <!--
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
  -->
-	<script src="d3.min.js" charset="utf-8"></script>
+	<script src="src/d3.min.js" charset="utf-8"></script>
 
    <style>
 
@@ -964,6 +964,7 @@ We will also need some CSS to position these elements, so add this code immiatel
 	#y2013 {
 	 	position: relative;
 		left: 60px;
+    }
 ```
 
 Save `gender_pay.html` and refresh your browser. The buttons don't yet do anything, but the chart should now look like this:
