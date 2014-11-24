@@ -1048,7 +1048,7 @@ The label does not actually change yet, but that behavior can be added by editin
 							.duration(1000)
 							.attr("cx", function (d, i) { return xScale(d.m_salary); })
 							.attr("cy", function (d, i) { return yScale(d.w_salary); })
-							.attr("r", function(d, i) { return d.w_salary == null ? 0 : d.m_salary == null ? 0 : 5; })
+							.attr("r", 5)
                         //change the year label
 						svg.select("#yLabel")
                         	.text("2012")
@@ -1062,7 +1062,7 @@ The label does not actually change yet, but that behavior can be added by editin
 							.duration(1000)
 							.attr("cx", function (d, i) { return xScale(d.m_salary); })
 							.attr("cy", function (d, i) { return yScale(d.w_salary); })
-							.attr("r", function(d, i) { return d.w_salary == null ? 0 : d.m_salary == null ? 0 : 5; })
+							.attr("r", 5)
                         //change the year label
 						svg.select("#yLabel")
 							.text("2013")
