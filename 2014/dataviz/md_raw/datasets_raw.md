@@ -29,10 +29,22 @@ A sample of addresses in San Francisco, for use in geocoding exercise, in two te
 
 A series of data files for our week 9 class using QGIS.
 
+#### [Making interactive maps](./data/earthquakes.zip)
+
+A series of data files for our week 11 class using TileMill, Mapbox.js and Leaflet.
+
+#### [Visualizing networks](./data/networks.zip)
+
+A series of data files for our week 12 class using Gephi and Sigma.js.
+
+#### [Coding interactive graphics](./data/d3class.zip)
+
+A series of data files for our week 13 and 15 classes using D3.
+
 
 ### Final projects
 
-These datasets are suggestions, in which there are defintely stories to be found and visualized. But you are welcome to work on other datasets, with my agreement. You are also urged to explore other relevant data, as appropriate, to complement the datasets suggested below.
+These datasets are suggestions, in which there are definitely stories to be found and visualized. But you are welcome to work on other datasets, with my agreement. You are also urged to explore other relevant data, as appropriate, to complement the datasets suggested below.
 
 #### [Baseball statistics](./data/baseball.zip)
 

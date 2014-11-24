@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>class13.html</title>
+  <meta name="generator" content="Haroopad 0.12.2" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>div.oembedall-githubrepos{border:1px solid #DDD;border-radius:4px;list-style-type:none;margin:0 0 10px;padding:8px 10px 0;font:13.34px/1.4 helvetica,arial,freesans,clean,sans-serif;width:452px;background-color:#fff}div.oembedall-githubrepos .oembedall-body{background:-moz-linear-gradient(center top,#FAFAFA,#EFEFEF) repeat scroll 0 0 transparent;background:-webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#EFEFEF));border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #EEE;margin-left:-10px;margin-top:8px;padding:5px 10px;width:100%}div.oembedall-githubrepos h3{font-size:14px;margin:0;padding-left:18px;white-space:nowrap}div.oembedall-githubrepos p.oembedall-description{color:#444;font-size:12px;margin:0 0 3px}div.oembedall-githubrepos p.oembedall-updated-at{color:#888;font-size:11px;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats{border:medium none;float:right;font-size:11px;font-weight:700;padding-left:15px;position:relative;z-index:5;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats li{border:medium none;color:#666;display:inline-block;list-style-type:none;margin:0!important}div.oembedall-githubrepos ul.oembedall-repo-stats li a{background-color:transparent;border:medium none;color:#666!important;background-position:5px -2px;background-repeat:no-repeat;border-left:1px solid #DDD;display:inline-block;height:21px;line-height:21px;padding:0 5px 0 23px}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a{border-left:medium none;margin-right:-3px}div.oembedall-githubrepos ul.oembedall-repo-stats li a:hover{background:none no-repeat scroll 5px -27px #4183C4;color:#FFF!important;text-decoration:none}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a:hover{border-bottom-left-radius:3px;border-top-left-radius:3px}ul.oembedall-repo-stats li:last-child a:hover{border-bottom-right-radius:3px;border-top-right-radius:3px}span.oembedall-closehide{background-color:#aaa;border-radius:2px;cursor:pointer;margin-right:3px}div.oembedall-container{margin-top:5px;text-align:left}.oembedall-ljuser{font-weight:700}.oembedall-ljuser img{vertical-align:bottom;border:0;padding-right:1px}.oembedall-stoqembed{border-bottom:1px dotted #999;float:left;overflow:hidden;width:730px;line-height:1;background:none repeat scroll 0 0 #FFF;color:#000;font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;font-size:80%;text-align:left;margin:0;padding:0}.oembedall-stoqembed a{color:#07C;text-decoration:none;margin:0;padding:0}.oembedall-stoqembed a:hover{text-decoration:underline}.oembedall-stoqembed a:visited{color:#4A6B82}.oembedall-stoqembed h3{font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;font-size:130%;font-weight:700;margin:0;padding:0}.oembedall-stoqembed .oembedall-reputation-score{color:#444;font-size:120%;font-weight:700;margin-right:2px}.oembedall-stoqembed .oembedall-user-info{height:35px;width:185px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-gravatar32{float:left;height:32px;width:32px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-details{float:left;margin-left:5px;overflow:hidden;white-space:nowrap;width:145px}.oembedall-stoqembed .oembedall-question-hyperlink{font-weight:700}.oembedall-stoqembed .oembedall-stats{background:none repeat scroll 0 0 #EEE;margin:0 0 0 7px;padding:4px 7px 6px;width:58px}.oembedall-stoqembed .oembedall-statscontainer{float:left;margin-right:8px;width:86px}.oembedall-stoqembed .oembedall-votes{color:#555;padding:0 0 7px;text-align:center}.oembedall-stoqembed .oembedall-vote-count-post{font-size:240%;color:#808185;display:block;font-weight:700}.oembedall-stoqembed .oembedall-views{color:#999;padding-top:4px;text-align:center}.oembedall-stoqembed .oembedall-status{margin-top:-3px;padding:4px 0;text-align:center;background:none repeat scroll 0 0 #75845C;color:#FFF}.oembedall-stoqembed .oembedall-status strong{color:#FFF;display:block;font-size:140%}.oembedall-stoqembed .oembedall-summary{float:left;width:635px}.oembedall-stoqembed .oembedall-excerpt{line-height:1.2;margin:0;padding:0 0 5px}.oembedall-stoqembed .oembedall-tags{float:left;line-height:18px}.oembedall-stoqembed .oembedall-tags a:hover{text-decoration:none}.oembedall-stoqembed .oembedall-post-tag{background-color:#E0EAF1;border-bottom:1px solid #3E6D8E;border-right:1px solid #7F9FB6;color:#3E6D8E;font-size:90%;line-height:2.4;margin:2px 2px 2px 0;padding:3px 4px;text-decoration:none;white-space:nowrap}.oembedall-stoqembed .oembedall-post-tag:hover{background-color:#3E6D8E;border-bottom:1px solid #37607D;border-right:1px solid #37607D;color:#E0EAF1}.oembedall-stoqembed .oembedall-fr{float:right}.oembedall-stoqembed .oembedall-statsarrow{background-image:url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3);background-repeat:no-repeat;overflow:hidden;background-position:0 -435px;float:right;height:13px;margin-top:12px;width:7px}.oembedall-facebook1{border:#1A3C6C solid 1px;padding:0;font:13.34px/1.4 verdana;width:500px}.oembedall-facebook2{background-color:#627add}.oembedall-facebook2 a{color:#e8e8e8;text-decoration:none}.oembedall-facebookBody{background-color:#fff;vertical-align:top;padding:5px}.oembedall-facebookBody .contents{display:inline-block;width:100%}.oembedall-facebookBody div img{float:left;margin-right:5px}div.oembedall-lanyard{-webkit-box-shadow:none;-webkit-transition-delay:0s;-webkit-transition-duration:.4000000059604645s;-webkit-transition-property:width;-webkit-transition-timing-function:cubic-bezier(0.42,0,.58,1);background-attachment:scroll;background-clip:border-box;background-color:transparent;background-image:none;background-origin:padding-box;border-bottom-width:0;border-left-width:0;border-right-width:0;border-top-width:0;box-shadow:none;color:#112644;display:block;float:left;font-family:'Trebuchet MS',Trebuchet,sans-serif;font-size:16px;height:253px;line-height:19px;margin-bottom:0;margin-left:0;margin-right:0;margin-top:0;max-width:none;min-height:0;outline-color:#112644;outline-style:none;outline-width:0;overflow-x:visible;overflow-y:visible;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;position:relative;text-align:left;vertical-align:baseline;width:804px}div.oembedall-lanyard .tagline{font-size:1.5em}div.oembedall-lanyard .wrapper{overflow:hidden;clear:both}div.oembedall-lanyard .split{float:left;display:inline}div.oembedall-lanyard .prominent-place .flag:active,div.oembedall-lanyard .prominent-place .flag:focus,div.oembedall-lanyard .prominent-place .flag:hover,div.oembedall-lanyard .prominent-place .flag:link,div.oembedall-lanyard .prominent-place .flag:visited{float:left;display:block;width:48px;height:48px;position:relative;top:-5px;margin-right:10px}div.oembedall-lanyard .place-context{font-size:.889em}div.oembedall-lanyard .prominent-place .sub-place{display:block}div.oembedall-lanyard .prominent-place{font-size:1.125em;line-height:1.1em;font-weight:400}div.oembedall-lanyard .main-date{color:#8CB4E0;font-weight:700;line-height:1.1}div.oembedall-lanyard .first{width:48.57%;margin:0 0 0 2.857%}html{height:100%}body{margin:0!important;padding:5px 20px 26px!important;background-color:#fff;font-family:"Lucida Grande","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Lucida Sans Unicode",Helvetica,Arial,sans-serif;font-size:.9em;overflow-x:hidden;overflow-y:auto}br,h1,h2,h3,h4,h5,h6{clear:both}hr.page{background:transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;border:0 none;color:#ccc;height:3px;padding:0}hr.underscore{border:0 none!important;height:30px;padding:0;-webkit-margin-before:0;-webkit-margin-after:0}body >:first-child{margin-top:0!important}img.plugin{box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:3px}iframe{border:0}figure{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}kbd{border:1px solid #aaa;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:1px 2px 2px #ddd;-webkit-box-shadow:1px 2px 2px #ddd;box-shadow:1px 2px 2px #ddd;background-color:#f9f9f9;background-image:-moz-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-o-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-webkit-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:linear-gradient(top,#eee,#f9f9f9,#eee);padding:1px 3px;font-family:inherit;font-size:.85em}.oembeded .oembed_photo{display:inline-block}img[data-echo]{margin:25px 0;width:100px;height:100px;background:#fff url(../img/ajax.gif) no-repeat center center}.spinner{display:inline-block;width:10px;height:10px;margin-bottom:-.1em;border:2px solid rgba(0,0,0,.5);border-top-color:transparent;border-radius:100%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}.spinner:after{content:'';display:block;width:0;height:0;position:absolute;top:-6px;left:0;border:4px solid transparent;border-bottom-color:rgba(0,0,0,.5);-webkit-transform:rotate(45deg);transform:rotate(45deg)}@-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}p.toc{margin:0!important}p.toc ul{padding-left:10px}p.toc>ul{padding:10px;margin:0 10px;display:inline-block;border:1px solid #ededed;border-radius:5px}p.toc li,p.toc ul{list-style-type:none}p.toc li{width:100%;padding:0;overflow:hidden}p.toc li a::after{content:"."}p.toc li a:before{content:"• "}p.toc h5{text-transform:uppercase}p.toc .title{float:left;padding-right:3px}p.toc .number{margin:0;float:right;padding-left:3px;background:#fff;display:none}.markdown{padding:20px}.markdown a{text-decoration:none;vertical-align:baseline}.markdown a:hover{text-decoration:underline}.markdown h1{font-size:2.2em;font-weight:700;margin:1.5em 0 1em}.markdown h2{font-size:1.8em;font-weight:700;margin:1.275em 0 .85em}.markdown h3{font-size:1.6em;font-weight:700;margin:1.125em 0 .75em}.markdown h4{font-size:1.4em;font-weight:700;margin:.99em 0 .66em}.markdown h5{font-size:1.2em;font-weight:700;margin:.855em 0 .57em}.markdown h6{font-size:1em;font-weight:700;margin:.75em 0 .5em}.markdown h1+p,.markdown h1:first-child,.markdown h2+p,.markdown h2:first-child,.markdown h3+p,.markdown h3:first-child,.markdown h4+p,.markdown h4:first-child,.markdown h5+p,.markdown h5:first-child,.markdown h6+p,.markdown h6:first-child{margin-top:0}.markdown hr{border:1px solid #ccc}.markdown p{margin:1em 0;word-wrap:break-word}.markdown ol{list-style-type:decimal}.markdown li{display:list-item;line-height:1.4em}.markdown blockquote{margin:1em 20px}.markdown blockquote>:first-child{margin-top:0}.markdown blockquote>:last-child{margin-bottom:0}.markdown blockquote cite:before{content:'\2014 \00A0'}.markdown .code{border-radius:3px;word-break:break-all;word-wrap:break-word}.markdown pre{border-radius:3px;word-break:break-all;word-wrap:break-word;overflow:auto}.markdown pre code{display:block}.markdown pre>code{border:1px solid #ccc;white-space:pre;padding:.5em;margin:0}.markdown code{border-radius:3px;word-break:break-all;word-wrap:break-word;border:1px solid #ccc;padding:0 5px;margin:0 2px}.markdown img{max-width:100%}.markdown table{padding:0;border-collapse:collapse;border-spacing:0}.markdown table tr td,.markdown table tr th{border:1px solid #ccc;margin:0;padding:6px 13px}.markdown table tr th{font-weight:700}.markdown table tr th>:first-child{margin-top:0}.markdown table tr th>:last-child{margin-bottom:0}.markdown table tr td>:first-child{margin-top:0}.markdown table tr td>:last-child{margin-bottom:0}.markdown em.underline{font-style:normal;text-decoration:underline}.markdown strong.highlight{color:#000;padding:0 5px;background-color:#fdffb6;-webkit-box-shadow:#fdffb6 0 0 5px;-moz-box-shadow:#fdffb6 0 0 5px;box-shadow:#fdffb6 0 0 5px}.clearness{padding:20px;color:#737373;font-size:15px;font-family:"Lucida Grande","Lucida Sans Unicode","Lucida Sans",AppleSDGothicNeo-Medium,'Segoe UI','Malgun Gothic',Verdana,Tahoma,sans-serif;background:#fff;-webkit-font-smoothing:antialiased}.clearness a{color:#1e6ea7}.clearness a:hover{color:#268bd2}.clearness h1,.clearness h2,.clearness h3,.clearness h4,.clearness h5{color:#404040}.clearness h2{border-bottom:1px solid #ccc;line-height:1.7em}.clearness h6{color:#666}.clearness hr{border:1px solid #e6e6e6}.clearness pre>code{font-size:.9em;font-family:Consolas,Inconsolata,Courier,monospace}.clearness blockquote{padding:0 15px;font-style:italic}.clearness blockquote:before{content:"\201C";font-size:40px;margin-left:-20px;color:#aaa}.clearness table{background-color:#fff;border-collapse:separate;border-spacing:2px}.clearness table tr td,.clearness table tr th{border:0;padding:.2em 1em}.clearness table tr th{border-bottom:1px solid #bfbfbf}.clearness table tr td{border-bottom:1px solid #d9d9d9}.clearness table tr:nth-child(2n){background-color:#fff}.hljs{display:block;overflow-x:auto;padding:.5em;background:#f0f0f0;-webkit-text-size-adjust:none}.clojure .hljs-built_in,.hljs,.hljs-subst,.hljs-tag .hljs-title,.lisp .hljs-title,.nginx .hljs-title{color:#000}.apache .hljs-cbracket,.apache .hljs-tag,.asciidoc .hljs-header,.bash .hljs-variable,.coffeescript .hljs-attribute,.django .hljs-variable,.erlang_repl .hljs-function_or_atom,.haml .hljs-symbol,.hljs-addition,.hljs-constant,.hljs-flow,.hljs-parent,.hljs-pragma,.hljs-preprocessor,.hljs-rules .hljs-value,.hljs-stream,.hljs-string,.hljs-tag .hljs-value,.hljs-template_tag,.hljs-title,.markdown .hljs-header,.ruby .hljs-symbol,.ruby .hljs-symbol .hljs-string,.smalltalk .hljs-class,.tex .hljs-command,.tex .hljs-special{color:#800}.asciidoc .hljs-blockquote,.diff .hljs-header,.hljs-annotation,.hljs-chunk,.hljs-comment,.hljs-template_comment,.markdown .hljs-blockquote,.smartquote{color:#888}.asciidoc .hljs-bullet,.asciidoc .hljs-link_url,.go .hljs-constant,.hljs-change,.hljs-date,.hljs-hexcolor,.hljs-literal,.hljs-number,.hljs-regexp,.lasso .hljs-variable,.makefile .hljs-variable,.markdown .hljs-bullet,.markdown .hljs-link_url,.smalltalk .hljs-char,.smalltalk .hljs-symbol{color:#080}.apache .hljs-sqbracket,.asciidoc .hljs-attribute,.asciidoc .hljs-link_label,.clojure .hljs-attribute,.coffeescript .hljs-property,.erlang_repl .hljs-reserved,.haml .hljs-bullet,.hljs-array,.hljs-attr_selector,.hljs-decorator,.hljs-deletion,.hljs-doctype,.hljs-envvar,.hljs-filter .hljs-argument,.hljs-important,.hljs-javadoc,.hljs-label,.hljs-localvars,.hljs-phony,.hljs-pi,.hljs-prompt,.hljs-pseudo,.hljs-shebang,.lasso .hljs-attribute,.markdown .hljs-link_label,.nginx .hljs-built_in,.ruby .hljs-string,.tex .hljs-formula,.vhdl .hljs-attribute{color:#88f}.apache .hljs-tag,.asciidoc .hljs-strong,.bash .hljs-variable,.css .hljs-tag,.hljs-built_in,.hljs-id,.hljs-javadoctag,.hljs-keyword,.hljs-phpdoc,.hljs-request,.hljs-status,.hljs-title,.hljs-type,.hljs-typename,.hljs-winutils,.hljs-yardoctag,.markdown .hljs-strong,.smalltalk .hljs-class,.tex .hljs-command{font-weight:700}.asciidoc .hljs-emphasis,.markdown .hljs-emphasis{font-style:italic}.nginx .hljs-built_in{font-weight:400}.coffeescript .javascript,.javascript .xml,.lasso .markup,.tex .hljs-formula,.xml .css,.xml .hljs-cdata,.xml .javascript,.xml .vbscript{opacity:.5}footer{position:fixed;font-size:.8em;text-align:right;bottom:0;margin-left:-25px;height:20px;width:100%}</style>
+</head>
+<body class="markdown clearness">
+
+  <h1 id="coding-interactive-graphics"><a name="coding-interactive-graphics" href="#coding-interactive-graphics"></a>Coding interactive graphics</h1><h3 id="introducing-d3"><a name="introducing-d3" href="#introducing-d3"></a>Introducing D3</h3><p>In this class we will explore how to code interactive, data-driven graphics from scratch, using the <a href="http://d3js.org/">D3</a> JavaScript library. There are several JavaScript libraries for making charts, but D3  is more than that. Its name derives from “Data-Driven Documents,” and it provides the means to bind data to elements of web pages and then manipulate those elements in a multitude of ways, based on attributes of the data (see the <a href="https://github.com/mbostock/d3/wiki/Gallery">D3 examples gallery</a> to get a flavor of the possibilities).</p><p>When building graphics with D3, those elements include SVG objects, the XML-based vector graphic format we have encountered previously. SVG-based D3 graphics will display in modern browsers that support SVG rendering (see <a href="http://caniuse.com/#feat=svg">here</a> for a full breakdown), but not in Internet Explorer 8 or earlier. This was once a major restriction — however nowadays these browsers account for only a small (less than 5%) proportion of global browser usage.</p><p>D3 was developed by <a href="http://bost.ocks.org/mike/">Mike Bostock</a> at Stanford University. Today he works for the graphics desk at <em>The New York Times</em>, where D3 is used extensively.</p><h3 id="get-prepared:-data,-files-and-a-local-webserver"><a name="get-prepared:-data,-files-and-a-local-webserver" href="#get-prepared:-data,-files-and-a-local-webserver"></a>Get prepared: data, files and a local webserver</h3><p>Download, move to your desktop and unzip <a href="./data/d3class.zip">this folder</a>, which contains two subfolders, <code>data</code> and <code>src</code>. The latter contains the code to run D3, in the file <code>d3.min.js</code>, which we will need to load from the head of each web page we work with today. This file was downloaded from <a href="https://github.com/mbostock/d3/releases/download/v3.4.13/d3.zip">here</a>. Alternatively, you can link directly to the latest release of D3, by inserting this code into the head of your web page:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://d3js.org/d3.v3.min.js"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre><p>D3 visualizations may not display in your browser when the page is opened locally, due to security restrictions, but we can easily set up a local webserver. Open a Terminal window (<code>Applications&gt;Utilities&gt;Terminal</code>) and navigate to the downloaded folder by typing <code>cd Desktop/d3class</code> and hitting <code>return</code>. Then type <code>python -m SimpleHTTPServer 8000</code> and again hit return.</p><p>Now open your browser, and go to the url: <code>http://127.0.0.1:8000/</code>. You should see the following:</p><p><img src="img/class13_1.jpg" alt=""></p><p>Click the <code>shapes.html</code> link and you will see an empty web page.</p><h3 id="first-steps:-draw-simple-svg-shapes-with-d3"><a name="first-steps:-draw-simple-svg-shapes-with-d3" href="#first-steps:-draw-simple-svg-shapes-with-d3"></a>First steps: draw simple SVG shapes with D3</h3><p>To learn the basics of D3, we will first use the library to draw some simple SVG shapes on the <code>shapes.html</code> page. Open the that file in TextWranger or your preferred text editor, and you should see the following HTML code:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+  &amp;lt;meta charset=utf-8 /&amp;gt;
+  &amp;lt;title&amp;gt;Drawing simple shapes&amp;lt;/title&amp;gt;
+  &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&amp;gt;
+&amp;lt;!--
+  &amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+ --&amp;gt;
+  &amp;lt;script src=&quot;src/d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+&amp;lt;/body&amp;gt;
+
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Drawing simple shapes<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> /&gt;</span>
+<span class="hljs-comment">&lt;!--
+  &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+ --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/d3.min.js"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>Notice that the head of the webpage loads the local copy of D3. It also includes a commented-out link to the latest release. You should use one or other of these links, commenting out the other.</p><p>We are going to use D3 to draw specific shapes into divs on this page, so we will first create those divs, by entering this code into the body of the web page, between the <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code> tags:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;    &amp;lt;div id=&quot;circleDiv&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div id=&quot;rectangleDiv&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div id=&quot;lineDiv&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"circleDiv"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"rectangleDiv"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"lineDiv"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre><p>Now, immediately beneath the closing <code>&lt;/body&gt;</code> tag, enter the following:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;    &amp;lt;script&amp;gt;
+
+        d3.select(&quot;#circleDiv&quot;)
+            .append(&quot;svg&quot;)
+            .attr(&quot;width&quot;, 500)
+            .attr(&quot;height&quot;, 500)
+            .append(&quot;circle&quot;)
+            .attr(&quot;cx&quot;, 250)
+            .attr(&quot;cy&quot;, 350)
+            .attr(&quot;r&quot;, 120)
+            .style(&quot;fill&quot;, &quot;blue&quot;)
+            .style(&quot;stroke&quot;, &quot;red&quot;)
+            .style(&quot;stroke-width&quot;, 20)
+            .style(&quot;fill-opacity&quot;, 0.5)
+            .style(&quot;stroke-opacity&quot;, 0.3);
+
+    &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+
+        d3.select(<span class="hljs-string">"#circleDiv"</span>)
+            .append(<span class="hljs-string">"svg"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">500</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">500</span>)
+            .append(<span class="hljs-string">"circle"</span>)
+            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-number">250</span>)
+            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-number">350</span>)
+            .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">120</span>)
+            .style(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"blue"</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"red"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">20</span>)
+            .style(<span class="hljs-string">"fill-opacity"</span>, <span class="hljs-number">0.5</span>)
+            .style(<span class="hljs-string">"stroke-opacity"</span>, <span class="hljs-number">0.3</span>);
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre><p>Save <code>shapes.html</code>, then refresh your browser, and this is what you should see:</p><p><img src="img/class13_2.jpg" alt=""></p><p>Let’s break this code down to understand what is going on. The first line, <code>d3.select("#circleDiv")</code> selects the element that D3 is going to work on, in this case the div with the id <code>circleDiv</code>. D3 uses CSS to make selections, so you can select elements in various ways, including by their tags (e.g. “div” or “p”), their ids, or their classes. As when styling using CSS, ids are preceded by <code>#</code>, while classes are preceded by a period. So if we had given the div a class of <code>circleDiv</code>, rather than using a unique id, the selection would be written: <code>d3.select(".circleDiv")</code>. See <a href="https://github.com/mbostock/d3/wiki/Selections">here</a> for more on D3 selections.</p><p>The subsequent code instructs D3 what to do with the selected element. It first appends an SVG element, which has two attributes, “width” and “height,” both 500 pixels. This is always the first step when using D3 to manipulate SVG objects, which will be drawn within this element.</p><p>A circle is then appended to this SVG element, which is given a series of attributes and styles: <code>cx</code> and <code>cy</code> define the position of the center of the circle, measured in pixels from the left and top of the SVG element, respectively; <code>r</code> is the radius of the circle, in pixels; <code>fill</code> and <code>stroke</code> should be familiar from our work with Inkscape. When styling SVG, colors can be assigned using the <a href="http://www.w3schools.com/html/html_colornames.asp">HTML names listed here</a>, or by using HEX or RGB codes.</p><p>Try experimenting with altering the attributes and styling of the circle, saving the <code>shapes.html</code> file and refreshing your browser to review the results.</p><p>Now add the following code before the closing <code>&lt;/script&gt;</code> tag:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;        d3.select(&quot;#rectangleDiv&quot;)
+            .append(&quot;svg&quot;)
+            .attr(&quot;width&quot;, 500)
+            .attr(&quot;height&quot;, 500)
+            .append(&quot;rect&quot;)
+            .attr(&quot;x&quot;, 160)
+            .attr(&quot;y&quot;, 300)
+            .attr(&quot;width&quot;, 200)
+            .attr(&quot;height&quot;, 120)
+            .style(&quot;fill&quot;, &quot;yellow&quot;)
+            .style(&quot;stroke&quot;, &quot;green&quot;)
+            .style(&quot;stroke-width&quot;, 20)
+            .style(&quot;fill-opacity&quot;, 0.5)
+            .style(&quot;stroke-opacity&quot;, 0.5);
+
+       d3.select(&quot;#lineDiv&quot;)
+            .append(&quot;svg&quot;)
+            .attr(&quot;width&quot;, 500)
+            .attr(&quot;height&quot;, 500)
+            .append(&quot;line&quot;)
+            .attr(&quot;x1&quot;, 160)
+            .attr(&quot;y1&quot;, 300)
+            .attr(&quot;x2&quot;, 360)
+            .attr(&quot;y2&quot;, 450)
+            .style(&quot;stroke&quot;, &quot;black&quot;)
+            .style(&quot;stroke-width&quot;, 2)
+            .style(&quot;stroke-opacity&quot;, 0.5);
+&lt;/code&gt;&lt;/pre&gt;">        d3.select(<span class="hljs-string">"#rectangleDiv"</span>)
+            .append(<span class="hljs-string">"svg"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">500</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">500</span>)
+            .append(<span class="hljs-string">"rect"</span>)
+            .attr(<span class="hljs-string">"x"</span>, <span class="hljs-number">160</span>)
+            .attr(<span class="hljs-string">"y"</span>, <span class="hljs-number">300</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">200</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">120</span>)
+            .style(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"yellow"</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"green"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">20</span>)
+            .style(<span class="hljs-string">"fill-opacity"</span>, <span class="hljs-number">0.5</span>)
+            .style(<span class="hljs-string">"stroke-opacity"</span>, <span class="hljs-number">0.5</span>);
+
+       d3.select(<span class="hljs-string">"#lineDiv"</span>)
+            .append(<span class="hljs-string">"svg"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">500</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">500</span>)
+            .append(<span class="hljs-string">"line"</span>)
+            .attr(<span class="hljs-string">"x1"</span>, <span class="hljs-number">160</span>)
+            .attr(<span class="hljs-string">"y1"</span>, <span class="hljs-number">300</span>)
+            .attr(<span class="hljs-string">"x2"</span>, <span class="hljs-number">360</span>)
+            .attr(<span class="hljs-string">"y2"</span>, <span class="hljs-number">450</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"black"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">2</span>)
+            .style(<span class="hljs-string">"stroke-opacity"</span>, <span class="hljs-number">0.5</span>);
+</code></pre><p>Save the <code>shapes.html</code> file, refresh your browser, and the following two shapes should now appear beneath the original circle:</p><p><img src="img/class13_3.jpg" alt=""></p><p>Note that for SVG rectangles, the attributes <code>x</code> and <code>y</code> refer to the position of the top left hand corner, and are measured from left and top of the SVG element in pixels, as before. Lines are given both starting (<code>x1</code>, <code>y1</code>) and ending (<code>x2</code>, <code>y2</code>) coordinates, measured in the same way. For more on SVG attributes and styling, see <a href="http://alignedleft.com/tutorials/d3/an-svg-primer">this tutorial</a> from Scott Murray, author of an excellent introduction to visualizing data with D3, included in the further reading links below.</p><p>Experiment with altering the attributes and styling of the rectangle and line, as you did for the circle, then save and close the <code>shapes.html</code> file.</p><h3 id="make-a-simple-scatter-plot"><a name="make-a-simple-scatter-plot" href="#make-a-simple-scatter-plot"></a>Make a simple scatter plot</h3><p>Now we are going to create a simple chart based on some data. Open a new text document, and copy and paste into it the code below:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+  &amp;lt;meta charset=utf-8 /&amp;gt;
+  &amp;lt;title&amp;gt;Scatter plot&amp;lt;/title&amp;gt;
+  &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&amp;gt;
+&amp;lt;!-- 
+  &amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+ --&amp;gt;
+  &amp;lt;script src=&quot;src/d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+    &amp;lt;div id=&quot;chart&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+&amp;lt;/body&amp;gt;
+
+   &amp;lt;script&amp;gt;
+
+   &amp;lt;/script&amp;gt;
+
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Scatter plot<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> /&gt;</span>
+<span class="hljs-comment">&lt;!-- 
+  &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+ --&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"src/d3.min.js"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"chart"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+
+   </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>Save this page in the <code>d3class</code> folder as <code>scatter.html</code>. You should recognize that the head of this page loads D3, while the body contains a div with the id <code>chart</code>. This we are going to draw the scatter plot. There is also an empty script, which is where we will write our D3 code.</p><h4 id="declare-the-size-of-the-chart-and-the-data-to-be-used"><a name="declare-the-size-of-the-chart-and-the-data-to-be-used" href="#declare-the-size-of-the-chart-and-the-data-to-be-used"></a>Declare the size of the chart and the data to be used</h4><p>Now paste the following code into the script:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Width and height for the chart
+            var w = 500;
+            var h = 500;
+
+            //The data
+            var dataset =
+                [[&quot;one&quot;,311,266],
+                [&quot;two&quot;,161,333],
+                [&quot;three&quot;,124,358],
+                [&quot;four&quot;,149,169],
+                [&quot;five&quot;,106,151],
+                [&quot;six&quot;,240,153],
+                [&quot;seven&quot;,290,235],
+                [&quot;eight&quot;,320,102]];
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Width and height for the chart</span>
+            <span class="hljs-keyword">var</span> w = <span class="hljs-number">500</span>;
+            <span class="hljs-keyword">var</span> h = <span class="hljs-number">500</span>;
+
+            <span class="hljs-comment">//The data</span>
+            <span class="hljs-keyword">var</span> dataset =
+                [[<span class="hljs-string">"one"</span>,<span class="hljs-number">311</span>,<span class="hljs-number">266</span>],
+                [<span class="hljs-string">"two"</span>,<span class="hljs-number">161</span>,<span class="hljs-number">333</span>],
+                [<span class="hljs-string">"three"</span>,<span class="hljs-number">124</span>,<span class="hljs-number">358</span>],
+                [<span class="hljs-string">"four"</span>,<span class="hljs-number">149</span>,<span class="hljs-number">169</span>],
+                [<span class="hljs-string">"five"</span>,<span class="hljs-number">106</span>,<span class="hljs-number">151</span>],
+                [<span class="hljs-string">"six"</span>,<span class="hljs-number">240</span>,<span class="hljs-number">153</span>],
+                [<span class="hljs-string">"seven"</span>,<span class="hljs-number">290</span>,<span class="hljs-number">235</span>],
+                [<span class="hljs-string">"eight"</span>,<span class="hljs-number">320</span>,<span class="hljs-number">102</span>]];
+</code></pre><p>This code declares three variables, giving the dimensions of the chart in pixels, and adding the data, which is a <a href="http://www.w3schools.com/js/js_arrays.asp">JavaScript array</a> of values. In fact, it is an array of arrays, because each of the eight points we will add to the chart has its own array with three values: its name and its X and Y coordinates.</p><p>(Note: as we add code to our scripts, unless specified otherwise add at the bottom of the script, below the last block of code but above the closing <code>&lt;/script&gt;</code> tag.)</p><p>So far this is pure JavaScript, but next we will use D3 to append an SVG element to the <code>chart</code> div, using the variables we just declared to set its width and height. Add this code to the script:</p><h4 id="drawing-with-that-data"><a name="drawing-with-that-data" href="#drawing-with-that-data"></a>Drawing with that data</h4><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Create SVG element to hold the chart
+            var svg = d3.select(&quot;#chart&quot;)
+                        .append(&quot;svg&quot;)
+                        .attr(&quot;width&quot;, w)
+                        .attr(&quot;height&quot;, h);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Create SVG element to hold the chart</span>
+            <span class="hljs-keyword">var</span> svg = d3.select(<span class="hljs-string">"#chart"</span>)
+                        .append(<span class="hljs-string">"svg"</span>)
+                        .attr(<span class="hljs-string">"width"</span>, w)
+                        .attr(<span class="hljs-string">"height"</span>, h);
+</code></pre><p>This should be familiar, because it is essentially the same as the code we used to create the SVG elements in which we drew simple shapes.</p><p>The real D3 magic starts with this block of code, which you should paste into the script now:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Add circles, bind to the data
+            svg.selectAll(&quot;circle&quot;)
+               .data(dataset)
+               .enter()
+               .append(&quot;circle&quot;)
+               .attr(&quot;cx&quot;, function(d) {
+                       return d[1];
+               })
+               .attr(&quot;cy&quot;, function(d) {
+                       return d[2];
+               })
+               .attr(&quot;r&quot;, 5);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Add circles, bind to the data</span>
+            svg.selectAll(<span class="hljs-string">"circle"</span>)
+               .data(dataset)
+               .enter()
+               .append(<span class="hljs-string">"circle"</span>)
+               .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> d[<span class="hljs-number">1</span>];
+               })
+               .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> d[<span class="hljs-number">2</span>];
+               })
+               .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>);
+</code></pre><p>Save <code>scatter.html</code>, navigate to it with your browser, and you should see the following:</p><p><img src="img/class13_4.jpg" alt=""></p><p>This is still some way from a complete scatter plot, but we now have eight points positioned according to values in the data. So let’s break down the D3 code to understand how we did this.</p><p>The first line is a little different to what we have seen before: <code>svg.selectAll("circle")</code>. Here, within the SVG element we just appended to the <code>chart</code> div, we are selecting all circles by applying the <code>selectAll("circles")</code> function to the <code>svg</code> variable we just declared. That seems odd, as there aren’t any circles yet. But they are created, according to values in the data, from the subsequent code.</p><p>First, <code>.data(dataset)</code> binds the circles to the data stored in the <code>dataset</code> variable; <code>.enter()</code> means that this happens for all of the elements that are about to enter the page when created by <code>.append("circle")</code>.</p><p>As Mike Bostock explains <a href="http://bost.ocks.org/mike/circles/">here</a>, the <code>selectAll</code>, <code>data</code>, <code>enter</code>, <code>append</code> sequence is a common pattern in D3 code. (While we will not do this, that link also explains the use of <code>exit</code> and <code>remove</code> for elements that are leaving the page.)</p><p>The rest of the code gives attributes to the circles, with their positions given by functions that use values from the data, represented by <code>d</code>. Our data has three values for each point. JavaScript indexes arrays so that the first value is 0, the second 1, and so on. So in the code above, <code>d[1]</code> refers to the second value for each point and <code>d[2]</code> to the third.</p><p>Finally, all of the circles are given a radius of 5 pixels.</p><p>In the much the same way as we added the points to the chart, we can add text labels for each with the following code:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;            //add text labels
+            svg.selectAll(&quot;text&quot;)
+               .data(dataset)
+               .enter()
+               .append(&quot;text&quot;)
+               .text(function(d) {
+                    return d[0];
+               })
+               .attr(&quot;x&quot;, function(d) {
+                    return d[1]+5;
+               })
+               .attr(&quot;y&quot;, function(d) {
+                    return d[2]-5;
+               })
+               .attr(&quot;font-family&quot;, &quot;arial&quot;)
+               .attr(&quot;font-size&quot;, &quot;14px&quot;)
+               .attr(&quot;fill&quot;, &quot;blue&quot;);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//add text labels</span>
+            svg.selectAll(<span class="hljs-string">"text"</span>)
+               .data(dataset)
+               .enter()
+               .append(<span class="hljs-string">"text"</span>)
+               .text(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    <span class="hljs-keyword">return</span> d[<span class="hljs-number">0</span>];
+               })
+               .attr(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    <span class="hljs-keyword">return</span> d[<span class="hljs-number">1</span>]+<span class="hljs-number">5</span>;
+               })
+               .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    <span class="hljs-keyword">return</span> d[<span class="hljs-number">2</span>]-<span class="hljs-number">5</span>;
+               })
+               .attr(<span class="hljs-string">"font-family"</span>, <span class="hljs-string">"arial"</span>)
+               .attr(<span class="hljs-string">"font-size"</span>, <span class="hljs-string">"14px"</span>)
+               .attr(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"blue"</span>);
+</code></pre><p>The logic is the same as before. We first make a selection within the SVG element of all text elements. Again we tell D3 to bind the data to this selection, and then we create those text elements. <code>d[0]</code>, the first value in the array of data for each point, is used as the text to display, and then this is positioned on the chart according to the X and Y coordinates from the data; <code>-5</code> and <code>+5</code> are used to offset the text from the circles we already created, so the text does not overlap the circles themselves.</p><p>The chart should now look like this:</p><p><img src="img/class13_5.jpg" alt=""></p><h4 id="add-scales-and-axes"><a name="add-scales-and-axes" href="#add-scales-and-axes"></a>Add scales and axes</h4><p>Clearly we need to add some axes to this chart. But there are a couple of other things to do as well.</p><p>First, notice that the point <code>eight</code> has the lowest value for its Y coordinate (102), yet it appears at the top of the scatterplot. This is because SVG measures vertical positions from the top of an element, not the bottom. So when we used data values to define these positions, we were actually orienting the missing Y axis the wrong way round — with lower values at the top, rather than the bottom.</p><p>Also, the SVG element we created to hold the chart measures 500 by 500 pixels, but the largest value in the data is 358, which means the points are not making full use of the available area.</p><p>These problems are easily fixed, using D3 scales. First, immediataly beneath the code that created the SVG element, add the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Create scales for X and Y axes
+            var xScale = d3.scale.linear()
+                     .domain([0, 400])
+                     .range([0, w]);
+
+            var yScale = d3.scale.linear()
+                     .domain([0, 400])
+                     .range([h, 0]);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Create scales for X and Y axes</span>
+            <span class="hljs-keyword">var</span> xScale = d3.scale.linear()
+                     .domain([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
+                     .range([<span class="hljs-number">0</span>, w]);
+
+            <span class="hljs-keyword">var</span> yScale = d3.scale.linear()
+                     .domain([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
+                     .range([h, <span class="hljs-number">0</span>]);
+</code></pre><p>This code declares two variables, <code>xScale</code> and <code>yScale</code>, used to scale the axes, and sets a <code>domain</code> and a <code>range</code> for each. The <code>domain</code> runs from zero to 400, just a little larger than the biggest value in the dataset. These <code>domain</code> values are then mapped onto the <code>range</code>, which for the X axis runs from zero to the width of the SVG element. Notice that for the <code>yScale</code>, the range is reversed, so that it runs from the height of the SVG element to zero. This will flip the chart round so that its Y axis is oriented correctly.</p><p>Here we have used a linear scale, but D3 also has other scale methods, including <code>log</code> scales, used when you need to set up an axis with a logarithmic scale, and <code>ordinal</code> scales, used for qualitative variables. For more on using scales, see the <a href="https://github.com/mbostock/d3/wiki/Scales">D3 wiki</a>, and <a href="http://alignedleft.com/tutorials/d3/scales">this tutorial</a> from Scott Murray.</p><p>Now we need to use the scales we have created to position the points. Edit the code that added the circles and the text labels to the following (I have commented the lines that need to change):</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //add circles, bind to the data
+            svg.selectAll(&quot;circle&quot;)
+               .data(dataset)
+               .enter()
+               .append(&quot;circle&quot;)
+               .attr(&quot;cx&quot;, function(d) {
+                       return xScale(d[1]);    //Note use of xScale
+               })
+               .attr(&quot;cy&quot;, function(d) {
+                       return yScale(d[2]);    //Note use of yScale
+               })
+               .attr(&quot;r&quot;, 5);
+
+            //add text labels
+            svg.selectAll(&quot;text&quot;)
+               .data(dataset)
+               .enter()
+               .append(&quot;text&quot;)
+               .text(function(d) {
+                    return d[0];
+               })
+               .attr(&quot;x&quot;, function(d) {
+                    return xScale(d[1]+5);      //Note use of xScale
+               })
+               .attr(&quot;y&quot;, function(d) {
+                    return yScale(d[2]+5);      //Note use of yScale
+               })
+               .attr(&quot;font-family&quot;, &quot;arial&quot;)
+               .attr(&quot;font-size&quot;, &quot;14px&quot;)
+               .attr(&quot;fill&quot;, &quot;blue&quot;);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//add circles, bind to the data</span>
+            svg.selectAll(<span class="hljs-string">"circle"</span>)
+               .data(dataset)
+               .enter()
+               .append(<span class="hljs-string">"circle"</span>)
+               .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> xScale(d[<span class="hljs-number">1</span>]);    <span class="hljs-comment">//Note use of xScale</span>
+               })
+               .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> yScale(d[<span class="hljs-number">2</span>]);    <span class="hljs-comment">//Note use of yScale</span>
+               })
+               .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>);
+
+            <span class="hljs-comment">//add text labels</span>
+            svg.selectAll(<span class="hljs-string">"text"</span>)
+               .data(dataset)
+               .enter()
+               .append(<span class="hljs-string">"text"</span>)
+               .text(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    <span class="hljs-keyword">return</span> d[<span class="hljs-number">0</span>];
+               })
+               .attr(<span class="hljs-string">"x"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    <span class="hljs-keyword">return</span> xScale(d[<span class="hljs-number">1</span>]+<span class="hljs-number">5</span>);      <span class="hljs-comment">//Note use of xScale</span>
+               })
+               .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    <span class="hljs-keyword">return</span> yScale(d[<span class="hljs-number">2</span>]+<span class="hljs-number">5</span>);      <span class="hljs-comment">//Note use of yScale</span>
+               })
+               .attr(<span class="hljs-string">"font-family"</span>, <span class="hljs-string">"arial"</span>)
+               .attr(<span class="hljs-string">"font-size"</span>, <span class="hljs-string">"14px"</span>)
+               .attr(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"blue"</span>);
+</code></pre><p>Notice also the changed the sign for the offset used to position the text labels on the Y axis; this will keep the labels above the points even though the entire axis has been flipped over.</p><p>Save the <code>scatter.html</code> file, refresh your browser, and this is what you should see:</p><p><img src="img/class13_6.jpg" alt=""></p><p>Now we are going to add the axes. But before we do so, we should include some padding around the chart, because otherwise they will be drawn at the very edge of the SVG element. So immediately after the declaration of the variables defining the element’s height and width, near the start of the script, add the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Padding
+            var padding = 40;
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Padding</span>
+            <span class="hljs-keyword">var</span> padding = <span class="hljs-number">40</span>;
+</code></pre><p>Now we need to use this new variable to adjust the scales, so that the ranges give the desired padding around the chart. Edit the code creating the scales to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Create scales for X and Y axes
+            var xScale = d3.scale.linear()
+                     .domain([0, 400])
+                     .range([padding, w - padding]);
+
+            var yScale = d3.scale.linear()
+                     .domain([0, 400])
+                     .range([h - padding, padding]);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Create scales for X and Y axes</span>
+            <span class="hljs-keyword">var</span> xScale = d3.scale.linear()
+                     .domain([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
+                     .range([padding, w - padding]);
+
+            <span class="hljs-keyword">var</span> yScale = d3.scale.linear()
+                     .domain([<span class="hljs-number">0</span>, <span class="hljs-number">400</span>])
+                     .range([h - padding, padding]);
+</code></pre><p>Then, immediately below, add this code to create and format the axes:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //Add axes
+            var xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(&quot;bottom&quot;)
+                  .ticks(4);
+
+            var yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(&quot;left&quot;)
+                  .ticks(4);
+
+            svg.append(&quot;g&quot;)
+                .attr(&quot;class&quot;, &quot;axis&quot;)
+                .attr(&quot;transform&quot;, &quot;translate(0,&quot; + (h - padding) + &quot;)&quot;)
+                .call(xAxis);
+
+            svg.append(&quot;g&quot;)
+                .attr(&quot;class&quot;, &quot;axis&quot;)
+                .attr(&quot;transform&quot;, &quot;translate(&quot; + padding + &quot;,0)&quot;)
+                .call(yAxis);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//Add axes</span>
+            <span class="hljs-keyword">var</span> xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(<span class="hljs-string">"bottom"</span>)
+                  .ticks(<span class="hljs-number">4</span>);
+
+            <span class="hljs-keyword">var</span> yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(<span class="hljs-string">"left"</span>)
+                  .ticks(<span class="hljs-number">4</span>);
+
+            svg.append(<span class="hljs-string">"g"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"axis"</span>)
+                .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate(0,"</span> + (h - padding) + <span class="hljs-string">")"</span>)
+                .call(xAxis);
+
+            svg.append(<span class="hljs-string">"g"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"axis"</span>)
+                .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate("</span> + padding + <span class="hljs-string">",0)"</span>)
+                .call(yAxis);
+</code></pre><p>While we won’t dwell on the details of this code, you may be wondering what <code>g</code> refers to. It is a “grouping” element, used to group together the multiple SVG shapes created by <code>d3.svg.axis()</code>. See <a href="http://alignedleft.com/tutorials/d3/axes">Scott Murray’s tutorial</a> for more on D3 axes.</p><p>Note also that we have told D3 how many ticks to draw on each axis using <code>ticks(4)</code>. If you experiment with this, you will find that D3 does not always interpret this instruction literally: Instead, it uses the nearest number of ticks that divides up the data in a “sensible” way.</p><p>Save <code>scatter.html</code>, refresh your browser, and this should be the result:</p><p><img src="img/class13_7.jpg" alt=""></p><p>So we now have axes, albeit very ugly ones. We can easily finesse their appearance, however, using a little CSS. In the head of the web page, add the following code:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;  &amp;lt;style&amp;gt;
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+    }
+    .axis text {
+        font-family: arial;
+        font-size: 12px;
+    }
+
+  &amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;">  <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+
+    <span class="hljs-class">.axis</span> <span class="hljs-tag">path</span>,
+    <span class="hljs-class">.axis</span> <span class="hljs-tag">line</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">fill</span>:<span class="hljs-value"> none</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">stroke</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ccc</span></span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">shape-rendering</span>:<span class="hljs-value"> crispEdges</span></span>;
+    <span class="hljs-rule">}</span></span>
+    <span class="hljs-class">.axis</span> <span class="hljs-tag">text</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">12px</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+</code></pre><p>This turns the heavy black lines into sharp gray ones, revealing the tick marks, and makes the axis fonts consistent with the text labels on the points.</p><p>The chart should now look like this:</p><p><img src="img/class13_8.jpg" alt=""></p><h4 id="different-tools-for-different-tasks"><a name="different-tools-for-different-tasks" href="#different-tools-for-different-tasks"></a>Different tools for different tasks</h4><p>Remember from week 6, when we used the ggplot2 package in R to make this scatter plot:</p><p><img src="img/class6_8.jpg" alt=""></p><p>This graphic, which also includes axis labels and a trend line, can be made with just one line of code:</p><pre><code class="r hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;R&quot;&gt;ggplot(disease_democ, aes(x=infect_rate, y=democ_score)) + geom_point(size=4) + geom_smooth(se=FALSE, method=&quot;lm&quot;) + coord_cartesian(xlim=c(0,70), ylim=c(0,100)) + xlab(&quot;Infectious disease prevalence score&quot;) + ylab(&quot;Democratization score&quot;)
+&lt;/code&gt;&lt;/pre&gt;">ggplot(disease_democ, aes(x=infect_rate, y=democ_score)) + geom_point(size=<span class="hljs-number">4</span>) + geom_smooth(se=<span class="hljs-literal">FALSE</span>, method=<span class="hljs-string">"lm"</span>) + coord_cartesian(xlim=c(<span class="hljs-number">0</span>,<span class="hljs-number">70</span>), ylim=c(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>)) + xlab(<span class="hljs-string">"Infectious disease prevalence score"</span>) + ylab(<span class="hljs-string">"Democratization score"</span>)
+</code></pre><p>Contrast that with the large amount of code we had to write to create a static scatterplot in D3. This is not a criticism of D3, but rather a reminder that different tools are designed for different purposes. The ggplot2 package is intended to rapidly produce plots in standard formats for exploratory data analysis. D3’s strength, meanwhile, lies in producing highly interactive, customizable visualizations.</p><h4 id="add-some-basic-interactivity:-a-tooltip"><a name="add-some-basic-interactivity:-a-tooltip" href="#add-some-basic-interactivity:-a-tooltip"></a>Add some basic interactivity: a tooltip</h4><p>So let’s now add some basic interactivity to our scatter plot. First, beneath the code creating the axes, add the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;            // add a tooltip div to the web page
+            var tooltip = d3.select(&quot;#chart&quot;).append(&quot;div&quot;)
+                .attr(&quot;class&quot;, &quot;tooltip&quot;);
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">// add a tooltip div to the web page</span>
+            <span class="hljs-keyword">var</span> tooltip = d3.select(<span class="hljs-string">"#chart"</span>).append(<span class="hljs-string">"div"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tooltip"</span>);
+</code></pre><p>You may now be getting sufficiently familiar with D3 to realize that this declares a variable called <code>tooltip</code> that appends a new div, with the class <code>tooltip</code>, to the main <code>chart</code> div.</p><p>Now edit the code that adds the circles to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;           //add circles, with tooltip
+           svg.selectAll(&quot;circle&quot;)
+               .data(dataset)
+               .enter()
+               .append(&quot;circle&quot;)
+               .attr(&quot;cx&quot;, function(d) {
+                       return xScale(d[1]);    //Note use of xScale
+               })
+               .attr(&quot;cy&quot;, function(d) {
+                       return yScale(d[2]);    //Note use of yScale
+               })
+               .attr(&quot;r&quot;, 5)
+                //this following section is new
+               .on(&quot;mouseover&quot;, function(d) {
+                  tooltip.html(&quot;X: &quot; + d[1] + &quot;, Y: &quot; + d[2])
+                });
+&lt;/code&gt;&lt;/pre&gt;">           <span class="hljs-comment">//add circles, with tooltip</span>
+           svg.selectAll(<span class="hljs-string">"circle"</span>)
+               .data(dataset)
+               .enter()
+               .append(<span class="hljs-string">"circle"</span>)
+               .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> xScale(d[<span class="hljs-number">1</span>]);    <span class="hljs-comment">//Note use of xScale</span>
+               })
+               .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> yScale(d[<span class="hljs-number">2</span>]);    <span class="hljs-comment">//Note use of yScale</span>
+               })
+               .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
+                <span class="hljs-comment">//this following section is new</span>
+               .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                  tooltip.html(<span class="hljs-string">"X: "</span> + d[<span class="hljs-number">1</span>] + <span class="hljs-string">", Y: "</span> + d[<span class="hljs-number">2</span>])
+                });
+</code></pre><p>Save <code>scatter.html</code> and refresh your browser. When you hover over one of the circles (<code>mouseover</code>), this code adds writes HTML displaying the X and Y values from the data in the newly created div:</p><p><img src="img/class13_9.jpg" alt=""></p><p>That’s still some way from a useful tooltip, as the values remain on screen until the user hovers over a new point, and ideally the tooltip should appear near to the point, rather than beneath the chart. So now edit the code adding the circles to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;           //add circles, with tooltip
+            svg.selectAll(&quot;circle&quot;)
+               .data(dataset)
+               .enter()
+               .append(&quot;circle&quot;)
+               .attr(&quot;cx&quot;, function(d) {
+                       return xScale(d[1]);
+               })
+               .attr(&quot;cy&quot;, function(d) {
+                       return yScale(d[2]);
+               })
+               .attr(&quot;r&quot;, 5)
+               //this following section is altered and extended
+               .on(&quot;mouseover&quot;, function(d) {
+                  tooltip.html(&quot;X: &quot; + d[1] + &quot;, Y: &quot; + d[2])
+                        .style(&quot;visibility&quot;, &quot;visible&quot;)
+                        .style(&quot;position&quot;, &quot;absolute&quot;)
+                        .style(&quot;left&quot;, (d3.event.pageX + 10) + &quot;px&quot;)
+                        .style(&quot;top&quot;, (d3.event.pageY + 10) + &quot;px&quot;);
+               })
+              .on(&quot;mouseout&quot;, function(d) {
+                  tooltip.style(&quot;visibility&quot;, &quot;hidden&quot;)
+               });
+&lt;/code&gt;&lt;/pre&gt;">           <span class="hljs-comment">//add circles, with tooltip</span>
+            svg.selectAll(<span class="hljs-string">"circle"</span>)
+               .data(dataset)
+               .enter()
+               .append(<span class="hljs-string">"circle"</span>)
+               .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> xScale(d[<span class="hljs-number">1</span>]);
+               })
+               .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                       <span class="hljs-keyword">return</span> yScale(d[<span class="hljs-number">2</span>]);
+               })
+               .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
+               <span class="hljs-comment">//this following section is altered and extended</span>
+               .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                  tooltip.html(<span class="hljs-string">"X: "</span> + d[<span class="hljs-number">1</span>] + <span class="hljs-string">", Y: "</span> + d[<span class="hljs-number">2</span>])
+                        .style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"visible"</span>)
+                        .style(<span class="hljs-string">"position"</span>, <span class="hljs-string">"absolute"</span>)
+                        .style(<span class="hljs-string">"left"</span>, (d3.event.pageX + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>)
+                        .style(<span class="hljs-string">"top"</span>, (d3.event.pageY + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>);
+               })
+              .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                  tooltip.style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"hidden"</span>)
+               });
+</code></pre><p>Notice that the function called when the user hovers over a circle now makes the tooltip visible, and positions it relative to where the mouse is on the screen (determined by <code>d3.event.pageX</code> and <code>d3.event.pageY</code>). When the mouse is moved away from the circle (<code>mouseout</code>), the tooltip is hidden.</p><p>Save <code>scatter.html</code> and refresh your browser to see this behavior. Now we can add some CSS above the closing <code>&lt;/style&gt;</code> tag in the page head to give the tooltip some styling.</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;    .tooltip {
+/*
+      position: absolute;
+ */
+      font-family: arial;
+      font-size: 12px;
+      padding: 5px;
+      width: 80px;
+      background: #666;
+      color: #fff;
+      border-radius: 2px;
+      visibility: hidden;
+    }
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-class">.tooltip</span> <span class="hljs-rules">{
+<span class="hljs-comment">/*
+      position: absolute;
+ */</span>
+      <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">12px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">5px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">80px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#666</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fff</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">2px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">visibility</span>:<span class="hljs-value"> hidden</span></span>;
+    <span class="hljs-rule">}</span></span>
+</code></pre><p>Note that in this code the absolute positioning is commented out, because this repeats the following line from the D3 code:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                        .style(&quot;position&quot;, &quot;absolute&quot;)
+&lt;/code&gt;&lt;/pre&gt;">                        .style(<span class="hljs-string">"position"</span>, <span class="hljs-string">"absolute"</span>)
+</code></pre><p>Alternatively, you could now add the absolute position in the CSS, and remove it from the D3 script. It is needed in one or other place, otherwise the <code>"left"</code> and <code>"top"</code> positioning in the D3 code will not have the desired effect.</p><p>The final scatter plot should look like this:</p><p><img src="img/class13_10.jpg" alt=""></p><h3 id="make-an-interactive-scatter-plot-exploring-the-gender-pay-gap"><a name="make-an-interactive-scatter-plot-exploring-the-gender-pay-gap" href="#make-an-interactive-scatter-plot-exploring-the-gender-pay-gap"></a>Make an interactive scatter plot exploring the gender pay gap</h3><p>You may remember this chart from week 2:</p><p><img src="img/class2_27.jpg" alt=""></p><p>We are now going to make a similar chart in D3, with some slightly different features, including the ability to switch back and forth between data from different years.</p><h4 id="load-data-from-an-external-file"><a name="load-data-from-an-external-file" href="#load-data-from-an-external-file"></a>Load data from an external file</h4><p>This time, rather than coding the data into the page as a JavaScript array, we will load our data from an external file — which is a more realistic situation.</p><p>Look in the <code>data</code> subfolder and notice that there are two files, <code>gender_pay_2013.json</code>, which contains U.S. Bureau of Labor Statistics data on salaries by occupation and gender from 2013, and <code>gender_pay_all.json</code>, which also contains data from 2012.</p><p>The first couple of lines from <code>gender_pay_2013.json</code> look like this:</p><pre><code class="json hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JSON&quot;&gt;[{&quot;year&quot;:2013,&quot;type&quot;:&quot;Management, professional, and related&quot;,&quot;occupation&quot;:&quot;Chief executives&quot;,&quot;w_number&quot;:286,&quot;m_number&quot;:764,&quot;w_salary&quot;:1811,&quot;m_salary&quot;:2266},
+{&quot;year&quot;:2013,&quot;type&quot;:&quot;Management, professional, and related&quot;,&quot;occupation&quot;:&quot;General and operations managers&quot;,&quot;w_number&quot;:250,&quot;m_number&quot;:698,&quot;w_salary&quot;:1161,&quot;m_salary&quot;:1444},
+&lt;/code&gt;&lt;/pre&gt;">[{"<span class="hljs-attribute">year</span>":<span class="hljs-value"><span class="hljs-number">2013</span></span>,"<span class="hljs-attribute">type</span>":<span class="hljs-value"><span class="hljs-string">"Management, professional, and related"</span></span>,"<span class="hljs-attribute">occupation</span>":<span class="hljs-value"><span class="hljs-string">"Chief executives"</span></span>,"<span class="hljs-attribute">w_number</span>":<span class="hljs-value"><span class="hljs-number">286</span></span>,"<span class="hljs-attribute">m_number</span>":<span class="hljs-value"><span class="hljs-number">764</span></span>,"<span class="hljs-attribute">w_salary</span>":<span class="hljs-value"><span class="hljs-number">1811</span></span>,"<span class="hljs-attribute">m_salary</span>":<span class="hljs-value"><span class="hljs-number">2266</span></span>},
+{"<span class="hljs-attribute">year</span>":<span class="hljs-value"><span class="hljs-number">2013</span></span>,"<span class="hljs-attribute">type</span>":<span class="hljs-value"><span class="hljs-string">"Management, professional, and related"</span></span>,"<span class="hljs-attribute">occupation</span>":<span class="hljs-value"><span class="hljs-string">"General and operations managers"</span></span>,"<span class="hljs-attribute">w_number</span>":<span class="hljs-value"><span class="hljs-number">250</span></span>,"<span class="hljs-attribute">m_number</span>":<span class="hljs-value"><span class="hljs-number">698</span></span>,"<span class="hljs-attribute">w_salary</span>":<span class="hljs-value"><span class="hljs-number">1161</span></span>,"<span class="hljs-attribute">m_salary</span>":<span class="hljs-value"><span class="hljs-number">1444</span></span>},
+</code></pre><p>As we are again making a scatter plot, we can recycle much of the code we just used, rather than starting again from scratch. Copy and paste the code below into a new text file, and save it in the <code>d3class</code> folder as <code>gender_pay.html</code>.</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+    &amp;lt;meta charset=utf-8 /&amp;gt;
+    &amp;lt;title&amp;gt;Gender pay gap&amp;lt;/title&amp;gt;
+    &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&amp;gt;
+&amp;lt;!--
+    &amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+ --&amp;gt;
+    &amp;lt;script src=&quot;d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+   &amp;lt;style&amp;gt;
+
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #ccc;
+        shape-rendering: crispEdges;
+    }
+    .axis text {
+        font-family: arial;
+        font-size: 12px;
+    }
+    .tooltip {
+      position: absolute;
+      font-family: arial;
+      font-size: 12px;
+      padding: 5px;
+      width: 120px;
+      background-color:rgba(255, 255, 255, 0.5);
+      color: #000;
+      border-radius: 2px;
+      visibility: hidden;
+    }
+
+  &amp;lt;/style&amp;gt;
+
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+    &amp;lt;div id=&quot;chart&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+&amp;lt;/body&amp;gt;
+
+    &amp;lt;script&amp;gt;
+
+            //Width and height
+            var w = 500;
+            var h = 500;
+
+            // padding
+            var padding = 80;
+
+            //Create SVG element
+            var svg = d3.select(&quot;#chart&quot;)
+                        .append(&quot;svg&quot;)
+                        .attr(&quot;width&quot;, w)
+                        .attr(&quot;height&quot;, h);
+
+            //load data from external JSON file
+            d3.json(&quot;data/gender_pay_2013.json&quot;, function (gender_pay) {
+
+            //Create scales for X and Y axes
+            var xScale = d3.scale.linear()
+                 .domain([0, 2500])
+                 .range([padding, w - padding]);
+
+            var yScale = d3.scale.linear()
+                     .domain([0, 2500])
+                     .range([h - padding, padding]);
+
+            //add axes
+            var xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(&quot;bottom&quot;)
+                  .ticks(5)
+
+            var yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(&quot;left&quot;)
+                  .ticks(5)
+
+            svg.append(&quot;g&quot;)
+                .attr(&quot;class&quot;, &quot;axis&quot;)
+                .attr(&quot;transform&quot;, &quot;translate(0,&quot; + (h - padding) + &quot;)&quot;)
+                .call(xAxis);
+
+            svg.append(&quot;g&quot;)
+                .attr(&quot;class&quot;, &quot;axis&quot;)
+                .attr(&quot;transform&quot;, &quot;translate(&quot; + padding + &quot;,0)&quot;)
+                .call(yAxis);
+
+            //add a tooltip div to the web page
+            var tooltip = d3.select(&quot;#chart&quot;).append(&quot;div&quot;)
+                .attr(&quot;class&quot;, &quot;tooltip&quot;);
+
+            //add circles, with a tooltip
+            svg.selectAll(&quot;circle&quot;)
+                .data(gender_pay)
+                .enter()
+                .append(&quot;circle&quot;)
+                .attr(&quot;class&quot;, &quot;circle&quot;)
+                .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
+                .attr(&quot;r&quot;, 5)
+                .on(&quot;mouseover&quot;, function(d) {
+                    tooltip.html(d.occupation)
+                        .style(&quot;visibility&quot;, &quot;visible&quot;)
+                        .style(&quot;left&quot;, (d3.event.pageX + 10) + &quot;px&quot;)
+                        .style(&quot;top&quot;, (d3.event.pageY + 10) + &quot;px&quot;);
+                })
+                .on(&quot;mouseout&quot;, function(d) {
+                tooltip.style(&quot;visibility&quot;, &quot;hidden&quot;)
+                })
+
+            });
+
+    &amp;lt;/script&amp;gt;
+
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">utf-8</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>Gender pay gap<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> /&gt;</span>
+<span class="hljs-comment">&lt;!--
+    &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+ --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"d3.min.js"</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+   <span class="hljs-tag">&lt;<span class="hljs-title">style</span>&gt;</span><span class="css">
+
+    <span class="hljs-class">.axis</span> <span class="hljs-tag">path</span>,
+    <span class="hljs-class">.axis</span> <span class="hljs-tag">line</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">fill</span>:<span class="hljs-value"> none</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">stroke</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ccc</span></span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">shape-rendering</span>:<span class="hljs-value"> crispEdges</span></span>;
+    <span class="hljs-rule">}</span></span>
+    <span class="hljs-class">.axis</span> <span class="hljs-tag">text</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">12px</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+    <span class="hljs-class">.tooltip</span> <span class="hljs-rules">{
+      <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">12px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">5px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">120px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"><span class="hljs-function">rgba</span>(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.5</span>)</span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">border-radius</span>:<span class="hljs-value"> <span class="hljs-number">2px</span></span></span>;
+      <span class="hljs-rule"><span class="hljs-attribute">visibility</span>:<span class="hljs-value"> hidden</span></span>;
+    <span class="hljs-rule">}</span></span>
+
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">style</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"chart"</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">script</span>&gt;</span><span class="javascript">
+
+            <span class="hljs-comment">//Width and height</span>
+            <span class="hljs-keyword">var</span> w = <span class="hljs-number">500</span>;
+            <span class="hljs-keyword">var</span> h = <span class="hljs-number">500</span>;
+
+            <span class="hljs-comment">// padding</span>
+            <span class="hljs-keyword">var</span> padding = <span class="hljs-number">80</span>;
+
+            <span class="hljs-comment">//Create SVG element</span>
+            <span class="hljs-keyword">var</span> svg = d3.select(<span class="hljs-string">"#chart"</span>)
+                        .append(<span class="hljs-string">"svg"</span>)
+                        .attr(<span class="hljs-string">"width"</span>, w)
+                        .attr(<span class="hljs-string">"height"</span>, h);
+
+            <span class="hljs-comment">//load data from external JSON file</span>
+            d3.json(<span class="hljs-string">"data/gender_pay_2013.json"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(gender_pay)</span> </span>{
+
+            <span class="hljs-comment">//Create scales for X and Y axes</span>
+            <span class="hljs-keyword">var</span> xScale = d3.scale.linear()
+                 .domain([<span class="hljs-number">0</span>, <span class="hljs-number">2500</span>])
+                 .range([padding, w - padding]);
+
+            <span class="hljs-keyword">var</span> yScale = d3.scale.linear()
+                     .domain([<span class="hljs-number">0</span>, <span class="hljs-number">2500</span>])
+                     .range([h - padding, padding]);
+
+            <span class="hljs-comment">//add axes</span>
+            <span class="hljs-keyword">var</span> xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(<span class="hljs-string">"bottom"</span>)
+                  .ticks(<span class="hljs-number">5</span>)
+
+            <span class="hljs-keyword">var</span> yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(<span class="hljs-string">"left"</span>)
+                  .ticks(<span class="hljs-number">5</span>)
+
+            svg.append(<span class="hljs-string">"g"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"axis"</span>)
+                .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate(0,"</span> + (h - padding) + <span class="hljs-string">")"</span>)
+                .call(xAxis);
+
+            svg.append(<span class="hljs-string">"g"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"axis"</span>)
+                .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate("</span> + padding + <span class="hljs-string">",0)"</span>)
+                .call(yAxis);
+
+            <span class="hljs-comment">//add a tooltip div to the web page</span>
+            <span class="hljs-keyword">var</span> tooltip = d3.select(<span class="hljs-string">"#chart"</span>).append(<span class="hljs-string">"div"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"tooltip"</span>);
+
+            <span class="hljs-comment">//add circles, with a tooltip</span>
+            svg.selectAll(<span class="hljs-string">"circle"</span>)
+                .data(gender_pay)
+                .enter()
+                .append(<span class="hljs-string">"circle"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"circle"</span>)
+                .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
+                .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    tooltip.html(d.occupation)
+                        .style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"visible"</span>)
+                        .style(<span class="hljs-string">"left"</span>, (d3.event.pageX + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>)
+                        .style(<span class="hljs-string">"top"</span>, (d3.event.pageY + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>);
+                })
+                .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                tooltip.style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"hidden"</span>)
+                })
+
+            });
+
+    </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre><p>There are a few changes to the code we used previously, some cosmetic, some more fundamental.</p><p>First, the cosmetic changes: Notice that the CSS to style the tooltip is a little different, using RGB(A) values to color the background, with A (for opacity) set at 0.5, to give a semi transparent background. The padding has been increased to 80 pixels, to allow more space for the axes, including labels that we are going to add to this chart. The domains for <code>xScale</code> and <code>yScale</code> now run from zero to 2500, reflecting the values in the data, and we are asking D3 to draw five ticks on each axis.</p><p>Notice also that values in the data are not referred to by their index position (<code>d[0]</code>, <code>d[1]</code>) and so on, but are instead given names from the JSON: <code>d.w_salary</code> for women’s median weekly salary for the occupation in question, <code>d.m_salary</code> for the corresponding value for men, and so on.</p><p>The most important change, however, is that the data is no longer stored in an array declared as a variable in the code, but is instead loaded from the JSON file using <code>d3.json</code>.</p><p>Having done this, all the code to create the chart gets wrapped into <code>function (gender_pay) { }</code>, which operates on the loaded data, referred to subsequently in the code as <code>gender_pay</code>.</p><p>(Note, D3 can also load CSV files, using the method <code>d3.csv</code> in place of <code>d3.json</code>.)</p><p>Navigate to <code>gender_pay.html</code> in your browser, and this is what you should see:</p><p><img src="img/class13_11.jpg" alt=""></p><h4 id="handle-null-values-in-the-data"><a name="handle-null-values-in-the-data" href="#handle-null-values-in-the-data"></a>Handle null values in the data</h4><p>This is already looking something like the desired scatterplot, but why are so many points clustered on the X and Y axes? If you examine the data, you will see that there are many “null” values for the <code>w_salary</code> and <code>m_salary</code> variables. When making this plot from the same data in R, ggplot2 helpfully stripped out the points with null values. D3 does not do this, instead treating nulls as zeros.</p><p>We could go back and edit the data to remove the nulls, but we can also simply remove them from the chart by writing a function that sets the radius of the circle to zero if either <code>w_salary</code> or <code>m_salary</code> is null.</p><p>To do this, edit the code that creates the circles to the following.</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //add circles, with a tooltip
+            svg.selectAll(&quot;circle&quot;)
+                .data(gender_pay)
+                .enter()
+                .append(&quot;circle&quot;)
+                .attr(&quot;class&quot;, &quot;circle&quot;)
+                .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
+                //include function that sets circle radius to 0 if there are null values
+                .attr(&quot;r&quot;, function(d) {
+                                return d.w_salary == null ? 0 :
+                                d.m_salary == null ? 0 :
+                                5;
+                            })
+                .on(&quot;mouseover&quot;, function(d) {
+                    tooltip.html(d.occupation)
+                        .style(&quot;visibility&quot;, &quot;visible&quot;)
+                        .style(&quot;left&quot;, (d3.event.pageX + 10) + &quot;px&quot;)
+                        .style(&quot;top&quot;, (d3.event.pageY + 10) + &quot;px&quot;);
+                })
+                .on(&quot;mouseout&quot;, function(d) {
+                tooltip.style(&quot;visibility&quot;, &quot;hidden&quot;)
+                })
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//add circles, with a tooltip</span>
+            svg.selectAll(<span class="hljs-string">"circle"</span>)
+                .data(gender_pay)
+                .enter()
+                .append(<span class="hljs-string">"circle"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"circle"</span>)
+                .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                <span class="hljs-comment">//include function that sets circle radius to 0 if there are null values</span>
+                .attr(<span class="hljs-string">"r"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                                <span class="hljs-keyword">return</span> d.w_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> :
+                                d.m_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> :
+                                <span class="hljs-number">5</span>;
+                            })
+                .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    tooltip.html(d.occupation)
+                        .style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"visible"</span>)
+                        .style(<span class="hljs-string">"left"</span>, (d3.event.pageX + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>)
+                        .style(<span class="hljs-string">"top"</span>, (d3.event.pageY + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>);
+                })
+                .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                tooltip.style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"hidden"</span>)
+                })
+</code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and the circles on the axes should disappear.</p><h4 id="add-a-color-scheme"><a name="add-a-color-scheme" href="#add-a-color-scheme"></a>Add a color scheme</h4><p>Now let’s give the chart some color. Notice that the JSON contains <code>type</code> values, which group <code>occupation</code> values together into broader categories. D3 has some built-in color schemes for categorical variables, explained <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">here</a>. To use one of these color schemes, add this code to the script, immediately beneath the code that creates <code>xScale</code> and <code>yScale</code>:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                //use d3 built-in categorical color scheme
+                var color = d3.scale.category10();
+&lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">//use d3 built-in categorical color scheme</span>
+                <span class="hljs-keyword">var</span> color = d3.scale.category10();
+</code></pre><p>Then edit the code creating the circles to apply that color scheme, also making the circles semi-transparent so that overlapping points are easier to “read”:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //add circles, with a tooltip
+            svg.selectAll(&quot;circle&quot;)
+                .data(gender_pay)
+                .enter()
+                .append(&quot;circle&quot;)
+                .attr(&quot;class&quot;, &quot;circle&quot;)
+                .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
+                //include function that sets circle radius to 0 if there are null values
+                .attr(&quot;r&quot;, function(d) { 
+                                return d.w_salary == null ? 0 :
+                                d.m_salary == null ? 0 :
+                                5; 
+                            })
+                //apply color scheme to fill the circles according to occupation type
+                .attr(&quot;fill&quot;, function(d, i) { return d.color = color(d.type); })
+                //make them semi_transparent
+                .attr(&quot;opacity&quot;, 0.5)
+                .on(&quot;mouseover&quot;, function(d) {
+                    tooltip.html(d.occupation)
+                        .style(&quot;visibility&quot;, &quot;visible&quot;)
+                        .style(&quot;left&quot;, (d3.event.pageX + 10) + &quot;px&quot;)
+                        .style(&quot;top&quot;, (d3.event.pageY + 10) + &quot;px&quot;);
+                })
+                .on(&quot;mouseout&quot;, function(d) {
+                tooltip.style(&quot;visibility&quot;, &quot;hidden&quot;)
+                })
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//add circles, with a tooltip</span>
+            svg.selectAll(<span class="hljs-string">"circle"</span>)
+                .data(gender_pay)
+                .enter()
+                .append(<span class="hljs-string">"circle"</span>)
+                .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"circle"</span>)
+                .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                <span class="hljs-comment">//include function that sets circle radius to 0 if there are null values</span>
+                .attr(<span class="hljs-string">"r"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ 
+                                <span class="hljs-keyword">return</span> d.w_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> :
+                                d.m_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> :
+                                <span class="hljs-number">5</span>; 
+                            })
+                <span class="hljs-comment">//apply color scheme to fill the circles according to occupation type</span>
+                .attr(<span class="hljs-string">"fill"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> d.color = color(d.type); })
+                <span class="hljs-comment">//make them semi_transparent</span>
+                .attr(<span class="hljs-string">"opacity"</span>, <span class="hljs-number">0.5</span>)
+                .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                    tooltip.html(d.occupation)
+                        .style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"visible"</span>)
+                        .style(<span class="hljs-string">"left"</span>, (d3.event.pageX + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>)
+                        .style(<span class="hljs-string">"top"</span>, (d3.event.pageY + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>);
+                })
+                .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                tooltip.style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"hidden"</span>)
+                })
+</code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and the chart should look like this:</p><p><img src="img/class13_12.jpg" alt=""></p><p>Because there are many points on this scatter plot, it can be hard to tell which one the tooltip is highlighting. But that can be fixed with some simple CSS, to make the point being hovered over fully opaque, and giving it a black outline. To do that, add this code add the end of the CSS for the page, above the closing <code>&lt;/style&gt;</code> tag:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;    circle:hover {
+          opacity: 1;
+          stroke: black;
+          stroke-width: 1;
+    }
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-tag">circle</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{
+          <span class="hljs-rule"><span class="hljs-attribute">opacity</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+          <span class="hljs-rule"><span class="hljs-attribute">stroke</span>:<span class="hljs-value"> black</span></span>;
+          <span class="hljs-rule"><span class="hljs-attribute">stroke-width</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+</code></pre><p>Save <code>gender_pay.html</code> and refresh your browser to see the resulting behavior.</p><h4 id="format-and-label-the-axes"><a name="format-and-label-the-axes" href="#format-and-label-the-axes"></a>Format and label the axes</h4><p>The salary values are actually in $, so let’s now format the axis labels to reflect that. First edit the code adding the axes to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //add axes
+            var xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(&quot;bottom&quot;)
+                  .ticks(5)
+                  .tickFormat(function(d) { return &quot;@@bodyquot; + (d); }); //format as $
+
+            var yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(&quot;left&quot;)
+                  .ticks(5)
+                  .tickFormat(function(d) { return &quot;@@bodyquot; + (d); }); //format as $
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//add axes</span>
+            <span class="hljs-keyword">var</span> xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(<span class="hljs-string">"bottom"</span>)
+                  .ticks(<span class="hljs-number">5</span>)
+                  .tickFormat(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"$"</span> + (d); }); <span class="hljs-comment">//format as $</span>
+
+            <span class="hljs-keyword">var</span> yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(<span class="hljs-string">"left"</span>)
+                  .ticks(<span class="hljs-number">5</span>)
+                  .tickFormat(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"$"</span> + (d); }); <span class="hljs-comment">//format as $</span>
+</code></pre><p>Save <code>gender_pay.html</code> and refresh your browser to see the result:</p><p><img src="img/class13_13.jpg" alt=""></p><p>That’s OK, except that in adding the $ signs using the <code>tickFormat</code> method, we’ve lost the nice automatic formatting that inserted a comma to denote thousands. We can add that back, however. First add this code to the script, immediately beneath the section setting up the categorical color scheme:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                //set up commas formatting for numbers
+                var commasFormatter = d3.format(&quot;,.0f&quot;)
+&lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">//set up commas formatting for numbers</span>
+                <span class="hljs-keyword">var</span> commasFormatter = d3.format(<span class="hljs-string">",.0f"</span>)
+</code></pre><p>See <a href="https://github.com/mbostock/d3/wiki/Formatting">here</a> for more on how to format numbers using <code>d3.format</code>.</p><p>Having declared the <code>commasFormatter</code> variable, we can now use it in the code creating the axes, which you should edit to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;            //add axes
+            var xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(&quot;bottom&quot;)
+                  .ticks(5)
+                  .tickFormat(function(d) { return &quot;@@bodyquot; + commasFormatter(d); }); //format as $, with commas for thousands
+
+            var yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(&quot;left&quot;)
+                  .ticks(5)
+                  .tickFormat(function(d) { return &quot;@@bodyquot; + commasFormatter(d); }); //format as $, with commas for thousands
+&lt;/code&gt;&lt;/pre&gt;">            <span class="hljs-comment">//add axes</span>
+            <span class="hljs-keyword">var</span> xAxis = d3.svg.axis()
+                  .scale(xScale)
+                  .orient(<span class="hljs-string">"bottom"</span>)
+                  .ticks(<span class="hljs-number">5</span>)
+                  .tickFormat(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"$"</span> + commasFormatter(d); }); <span class="hljs-comment">//format as $, with commas for thousands</span>
+
+            <span class="hljs-keyword">var</span> yAxis = d3.svg.axis()
+                  .scale(yScale)
+                  .orient(<span class="hljs-string">"left"</span>)
+                  .ticks(<span class="hljs-number">5</span>)
+                  .tickFormat(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">"$"</span> + commasFormatter(d); }); <span class="hljs-comment">//format as $, with commas for thousands</span>
+</code></pre><p>After saving the <code>gender_pay.html</code> file and refreshing your browser, the chart should look like this:</p><p><img src="img/class13_14.jpg" alt=""></p><p>Now let’s add labels to the axes. This is done by appending text to the SVG element, which can be achieved by adding the following code to the script (insert it after the code adding the axes, and before the code adding the tooltip div to the web page):</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                // add X axis label
+                svg.append(&quot;text&quot;)
+                    .attr(&quot;class&quot;, &quot;label&quot;)
+                    .attr(&quot;text-anchor&quot;, &quot;end&quot;)
+                    .attr(&quot;x&quot;, w - 150)
+                    .attr(&quot;y&quot;, h - 35)
+                    .text(&quot;Men's median weekly salary&quot;);
+
+                // add Y axis label
+                svg.append(&quot;text&quot;)
+                    .attr(&quot;class&quot;, &quot;label&quot;)
+                    .attr(&quot;text-anchor&quot;, &quot;end&quot;)
+                    .attr(&quot;transform&quot;, &quot;rotate(-90)&quot;)
+                    .attr(&quot;x&quot;, -150)
+                    .attr(&quot;y&quot;, 20)
+                    .text(&quot;Women's median weekly salary&quot;);
+&lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">// add X axis label</span>
+                svg.append(<span class="hljs-string">"text"</span>)
+                    .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"label"</span>)
+                    .attr(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"end"</span>)
+                    .attr(<span class="hljs-string">"x"</span>, w - <span class="hljs-number">150</span>)
+                    .attr(<span class="hljs-string">"y"</span>, h - <span class="hljs-number">35</span>)
+                    .text(<span class="hljs-string">"Men's median weekly salary"</span>);
+
+                <span class="hljs-comment">// add Y axis label</span>
+                svg.append(<span class="hljs-string">"text"</span>)
+                    .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"label"</span>)
+                    .attr(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"end"</span>)
+                    .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"rotate(-90)"</span>)
+                    .attr(<span class="hljs-string">"x"</span>, -<span class="hljs-number">150</span>)
+                    .attr(<span class="hljs-string">"y"</span>, <span class="hljs-number">20</span>)
+                    .text(<span class="hljs-string">"Women's median weekly salary"</span>);
+</code></pre><p>The code to add text in D3 should by now be fairly familiar, apart from the use of <code>attr("text-anchor", "end")</code> to set the position of a text element by the end of the text, rather than the start. Note also the use of <code>attr("transform", "rotate(-90)")</code> to rotate the text for the Y axis through 90 degrees. We have also given each of the axis labels the class of <code>label</code>, which means they can be styled by adding some CSS above the closing <code>&lt;/style&gt;</code> tag:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;    .label {
+        font-family: arial;
+        font-size: 14px;
+    }
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-class">.label</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">14px</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+</code></pre><p>Save <code>gender_pay.html</code> and refesh your browser to see the following:</p><p><img src="img/class13_15.jpg" alt=""></p><h4 id="add-a-reference-line"><a name="add-a-reference-line" href="#add-a-reference-line"></a>Add a reference line</h4><p>To complete the basic layout for the chart, we will add a line of equal pay, and give it a label. Do this by inserting the following code into the script, immediately beneath the section adding the axis labels:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                // add equal pay line
+                svg.append(&quot;line&quot;)
+                    .attr(&quot;x1&quot;, xScale(0))
+                    .attr(&quot;x2&quot;, xScale(2500))
+                    .attr(&quot;y1&quot;, yScale(0))
+                    .attr(&quot;y2&quot;, yScale(2500))
+                    .style(&quot;stroke&quot;, &quot;gray&quot;)
+                    .style(&quot;stroke-dasharray&quot;, (&quot;2, 2&quot;))
+                    .style(&quot;stroke-width&quot;, 0.75);
+
+                // add equal pay label
+                svg.append(&quot;text&quot;)
+                    .attr(&quot;class&quot;, &quot;label&quot;)
+                    .attr(&quot;transform&quot;, &quot;rotate(-45)&quot;)
+                    .attr(&quot;x&quot;, 170)
+                    .attr(&quot;y&quot;, 350)
+                    .text(&quot;Equal pay&quot;);
+&lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">// add equal pay line</span>
+                svg.append(<span class="hljs-string">"line"</span>)
+                    .attr(<span class="hljs-string">"x1"</span>, xScale(<span class="hljs-number">0</span>))
+                    .attr(<span class="hljs-string">"x2"</span>, xScale(<span class="hljs-number">2500</span>))
+                    .attr(<span class="hljs-string">"y1"</span>, yScale(<span class="hljs-number">0</span>))
+                    .attr(<span class="hljs-string">"y2"</span>, yScale(<span class="hljs-number">2500</span>))
+                    .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"gray"</span>)
+                    .style(<span class="hljs-string">"stroke-dasharray"</span>, (<span class="hljs-string">"2, 2"</span>))
+                    .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">0.75</span>);
+
+                <span class="hljs-comment">// add equal pay label</span>
+                svg.append(<span class="hljs-string">"text"</span>)
+                    .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"label"</span>)
+                    .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"rotate(-45)"</span>)
+                    .attr(<span class="hljs-string">"x"</span>, <span class="hljs-number">170</span>)
+                    .attr(<span class="hljs-string">"y"</span>, <span class="hljs-number">350</span>)
+                    .text(<span class="hljs-string">"Equal pay"</span>);
+</code></pre><p>The code adding the line is similar to the code we used to draw a line in the initial exercise, except that it uses <code>xScale</code> and <code>yScale</code> to position the start and end points. It also uses <code>stroke-dasharray</code> to create a dashed line.</p><p>The code for the equal pay label is a variation on that used to create the axis labels.</p><p>Again, save the <code>gender_pay.html</code> file and refresh your browser to see the result:</p><p><img src="img/class13_16.jpg" alt=""></p><h4 id="load-two-years-of-data,-then-filter-to-display-just-one"><a name="load-two-years-of-data,-then-filter-to-display-just-one" href="#load-two-years-of-data,-then-filter-to-display-just-one"></a>Load two years of data, then filter to display just one</h4><p>Now we are going to load the <code>gender_pay_all.json</code> file, which contains data for two years. Change the name of the file in the script, save <code>gender_pay.html</code> and refresh your browser. Many more points appear on the chart:</p><p><img src="img/class13_17.jpg" alt=""></p><p>So now we need to filter the initial view to display the data for one year only. To do that, edit the code adding the circles to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                //add circles
+                svg.selectAll(&quot;circle&quot;)
+                    .data(gender_pay.filter(function (d) { return (d.year==2012); })) //filter to display just data for 2012
+                    .enter()
+                    .append(&quot;circle&quot;)
+                    .attr(&quot;class&quot;, &quot;circle&quot;)
+                    .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                    .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
+                    .attr(&quot;r&quot;, 5) //removed function to handle nulls, as they are no longer present
+                    .attr(&quot;fill&quot;, function(d) { return d.color = color(d.type); })
+                    .attr(&quot;opacity&quot;, 0.5)
+                    .on(&quot;mouseover&quot;, function(d) {
+                        tooltip.html(d.occupation)
+                            .style(&quot;visibility&quot;, &quot;visible&quot;)
+                            .style(&quot;left&quot;, (d3.event.pageX + 10) + &quot;px&quot;)
+                               .style(&quot;top&quot;, (d3.event.pageY + 10) + &quot;px&quot;);
+                       })
+                      .on(&quot;mouseout&quot;, function(d, i) {
+                      tooltip.style(&quot;visibility&quot;, &quot;hidden&quot;)
+                       })
+&lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">//add circles</span>
+                svg.selectAll(<span class="hljs-string">"circle"</span>)
+                    .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2012</span>); })) <span class="hljs-comment">//filter to display just data for 2012</span>
+                    .enter()
+                    .append(<span class="hljs-string">"circle"</span>)
+                    .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"circle"</span>)
+                    .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                    .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                    .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>) <span class="hljs-comment">//removed function to handle nulls, as they are no longer present</span>
+                    .attr(<span class="hljs-string">"fill"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.color = color(d.type); })
+                    .attr(<span class="hljs-string">"opacity"</span>, <span class="hljs-number">0.5</span>)
+                    .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+                        tooltip.html(d.occupation)
+                            .style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"visible"</span>)
+                            .style(<span class="hljs-string">"left"</span>, (d3.event.pageX + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>)
+                               .style(<span class="hljs-string">"top"</span>, (d3.event.pageY + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>);
+                       })
+                      .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{
+                      tooltip.style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"hidden"</span>)
+                       })
+</code></pre><p>There are two changes from the previous code. First, <code>gender_pay</code> is filtered to display only the data from 2012. Second, we can remove the function previously used to handle nulls in the data, because the data in <code>gender_pay_all.json</code> has been edited to remove points with null values.</p><p>Save <code>gender_pay.html</code> and refresh your browser to confirm that only a single year’s data is now displayed.</p><h4 id="add-controls-and-functions-to-switch-between-years"><a name="add-controls-and-functions-to-switch-between-years" href="#add-controls-and-functions-to-switch-between-years"></a>Add controls and functions to switch between years</h4><p>Now we will edit the chart to allow the users to switch between views showing data from each year.</p><p>To add some buttons to the chart to function as controls, first edit the HTML for the <code>chart</code> div to the following:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;    &amp;lt;div id=&quot;chart&quot;&amp;gt;
+
+        &amp;lt;p id=&quot;select&quot;&amp;gt;&amp;lt;strong&amp;gt;Select year:&amp;lt;/strong&amp;gt;
+        &amp;lt;button id=&quot;y2012&quot;&amp;gt;2012&amp;lt;/button&amp;gt;
+        &amp;lt;button id=&quot;y2013&quot;&amp;gt;2013&amp;lt;/button&amp;gt;&amp;lt;/p&amp;gt;
+
+    &amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"chart"</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"select"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">strong</span>&gt;</span>Select year:<span class="hljs-tag">&lt;/<span class="hljs-title">strong</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"y2012"</span>&gt;</span>2012<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"y2013"</span>&gt;</span>2013<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre><p>We will also need some CSS to position these elements, so add this code immiately above the closing <code>&lt;/style&gt;</code> tag:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;    #select {
+        position: absolute;
+        font-family: arial;
+        top: 20px;
+        left: 90px;
+    }
+    #y2012 {
+        position: relative;
+        left: 20px;
+    }
+    #y2013 {
+         position: relative;
+        left: 60px;
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-id">#select</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> absolute</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">top</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">90px</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+    <span class="hljs-id">#y2012</span> <span class="hljs-rules">{
+        <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">20px</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+    <span class="hljs-id">#y2013</span> <span class="hljs-rules">{
+         <span class="hljs-rule"><span class="hljs-attribute">position</span>:<span class="hljs-value"> relative</span></span>;
+        <span class="hljs-rule"><span class="hljs-attribute">left</span>:<span class="hljs-value"> <span class="hljs-number">60px</span></span></span>;
+</span></code></pre><p>Save <code>gender_pay.html</code> and refresh your browser. The buttons don’t yet do anything, but the chart should now look like this:</p><p><img src="img/class13_18.jpg" alt=""></p><p>To switch between the years, add the following beneath the code adding the circles:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                    //transition between views when buttons are clicked
+                    d3.select(&quot;#y2012&quot;).on(&quot;click&quot;, function() {
+                        svg.selectAll(&quot;circle&quot;)
+                            .data(gender_pay.filter(function (d) { return (d.year==2012); }))
+                            .transition()
+                            .duration(1000)
+                            .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                            .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
+                            .attr(&quot;r&quot;, 5)
+                    });
+
+
+                    d3.select(&quot;#y2013&quot;).on(&quot;click&quot;, function() {
+                        svg.selectAll(&quot;circle&quot;)
+                            .data(gender_pay.filter(function (d) { return (d.year==2013); }))
+                            .transition()
+                            .duration(1000)
+                            .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                            .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
+                            .attr(&quot;r&quot;, 5)
+                    });
+&lt;/code&gt;&lt;/pre&gt;">                    <span class="hljs-comment">//transition between views when buttons are clicked</span>
+                    d3.select(<span class="hljs-string">"#y2012"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                        svg.selectAll(<span class="hljs-string">"circle"</span>)
+                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2012</span>); }))
+                            .transition()
+                            .duration(<span class="hljs-number">1000</span>)
+                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                            .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
+                    });
+
+
+                    d3.select(<span class="hljs-string">"#y2013"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                        svg.selectAll(<span class="hljs-string">"circle"</span>)
+                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2013</span>); }))
+                            .transition()
+                            .duration(<span class="hljs-number">1000</span>)
+                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                            .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
+                    });
+</code></pre><p>(Note, you must make sure to add this code above the final <code>});</code> in the script, otherwise it will not be part of the function applied to the data loaded from the <code>gender_pay_all.json</code> file, and will have no effect on the chart.)</p><p>Save <code>gender_pay.html</code>, refresh your browswer, and examine the new behavior of the chart, with its smooth transitions between each year.</p><p>Let’s break down this code to consider what it does. On a click of each button, it applies a function that selects all the circles, filters them to display only those for the year in question, and then positions them and sizes them as before.</p><p>This code also introduces the two methods that control the smooth transitions that are one of D3’s most appealing features: <code>transition()</code> and <code>duration()</code>. Durations are set in milliseconds, so here we have set the transition to take one second to complete. Try experimenting with different values. Also see what happens if you comment out these two lines of code: The chart should still change when the buttons are clicked, however it will now jump abruptly between the two views.</p><p>See <a href="https://github.com/mbostock/d3/wiki/Transitions">here</a> and <a href="http://bost.ocks.org/mike/transition/">here</a> for more on working with transitions in D3.</p><h4 id="add-a-year-label-so-users-know-which-view-they-are-seeing"><a name="add-a-year-label-so-users-know-which-view-they-are-seeing" href="#add-a-year-label-so-users-know-which-view-they-are-seeing"></a>Add a year label so users know which view they are seeing</h4><p>One remaining problem with the chart is that there is nothing to tell users which year’s data they are looking at, apart from their memory of which button they clicked last. So now we will add a year label to the chart, and make it change along with the data.</p><p>Add the year label to the chart by inserting this code into the script, above the section that adds the axis labels:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                // add year label
+                svg.append(&quot;text&quot;)
+                    .attr(&quot;id&quot;, &quot;yLabel&quot;)
+                    .attr(&quot;text-anchor&quot;, &quot;start&quot;)
+                    .attr(&quot;x&quot;, 100)
+                    .attr(&quot;y&quot;, 100)
+                    .text(&quot;2012&quot;)
+&lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">// add year label</span>
+                svg.append(<span class="hljs-string">"text"</span>)
+                    .attr(<span class="hljs-string">"id"</span>, <span class="hljs-string">"yLabel"</span>)
+                    .attr(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"start"</span>)
+                    .attr(<span class="hljs-string">"x"</span>, <span class="hljs-number">100</span>)
+                    .attr(<span class="hljs-string">"y"</span>, <span class="hljs-number">100</span>)
+                    .text(<span class="hljs-string">"2012"</span>)
+</code></pre><p>Also add this CSS to style the year label, above the closing <code>&lt;/style&gt;</code> tag:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;    #yLabel {
+    font-size: 30px;
+    font-family: arial;
+    font-weight: bold;
+    fill: #ccc;
+    }
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-id">#yLabel</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">30px</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> arial</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ccc</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+</code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and the chart should look like this:</p><p><img src="img/class13_19.jpg" alt=""></p><p>The label does not actually change yet, but that behavior can be added by editing the code that changes the chart view when the buttons are clicked to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                    //transition between views when buttons are clicked
+                    d3.select(&quot;#y2012&quot;).on(&quot;click&quot;, function() {
+                        svg.selectAll(&quot;circle&quot;)
+                            .data(gender_pay.filter(function (d, i) { return (d.year==2012); }))
+                            .transition()
+                            .duration(1000)
+                            .attr(&quot;cx&quot;, function (d, i) { return xScale(d.m_salary); })
+                            .attr(&quot;cy&quot;, function (d, i) { return yScale(d.w_salary); })
+                            .attr(&quot;r&quot;, function(d, i) { return d.w_salary == null ? 0 : d.m_salary == null ? 0 : 5; })
+                        //change the year label
+                        svg.select(&quot;#yLabel&quot;)
+                            .text(&quot;2012&quot;)
+                    });
+
+
+                    d3.select(&quot;#y2013&quot;).on(&quot;click&quot;, function() {
+                        svg.selectAll(&quot;circle&quot;)
+                            .data(gender_pay.filter(function (d, i) { return (d.year==2013); }))
+                            .transition()
+                            .duration(1000)
+                            .attr(&quot;cx&quot;, function (d, i) { return xScale(d.m_salary); })
+                            .attr(&quot;cy&quot;, function (d, i) { return yScale(d.w_salary); })
+                            .attr(&quot;r&quot;, function(d, i) { return d.w_salary == null ? 0 : d.m_salary == null ? 0 : 5; })
+                        //change the year label
+                        svg.select(&quot;#yLabel&quot;)
+                            .text(&quot;2013&quot;)
+                    });
+&lt;/code&gt;&lt;/pre&gt;">                    <span class="hljs-comment">//transition between views when buttons are clicked</span>
+                    d3.select(<span class="hljs-string">"#y2012"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                        svg.selectAll(<span class="hljs-string">"circle"</span>)
+                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2012</span>); }))
+                            .transition()
+                            .duration(<span class="hljs-number">1000</span>)
+                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                            .attr(<span class="hljs-string">"r"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> d.w_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : d.m_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">5</span>; })
+                        <span class="hljs-comment">//change the year label</span>
+                        svg.select(<span class="hljs-string">"#yLabel"</span>)
+                            .text(<span class="hljs-string">"2012"</span>)
+                    });
+
+
+                    d3.select(<span class="hljs-string">"#y2013"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+                        svg.selectAll(<span class="hljs-string">"circle"</span>)
+                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2013</span>); }))
+                            .transition()
+                            .duration(<span class="hljs-number">1000</span>)
+                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                            .attr(<span class="hljs-string">"r"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> d.w_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : d.m_salary == <span class="hljs-literal">null</span> ? <span class="hljs-number">0</span> : <span class="hljs-number">5</span>; })
+                        <span class="hljs-comment">//change the year label</span>
+                        svg.select(<span class="hljs-string">"#yLabel"</span>)
+                            .text(<span class="hljs-string">"2013"</span>)
+                    });
+</code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and examine the chart.</p><h4 id="criticisms-of-the-chart,-and-next-steps"><a name="criticisms-of-the-chart,-and-next-steps" href="#criticisms-of-the-chart,-and-next-steps"></a>Criticisms of the chart, and next steps</h4><p>We will finish with this chart here, but there is more that could be done. First, it lacks a legend. From the material here, and the further reading below, you should be able to work out how to use D3 to add a legend explaining what the colors used for the circles mean.</p><p>Do you notice any other problems with the chart?</p><p>Here’s one: Follow individual circles through a transition, hovering over them before and after. You will quickly see that many of them do not refer to the same occupation in each view. This is not ideal, and means that this transition is not a very good choice for this data (see <a href="http://bost.ocks.org/mike/constancy/">here</a> for a discussion of this issue).</p><p>One approach would be to remove the transition, and simply accept the abrupt switch from one view to another. Another might be to put all of the circles onto the chart in the initial view, making those for 2013 fully transparent and removing their tooltips. Then you could make the code that runs when the buttons are clicked fade each year’s data in and out, adding and removing tooltips.</p><p>If you wanted to retain a transition based on the movement of points, but ensure that points refer consistently to the same occupation, you should structure the data differently. To see this in action for similar data, cycling through several years, see <a href="http://projects.flowingdata.com/salary/">this interactive</a> at FlowingData and study its underlying code (which in turn is based on <a href="http://bost.ocks.org/mike/nations/">this D3 rendering</a> of Hans Rosling’s “200 Countries” Gapminder video).</p><p>Solving problems like this in various ways will help you learn D3 and stretch your skills in coding interactive graphics.</p><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p>Scott Murray. <a href="http://www.amazon.com/Interactive-Data-Visualization-Scott-Murray/dp/1449339735/"><em>Interactive Data Visualization for the Web</em></a><br>Some of the tutorials in this book are also <a href="http://alignedleft.com/tutorials">available for free</a> on Murray’s website.</p><p><a href="https://github.com/mbostock/d3/wiki/Tutorials">Collected D3 tutorials</a></p><p><a href="https://github.com/mbostock/d3/wiki">D3 wiki</a></p><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
+<li>Send me your finished D3 scatter plots, i.e. zip the <code>d3class</code> folder and email that to me.</li>
+<li>Continue working on your final project, sending me a progress report.</li>
+</ul>
+
+<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
+</body>
+</html>

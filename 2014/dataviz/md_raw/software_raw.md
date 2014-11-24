@@ -65,15 +65,13 @@ Allows you to convert addresses to latitude and longitude coordinates. Web app: 
 The leading open source Geographic Information System, which we will use to make maps and process geodata. Download the latest **standard** version of QGIS and its requirements [from here](http://www.kyngchaos.com/software/qgis/). Install GDAL and the Matplotlib Python module before installing QGIS itself.
 
 ### [TileMill](https://www.mapbox.com/tilemill/)
-A design studio for making the tiles needed to create interactive "slippy" maps. [Download here](https://www.mapbox.com/tilemill/). You will also need to sign up for a free Mapbox hosting account, by clicking `Try it for free` at the [Mapbox home page](https://www.mapbox.com/)
+A design studio for making the tiles needed to create interactive "slippy" maps. [Download here](https://www.mapbox.com/tilemill/). You will also need to sign up for a free Mapbox hosting account, by clicking `Try it for free` or `Sign Up` at the [Mapbox home page](https://www.mapbox.com/).
 
 ### [Leaflet](http://leafletjs.com/)
-A JavaScript code library for making interactive online maps. Download latest stable version [from here](http://leafletjs.com/download.html) and unzip, or place the code for the hosted version of this release between the `<head></head>` tags of your HTML code. We will also use two Leaflet plugins, [leaflet-providers](https://github.com/leaflet-extras/leaflet-providers) (demo [here]([leaflet-providers]([leaflet-providers](http://leaflet-extras.github.io/leaflet-providers/preview/)) and [leaflet-ajax](https://github.com/calvinmetcalf/leaflet-ajax). In each case, click the `Download ZIP` buttons on their respective GitHub repositories and unzip.
+A JavaScript code library for making interactive online maps. Download latest stable version [from here](http://leafletjs.com/download.html) and unzip, or place the code for the hosted version of this release between the `<head></head>` tags of your HTML code.
 
 ### [Gephi](https://gephi.github.io/)
 Software to visualize network graphs. [Download here](https://gephi.github.io/users/download/). If you had a previous installation of Gephi, you find find that the launch freezes at "Opening Main Window." If so, in **Finder** select `Go>Go to folder` and navigate to `/Users/YourUserName/Library/Application Support`, substituting your own user name for `YourUserName`. Delete the old gephi folder. If this does not solve the problem, contact me to troubleshoot.
-
-We may also use the [Sigmajs exporter plugin](https://marketplace.gephi.org/plugin/sigmajs-exporter/), to create interactive network visualizations. Download and follow [plugin installation instructions](https://marketplace.gephi.org/how-to-install-a-plugin/).
 
 ### [D3](http://d3js.org/)
 

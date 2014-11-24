@@ -2,7 +2,7 @@
 
 ### Introducing QGIS
 
-[GQIS](http://qgis.org/en/site/) is the leading free, open source Geographic Information Systems (GIS) program. It is capable of sophisticated geodata processing and analysis, and also can be used to design publication-quality data-driven maps.
+[GQIS](http://qgis.org/en/site/) is the leading free, open source Geographic Information Systems (GIS) application. It is capable of sophisticated geodata processing and analysis, and also can be used to design publication-quality data-driven maps.
 
 The possibilities are almost endless, but you don't need to be a GIS expert to put it to effective use for both displaying geographic data in static maps, and for processing data for use in making interactive online maps.
 
@@ -72,11 +72,11 @@ Right-click on `ne_50_m_lakes` in the `Layers` panel and select `Properties>Styl
 
 ![](./img/class9_11.jpg)
 
-Click the `Delete` button to remove the other symbols and then bouble-click on the remaining symbol. At the next dialog box select `Simple fill` and change the `Fill` color to `Iron` and the `Border style` to `No Pen`:
+Click the `Delete` button to remove the other symbols and then double-click on the remaining symbol. At the next dialog box select `Simple fill` and change the `Fill` color to `Iron` and the `Border style` to `No Pen`:
 
 ![](./img/class9_12.jpg)
 
-To change the background ocean color to match the large lakes, select `Project>Project Properties>General` from the top menu, and the `Background color` to `Iron`:
+To make the background ocean color to match the large lakes, select `Project>Project Properties>General` from the top menu, and change the `Background color` to `Iron`:
 
 ![](./img/class9_13.jpg)
 
@@ -100,21 +100,25 @@ Double-click on the first symbol and select `19` for the `Upper value` and click
 
 ![](./img/class9_17.jpg)
 
-Click on `Change...` then select `Simple fill` and change the `Border style` ro `No Pen` and click `OK`. This will remove the black borders between the areas of color.
+(Note that the `ACC_VAL` field contains only integer values, so we are not excluding any numbers between 19 and 20, and so on. Do take care when setting the values for data bins not to exclude any important data!)
 
-Now click `OK` to close the `Properties>Style` window to accept the changes. The map should look like this:
+Click on `Change...`, then select `Simple fill` and change the `Border style` to `No Pen` and click `OK`. This will remove the black borders between the areas of color.
+
+If you are likely to want to style data in the same format in the same way in future, it is a good idea to click the `Save Style` button at bottom right and save as a `QGIS Layer Style File`, which is a variant of XML. When loaded using the `Load Style ...` button at bottom left, it will automatically apply the saved styling.
+
+Now click `OK` to close the `Properties>Style` window to accept the changes to the style for the `seismic_risk_clip` layer. The map should look like this:
 
 ![](./img/class9_18.jpg)
 
-Now is a good time to give the project a projection. As our map is showing areas of high seismic risk for the United States, an Albers Equal Area projection is a good choice.
+Now is a good time to give the project a projection. As our map is showing areas of high seismic risk for the United States, an Albers Equal Area Conic projection is a good choice.
 
 Select `Project>Project Properties>CRS` (for Coordinate Reference System) from the top menu, and check `Enable 'on the fly' CRS transformation`. This will convert any subsequent layers we import into the Albers projection, also.
 
-Type `Albers `into the `Filter` box and select `NAD83(HARN / Texas Centric Albers Equal Area)`, which has the code `EPSG:3085`:
+Type `Albers `into the `Filter` box and select `USA_Contiguous_Albers_Equal_Area_Conic`, which has the code `EPSG:102003`:
 
 ![](./img/class9_19.jpg)
 
-Click `OK` and the map should reproject. Notice how `EPSG:3085` now appears at bottom right:
+Click `OK` and the map should reproject. Notice how `EPSG:102003` now appears at bottom right:
 
 ![](./img/class9_20.jpg)
 
@@ -126,7 +130,7 @@ To import a CSV or other delimited text file with points described by latitude a
 
 ![](./img/class9_21.jpg)
 
-`Browse` to the file with the earthquake data, and check that the dialog box is filled in like this:
+`Browse` to the file with the earthquake data, and ensure that the dialog box is filled in like this:
 
 ![](./img/class9_22.jpg)
 
@@ -144,13 +148,13 @@ Now we will style these points, giving them a single color but sizing them accor
 
 ![](./img/class9_25.jpg)
 
-This means that the equation to convert magnitude into earthquake "strength," determined by the amplitude of the shaking, is: `Amplitude = 10 ^ Magnitude`.
+This means that the equation to convert magnitude into the amplitude of the shaking, as recorded on a seismogram, is: `Amplitude = 10^Magnitude`.
 
 Select `Properties>Style` for the quakes layer, and accept `Single Symbol` from the top dropdown menu, as we are not going to color the points according to values in the data.
 
 Select `Simple marker`, change the `Fill` to `Snow` and the `Border` to `Iron`.
 
-Then Select `Marker` and adjust the transparency to 50%:
+Then select `Marker` and adjust the transparency to 50%:
 
 ![](./img/class9_26.jpg)
 
@@ -158,7 +162,7 @@ Now click the `Advanced` button to the right and select `Size scaled field`, mak
 
 ![](./img/class9_27.jpg)
 
-This incorporates the formula above, and then divides by 200,000 -- which I have found gives a reasonable display. (Usually you will need to experiment with different scaling factors at this point to get a pleasing display.)
+This incorporates the formula above, and then divides by 200,000 -- which I found through trial and error gives a reasonable display.
 
 The final map should look like this:
 
@@ -180,7 +184,7 @@ Draw a rectangle over the page area, and the map should appear:
 
 ![](./img/class9_31.jpg)
 
-If you are not happy with the display, delete the added map and pan and zoom on the mainb display as appropriate using the pan and zoom controls:
+If you are not happy with the display, delete the added map and adjust display as appropriate using the pan and zoom controls:
 
 ![](./img/class9_32.jpg)
 
@@ -204,11 +208,11 @@ Uncheck `Background` and resize the legend as necessary, by dragging the white s
 
 ![](./img/class9_36.jpg)
 
-Finally we will add some text to explain the circles. Click on then `Add new label` icon, and draw a rectangle where you want the text to appear:
+Finally we will add some text to explain the circles. Click on the `Add new label` icon, and draw a rectangle where you want the text to appear:
 
 ![](./img/class9_37.jpg)
 
-Under the `Item properties` tab, type the text in the `Main properties` box and again change the background and adjust the font size as required.
+Under the `Item properties` tab, type the text in the `Main properties` box and again remove the background and adjust the font size as required.
 
 Finally, the map can be exported in SVG and PDF vector formats by clicking these export icons:
 
@@ -224,7 +228,7 @@ Save the QGIS project, and then select `Project>New` to open a new project.
 
 ### Processing geodata with QGIS
 
-In addition to displaying geographic data, QGIS is a powerful tool for processing data for use in the program itself, or by other mapping applications. If you want to make online maps, for instance, as we will do next week, QGIS can help get your data into the right shape. The rest of this class introduces some of QGIS's data-processing functionality, but there is much more to explore -- see the further reading.
+In addition to displaying geographic data, QGIS is a powerful tool for processing data for use in the software itself, or by other mapping applications. If you want to make online maps, for instance, as we will do in week 11, QGIS can help get your data into the right shape. The rest of this class introduces some of QGIS's data-processing functionality, but there is much more to explore -- see the further reading.
 
 ### Join external data to a shapefile
 
@@ -246,7 +250,7 @@ After completing the join, open the shapefile's attribute table once more to con
 
 Right-click on the joined shapefile, select `Save As ...` and notice the `Format` options include ESRI shapefile, GeoJSON and KML. You are also able to choose a projection (CRS) for the new shapefile and restrict its extent by latitude and longitude coordinates.
 
-Save this file as GeoJSON with an appropriate name, keeping the default `WGS 84` projection.
+Save this file as GeoJSON with an appropriate name, keeping the default `WGS 84` CRS.
 
 ### Simplify the joined data, and save again
 
@@ -386,7 +390,7 @@ Send me the finished map as a PDF.
 
 Some notes on how to approach this:
 
-* You will need to change to a `World_Robinson EPSG:54030` projection. When you do so, you may find the map transforms to a series of geometric shapes. If this happens, right-click on the layer, select `Properties>Rendering` and uncheck `Simplify geometry`.
+* You will need to change to a `World_Robinson EPSG:54030` projection. When you do so, you may find the map transforms to a strange series of geometric shapes. If this happens, right-click on the layer, select `Properties>Rendering` and uncheck `Simplify geometry`.
 
 * When styling the map, use a ColorBrewer sequential color scheme with 5 classes. Then use the `Add class` button to add a class/bin for the countries with no data. Remember that these will have the value `-99`, so you can then set the values and labels for each bin in the data manually. Use a neutral gray for the countries with no data.
 

@@ -30,7 +30,7 @@ Often when starting a mapping project, you may need to convert a series of addre
 
 There are several geocoding APIs, which can be accessed in various ways. The number of requests allowed per day and the terms of use vary from service to service: [Google's](https://developers.google.com/maps/documentation/geocoding/) free service, for instance, allows each user to geocode 2,500 addresses per day, and specifies that the resulting coordinates may only be used to make a Google Map.
 
-Because of this restriction, we will instead use the services offered by Microsoft's [Bing Maps](http://msdn.microsoft.com/en-us/library/ff701714.aspx), and [MapQuest](http://developer.mapquest.com/web/products/open/geocoding-service) -- which is based on OpenStreetMap's [Nominatim](http://nominatim.openstreetmap.org/) service, to geocode [this sample of addresses](./data/geocoding.zip) in San Francisco.
+Because of this restriction, we will instead use the services offered by Microsoft's [Bing Maps](http://msdn.microsoft.com/en-us/library/ff701714.aspx), and [MapQuest](http://developer.mapquest.com/web/products/open/geocoding-service) (which is based on OpenStreetMap's [Nominatim](http://nominatim.openstreetmap.org/) service), to geocode [this sample of addresses](./data/geocoding.zip) in San Francisco.
 
 These geocoding APIs can both be accessed from Open Refine. Here is how to geocode addresses from Open Refine using the Bing API:
 
@@ -320,7 +320,7 @@ When mapping the continental United States, particularly when coloring or shadin
 
 (Source: [*The New York Times*](http://www.nytimes.com/interactive/2014/upshot/mapping-the-spread-of-drought-across-the-us.html))
 
-As the name suggesta, this projection minimizes distortions of area. It does not preserve direction -- notice that the border with Canada, which runs along a parallel at a latitude of 45 degrees N, is a curve, rather that a straight line.
+As the name suggests, this projection minimizes distortions of area. It does not preserve direction: Notice that the border with Canada, which runs along a parallel at a latitude of 45 degrees N, is a curve, rather that a straight line.
 
 The Albers Equal Area Conic projection is rarely used to show the entire Earth, for obvious reasons when you see the projection in global view:
 
@@ -392,7 +392,7 @@ Choropleth maps have an important drawback: Our eyes are drawn to expanses of co
 
 (Source: [*The New York Times*](http://elections.nytimes.com/2012/results/president?view=county_margin_change_view))
 
-In such cases, scaled circles located to the center of geographic areas can be a better option. Here is another map from the same interactive, using that approach to visualize the size of each candidates lead in each county, measured by the absolute number of votes. This shows how Barack Obama won the election through his strong support in densely populated urban areas:
+In such cases, scaled circles located to the center of geographic areas can be a better option. Here is another map from the same interactive, using that approach to visualize the size of each candidate's lead in each county, measured by the absolute number of votes. This shows how Barack Obama won the election through his strong support in densely populated urban areas:
 
 ![](./img/class8_11.jpg)
 
@@ -402,13 +402,13 @@ In such cases, scaled circles located to the center of geographic areas can be a
 
 Another solution to the main drawback of choropleth maps is to distort the areas plotted on the map to reflect aspects of the data, rather than geographical reality. These maps are called [cartograms](http://www.ncgia.ucsb.edu/projects/Cartogram_Central/types.html).
 
-There are several algorithms for making cartograms which preserve the boundaries between geographical areas, which result in "organically" distorted maps. Here, for example, is a rendering of the 2012 Presidential Election results by county, distorted using the algorithm described in this [scientific paper](http://www.pnas.org/content/101/20/7499.abstract):
+There are several algorithms for making cartograms which preserve the boundaries between geographical areas, which result in "organically" distorted maps. Here, for example, is a rendering of the 2012 Presidential Election results by county, distorted using the algorithm described in [this scientific paper](http://www.pnas.org/content/101/20/7499.abstract):
 
 ![](./img/class8_12.jpg)
 
 (Source: [Mark Newman](http://www-personal.umich.edu/~mejn/election/2012/))
 
-A good tool for making maps like this is [Scapetoad](http://scapetoad.choros.ch/). However, bear in mind that the impact of these maps derives from their disconcerting perspective. That can be 	useful to make your audience think about an issue in a new way, which was the thinking behind these maps of mine, comparing nations measured by GDP, and by a measure called the Happy Planet Index:
+A good tool for making maps like this is [Scapetoad](http://scapetoad.choros.ch/). However, bear in mind that the impact of these maps derives from their disconcerting perspective. That can be 	useful to make your audience think about an issue in a new way, which was the thinking behind these maps of mine, comparing nations measured by GDP, and by a measure called the [Happy Planet Index](http://www.happyplanetindex.org/):
 
 ![](./img/class8_13.jpg)
 
@@ -560,17 +560,17 @@ See Google’s [tutorial](https://developers.google.com/kml/documentation/kml_tu
 
 KML can also be compressed into KMZ files. To create a KMZ file from KML, open the file in Google Earth, right-click on the file in the `Places` panel, select `Save Place As`, and then select `KMZ` under format.
 
-KML has been adopted as a standard for geographic data, and so can be used by a wide range of mapping applications, including GIS software.
+KML has been adopted as a standard for geographic data, and so can be used by a wide range of mapping applications, including Geographic Information Systems (GIS) software.
 
 #### GeoJSON
 
-[GeoJSON](http://geojson.org/) is a variant of JSON designed for encoding geographic data, commonly used for data-driven online maps. Its overall structure is the same as conventional JSON. Each `Feature` has `properties`, which can be any data related to the feature, and `geometry`, which includes its `type` (point, polygon and so on) and latitude and longitude `coordinates`. Features can be grouped into a `FeatureCollection`. Here, for example, are the first ten addresses we geocoded earlier using the Bing maps API, encoded as GeoJSON:
+[GeoJSON](http://geojson.org/) is a variant of JSON develeoped for encoding geographic data, commonly used for data-driven online maps. Its overall structure is the same as conventional JSON. Each `Feature` has `properties`, which can be any data related to the feature, `geometry`, which includes its `type` (point, polygon and so on), and latitude and longitude `coordinates`. Features can be grouped into a `FeatureCollection`. Here, for example, are the first ten addresses we geocoded earlier using the Bing maps API, encoded as GeoJSON (you may need to scroll to the right to see all of the data):
 
 ```JSON
 {
 "type": "FeatureCollection",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-                                                                                
+
 "features": [
 { "type": "Feature", "properties": { "address": "1800 25th St, San Francisco, CA, 94107", "bing_type": "Address", "bing_confidence": "High", "bing_latitude": 37.753067, "bing_longitude": -122.397484 }, "geometry": { "type": "Point", "coordinates": [ -122.397484, 37.753067 ] } },
 { "type": "Feature", "properties": { "address": "302 Silver Ave, San Francisco, CA, 94112", "bing_type": "Address", "bing_confidence": "High", "bing_latitude": 37.727722, "bing_longitude": -122.430573 }, "geometry": { "type": "Point", "coordinates": [ -122.430573, 37.727722 ] } },
@@ -591,12 +591,12 @@ See the [full GeoJSON specification](http://geojson.org/geojson-spec.html) for m
 
 #### Shapefile
 
-This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial GIS program. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
+This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial GIS application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
 
 Shapefiles are usually made available for download as zipped folders, and actually consist of a series of files. At a minimum, a shapefile must contain three component files, with the same root name and the following extensions:
 
 - `.shp` The main file containing the geometry of the points, lines or polygons mapped in the shapefile.
-- `.dbf` A database file in the dBASE format containing a table of data relating to the components of the geometry. For example, in a world shapefile giving national boundaries, this table might contain data about the countries including their names, capital cities, population, annual GDP and so on.
+- `.dbf` A database file in dBASE format containing a table of data relating to the components of the geometry. For example, in a world shapefile giving national boundaries, this table might contain data about the countries including their names, capital cities, population, annual GDP and so on.
 - `.sbn` A positional index of the shapefile’s geometry.
 
 There are several optional file types that may also be included, including a `.prj` file, which defines the map projection and datum to be used when loading the shapefile into GIS software. Refer to [ESRI’s technical specification](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf) and the [informative Wikipedia entry](http://en.wikipedia.org/wiki/Shapefile) for more details.
