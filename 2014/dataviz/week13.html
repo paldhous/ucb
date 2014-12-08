@@ -959,7 +959,7 @@
                                 5; 
                             })
                 //apply color scheme to fill the circles according to occupation type
-                .attr(&quot;fill&quot;, function(d, i) { return d.color = color(d.type); })
+                .attr(&quot;fill&quot;, function(d) { return d.color = color(d.type); })
                 //make them semi_transparent
                 .attr(&quot;opacity&quot;, 0.5)
                 .on(&quot;mouseover&quot;, function(d) {
@@ -986,7 +986,7 @@
                                 <span class="hljs-number">5</span>; 
                             })
                 <span class="hljs-comment">//apply color scheme to fill the circles according to occupation type</span>
-                .attr(<span class="hljs-string">"fill"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> d.color = color(d.type); })
+                .attr(<span class="hljs-string">"fill"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.color = color(d.type); })
                 <span class="hljs-comment">//make them semi_transparent</span>
                 .attr(<span class="hljs-string">"opacity"</span>, <span class="hljs-number">0.5</span>)
                 .on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
@@ -1151,7 +1151,7 @@
                             .style(&quot;left&quot;, (d3.event.pageX + 10) + &quot;px&quot;)
                                .style(&quot;top&quot;, (d3.event.pageY + 10) + &quot;px&quot;);
                        })
-                      .on(&quot;mouseout&quot;, function(d, i) {
+                      .on(&quot;mouseout&quot;, function(d) {
                       tooltip.style(&quot;visibility&quot;, &quot;hidden&quot;)
                        })
 &lt;/code&gt;&lt;/pre&gt;">                <span class="hljs-comment">//add circles</span>
@@ -1171,7 +1171,7 @@
                             .style(<span class="hljs-string">"left"</span>, (d3.event.pageX + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>)
                                .style(<span class="hljs-string">"top"</span>, (d3.event.pageY + <span class="hljs-number">10</span>) + <span class="hljs-string">"px"</span>);
                        })
-                      .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d, i)</span> </span>{
+                      .on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
                       tooltip.style(<span class="hljs-string">"visibility"</span>, <span class="hljs-string">"hidden"</span>)
                        })
 </code></pre><p>There are two changes from the previous code. First, <code>gender_pay</code> is filtered to display only the data from 2012. Second, we can remove the function previously used to handle nulls in the data, because the data in <code>gender_pay_all.json</code> has been edited to remove points with null values.</p><p>Save <code>gender_pay.html</code> and refresh your browser to confirm that only a single year’s data is now displayed.</p><h4 id="add-controls-and-functions-to-switch-between-years"><a name="add-controls-and-functions-to-switch-between-years" href="#add-controls-and-functions-to-switch-between-years"></a>Add controls and functions to switch between years</h4><p>Now we will edit the chart to allow the users to switch between views showing data from each year.</p><p>To add some buttons to the chart to function as controls, first edit the HTML for the <code>chart</code> div to the following:</p><pre><code class="html hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;HTML&quot;&gt;    &amp;lt;div id=&quot;chart&quot;&amp;gt;
@@ -1287,11 +1287,11 @@
 </code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and the chart should look like this:</p><p><img src="img/class13_19.jpg" alt=""></p><p>The label does not actually change yet, but that behavior can be added by editing the code that changes the chart view when the buttons are clicked to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;                    //transition between views when buttons are clicked
                     d3.select(&quot;#y2012&quot;).on(&quot;click&quot;, function() {
                         svg.selectAll(&quot;circle&quot;)
-                            .data(gender_pay.filter(function (d, i) { return (d.year==2012); }))
+                            .data(gender_pay.filter(function (d) { return (d.year==2012); }))
                             .transition()
                             .duration(1000)
-                            .attr(&quot;cx&quot;, function (d, i) { return xScale(d.m_salary); })
-                            .attr(&quot;cy&quot;, function (d, i) { return yScale(d.w_salary); })
+                            .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                            .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
                             .attr(&quot;r&quot;, 5)
                         //change the year label
                         svg.select(&quot;#yLabel&quot;)
@@ -1301,11 +1301,11 @@
 
                     d3.select(&quot;#y2013&quot;).on(&quot;click&quot;, function() {
                         svg.selectAll(&quot;circle&quot;)
-                            .data(gender_pay.filter(function (d, i) { return (d.year==2013); }))
+                            .data(gender_pay.filter(function (d) { return (d.year==2013); }))
                             .transition()
                             .duration(1000)
-                            .attr(&quot;cx&quot;, function (d, i) { return xScale(d.m_salary); })
-                            .attr(&quot;cy&quot;, function (d, i) { return yScale(d.w_salary); })
+                            .attr(&quot;cx&quot;, function (d) { return xScale(d.m_salary); })
+                            .attr(&quot;cy&quot;, function (d) { return yScale(d.w_salary); })
                             .attr(&quot;r&quot;, 5)
                         //change the year label
                         svg.select(&quot;#yLabel&quot;)
@@ -1314,11 +1314,11 @@
 &lt;/code&gt;&lt;/pre&gt;">                    <span class="hljs-comment">//transition between views when buttons are clicked</span>
                     d3.select(<span class="hljs-string">"#y2012"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
                         svg.selectAll(<span class="hljs-string">"circle"</span>)
-                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2012</span>); }))
+                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2012</span>); }))
                             .transition()
                             .duration(<span class="hljs-number">1000</span>)
-                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
-                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
                             .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
                         <span class="hljs-comment">//change the year label</span>
                         svg.select(<span class="hljs-string">"#yLabel"</span>)
@@ -1328,19 +1328,102 @@
 
                     d3.select(<span class="hljs-string">"#y2013"</span>).on(<span class="hljs-string">"click"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
                         svg.selectAll(<span class="hljs-string">"circle"</span>)
-                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2013</span>); }))
+                            .data(gender_pay.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.year==<span class="hljs-number">2013</span>); }))
                             .transition()
                             .duration(<span class="hljs-number">1000</span>)
-                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
-                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d, i)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
+                            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> xScale(d.m_salary); })
+                            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> yScale(d.w_salary); })
                             .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">5</span>)
                         <span class="hljs-comment">//change the year label</span>
                         svg.select(<span class="hljs-string">"#yLabel"</span>)
                             .text(<span class="hljs-string">"2013"</span>)
                     });
-</code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and examine the chart.</p><h4 id="criticisms-of-the-chart,-and-next-steps"><a name="criticisms-of-the-chart,-and-next-steps" href="#criticisms-of-the-chart,-and-next-steps"></a>Criticisms of the chart, and next steps</h4><p>We will finish with this chart here, but there is more that could be done. First, it lacks a legend. From the material here, and the further reading below, you should be able to work out how to use D3 to add a legend explaining what the colors used for the circles mean.</p><p>Do you notice any other problems with the chart?</p><p>Here’s one: Follow individual circles through a transition, hovering over them before and after. You will quickly see that many of them do not refer to the same occupation in each view. This is not ideal, and means that this transition is not a very good choice for this data (see <a href="http://bost.ocks.org/mike/constancy/">here</a> for a discussion of this issue).</p><p>One approach would be to remove the transition, and simply accept the abrupt switch from one view to another. Another might be to put all of the circles onto the chart in the initial view, making those for 2013 fully transparent and removing their tooltips. Then you could make the code that runs when the buttons are clicked fade each year’s data in and out, adding and removing tooltips.</p><p>If you wanted to retain a transition based on the movement of points, but ensure that points refer consistently to the same occupation, you should structure the data differently. To see this in action for similar data, cycling through several years, see <a href="http://projects.flowingdata.com/salary/">this interactive</a> at FlowingData and study its underlying code (which in turn is based on <a href="http://bost.ocks.org/mike/nations/">this D3 rendering</a> of Hans Rosling’s “200 Countries” Gapminder video).</p><p>Solving problems like this in various ways will help you learn D3 and stretch your skills in coding interactive graphics.</p><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p>Scott Murray. <a href="http://www.amazon.com/Interactive-Data-Visualization-Scott-Murray/dp/1449339735/"><em>Interactive Data Visualization for the Web</em></a><br>Some of the tutorials in this book are also <a href="http://alignedleft.com/tutorials">available for free</a> on Murray’s website.</p><p><a href="https://github.com/mbostock/d3/wiki/Tutorials">Collected D3 tutorials</a></p><p><a href="https://github.com/mbostock/d3/wiki">D3 wiki</a></p><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
+</code></pre><p>Save <code>gender_pay.html</code>, refresh your browser, and examine the chart.</p><h4 id="criticisms-of-the-chart,-and-next-steps"><a name="criticisms-of-the-chart,-and-next-steps" href="#criticisms-of-the-chart,-and-next-steps"></a>Criticisms of the chart, and next steps</h4><p>We will finish with this chart here, but there is more that could be done. First, it lacks a legend. From the material here, and the further reading below, you should be able to work out how to use D3 to add a legend explaining what the colors used for the circles mean.</p><p>Do you notice any other problems with the chart?</p><p>Here’s one: Follow individual circles through a transition, hovering over them before and after. You will quickly see that many of them do not refer to the same occupation in each view. This is not ideal, and means that this transition is not a very good choice for this data (see <a href="http://bost.ocks.org/mike/constancy/">here</a> for a discussion of this issue).</p><p>One approach would be to remove the transition, and simply accept the abrupt switch from one view to another. Another might be to put all of the circles onto the chart in the initial view, making those for 2013 fully transparent and removing their tooltips. Then you could make the code that runs when the buttons are clicked fade each year’s data in and out, adding and removing tooltips.</p><p>If you wanted to retain a transition based on the movement of points, but ensure that points refer consistently to the same occupation, you should structure the data differently. To see this in action , cycling through several years, see <a href="http://projects.flowingdata.com/salary/">this interactive</a> at FlowingData and study its underlying code (which in turn is based on <a href="http://bost.ocks.org/mike/nations/">this D3 rendering</a> of Hans Rosling’s “200 Countries” Gapminder video).</p><p>Solving problems like this in various ways will help you learn D3 and stretch your skills in coding interactive graphics.</p><h4 id="reusable-charts:-modifying-d3-templates"><a name="reusable-charts:-modifying-d3-templates" href="#reusable-charts:-modifying-d3-templates"></a>Reusable charts: modifying D3 templates</h4><p>As we’ve seen, making even a fairly simple chart in D3 involves a relatively large amount of code. For this reason, if you are going to be making charts with D3 regularly, it makes sense to keep on hand a number of templates that construct common chart types into which you can plug new data, and then modify as required.</p><p>Mike Bostock’s <a href="http://bl.ocks.org/mbostock">bl.ocks.org page</a> is a great place to find code examples. Berkeley J-School lecturer Jeremy Rue has also provided some chart samples, including basic bar and line charts, in his <a href="http://jrue.github.io/coding/2014/lesson06/">D3 charting lesson</a> (scroll to the end of the page).</p><h4 id="modify-a-simple-line-chart-to-display-gdp-per-capita-data-for-the-brics-nations"><a name="modify-a-simple-line-chart-to-display-gdp-per-capita-data-for-the-brics-nations" href="#modify-a-simple-line-chart-to-display-gdp-per-capita-data-for-the-brics-nations"></a>Modify a simple line chart to display GDP per capita data for the BRICS nations</h4><p>We will modify Jeremy’s <a href="http://jrue.github.io/coding/2014/exercises/basiclinechart/">line chart</a> to display the same data on GDP per capita for the BRICS nations that we have used previously. Download the data and starting web page from <a href="./data/d3class2.zip">here</a>. Place on your desktop and unzip as before.</p><p>The file <code>brics.html</code> is the same as Jeremy’s line chart, except that it now loads data from <code>brics_gdp.pc.csv</code>. I have also amended references to fields in the data as necessary, and changed the Y axis label.</p><p>Much of this code should make sense to you from our previous work with scatter plots. Before we start modifying it, here are some notes to explain various parts of the code that we have not encountered previously:</p><p>First, this sets the X axis up to use data formatted as dates or times:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    var x = d3.time.scale()
+            .range([0, width]);
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-keyword">var</span> x = d3.time.scale()
+            .range([<span class="hljs-number">0</span>, width]);
+</code></pre><p>This takes data being used as a date and formats it to display just the year:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    var parseDate = d3.time.format(&quot;%Y&quot;).parse;
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-keyword">var</span> parseDate = d3.time.format(<span class="hljs-string">"%Y"</span>).parse;
+</code></pre><p>The following block of code  loads the data from a CSV, then runs a function on each row, extracting two values. First it uses the <code>parseDate</code> function to turn the numbers in <code>year</code> field into dates, showing just the year; these values are given the new field name <code>date</code>.Then it takes the numbers in the <code>gdp_pc</code> field, and tells D3 that these should be interpreted as numbers (that’s what the <code>+</code> denotes). (This may seem a little unecessary, but see what happens if you comment out that section.)</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    d3.csv(&quot;brics_gdp_pc.csv&quot;, function(error, data) {
+      data.forEach(function(d) {
+        d.date = parseDate(d.year);
+        d.gdp_pc = +d.gdp_pc;
+        });
+&lt;/code&gt;&lt;/pre&gt;">    d3.csv(<span class="hljs-string">"brics_gdp_pc.csv"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+      data.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+        d.date = parseDate(d.year);
+        d.gdp_pc = +d.gdp_pc;
+        });
+</code></pre><p>This will allow us to view the loaded data in the Firefox Web Console:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    console.log(data);
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-built_in">console</span>.log(data);
+</code></pre><p>This draws an SVG line from the extracted values in the data:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    var line = d3.svg.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.gdp_pc); })
+        .interpolate(&quot;basis&quot;);
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-keyword">var</span> line = d3.svg.line()
+        .x(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.date); })
+        .y(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> y(d.gdp_pc); })
+        .interpolate(<span class="hljs-string">"basis"</span>);
+</code></pre><p>The last line of this block of code, <code>.interpolate("basis")</code>, introduces some smoothing to the lines, which creates a more pleasing visual effect, but has the effect of reducing the height and deapth of peaks and troughs in the data. See what happens if you comment it out.</p><p>Finally, this appends a path based on that line to the SVG element in which the entirte chart is drawn:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;      svg.append(&quot;path&quot;)
+        .datum(data)
+        .attr(&quot;class&quot;, &quot;line&quot;)
+        .attr(&quot;d&quot;, line)
+        .style({&quot;stroke&quot;:&quot;steelblue&quot;, &quot;stroke-width&quot;:&quot;1.5px&quot;, &quot;fill&quot;:&quot;none&quot;});
+&lt;/code&gt;&lt;/pre&gt;">      svg.append(<span class="hljs-string">"path"</span>)
+        .datum(data)
+        .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"line"</span>)
+        .attr(<span class="hljs-string">"d"</span>, line)
+        .style({<span class="hljs-string">"stroke"</span>:<span class="hljs-string">"steelblue"</span>, <span class="hljs-string">"stroke-width"</span>:<span class="hljs-string">"1.5px"</span>, <span class="hljs-string">"fill"</span>:<span class="hljs-string">"none"</span>});
+</code></pre><p>Open a local webserver, and navigate to <code>brics.html</code> as before. You should see this:</p><p><img src="img/class13_20.jpg" alt=""></p><p>Notice that there is just a single line on the chart, which runs through all of the data. That was fine for Jeremy’s chart, which plotted just one data series, but now we want to draw a separate line for each country.</p><p>To achieve that we need to restructure the data, getting D3 to group, or “nest,” the data by country. After the section of code setting up the y and y domains, insert this code:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;     var dataNest = d3.nest()
+        .key(function(d) {return d.country;})
+        .entries(data);
+
+        dataNest.forEach(function(d) {
+        console.log(d);
+     });
+&lt;/code&gt;&lt;/pre&gt;">     <span class="hljs-keyword">var</span> dataNest = d3.nest()
+        .key(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{<span class="hljs-keyword">return</span> d.country;})
+        .entries(data);
+
+        dataNest.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(d);
+     });
+</code></pre><p>This first nests the data, then runs through each item in the nested dataset, logging it to the console, so that we will be able to inspect it in Firefox.</p><p>Save <code>brics.html</code>, then refresh your browser. The chart should not change, as we haven’t yet drawn anything using the nested version of the data. However, we can now examine the two versions of the data, as both have been logged to the console.</p><p>From Firefox’s top menu, select <code>Tools&gt;Web Developer&gt;Web Console</code> and in the panel that opens up select <code>Console&gt;Logging</code> to see the following:</p><p><img src="img/class13_21.jpg" alt=""></p><p>Notice that logging has happened from two lines in the code for <code>brics.html</code>, shown above as <code>68</code> and <code>78</code>. This first is the initial <code>console.log(data)</code>, and shows the data as loaded from the CSV, without nesting. It is an Array of Objects, and you can view each Object by clicking on it:</p><p><img src="img/class13_22.jpg" alt=""></p><p>In addition to the fields in the original CSV, notice the <code>date</code> field created by the D3 code.</p><p>The rest of the logged data comes from <code>console.log(d)</code> on the nested data. Notice that there are five Objects, each with a <code>key</code> corresponding to one of the BRICS countries, and <code>values</code>, which are in an Array. Click on the Array for Brazil, and then the first Object within it, and you will see the same data as before:</p><p><img src="img/class13_23.jpg" alt=""></p><p>Having restructured the data in this way, now we can use it to draw the lines, giving each a separate color.</p><p>First add this code to set up a color scale for the data, just as we did for the scatter plot, immediately above the section where the CSV file is loaded:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    var color = d3.scale.category10();
+&lt;/code&gt;&lt;/pre&gt;">    <span class="hljs-keyword">var</span> color = d3.scale.category10();
+</code></pre><p>Next delete or comment out this section of the code, which drew the single line:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;      svg.append(&quot;path&quot;)
+        .datum(data)
+        .attr(&quot;class&quot;, &quot;line&quot;)
+        .attr(&quot;d&quot;, line)
+        .style({&quot;stroke&quot;:&quot;steelblue&quot;, &quot;stroke-width&quot;:&quot;1.5px&quot;, &quot;fill&quot;:&quot;none&quot;});
+&lt;/code&gt;&lt;/pre&gt;">      svg.append(<span class="hljs-string">"path"</span>)
+        .datum(data)
+        .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"line"</span>)
+        .attr(<span class="hljs-string">"d"</span>, line)
+        .style({<span class="hljs-string">"stroke"</span>:<span class="hljs-string">"steelblue"</span>, <span class="hljs-string">"stroke-width"</span>:<span class="hljs-string">"1.5px"</span>, <span class="hljs-string">"fill"</span>:<span class="hljs-string">"none"</span>});
+</code></pre><p>Then amend the <code>dataNest.forEach</code> function to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;JavaScript&quot;&gt;    dataNest.forEach(function(d) {
+        console.log(d)
+        svg.append(&quot;path&quot;)
+            .attr(&quot;class&quot;, &quot;line&quot;)
+            .style(&quot;stroke&quot;, function() { return d.color = color(d.key); })
+            .style(&quot;fill&quot;,&quot;none&quot;)
+            .style(&quot;stroke-width&quot;, &quot;3&quot;)
+            .attr(&quot;d&quot;, line(d.values));
+    });
+&lt;/code&gt;&lt;/pre&gt;">    dataNest.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{
+        <span class="hljs-built_in">console</span>.log(d)
+        svg.append(<span class="hljs-string">"path"</span>)
+            .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"line"</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> d.color = color(d.key); })
+            .style(<span class="hljs-string">"fill"</span>,<span class="hljs-string">"none"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-string">"3"</span>)
+            .attr(<span class="hljs-string">"d"</span>, line(d.values));
+    });
+</code></pre><p>This draws a separate line for each object in the nested data, and colors it according to their <code>keys</code>, which are the five country names. I’ve also made the lines twice as thick as in Jeremy’s original line chart.</p><p>Save <code>brics.html</code>, refresh you browser, and the chart should now look like this:</p><p><img src="img/class13_24.jpg" alt=""></p><p>This is very close to this chart we made in R in week 6 (but note the smoothing of the lines in the D3 chart introduced by <code>.interpolate("basis")</code>):</p><p><img src="img/class6_26.jpg" alt=""></p><p>The Y axis for our D3 version of the chart does not start at zero, but it’s easy to make it do so. Change the code setting up the x and y domains to the following:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain([0,d3.max(data, function(d) { return d.gdp_pc; })]);
+&lt;/code&gt;&lt;/pre&gt;">      x.domain(d3.extent(data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.date; }));
+      y.domain([<span class="hljs-number">0</span>,d3.max(data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.gdp_pc; })]);
+</code></pre><p>Here the x domain remains set to the full extent of the <code>date</code> values, but the y domain, rather than being set by the extent of the data as before, now runs from zero to the maximum value for <code>gdp_pc</code>.</p><h4 id="next-steps"><a name="next-steps" href="#next-steps"></a>Next steps</h4><p>As for the scatter plot, there is more that could be done with this chart. You could add either a legend or labels for the lines, and tooltips to display the data values. Again, doing so will help you learn D3, and extend the repertoire of code templates at your disposal.</p><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p>Scott Murray. <a href="http://www.amazon.com/Interactive-Data-Visualization-Scott-Murray/dp/1449339735/"><em>Interactive Data Visualization for the Web</em></a><br>Some of the tutorials in this book are also <a href="http://alignedleft.com/tutorials">available for free</a> on Murray’s website.</p><p><a href="https://github.com/mbostock/d3/wiki/Tutorials">Collected D3 tutorials</a></p><p><a href="https://github.com/mbostock/d3/wiki">D3 wiki</a></p><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
 <li>Send me your finished D3 scatter plots, i.e. zip the <code>d3class</code> folder and email that to me.</li>
-<li>Continue working on your final project, sending me a progress report.</li>
 </ul>
 
 	</div> <!-- /.container all -->
