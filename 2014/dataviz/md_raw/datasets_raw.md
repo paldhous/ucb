@@ -37,7 +37,7 @@ A series of data files for our week 11 class using TileMill, Mapbox.js and Leafl
 
 A series of data files for our week 12 class using Gephi and Sigma.js.
 
-#### [Coding interactive graphics](./data/d3class.zip)
+#### Coding interactive graphics, [1](./data/d3class.zip) and [2](./data/d3class2.zip)
 
 A series of data files for our week 13 and 15 classes using D3.
 

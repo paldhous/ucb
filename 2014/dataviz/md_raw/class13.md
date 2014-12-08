@@ -751,7 +751,7 @@ Then edit the code creating the circles to apply that color scheme, also making 
 								5; 
 							})
 				//apply color scheme to fill the circles according to occupation type
-				.attr("fill", function(d, i) { return d.color = color(d.type); })
+				.attr("fill", function(d) { return d.color = color(d.type); })
 				//make them semi_transparent
 				.attr("opacity", 0.5)
 				.on("mouseover", function(d) {
@@ -925,7 +925,7 @@ So now we need to filter the initial view to display the data for one year only.
 							.style("left", (d3.event.pageX + 10) + "px")
                				.style("top", (d3.event.pageY + 10) + "px");
 			   		})
-			  		.on("mouseout", function(d, i) {
+			  		.on("mouseout", function(d) {
 			      	tooltip.style("visibility", "hidden")
 			   		})
 ```
@@ -1044,11 +1044,11 @@ The label does not actually change yet, but that behavior can be added by editin
 					//transition between views when buttons are clicked
 					d3.select("#y2012").on("click", function() {
 						svg.selectAll("circle")
-							.data(gender_pay.filter(function (d, i) { return (d.year==2012); }))
+							.data(gender_pay.filter(function (d) { return (d.year==2012); }))
 							.transition()
 							.duration(1000)
-							.attr("cx", function (d, i) { return xScale(d.m_salary); })
-							.attr("cy", function (d, i) { return yScale(d.w_salary); })
+							.attr("cx", function (d) { return xScale(d.m_salary); })
+							.attr("cy", function (d) { return yScale(d.w_salary); })
 							.attr("r", 5)
                         //change the year label
 						svg.select("#yLabel")
@@ -1058,11 +1058,11 @@ The label does not actually change yet, but that behavior can be added by editin
 
 					d3.select("#y2013").on("click", function() {
 						svg.selectAll("circle")
-							.data(gender_pay.filter(function (d, i) { return (d.year==2013); }))
+							.data(gender_pay.filter(function (d) { return (d.year==2013); }))
 							.transition()
 							.duration(1000)
-							.attr("cx", function (d, i) { return xScale(d.m_salary); })
-							.attr("cy", function (d, i) { return yScale(d.w_salary); })
+							.attr("cx", function (d) { return xScale(d.m_salary); })
+							.attr("cy", function (d) { return yScale(d.w_salary); })
 							.attr("r", 5)
                         //change the year label
 						svg.select("#yLabel")
@@ -1082,9 +1082,162 @@ Here's one: Follow individual circles through a transition, hovering over them b
 
 One approach would be to remove the transition, and simply accept the abrupt switch from one view to another. Another might be to put all of the circles onto the chart in the initial view, making those for 2013 fully transparent and removing their tooltips. Then you could make the code that runs when the buttons are clicked fade each year's data in and out, adding and removing tooltips.
 
-If you wanted to retain a transition based on the movement of points, but ensure that points refer consistently to the same occupation, you should structure the data differently. To see this in action for similar data, cycling through several years, see [this interactive](http://projects.flowingdata.com/salary/) at FlowingData and study its underlying code (which in turn is based on [this D3 rendering](http://bost.ocks.org/mike/nations/) of Hans Rosling's “200 Countries” Gapminder video).
+If you wanted to retain a transition based on the movement of points, but ensure that points refer consistently to the same occupation, you should structure the data differently. To see this in action , cycling through several years, see [this interactive](http://projects.flowingdata.com/salary/) at FlowingData and study its underlying code (which in turn is based on [this D3 rendering](http://bost.ocks.org/mike/nations/) of Hans Rosling's “200 Countries” Gapminder video).
 
 Solving problems like this in various ways will help you learn D3 and stretch your skills in coding interactive graphics.
+
+#### Reusable charts: modifying D3 templates
+
+As we've seen, making even a fairly simple chart in D3 involves a relatively large amount of code. For this reason, if you are going to be making charts with D3 regularly, it makes sense to keep on hand a number of templates that construct common chart types into which you can plug new data, and then modify as required.
+
+Mike Bostock's [bl.ocks.org page](http://bl.ocks.org/mbostock) is a great place to find code examples. Berkeley J-School lecturer Jeremy Rue has also provided some chart samples, including basic bar and line charts, in his [D3 charting lesson](http://jrue.github.io/coding/2014/lesson06/) (scroll to the end of the page).
+
+#### Modify a simple line chart to display GDP per capita data for the BRICS nations
+
+We will modify Jeremy's [line chart](http://jrue.github.io/coding/2014/exercises/basiclinechart/) to display the same data on GDP per capita for the BRICS nations that we have used previously. Download the data and starting web page from [here](./data/d3class2.zip). Place on your desktop and unzip as before.
+
+The file `brics.html` is the same as Jeremy's line chart, except that it now loads data from `brics_gdp.pc.csv`. I have also amended references to fields in the data as necessary, and changed the Y axis label.
+
+Much of this code should make sense to you from our previous work with scatter plots. Before we start modifying it, here are some notes to explain various parts of the code that we have not encountered previously:
+
+First, this sets the X axis up to use data formatted as dates or times:
+
+```JavaScript
+	var x = d3.time.scale()
+        	.range([0, width]);
+```
+
+This takes data being used as a date and formats it to display just the year:
+```JavaScript
+	var parseDate = d3.time.format("%Y").parse;
+```
+
+The following block of code  loads the data from a CSV, then runs a function on each row, extracting two values. First it uses the `parseDate` function to turn the numbers in `year` field into dates, showing just the year; these values are given the new field name `date`.Then it takes the numbers in the `gdp_pc` field, and tells D3 that these should be interpreted as numbers (that's what the `+` denotes). (This may seem a little unecessary, but see what happens if you comment out that section.)
+
+```JavaScript
+    d3.csv("brics_gdp_pc.csv", function(error, data) {
+      data.forEach(function(d) {
+        d.date = parseDate(d.year);
+        d.gdp_pc = +d.gdp_pc;
+        });
+```
+
+This will allow us to view the loaded data in the Firefox Web Console:
+
+```JavaScript
+	console.log(data);
+```
+
+This draws an SVG line from the extracted values in the data:
+
+```JavaScript
+    var line = d3.svg.line()
+        .x(function(d) { return x(d.date); })
+        .y(function(d) { return y(d.gdp_pc); })
+        .interpolate("basis");
+```
+
+The last line of this block of code, `.interpolate("basis")`, introduces some smoothing to the lines, which creates a more pleasing visual effect, but has the effect of reducing the height and deapth of peaks and troughs in the data. See what happens if you comment it out.
+
+Finally, this appends a path based on that line to the SVG element in which the entirte chart is drawn:
+
+```JavaScript
+      svg.append("path")
+        .datum(data)
+        .attr("class", "line")
+        .attr("d", line)
+        .style({"stroke":"steelblue", "stroke-width":"1.5px", "fill":"none"});
+```
+
+Open a local webserver, and navigate to `brics.html` as before. You should see this:
+
+![](img/class13_20.jpg)
+
+Notice that there is just a single line on the chart, which runs through all of the data. That was fine for Jeremy's chart, which plotted just one data series, but now we want to draw a separate line for each country.
+
+To achieve that we need to restructure the data, getting D3 to group, or "nest," the data by country. After the section of code setting up the y and y domains, insert this code:
+
+```JavaScript
+     var dataNest = d3.nest()
+        .key(function(d) {return d.country;})
+        .entries(data);
+
+        dataNest.forEach(function(d) {
+        console.log(d);
+     });
+```
+
+This first nests the data, then runs through each item in the nested dataset, logging it to the console, so that we will be able to inspect it in Firefox.
+
+Save `brics.html`, then refresh your browser. The chart should not change, as we haven't yet drawn anything using the nested version of the data. However, we can now examine the two versions of the data, as both have been logged to the console.
+
+From Firefox's top menu, select `Tools>Web Developer>Web Console` and in the panel that opens up select `Console>Logging` to see the following:
+
+![](img/class13_21.jpg)
+
+Notice that logging has happened from two lines in the code for `brics.html`, shown above as `68` and `78`. This first is the initial `console.log(data)`, and shows the data as loaded from the CSV, without nesting. It is an Array of Objects, and you can view each Object by clicking on it:
+
+![](img/class13_22.jpg)
+
+In addition to the fields in the original CSV, notice the `date` field created by the D3 code.
+
+The rest of the logged data comes from `console.log(d)` on the nested data. Notice that there are five Objects, each with a `key` corresponding to one of the BRICS countries, and `values`, which are in an Array. Click on the Array for Brazil, and then the first Object within it, and you will see the same data as before:
+
+![](img/class13_23.jpg)
+
+Having restructured the data in this way, now we can use it to draw the lines, giving each a separate color.
+
+First add this code to set up a color scale for the data, just as we did for the scatter plot, immediately above the section where the CSV file is loaded:
+
+```JavaScript
+    var color = d3.scale.category10();
+```
+
+Next delete or comment out this section of the code, which drew the single line:
+
+```Javascript
+      svg.append("path")
+        .datum(data)
+        .attr("class", "line")
+        .attr("d", line)
+        .style({"stroke":"steelblue", "stroke-width":"1.5px", "fill":"none"});
+```
+
+Then amend the `dataNest.forEach` function to the following:
+
+```JavaScript
+    dataNest.forEach(function(d) {
+        console.log(d)
+        svg.append("path")
+            .attr("class", "line")
+            .style("stroke", function() { return d.color = color(d.key); })
+            .style("fill","none")
+            .style("stroke-width", "3")
+            .attr("d", line(d.values));
+    });
+```
+This draws a separate line for each object in the nested data, and colors it according to their `keys`, which are the five country names. I've also made the lines twice as thick as in Jeremy's original line chart.
+
+Save `brics.html`, refresh you browser, and the chart should now look like this:
+
+![](img/class13_24.jpg)
+
+This is very close to this chart we made in R in week 6 (but note the smoothing of the lines in the D3 chart introduced by `.interpolate("basis")`):
+
+![](img/class6_26.jpg)
+
+The Y axis for our D3 version of the chart does not start at zero, but it's easy to make it do so. Change the code setting up the x and y domains to the following:
+
+```Javascript
+      x.domain(d3.extent(data, function(d) { return d.date; }));
+      y.domain([0,d3.max(data, function(d) { return d.gdp_pc; })]);
+```
+
+Here the x domain remains set to the full extent of the `date` values, but the y domain, rather than being set by the extent of the data as before, now runs from zero to the maximum value for `gdp_pc`.
+
+#### Next steps
+
+As for the scatter plot, there is more that could be done with this chart. You could add either a legend or labels for the lines, and tooltips to display the data values. Again, doing so will help you learn D3, and extend the repertoire of code templates at your disposal.
 
 ### Further reading
 
