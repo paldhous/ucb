@@ -1,0 +1,99 @@
+<!doctype html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="../../js/jquery.slides.min.js"></script>
+
+
+  <style>
+    /* Prevents slides from flashing */
+    #slides {
+      display: none
+    }
+    
+    #slides .slidesjs-navigation {
+      margin-top:3px;
+    }
+
+    #slides .slidesjs-previous {
+      margin-left: 14%;
+      margin-right: 5px;
+      font-size: 14px;
+      float: left;
+    }
+
+    #slides .slidesjs-next {
+      margin-right: 5px;
+      font-size: 14px;
+      float: left;
+    }
+    
+    #slides .slidesjs-play,
+    #slides .slidesjs-stop {
+      display: none;
+    }
+
+    .slidesjs-pagination {
+      margin: 6px 0 0;
+      float: right;
+      margin-right:10%;
+      list-style: none;
+    }
+
+    .slidesjs-pagination li {
+      float: left;
+      margin: 0 1px;
+    }
+
+    .slidesjs-pagination li a {
+      display: block;
+      width: 13px;
+      height: 0;
+      padding-top: 13px;
+      background-image: url(img/pagination.png);
+      background-position: 0 0;
+      float: left;
+      overflow: hidden;
+    }
+
+    .slidesjs-pagination li a.active,
+    .slidesjs-pagination li a:hover.active {
+      background-position: 0 -13px
+    }
+
+    .slidesjs-pagination li a:hover {
+      background-position: 0 -26px
+    }
+ </style>
+
+
+  <script>
+    $(function(){
+      $("#slides").slidesjs({
+        width: 940,
+        height: 726,
+        play: {
+//           active: true,
+          auto: true,
+          interval: 8000,
+          swap: true,
+          pauseOnHover: true,
+          restartDelay: 2500
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+	<div class="container">
+	  <div id="slides">
+		<img src="students_img/mannix_brics1.png">
+		<img src="students_img/mannix_brics2.png">		
+		<img src="students_img/mannix_brics3.png">
+	  </div>
+	</div>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>

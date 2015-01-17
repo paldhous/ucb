@@ -98,14 +98,14 @@
   [ACC_VAL &amp;gt;= 60] { polygon-fill:#de2d26; }
   [ACC_VAL &amp;gt;= 80] { polygon-fill:#a50f15; }
 }
-&lt;/code&gt;&lt;/pre&gt;"><strong>#seismicrisk</strong> {
-  line-width:<span class="hljs-number">0</span>;
-  polygon-opacity:<span class="hljs-number">0.7</span>;
-  [ACC_VAL &gt;= <span class="hljs-number">0</span>] { polygon-fill:<span class="hljs-hexcolor">#fee5d9</span>; }
-  [ACC_VAL &gt;= <span class="hljs-number">20</span>] { polygon-fill:<span class="hljs-hexcolor">#fcae91</span>; }
-  [ACC_VAL &gt;= <span class="hljs-number">40</span>] { polygon-fill:<span class="hljs-hexcolor">#fb6a4a</span>; }
-  [ACC_VAL &gt;= <span class="hljs-number">60</span>] { polygon-fill:<span class="hljs-hexcolor">#de2d26</span>; }
-  [ACC_VAL &gt;= <span class="hljs-number">80</span>] { polygon-fill:<span class="hljs-hexcolor">#a50f15</span>; }
+&lt;/code&gt;&lt;/pre&gt;">#seismicrisk {
+  line-width:0;
+  polygon-opacity:0.7;
+  [ACC_VAL &gt;= 0] { polygon-fill:#fee5d9; }
+  [ACC_VAL &gt;= 20] { polygon-fill:#fcae91; }
+  [ACC_VAL &gt;= 40] { polygon-fill:#fb6a4a; }
+  [ACC_VAL &gt;= 60] { polygon-fill:#de2d26; }
+  [ACC_VAL &gt;= 80] { polygon-fill:#a50f15; }
 }
 </code></pre><p>This reduces the width of the lines to zero, and makes the polygons partially transparent, so the base map will later be visible through the layer. It then applies some conditional styling, based on values of <code>ACC_VAL</code>, to apply the same <a href="http://colorbrewer2.org/">ColorBrewer</a> scheme we used for the static map in week 9, using the colors’ HEX vales.</p><p>Save the project using <code>⌘-S</code> and the layer will take on the style defined by the CartoCSS:</p><p><img src="img/class11_7.jpg" alt=""></p><p>In the <code>Layers</code> panel, click <code>+ Add layer</code> and import <code>quakes.csv</code> in the same way as before. The map should populate with points:</p><p><img src="img/class11_8.jpg" alt=""></p><p>Their style is defined by this default CartoCSS:</p><pre><code class="css hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;CSS&quot;&gt;#quakes {
   marker-width:6;
@@ -388,7 +388,7 @@ var satellite = L.tileLayer(&quot;https://{s}.tiles.mapbox.com/v3/mapbox.blue-ma
 </code></pre><p>The <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet providers</a> plugin can also be useful for identifying basemaps, and adding them to your projects; see <a href="https://github.com/leaflet-extras/leaflet-providers">the demo</a>.</p><p>Now paste this code into the file:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// creates the map and sets initial view, including layers to be displayed, plus limits for zoom and maximum extent
 var map = L.map(&quot;map&quot;, {
     center: new L.LatLng(40, -100),
-    zoom: 4
+    zoom: 4,
     maxZoom: 6,
     minZoom: 3,
     maxBounds: ([
@@ -400,7 +400,7 @@ var map = L.map(&quot;map&quot;, {
 &lt;/code&gt;&lt;/pre&gt;"><span class="hljs-comment">// creates the map and sets initial view, including layers to be displayed, plus limits for zoom and maximum extent</span>
 <span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
     center: <span class="hljs-keyword">new</span> L.LatLng(<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>),
-    zoom: <span class="hljs-number">4</span>
+    zoom: <span class="hljs-number">4</span>,
     maxZoom: <span class="hljs-number">6</span>,
     minZoom: <span class="hljs-number">3</span>,
     maxBounds: ([
@@ -409,7 +409,7 @@ var map = L.map(&quot;map&quot;, {
     ]),
     layers: [bright]
 });
-</code></pre><p>This creates the map, setting its initial zoom level to 4, and the minimum and maximum zoom levels to 3 and 6 respectively. It centers the initial view at a latitude of 40 degrees North and a longitude of 100 degrees west. You will notice the similarity to the Mapbox.js code we used previously.</p><p><code>maxBounds</code> sets southwest and northeast co-ordinates for the maximum extent of the map view: If a user tries to pan the map beyond these limits, it will spring back to the allowed view. The last line loads the <code>bright</code> layer we created above.</p><p>Next, paste this code into the file:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// Defines the two basemaps
+</code></pre><p>This creates the map, setting its initial zoom level to 4, and the minimum and maximum zoom levels to 3 and 6 respectively. It centers the initial view at a latitude of 40 degrees North and a longitude of 100 degrees West. You will notice the similarity to the Mapbox.js code we used previously.</p><p><code>maxBounds</code> sets southwest and northeast co-ordinates for the maximum extent of the map view: If a user tries to pan the map beyond these limits, it will spring back to the allowed view. The last line loads the <code>bright</code> layer we created above.</p><p>Next, paste this code into the file:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;// Defines the two basemaps
 var baseMaps = {
     &quot;Satellite&quot;: satellite,
     &quot;Map&quot;: bright
@@ -447,7 +447,7 @@ map.addControl(layersControl);
 };
 </code></pre><p>Also add it to the layers that will display when the map loads:</p><pre><code class="javascript hljs" data-origin="&lt;pre&gt;&lt;code class=&quot;Javascript&quot;&gt;var map = L.map(&quot;map&quot;, {
     center: new L.LatLng(40, -100),
-    zoom: 4, 
+    zoom: 4,
     maxZoom: 6,
     minZoom: 3,
     maxBounds: ([
@@ -458,7 +458,7 @@ map.addControl(layersControl);
 });
 &lt;/code&gt;&lt;/pre&gt;"><span class="hljs-keyword">var</span> map = L.map(<span class="hljs-string">"map"</span>, {
     center: <span class="hljs-keyword">new</span> L.LatLng(<span class="hljs-number">40</span>, -<span class="hljs-number">100</span>),
-    zoom: <span class="hljs-number">4</span>, 
+    zoom: <span class="hljs-number">4</span>,
     maxZoom: <span class="hljs-number">6</span>,
     minZoom: <span class="hljs-number">3</span>,
     maxBounds: ([

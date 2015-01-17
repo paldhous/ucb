@@ -597,7 +597,7 @@ Shapefiles are usually made available for download as zipped folders, and actual
 
 - `.shp` The main file containing the geometry of the points, lines or polygons mapped in the shapefile.
 - `.dbf` A database file in dBASE format containing a table of data relating to the components of the geometry. For example, in a world shapefile giving national boundaries, this table might contain data about the countries including their names, capital cities, population, annual GDP and so on.
-- `.sbn` A positional index of the shapefile’s geometry.
+- `.shx` A positional index of the shapefile’s geometry.
 
 There are several optional file types that may also be included, including a `.prj` file, which defines the map projection and datum to be used when loading the shapefile into GIS software. Refer to [ESRI’s technical specification](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf) and the [informative Wikipedia entry](http://en.wikipedia.org/wiki/Shapefile) for more details.
 

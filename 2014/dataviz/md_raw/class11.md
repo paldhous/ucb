@@ -299,8 +299,8 @@ Now paste the following code, for the head of the web page, between the `<html> 
 	<title>Seismic hazards in the continental U.S.</title>
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 	<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-	<link rel="stylesheet" href=" http://leafletjs.com/dist/leaflet.css" />
-	<script src="http://leafletjs.com/dist/leaflet.js"></script>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 	<script src="src/leaflet.ajax.min.js"></script>
 	<script src="src/date.format.js"></script>
 	<script src="data/seismic_risk.js"></script>
