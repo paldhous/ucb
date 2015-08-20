@@ -49,7 +49,7 @@ Don’t assume, however, that every number in a dataset represents a continuous 
 
 Of the numbers seen here, only the `YEAR`, latitudes and longitudes (`POINT_Y` and `POINT_X`) and numbers of people `KILLED` or `INJURED` actually represent continuous variables. (Look carefully, and you will see that these numbers are justified right within each cell. The other numbers are justified left, like the text entries, because they were imported into the spreadsheet as text values.)
 
-Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables (which will probably be called “fields” in a database), and how they are coded. [Here is the codebook](./data/traffic_accidents/SWITRS_codebook.pdf) for the traffic accident data.
+Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables (which will probably be called “fields” in a database), and how they are coded. [Here is the codebook](./data/traffic/SWITRS_codebook.pdf) for the traffic accident data.
 
 ### What shape is your data?
 
@@ -250,7 +250,7 @@ Here are box plots showing the 2013 Major League Baseball salary data, by team:
 
 (Source: Peter Aldhous, data from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/))
 
-The middle line in each box is the "median" value, which is the number that sits in the middle, when all the values are arranged in order. The plot also divides the distribution for each group into four “quartiles,” each containing one quarter of the values, and draws the box around the middle two quartiles. The “whiskers” extending up and down from the central box show the full range, not including any extreme values that may be statistical “outliers,” which are shown as separate points.
+The middle line in each box is the median value. The plot also divides the distribution for each group into four “quartiles,” each containing one quarter of the values, and draws the box around the middle two quartiles. The “whiskers” extending up and down from the central box show the full range, not including any extreme values that may be statistical “outliers,” which are shown as separate points.
 
 Here, the box plots focus our attention on the teams with a large variation in salaries across their rosters, notably the Los Angeles Dodgers (LAN) and the New York Yankees (NYA), and also those that paid the lowest salaries with the smallest ranges: the Houston Astros (HOU), the Miami Marlins (MIA) and the New York Mets (NYN).
 
@@ -472,8 +472,8 @@ A logarithmic curve is just one example of a “non-linear” mathematical relat
 
 ### Assignment
 
-- Calculate the values needed to group the 2014 GDP per capita data in the file `gdp_pc.csv` into five bins defined by quantiles.
-- Create a version of the baseball salaries box plot above with the app we used in class. 
+- Calculate the values needed to group nations into five quantile bins, according to the 2014 GDP per capita data in the file `gdp_pc.csv`.
+- Create a version of the baseball salaries box plot above with the app we used in class.
 - Modify the infectious disease and democratization scatter plot so that the points are color-coded by a nation's income group. Note, if your solution results in multiple trend lines, you are mapping color at the wrong point in building the chart!
 - Save both of these plots as PDF files. If the points on the scatter plot do not render correctly, paste the url for the PDF into another browser; it should work in Google Chrome.
 - Subscribe to visualization blogs, follow visualization thought leaders on Twitter, and take other steps to track developments in data viz and data journalism.
