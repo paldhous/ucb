@@ -8,6 +8,21 @@ The best data journalists understand that statistics and graphics go hand-in-han
 
 I hope you will get hooked on the power of a statistical way of thinking. As data artist [Martin Wattenberg](http:/www.bewitched.com/) of Google has said: [“Visualization is a gateway drug to statistics.”](http://www.newscientist.com/blogs/culturelab/2011/02/data-artists-visualisation-as-a-gateway-drug.html)
 
+### The data we will use today
+
+Download the data for this session from [here](data/week1.zip), unzip the folder and place it on your desktop. It contains the following files:
+
+- `mlb_salaries_2013.csv` Salaries of players in Major League Baseball at the start of the 2013 season, from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).
+
+- `disease_democ.csv` Data illustrating a [controversial theory](http://www.newscientist.com/article/mg21028133.300-genes-germs-and-the-origins-of-politics.html) suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*.
+
+- `gdp_pc.csv` [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on 2014 Gross Domestic Product (GDP) per capita for the world's nations, in current international dollars, corrected for purchasing power in different territories.
+
+All of these files are in CSV format, which stands for comma-separated values. These are plain text files, in which fields in the data are separated by commas, and each record is on a separate row. CSV is a common format for storing and exchanging data, and can be read by most data analysis and visualization software. Values that are intended to be treated as text, rather than numbers, are often enclosed in quote marks.
+
+When you ask for data, requesting CSVs or other plain text files is a good idea, as just about all software that handles data can export data as text. The characters used to separate the variables, called ‘delimiters,’ may vary. a `.tsv` extension, for instance, indicates that the variables are separated by tabs. More generally, text files have the extention `.txt`.
+
+
 ### Types of data: categorical vs. continuous
 
 Before analyzing a dataset, or attempting to draw a graphic, it’s important to consider what, exactly, you’re working with.
@@ -16,13 +31,13 @@ Statisticians often use the term “variable.” This simply means any measure o
 
 - **Categorical** variables are descriptive labels given to individual records, assigning them to different groups. The simplest categorical data is dichotomous, meaning that there are just two possible groups -- in an election, for instance, people either voted, or they did not. More commonly, there are multiple categories. When analyzing traffic accidents, for example, you might consider the day of the week on which each incident occurred, giving seven possible categories.
 
-- **Continuous** data is richer, consisting of numbers that can have a range of values on a sliding scale. When working with weather data, for instance, continuous variables might include the maximum and minimum temperatures and the total amount of rainfall recorded for each day.
+- **Continuous** data is richer, consisting of numbers that can have a range of values on a sliding scale. When working with weather data, for instance, continuous variables might include temperature and amount of rainfall.
 
 Datasets will usually contain a mixture of categorical and continuous variables. Here, for example, is a small part of a spreadsheet containing data on salaries for Major League Baseball players at the opening of the 2013 season:
 
 ![](./img/class1_1.jpg)
 
-(Source: Peter Aldhous, from [Baseball Prospectus](http://www.baseballprospectus.com/compensation/?cyear=2013&team=&pos=) data)
+(Source: Peter Aldhous, data from [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/) data)
 
 This is a typical data table layout, with the individual records -- the players -- forming the rows and the variables recorded for each player arranged in columns. Here it is easy to recognize the categorical variables of `pos` for playing position and `team` because they are each entered as text. Aside from the player names, the other variables are all continuous.
 
@@ -36,15 +51,35 @@ Of the numbers seen here, only the `YEAR`, latitudes and longitudes (`POINT_Y` a
 
 Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables (which will probably be called “fields” in a database), and how they are coded. [Here is the codebook](./data/traffic_accidents/SWITRS_codebook.pdf) for the traffic accident data.
 
+### What shape is your data?
+
+Particularly when data shows a time series for a single variable, it is often provided like this data on trends in international oil production by region, in "wide" format:
+
+![](./img/class1_3.jpg)
+
+(Source: Peter Aldhous, from [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/IEDIndex3.cfm?tid=5&pid=53&aid=1) data)
+
+Here, all of the numbers represent the same variable, and there is a column for each year. This is good for people to read, but most software for data analysis and visualization does not play well with data in this format.
+
+So if you receive "wide" data, you will usually need to covert it to "long" format, shown here:
+
+![](./img/class1_4.jpg)
+
+(Source: Peter Aldhous, from [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/IEDIndex3.cfm?tid=5&pid=53&aid=1) data)
+
+Notice that now there is one column for each variable, which makes it easier for computers to understand.
+
+
+
 ### How do I interview data? The basic operations
 
 There are many sophisticted statistical methods for crunching data, beyond the scope of this class. But the majority of a data journalist's work involves the following simple operations:
 
 - **Sort:** Largest to smallest, oldest to newest, alphabetical etc.
 
-- **Aggregate:** Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you'll group data into categories first, and then aggregate by group.
-
 - **Filter:** Select a defined subset of the data.
+
+- **Aggregate:** Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you'll group data into categories first, and then aggregate by group.
 
 - **Join:** Merging entries from two or more datasets based on common field(s), e.g. unique ID number, last name and first name.
 
@@ -58,13 +93,13 @@ The most basic operation with categorical data is to aggregate it by counting th
 
 Here is an example, showing data on the racial and ethnic identities of residents of Alameda County, from the 2010 US Census:
 
-![](./img/class1_3.jpg)
+![](./img/class1_5.jpg)
 
 (Source: [American FactFinder](http://factfinder2.census.gov/faces/nav/jsf/pages/index.xhtml), U.S. Census Bureau)
 
 Creating frequency counts from categorical data creates a new continuous variable -- what has changed is the level of analysis. In this example, the original data would consist of a huge table with a record for each person, noting their racial/ethnic identity as categorical variables; in creating the frequency table shown here, the level of analysis has shifted from the individual to the racial/ethnic group.
 
-We can ask more interesting questions by considering two categorical variables together -- as pioneering data journalist Philip Meyer showed when he collected and analyzed survey data to examine the causes of the 1967 Detroit Riot. In July of that year, one of the worst riots in U.S. history raged in the city for five days, following a police raid on an unlicensed after-hours bar. By the time calm was restored, 43 people were dead, 467 injured and more than 2000 buildings were destroyed.
+We can ask more interesting questions by considering two categorical variables together -- as pioneering data journalist Philip Meyer showed when he collected and analyzed survey data to examine the causes of the 1967 Detroit Riot. In July of that year, one of the worst riots in U.S. history raged in the city for five days, following a police raid on an unlicensed after-hours bar. By the time calm was restored, 43 people were dead, 467 injured and more than 2,000 buildings were destroyed.
 
 At the time, Detroit was regarded as being a leader in race relations, so local racial discrimination was not initially seen as one of the main underlying causes of what happened. One popular theory at the time was that the riots were led by black residents who had moved to Detroit from the rural South. Meyer demolished this idea by examining data on whether or not the people surveyed had rioted, and whether they were brought up in the South or the North. He combined these results into a “contingency table” or “cross-tab”:
 
@@ -82,7 +117,7 @@ But Meyer’s team only interviewed a sample of people from the affected neighbo
 
 Philip Meyer's analysis of the Detroit riot raises a general issue: only sometimes is it possible to obtain and analyze all of the data.
 
-There are only 30 teams in Major League Baseball, which at the start of the 2013 season had a total of 883 players on their rosters. So compiling data on their contracts and salaries is a manageable task.
+There are only 30 teams in Major League Baseball, which at the start of the 2013 season just over 800 players on their rosters. So compiling all of the data on their contracts and salaries is a manageable task.
 
 But Meyer's team couldn't talk to all of the people in the riot-affected neighborhoods, and pollsters can’t ask every voter which candidate they intend to vote for in an upcoming election. Instead they take a sample. This is common in many forms of data analysis, not just opinion polling.
 
@@ -108,7 +143,7 @@ But summarizing continuous data in a single value inevitably loses a lot of info
 
 Many variables, such as human height and weight, follow a “normal” distribution. If you draw a graph plotting the range of values in the data along the horizontal axis (also known as the X axis), and the number of individual data points for each value on the vertical or Y axis, a normal distribution gives a bell-shaped curve:
 
-![](./img/class1_4.jpg)
+![](./img/class1_6.jpg)
 
 (Source: edited from [Wikimedia Commons](http://en.wikipedia.org/wiki/Normal_distribution#mediaviewer/File:Standard_deviation_diagram.svg))
 
@@ -120,23 +155,21 @@ Normal distributions are so common that many statistical methods have been inven
 
 Sometimes, however, it’s very clear just from looking at the shape of a dataset that it is not normally distributed. Here, for example, is the distribution of 2013 Major League Baseball salaries, dividing the values into “bins” rising in increments of $500,000. This type of chart is called a "histogram":
 
-![](./img/class1_5.jpg)
+![](./img/class1_7.jpg)
 
-(Source: Peter Aldhous, from [Baseball Prospectus](http://www.baseballprospectus.com/compensation/?cyear=2013&team=&pos=) data)
+(Source: Peter Aldhous, data from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/))
 
 This distribution is highly “skewed.” Almost half of the players are in the lowest two bins, paid less than $1 million. There are just a handful of players who were paid more than $20 million; Alex Rodriguez, paid $29 million by the New York Yankees, lies to the right of the chart on his own. Knowing this distribution may influence the story you would choose to tell from the data, the summary statistics you would choose to aggregate it, and the methods you might use to visualize it.
 
-In class, we will plot the distribution of [this data](./data/baseball/salaries_2013.txt) using [this web app](http://rweb.stat.ucla.edu/ggplot2/). The data is in a text file, which you can open in any text editor. Fields/variables in the data are separated by a `tab`. Each record is on a new line, and any entry that should be treated as text is marked with double quotes. This is a common format for data: indeed, when you ask for data requesting plain text files is a good idea, as just about all software that handles data can export data as text. The characters used to separate the variables, called 'delimiters,' may vary.
+In class, we will plot the distribution of the 2013 baseball salary data using [this web app](http://rweb.stat.ucla.edu/ggplot2/).
 
-Select `Open Data>Upload File` and navigate to the file. The app should recognize that this is a tab-delimited text file, but if the preview of the data looks wrong, use `import options` to correct things. Once the data has imported, and view the variables in the `Data Panel` at right in folders marked `Factor` (for categorical variables) and `Numeric` (for continuous variables).
+Select `Open Data>Upload File` and navigate to the file `mlb_salaries_2013.csv`. The app should recognize that this is a CSV file, but if the preview of the data looks wrong, use `import options` to correct things. Once the data has imported, and view the variables in the `Data Panel` at right in folders marked `Factor` (for categorical variables) and `Numeric` (for continuous variables).
 
-First we need to tell the app what goes on the X and Y axis, respectively. Right-click anywhere in the main panel and select `Map x(required)>salary`. Were are not going to plot another variable from the data on the Y axis; we just want a count of the players in each salary bin. So select `Map y(required)>..count..` and click the `Draw Plot` button at bottom right.
+First we need to tell the app what goes on the X and Y axis, respectively. Right-click anywhere in the main panel and select `Map x(required)>salary_mil`. Were are not going to plot another variable from the data on the Y axis; we just want a count of the players in each salary bin. So select `Map y(required)>..count..` and click the `Draw Plot` button at bottom right.
 
 You should see a blank grid, because we haven't yet told the app what type of chart to draw. Right-click in the chart area, and select `Add Layer>Univariate Geoms>histogram` (univariate because we only have one variable, aggregated by a count). Click `Draw plot` and a chart should draw.
 
-You will notice that the bins are wider than in the example above. Right-click on `histogram` in the `Layers Panel` at left, select `binwidth>set`, type 500000 into the box and `set value`. Now hit `Draw plot` again and you should have the chart above, minus the formatting of the axes.
-
-`e+07` on the labels for the X avis tick marks means ten raised to the power of seven. So `2e+07` is two followed by seven zeroes, or 20 million.
+You will notice that the bins are wider than in the example above. Right-click on `histogram` in the `Layers Panel` at left, select `binwidth>set`, type 0.5 into the box and `set value`. Now hit `Draw plot` again and you should have something close to the chart above.
 
 To save your plot click on `Export PDF` from the options at top left and click on the hyperlink at the next page.
 
@@ -149,7 +182,7 @@ The mean is just one example of what statisticians call a “measure of central 
 
 Notice how leading media outlets, such as The Upshot at *The New York Times*, often use medians, rather than means, in graphics summarizing skewed distributions, such as incomes or house prices. Here is an example from April 2014:
 
-![](./img/class1_6.jpg)
+![](./img/class1_8.jpg)
 
 (Source: The Upshot, [*The New York Times*](http://www.nytimes.com/2014/04/23/upshot/the-american-middle-class-is-no-longer-the-worlds-richest.html))
 
@@ -157,24 +190,78 @@ Statisticians also sometimes consider the “mode,” which is the value that ap
 
 For a perfect normal distribution, the mean, median and mode are all the same number. But for a skewed dataset like the baseball salaries, they may be very different -- and using the mean can paint a rather misleading picture.
 
-In class, we will calculate these three measures of central tendency for the baseball salary data using LibreOffice Calc. Launch LibreOffice and click on `Spreadsheet`. Now we need to import the text file. From the top menu, select `Insert>Sheet from file`, click `Browse` and navigate to the file you downloaded earlier. At the text import dialog box, make sure Calc has recognized that this is a tab-delimited text file with values that are to be treated as text enclosed in double quotes. If not, change the options to the following:
+### Calculate mean, median and mode
 
-![](./img/class1_6a.jpg)
+Navigate in your browser to your [**Google Drive**](https://drive.google.com/) account, then click the red `NEW` button at top left and select `File upload`. Navigate to the file `mlb_salaries_2013.csv` and click `Open`.
 
-Now click `OK` at both open dialog boxes to import the data. First we will calculate the mean salary. All formulas in Calc begin with `=`, so in an empty cell to the right of the data, type `=AVERAGE(` then move your cursor to the top value in the `salary` column. Select all of the values in this column and close the bracket so that the formula bar reads `=AVERAGE(C2:C884)` then hit `Return`.
+When the file has uploaded, click on its icon in the main panel of your Google Drive, then select `Open>Google Sheets`:
 
-Now replace `AVERAGE` with `MEDIAN` and `MODE` respectively. If you wish, select this cell, right-click and select `Format Cells` to format it as `CURRENCY`.
+![](./img/class1_9.jpg)
 
-Across Major League Baseball at the start of the 2013 reason, the mean salary was $3.62 million. But when summarizing a distribution in a single value, we usually want to give a “typical” number. Here the mean is inflated by the vast salaries paid to a handful of star players, and may be a bad choice. The median salary of $1.26 million gives a more realistic view of what a typical MLB player was paid.
+When the data has uploaded, drag the darker gray line at the bottom of the light gray cell at top left below row `1`, so that the first row becomes a header.
 
-The mode is less commonly used, but in this case also tells us something interesting: it was $490,000, a sum earned by 44 out of the 882 players. This was the minimum salary paid under 2013 MLB contracts, which explains why it turns up more frequently than any other number. A data journalist who considered the median, mode and full range of the salary distribution may produce a richer story than one who failed to think beyond the “average.”
+**Before:**
+
+![](./img/class1_10.jpg)
+
+**After:**
+
+![](./img/class1_11.jpg)
+
+Select column `H` by clicking its gray header containing the letter, then from the top menu select `Insert>Column right` five times to insert three new columns into the spreadsheet, calling them `mean`, `median`, and `mode`.
+
+In the first cell of the `mean` column enter the following formula, which calculates the mean (called `average` in a spreadsheet) of all of the values in column `H`, containing the salaries in $ millions for each player.
+
+```
+=average(H2:H816)
+```
+
+Or alternatively, to select all the values in colum `H` without having to define their row numbers:
+
+```
+=average(H:H)
+```
+
+Now calculate the median salary:
+
+```
+=median(H:H)
+```
+
+And the mode:
+
+```
+=mode(H:H)
+```
+
+These spreadsheet formulas are, in programming terms, functions. They act on the data specified in the brackets. This will become a familiar concept as we work with code in subsequent weeks.
+
+Across Major League Baseball at the start of the 2013 reason, the mean salary was $3.72 million. But when summarizing a distribution in a single value, we usually want to give a “typical” number. Here the mean is inflated by the vast salaries paid to a handful of star players, and may be a bad choice. The median salary of $1.35 million gives a more realistic view of what a typical MLB player was paid.
+
+The mode is less commonly used, but in this case also tells us something interesting: it was $490,000. This was the minimum salary paid under 2013 MLB contracts, which explains why it turns up more frequently than any other number. A data journalist who considered the median, mode and full range of the salary distribution may produce a richer story than one who failed to think beyond the “average.”
+
+### Summarizing and comparing distributions
+
+Sometimes you may want to separately consider the distribution of a continuous variable for different groups within the data -- for instance salaries by baseball team. You could draw a histogram for each group, but in such cases statisticians often use graphics called box plots, which summarize distributions, making differences between them easy to spot.
+
+Here are box plots showing the 2013 Major League Baseball salary data, by team:
+
+![](./img/class1_12.jpg)
+
+(Source: Peter Aldhous, data from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/))
+
+The middle line in each box is the "median" value, which is the number that sits in the middle, when all the values are arranged in order. The plot also divides the distribution for each group into four “quartiles,” each containing one quarter of the values, and draws the box around the middle two quartiles. The “whiskers” extending up and down from the central box show the full range, not including any extreme values that may be statistical “outliers,” which are shown as separate points.
+
+Here, the box plots focus our attention on the teams with a large variation in salaries across their rosters, notably the Los Angeles Dodgers (LAN) and the New York Yankees (NYA), and also those that paid the lowest salaries with the smallest ranges: the Houston Astros (HOU), the Miami Marlins (MIA) and the New York Mets (NYN).
+
+I would not suggest box plots in a news graphic, as they would need explaining to most people. But they can be a useful tool when you start to explore a new dataset, revealing how distributions vary across different groups.
 
 
 ### Choosing bins for your data
 
-Often we don’t want to summarize a variable in a single number. But that doesn't mean we have to show the entire distribution. Frequently data journalists divide the data into groups, to reveal how those groups differ from one another. A good example is [this interactive graphic](http://www.nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html) on the unemployment rate for different groups of Americans, published by *The New York Times* in November 2009:
+Often we don’t want to summarize a variable in a single number. But that doesn't mean we have to show the entire distribution. Frequently data journalists divide the data into groups or "bins," to reveal how those groups differ from one another. A good example is [this interactive graphic](http://www.nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html) on the unemployment rate for different groups of Americans, published by *The New York Times* in November 2009:
 
-![](./img/class1_7.jpg)
+![](./img/class1_13.jpg)
 
 (Source: [*The New York Times*](http://www.nytimes.com/interactive/2009/11/06/business/economy/unemployment-lines.html))
 
@@ -184,21 +271,69 @@ To produce informative graphics that tell a clear story, data journalists often 
 
 There is no simple answer to this question, as it really depends on the story you are telling. In the jobless rate example, the bins divided the population into groups of young, mid-career and older workers, revealing how young workers in particular were bearing the brunt of the Great Recession.
 
-When binning data, it is again a good idea to look at the distribution, and experiment with different possibilities. For example, the wealth of nations, measured in terms of gross domestic product (GDP) per capita in 2013, has a skewed distribution, similar to the baseball salaries. The maps below reveal how setting different ranges for the bins changes the story told by the data:
+When binning data, it is again a good idea to look at the distribution, and experiment with different possibilities. For example, the wealth of nations, measured in terms of gross domestic product (GDP) per capita in 2014, has a skewed distribution, similar to the baseball salaries. If we look at the distribution, drawn here in increments of $2,500, we will see that it is highly skewed, rather like the baseball salaries:
 
-![](./img/class1_8.jpg)
+![](./img/class1_14.jpg)
 
-![](./img/class1_9.jpg)
+(Source: Peter Aldhous, from [World Bank](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) data)
 
-(Source: Peter Aldhous, from [World Bank](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD) data)
+Straight away we can see that just a tiny handful of countries had a GDP per capita of more than $50,000, but there is a larger group with values above $40,000.
 
-In the first map, the bins have been set with equal ranges, apart from the top bin, which has no upper limit. This might be useful for telling a story about how high per capita wealth is still concentrated into a small number of nations, but it does a fairly poor job of distinguishing between the per capita wealth of developing countries.
+The maps below reveal how setting different ranges for the bins changes the story told by the data. For the first map, I set the lower value for the top bin at $40,000, and then gave the bins equal ranges:
 
-In the second map, the bins have been set so that roughly equal numbers of countries fall into each of the five bins. Now Japan and most of Western Europe join the wealthiest bin, middle-income countries like Brazil, China, Mexico and Russia are grouped in another bin, and there are more fine-grained distinctions between the per capita wealth of different developing countries.
+![](./img/class1_15.jpg)
+
+(Source: Peter Aldhous, from [World Bank](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) data)
+
+This might be useful for telling a story about how high per capita wealth is still concentrated into a small number of nations, but it does a fairly poor job of distinguishing between the per capita wealth of developing countries. And for poorer people, small differences in wealth make a big difference to living conditions.
+
+So for the second map I set the boundaries so that roughly equal numbers of countries fell into each of the five bins. Now Japan, most of Western Europe and Russia join the wealthiest bin, middle-income countries like Brazil, China, and Mexico are grouped in another bin, and there are more fine-grained distinctions between the per capita wealth of different developing countries:
+
+![](./img/class1_16.jpg)
+
+(Source: Peter Aldhous, from [World Bank](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) data)
+
+Some visualization and mapping software gives you the option of putting equal numbers of records into each bin -- usually called "quantiles" (the quartiles we encountered on the box plots are one example). Note that calculated quantiles won't usually give you nice round numbers for the boundaries between bins. So you may want to adjust the values, as I did for the second map.
+
+You may also want to examine histograms for obvious "valleys"  in the data, which may be good places for the breaks between bins.
+
+### Calculate quantiles
+
+You can also calculate the boundaries between quantiles for yourself in a spreadsheet. Go back to the Google Spreadsheet with the baseball salary data, and add two more columns: `quantile` and `quantile value`.
+
+Next we will calculate the boundaries for bins dividing the data into five quantiles, with one-fifth (0.2 in decimal) of the values in each bin. 
+
+First enter the following values into the `quantile` column, to reflect the division into five quantiles:
+
+```
+=4/5
+=3/5
+=2/5
+=1/5
+```
+Then enter this formula into the first cell of the `quantile value` column:
+
+```
+=percentile(H:H, L2)
+```
+
+Copy the formula down the top four rows, and the spreadsheet should look as follows:
+
+![](./img/class1_17.jpg)
+
 
 ### Rounding: avoid spurious precision
 
 Often when you run calculations on numbers, you'll obtain precise answers that can run to many decimal places. But think about the precision with which the original numbers were measured, and don't quote numbers that are more precise than this. When rounding numbers to the appropriate level of precision, if the next digit is four or less, round down; if it's six or more, round up. There are various schemes for rounding if the next digit is five, and there are no further digits to go on: I'd suggest rounding to an even number, which may be up or down, as this is the international standard in computing.
+
+To round the mean value for the baseball salary data to two decimal places, edit the formula to the following:
+
+```
+=round(average(H:H),2)
+```
+
+This formula runs the `round` function on the result of the `average` function.
+
 
 ### Per what? Working with rates and percentages
 
@@ -280,7 +415,7 @@ When testing the relationship between two variables, statisticians will usually 
 
 Here is an example, illustrating a controversial theory claiming that the extent to which a country has developed a democratic political system is driven largely by the historical prevalence of infectious disease:
 
-![](./img/class1_10.jpg)
+![](./img/class1_18.jpg)
 
 (Source: Peter Aldhous, data from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and [*Democratization: A Comparative Analysis of 170 Countries*](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602))
 
@@ -302,7 +437,7 @@ The most frequently used statistical test for correlation determines how closely
 
 In this example there is a significant negative correlation, but that doesn’t prove that low rates of infectious disease made some countries more democratic. Not only are there possible lurking variables, but cause-and-effect could also work the other way round: more democratic societies might place greater value on their citizens’ lives, and make more effort to prevent and treat infectious diseases.
 
-We will make a version of this chart in class. [Download the data](./data/disease_democ/disease_democ.txt), which again is in a tab-delimited text file. Import the data into the web app as before, and map `infect_rate` to the X axis and `democ_score` to the Y.
+We will make a version of this chart in class. Import the file `disease_democ.csv` into the web app as before, and map `infect_rate` to the X axis and `democ_score` to the Y.
 
 Now right-click in the main chart area and select `Add layer>Bivariate Geoms>point`. Click `Draw plot` and the points should appear on the scatter plot.
 
@@ -316,7 +451,7 @@ We instead want a linear trend line, without the standard error. In the `Layers 
 
 Relationships between variables aren't always best described by straight lines, as we can see by looking at the Gapminder Foundation’s Wealth & Health of Nations graphic, on which Hans Rosling’s “200 Countries” video is based. This is a bubble plot, a relative of the scatter plot in which the size of the bubbles depends upon a third variable -- here each country’s population:
 
-![](./img/class1_11.jpg)
+![](./img/class1_19.jpg)
 
 (Source: [Gapminder](http://www.gapminder.org/world/))
 
@@ -326,7 +461,7 @@ This is because the axis has been plotted on a “logarithmic” scale. It would
 
 Logarithmic scales are often used to make graphs plotting a wide range of values easier to read. If we turn off the logarithmic scale on the Gapminder infographic, the income per person values for the poorer countries bunch up, making it hard to see the differences between them:
 
-![](./img/class1_12.jpg)
+![](./img/class1_20.jpg)
 
 (Source: [Gapminder](http://www.gapminder.org/world/))
 
@@ -334,33 +469,17 @@ From this version of the graphic, we can see that a line of best fit through the
 
 A logarithmic curve is just one example of a “non-linear” mathematical relationship that statisticians can use to fit a model to data.
 
-### Differences between groups
-
-As data journalists, we may also be interested in differences between groups for a particular variable: for instance, do men and women working in particular industry earn the same, or are there differences between the salaries paid to each gender?
-
-When statisticians approach questions like this, they ask whether the distributions for the various groups are significantly different from one another. The null hypothesis is that the two groups are actually drawn from the same distribution, and that any differences observed between them are just the result of chance.
-
-To make differences between distributions for different groups easy to spot, statisticians often use graphics called “box plots." Here are box plots showing the 2013 Major League Baseball salary data, by team:
-
-![](./img/class1_13.jpg)
-
-(Source: Peter Aldhous, from [Baseball Prospectus](http://www.baseballprospectus.com/compensation/?cyear=2013&team=&pos=) data)
-
-The middle line in each box is the median value. The plot also divides the distribution for each group into four “quartiles,” each containing one quarter of the values, and draws the box around the middle two quartiles. The “whiskers” extending up and down from the central box show the full range, not including any extreme values that may be statistical “outliers,” which are shown as separate points.
-
-Here, the box plots focus our attention on the teams with a large variation in salaries across their rosters, notably the Los Angeles Dodgers (LAN) and the New York Yankees (NYA), and also those that paid the lowest salaries with the smallest ranges: the Houston Astros (HOU) and the Miami Marlins (MIA).
-
-You are probably unlikely to include box plots in a news graphic, as they would need explaining to most people. But they can be a very useful tool for initial exploratory analysis, showing how distributions vary across different groups.
 
 ### Assignment
 
-- Recreate a version of the baseball salaries box plot above with the app we used in class. (Don't worry about the formatting/labeling of the axes.)
+- Calculate the values needed to group the 2014 GDP per capita data in the file `gdp_pc.csv` into five bins defined by quantiles.
+- Create a version of the baseball salaries box plot above with the app we used in class. 
 - Modify the infectious disease and democratization scatter plot so that the points are color-coded by a nation's income group. Note, if your solution results in multiple trend lines, you are mapping color at the wrong point in building the chart!
 - Save both of these plots as PDF files. If the points on the scatter plot do not render correctly, paste the url for the PDF into another browser; it should work in Google Chrome.
 - Subscribe to visualization blogs, follow visualization thought leaders on Twitter, and take other steps to track developments in data viz and data journalism.
-- Share your two plots, and your initial list of visualization blogs etc with me by start of next week's class.
+- Send me your calculated quantile values, your two plots, and your initial list of visualization blogs etc by the start of next week's class.
 
-### Further reading/viewing
+### Further reading
 
 Sarah Cohen: [*Numbers in the Newsroom: Using Math and Statistics in News*](http://store.ire.org/products/numbers-in-the-newsroom-using-math-and-statistics-in-news-second-edition)
 

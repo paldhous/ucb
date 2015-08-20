@@ -5,14 +5,14 @@ This is a course in finding and telling visual stories from data. We will cover 
 
 ### Weekly schedule
 
-We will meet in **?????** on Thursdays from 9.30am - 12.30pm. Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** from 2.00pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
+We will meet in **142/Library NG ** on Thursdays from 9.30am - 12.30pm. Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** from 1.30pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
 
 Class time will also be scheduled for each of you to critique and lead class discussion of a recently published news graphic/interactive.
 
  - ####**Aug. 27:**	[**What is data?**](week1.html)
 Categorical and continuous variables; basic operations for interviewing a dataset; sampling and margins of error; plotting and summarizing distributions; choosing bins for your data; basic newsroom math; correlation and its pitfalls; exploring differences between groups; scatter plots and box plots.
 
-  - **Assignment:** make scatter plots and box plots using [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/); subscribe to data viz blogs etc to follow latest developments in visualization.
+  - **Assignment:** make plots using [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/); subscribe to data viz blogs etc to follow latest developments in visualization.
 
 - ####**Sept. 3:** 	[**Data visualization: basic principles**](week2.html)
 Encoding data using visual cues; choosing chart types to show comparisons, composition (parts of the whole) and connections; using color effectively; using chart furniture, minimizing chart junk and highlighting the story; avoiding pitfalls; good practice, including for interactive graphics.
@@ -21,9 +21,9 @@ Encoding data using visual cues; choosing chart types to show comparisons, compo
 
 
 - ####**Sept. 10:** [**Interviewing data: exploratory graphical analysis**](week3.html)
-We will use [Tableau Public](http://www.tableausoftware.com/public/) to explore and visualize World Bank data on neonatal mortality across the globe, creating an interactive online dashboard.
+We will use [Tableau Public](http://www.tableausoftware.com/public/) to explore and visualize World Bank data on neonatal deaths across the globe, creating an interactive online dashboard.
 
- - **Assignment:** create a visualization inspired by [this Gapminder video](http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/), using Tableau Public.
+ - **Assignment:** make another dashboard from the same data, and combine into a Tableau story.
 
 
 -  ####**Sept. 17:** [**Acquiring, cleaning and formatting data**](week4.html)
@@ -32,16 +32,16 @@ Data search and download tricks, including [Table2Clipboard](https://addons.mozi
  - **Assignment:** data cleaning task with Open Refine.
 
 
-- ####**Sept. 24:** [Let's apply what we've learned so far](week5.html)
-We will obtain and process a dataset from the web, and complete a Tableau visualization.
-
- - **Assignment:** deliver your finished visualization.
-
-
-- ####**Oct. 1:** [**Interviewing data: using databases**](week6.html)
+- ####**Sept. 24:** [**Interviewing data: using databases**](week5.html)
 Introduction to databases and Structured Query Language for manipulating data. We will use [SQLite](http://sqlite.org/) and the [SQLite Manager](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/) Firefox plugin to explore data including drug company payments to doctors.
 
- - **Assignment:** write queries to return specified data. 
+ - **Assignment:** write queries to return specified data.
+
+
+- ####**Oct. 1:** [Let's apply what we've learned so far](week6.html)
+We will obtain and process World Bank data on life expectancy and GDP per capita for the world's nations from the web, and then create a Tableau visualization inspired by [this Gapminder video](http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/).
+
+ - **Assignment:** deliver your finished visualization.
 
 
 -  ####**Oct. 8:**	[**Principles of mapping; introduction to final projects**](week7.html)
@@ -50,16 +50,16 @@ Basic mapping principles:  projections, geocoding, geodata formats; approaches t
  - **Assignment:** submit a pitch detailing plans for your final project. You should also each arrange individual appointments with your instructor over the next two weeks to discuss your plans.
 
 
-- ####**Oct. 15:** [**Making interactive maps; processing geodata with SQL**](week8.html)
-We will use [CartoDB](https://cartodb.com/) and [Leaflet](http://leafletjs.com/) to create interactive online maps. We will also use SQL and [PostGIS](http://postgis.net/), which is built into CartoDB, to process and analyze geodata.
-
- - **Assignment:** deliver finished online map; continue work on final project.
-
-
--  ####**Oct. 22:**	[**Making static maps and processing geodata with GIS software**](week9.html)
+- ####**Oct. 15:** [**Making static maps and processing geodata with GIS software**](week8.html)
 We will use [QGIS](http://qgis.org/en/site/) to make a multi-layered map. We will also learn how to use QGIS and its plugins to process geodata.
 
- - **Assignment:** continue work on final project and deliver a progress report.
+ - **Assignment:** make a simple map requiring a data join.
+
+
+-  ####**Oct. 22:** [**Making interactive maps; processing geodata with SQL**](week9.html)
+We will use [CartoDB](https://cartodb.com/) and [Leaflet](http://leafletjs.com/) to create interactive online maps. We will also use SQL and [PostGIS](http://postgis.net/), which is built into CartoDB, to process and analyze geodata.
+
+ - **Assignment:** deliver finished online map; continue work on final project and deliver a progress report.
 
 
 -  ####**Oct 29:**	**No Class**
@@ -69,7 +69,7 @@ Instead, one-on-one meetings will be arranged with instructor to discuss progres
 
 
 - ####**Nov. 5:**	[**Manipulating data and making graphics with R**](week11.html)
-Introduction to [R](http://www.r-project.org/), [R Studio](http://www.rstudio.com/) and R packages including [ggplot2](http://ggplot2.org/) for visualization and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) for data manipulation
+Introduction to [R](http://www.r-project.org/), [R Studio](http://www.rstudio.com/) and R packages including [ggplot2](http://ggplot2.org/) for visualization and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) for data manipulation.
 
  -  **Assignment:** make specified graphics with ggplot2.
 
@@ -87,11 +87,19 @@ We will explore R packages, including [rCharts](http://rcharts.io/), that allow 
 
 
 - ####**Nov 26:** Thanksgiving -- No Class
+
+ - **Assignment:** continue work on your final project.
+
+
+- ####**Dec. 3:** [**Other tools for online interactives**](week14.html)
+We will review other tools for making online interactives.
+
  - **Assignment:** complete your final project.
 
 
-- ####**Dec. 3:** [**Other tools for online interactives; wrapping up**](week15.html)
-We will review other tools for making online interactives, and conclude with a discussion of lessons learned, and next steps to continue to develop your data manipulation and visualization skills.
+- ####**Dec. 10:** [Let's apply what we've learned; wrapping up](week15.html)
+As in week 6, we will obtain and process World Bank data, and make some interactive charts, but this time using code. We will conclude with a discussion of lessons learned, and next steps to continue developing your data manipulation and visualization skills.
+
 
 ### Recommended reading
 
