@@ -34,8 +34,10 @@ namibia <- inner_join(indicators, nations_join, c("country"="iso_country")) %>%
 nations <- rbind(indicators2, namibia) %>%
   arrange(iso_a3) 
 
-#export data
-write.csv(nations, "nations.csv", row.names = FALSE, na = "")
+#export data for week3
+week3 <- select(nations, iso_a3, country, year, region, income_group, gdp_percap, population, birth_rate, neonat_mortal)
+
+write.csv(week3, "nations.csv", row.names = FALSE, na = "")
 
 # prepare and export data for join to GDP map
 gdp_pc <- filter(nations, year == 2014) %>%

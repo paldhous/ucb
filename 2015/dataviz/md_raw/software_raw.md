@@ -66,7 +66,7 @@ R is a software environment and programming language for statistical computing a
 
 A JavaScript code library for manipulating documents based on data, which has emerged in recent years as a powerful and flexible tool for interactive data visualization. Download the latest version [from here](http://d3js.org/) and unzip, or include the following code snippet in your HTML:
 
-```html
+```CSS
 <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 ```
 
