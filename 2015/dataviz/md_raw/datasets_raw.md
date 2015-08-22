@@ -14,6 +14,18 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 
 #### [Week 3](./data/week3.zip)
 
+- `nations.csv` Data from the [World Bank Indicators](http://data.worldbank.org/indicator/all) portal, which is an incredibly rich resource. Contains the following fields:
+ -  `iso_a3` [Three-letter code](http://unstats.un.org/unsd/tradekb/Knowledgebase/Country-Code) for each country, assigned by the [International Organization for Standardization](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63545).
+ - `country` Country name.
+ - `year`
+ - `region` `income_group` World Bank [regions and current income groups](http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS), explained [here](http://data.worldbank.org/about/country-and-lending-groups).
+ - `population` Estimated [total population](http://data.worldbank.org/indicator/SP.POP.TOTL) at mid-year, including all residents apart from refugees.
+ - `gdp_percap` [Gross Domestic Product per capita](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) in current international dollars, corrected for purchasing power in different territories.
+ - `population` Estimated [total population](http://data.worldbank.org/indicator/SP.POP.TOTL) at mid-year, including all residents apart from refugees.
+ - `birth_rate` Number of [live births during the year per 1,000 people](http://data.worldbank.org/indicator/SP.DYN.CBRT.IN), based on mid-year population estimate.
+ - `neonat_mortal` [Neonatal mortality rate](http://data.worldbank.org/indicator/SH.DYN.NMRT): number of babies dying before reaching 28 days of age, per 1,000 live births in a given year.
+
+
 
 ## Final projects
 
@@ -71,7 +83,7 @@ You can download data for individual indicators, or read data directly into R us
 
 You may also wish to use the [Human Development Index](http://hdr.undp.org/en/content/human-development-index-hdi) (HDI), a measure derived by the United Nations Development Programme (UNDP) which, in that agency's words, summarizes nations' achievement "in key dimensions of human development: a long and healthy life, being knowledgeable and have a decent standard of living." The health component is measured by life expectancy at birth; the knowledge component by mean years of schooling; the standard-of-living component by gross national income, corrected for purchasing power in different nations. The composite measure is converted to an index ranging from 0 to 1, using methods described [here](http://hdr.undp.org/en/content/human-development-index-hdi). Download HDI and related UNDP data from [here](http://hdr.undp.org/en/content/exporting-data-and-understanding-api).
 
-In week 5, we saw how to download Gapminder data in bulk. Its data library includes some measures not available from the World Bank, so if you cannot find the data you want among the World Bank Indicators, try searching for it at [Gapminder's data download](http://www.gapminder.org/data/) page.
+In week 4, we saw how to download Gapminder data in bulk. Its data library includes some measures not available from the World Bank, so if you cannot find the data you want among the World Bank Indicators, try searching for it at [Gapminder's data download](http://www.gapminder.org/data/) page.
 
 I would advise saving Gapminder spreadsheets as CSV files for use in other applications. Again, Gapminder data is in wide format, and will need to be converted to long format for visualization in Tableau Public or R.
 
@@ -81,7 +93,7 @@ Alternatively, you can access a sample of Gapminder data in R using the [datamar
 # load the package
 library(datamart)
 
-# access to Gapminder data and view available variables
+# access Gapminder data and view available variables
 gm <- gapminder()
 queries(gm)
 

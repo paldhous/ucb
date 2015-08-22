@@ -4,256 +4,370 @@
 
 In this week's class we will work with [**Tableau Public**](http://www.tableausoftware.com/public/), which allows you to create a wide variety of interactive charts, maps and tables and organize them into **dashboards** and **stories** that can be saved to the cloud and embedded on the web.
 
+The free Public version of the software requires you to save your visualizations to the open web. If you have sensitive data that needs to be kept within your organization, you will need a license for the [Desktop](http://www.tableau.com/products) version of the software. Members of Investigative Reporters and Editors can [obtain a free license](https://www.ire.org/blog/ire-news/2013/06/20/tableau-makes-its-desktop-software-free-ire-member/).
+
 Tableau was developed for exploratory graphical data analysis, so it is a good tool for exploring a new dataset -- filtering, sorting and aggregating the data in different ways while experimenting with various chart types.
 
-Although Tableau was not designed as a publication tool, the ability to embed finished dashboards and stories has also allowed newsrooms that lack JavaScript coding expertise to create interactive online graphics.
+Although Tableau was not designed as a publication tool, the ability to embed finished dashboards and stories has also allowed newsrooms and individual jorunalists lacking JavaScript coding expertise to create interactive online graphics.
 
-### Data: Berkeley traffic accidents
+### The data we will use today
 
-We will analyze the Berkeley traffic accident data we discussed in Week 1, which is [here](./data/berkeley_traffic/collisions.csv). To make sense of this data, you will also need the [codebook](./data/traffic_accidents/SWITRS_codebook.pdf) describing the fields/variables.
+Download the data for this session from [here](data/week3.zip), unzip the folder and place it on your desktop. It contains the following file:
 
-### Connect to the data
+- `nations.csv` Data from the [World Bank Indicators](http://data.worldbank.org/indicator/all) portal, which is an incredibly rich resource. Contains the following fields:
+ -  `iso_a3` [Three-letter code](http://unstats.un.org/unsd/tradekb/Knowledgebase/Country-Code) for each country, assigned by the [International Organization for Standardization](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63545).
+ - `country` Country name.
+ - `year`
+ - `region` `income_group` World Bank [regions and current income groups](http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS), explained [here](http://data.worldbank.org/about/country-and-lending-groups).
+ - `population` Estimated [total population](http://data.worldbank.org/indicator/SP.POP.TOTL) at mid-year, including all residents apart from refugees.
+ - `gdp_percap` [Gross Domestic Product per capita](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) in current international dollars, corrected for purchasing power in different territories.
+ - `population` Estimated [total population](http://data.worldbank.org/indicator/SP.POP.TOTL) at mid-year, including all residents apart from refugees.
+ - `birth_rate` Number of [live births during the year per 1,000 people](http://data.worldbank.org/indicator/SP.DYN.CBRT.IN), based on mid-year population estimate.
+ - `neonat_mortal` [Neonatal mortality rate](http://data.worldbank.org/indicator/SH.DYN.NMRT): number of babies dying before reaching 28 days of age, per 1,000 live births in a given year.
 
-The data is in a text file with the fields separated by commas, with the suffix `.csv`, for "comma separated values" -- a common data format.
+### Visualize the data on neonatal mortality
 
-Open Tableau Public, and from the top menu select `Data>Connect to Data`. Then select `Text File` and navigate to where you saved the data, select it and hit `Open`. At this point, you can view the data, which will be labeled as follows:
+#### Connect to the data
+
+Launch Tableau Public, and you should see the following screen:
+
+![](./img/class3_1.jpg)
+
+Under the `Connect` heading at top left, select `Text File`, navigate to the file `nations.csv` and `Open`. At this point, you can view the data, which will be labeled as follows:
 
  - Text: `Abc`
  - Numbers: `#`
  - Dates: calendar symbol
  - Geography: globe symbol
 
-Tableau doesn't always recognize entries correctly, but you can edit fields to give them the correct data type. In a dataset like this, for instance, where many categorical variables are stored as numbers, you may wish to reclassify them as text by selecting `String`, a computing term for one or a sequence of characters that are treated as text:
-
-![](./img/class3_1.jpg)
-
-In this case, because there are so many fields to reclassify, we'll edit as required later, only as we use them.
-
-Once the data has loaded, click `Go to Worksheet` and you should see a screen like this:
+You can edit fields to give them the correct data type if there are any problems:
 
 ![](./img/class3_2.jpg)
 
-### Dimensions and measures: categorical and continuous
-
-Notice that Tableau has divided the fields into `Dimensions` and `Measures`. If the fields are all classified correctly, these broadly correspond to categorical and continuous variables. Dimensions are fields containing text or dates, while measures contain numbers.
-
-### Columns and rows: X and Y axes
-
-The starting point for creating any chart or map in Tableau is to place fields into `Columns` and `Rows`, which for most charts correspond to the X and Y axes, respectively. When making maps, longitude is the X axis and latitude the Y. If you display the data as a table, then these labels are self-explanatory.
-
-### Start by asking questions
-
-Good data journalism and visualization projects rarely emerge from poking around aimlessly within a dataset. Instead, formulate questions and then try to answer them from the data. These are the questions that will drive our analysis today: Where did the collisions occur? How many people were killed or injured in each one? When did the collisions occur (both by year and day of the week)? In which collisions were cyclists or pedestrians involved?
-
-
-### Map the position of each collision
-
-We will start by placing all the collisions as points on a map. From the codebook, notice that longitude and latitude are in the fields `Point X` and `Point Y`. We need to tell Tableau that this is the case. Select `Point X`, click on the little downward-pointing triangle that appears, and select `Geographic Role>Longitude`. Similarly, tell Tableau that `Point Y` is latitude. Both should now be labeled with the globe symbol.
-
-Drag `Point X` into Rows and `Point Y` into columns. If Tableau does not recognize that you want a make a map, click on `Show Me` and then hover over and click on `symbol map`. `Show Me` reveals the types of chart that Tableau can draw, and is your go-to resource when experimenting with different visualization possibilities. Click on it again to hide the options.
-
-The screen should now look like this:
+Once the data has loaded, click `Sheet 1` at bottom left and you should see a screen like this:
 
 ![](./img/class3_3.jpg)
 
-Why is there a single point, somewhere in the Sierra Nevada? Look at `Columns` and `Rows`, and notice that, by default, Tableau has aggregated all the longitudes and latitudes, calculating an average. Turn off that aggregation by selecting `Analysis>Aggregate Measures` from the top menu.
+#### Dimensions and measures: categorical and continuous
 
-There should now be two clusters of points, one paradoxically lying just off the coast of West Africa. Hover over these points, and notice that these have latitudes and longitudes of zero.  We can examine this data by right-clicking on the dots, selecting `View Data` and clicking the `Underlying` tab. These are collisions for which there is no latitude and longitude in the dataset, sitting at what map-makers sometimes call "null island."
+The fields should appear in the `Data` panel at left. Notice that Tableau has divided the fields into `Dimensions` and `Measures`. These broadly correspond to categorical and continuous variables. Dimensions are fields containing text or dates, while measures contain numbers.
 
-Ideally, we would want to look at the addresses for these collisions and assign their locations -- an example of the data "cleaning" that is often required before analyzing and visualizing a dataset. But for now we will ignore them and move on.
+If any field appears in the wrong place, click the small downward-pointing triangle that appears when it is highlighted and select `Convert to Dimension` or `Convert to Measure` as required.
 
-Click on the rectangle symbol on the controls at the top left of the map, then draw a small rectangle with your mouse around the points in Berkeley to zoom in. You may need to do this a few times to get the points filling most of the map. You can also pan the map by clicking on it and holding, then moving your mouse (unfortunately, this doesn't well work with a trackpad). On the way in, you'll notice a couple of points outside of Berkeley -- more data cleaning required there!
+#### Shelves and Show Me
 
-The map should look something like this:
+Notice that the main panel contains a series of "shelves," called `Pages,` `Columns`, `Rows`, `Filters` and so on. Tableau charts and maps are made by dragging and dropping fields from the data into these shelves.
+
+Over to the right you should see the `Show Me` panel, which will highlight chart types you can make from the data currently loaded into the `Columns` and `Rows` shelves. It is your go-to resource when experimenting with different visualization possibilities. You can open and close this panel by clicking on its title bar.
+
+#### Columns and rows: X and Y axes
+
+The starting point for creating any chart or map in Tableau is to place fields into `Columns` and `Rows`, which for most charts correspond to the X and Y axes, respectively. When making maps, longitude goes in `Columns` and latitude in `Rows`. If you display the data as a table, then these labels are self-explanatory.
+
+#### Some questions to ask about this data
+
+- How have the total number of neonatal deaths changed over time, globally, regionally and nationally?
+- How has the neonatal death rate for each country changed over time?
+
+#### Create new calculated variables
+
+The data contains fields on birth and neonatal death rates, but not the total numbers of births and deaths, which must be calculated. From the top menu, select `Analysis>Create Calculated Field`. Fill in the dialog box as follows (just start typing a field name to select it for use in a formula):
 
 ![](./img/class3_4.jpg)
 
-Tableau's default basemap is very stripped down, but we can add more features. Select `Map>Map Options` form the top menu, and check `Streets and Highways`.
+Notice that calculated fields appear in the `Data` panel preceded by an `=` symbol.
 
-The map should now look like this:
+Now create a second calculated field giving the total number of neonatal deaths:
 
 ![](./img/class3_5.jpg)
 
-### Encode other variables using area and color
+In the second forumula, we have rounded the number of neonatal deaths to the nearest thousand, to avoid spurious precision in the numbers presented. See what happens if you replace`-3` in the above formular with `-2`. Note, positive numbers define the number of decimal places, when rounding numbers with decimal fractions.
 
-Close the `Map Options` panel to show the variables in the dataset once more. `Injured` is a continuous variable giving the number of people injured in each collision. Drag and drop it onto `Size`. The points will resize, and a legend will appear -- notice that Tableau's default behavior is to size cicles correctly, by area:
+(Here we have simply run some simple arithmetic, but it's possible to use a wide variety of functions to manipulate data in Tableau in many ways. To see all of the available functions, click on the little gray triangle at the right of the dialog boxes above.)
+
+#### Understand that Tableau's default behavior is to aggregate data
+
+As we work through today's exercise, we will see that Tableau  rountinely aggregates measures that are dropped into `Columns` and `Rows`, calculating a `SUM` or `AVG` (average), for example.
+
+This behavior can be turned off by selecting `Analysis` from the top menu and unchecking `Aggregate Measures`. However, I do not recommend doing this, as it will disable some Tableau functions. Instead, to visualize individual data points, we will use Tableau's filtering functions and the `Detail` shelf so that any aggregration is being performed on a single data point, and therefore has no effect.
+
+#### Make a series of treemaps showing neonatal deaths over time
+
+For any one year, a treemap allows us to directly compare the neonatal deaths in each country, nested by region.
+
+In a new worksheet, drag `Country` and `Region` onto `Columns` and `Neonatal deaths` onto `Rows`. Then open `Show Me` and select the `treemap` option. The initial chart should look like this:
 
 ![](./img/class3_6.jpg)
 
-`Crashsev` is a categorical variable giving the severity of the collision: fatal and three levels of injury, rated by of the most serious injury suffered. To correct the data type, select `Crashsev`, then click on the downward-pointing triangle and select `Convert to Dimension`. It will now move to the Dimensions panel. Hover again and select `Change Data Type>String`. It should now have an `Abc` label, designating it as text.
-
-Drag and drop `Crashsev` to `Color`. The map should now look this:
+Now remove `Region` from `Label` to  show just the country names, and drag `Region` to `Color`, and the rectangles will be colored using Tableau's default qualitative color scheme for categorical data:
 
 ![](./img/class3_7.jpg)
 
-What if you want to highlight the difference between collisions in which people died, and all of the others? First remove `Crashsev` from `Color`, either by dragging and dropping it back into the `Data` panel, or using the back arrow at top left. These controls are useful for undoing failed experiments, and stepping back and forth through your actions with a dataset.
+(Tableau's qualitative color schemes are well designed, so there is no need to adopt a ColorBrewer scheme. However, it is possible to edit colors individually as you wish.)
 
-Now click on `Crashsev` and select `Create Group`. At the dialog box, select 1, click `Group` and call it "Fatal." Select 2, 3 and 4, click `Group` and call this group "Injuries only." Name the new variable "Crash severity." When the dialog box looks like this, click `OK`:
+For a more subtle color scheme, click on `Color`, select `Edit Colors...` and at the dialog box select the `Tableau 10 Light` qualitative color scheme, then click `Assign Palette` and `OK`.
+
+Also click on `Color` and set transparency to 75%. (For your assignment you will create a chart with overlapping circles, which will benefit from using some transparency to allow all circles to be seen. So we are setting transparency now for consistency.)
+
+The treemap should now look like this:
 
 ![](./img/class3_8.jpg)
 
-Drag the new variable to `Color`. The map should look like this:
+Notice that Tableau has by default aggregated `Neonatal deaths` using the `SUM` function, so what we are seeing is the number for each country added up across the years.
+
+To see one year at a time, we need to filter by year. If you drag the existing `Year` variable to the `Filters` shelf, you will get the option to filter by a range of numbers, which isn't what we need:
 
 ![](./img/class3_9.jpg)
 
-Tableau's default color scheme for categorical variables has picked blue and orange, on opposite sides of the color wheel. That's OK, but the vibrant orange tends to dominate the blue, so let's change the colors.
+Instead, we need to be able check individual years, and draw a treemap for each one. To do that, select `Year` in the `Dimensions` panel and `Duplicate`.
 
-Under `Marks`, click `Color>Edit Colors`, and double-click on the color square for "fatal" to call up a color picker: the first three options allow you to use a color wheel, RGB sliders, and a color selector, where you can choose the `Web Safe Colors` palette to pick colors by their HEX values. Type a value of `ffcc00` for a yellow, highlight it in the panel above and click OK. Repeat the process for injury crashes, giving them a HEX value of `999999`, for a gray. Click `OK` again to update the color scheme and exit the dialog box.
-
-This is better, but is clear from reviewing the map that some circles lie over the top of one another. Adding some transparency will help reveal overlapping circles. Click on `Color`, and reduce the transparency to 60%. Also add a border to help delineate each circle, selecting the gray at the base of the color ramp that starts with black.
-
-The map should now look like this:
+Select the new variable and `Convert to Discrete` and then rename it `Year (discrete)`. Now drag this new variable to `Filters` and select 2013 (the last year for which there is data).
 
 ![](./img/class3_10.jpg)
 
-### Create a new calculated field, and resize the circles
-
-Reviewing the map again, there is still a problem with the fatal crashes -- any with deaths but no injuries are so small they are just about invisible. It makes little intuitive sense to de-emphasize crashes in which someone died, compared to those causing a single injury. We can fix that by resizing the circles to reflect the total number of deaths *and* injuries.
-
-Drag `Injured` back to the `Data` panel, and notice that more fatal crashes appear. Then from the top menu select `Analysis>Create Calculated Field`, and fill in the dialog box as follows, calling the new field `Killed and injured`, then click `OK`:
+The treemap now displays the data for 2013:
 
 ![](./img/class3_11.jpg)
 
-Now drag the new field to `Size`, and the map should look like this:
+That's good for a snapshot of the data, but with a little tinkering, we can adapt this visualization to show change in the number of neonatal deaths over time at the national, regional and global levels.
+
+Select `Year (discrete)` in the `Filters` shelf and `Filter ...` to edit the filter. Select all the years with odd numbers and click `OK`:
 
 ![](./img/class3_12.jpg)
 
-Now hover over the legend, click on the small downward-pointing triangle and select `Edit Sizes`. At the dialog box, check both `Start value in legend` and `End value for range`. This will ensure that the legend and sizes remain fixed when we later apply filters to the data.
-
-### Edit the tooltips
-
-Hover over one of the points on the map, and see that the tooltip displays values for each of the variables we have added to the map so far. The most useful *additional* information to provide in a tooltip, not evident at first glance, is the date of each collision, and a breakdown of the numbers killed and injured, so drag `Date`, `Injured` and `Killed` to `Tooltip`. Click on `Tooltip` and edit at the dialog box to remove the other variables. Also uncheck `Include command buttons`. This turns off some additional Tableau tooltip functionality, giving a plain tooltip:
+Now drag `Year (discrete)` onto `Rows` and the chart should look like this:
 
 ![](./img/class3_13.jpg)
 
-We can change the format of the dates shown. Click on `Date` in the `Dimensions` panel, select `Default Properties>Date Format>Standard Long Date` and click `OK`. Hover over a point to view the new format in the tooltip.
+The formatting needs work, but notice that we now have a bar chart made out of treemaps.
 
-### Save to the cloud
-
-Right-click on `Sheet 1`, select `Rename Sheet`, and call it "Map".
-
-Having finished the map, now is a good time to save our work. From the top menu, select `File>Save To Web`. At the logon dialog box enter your Tableau Public account details, give the Wookbook a suitable name and click `Save`. When the save is complete, you can close that window.
-
-### Make a column chart showing collisions by year
-
-From the top menu, select `Worksheet>New Worksheet`. Now we will create a column chart showing the number of collisions by year. `Year` is among the variables in the dataset, but we will instead put `Date` on the X axis by dragging it into `Columns`, to demonstrate Tableau's flexibility in working with dates and times.
-
-As a default, Tableau should select `YEAR(date)`, which is what we require here. Click on the downward-pointing triangle to see the other available options.
-
-The total number of collisions is given by a simple aggregation of the data: a count of the unique `CaseID` numbers. Drag `CaseID` to `Rows`. Tableau should default to a line graph, aggregating the data by adding up the `CaseID` numbers: `SUM(CaseID)`. To change the aggregation, click on the downward pointing triangle to the right and select `Measure>Count`.
-
-Under `Marks`, change `Automatic` to `Bar` to switch from a line chart to a bar/column chart, which should look like this:
+Extend the chart area to the right by changing from `Normal` to `Fit Width` on the dropdown menu in the top ribbon:
 
 ![](./img/class3_14.jpg)
 
-Drag `Crash severity` to `Color`, and notice how the color scheme we set on the map for this variable carries through to the new sheet. Select `Color>Edit Colors` and adjust the transparency and add a gray border to the bars, as we did for the circles on the map.
-
-Right-click on the Y axis and select `Edit Axis`, and edit the dialog box as follows. Selecting a `Fixed` axis will prevent it from resizing when we later filter the data:
+I find it more intuitive to have the most recent year at the top, so click on this sort icon in the top ribbon to change the order of the bars:
 
 ![](./img/class3_15.jpg)
 
-Disable tooltips for the column chart by clicking `Tooltip`, deleting everything, then clicking `OK`.
-
-The label "Date" at the top of the chart adds little, so right-click on it and select `Hide Field Labels for Columns`.
-
-Reviewing the column chart, there are possibilities to remove some chart junk and improve readability. We don't need the rectangle surrounding the chart, and some horizontal grid lines would help users estimate the data values.
-
-From the top menu, select `Format>Borders`. In the `Sheet` tab in the `Format Borders` panel, select `Row Divider>Pane>None` and `Column Divider>Pane>None` to remove the borders.
-
-Next, from the top menu, select `Format>Lines`. In the `Format Lines` panel, select the `Rows` tab and select a solid `Grid Line`. The tick marks are now redundant, so select `Axis Ticks>None`. Switch to the `Columns` tab and remove the tick marks from the X axis, as well.
-
-Rename the sheet as `Column chart: Years` and save to the web as before.
-
-The bar chart should look like this:
+The rectangles are now too small for the labels to work well. Rather than removing them entirely, let's just leave a label for India in 2013, to make it clear that this is the country with by far the largest number of neonatal deaths. Click on `Label` in the `Marks` shelf, and switch from `All` to `Selected` under `Marks to Label`. Then right-click on the rectangle for India in 2012, and select `Mark Label>Always Show`. Right click again on the rectangle and select `Format`. Under `Sheet`, open the dropdown menu for `Default>Pane` and set the color to a dark gray. The chart should now look like this:
 
 ![](./img/class3_16.jpg)
 
-### Make a column chart showing collisions by day of the week
+Close the `Format Font` panel by clicking on the cross at top right.
 
-We don't need to draw this chart from scratch, because it can be made with just a simple edit from the previous chart. Click on the `Column chart: Years` tab and select `Duplicate Sheet`. In `Columns`, click on the downward-pointing triangle for `YEAR(Date)`, and select `More>Weekday`. Edit the axis so that the `Fixed` range ends at 550.
+We will create a map to serve as a legend for the regions, click on the title bar color legend and select `Hide Card` to remove it from the visualization.
 
-Giving the full name for each day is unneccesary. In the `Format Lines` panel (open it again if you have closed it), select `Fields>WEEKDAY(Date)`. Select the `Header` tab and select `Dates>Abbreviation`.
+To remove some clutter from the chart, select `Format>Borders` from the top menu, and under `Sheet>Row Divider` and `Sheet>COlumn Divider`, set `Pane` to `None`. Then close the `Format Borders` panel.
 
-Close the `Format` panel, rename the sheet `Column chart: Weekday` and save to the web as before.
-
-The chart should look like this:
+Right-click on `Year (discrete)` at the top left of the chart and select `Hide Field Labels for Rows`. Then hover just above the top bar to get a double-arrowed drag symbol and drag upwards to reduce the white space at the top. You may also want to drag the bars a little closer to the year labels. The chart should now look like this:
 
 ![](./img/class3_17.jpg)
 
-### Create filters for the data
-
-We will now filter the data to look at collisions in which pedestrians or bicyles were involved. Go back to the Map worksheet. `Pedcol` is the first relevant variable; to make it display intuitively, click on it and select `Create Group`. Edit the dialog box to look like this, and click `OK`:
+Hover over one of the rectangles, and notice the tooltip that appears. By default, all the fields we have used to make the visualization appear in the tooltip. (If you need any more, just drag those fields onto `Tooltip`.) Click on `Tooltip` and edit as follows:
 
 ![](./img/class3_18.jpg)
 
-Repeat the process for `Biccol`, calling the new field "Cyclist involved?" Now drag each of the new fields to `Filters`. At the dialog box, select `All` and then `OK`:
+#### Save to the web
+
+Right-click on `Sheet 1` at bottom left and `Rename Sheet` to `Treemap bar chart`. Then select `File>Save to Tableau Public...` from the top menu. At the logon dialog box enter your Tableau Public account details, give the Wookbook a suitable name and click `Save`. When the save is complete, a view of the  visualization on Tableau's servers will open in your default browser.
+
+#### Make a map to use as a color legend
+
+Select `Worksheet>New Worksheet` from the top menu, and double-click on `Country`. Tableau recognizes the names of countries and states/provinces; for the U.S., it also recognizes counties. Its default map-making behavior is to put a circle at the geographic center, or centroid, of each area, which can be scaled and colored to reflect values from the data:
 
 ![](./img/class3_19.jpg)
 
-This has created the filters; now we need to create the controls. Hover over each variable in `Filters`, click on the downward-pointing triangle, and select `Show Quick Filter`. A filter control should now appear to the right of the chart. The default is a series of check boxes, which isn't really suitable here, but we can change each control by hovering over its title and selecting `Single Value (Dropdown)`.
+However, we need each country to be filled with color by region. Using `Show Me`, switch to the `filled map` option, and each nation should fill with color. Drag `Region` to `Color` and see how the same color scheme we used previously carries over to the map. Click on `Color`, set the transparency to 75% to match the bubble chart and remove the borders. Also click on `Tooltip` and uncheck `Show tooltip` so that no tooltip appears on the legend.
 
-Now hover over each variable in `Filters` and select `Apply to Worksheets>All Using This Data Source`. This will allow the filters to control the map and both charts in unison. Set both filters to the starting state of `All`, and the map should look like this:
+We will use this map as a color legend, so its separate color legend is unnecessary. Click the color legend’s title bar and select `Hide Card` to remove it from the visualization.
+
+Center the map in the view by clicking on it, holding and panning, just as you would on Google Maps. It should now look something like this:
 
 ![](./img/class3_20.jpg)
 
-### Combine the worksheets into a dashboard
+Rename the worksheet `Map legend` and save to the web again.
 
-From the top menu, select `Dashboard>New Dashboard`. We can set the size of the dashboard to fit the web page on which we want to embed it, and this can be a `Range`, giving some basic responsive design. To see how this works, change the `Max` width (w) to 1000 pixels, allowing the dashboard to expand to fill most of a standard desktop computer screen.
+#### Make a line chart showing neonatal mortality rate by country over time
 
-Drag `Map` into the dashboard. The default title of "Map" isn't very informative, so right-click on that and select `Hide Title`.
+To explore the neonatal death rate over time by country, we can use a line chart.
 
-When adding sheets to the dashboard, You can make them `Tiled` or `Floating`, which allows new items to be placed over one another. Here we will stick with the `Tiled` option. Drag the weekday bar chart to the lower half of the map. Drop it when you see a gray rectangle in this position. Drag the year bar chart to the right of the weekday bar chart
-
-Notice that Tableau allows you to drop various other items into a dashboard: horizontal and vertical containers, text boxes, images, web pages and blank space. Drag a `Blank` between the two charts, and reduce its size to provide some modest padding between the two. This works like adjusting the size of normal windows on your computer.
-
-Now is the time to adjust the sizes and tweak the formats of the items on the dashboard to give a pleasing display. You may need to rotate the X axis labels on the weekday bar chart: right-click on any of them to call up the `Rotate Label` option. You may also need to adjust the position of the X axes on the two bar charts so that they align. I also suggest going back to the sheet for the year bar chart, selecting `Size` and adjusting the slider to make the width of the bars on the dashboard match those of the other chart.
-
-All of this will take some trial and error, and you may also need to pan and zoom the map to keep all the points nicely in view.
-
-From the top menu select `Dashboard>Show Title`, replace `<Sheet Name>` with an appropriate title/subtitle and adjust the alignment, fonts and styles as desired.
-
-Rename the dashboard as `Berkeley traffic accidents (2007-2011)`, save to the web, and note that the resulting window provides code to embed the interactive on your website.
-
-The finished dashboard should look something like this:
+First, rename `Neonat Mortal` as `Neonatal death rate (per 1,000 births)`. Then, open a new worksheet, drag this variable to `Rows` and `Year` to `Columns`.  The chart should now look like this:
 
 ![](./img/class3_21.jpg)
 
-Take some time now to explore the data using the filters.
+Now drag `Country` to `Detail` in the `Marks` shelf to draw one line per country:
 
-### From dashboards to stories
+![](./img/class3_22.jpg)
 
-Tableau also allows you to create stories, which combine successive dashboards into a step-by-step narrative. Having already made a dashboard, you will find these simple and intuitive to create. Select `New Blank Point` to add a new scene to the narrative.
+Drag region to `Color`, set the transparency to 75%, and remove the color legend. Notice that this data starts in 1990. To make the range consistent with the treemaps, drag `Year (discrete)` to filter and select all years apart from 1990 and 2014.
 
-### Assignment
+Now right-click on the X axis, select `Edit Axis`, edit the dialog box as follows and click `OK`:
 
-- Formulate some more questions about the Berkeley traffic accident data.
-- Produce a second dashboard that addresses these questions.
-- Combine the two dashboards into a Tableau story.
-- Email your questions, and the url for the finished visualization on the Tableau website, to me. Also suggest any other data, not available in the dataset, that might improve the analysis.
+![](./img/class3_23.jpg)
+
+To minimize chart junk, select `Format>Borders` from the top menu, and under `Sheet` set all the options to `None`. Then select `Format>Lines` from the top menu, under `Columns` set `Grid Lines` to `None`, and under `Sheet` set `Axis Ticks` to `None`.
+
+Right-click on the X axis again, select `Format`, change `Alignment` to `Up` and use the dropdown menu set the `Font` to bold.
+
+The chart should now look like this:
+
+![](./img/class3_24.jpg)
+
+We can also highlight the countries with the highest total number of neonatal deaths by dragging `Neonatal deaths` to `Size`. The chart should now look like this:
+
+![](./img/class3_25.jpg)
+
+This line chart shows that the trend in most countries has been to reduce neonatal deaths, while some countries have had more complex trajectories. But to make comparisons between individual countries, it will be necessary to add controls to filter the chart.
+
+Tableau's default behavior when data is filtered is to redraw charts to reflect the values in the filtered data. So if we want the Y axis and the line thicknesses to stay the same when the chart is filtered, we need to freeze them.
+
+To freeze the line thicknesses, hover over the title bar for the line thickness legend, select `Edit Sizes...` and fill in the dialog box as follows:
+
+![](./img/class3_26.jpg)
+
+Now remove this legend from the visualization. We will later add an annotation to our dashboard to explain the line thickness.
+
+To freeze the Y axis, right-click on it, select `Edit Axis...`, make it `Fixed` and click `OK`:
+
+![](./img/class3_27.jpg)
+
+Right-click on the Y axis again, select `Format...` and increase the font size to `10pt` to make it easier to read.
+
+Now drag `Country` to `Filters`, make sure `All` are checked, and at the dialog box, and click `OK`:
+
+![](./img/class3_28.jpg)
+
+Now we need to add a filter control to select countries to compare. On `Country` in the `Filters` shelf, select `Show Quick Filter`. A default filter control, with a checkbox for each nation, will appear to the right of the chart:
+
+![](./img/class3_29.jpg)
+
+This isn't the best filter control for this visualization. To change it, click on the title bar for the filter, note the range of filter controls available, and select `Multiple Values (Custom List)`. Then select `Edit Title...` and add some text explaining how the filter works:
+
+![](./img/class3_30.jpg)
+
+Take some time to explore how this filter works.
+
+Rename `Income Group` to `Income group` so its case is consistent with the other variables named on the chart. Then add `Region` and `Income group` to `Filters`, making sure that `All` options are checked for each. Select `Show Quick Filter` for both of these filters, and select `Single Value Dropdown` for the control. Reset both of these filters to `All`, and the chart should now look like this:
+
+![](./img/class3_31.jpg)
+
+Notice that the `Income group` filter lists the options in alphabetical order, rather than income order, which would make more sense. To fix this, selec `Income group` in the data panel, select `Manual` sort, edit the order as follows and click `OK`
+
+![](./img/class3_32.jpg)
+
+Now let's provide a single label to highlight India, as we did for the treemap. Drag `Country` onto `Label`, then click on `Label` and highlight `Selected`. Then hover over the line for India, select a point, right-click and select `Mark Label>Always Show`. Right-click on the point again, select `Format` and under `Sheet>Pane` set the font color to a dark gray.
+
+The chart should now look like this:
+
+![](./img/class3_33.jpg)
+
+Finally, click on `Tooltip` and edit as follows:
+
+![](./img/class3_34.jpg)
+
+Rename the sheet `Line chart` and save to the web.
+
+#### Make a dashboard combining both charts
+
+From the top menu, select `Dashboard>New Dashboard`. We can set the size of the dashboard to fit the web page in which it will be embedded, and this can be a `Range`, giving some basic responsive design. For simplicity, we will set the dashboard to `Laptop` size.
+
+To make a dashboard, drag charts, and other elements from the left-hand panel to the dashboard area. Notice that Tableau allows you to items including: horizontal and vertical containers, text boxes, images (useful for adding a publication's logo), embedded web pages and blank space.
+
+Drag `Treemap bar chart` from the panel at left to the main panel. The default title, from the worksheet name, isn't very informative, so right-click on that and select `Hide Title`. Select `Fit Width` to make the chart fill the dashboard area:
+
+![](./img/class3_35.jpg)
+
+Now add `Line Chart` to the right of the dashboard and hide its title. The dashboard should now look like this:
+
+![](./img/class3_36.jpg)
+
+This needs some reformatting. Drag the bottom of the first filter control down to create some room for the lists of countries that it will create.
+
+Notice that the `Country`, `Region` and `Income group` filters control only the line chart. To make them control the treemaps, too, for each filter select `Apply to Worksheets>Selected Worksheets...` and fill in the dialog box as follows:
+
+![](./img/class3_37.jpg)
+
+The filters will now control both charts.
+
+Add `Map legend` for a color legend at bottom right. Hide its title then right-click on the map and select `Hide Map Search` and `Hide View Toolbar` to remove the map controls.
+
+We can also allow the highlighting of a country on one chart to be carried across the entire dashboard. Select `Dashboard>Actions...` from the top menu, and at the first dialog box select `Add action>Highlight`. Filling the second dialog box as follows will cause each country to be highlighted across the dashboard when it is clicked on just one of the charts:
+
+![](./img/class3_38.jpg)
+
+Click `OK` on both dialog boxes to apply this action.
+
+Select `Dashboard>Show Title` from the top menu. Right-click on it, select `Edit Title...` and change from the default to something more informative:
+
+![](./img/class3_39.jpg)
+
+Now drag a `Text` box to the bottom of the dahboard and add a footnote giving source information:
+
+![](./img/class3_40.jpg)
+
+Now switch to the `Floating` option for new objects, which allows one to be placed over the top of another. Then drag a `Text` box to the top of the line chart to add an annotation explaining the thickness of the lines.
+
+Give the dashboard an appropriate name, and save to the web.
+
+The final dashboard should look like this:
+
+![](./img/class3_41.jpg)
+
+Take some time to consider how this visualization of the data works, in relation to the principles we discussed in the opening session.
+
+Once the dashboard is online, use the `Share` link at the bottom to obtain an embed code, which can be inserted into the HTML of any web page.
+
+![](./img/class3_42.jpg)
+
+(You can also `Download` a static view of the graphic as a PNG image or a PDF.)
+
+You can download the workbook for any Tableau visualization by selecting `Download>Workbook`. The files (which will have the extension `.twbx`) will open in Tableau Public.
+
+Having saved a Tableau visualization to the web, you can reopen it by selecting `File>Open from Tableau Public...` from the top menu.
+
+#### From dashboards to stories
+
+Tableau also allows you to create stories, which combine successive dashboards into a step-by-step narrative. Select `Story>New Story` from the top menu. Having already made a dashboard, you should find these simple and intuitive to create. Select `New Blank Point` to add a new scene to the narrative.
+
+#### Better responsive design
+
+While the Tableau dashboard size `Range` option gives some basic responsive design, this will not easily allow you to create dashboards that work on every device from a small smartphone to a large desktop computer.
+
+I would suggest creating three different dashboards, each with a size `Range` appropriate for phones, tablets, and desktops respectively. You can then follow the instructions [here](https://public.tableau.com/s/blog/2014/11/making-responsive-tableau-dashboards) to put the embed codes for each of these desktops into a div with a separate class, and then use `@media` CSS rules to ensure that only the div with the correct dashboard displays, depending on the size of the device.
+
+If you need to make a fully responsive Tableau visualization and are struggling with these instructions, contact me for help!
+
+As for all responsively designed web pages, make sure to include this line of code between the `<head></head>` tags of your HTML:
+
+```CSS
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+###Assignment
+
+- Create [this second dashboard](https://public.tableau.com/profile/publish/neonatal/Savingthechildren2#!/publish-confirm) from the data. Here are some hints:
+
+ - Drop `Year` into the `Pages` shelf to create the control to cycle throught the years.
+ - Remember to filter the data for the same year range as the first dashboard.
+ - You will need to change the `Marks` to solid circles and increase their size. Good news: Tableau's default behavior is to size circles correctly by area, so they will be the correct sizes, relative to one another.
+ - You will need to switch to a `Logarithmic` X axis and alter/fix its range.
+ - Format GDP per capita in dollars by clicking on it in the `Data` panel and selecting `Default Properties>Number Format>Currency (Custom)`.
+ - Create a single trend line for each year's data, so that the line shifts with the circles from year to year. Do this by dragging `Trend line` into the chart area from the `Analytics` panel. You will then need to select `Analysis>Trend Lines>Edit Trend Lines...` and adjust the options to give a single line with the correct behavior.
+ -  Getting the smaller circles rendered on top of the larger ones, so their tooltips can be accessed, is tricky. To solve this, open the dropdown menu for `Country` in the `Marks` shelf, select `Sort` and fill in the dialog box as follows:
+ -  
+   ![](./img/class3_43.jpg)
+
+   Now drag `Country` so it appears at the top of the list of fields in the `Marks` shelf.
+
+ This should be a challenging exercise that will help you learn how Tableau works. If you get stuck, download my visualization and study how it is put together. 
+- By next week's class, send me the url for your second dashboard. 
 
 ### Further reading/viewing
 
 [Tableau Public training videos](http://www.tableausoftware.com/public/training)
 
-[Gallery of Tableau Public visualizations](http://www.tableausoftware.com/public/gallery/all): You can download any of these examples using the links at bottom right and open the files (which will have the extension `.twbx`) with Tableau Public to see how they were put together.
+[Gallery of Tableau Public visualizations](http://www.tableausoftware.com/public/gallery/all): Again, you can download the workbooks to see how they were put together.
 
 [Tableau Public Knowledge Base](http://www.tableausoftware.com/public/knowledgebase/all): Useful resource with the answers to many queries about how to use the software.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
