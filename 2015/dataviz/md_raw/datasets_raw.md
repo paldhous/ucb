@@ -68,10 +68,6 @@ The file `storms.csv` contains [data on tropical storms and hurricanes](http://w
 
 This file contains data on storms from 1851 to 2014. However, you may wish to restrict your visualizations to storms from 1990 and later, as data on storms before the modern satellite era is less reliable.
 
-You may also wish to relate this data to information on casualties and damage caused by storms from [The International Disaster Database](http://emdat.be/). You will need to filter for `Tropical cyclone` in the `subtype` field to restrict the data to the same North Atlantic storms. See [here](http://www.emdat.be/source-entry) for more details about this data.
-
-There is no simple way to join this data to the `storms.csv` file, however.
-
 This collection of data is good for mapping. If you need shapefiles for context and basemaps, try [Natural Earth](http://www.naturalearthdata.com/downloads/). These shapefiles each come with a `README.html` file that can be opened in a web browser for more information.
 
 
@@ -115,7 +111,7 @@ The data is provided as a series of spreadsheets in `.xlsx` format. The file `gl
 
 You can then export as a CSV or tab-delimited text file for analysis, visualization and mapping; you can use the field `eventid` as a primary database key, so make sure to retain this column when processing the data in Open Refine. Because there is no need to create a new primary key field, you do not need to create the table first if importing into SQLite. Simply use the import icon in the SQLite Manager:
 
-![](./img/class4_15.jpg)
+![](./img/datasets_1.jpg)
 
 When prompted, modify the table to give each field the correct data type as detailed in the codebook.
 

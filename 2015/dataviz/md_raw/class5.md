@@ -2,7 +2,7 @@
 
 You will probably all have previously used spreadsheets to organize and analyze data. Today's class aims to take your skills to the next level, by introducing databases and the language used to query them. Databases can handle larger datasets, and with practice are more flexible and nimble for **filtering**, **sorting**, and grouping and **aggregating** data.
 
-Databases also allow you to **join** multiple data tables into one, or match records across different datasets, if they have common fields – which can be a powerful tool.
+Databases also allow you to **join** multiple data tables into one, or match records across different datasets, if they have common fields -- which can be a powerful tool.
 
 It often makes sense to process data in a database before exporting to the software you will use to visualize it.
 
@@ -14,7 +14,7 @@ SQLite claims to be the most widely-used database software in the world, and is 
 
 The SQLite Manager add-on allows you to work with any SQLite database. Open SQLite Manager by selecting `Tools>SQLite Manager` in Firefox. You should see a screen like this:
 
-![](./img/class4_1.jpg)
+![](./img/class5_1.jpg)
 
 ### Data
 
@@ -31,7 +31,7 @@ Databases contain Tables of data. At present, this database contains only one Ta
 
 Select the `pfizer` Table in the panel to the left, and click the `Browse and Search` tab in the right-hand panel. You should now be able to see the first few rows of the data in the table:
 
-![](./img/class4_2.jpg)
+![](./img/class5_2.jpg)
 
 Notice that it looks much like a spreadsheet, except that columns and rows are not designated by letters and numbers in a coordinate system. Instead, the column names, called “fields” in a database, are fixed. Here each row, or “record,” has a unique ID number, created by SQLite as a “Primary Key” when the data was imported. (We will do this later with a new Table.)
 
@@ -59,7 +59,7 @@ ORDER BY total DESC;
 ```
 Click `Run SQL` and you should see the following results:
 
-![](./img/class4_3.jpg)
+![](./img/class5_3.jpg)
 
 Let’s break this query down:
 
@@ -116,7 +116,7 @@ Notice from the above that you can sort by more than one field; in this case bot
 
 This should be the result of the last query:
 
-![](./img/class4_4.jpg)
+![](./img/class5_4.jpg)
 
 ### Save and export queries
 
@@ -126,11 +126,11 @@ Click OK, and at the next dialog box click Yes. Double click on Views in the lef
 
 Now click on the `Structure` tab, which should look like this:
 
-![](./img/class4_5.jpg)
+![](./img/class5_5.jpg)
 
 To export a query, click on `Export`, then fill the dialog box in as follows:
 
-![](./img/class4_6.jpg)
+![](./img/class5_6.jpg)
 
 Selecting the `CSV` tab saves the query as a CSV or other text file. I usually save with a `Tab` separating the fields, to give a tab-delimited text file, like those we have used in previous weeks. Make sure to check `First row contains column names`; selecting `Double quotes(") if necessary(Standard)` will enclose all text entries in the data in double quotes.
 
@@ -154,7 +154,7 @@ ORDER BY state_total DESC;
 ```
 Click `Run SQL` and you should see the following results:
 
-![](./img/class4_7.jpg)
+![](./img/class5_7.jpg)
 
 Again, let’s break this query down:
 
@@ -181,7 +181,7 @@ ORDER BY expert_total DESC;
 ```
 Click `Run SQL` and you should see the following results:
 
-![](./img/class4_8.jpg)
+![](./img/class5_8.jpg)
 
 This query introduces the `HAVING` clause:
 ```sql
@@ -202,7 +202,7 @@ GROUP BY state, category;
 ```
 This should be the result:
 
-![](./img/class4_9.jpg)
+![](./img/class5_9.jpg)
 
 ### Replicate this query as a pivot table in Libre Office Calc
 
@@ -210,13 +210,13 @@ To human eyes, this data would be easier to read if it were in a table with the 
 
 SQLite lacks a pivot function, and this is one task where a spreadsheet has an advantage. So let's briefly put the database to one side, and import the Pfizer data, which is in the file `pfizer.txt`, into Libre Office Calc by selecting `Insert>Sheet From File` form the top menu. Save the spreadsheet, then select `Data>Pivot Table>Create` from the top menu, and click `OK` when the data is selected. At the next dialog box, drag and drop the fields as follows:
 
-![](./img/class4_10.jpg)
+![](./img/class5_10.jpg)
 
 Note that the default is to aggregate the totals using `Sum`, which is what we want here. You can select other aggregate measures by clicking `Options ...`.
 
 Click `OK`, and this should be the result:
 
-![](./img/class4_11.jpg)
+![](./img/class5_11.jpg)
 
 Save and close the spreadsheet, then return to the database.
 
@@ -246,7 +246,7 @@ Running nested queries like this takes some practice. When starting out, you may
 
 Each of these queries should give the following result:
 
-![](./img/class4_12.jpg)
+![](./img/class5_12.jpg)
 
 ### Create a new data table, and import data
 
@@ -254,7 +254,7 @@ Now we will create a second table and import data, in the file `fda.txt`, giving
 
 Import the file into Libre Office Calc to view the data. The first few rows look like this when imported into a spreadsheet:
 
-![](./img/class4_13.jpg)
+![](./img/class5_13.jpg)
 
 Notice that the dates are in the format `YYYY-MM-DD`. I strongly advise converting dates into this format for all of your data processing work, as it is an international standard, widely understood by data analysis software including SQLite. If your date also includes the time of day, use one of the following formats:
 
@@ -268,7 +268,7 @@ Return to the database, and create a table into which to import the data. Select
 
 Now fill in the import dialog box as follows:
 
-![](./img/class4_14.jpg)
+![](./img/class5_14.jpg)
 
 The first `id` field will be automatically created when the data is imported, giving a unique ID number to each record. For this field, make sure to select `INTEGER` for Data Type, and to check the `Primary Key` and `Autoinc` boxes.
 
@@ -278,15 +278,15 @@ The other Column Names match those in the data; take care to select the correct 
 
 Click `Yes` at the next dialog box, which will show the SQL code being used to create the table.
 
-Now we can import the data, by clicking the `Import` icon: ![](./img/class4_15.jpg)
+Now we can import the data, by clicking the `Import` icon: ![](./img/class5_15.jpg)
 
 Fill in the dialog box as follows, and select `OK` at the subsequent prompts:
 
-![](./img/class4_16.jpg)
+![](./img/class5_16.jpg)
 
 With the new `fda` Table selected in the left panel, select the `Browse & Search` tab to view the imported data:
 
-![](./img/class4_17.jpg)
+![](./img/class5_17.jpg)
 
 Notice that empty values, called `NULLS`, are color-coded in pink.
 
@@ -313,7 +313,7 @@ ORDER BY issued_year;
 ```
 It will give the following results:
 
-![](./img/class4_18.jpg)
+![](./img/class5_18.jpg)
 
 The following query illustrates other some other date functions, to return all the fields in the FDA table, with a new column showing how many days have elapsed since each letter was issued:
 
@@ -324,7 +324,7 @@ ORDER BY issued;
 ```
 At the time of writing these class notes, this query gave the following results:
 
-![](./img/class4_19.jpg)
+![](./img/class5_19.jpg)
 
 Let's break this query down:
 
@@ -352,7 +352,7 @@ WHERE pfizer.category LIKE 'Expert%';
 ```
 This will give the following results:
 
-![](./img/class4_20.jpg)
+![](./img/class5_20.jpg)
 
 Again, let's break this query down.
 
@@ -379,27 +379,27 @@ First create a new database by selecting `Database>New Database` and saving the 
 
 Open the file `gdp_pc.txt` in Libre Office Calc, which should look like this:
 
-![](./img/class4_21.jpg)
+![](./img/class5_21.jpg)
 
 Notice that each country has a two-letter code, which we will use as the basis for the join. These are unique identifying codes for each record in the data, so can serve as a Primary Key. The columns with the year headings contain the GDP per capita data. The `-99` values here represent `NULL` values.
 
 This time we will skip the step of first creating a Table, as we do not need to create a new Primary Key, and simply hit the Import Icon to pull in the data. Fill in the first dialog box as follows:
 
-![](./img/class4_22.jpg)
+![](./img/class5_22.jpg)
 
 You will be asked if you want to modify the table. Click `OK` to do so, and select the following data types for each field. `FLOAT` casts the GDP per capita data as floating-point numbers, which we need as they contain decimal fractions. Notice that we have made `iso2c` into the Primary Key:
 
-![](./img/class4_23.jpg)
+![](./img/class5_23.jpg)
 
 View the imported data using the `Browse & Search` tab:
 
-![](./img/class4_24.jpg)
+![](./img/class5_24.jpg)
 
 Open the file `nations.txt` in Calc and notice that it contains a field called `iso_a2` which contains the same two-letter country codes as in the previous Table. In this case, this field is not a unique identifier for each record. However, the data also contains a field called `admin`, which is a unique name for each territory, and so can serve as a Primary Key.
 
 Now import this file into SQLite. Here, we don't need to worry about specifying the data types for each field. Instead, just ensure that `admin` is cast as `VARCHAR` and make it the Primary Key:
 
-![](./img/class4_25.jpg)
+![](./img/class5_25.jpg)
 
 Now we can run this query to join all of the data from the `nations` Table to matching data from the `gdp_pc` Table:
 

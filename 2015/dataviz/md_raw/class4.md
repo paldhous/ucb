@@ -8,11 +8,19 @@ For data journalists, the main problem today is usually not finding relevant dat
 
 In this class, we will cover some tips and tricks for finding the data you need online, getting it onto your computer, and how to recognize and clean “dirty” data. We will also review some common data formats, and how to convert from one to another.
 
+### The data we will use today
+
+Download the data for this session from [here](data/week4.zip), unzip the folder and place it on your desktop. It contains the following files:
+
+- `oil_production.csv` Data on oil production by world region from 2000 to 2014, in thousands of barrels per day, from the [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/iedindex3.cfm?tid=5&pid=53&aid=1&cid=regions,&syid=2000&eyid=2014&unit=TBPD).
+
+- `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/Pages/Default.aspx).
+
 ### Data portals
 
 Life is much easier if you can find everything you need in one place. The main effort to centralize access to data by the U.S. federal government is [Data.gov](http://www.data.gov/). You can search for data from the home page, or follow the [Data](http://catalog.data.gov/dataset) and Topics links from the top menu.
 
-Be warned, however, that Data.gov is a work in progress, and so far contains just a proportion of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. [FedStats](http://fedstats.sites.usa.gov/) is a good starting point for searching and browsing if you are unsure of which agency may hold the data you're looking for.
+Be warned, however, that Data.gov is a work in progress, and does not contain all of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. [FedStats](http://fedstats.sites.usa.gov/) has [links to agencies](http://fedstats.sites.usa.gov/agencies/) with with data collections.
 
 As a data journalist, it is worth familiarizing yourself with the main federal government agencies that have responsibility for the beats you are interested in, and the datasets they maintain. Here are some examples of agencies with useful data:
 
@@ -28,9 +36,9 @@ As a data journalist, it is worth familiarizing yourself with the main federal g
 
 Other data portals at various levels of government are emerging. The City and County of San Francisco, for example, was at the forefront of the Open Data movement, establishing [DataSF](https://data.sfgov.org/) in 2009.
 
-If you need to make comparisons between nations, the [**World Bank**](http://data.worldbank.org/indicator/all) probably has what you need, its catalog containing data for more than 7,000 different measures, compiled by the bank and other UN agencies.
+If you need to make comparisons between nations, the [**World Bank**](http://www.worldbank.org/) probably has what you need. Its [World Development Indicators catalog](http://data.worldbank.org/indicator/all) containing data for more than 7,000 different measures, compiled by the bank and other UN agencies.
 
-You can navigate the site using the “Find an indicator" search box or the [By Topic](http://data.worldbank.org/topic) link. When you click on a particular indicator, you are sent to a page that gives options to download the dataset from a link near the top right of the page. The data in some cases goes back as far as 1960, and is listed both by individual country and summarized by regions and income groups. We will work with some of this data in a later class.
+You can navigate the site using the `Find an indicator` search box or the [By Topic](http://data.worldbank.org/topic) link. When you click on a particular indicator, you are sent to a page that gives options to download the dataset from a link near the top right of the page. The data in some cases goes back as far as 1960, and is listed both by individual country and summarized by regions and income groups. We will work with some of this data in a later class.
 
 Other useful sources of data for international comparisons are [**Gapminder**](http://www.gapminder.org/data/) and the **[UN Statistical Division](http://unstats.un.org/unsd/default.htm)**. For health data in particular, try the **[Organisation for Economic Co-operation and Development](http://www.oecd.org/els/health-systems/health-data.htm)** and the **[World Health Organization](http://who.int/research/en/)**.
 
@@ -38,11 +46,11 @@ Other useful sources of data for international comparisons are [**Gapminder**](h
 
 Often, however, your starting point in searching for data will be Google. Often simply combining a few keywords in a Google search with “data” or “database” is enough to find what you need, but it can be worth focusing your queries using Google’s [advanced search](http://www.google.com/advanced_search):
 
-![](./img/class5_1.jpg)
+![](./img/class4_1.jpg)
 
 (Source: [Google](http://www.google.com/advanced_search))
 
-The options to search by `site or domain` and `file type` are can be very useful when looking for data. For example, the [U.S. Geological Survey](http://www.usgs.gov/) is the best source of data on earthquakes and seismic risk, so when searching for this information, specifying the domain `usgs.gov` would be a good idea. You can make the domains as narrow or broad as you like: `.gov`, for instance, would search a wide range of US government sites, while `.edu` would search the sites of all academic institutions using that top-level domain; `journalism.berkeley.edu` would search the web pages of the Berkeley J-School only.
+The options to search by `site or domain` and `file type` are can be very useful when looking for data. For example, the [U.S. Geological Survey](http://www.usgs.gov/) is the best source of data on earthquakes and seismic risk, so when searching for this information, specifying the domain `usgs.gov` would be a good idea. You can make the domains as narrow or broad as you like: `.gov`, for instance, would search a wide range of U.S. government sites, while `.edu` would search the sites of all academic institutions using that top-level domain; `journalism.berkeley.edu` would search the web pages of the Berkeley J-School only.
 
 The file type search offers a drop-down menu, with the options including Excel spreadsheets, and Google Earth `KML` and `KMZ` files. These are common data formats, but you are not limited to those on the menu. In a regular Google search, type a space after your search terms followed by `filetype:xxx`, where `xxx` is the suffix for the file type in question. For example, `dbf` will look for database tables in this format. Combining file type and domain searches can be a good way to find data an agency has posted online -- some of which may not otherwise be readily accessible.
 
@@ -52,17 +60,19 @@ One common data format doesn’t show up file type searches. Geographical data i
 
 Many important public databases can be searched online, and some offer options to download the results of your queries. Most of these databases give a simple search box, but it’s always worth looking for the advanced search page, which will offer more options to customize your search. Here, for example, is the [advanced search](http://clinicaltrials.gov/ct2/search/advanced) page for [ClinicalTrials.gov](http://clinicaltrials.gov/), a database of tests of experimental drugs and other medical treatments taking place in the U.S. and beyond:
 
-![](./img/class5_2.jpg)
+![](./img/class4_2.jpg)
 
 (Source: [ClinicalTrials.gov](http://clinicaltrials.gov/ct2/search/advanced))
 
 When you start working with a new online database, take some time to familiarize yourself with how its searches work: Read the Help or FAQs, and then run test searches to see what results you obtain. [Here](http://clinicaltrials.gov/ct2/help/how-find/index), for example, is the "How To" section of ClinicalTrials.gov.
 
-Many online databases can be searched using Boolean logic, which we touched upon in our database class, using the operators `AND`, `OR` and `NOT` to link search terms together. So find out how a particular database uses Boolean logic -- and the default settings that it will use if you list search terms without any Boolean operators.
+Many online databases can be searched using Boolean logic, using the operators `AND`, `OR` and `NOT` to link search terms together. `AND` will return only data including both search terms; `OR` will return data containing either term; `NOT` will return data containing the first term but not the second.
+
+So find out how a particular database uses Boolean logic -- and the default settings that it will use if you list search terms without any Boolean operators.
 
 Putting search terms in quote marks often searches for a specific phrase. For example, searching for “heart attack” on ClinicalTrials.gov will give only give results in which those two words appear together; leaving out the quote marks will include any trial in which both words appear.
 
-Also find out whether the database allows “wildcards,” symbols such as `*` or `%` that can be dropped into your search to obtain results with variations on a word or number. For example, in a database that may contain entries in both American and British English, you might use a wildcard to be sure you obtain results with both spelling variants, such as `colo*r`.
+Also find out whether the database allows “wildcards,” symbols such as `*` or `%` that can be dropped into your search to obtain results with variations on a word or number.
 
 ### Look for download options -- and know when you are hitting the wall
 
@@ -86,7 +96,7 @@ Note that large text files are again often stored in compressed folders, so may 
 
 The BMIS database also illustrates another useful tip when looking for data. It is compiled from information supplied in [this government form](http://www.fda.gov/downloads/AboutFDA/ReportsManualsForms/Forms/UCM074728.pdf):
 
-![](./img/class5_3.jpg)
+![](./img/class4_3.jpg)
 
 (Source: [Food and Drug Administration](http://www.fda.gov/downloads/AboutFDA/ReportsManualsForms/Forms/UCM074728.pdf))
 
@@ -94,11 +104,11 @@ Wherever a government agency collects information using paper or electronic form
 
 ### Ask for what you don't find
 
-That leads to another general tip: If you don't find what you're looking for, speak to government officials, academic experts and other sources who should know about what data exists, and whether they can provide it for you. I have often obtained data, including for this [animated map of cicada swarms](http://newscientistapps.github.io/cicadas/), simply by asking for it (and, of course, promising proper attribution):
+That leads to another general tip: If you don't find what you're looking for, speak to government officials, academic experts and other sources who should know about what data exists, and ask whether they can provide it for you. I have often obtained data, including for this [animated map of cicada swarms](http://newscientistapps.github.io/cicadas/), simply by asking for it (and, of course, promising proper attribution):
 
-![](./img/class5_4.jpg)
+![](./img/class4_4.jpg)
 
-(Source: *[New Scientist](http://newscientistapps.github.io/cicadas/)*)
+(Source: *[New Scientist](http://paldhous.github.io/cicadas/)*)
 
 ### Automate downloads of multiple data files
 
@@ -108,7 +118,7 @@ To illustrate, go to [Gapminder's data catalog](http://www.gapminder.org/data/),
 
 At the dialog box, you can choose where to save the files, and to filter the links to select just the files you want. In this case, unchecking all the boxes and `Fast Filtering` using the term `xls` will correctly identify the spreadsheet downloads:
 
-![](./img/class5_5.jpg)
+![](./img/class4_5.jpg)
 
 
 ### Extract data from tables on the web
@@ -117,15 +127,13 @@ On other occasions, data may exist in tables on the web. Copying and pasting dat
 
 Before using the add-on, select `Tools>Table2Clipboard` and choose the following options under the `CSV` tab:
 
-![](./img/class5_6.jpg)
+![](./img/class4_6.jpg)
 
 This will ensure that each row in the extracted data is put on a `new line`, and each column is separated by a `tab`.
 
-To illustrate what Table2Clipboard does, go to [The International Disaster Database](http://www.emdat.be/database) and select `Disaster List`. Select `United States` under `Country`, `2010-2014` under `Period` and `Storm` under `Type`. Then click `Search`.
+To illustrate what Table2Clipboard does, go to the Women's Tennis Association [singles rankings page](http://www.wtatennis.com/singles-rankings), right-click anywhere in the table and select `Table2Clipboard>Copy whole table`:
 
-When the table of data appears, right-click anywhere within it and select `Table2Clipboard>Copy whole table`:
-
-![](./img/class5_7.jpg)
+![](./img/class4_7.jpg)
 
 You can now paste the data into an empty text file, or into a spreadsheet.
 
@@ -133,101 +141,119 @@ You can now paste the data into an empty text file, or into a spreadsheet.
 
 As you search for data using web query forms, make a habit of looking at what happens to the url. Often the urls will contain patterns detailing the search you have run, and it will be possible to alter the data provided by manipulating the url. This can be quicker than filling in search forms. In some cases it may even reveal more data than the search form alone would provide, overriding controls on the number of records displayed.
 
-To illustrate how this works, go to [USASpending.gov](http://www.usaspending.gov/), a database of federal government spending, and navigate to the `Prime Award Advanced Search`. At the search form, enter `124726725` for `Recipient DUNS Number`, which is a unique identifying number for each government contractor. This one is for the University of California, Berkeley.
-
-Check `Grants` for `Spending Type` and `2013` for `Fiscal Year` and click `SEARCH`.
+To illustrate how this works, go to the [ISCRTN Registry](http://www.isrctn.com/), one of the main international registries of clinical trials. Find the [Advanced Search](http://www.isrctn.com/editAdvancedSearch) and search for `breast cancer` under `condition`:
 
 When the data is returned, note the url:
 
+```CSS
+http://www.isrctn.com/search?q=&filters=condition%3Abreast+cancer&searchType=advanced-search
 ```
-http://www.usaspending.gov/search?form_fields={"recipient_duns"%3A["124726725"]%2C"spending_cat"%3A["g"]%2C"fyear"%3A["2013"]}
-```
-Notice how the url changes if you select `100` under `Transactions/page` and hit `Go`.
+Notice how the url changes if you select `100` under `Show results`:
 
-Now change the year in the url to `2012` and see how the data displayed changes.
+```CSS
+http://www.isrctn.com/search?pageSize=100&sort=&page=1&q=&filters=condition%3Abreast+cancer&searchType=advanced-search```
 
-Change the year back to `2013` and after the data has loaded click the `Export` link and save as a `CSV` file. We will use this data later.
+Now change the page size in the url to `500`:
 
+```CSS
+http://www.isrctn.com/search?pageSize=500&sort=&page=1&q=&filters=condition%3Abreast+cancer&searchType=advanced-search```
+
+See how the data displayed has changed. All the trials should now be on a single page. Keep this page open, because we will scrape data from it shortly!
+
+### Scrape data from the web
+
+Sometimes you will need to compile your own dataset from information that is not available for easy download, but is instead spread across a series of webpages, or in a database that imposes limits on the amount of data that can be downloaded from any search, or doesn't include a download button. This is where web scraping comes in.
+
+Using programming languages such as [Python](https://www.python.org/) or [R](https://www.r-project.org/), it is possible to write scripts that will pull data down from many webpages, or query web search forms to download an entire database piece by piece. The idea behind web scraping is to identify the patterns you would need to follow if collecting the data manually, then automate the process and write the results to a data file.
+
+Teaching the programming skills needed for webscraping is beyond the scope of this class -- see the Further reading links for resources, if you are interested in learning to scrape.
+
+However, software is starting to emerge that allows non-programmers to scrape data from the web. In this class, we will use [**Kimono**](https://www.kimonolabs.com/) to scrape information about the breast cancer trials we just searched for at the ISRCTN website. (Other scraping tools include [Import.io](https://import.io/), [OutWit Hub](https://www.outwit.com/), and the Windows-only [Helium Scraper](http://www.heliumscraper.com/en/index.php?p=home); see [here](http://www.peteraldhous.com/ucb/2014/dataviz/week5.html) for a tutorial with Import.io.)
+
+You will need to have [signed up](https://www.kimonolabs.com/signup) for a free Kimono account, and [installed the bookmarklet](https://www.kimonolabs.com/learn/getstarted).
+
+On your ISRCTN breast cancer trials page, click the `kimonify` bookmarklet, which will first open the tutorial screen:
+
+![](./img/class4_8.jpg)
+
+You can close the screen by clicking the `Close` cross at top left. The screen should now look like this:
+
+![](./img/class4_9.jpg)
+
+Edit `property1` in the box at top left to `title` then select the titles for the first and second trials listed. Kimono should recognize and select all of the titles on the page:
+
+![](./img/class4_10.jpg)
+
+Click the `+` sign to select a new property, call it `status`, and select the first two entries for `Overall trial status`:
+
+![](./img/class4_11.jpg)
+
+Kimono may also suggesting grabbing `Recruitment status` and `Date assigned`.  Click one of the crosses on these selections to exclude them.
+
+![](./img/class4_12.jpg)
+
+Repeat the process for `Recruitment status`, `Date assigned`, and the topic keywords at the bottom of each entry, giving five properties to be scraped:
+
+![](./img/class4_13.jpg)
+
+Note, if you are scraping results across multiple pages with `Next page` links, you can now use the pagination button to identify these links and Kimono should scrape each page in turn:
+
+![](./img/class4_14.jpg)
+
+However, in my experience the pagination feature is a little temperamental. If you can get all of the links you want to scrape on the same page, as we did here, it is best to do so.
+
+Now click the `Done` bottun at top right. If you are not already logged in, you will have to log in at the next screen.
+
+You will need to give your scrape/API a name, select whether you want a one-off `Manual Crawl`, or a regular scrape at a defined interval, and then click `Create API`:
+
+![](./img/class4_15.jpg)
+
+Follow the link at the next screen to see your data:
+
+![](./img/class4_16.jpg)
+
+Notice that the data can be downloaded as a CSV file, as an RSS feed, or in a format called JSON, which will will discuss later.
+
+Notice also that the `title` field has been split into text and the url that it links to. This means that we can now use these urls to scrape more data from each of those pages.
+
+Follow the first of those links and hit the `kimonofy` bookmarklet. Select `Plain English Summary`, `Target number of participants` `Recruitment start date`, and `Recruitment end date` as properties:
+
+![](./img/class4_17.jpg)
+
+Click `Done` and set up the API as before. Then select the `CRAWL SETUP` tab. Here, select `URLs from source API` under `CRAWL STRATEGY` and your first API under `SOURCE API`; also select the `title` url:
+
+![](./img/class4_18.jpg)
+
+Click the `START CRAWL` button and Kimono should slowly start to grab data from each of the breast cancer trial pages. We will leave this running and come back to look at progress at the end of the class.
 
 ### Use application programming interfaces (APIs)
 
-Websites like USASpending.gov are not expressly designed to be searched by manipulating their urls, but some organizations make their data available through APIs that can be queried by constructing a url in a similar way. This allows websites and apps to call in specific chunks of data as required, and work with it "on the fly."
+Websites like the ISRCTN clinical trials registry are not expressly designed to be searched by manipulating their urls, but some organizations make their data available through APIs that can be queried by constructing a url in a similar way. This allows websites and apps to call in specific chunks of data as required, and work with it "on the fly."
 
-To see how this works, go to the U.S. Geological Survey's [Earthquake Archive Search & URL Builder](http://earthquake.usgs.gov/earthquakes/search/), where we will search for all earthquakes with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 5 or greater that occured witin 6,000 kilometres of the geographic center of the contiguous United States, which [this site](http://tools.wmflabs.org/geohack/geohack.php?pagename=Geographic_center_of_the_contiguous_United_States&params=39.828175_N_98.579500_W_region:US_type:landmark) tells us lies at a latitude of `39.828175` degrees and a longitude of `-98.5795` degrees. We will initially ask for the data in a format called [GeoJSON](http://geojson.org/) (a variant of JSON, a common format used to trasmit data over the web, which we will consider later). Enter `1900-01-01T00:00:00` under `Start` for `Date & Time` boxes so that we obtain all recorded earthquakes from the beginning of 1900 onward. The search form should look like this:
+To see how this works, go to the U.S. Geological Survey's [Earthquake Archive Search & URL Builder](http://earthquake.usgs.gov/earthquakes/search/), where we will search for all earthquakes with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 6 or greater that occurred witin 6,000 kilometres of the geographic center of the contiguous United States, which [this site](http://tools.wmflabs.org/geohack/geohack.php?pagename=Geographic_center_of_the_contiguous_United_States&params=39.828175_N_98.579500_W_region:US_type:landmark) tells us lies at a latitude of `39.828175` degrees and a longitude of `-98.5795` degrees. We will initially ask for the data in a format called [GeoJSON](http://geojson.org/) (a variant of JSON). Enter `1900-01-01T00:00:00` under `Start` for `Date & Time` boxes so that we obtain all recorded earthquakes from the beginning of 1900 onward. The search form should look like this:
 
-![](./img/class5_8.jpg)
+![](./img/class4_19.jpg)
 
 (Source: [U.S. Geological Survey](http://earthquake.usgs.gov/earthquakes/search/))
 
 You should recieve a quantity of data at the following url:
 
+```CSS
+http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1900-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&format=geojson&orderby=time
 ```
-http://comcat.cr.usgs.gov/fdsnws/event/1/query?starttime=1900-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=5&format=geojson&orderby=time
-```
-See what happens if you append `-asc` to the end of that url: This should sort the the earthquakes from oldest to newest, rather than the default of newest to oldest. [Here](http://comcat.cr.usgs.gov/fdsnws/event/1/) is the full documentation for querying the earthquake API by manipulating these urls,
+See what happens if you append `-asc` to the end of that url: This should sort the the earthquakes from oldest to newest, rather than the default of newest to oldest. [Here](http://earthquake.usgs.gov/fdsnws/event/1/) is the full documentation for querying the earthquake API by manipulating these urls.
 
-Now remove the `-asc` and replace `geojson` in the url with `csv`. The data should now download in 	`CSV` format. Save this data, which we will use in a later mapping class.
+Now remove the `-asc` and replace `geojson` in the url with `csv`. The data should now download in CSV format.
 
+You will have noticed that Kimono also creates APIs, which provide data as JSON. Click on the `API DOCS` tab to see how to access your data using various programming languages. Here, for example, is the code to access my clinical trials scrape using [R](https://www.r-project.org/):
 
-### Scrape data from the web
-
-Sometimes you will need to compile your own dataset from information that is not available for download, but is instead spread across a series of webpages, or in a database that imposes strict limits on the amount of data that can be downloaded from any search. This is where web scraping comes in.
-
-Using programming languages such as [Python](https://www.python.org/) or [Ruby](https://www.ruby-lang.org/en/), it is possible to write scripts that will pull data down from many webpages, or query web search forms to download an entire database piece by piece. The idea behind web scraping is to identify the patterns you would need to follow if collecting the data manually, then write a program to automate the process and write the results to a data file.
-
-Teaching the programming skills needed for webscraping is beyond the scope of this class -- see the Further Reading links for resources, if you are interested in learning to scrape.
-
-However, software is starting to emerge that allows non-programmers to scrape data from the web. In this class, we will use [**Import.io**](https://import.io/) to scrape data from the [Internet Movie Database](http://www.imdb.com/), or IMDb. (Other scraping tools include [OutWit Hub](https://www.outwit.com/) and the Windows-only [Helium Scraper](http://www.heliumscraper.com/en/index.php?p=home).)
-
-Launch Import.io, enter your account details, and then select `New>Crawler`. You should see a screen like this:
-
-![](./img/class5_9.jpg)
-
-Enter `www.imdb.com` into the address bar, and when the web page loads search for a well-known movie, such as `Avatar`.
-
-Then click `✓ I'm there!` followed by `Detect optimal settings`. This should highlight part of the webpage in green. Hit `Yes`, and at the next dialog box select the `Single` option (the other two are for extracting all of the items from a page with multiple entries, such as a set of search returns, or a web table):
-
-![](./img/class5_10.jpg)
-
-Now we can select the data we want to extract from each movie page, organizing it into columns.
-
-Click `+ Add column`, call it title, make sure it is treated as `Text` and click `✓ Done`. Now highlight the moview title on the webpage and click `Train`. The movie title should appear in the table at bottom left:
-
-![](./img/class5_11.jpg)
-
-Repeat the process for the movie release date, making the data type `Date/Time` and choosing the data format code to match the screen display:
-
-![](./img/class5_12.jpg)
-
-The release date, in standard `YYYY-MM-DD` format, should now appear in the table.
-
-Repeat for other data as desired, taking care to select the correct data format for each column. Here I have selected title, release date, IMDb rating, mpaa certificate and genres:
-
-![](./img/class5_13.jpg)
-
-Having selected the data you want from the page, click `✓ I've got what I need!`.
-
-Now click `Add another page`, navigate to another movie, and click `✓ I'm there!`. You may need to click on some of the columns and train to make the data appear.
-
-Repeat the process for at least five webpages: more should give better results. Once you are satisfied that you are obtaining consistent results, click `✓ I'm done training` and then `Upload to import.io`. Enter a name for the crawler and click `✓ OK`, and when you receive the `Success!` message, `Run crawler`.
-
-The next dialog box allows you to select the starting pages for the scrape/crawl, the number of links to follow to find similar pages (`Page depth`) and the format for the data (`CSV` or `JSON`):
-
-![](./img/class5_14.jpg)
-
-In this case we can simply keep the default options, and click `► Go`. The scrape will now proceed, and you can view its progress in the information bar at the top of the screen:
-
-![](./img/class5_15.jpg)
-
-Once your scrape is complete (and be warned that scraping the whole of IMDb would take a long time), click `Upload data`. The data will appear in a table, from which you can `Download` in formats including `CSV` and `JSON`:
-
-![](./img/class5_16.jpg)
+![](./img/class4_20.jpg)
 
 ### PDFs: the bane of data journalism
 
-Some organizations persist in making data available as PDFs, rather than text files, spreadsheets or databases. This makes the data hard to extract. While you should always ask for data in a more friendly format -- ideally a simple text file -- as a data journalist you are at some point likely to find yourself needing to pull data out of a PDF.
+Some organizations persist in making data available as PDFs, rather than text files, spreadsheets or databases. This makes the data hard to extract. While you should always ask for data in a more friendly format -- ideally a CSV or other simple text file -- as a data journalist you are at some point likely to find yourself needing to pull data out of a PDF.
 
-For digital PDFs, **[Tabula](http://tabula.nerdpower.org/)** is a useful data extraction tool -- however it will not work with PDFs created by scanning the original document, which have to be interpreted using Optical Character Recognition (OCR) software.
+For digital PDFs, **[Tabula](http://tabula.technology/)** is a useful data extraction tool -- however it will not work with PDFs created by scanning the original document, which have to be interpreted using Optical Character Recognition (OCR) software.
 
 Also useful is the online service **[Cometdocs](http://www.cometdocs.com/)**. While it is a commercial tool, members of Investigative Reporters and Editors can [obtain a free account](http://ire.org/blog/ire-news/2013/05/22/ire-announces-partnership-cometdocs/). Cometdocs can read scanned PDFs, however its accuracy will vary depending on how well the OCR works on the document in question.
 
@@ -239,7 +265,7 @@ The best rule of thumb in determining the reliability of a dataset is find out w
 
 While in general you might be more trusting of data downloaded from a `.gov` or `.edu` domain than something found elsewhere on the web, don’t simply assume that it is reliable and accurate. Be especially wary of databases that are compiled from forms submitted to government agencies, such as the Bioresearch Monitoring Information System (BMIS) database mentioned earlier.
 
-Government agencies may be required by law to maintain databases such as BMIS, but that doesn’t mean that the information contained in them is wholly reliable. First, forms may not always be submitted, making the data incomplete. Second, information may be entered by hand from the forms into the database – and not surprisingly, mistakes are made.
+Government agencies may be required by law to maintain databases such as BMIS, but that doesn’t mean that the information contained in them is wholly reliable. First, forms may not always be submitted, making the data incomplete. Second, information may be entered by hand from the forms into the database -- and not surprisingly, mistakes are made.
 
 So before using any dataset, do some background research to find out how it was put together, and whether it has been rigorously checked for errors. If possible, try to speak to the people responsible for managing the database, and any academics or other analysts who have used the data. They will be your best guide to a dataset’s strengths and weaknesses.
 
@@ -253,7 +279,7 @@ In an ideal world, every dataset we find would have been lovingly curated, allow
 
 In practice, however, often the best available data has some flaws, which may need to be corrected as far as is possible. So before starting to work with a new dataset, load it into a spreadsheet or database and take a look for common errors. Here, for example, is a sample of records from the BMIS database, with names including non-alphabetical characters -- which are clearly errors:
 
-![](./img/class5_17.jpg)
+![](./img/class4_21.jpg)
 
 (Source: Peter Aldhous, from [Bioresearch Information Monitoring System](http://www.fda.gov/Drugs/InformationOnDrugs/ucm135162.htm) data)
 
@@ -269,102 +295,126 @@ Also scan numbers in fields that represent continuous variables for any obvious 
 
 Other common problems are white spaces before and after some entries, which may need to be stripped out.
 
-At all stages of your work, pay attention to zeros. Is each one actually supposed to represent zero, or should the cell in fact be empty? Take particular care exporting data from one software tool and importing to another, and check how nulls have been handled.
+At all stages of your work, pay attention to zeros. Is each one actually supposed to represent zero, or should the cell in fact be empty, or "null"? Take particular care when exporting data from one software tool and importing to another, and check how nulls have been handled.
 
 ### Clean and process data with Open Refine
 
-Checking and cleaning "dirty" data can be the most labor intensive part of  many data journalism projects, but **[Open Refine](http://http://openrefine.org/)** (formerly Google Refine) can streamline the task -- and also create a reproducible script to quickly repeat the process on data that must be cleaned and processed in the same way.
+Checking and cleaning "dirty" data, and processing data into the format you need, can be the most labor intensive part of many data journalism projects. However, **[Open Refine](http://http://openrefine.org/)** (formerly Google Refine) can streamline the task -- and also create a reproducible script to quickly repeat the process on data that must be cleaned and processed in the same way.
 
 When you launch Open Refine, it opens in your web browser. However, any data you load into the program will remain on your computer -- it does not get posted online.
 
 The opening screen should look like this:
 
-![](./img/class5_18.jpg)
+![](./img/class4_22.jpg)
 
-Click the `Browse` button and navigate to the UC Berkeley 2013 grants file you downloaded from USASpending.gov. Click `Next>>`, check that the first few rows of data look correct, then click `Create Project`.
+#### Reshape data from wide to long format
 
-The screen should now look something like this:
+Click the `Browse` button and navigate to the file `oil_production.csv`. Click `Next>>`, and check that data looks correct:
 
-![](./img/class5_19.jpg)
+![](./img/class4_23.jpg)
 
-Entries recognized as numbers or dates will be green, those treated as text strings will be black.
+Open Refine should recognize that the data is in a CSV file, but if not you can use the panel at bottom to specify the correct file type and format for the data. When you are statisfied that the data has been read correctly, click the `Create Project >>` button at top right. The screen should now look like this:
 
-Notice that each field/column has a button with a downward-pointing triangle. Click on this button and you get the option to create “facets” for the column, which provide a powerful way to edit and clean data.
+![](./img/class4_24.jpg)
 
-Click on the button for the field `recipient_city_name`, and select `Facet>Text facet`. A summary of the various entries now appears in the panel to the left:
+As you can see, the data is in wide format, with values for oil production by region organized in columns, one for each year. To convert this to long format, click on the small downward-pointing triangle for the first of these year columns, and select `Transpose>Transpose cells across columns into rows`.
 
-![](./img/class5_20.jpg)
+Fill in the dialog box as below, making sure that `From Column` and `To Column` are highlighted correctly, that the `Key column` and `Value column` have been given appropriate names, and that `Fill down in other columns` is checked. (Failing to do check this box will mean that the region names each will only appear once in the reshaped data, rather than being copied down to appear next to the corresponding data for year and oil production.)
 
-We can edit entries individually: Select `Berkley`, click on the `Edit` link, and correct the spelling. Notice that the number of entries under the correct spelling increases by one.
+![](./img/class4_25.jpg)
 
-One problem is that we have a mixture of cases, with some entried in Title or Proper Case, some in UPPERCASE. We can fix this back in the field itself. Click its button again and select `Edit cells>common transforms>To titlecase`. Notice that `common transforms` also includes options to remove unwanted whitespace.
+Click `Transpose` and then the `50` rows link, to see the first 50 rows of the reshaped data:
 
-Go back to the text facet. From here we could edit manually, but to illustrate Open Refine's editing functions click on the `Cluster` button. Here you can experiment with different clustering algorithms to edit entries that may be variants of the same thing. To merge the suggested matches, check `Merge?`, enter the `New Cell Value` then click one of the `Merge Selected` buttons:
+![](./img/class4_26.jpg)
 
-![](./img/class5_21.jpg)
+Click the `Export` button at top right and you will see options to export the data in a variety of file types, including `Comma-separated value` and `Excel` spreadsheet.
 
-Open Refine's facets can also be used to inspect columns containing numbers. Click on the button for the field `fed_funding_amount` and select `Facet>numeric facet`. This will create a histogram showing the distribution of numbers in the field:
+#### Clean and process dirty data
 
-![](./img/class5_22.jpg)
+Click the Google Refine logo at top left to return to the opening screen. Create a new project from the file `ucb_stanford_2014.csv`.
 
-We can then use the slider controls to filter the data, which is good for examining possible outliers at the top of bottom of the range. Notice that here a small number of grants have negative values. The minus signs might be errors, so those grants would need to be checked out.
+Entries recognized as numbers or dates will be green, those treated as text strings will be black:
 
-If the data is spread over a very wide range, we can switch to a logarithmic scale for the histogram by selecting `change`, entering `log(value)` for the expression and clicking `OK`.
+![](./img/class4_27.jpg)
 
-Often we may need to convert fields to text, numbers or dates. For example, click on the button for `starting_date` and select `Edit cells>common transforms>To date` and see that it changes from a string of text to a date in standard format.
+Again, each field/column has a button with a downward-pointing triangle. Click on these buttons and you get the option to create “facets” for the column, which provide a powerful way to edit and clean data.
 
-We can also split or merge columns. For example, the column `agency_code` consists of a number, followed by a colon and some text. To put the numbers and text into different fields, click on the column's button, and select `Edit column>Split into several columns` and fill in the dialog box as follows:
+Click on the button for the field `Recipent City`, and select `Facet>Text facet`. A summary of the various entries now appears in the panel to the left:
 
-![](./img/class5_23.jpg)
+![](./img/class4_28.jpg)
 
-Click the `OK` button, and the columns will split.
+The numbers next to each entry show how many records there are for each value.
 
-Now we will merge the columns `receip_addr1` and `receip_addr2` into a single `address`	field. Click on the button for the first of these columns and select `Edit column>Add column based on this column` and fill in the dialog box as follows:
+We can edit entries individually: Select `Veterans Bureau Hospi`, which is clearly not a city, click on the `Edit` link, change it to `Unknown`. (If cleaning this data for a real project, we would need to check with an external source to get the actual city for this entry.)
 
-![](./img/class5_24.jpg)
+Another problem is that we have a mixture of cases, with some entries in Title or Proper Case, some in UPPERCASE. We can fix this back in the field itself. Click its button again and select `Edit cells>common transforms>To titlecase`.
 
-Study the expression used:
+Now notice that we apparently have duplicate entries for `Berkeley`, `Palo Alto` and `Stanford`. This is the result of trailing white space after the city names for some entries. Select `Edit cells>common transforms>Trim leading and trailing whitespace` and notice how the problem resolves:
 
-```cells["receip_addr1"].value + ", " + cells["receip_addr2"].value```
+![](./img/class4_29.jpg)
 
-This is some simple code in Open Refine's expression language to `concatenate` the two text strings into a single string, including a comma followed by a space to separate them. Selecting the option `On error: copy value from original column` ensures that where the second column is blank, the new field will contain the value from the first.
+Having cleaned this field, close the facet by clicking the cross at top left.
 
-Click `OK` and the new address column will be created.
+Now create a text facet for the field `Recipient`:
 
-We can also create new fields using specified text extracted from an existing field. Click on the button for the `recipient_name` field, select `Edit column>Add column based on this column` and enter the expression `substring(value, 1)`. This should extract all the letters apart from the first. Now try `substring(value, 0, 1)`, which should extract just the first letter.
+![](./img/class4_30.jpg)
 
-Experiment with the below, to work out the logic of the `substring` function:
+What a mess! The only possibilities are Stanford or Berkeley, yet there are multiple variants of each, many including `Board of Trustees` for Stanford and `Regents of` for UC Berkeley.
 
-```
-substring(value, -1)
-substring(value, -2)
-substring(value, -4, -1)
-substring(value, 1)
-substring(value, 1, 8)
-```
-Here we are "slicing" strings of text based on an index which defines the position of individual characters. The first character is 0, followed by 1, 2, and so on. We can also index from the end of the string: the last character is -1, the second last is -2, and so on.
+First, manually edit `Interuniveristy Center for Japanese Language` to `Stanford`, which is where this center is based.
 
-If you feed the `substring` function just one number after `value`, it will start at that position, and give you that character and everything else to the end of the string. If you use two numbers, it will start at the first position and give you that character everything up to (but not including) the character at the second position.
+We could contrinute editing manually, but to illustrate Open Refine's editing functions click on the `Cluster` button. Here you can experiment with different clustering algorithms to edit entries that may be variants of the same thing. Select `key collision` and `metaphone3`, then start checking the clusters and renaming them as `Berkeley` or `Stanford` as appropriate:
 
-While many of the options we have explored could also be done a spreadsheet, the big advantage of Open Refine is that we can extract a "pipeline" for processing data to use when we obtain data in the same format in future.
+![](./img/class4_31.jpg)
 
-Select `Undo / Redo` then click `Extract`. At the dialog box, check only those operations that you will want to perform in future (typically generic transformations on fields/columns, and not correcting errors for individual entries):
+Click `Merge Selected & Close` and the facet can then be quickly edited manually:
 
-![](./img/class5_25.jpg)
+![](./img/class4_32.jpg)
 
-This will generate JSON in the right hand panel that can be copied into a blank text file and saved with the extension `json`.
+Often we may need to convert fields to text, numbers or dates. For example, click on the button for `Award Date` and select `Edit cells>common transforms>To date` and see that it changes from a string of text to a date in standard format.
+
+Notice the field `Award amount`, which is a value in dollars. Negative values are given in brackets. Because of these symbols, the field is being
+recognized as a string of text, rather than a number. So to fix this problem, we have to remove the symbols.
+
+Select `Edit colum>Add column based on this column...` and fill in the dialog box as follows:
+
+![](./img/class4_33.jpg)
+
+Here `value` refers to the value in the original column, and `replace` is a function that replaces characters in the value. We can run several `replace` operations by "chaining" them together. This is a concept we'll meet again in subsequent weeks, when we work with the [D3](http://d3js.org/) JavaScript library and R.
+
+Here we are replacing the "$" symbols, the commas separating thousands, and the closing brackets with nothing; we are replacing the opening brackets with a hyphen to designate negative numbers.
+
+Click `OK` and the new column will be created. Note that it is still being treated as text, but that can be corrected by selecting `Edit cells>common transforms>To number`.
+
+This is just one example of many data transformation functions that can be accessed using Open Refine's expression language, called GREL. Learning these functions can make Open Refine into a very powerful data processing tool. Study the "Further reading" links for more.
+
+Open Refine's facets can also be used to inspect columns containing numbers. Select `Facet>Numeric facet` for the new field. This will create a histogram showing the distribution of numbers in the field:
+
+![](./img/class4_34.jpg)
+
+We can then use the slider controls to filter the data, which is good for examining possible outliers at the top of bottom of the range. Notice that here a small number of grants have negative values, while there is one grant with a value of more than $3 billion from the National Science Foundation. This might need to be checked out to ensure that it is not an error.
+
+While most of the data processing we have explored could also be done in a spreadsheet, the big advantage of Open Refine is that we can extract a "pipeline" for processing data to use when we obtain data in the same format in future.
+
+Select `Undo / Redo` at top left. Notice that clicking on one of the steps detailed at left will transform the data back to that stage in our processing. This means you don't need to worry about making mistakes, as it's always possible to revert to an earlier state, before the error, and pick up from there.
+
+Return to the final step, then click the `Extract` button. At the dialog box, check only those operations that you will want to perform in future (typically generic transformations on fields/columns, and not correcting errors for individual entries). Here I have unchecked all of the corrections in the text facets, and selected just those operations that I know I will want to repeat if I obtain data from this source again:
+
+![](./img/class4_35.jpg)
+
+This will generate JSON in the right hand panel that can be copied into a blank text file and saved.
 
 To process similar data in future. Click the `Apply` button on the `Undo / Redo` tab, paste in the text from this file, and click `Perform Operations`. The data will then be processed automatically.
 
-When you are finished cleaning and processing your data, click the `Export` button at top right to export as a `CSV` file or in other formats.
+When you are finished cleaning and processing your data, click the `Export` button at top right to export as a CSV file or in other formats.
 
-Open Refine is a very powerful tool that will reward efforts to explore its wide range of its functions for manipulating data. See the Further Reading for more.
+Open Refine is a very powerful tool that will reward efforts to explore its wide range of its functions for manipulating data. See the "Further reading" for more.
 
 ### Standardize names with Mr People
 
 For processing names from a string of text into a standardized format with multiple fields, you may wish to experiment with **[Mr People](http://people.ericson.net/)**, a web app made by Matt Ericson, a member of the graphics team at *The New York Times*.
 
-![](./img/class5_26.jpg)
+![](./img/class4_36.jpg)
 
 (Source: [Mr People](http://people.ericson.net/))
 
@@ -374,7 +424,7 @@ Mr People can save you time, but it is not infallible -- it may give errors with
 
 ### Correct for inflation (and cost of living)
 
-A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2013 dollars for a time series ending in 2013. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
+A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2014 dollars for a time series ending in 2014. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
 
 So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [Consumer Price Index](http://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use this [online calculator](http://www.bls.gov/data/inflation_calculator.htm) for correcting a small number of values. If you need to correct for inflation in bulk, I can show you later how to do this in R.
 
@@ -383,7 +433,7 @@ For comparing currency values across nations, regions or cities, you may also ne
 
 ### Understand common data formats, and convert between them
 
-Up until now, we have used data in text files, either tab-delimited or in `CSV` format. You may encounter text files with other delimiter characters, and also "fixed width" text files, which line the fields up with each located a specified number of characters across each row. Libre Office Calc can import fixed-width files, which you can then export in a delimited format for use in other software.
+Until now, we have used data in text files, mostly in CSV format.
 
 Text files are great for transferring data from one spoftware application to another during analysis and visualization, but other formats that are easier for machines to read are typically used when transferring data between computers online. If you are involved in web development or designing online interactive graphics, you are likely to encounter these formats.
 
@@ -418,38 +468,32 @@ In XML data is structured by enclosing values within “tags,” similar to thos
 
 Copy the data from a `CSV` or tab-delimited text file and paste it into the top box, select the output you want, and it will appear at the bottom. You will generally want to select the `Properties` variants of JSON or XML.
 
-You can then copy and paste this output into a text editor, and save the file with the appropriate suffix (`xml`, `json`).
+You can then copy and paste this output into a text editor, and save the file with the appropriate extension (`.xml`, `.json`).
 
-![](./img/class5_27.jpg)
+![](./img/class4_37.jpg)
 
 (Source: [Mr Data Converter](http://shancarter.github.io/mr-data-converter/))
 
-To convert data from JSON or XML into text files, use Open Refine. First create a new project and import your JSON or XML file. Then use the `Export` button and select `Tab-separated value` or `Comma-separated value` to export as a text file.
+To convert data from JSON or XML into text files, you can use Open Refine. First create a new project and import your JSON or XML file. Use the `Export` button and select `Tab-separated value` or `Comma-separated value` to export as a text file.
 
 ### Assignment
 
-One of the suggested final project data collections includes the baseball salaries data from [Baseball Prospectus](http://www.baseballprospectus.com/compensation/?cyear=2013&team=&pos=) we looked at in week 1, plus data on 2013 player performance statistics from [MLB.com](http://mlb.com/home) -- for [hitting](http://mlb.mlb.com/stats/sortable.jsp#elem=[object+Object]&tab_level=child&click_text=Sortable+Player+hitting&game_type=%27R%27&season=2013&season_type=ANY&league_code=%27MLB%27&sectionType=sp&statType=hitting&page=1&ts=1411250613351&playerType=ALL&sportCode=%27mlb%27&split=&team_id=113&active_sw=&position=&page_type=SortablePlayer&sortOrder=%27desc%27&sortColumn=avg&results=&perPage=2000&timeframe=&last_x_days=&extended=0), [pitching](http://mlb.mlb.com/stats/sortable.jsp#elem=[object+Object]&tab_level=child&click_text=Sortable+Player+pitching&game_type=%27R%27&season=2013&season_type=ANY&league_code=%27MLB%27&sectionType=sp&statType=pitching&page=1&ts=1411251900682&playerType=ALL&sportCode=%27mlb%27&split=&team_id=113&active_sw=&position=&page_type=SortablePlayer&sortOrder=%27desc%27&sortColumn=avg&results=&perPage=2000&timeframe=&last_x_days=&extended=0) and [fielding](http://mlb.mlb.com/stats/sortable.jsp#elem=[object+Object]&tab_level=child&click_text=Sortable+Player+fielding&game_type=%27R%27&season=2013&season_type=ANY&league_code=%27MLB%27&sectionType=sp&statType=fielding&page=1&ts=1411251916789&playerType=ALL&sportCode=%27mlb%27&split=&team_id=113&active_sw=&position=&page_type=SortablePlayer&sortOrder=%27desc%27&sortColumn=avg&results=&perPage=2000&timeframe=&last_x_days=&extended=0).
-
-To join the data reliably in a database, you would need to use the players' names and teams, but there are several obstacles:
-
-- Names in the Baseball Prospectus data are in the format `John Smith`, while those the the MLB.com data are in the format `Smith, J`.
-- The Baseball Prospectus names do not include the suffix `Jr.`, but a small number of names in the MLB.com data have this suffix, giving the format `Smith Jr., J`
-- The team abbreviations used have some differences.
-
-So your assignment is:
-
- - Download all of the baseball data from [here](./data/baseball.zip).
- - Use Open Refine to process the salaries data from Baseball Prospectus to allow it to be joined reliably to the MLB.com player statistics data.
- - Extract the JSON summarizing your steps in processing the data.
- - Export the processed data in CSV format.
- - Send me the processed data, and the JSON file detailing the steps used to process it.
+- Grab the data for the [top 100 ranked women's singles tennis players](http://www.wtatennis.com/singles-rankings).
+- Use Open Refine to process this data as follows:
+ - Create new columns for `First Name` and `Last Name`. Hint: First create a copy of the `Player` column with a new name using `Edit Column>Add column based on this column...`. Then look under `Edit column` for an option to split this new column into two; you will also need to rename the resulting columns.
+ - Convert the birth dates for the players to standard date/time format.
+ - Create a new column for the `Previous Rank` with the square brackets removed, converted to numbers. Hint: First copy the old column as above; this time you can delete the old column when you are done.
+- Extract the operations to process this data, and save in a file with the extension `.json`.
+- Now go back to the WTA site and grab the singles rankings for all U.S. players for the first ranking of 2015 (made on January 5). Hint: Make sure you hit `Search` after adjusting the menus.
+- Process this data in Open Refine using your extracted JSON, then export the processed data as a CSV file.
+- Send me your JSON and CSV files.
 
 ### Further reading
 
 Paul Bradshaw. *[Scraping For Journalists](https://leanpub.com/scrapingforjournalists)*
 
 Dan Nguyen. *[The Bastards Book of Ruby](http://ruby.bastardsbook.com/)*
-I use Python rather than Ruby, but this book provides a [good introduction](http://ruby.bastardsbook.com/chapters/web-scraping/) to the practice of web scraping using code, and [using your browser's web inspector](http://ruby.bastardsbook.com/chapters/web-inspecting-html/) to plan your scraping approach.
+I use Python and R rather than Ruby, but this book provides a [good introduction](http://ruby.bastardsbook.com/chapters/web-scraping/) to the practice of web scraping using code, and [using your browser's web inspector](http://ruby.bastardsbook.com/chapters/web-inspecting-html/) to plan your scraping approach.
 
 [Open Refine Wiki](https://github.com/OpenRefine/OpenRefine/wiki)
 

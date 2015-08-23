@@ -212,25 +212,25 @@ Select column `H` by clicking its gray header containing the letter, then from t
 
 In the first cell of the `mean` column enter the following formula, which calculates the mean (called `average` in a spreadsheet) of all of the values in column `H`, containing the salaries in $ millions for each player.
 
-```
+```SQL
 =average(H2:H816)
 ```
 
 Or alternatively, to select all the values in colum `H` without having to define their row numbers:
 
-```
+```SQL
 =average(H:H)
 ```
 
 Now calculate the median salary:
 
-```
+```SQL
 =median(H:H)
 ```
 
 And the mode:
 
-```
+```SQL
 =mode(H:H)
 ```
 
@@ -305,7 +305,7 @@ Next we will calculate the boundaries for bins dividing the data into five quant
 
 First enter the following values into the `quantile` column, to reflect the division into five quantiles:
 
-```
+```SQL
 =4/5
 =3/5
 =2/5
@@ -313,7 +313,7 @@ First enter the following values into the `quantile` column, to reflect the divi
 ```
 Then enter this formula into the first cell of the `quantile value` column:
 
-```
+```SQL
 =percentile(H:H, L2)
 ```
 
@@ -328,7 +328,7 @@ Often when you run calculations on numbers, you'll obtain precise answers that c
 
 To round the mean value for the baseball salary data to two decimal places, edit the formula to the following:
 
-```
+```SQL
 =round(average(H:H),2)
 ```
 
@@ -349,25 +349,33 @@ Percentages are just a special case of rates, meaning "per hundred." So to calcu
 
 Often you will need to calculate percentage change. The formula for this is:
 
-`(new value - old value) / old value * 100`
-
+```SQL
+(new value - old value) / old value * 100
+```
 Sometimes you may need to compare two rates or percentages. For example, if 50 out of 150 black mortgage applicants in a given income bracket are denied a mortgage, and 300 out of 2,400 white applicants in the same income bracket are denied a mortgage, the percentage rates of denial for the two groups are:
 
 **Black:**
 
-`50 / 150 * 100 = 33.3%`
-
+```SQL
+50 / 150 * 100 = 33.3%
+```
 **White:**
 
-`300 / 2,400 * 100 = 12.5%`
+```SQL
+300 / 2,400 * 100 = 12.5%
+```
 
 You can divide one percentage or rate by the other, but be careful how you describe the result:
 
-`33.3 / 12.5 = 2.664`
+```SQL
+33.3 / 12.5 = 2.664
+```
 
 You can say from this calculation that black applicants are about 2.7 times *as* likely to be denied loans as whites. But even though the Associated Press style guide doesn't make the distinction, don't say black applicants are about 2.7 times *more* likely to be denied loans. Strictly speaking, more likely refers to following calculation:
 
-`(33.3 - 12.5) / 12.5 = 1.664`
+```SQL
+(33.3 - 12.5) / 12.5 = 1.664
+```
 
 ### Asking questions with data
 
@@ -427,7 +435,9 @@ The example above also shows a straight line drawn through the points. This is k
 
 Models are mathematical equations that allow statisticians to make predictions. The equation for this trend line is:
 
-`Y = -1.85*X + 104.45`
+```SQL
+Y = -1.85*X + 104.45
+```
 
 Here X is the infectious disease prevalence score, Y is the democratization score, and 104.45 is the value at which the trend line would cross the vertical axis at X = 0. The slope of the line is -1.85, which means that when X increases by a single point, Y tends to decrease by 1.85 points. (For a trend line sloping upwards from left to right, the slope would be a positive number.)
 

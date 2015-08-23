@@ -81,9 +81,9 @@ Now create a second calculated field giving the total number of neonatal deaths:
 
 ![](./img/class3_5.jpg)
 
-In the second forumula, we have rounded the number of neonatal deaths to the nearest thousand, to avoid spurious precision in the numbers presented. See what happens if you replace`-3` in the above formular with `-2`. Note, positive numbers define the number of decimal places, when rounding numbers with decimal fractions.
+In the second formula, we have rounded the number of neonatal deaths to the nearest thousand, to avoid spurious precision in the numbers presented. See what happens if you replace`-3` in the above formula with `-2`. (As in Google Sheets, as we saw in Week 1, positive numbers define the number of decimal places, when rounding numbers with decimal fractions.)
 
-(Here we have simply run some simple arithmetic, but it's possible to use a wide variety of functions to manipulate data in Tableau in many ways. To see all of the available functions, click on the little gray triangle at the right of the dialog boxes above.)
+Here we have simply run some simple arithmetic, but it's possible to use a wide variety of functions to manipulate data in Tableau in many ways. To see all of the available functions, click on the little gray triangle at the right of the dialog boxes above.
 
 #### Understand that Tableau's default behavior is to aggregate data
 
@@ -333,7 +333,7 @@ Tableau also allows you to create stories, which combine successive dashboards i
 
 While the Tableau dashboard size `Range` option gives some basic responsive design, this will not easily allow you to create dashboards that work on every device from a small smartphone to a large desktop computer.
 
-I would suggest creating three different dashboards, each with a size `Range` appropriate for phones, tablets, and desktops respectively. You can then follow the instructions [here](https://public.tableau.com/s/blog/2014/11/making-responsive-tableau-dashboards) to put the embed codes for each of these desktops into a div with a separate class, and then use `@media` CSS rules to ensure that only the div with the correct dashboard displays, depending on the size of the device.
+I would suggest creating three different dashboards, each with a size `Range` appropriate for phones, tablets, and desktops respectively. You can then follow the instructions [here](https://public.tableau.com/s/blog/2014/11/making-responsive-tableau-dashboards) to put the embed codes for each of these dashboards into a div with a separate class, and then use `@media` CSS rules to ensure that only the div with the correct dashboard displays, depending on the size of the device.
 
 If you need to make a fully responsive Tableau visualization and are struggling with these instructions, contact me for help!
 
@@ -345,7 +345,9 @@ As for all responsively designed web pages, make sure to include this line of co
 
 ###Assignment
 
-- Create [this second dashboard](https://public.tableau.com/profile/publish/neonatal/Savingthechildren2#!/publish-confirm) from the data. Here are some hints:
+- Create [this second dashboard](https://public.tableau.com/profile/publish/neonatal/Savingthechildren2#!/publish-confirm) from the data. 
+
+ Here are some hints:
 
  - Drop `Year` into the `Pages` shelf to create the control to cycle throught the years.
  - Remember to filter the data for the same year range as the first dashboard.
@@ -354,7 +356,7 @@ As for all responsively designed web pages, make sure to include this line of co
  - Format GDP per capita in dollars by clicking on it in the `Data` panel and selecting `Default Properties>Number Format>Currency (Custom)`.
  - Create a single trend line for each year's data, so that the line shifts with the circles from year to year. Do this by dragging `Trend line` into the chart area from the `Analytics` panel. You will then need to select `Analysis>Trend Lines>Edit Trend Lines...` and adjust the options to give a single line with the correct behavior.
  -  Getting the smaller circles rendered on top of the larger ones, so their tooltips can be accessed, is tricky. To solve this, open the dropdown menu for `Country` in the `Marks` shelf, select `Sort` and fill in the dialog box as follows:
- -  
+     
    ![](./img/class3_43.jpg)
 
    Now drag `Country` so it appears at the top of the list of fields in the `Marks` shelf.

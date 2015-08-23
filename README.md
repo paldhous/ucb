@@ -1,3 +1,3 @@
-# Data viz class, fall 2014
+# Data viz class
 
 Online teaching materials
