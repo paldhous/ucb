@@ -25,6 +25,17 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
  - `birth_rate` Number of [live births during the year per 1,000 people](http://data.worldbank.org/indicator/SP.DYN.CBRT.IN), based on mid-year population estimate.
  - `neonat_mortal` [Neonatal mortality rate](http://data.worldbank.org/indicator/SH.DYN.NMRT): number of babies dying before reaching 28 days of age, per 1,000 live births in a given year.
 
+#### [Week 4](./data/week4.zip)
+
+- `oil_production.csv` Data on oil production by world region from 2000 to 2014, in thousands of barrels per day, from the [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/iedindex3.cfm?tid=5&pid=53&aid=1&cid=regions,&syid=2000&eyid=2014&unit=TBPD).
+
+- `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/Pages/Default.aspx).
+
+#### [Week 5](./data/week5.zip)
+
+- `pfizer.sqlite` SQLite database detailing payments made by Pfizer to doctors in the second half of 2009.
+- `pfizer.csv` The same data in CSV format.
+- `fda.csv` Records of warning letters sent to doctors by the U.S. Food and Drug Administration because of problems with their conduct of clinical trials of new drugs or medical devices.
 
 
 ## Final projects

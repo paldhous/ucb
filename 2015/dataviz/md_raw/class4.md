@@ -216,7 +216,7 @@ Notice that the data can be downloaded as a CSV file, as an RSS feed, or in a fo
 
 Notice also that the `title` field has been split into text and the url that it links to. This means that we can now use these urls to scrape more data from each of those pages.
 
-Follow the first of those links and hit the `kimonofy` bookmarklet. Select `Plain English Summary`, `Target number of participants` `Recruitment start date`, and `Recruitment end date` as properties:
+Follow the first of those links and hit the `kimonify` bookmarklet. Select `Plain English Summary`, `Target number of participants` `Recruitment start date`, and `Recruitment end date` as properties:
 
 ![](./img/class4_17.jpg)
 

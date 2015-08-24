@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Data</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
+								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Principles of mapping</a></li>
+								<li><a href="week8.html">Making static maps</a></li>
+								<li><a href="week9.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
+								<li><a href="week14.html">Other tools for online interactives</a></li>	
+								<li><a href="week15.html">Let's apply what we've learned</a></li>									
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<h1 id="datasets"><a name="datasets" href="#datasets"></a>Datasets</h1><p>Click on the title links to download the data. Please <a href="mailto:peter@peteraldhous.com">contact me</a> <strong>before the class</strong> in which data will be used if you have any problems downloading!</p><h2 id="class-exercises"><a name="class-exercises" href="#class-exercises"></a>Class exercises</h2><h4 id="[week-1](./data/week1.zip)"><a name="[week-1](./data/week1.zip)" href="#[week-1](./data/week1.zip)"></a><a href="./data/week1.zip">Week 1</a></h4><ul>
+<li><p><code>mlb_salaries_2013.csv</code> Salaries of players in Major League Baseball at the start of the 2013 season, from the <a href="http://www.seanlahman.com/baseball-archive/statistics/">Lahman Baseball Database</a>.</p>
+</li><li><p><code>disease_democ.csv</code> Data illustrating a <a href="http://www.newscientist.com/article/mg21028133.300-genes-germs-and-the-origins-of-politics.html">controversial theory</a> suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the <a href="http://www.gideononline.com/">Global Infectious Diseases and Epidemiology Network</a> and <em><a href="http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602">Democratization: A Comparative Analysis of 170 Countries</a></em>.</p>
+</li><li><p><code>gdp_pc.csv</code> <a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD">World Bank data</a> on 2014 Gross Domestic Product (GDP) per capita for the world’s nations, in current international dollars, corrected for purchasing power in different territories.</p>
+</li></ul><h4 id="[week-3](./data/week3.zip)"><a name="[week-3](./data/week3.zip)" href="#[week-3](./data/week3.zip)"></a><a href="./data/week3.zip">Week 3</a></h4><ul>
+<li><code>nations.csv</code> Data from the <a href="http://data.worldbank.org/indicator/all">World Bank Indicators</a> portal, which is an incredibly rich resource. Contains the following fields:<ul>
+<li><code>iso_a3</code> <a href="http://unstats.un.org/unsd/tradekb/Knowledgebase/Country-Code">Three-letter code</a> for each country, assigned by the <a href="http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63545">International Organization for Standardization</a>.</li><li><code>country</code> Country name.</li><li><code>year</code></li><li><code>region</code> <code>income_group</code> World Bank <a href="http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS">regions and current income groups</a>, explained <a href="http://data.worldbank.org/about/country-and-lending-groups">here</a>.</li><li><code>population</code> Estimated <a href="http://data.worldbank.org/indicator/SP.POP.TOTL">total population</a> at mid-year, including all residents apart from refugees.</li><li><code>gdp_percap</code> <a href="http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD">Gross Domestic Product per capita</a> in current international dollars, corrected for purchasing power in different territories.</li><li><code>population</code> Estimated <a href="http://data.worldbank.org/indicator/SP.POP.TOTL">total population</a> at mid-year, including all residents apart from refugees.</li><li><code>birth_rate</code> Number of <a href="http://data.worldbank.org/indicator/SP.DYN.CBRT.IN">live births during the year per 1,000 people</a>, based on mid-year population estimate.</li><li><code>neonat_mortal</code> <a href="http://data.worldbank.org/indicator/SH.DYN.NMRT">Neonatal mortality rate</a>: number of babies dying before reaching 28 days of age, per 1,000 live births in a given year.</li></ul>
+</li></ul><h4 id="[week-4](./data/week4.zip)"><a name="[week-4](./data/week4.zip)" href="#[week-4](./data/week4.zip)"></a><a href="./data/week4.zip">Week 4</a></h4><ul>
+<li><p><code>oil_production.csv</code> Data on oil production by world region from 2000 to 2014, in thousands of barrels per day, from the <a href="http://www.eia.gov/cfapps/ipdbproject/iedindex3.cfm?tid=5&amp;pid=53&amp;aid=1&amp;cid=regions,&amp;syid=2000&amp;eyid=2014&amp;unit=TBPD">U.S. Energy Information Administration</a>.</p>
+</li><li><p><code>ucb_stanford_2014.csv</code> Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from <a href="https://www.usaspending.gov/Pages/Default.aspx">USASpending.gov</a>.</p>
+</li></ul><h4 id="[week-5](./data/week5.zip)"><a name="[week-5](./data/week5.zip)" href="#[week-5](./data/week5.zip)"></a><a href="./data/week5.zip">Week 5</a></h4><ul>
+<li><code>pfizer.sqlite</code> SQLite database detailing payments made by Pfizer to doctors in the second half of 2009.</li><li><code>pfizer.csv</code> The same data in CSV format.</li><li><code>fda.csv</code> Records of warning letters sent to doctors by the U.S. Food and Drug Administration because of problems with their conduct of clinical trials of new drugs or medical devices.</li></ul><h2 id="final-projects"><a name="final-projects" href="#final-projects"></a>Final projects</h2><p>These datasets are suggestions, in which there are definitely stories to be found and visualized. But you are encouraged to work on other datasets, with my agreement. You are also urged to explore other relevant data, as appropriate, to complement the datasets suggested below.</p><h4 id="[baseball-statistics](http://www.seanlahman.com/baseball-archive/statistics/?wpmp_switcher=mobile)"><a name="[baseball-statistics](http://www.seanlahman.com/baseball-archive/statistics/?wpmp_switcher=mobile)" href="#[baseball-statistics](http://www.seanlahman.com/baseball-archive/statistics/?wpmp_switcher=mobile)"></a><a href="http://www.seanlahman.com/baseball-archive/statistics/?wpmp_switcher=mobile">Baseball statistics</a></h4><p><a href="http://www.seanlahman.com/baseball-archive/statistics/?wpmp_switcher=mobile">Lahman’s Baseball Database</a> contains a wealth of data on players, managers and teams from 1871 to 2014. Download the data in a series of CSV files from <a href="http://seanlahman.com/files/database/lahman-csv_2015-01-24.zip">here</a>.</p><p><a href="http://seanlahman.com/files/database/readme2014.txt">This file</a> documents the tables and fields, and how the tables should be joined together. For the player tables <code>playerID</code> is the unique code for each player that can be used to make joins. When loading this data into SQLite, this field can be used as a primary key for the tables in which it appears. For tables relating to teams or managers, you should create a new primary key, as we did in week 5 for the FDA data.</p><p>The Lahman database is also available as an <a href="https://cran.r-project.org/web/packages/Lahman/Lahman.pdf">R package</a>. However, note that this package has not yet been updated for the 2014 season. After installation in R Studio, the package can be loaded and the tables viewed with this code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load the database
+library(Lahman)
+
+# view, for example, the Master table
+View(Master)
+</code></pre>"><span class="hljs-comment"># load the database</span>
+<span class="hljs-keyword">library</span>(Lahman)
+
+<span class="hljs-comment"># view, for example, the Master table</span>
+View(Master)
+</code></pre><p>Although you will not see them as objects in your <code>Environment</code> tab in R Studio, each of the tables in the database is now available as a data frame. If you wish, you can convert them into objects in your local environment with something like the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>master &amp;lt;- Master
+</code></pre>">master &lt;- Master
+</code></pre><p>You can use the <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf">dplyr</a> package to join, filter and aggregate the data as required.</p><h4 id="[north-atlantic-storms](./data/storms.zip)"><a name="[north-atlantic-storms](./data/storms.zip)" href="#[north-atlantic-storms](./data/storms.zip)"></a><a href="./data/storms.zip">North Atlantic storms</a></h4><p>The file <code>storms.csv</code> contains <a href="http://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html">data on tropical storms and hurricanes</a> compiled by the Hurricane Research Division of the U.S. National Oceanic and Atmospheric Administration. I have processed the <a href="http://www.aoml.noaa.gov/hrd/hurdat/hurdat2.html">raw data</a> to give the following fields:</p><ul>
+<li><code>name</code> Official name for each storm; unnamed storms are listed as <code>Unnamed</code> and also numbered.</li><li><code>year</code> <code>month</code> <code>day</code> <code>hour</code> <code>minute</code> Date and time fields for each observation. For recent storms, observations are recorded every six hours.</li><li><code>timestamp</code> Date and time fields combined into a full timestamp for each observation in standard <code>YYYY-MM-DD HH:MM</code> format.</li><li><code>record_ident</code> The entry <code>L</code> indicates the time at which a storm made landfall, defined as the center of the system crossing a coastline, recorded from 1991 onwards. Other entries are explained in the file <code>newhurdat-format.pdf</code>.</li><li><code>status</code> Options include <code>HU</code> for hurricane, <code>TS</code> for tropical storm and <code>TD</code> for tropical depression. Other entries are explained in <code>newhurdat-format.pdf</code>.</li><li><code>latitude</code> <code>longitude</code> Geographic coordinates for the center of the system at each observation.</li><li><code>max_wind_kts</code> <code>max_wind_kph</code> <code>max_wind_mph</code> Maximum sustained wind for each observation.</li><li><code>min_press</code> Minimum air pressure at the center of the system for each observation.</li></ul><p>This file contains data on storms from 1851 to 2014. However, you may wish to restrict your visualizations to storms from 1990 and later, as data on storms before the modern satellite era is less reliable.</p><p>This collection of data is good for mapping. If you need shapefiles for context and basemaps, try <a href="http://www.naturalearthdata.com/downloads/">Natural Earth</a>. These shapefiles each come with a <code>README.html</code> file that can be opened in a web browser for more information.</p><h4 id="[wealth-and-well-being-of-nations](./data/nations.zip)"><a name="[wealth-and-well-being-of-nations](./data/nations.zip)" href="#[wealth-and-well-being-of-nations](./data/nations.zip)"></a><a href="./data/nations.zip">Wealth and well-being of nations</a></h4><p>In its <a href="http://data.worldbank.org/indicator/all">World Development Indicators</a>, the World Bank has a trove of data on many aspects of countries’ wealth and well-being: There are many stories to be told from this data.</p><p>You can download data for individual indicators, or read data directly into R using the <a href="https://cran.r-project.org/web/packages/WDI/WDI.pdf">WDI</a> package. (Remember that you will need to convert data you download from the World Bank site from wide to long format; the R package will give you data in the correct long format.)</p><p>You may also wish to use the <a href="http://hdr.undp.org/en/content/human-development-index-hdi">Human Development Index</a> (HDI), a measure derived by the United Nations Development Programme (UNDP) which, in that agency’s words, summarizes nations’ achievement “in key dimensions of human development: a long and healthy life, being knowledgeable and have a decent standard of living.” The health component is measured by life expectancy at birth; the knowledge component by mean years of schooling; the standard-of-living component by gross national income, corrected for purchasing power in different nations. The composite measure is converted to an index ranging from 0 to 1, using methods described <a href="http://hdr.undp.org/en/content/human-development-index-hdi">here</a>. Download HDI and related UNDP data from <a href="http://hdr.undp.org/en/content/exporting-data-and-understanding-api">here</a>.</p><p>In week 4, we saw how to download Gapminder data in bulk. Its data library includes some measures not available from the World Bank, so if you cannot find the data you want among the World Bank Indicators, try searching for it at <a href="http://www.gapminder.org/data/">Gapminder’s data download</a> page.</p><p>I would advise saving Gapminder spreadsheets as CSV files for use in other applications. Again, Gapminder data is in wide format, and will need to be converted to long format for visualization in Tableau Public or R.</p><p>Alternatively, you can access a sample of Gapminder data in R using the <a href="https://cran.r-project.org/web/packages/datamart/datamart.pdf">datamart</a> package. After installing the package:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load the package
+library(datamart)
+
+# access Gapminder data and view available variables
+gm &amp;lt;- gapminder()
+queries(gm)
+
+# load one of those variables as a data frame
+sulfur &amp;lt;- query(gm, &quot;SulfurEmissions&quot;)
+</code></pre>"><span class="hljs-comment"># load the package</span>
+<span class="hljs-keyword">library</span>(datamart)
+
+<span class="hljs-comment"># access Gapminder data and view available variables</span>
+gm &lt;- gapminder()
+queries(gm)
+
+<span class="hljs-comment"># load one of those variables as a data frame</span>
+sulfur &lt;- query(gm, <span class="hljs-string">"SulfurEmissions"</span>)
+</code></pre><p>You will notice that neither the UNDP nor the Gapminder data contain ISO country code fields; also the country names used differ from those used by the World Bank. This is where the file <code>nations_join.csv</code>, comes in. It can be used in SQLite or using the R dplyr package to join data from the different sources.</p><p>If you want to make maps from this data, I have included a world countries shapefile from Natural Earth in the subfolder <code>ne_50m_admin_0_countries</code>.</p><h4 id="[global-terrorism-database](http://www.start.umd.edu/gtd/)"><a name="[global-terrorism-database](http://www.start.umd.edu/gtd/)" href="#[global-terrorism-database](http://www.start.umd.edu/gtd/)"></a><a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a></h4><p>Maintained by the National Consortium for the Study of Terrorism and Responses to Terrorism (START) at the University of Maryland in College Park, the <a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a> contains information on more than 140,000 terrorist attacks from 1970 to 2014. It is a rich source of information on terrorist groups across the globe, and the attacks they are responsible for.</p><p>You can download the data <a href="http://www.start.umd.edu/gtd/contact/">from here</a>, selecting the <code>Download full GTD dataset</code> option. An <a href="http://www.start.umd.edu/gtd/downloads/Codebook.pdf">extensive codebook</a> details all of the fields in the data.</p><p>The data is provided as a series of spreadsheets in <code>.xlsx</code> format. The file <code>globalterrorismdb_0615dist.xlsx</code> contains the entire database. I suggest that you import this data into Open Refine before processing any further, and create a new field giving the date of each event in standard <code>YYYY-MM-DD</code> format. This can be done from the <code>eventid</code> field. I can help with this.</p><p>You can then export as a CSV or tab-delimited text file for analysis, visualization and mapping; you can use the field <code>eventid</code> as a primary database key, so make sure to retain this column when processing the data in Open Refine. Because there is no need to create a new primary key field, you do not need to create the table first if importing into SQLite. Simply use the import icon in the SQLite Manager:</p><p><img src="img/datasets_1.jpg" alt=""></p><p>When prompted, modify the table to give each field the correct data type as detailed in the codebook.</p><p>Do take care to read the <a href="http://www.start.umd.edu/gtd/terms-of-use/">Terms of Use</a> and <a href="http://www.start.umd.edu/gtd/terms-of-use/CitingGTD.aspx">instructions for citing the source</a> of the GTD data.</p><h4 id="[california-traffic-accidents](./data/traffic.zip)"><a name="[california-traffic-accidents](./data/traffic.zip)" href="#[california-traffic-accidents](./data/traffic.zip)"></a><a href="./data/traffic.zip">California traffic accidents</a></h4><p>Data from the <a href="http://tims.berkeley.edu/page.php?page=about">Transportation Injury Mapping System</a>, detailing injury and fatal traffic accidents for the whole of California from 2003 to 2012. The data comes from the California Highway Patrol’s <a href="http://iswitrs.chp.ca.gov/Reports/jsp/userLogin.jsp">Statewide Integrated Traffic Records System</a> and was then geocoded for mapping by UC Berkeley’s Safe Transportation Research &amp; Education Center.</p><p>There are three CSV files: <code>collisions_2003to2012.csv</code> contains details on each collision; <code>party_2003to2012.csv</code> and <code>victim_2003to2012.csv</code> have more information about the people involved in each accident. The codebook <code>SWITRS_codebook.pdf</code> explains the fields in these tables, and how they should be joined.</p>
+
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

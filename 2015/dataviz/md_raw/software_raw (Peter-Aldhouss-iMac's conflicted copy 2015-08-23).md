@@ -23,12 +23,16 @@ Visualization software designed for exploratory graphic analysis, which also all
 
 The Public version of the software requires you to save your visualizations to the open web. However, members of Investigative Reporters and Editors can obtain a [license for the Professional version](https://www.ire.org/blog/ire-news/2013/06/20/tableau-makes-its-desktop-software-free-ire-member/), which allows you to save workbooks on your machine. In any case, I strongly recommend that J-School students [join IRE](http://www.ire.org/membership/apply/) as a student member: it is a leader for training in data journalism.
 
+
 ### [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/)
 Two handy Firefox add-ons, which will help you extract data from the web. Install them in Firefox [here](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [here](https://addons.mozilla.org/en-US/firefox/addon/downthemall/).
 
+### [Import.io](https://import.io/)
+A relatively new tool for scraping data from the web, without the need to write code. [Download here](https://import.io/download/osx). You will also need to sign up for an account at the `Sign in` link on the home page.
+
 ### [Kimono](https://www.kimonolabs.com/)
 
-A web scraping tool that works from your web browser. Sign up for a free account from the home page, then [install the Bookmarklet](https://www.kimonolabs.com/learn/getstarted). There is also an extension for Google Chrome.
+Another web scraping tool that works from your web browser. Sign up for a free account from the home page, then [install the Bookmarklet](https://www.kimonolabs.com/learn/getstarted). There is also an extension for Google Chrome.
 
 ### [Open Refine](http://openrefine.org/)
 A powerful tool for data cleaning, once owned by Google, now open source. Download the latest **stable version** [from here](http://openrefine.org/download.html). When launched, Open Refine will work in your default web browser; note that your data remains on your computer, and is not uploaded to the web.
@@ -38,6 +42,7 @@ Allows you to convert tabular (spreadsheet/CSV) data to web-friendly formats inc
 
 ### [SQLite Manager](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/)
 We will manage SQLite databases using this Firefox add-on. Install in Firefox [from here](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/). There is no need to separately install SQLite.
+
 
 ### [GPS Visualizer batch geocoder](http://www.gpsvisualizer.com/geocoder/)
 Allows you to convert addresses to latitude and longitude coordinates. Web app: no installation required; however, you will need to sign up for a  [MapQuest](http://www.gpsvisualizer.com/geocoder/key.html#mapquest) and [Bing Maps](http://www.gpsvisualizer.com/geocoder/key.html#bing) API keys.
@@ -55,6 +60,7 @@ The leading open source Geographic Information System, which we will use to make
 
 ### [R](http://www.r-project.org/) and [R Studio](http://www.rstudio.com/)
 R is a software environment and programming language for statistical computing and graphics. Download the latest [package](https://cran.rstudio.com/) for Mavericks and hugher. R Studio provides a user interface that makes it much easier to use. Download the latest installer [from here](http://www.rstudio.com/products/rstudio/download/).
+
 
 ### [D3](http://d3js.org/)
 
