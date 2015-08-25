@@ -1,8 +1,21 @@
 # Principles of mapping
 
-Maps are staples of journalism: The basic need to show the “where” of stories means that they are used frequently. Unlike some chart types, such as bubble charts or network diagrams, which may require some explanation to the uninitiated, maps need no introduction -- we are all familiar with using them to navigate. Indeed, thanks to the smartphone revolution, many of us now carry sophisticated interactive mapping apps everywhere we go.
+Maps are staples of journalism: The basic need to show the “where” of stories means that they are used frequently. Unlike some chart types, such as bubble charts or network diagrams, which may require some explanation to the uninitiated, maps need no introduction -- we are all familiar with using them to navigate. Indeed, thanks to the smartphone revolution, most of us now carry sophisticated interactive mapping apps everywhere we go.
 
 Maps can also be used to visualize data, which will be our main focus in the coming classes as we process geodata and learn how to display it on both static and online maps. Before we get into the practical details of making maps, we will cover some basic principles of mapping, and good practice in mapmaking.
+
+### The data we will use today
+
+Download the data for this session from [here](data/week7.zip), unzip the folder and place it on your desktop. It contains the following files:
+
+- `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
+- `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
+- `refine_geocoder.json` JSON file to geocode using Open Refine.
+
+The first two files can also be downloaded from [this Github respository](https://github.com/paldhous/refine-geocoder).
+
+For today's geocoding exercise, you will need a Bing Maps API key.
+If you don't already have a Microsoft Account, you will first need to [create one](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1). Then `Sign in` at the [Bing Maps Portal](https://www.bingmapsportal.com/) and select `My account>Create or view keys` from the top menu.
 
 ### Latitude and longitude
 
@@ -18,7 +31,7 @@ Degrees of latitude or longitude can be subdivided into minutes and seconds (som
 
 To understand how this works, consider the location of the UC Berkeley Graduate School of Journalism. Its latitude and longitude coordinates are `37.8749998` and `-122.2596684`, which can also be written as `37° 52' 30.0" N` , `122° 15' 34.8" W`. If you were to draw a line from the center of the Earth to the J-School, and then draw another to the Equator at the same longitude, the angle between them would be 37.8749998 degrees. If you were to take a slice of the Earth at this latitude, parallel to the equator, and draw two lines from the center of this slice, one to the Prime Meridian, the other to the J-School, the angle between them would be -122.2596684 degrees.
 
-(Various online services support conversion from [DMS to digital](http://www.zonums.com/online/coords/cotrans.php?module=11) latitudes and longitudes, and [vice versa](http://www.zonums.com/online/coords/cotrans.php?module=12) -- the two links given are free to use, and will process many thousands of records at a time.)
+(Various online services support conversion from [DMS to digital](http://www.zonums.com/online/coords/cotrans.php?module=11) latitudes and longitudes, and [vice versa](http://www.zonums.com/online/coords/cotrans.php?module=12) -- the two links given are free to use, and should process many thousands of records at a time.)
 
 There are 360 degrees in a full circle, which explains why longitude goes from 0 to 180 degrees both East and West. Similarly, moving from the North to the South Pole means travelling half way round the Earth's circumference, which is why latitude goes from 0 to 90 degrees both North and South.
 
@@ -30,17 +43,15 @@ Often when starting a mapping project, you may need to convert a series of addre
 
 There are several geocoding APIs, which can be accessed in various ways. The number of requests allowed per day and the terms of use vary from service to service: [Google's](https://developers.google.com/maps/documentation/geocoding/) free service, for instance, allows each user to geocode 2,500 addresses per day, and specifies that the resulting coordinates may only be used to make a Google Map.
 
-Because of this restriction, we will instead use the services offered by Microsoft's [Bing Maps](http://msdn.microsoft.com/en-us/library/ff701714.aspx), and [MapQuest](http://developer.mapquest.com/web/products/open/geocoding-service) (which is based on OpenStreetMap's [Nominatim](http://nominatim.openstreetmap.org/) service), to geocode [this sample of addresses](./data/geocoding.zip) in San Francisco.
+Because of this restriction, we will instead use the services offered by Microsoft's [Bing Maps](http://msdn.microsoft.com/en-us/library/ff701714.aspx), and [MapQuest Open](http://open.mapquestapi.com/nominatim/) (which is based on OpenStreetMap's [Nominatim](http://nominatim.openstreetmap.org/) service), to geocode sample addresses in San Francisco.
 
 These geocoding APIs can both be accessed from Open Refine. Here is how to geocode addresses from Open Refine using the Bing API:
 
-You will need a Bing Maps API key. To obtain that, follow the steps [here](http://www.gpsvisualizer.com/geocoder/key.html#bing). If you don't already have a Microsoft Account, you will first need to [create one](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1).
-
-Create a new Open Refine project by importing a text file containing complete addresses in one column, with the heading `address`. Our test data is already in this format; use `sf_test_addresses_short.txt` for this exercise.
+Create a new Open Refine project by importing a text file containing complete addresses in one column, with the heading `address`. Our test data is already in this format; use `sf_test_addresses_short.tsv` for this initial exercise.
 
 From the `address` column, select `Edit column>Add column by fetching URLs...`, call the column `bing_json` and use the following expression:
 
-```GREL
+```JavaScript
 "http://dev.virtualearth.net/REST/v1/Locations?q=" + escape(value, "url") + "&key=BingMapsKey"
 ```
 
@@ -48,7 +59,7 @@ Note that you will have to enter your own Bing API key in place of `BingMapsKey`
 
 From the `bing_json` column, select `Edit column>Add column based on this column...`, call the column `bing_lat_lon` and use this expression to extract the latitude and longitude from the JSON returned by the API:
 
-```GREL
+```JavaScript
 with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +", " + pair[1])
 ```
 
@@ -56,13 +67,13 @@ Split the `bing_lat_lon` column into to two columns by selecting `Edit column>Sp
 
 From the `bing_json` column, select `Edit column>Add column based on this column...`, call the column `bing_confidence` and use this expression to extract the Bing API's confidence in the accuracy of its geocoding:
 
-```GREL
+```JavaScript
 with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)
 ```
 
 From the `bing_json` column, select `Edit column>Add column based on this column...`, call the column `bing_type` and use this expression to extract the type of place that the Bing API has geocoded:
 
-```GREL
+```JavaScript
 with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)
 ```
 
@@ -70,201 +81,13 @@ For a full address, this should return `Address` when the geocoding has been suc
 
 Finally, delete the `bing_json` column by selecting `Edit column>Remove column`.
 
-As we saw in week 5, it is now possible to extract JSON code that will allow you repeat these steps on any data in the same format. Below I have done that to provide code that will geocode addresses using both the Bing and MapQuest services:
+As we saw in week 4, it is now possible to extract JSON code that will allow you repeat these steps on any data in the same format.
 
-```JSON
-[
-  {
-    "op": "core/column-addition-by-fetching-urls",
-    "description": "Create column mapquest_json at index 1 by fetching URLs based on column address using expression grel:\"http://open.mapquestapi.com/nominatim/v1/search?format=json&limit=1&q=\" + escape(value, \"url\")\"",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "mapquest_json",
-    "columnInsertIndex": 1,
-    "baseColumnName": "address",
-    "urlExpression": "grel:\"http://open.mapquestapi.com/nominatim/v1/search?format=json&limit=1&q=\" + escape(value, \"url\")\"",
-    "onError": "set-to-blank",
-    "delay": 500
-  },
-    {
-    "op": "core/column-addition",
-    "description": "Create column mapquest_longitude at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].lon,v,v)",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "mapquest_longitude",
-    "columnInsertIndex": 2,
-    "baseColumnName": "mapquest_json",
-    "expression": "grel:with(value.parseJson()[0].lon,v,v)",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column mapquest_longitude using expression value.toNumber()",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "columnName": "mapquest_longitude",
-    "expression": "value.toNumber()",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column mapquest_latitude at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].lat,v,v)",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "mapquest_latitude",
-    "columnInsertIndex": 2,
-    "baseColumnName": "mapquest_json",
-    "expression": "grel:with(value.parseJson()[0].lat,v,v)",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/text-transform",
-    "description": "Text transform on cells in column mapquest_latitude using expression value.toNumber()",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "columnName": "mapquest_latitude",
-    "expression": "value.toNumber()",
-    "onError": "keep-original",
-    "repeat": false,
-    "repeatCount": 10
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column mapquest_class at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].class,v,v)",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "mapquest_class",
-    "columnInsertIndex": 2,
-    "baseColumnName": "mapquest_json",
-    "expression": "grel:with(value.parseJson()[0].class,v,v)",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column mapquest_type at index 2 based on column mapquest_json using expression grel:with(value.parseJson()[0].type,v,v)",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "mapquest_type",
-    "columnInsertIndex": 2,
-    "baseColumnName": "mapquest_json",
-    "expression": "grel:with(value.parseJson()[0].type,v,v)",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-removal",
-    "description": "Remove column mapquest_json",
-    "columnName": "mapquest_json"
-  },
-  {
-    "op": "core/column-addition-by-fetching-urls",
-    "description": "Create column bing_json at index 1 by fetching URLs based on column address using expression grel:\"http://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\"",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "bing_json",
-    "columnInsertIndex": 1,
-    "baseColumnName": "address",
-    "urlExpression": "grel:\"http://dev.virtualearth.net/REST/v1/Locations?q=\" + escape(value, \"url\") + \"&key=BingMapsKey\"",
-    "onError": "set-to-blank",
-    "delay": 500
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column bing_lat_lon at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +\", \" + pair[1])value",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "bing_lat_lon",
-    "columnInsertIndex": 2,
-    "baseColumnName": "bing_json",
-    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].point.coordinates, pair, pair[0] +\", \" + pair[1])value",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-split",
-    "description": "Split column bing_lat_lon by separator",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "columnName": "bing_lat_lon",
-    "guessCellType": true,
-    "removeOriginalColumn": true,
-    "mode": "separator",
-    "separator": ",",
-    "regex": false,
-    "maxColumns": 0
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column bing_lat_lon 1 to bing_latitude",
-    "oldColumnName": "bing_lat_lon 1",
-    "newColumnName": "bing_latitude"
-  },
-  {
-    "op": "core/column-rename",
-    "description": "Rename column bing_lat_lon 2 to bing_longitude",
-    "oldColumnName": "bing_lat_lon 2",
-    "newColumnName": "bing_longitude"
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column bing_confidence at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "bing_confidence",
-    "columnInsertIndex": 2,
-    "baseColumnName": "bing_json",
-    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].confidence, v, v)",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-addition",
-    "description": "Create column bing_type at index 2 based on column bing_json using expression grel:with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)",
-    "engineConfig": {
-      "facets": [],
-      "mode": "row-based"
-    },
-    "newColumnName": "bing_type",
-    "columnInsertIndex": 2,
-    "baseColumnName": "bing_json",
-    "expression": "grel:with(value.parseJson().resourceSets[0].resources[0].entityType, v, v)",
-    "onError": "set-to-blank"
-  },
-  {
-    "op": "core/column-removal",
-    "description": "Remove column bing_json",
-    "columnName": "bing_json"
-  }
-]
-```
-Again, you will need to replace `BingMapsKey` in the above code with your own Bing API key. In class we will use this code to geocode the larger `sf_test_addresses.txt` dataset.
+The file `refine_geocoder.json` will geocode a sample of addresses using both the Bing and MapQuest Open APIs. Again, you will need to replace `BingMapsKey` in this file with your own Bing API key. In class we will use this code to geocode the larger `sf_test_addresses.tsv` dataset.
 
-For the MapQuest results, the `mapquest_class` column provides information on the accuracy of geocoding: `place`, `amenity` or `shop` indicate geocoding to a precise address; `highway` indicates geocoding to a street only. The `mapquest_type` column provides further information about the address or street concerned.
+For the MapQuest Open results, the `mapquest_class` column provides information on the accuracy of geocoding: `place`, `amenity` or `shop` indicate geocoding to a precise address; `highway` indicates geocoding to a street only. The `mapquest_type` column provides further information about the address or street concerned.
 
-The Bing and MapQuest services can also be accessed through the [GPS Visualizer geocoder](http://www.gpsvisualizer.com/geocoder/). To geocode addresses in bulk from this site using MapQuest, you will need to obtain a MapQuest AppKey, [following these instructions](http://www.gpsvisualizer.com/geocoder/key.html#mapquest).
-
-The following steps detail how to geocode using the Mapquest service at this site. In the form shown below, select `MapQuest Open` as the `Source`, and enter your AppKey where shown:
+Other geocoding options include the [GPS Visualizer geocoder](http://www.gpsvisualizer.com/geocoder/). You will need API keys for the geocoding services it uses.
 
 ![](./img/class8_2.jpg)
 
@@ -272,29 +95,28 @@ GPS Visualizer's geocoder will work from a simple list of addresses, or from tab
 
 Checking `Include source+precision info in output` will ensure that the output includes notification of the accuracy of the geocoding for each record: `address` indicates precise geocoding to a particular address.
 
-Paste the address data from the `sf_test_addresses.txt` file into the `Input:` box,
-click `Start geocoding` and the results will appear in the `Results as text:` box. When all the addresses have been processed, copy and paste the results into a text file and save. If you have a large number of addresses to geocode, I recommend breaking them down into batches of 1,000 or fewer.
+Select `Bing Maps` as the source and paste you Bing Maps API key into the box. Then paste the address data, minus the header row, from the `sf_test_addresses.tsv` file into the `Input:` box, click `Start geocoding` and the results will appear in the `Results as text:` box. When all the addresses have been processed, copy and paste the results into a text file and save. If you have a large number of addresses to geocode, I recommend breaking them down into batches of 1,000 or fewer.
 
 Whichever service you use to geocode addresses, provide appropriate acknowledgement. MapQuest's terms and conditions require that you include this acknowledgement on any website or app using data geocoded through its service:
 
-```HTML
+```JSON
 <p>Geocoding Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png"></p>
 ```
 Data should also be sourced to OpenStreetMap, [see here](http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F) for instructions on how to credit appropriately.
 
 Here is an HTML acknowledgment to Bing in the same style as above:
 
-```HTML
+```JSON
 <p>Geocoding Courtesy of <a href="http://www.microsoft.com/maps/product/terms.html" target="_blank">Bing</a> <img src="http://www.microsoft.com/maps/images/branding/Bing%20logo%20gray_50px-19px.png"></p>
 ```
 
-Be aware that different geocoders will give slightly different results. In my experience, MapQuest tends to locate addresses to sidewalks or building fronts, while Bing tends to locate to the middle of the building concerned. Bing's failure rate also appears to be lower. You may need to manually record the coordinates of addresses that fail, or which do not geocode to a precise address. In these cases, try searching for the address on Bing Maps or Google Maps. For the latter, note the latitude and longitude for the placemarker than appears, shown here after the `@` symbol:
+Be aware that different geocoders will give slightly different results. In my experience, MapQuest Open tends to locate addresses to sidewalks or building fronts, while Bing tends to locate to the middle of the building concerned. Bing's failure rate also appears to be lower. You may need to manually record the coordinates of addresses that fail, or which do not geocode to a precise address. In these cases, try searching for the address on Bing Maps or Google Maps. For the latter, note the latitude and longitude for the placemarker than appears, shown here after the `@` symbol:
 
-```
+```JSON
 https://www.google.com/maps/place/1875+Cesar+Chavez+St,+San+Francisco,+CA+94107/@37.7497825,-122.395751,17z/data=!3m1!4b1!4m2!3m1!1s0x808f7fae0a545527:0x564005c073e75262
 ```
 
-Other options for geocoding include [Texas A&M University's GeoServices](https://geoservices.tamu.edu/), which will geocode from an uploaded text file, emailing you when the results are ready for download. First [sign up for a free account](https://geoservices.tamu.edu/Signup/), then [upload your data](https://geoservices.tamu.edu/Services/Geocode/BatchProcess/).
+You may also wish to experiment with [Texas A&M University's GeoServices](https://geoservices.tamu.edu/), which will geocode from an uploaded text file, emailing you when the results are ready for download. First [sign up for a free account](https://geoservices.tamu.edu/Signup/), then [upload your data](https://geoservices.tamu.edu/Services/Geocode/BatchProcess/).
 
 ### Map projections
 
@@ -320,7 +142,7 @@ When mapping the continental United States, particularly when coloring or shadin
 
 (Source: [*The New York Times*](http://www.nytimes.com/interactive/2014/upshot/mapping-the-spread-of-drought-across-the-us.html))
 
-As the name suggests, this projection minimizes distortions of area. It does not preserve direction: Notice that the border with Canada, which runs along a parallel at a latitude of 45 degrees N, is a curve, rather that a straight line.
+As the name suggests, this projection minimizes distortions of area. It does not preserve compass bearing: Notice that the border with Canada, which runs along a parallel at a latitude of 45 degrees N, is a curve, rather that a straight line.
 
 The Albers Equal Area Conic projection is rarely used to show the entire Earth, for obvious reasons when you see the projection in global view:
 
@@ -334,7 +156,7 @@ To minimize the distortion of area on a global map, a better choice is the Mollw
 
 (Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Mollweide_projection_SW.jpg))
 
-The Mollweide projection is also often used for maps of the entire sky (which can be thought of as the inside of a sphere). I used it [here](http://newscientistapps.github.io/CMB/) to compare the resolution of maps of the cosmic microwave background radiation, which reveal ripples in space-time that are the remnants of conditions in the early Universe, with views of the Earth:
+The Mollweide projection is also often used for maps of the entire sky (which can be thought of as the inside of a sphere). I used it [here](http://paldhous.github.io/CMB/) to compare the resolution of maps of the cosmic microwave background radiation, which reveal ripples in space-time that are the remnants of conditions in the early Universe, with views of the Earth:
 
 ![](./img/class8_5b.jpg)
 
@@ -370,15 +192,16 @@ Distortions of shape, area, distance and direction are most obvious when represe
 
 This was the projection I used for the global GDP per capita maps we saw in week 1:
 
-![](./img/class1_9.jpg)
+![](./img/class1_16.jpg)
 
-In addition to a projection, a map also has a [datum](http://en.wikipedia.org/wiki/Geodetic_datum), which refers to a mathematical model accounting for the shape of the Earth -- which is not a perfect sphere. Under most circumstances, however, you will not need to worry about this.
+In addition to a projection, a map also has a [datum](http://en.wikipedia.org/wiki/Geodetic_datum), which refers to a mathematical model accounting for the shape of the Earth -- which is not a perfect sphere.
+
 
 ### Putting data onto maps
 
 #### Scaled circles vs. choropleth maps
 
-Data can be put onto maps in various ways. When continuous variables are plotted to points, one common approach is to use circles centered on each point, sized according to the data values -- as we did in week 3 when mapping Berkeley traffic accidents. Here is another example of this approach, used to show fatalities caused by tornadoes:
+Data can be put onto maps in various ways. When continuous variables are plotted to points, one common approach is to use circles centered on each point, sized according to the data values. Here is another example of this approach, used to show fatalities caused by tornadoes:
 
 ![](./img/class8_9.jpg)
 
@@ -456,7 +279,7 @@ A similar approach can work with aggregations of data, as in this project from *
 
 While dot density maps can be useful on occasion, sometimes you may need to tell a story based on the distribution of points where they overlap, or sit directly on top of one another. This can present a misleading picture, as much of the data will be obscured.
 
-Under such circumstances, other approaches are necessary. Heat maps, for example, plot the density of points on a map as a gradient of colors, typically running from cool blues to warm reds. Here, to illustrate, I have used this approach to map violent events in Syria's civil war from its start to the end of the first quarter of 2013, revealing "hotspots" of violence that were not so obvious from a map of thousands of overlapping points, seen below:
+Under such circumstances, other approaches are necessary. Heat maps, for example, plot the density of points on a map as a gradient of colors, typically running from cool blues or greens to warm reds. Here, to illustrate, I have used this approach to map violent events in Syria's civil war from its start to the end of the first quarter of 2013, revealing "hotspots" of violence that were not so obvious from a map of thousands of overlapping points, seen below:
 
 ![](./img/class8_16.jpg)
 
@@ -468,7 +291,7 @@ While heatmaps are good for qualitatively identifying hotspots, they are less us
 
 ![](./img/class8_18.jpg)
 
-(Source: *[New Scientist](http://syria.newscientistapps.com/)*)
+(Source: *[New Scientist](http://paldhous.github.io/Syria/)*)
 
 ### Think before you map: Is this the best representation of the data?
 
@@ -476,7 +299,6 @@ Whenever you come across data that can be put on a map, it's very tempting to do
 
 ![](./img/class2_2.jpg)
 
-(Source: [Creative Bloq](http://www.creativebloq.com/design/science-behind-data-visualisation-8135496))
 
 Consider these two representations of similar data on rates of overall gun death (the map) and gun homicides (the bar chart) by U.S. state:
 
@@ -503,6 +325,8 @@ Web maps that can be panned and zoomed generally depend on a series of world map
 Zoomable data-driven web maps are often displayed over basemaps from Google, OpenStreetMap, or another provider. Because these basemaps use a Mercator projection, that projection needs to be used for the data layers also.
 
 ### Geographic data formats
+
+Most commonly you will come across geodata in which values are attached to points, lines or polygons. This is called "vector" geodata, and here are some common formats. (For points, geodata may also be provided in CSV format.)
 
 #### KML
 
@@ -591,31 +415,36 @@ See the [full GeoJSON specification](http://geojson.org/geojson-spec.html) for m
 
 #### Shapefile
 
-This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial GIS application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
+This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial Geograohic Information System (GIS) application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
 
 Shapefiles are usually made available for download as zipped folders, and actually consist of a series of files. At a minimum, a shapefile must contain three component files, with the same root name and the following extensions:
 
 - `.shp` The main file containing the geometry of the points, lines or polygons mapped in the shapefile.
-- `.dbf` A database file in dBASE format containing a table of data relating to the components of the geometry. For example, in a world shapefile giving national boundaries, this table might contain data about the countries including their names, capital cities, population, annual GDP and so on.
+- `.dbf` A database file in dBASE format containing a table of data relating to the components of the geometry. For example, in a world shapefile giving national boundaries, this table might contain data about the countries including their names, capital cities, population, annual GDP, and so on.
 - `.shx` A positional index of the shapefile’s geometry.
 
 There are several optional file types that may also be included, including a `.prj` file, which defines the map projection and datum to be used when loading the shapefile into GIS software. Refer to [ESRI’s technical specification](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf) and the [informative Wikipedia entry](http://en.wikipedia.org/wiki/Shapefile) for more details.
 
 Many government agencies, such as the [U.S. Census Bureau](http://www.census.gov/geo/maps-data/data/tiger-line.html), provide data for mapping as shapefiles. You can also download shapefiles from repositories such as [Natural Earth](http://www.naturalearthdata.com/downloads/).
 
-You can open and edit `.dbf` files in LibreOffice Calc. As long as you save the `.dbf` file with the same name, your changes to the data will be incorporated into the shapefile.
 
-#### Converting between geodata formats
+### Converting between vector geodata formats
 
-We will later learn how to use QGIS to convert between the main geodata formats. In addition, [this site](http://www.shpescape.com//) converts shapefiles to GeoJSON and TopoJSON.
+We will later learn how to use [QGIS](http://qgis.org/en/site/) to convert between the main geodata formats. In addition, [this site](http://www.shpescape.com//) converts shapefiles to GeoJSON and TopoJSON. [Mapshaper](http://mapshaper.org/), which we will later also use to simplify the geometry of geodata, will import and export data as Shapefile, GeoJSON, and TopoJSON, and so can also be used for data conversion.
+
+### Mapping images: raster geodata
+
+Satellite and aerial images can also be placed into maps, which requires the images to be georeferenced, or have location imformation associated with them. Formats for raster geodata include [GeoTIFF](http://trac.osgeo.org/geotiff/). If you need to make maps with raster geodata for your final projects, contact me for help!
+
 
 ### Assignment
 
-Decide which dataset(s) you wish to explore for your final project. You can use one of the suggested datasets, adding further data as appropriate. You are also free to pursue a story in other datasets, with my agreement.
+Decide which dataset(s) you wish to explore for your final project. You can use one of the suggested datasets, adding further data as appropriate. You are also encouraged to pursue a story in other datasets, with my agreement.
 
 - Frame some questions you intend to address, or a potential story you wish to pursue in the data.
 - Produce some initial sketches, using the tools we've worked with so far.
-- Send those notes and sketches to me before next week's class.
+- Send me a pitch detailing your plans by Sun Oct 11 at 8pm.
+- Arrange a time to discuss your project plans with me in the coming week.
 
 This is an open-ended assignment. What you get from it, and ultimately the quality of your final project, will depend on the energy, rigor and imagination with which your pursue this assignment.
 

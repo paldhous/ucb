@@ -5,7 +5,7 @@ This is a course in finding and telling visual stories from data. We will cover 
 
 ### Weekly schedule
 
-We will meet in **142/Library NG ** on Thursdays from 9.30am - 12.30pm. Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** from 1.30pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
+We will meet in **106/Upper NG** on Thursdays from 9.30am - 12.30pm. Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** from 1.30pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
 
 Class time will also be scheduled for each of you to critique and lead class discussion of a recently published news graphic/interactive.
 
@@ -27,7 +27,7 @@ We will use [Tableau Public](http://www.tableausoftware.com/public/) to explore 
 
 
 -  ####**Sept. 17:** [**Acquiring, cleaning and formatting data**](week4.html)
-Data search and download tricks, including [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox plugins; manipulating urls and using APIs to acquire data; scraping data from the web with [Import.io](https://import.io/) or [Kimono](https://www.kimonolabs.com/); cleaning data with [Open Refine](http://openrefine.org/); converting data between different formats using [Mr. Data Converter](http://shancarter.github.io/mr-data-converter/).
+Data search and download tricks, including [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox plugins; manipulating urls and using APIs to acquire data; scraping data from the web with  [Kimono](https://www.kimonolabs.com/); cleaning data with [Open Refine](http://openrefine.org/); converting data between different formats using [Mr. Data Converter](http://shancarter.github.io/mr-data-converter/).
 
  - **Assignment:** data cleaning task with Open Refine.
 
@@ -41,13 +41,13 @@ Introduction to databases and Structured Query Language for manipulating data. W
 - ####**Oct. 1:** [Let's apply what we've learned so far](week6.html)
 We will obtain and process World Bank data on life expectancy and GDP per capita for the world's nations from the web, and then create a Tableau visualization inspired by [this Gapminder video](http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/).
 
- - **Assignment:** deliver your finished visualization.
+ - **Assignment:** download and process World Bank data on nations' carbon dioxide emissions per capita, and make a simple Tableau dashboard.
 
 
 -  ####**Oct. 8:**	[**Principles of mapping; introduction to final projects**](week7.html)
 Basic mapping principles:  projections, geocoding, geodata formats; approaches to putting data onto maps, including choropleth maps, scaled symbols, hexagonal binning and cartograms. We will also discuss datasets made available for your final projects; you are encouraged, however, to suggest your own.
 
- - **Assignment:** submit a pitch detailing plans for your final project. You should also each arrange individual appointments with your instructor over the next two weeks to discuss your plans.
+ - **Assignment:** submit a pitch detailing plans for your final project. You should also each arrange an individual appointments with your instructor over the coming week to discuss your plans.
 
 
 - ####**Oct. 15:** [**Making static maps and processing geodata with GIS software**](week8.html)
