@@ -37,6 +37,16 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 - `pfizer.csv` The same data in CSV format.
 - `fda.csv` Records of warning letters sent to doctors by the U.S. Food and Drug Administration because of problems with their conduct of clinical trials of new drugs or medical devices.
 
+#### [Week 7](./data/week7.zip)
+- `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
+- `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
+- `refine_geocoder.json` JSON file to geocode using Open Refine.
+
+The first two files can also be downloaded from [this Github respository](https://github.com/paldhous/refine-geocoder).
+
+For this week's geocoding exercise, you will need a Bing Maps API key.
+If you don't already have a Microsoft Account, you will first need to [create one](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1). Then `Sign in` at the [Bing Maps Portal](https://www.bingmapsportal.com/) and select `My account>Create or view keys` from the top menu.
+
 
 ## Final projects
 

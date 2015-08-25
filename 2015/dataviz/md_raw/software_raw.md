@@ -40,7 +40,7 @@ Allows you to convert tabular (spreadsheet/CSV) data to web-friendly formats inc
 We will manage SQLite databases using this Firefox add-on. Install in Firefox [from here](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/). There is no need to separately install SQLite.
 
 ### [GPS Visualizer batch geocoder](http://www.gpsvisualizer.com/geocoder/)
-Allows you to convert addresses to latitude and longitude coordinates. Web app: no installation required; however, you will need to sign up for a  [MapQuest](http://www.gpsvisualizer.com/geocoder/key.html#mapquest) and [Bing Maps](http://www.gpsvisualizer.com/geocoder/key.html#bing) API keys.
+Allows you to convert addresses to latitude and longitude coordinates. Web app: no installation required; however, you will need to sign up for API keys for the geocoding services it uses.
 
 ### [CartoDB](https://cartodb.com)
 A sophisticated cloud-based mapping application that also functions as a geospatial database, allowing you to analyze and process geodata. [Sign up](https://cartodb.com/signup) here for a free account.

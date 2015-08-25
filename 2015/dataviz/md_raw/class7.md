@@ -21,7 +21,7 @@ If you don't already have a Microsoft Account, you will first need to [create on
 
 Consider the following concepts in relation to this image:
 
-![](./img/class8_1.jpg)
+![](./img/class7_1.jpg)
 
 (Source: [Google Earth](https://www.google.com/earth/))
 
@@ -89,7 +89,7 @@ For the MapQuest Open results, the `mapquest_class` column provides information 
 
 Other geocoding options include the [GPS Visualizer geocoder](http://www.gpsvisualizer.com/geocoder/). You will need API keys for the geocoding services it uses.
 
-![](./img/class8_2.jpg)
+![](./img/class7_2.jpg)
 
 GPS Visualizer's geocoder will work from a simple list of addresses, or from tabular data, with different aspects of the address (street address, city, state, zipcode and so on) in separate fields. Set the `Type of data` control as appropriate. If you are working with tabular data, with the address divided into several fields, adjust the `Field separator in output` control to reflect the separator in your data. I strongly recommend using the `raw list, 1 address per line` option, which in my experience gives much more reliable results.
 
@@ -124,7 +124,7 @@ Because the Earth is roughly spherical, any map other than a globe is a distorti
 
 Maps can be made simply by plotting latitude on the X axis and longitude on the Y axis on the same scale, sometimes called an Equirectangular projection:
 
-![](./img/class8_2a.jpg)
+![](./img/class7_3.jpg)
 
 (Source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Equirectangular_projection_SW.jpg))
 
@@ -132,13 +132,13 @@ Most maps are drawn according to a more sophisticated projection system, however
 
 Google and most other online maps use a Mercator projection, which was originally designed for navigation at sea. The main strength of the Mercator projection is that it preserves direction, so that any straight line drawn on the map is a line of constant compass bearing. Parallels are all horizontal and meridians vertical. This preservation of direction is also a good choice for zoomable maps used primarily for local orientation. The big drawback of this projection is that it distorts area and shape, especially at high latitudes, which makes it a poor choice for representing the entire world. Notice how the distances between parallels increase with latitude:
 
-![](./img/class8_3.jpg)
+![](./img/class7_4.jpg)
 
 (Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Mercator_projection_SW.jpg))
 
 When mapping the continental United States, particularly when coloring or shading different areas according to the values of data, it is common to use the Albers Equal Area Conic projection, as seen in this map of drought conditions across the nation:
 
-![](./img/class8_4.jpg)
+![](./img/class7_5.jpg)
 
 (Source: [*The New York Times*](http://www.nytimes.com/interactive/2014/upshot/mapping-the-spread-of-drought-across-the-us.html))
 
@@ -146,39 +146,39 @@ As the name suggests, this projection minimizes distortions of area. It does not
 
 The Albers Equal Area Conic projection is rarely used to show the entire Earth, for obvious reasons when you see the projection in global view:
 
-![](./img/class8_5.jpg)
+![](./img/class7_6.jpg)
 
 (Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Albers_projection_SW.jpg))
 
 To minimize the distortion of area on a global map, a better choice is the Mollweide projection:
 
-![](./img/class8_5a.jpg)
+![](./img/class7_7.jpg)
 
 (Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Mollweide_projection_SW.jpg))
 
 The Mollweide projection is also often used for maps of the entire sky (which can be thought of as the inside of a sphere). I used it [here](http://paldhous.github.io/CMB/) to compare the resolution of maps of the cosmic microwave background radiation, which reveal ripples in space-time that are the remnants of conditions in the early Universe, with views of the Earth:
 
-![](./img/class8_5b.jpg)
+![](./img/class7_8.jpg)
 
-(Source: [*New Scientist*](http://newscientistapps.github.io/CMB/))
+(Source: [*New Scientist*](http://paldhous.github.io/CMB/))
 
 The Mollweide projection's main disadvantage is the distortion of shape at high latitudes and longitudes -- look, for example, at Alaska on the above Mollweide maps.
 
 Under certain circumstances, preserving distance may by the most important goal. Here, an Azimuthal Equidistant Projection is the best approach:
 
-![](./img/class8_6a.jpg)
+![](./img/class7_9.jpg)
 
 (Source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Azimuthal_equidistant_projection_SW.jpg))
 
 Below, an Azimuthal Equidistant projection, centered on North Korea, is used to illustrate the locations that might lie within the range of that country's ballistic missiles:
 
-![](./img/class8_6.jpg)
+![](./img/class7_10.jpg)
 
 (Source: [Jason Davies](http://www.jasondavies.com/maps/north-korea-distance/))
 
 Here, for comparison, is a map that highlights the zone within 10,000 km of North Korea using Google Maps' Mercator projection:
 
-![](./img/class8_7.jpg)
+![](./img/class7_11.jpg)
 
 (Source: [Darren Wiens](http://darrenwiens.net/pyongyang.html))
 
@@ -186,7 +186,7 @@ As the North Korean Azimuthal Equidistant and US drought Albers Equal Area Conic
 
 Distortions of shape, area, distance and direction are most obvious when representing the entire globe. Under these circumstances, mapmakers often adopt a compromise projection in which distance, area, shape, and direction are all distorted, but to a minimal extent. An example is the Robinson projection:
 
-![](./img/class8_8.jpg)
+![](./img/class7_12.jpg)
 
 (Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Robinson_projection_SW.jpg))
 
@@ -203,7 +203,7 @@ In addition to a projection, a map also has a [datum](http://en.wikipedia.org/wi
 
 Data can be put onto maps in various ways. When continuous variables are plotted to points, one common approach is to use circles centered on each point, sized according to the data values. Here is another example of this approach, used to show fatalities caused by tornadoes:
 
-![](./img/class8_9.jpg)
+![](./img/class7_13.jpg)
 
 (Source: [*The New York Times*](http://www.nytimes.com/interactive/2011/04/28/us/tornado-deaths.html))
 
@@ -211,13 +211,13 @@ When plotting data to geographical areas, the most common approach is to fill th
 
 Choropleth maps have an important drawback: Our eyes are drawn to expanses of color, which means that large geographic areas will attract greater attention, whether or not these are actually more important for the story you are trying to tell from the data. This becomes a particular problem with maps illustrating election results, where the significance of small geographical areas with large populations that have a major impact on the overall result gets downplayed, while sparsely populated large areas are overemphasized. Looking at this map of results from the 2012 Presidential election by county, for example, one would think at a glance that Mitt Romney was the winner:
 
-![](./img/class8_10.jpg)
+![](./img/class7_14.jpg)
 
 (Source: [*The New York Times*](http://elections.nytimes.com/2012/results/president?view=county_margin_change_view))
 
 In such cases, scaled circles located to the center of geographic areas can be a better option. Here is another map from the same interactive, using that approach to visualize the size of each candidate's lead in each county, measured by the absolute number of votes. This shows how Barack Obama won the election through his strong support in densely populated urban areas:
 
-![](./img/class8_11.jpg)
+![](./img/class7_15.jpg)
 
 (Source: [*The New York Times*](http://elections.nytimes.com/2012/results/president?view=county_margin_change_view))
 
@@ -227,33 +227,33 @@ Another solution to the main drawback of choropleth maps is to distort the areas
 
 There are several algorithms for making cartograms which preserve the boundaries between geographical areas, which result in "organically" distorted maps. Here, for example, is a rendering of the 2012 Presidential Election results by county, distorted using the algorithm described in [this scientific paper](http://www.pnas.org/content/101/20/7499.abstract):
 
-![](./img/class8_12.jpg)
+![](./img/class7_16.jpg)
 
 (Source: [Mark Newman](http://www-personal.umich.edu/~mejn/election/2012/))
 
-A good tool for making maps like this is [Scapetoad](http://scapetoad.choros.ch/). However, bear in mind that the impact of these maps derives from their disconcerting perspective. That can be 	useful to make your audience think about an issue in a new way, which was the thinking behind these maps of mine, comparing nations measured by GDP, and by a measure called the [Happy Planet Index](http://www.happyplanetindex.org/):
+A good tool for making maps like this is [Scapetoad](http://scapetoad.choros.ch/). However, bear in mind that the impact of these maps derives from their disconcerting perspective. That can be useful to make your audience think about an issue in a new way, which was the thinking behind these maps of mine, comparing nations measured by GDP, and by a measure called the [Happy Planet Index](http://www.happyplanetindex.org/):
 
-![](./img/class8_13.jpg)
+![](./img/class7_17.jpg)
 
 (Source: *[New Scientist](http://www.newscientist.com/article/mg21428694.800-us-fails-on-happy-planet-index.html)*)
 
 The cartograms we have seen so far retain common borders between areas, which constrains the accuracy with which areas can be resized according to values for a continuous variable. By relaxing this constraint, it is possible to resize areas more precisely:
 
-![](./img/class8_13a.jpg)
+![](./img/class7_18.jpg)
 
 (Source: [Mike Bostock](http://bl.ocks.org/mbostock/4055908))
 
 However, bear in mind that it is hard to compare the areas of non-regular shapes, so either form of cartogram is not so useful if you want your audience to be able to "read" the data in a precise way.
 
-It is also possible to make geometric cartograms, which use the area of shapes (generally circles or squares) to make a more abstract "map." This graphic from *The New York Times*, published during the 2012 Presdential election campaign, took this approach:
+It is also possible to make geometric cartograms, which use the area of shapes (generally circles or squares) to make a more abstract "map" in which the relative size of different elements is easier to compare. This graphic from *The New York Times*, published during the 2012 Presidential election campaign, took this approach:
 
-![](./img/class8_14.jpg)
+![](./img/class7_19.jpg)
 
 (Source: *[The New York Times](http://elections.nytimes.com/2012/ratings/electoral-map)*)
 
 Along similar lines, for its coverage of the 2010 U.K. General Election, the BBC represented each parliamentary constituency as a hexagon of equal area. The resulting map bore sufficient resemblance to an actual map of the United Kingdom to be meaningful, and users of the website could switch between the proportional and geographical maps to gain a more complete picture of the results by location:
 
-![](./img/class8_15.jpg)
+![](./img/class7_20.jpg)
 
 ￼(Source: [BBC](http://news.bbc.co.uk/2/shared/election2010/results/))
 
@@ -261,7 +261,7 @@ Along similar lines, for its coverage of the 2010 U.K. General Election, the BBC
 
 Sometimes patterns emerge from geographic data when we see the spatial distribution of every single occurrence of a phenomenon. This is the thinking behind dot density maps, like this visualization of the 2010 U.S. Census, which includes a colored point for every single person:
 
-![](./img/class8_15a.jpg)
+![](./img/class7_21.jpg)
 
 (Source: [Dustin Cable, University of Virginia](http://demographics.coopercenter.org/DotMap/index.html))
 
@@ -269,11 +269,9 @@ The overall effect is rather like [pointillist](http://en.wikipedia.org/wiki/Poi
 
 A similar approach can work with aggregations of data, as in this project from *The New York Times*, which drew one dot for every 200 people, rather than one dot per person:
 
-![](./img/class8_15b.jpg)
+![](./img/class7_22.jpg)
 
 (Source: *[The New York Times](http://projects.nytimes.com/census/2010/explorer?ref=nyregion)*)
-
-
 
 #### Making sense of many overlapping points: Heatmaps vs. hexagonal binning
 
@@ -281,15 +279,15 @@ While dot density maps can be useful on occasion, sometimes you may need to tell
 
 Under such circumstances, other approaches are necessary. Heat maps, for example, plot the density of points on a map as a gradient of colors, typically running from cool blues or greens to warm reds. Here, to illustrate, I have used this approach to map violent events in Syria's civil war from its start to the end of the first quarter of 2013, revealing "hotspots" of violence that were not so obvious from a map of thousands of overlapping points, seen below:
 
-![](./img/class8_16.jpg)
+![](./img/class7_23.jpg)
 
-![](./img/class8_17.jpg)
+![](./img/class7_24.jpg)
 
 (Source: Peter Aldhous, from [GDELT](http://gdeltproject.org/) data)
 
 While heatmaps are good for qualitatively identifying hotspots, they are less useful for communicating quantitative information. For this purpose, a better approach is to superimpose a hexagonal grid over the map, count the points in each cell, and use those counts to create a choropleth map, based on the grid. I used that approach on the same data to make this map of Syria's conflict:
 
-![](./img/class8_18.jpg)
+![](./img/class7_25.jpg)
 
 (Source: *[New Scientist](http://paldhous.github.io/Syria/)*)
 
@@ -299,14 +297,13 @@ Whenever you come across data that can be put on a map, it's very tempting to do
 
 ![](./img/class2_2.jpg)
 
-
 Consider these two representations of similar data on rates of overall gun death (the map) and gun homicides (the bar chart) by U.S. state:
 
-![](./img/class8_19.jpg)
+![](./img/class7_26.jpg)
 
 (Source: *[Rolling Stone](http://feature.rollingstone.com/feature/gun-control/map#deadPer100K)*)
 
-![](./img/class8_20.jpg)
+![](./img/class7_27.jpg)
 
 (Source: [Flowing Data](http://flowingdata.com/2011/01/19/states-with-the-most-and-least-firearms-murders/))
 
@@ -318,7 +315,7 @@ When designing a map-based graphic, one of the first things to decide is whether
 
 Web maps that can be panned and zoomed generally depend on a series of world maps of different zoom levels, which are each divided into square tiles. The tiles are loaded into the web browser as required as the user pans and zooms the map. This image demonstrates the principle:
 
-![](./img/class8_21.jpg)
+![](./img/class7_28.jpg)
 
 (Source: [Microsoft Developer Network](http://msdn.microsoft.com/en-us/library/bb259689.aspx))
 
@@ -427,7 +424,6 @@ There are several optional file types that may also be included, including a `.p
 
 Many government agencies, such as the [U.S. Census Bureau](http://www.census.gov/geo/maps-data/data/tiger-line.html), provide data for mapping as shapefiles. You can also download shapefiles from repositories such as [Natural Earth](http://www.naturalearthdata.com/downloads/).
 
-
 ### Converting between vector geodata formats
 
 We will later learn how to use [QGIS](http://qgis.org/en/site/) to convert between the main geodata formats. In addition, [this site](http://www.shpescape.com//) converts shapefiles to GeoJSON and TopoJSON. [Mapshaper](http://mapshaper.org/), which we will later also use to simplify the geometry of geodata, will import and export data as Shapefile, GeoJSON, and TopoJSON, and so can also be used for data conversion.
@@ -435,7 +431,6 @@ We will later learn how to use [QGIS](http://qgis.org/en/site/) to convert betwe
 ### Mapping images: raster geodata
 
 Satellite and aerial images can also be placed into maps, which requires the images to be georeferenced, or have location imformation associated with them. Formats for raster geodata include [GeoTIFF](http://trac.osgeo.org/geotiff/). If you need to make maps with raster geodata for your final projects, contact me for help!
-
 
 ### Assignment
 
