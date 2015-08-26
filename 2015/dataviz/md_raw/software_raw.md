@@ -1,5 +1,9 @@
 # Software and other tools
 
+To install some of the software below, you will need to alter your Mac security preferences to allow apps authored by developers that are not part of Apple's ecosystem. Open `System Preferences>Security & Privacy`, select the `General` tab and click the lock icon at bottom left to make changes, then allow apps downloaded from `Anywhere`:
+
+![](./img/software_1.jpg)
+
 ### [Firefox](https://www.mozilla.org/en-US/firefox/new/)
 
 Some of the tools we will use are Firefox add-ons. Ensure that you have the latest version of this popular web browser. [Download Firefox](https://www.mozilla.org/en-US/firefox/all/), or if already installed, if necessary update to the latest version [following these instructions](https://support.mozilla.org/en-US/kb/update-firefox-latest-version).
