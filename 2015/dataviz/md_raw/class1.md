@@ -39,7 +39,7 @@ Datasets will usually contain a mixture of categorical and continuous variables.
 
 (Source: Peter Aldhous, data from [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/) data)
 
-This is a typical data table layout, with the individual records -- the players -- forming the rows and the variables recorded for each player arranged in columns. Here it is easy to recognize the categorical variables of `pos` for playing position and `team` because they are each entered as text. Aside from the player names, the other variables are all continuous.
+This is a typical data table layout, with the individual records -- the players -- forming the rows and the variables recorded for each player arranged in columns. Here it is easy to recognize the two continuous variables, showing the players' salaries in dollars and millions of dollars, because they are entered as numbers.
 
 Don’t assume, however, that every number in a dataset represents a continuous variable. Text descriptions can make datasets unwieldy, so database managers often adopt simpler codes, which are often be numbers, to store categorical data. You can see this in the following example, showing data on traffic accidents resulting in injury or death in Berkeley, downloaded from a database maintained by researchers here on campus.
 
@@ -153,7 +153,7 @@ In this example, the X axis is labeled with multiples of a summary statistic cal
 
 Normal distributions are so common that many statistical methods have been invented specifically to work with them. It is also possible to run tests to tell whether data deviates significantly from a normal distribution, to check whether it’s valid to use these methods.
 
-Sometimes, however, it’s very clear just from looking at the shape of a dataset that it is not normally distributed. Here, for example, is the distribution of 2013 Major League Baseball salaries, dividing the values into “bins” rising in increments of $500,000. This type of chart is called a "histogram":
+Sometimes, however, it’s very clear just from looking at the shape of a dataset that it is not normally distributed. Here, for example, is the distribution of 2013 Major League Baseball salaries, dividing the values into “bins” rising in increments of S500,000. This type of chart is called a "histogram":
 
 ![](./img/class1_7.jpg)
 

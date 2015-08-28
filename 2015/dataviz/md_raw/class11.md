@@ -2,73 +2,93 @@
 
 ### Introducing R and R Studio
 
-In today's class we will make graphics and process data using **[R](http://www.r-project.org/)**, which is a very powerful tool, designed by statisticians for data analysis. Described on its archaic-looking website as "free software environment for statistical computing and graphics," R is a programming language that can be used to run statistical analyses and to make graphics. It can also be used to format and process data.
+In today's class we will make graphics and process data using **[R](http://www.r-project.org/)**, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as "free software environment for statistical computing and graphics," R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.
+
+We will explore's R's potential for making interactive graphics in week 13. Our goal for this week's class is to get used to processing data in R, and start making some static graphics.
 
 **[R Studio](http://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a more user-friendly interface than working in the standard R Console.
 
 Launch R Studio, and the screen should look like this:
 
-![](./img/class6_1.jpg)
+![](./img/class11_1.jpg)
 
-The main panel to the left is the R Console. Type valid R code into here and hit `return` and it will be run. See what happens if you run:
+The main panel to the left is the R Console. Type valid R code into here, hit `return`, and it will be run. See what happens if you run:
 
-```r
+```R
 print("Hello World!")
 ```
 
-Typing `Ctrl-L` will clear the console.
+### The data we will use today
+
+Download the data for this session from [here](data/week11.zip), unzip the folder and place it on your desktop. It contains the following files:
+
+- `disease_democ.csv`
+- `food_stamps.csv`
+- `pfizer.csv` `fda.csv`
+
+
+
+### Set your working directory
+
+When starting a new project in R, the first thing to do is set the directory/folder in which you are working. From the top menu, select `Session>Set Working Directory>Choose Directory ...
+
+Notice how this code appears in the console:
+
+```R
+setwd("~/Desktop/week11")
+```
 
 ### Reproducibility: save your scripts and your environment
 
-As we have already discussed, we should aim for all of our data journalism to be fully documented and reprodicible. R makes this easy, as every operation performed can be saved in a script. Click on the ![](./img/class6_2.jpg) icon at top left and select `R Script`. A new panel should now open.
+As we have already discussed, we should aim for all of our data journalism to be fully documented and reprodicible. R makes this easy, as every operation performed can be saved in a script. Click on the ![](./img/class11_2.jpg) icon at top left and select `R Script`. A new panel should now open:
 
-Any code we type in here can be run in the console. Hitting `Run` will run the line of code on which the cursor is sitting:
+![](./img/class11_3.jpg)
 
-![](./img/class6_3.jpg)
+Any code we type in here can be run in the console. Hitting `Run` will run the line of code on which the cursor is sitting. To run multiple lines of code, highlight them and click `Run`.
 
-To run multiple lines of code, highlight them and click `Run`.
-
-Click the disk icon in the script panel and save it as `week6`. It should automatically save with an `R` extension.
+Copy the code `setwd("~/Desktop/week6")` into the script then save it as `week11`. It should automatically save with an `R` extension. Now next time you run this script, the working directory will be set automatically.
 
 The panel at top right has two tabs, the first showing the `Environment`, or all of the "objects" loaded into memory for this R session. We can save this as well, so we don't have to load and process data again if we return to return to the project later.
 
-Click on the disk icon in the `Environment` panel to save and give the file a suitable name. You should see code in the following format appear in the Console, as the environment is saved with an `RData` extension:
+Click on the disk icon in the `Environment` panel to save and call the file `week11`. You should see code in the following format appear in the Console, as the environment is saved with an `RData` extension:
 
 ```r
-save.image("PathToFile/filename.RData")
+save.image("week11.RData")
 ```
 
-(Note, in all today's code examples, `PathToFile` would be replaced with an actual location on your computer.)
+Copy this code into your script also, placing it at the end. By keeping this code at the end of your script, each tie you run the entire script the last action will be to save the environment.
 
 The second tab in this panel shows the history of all the code run in the current R session.
 
 ### Install and load R packages
 
-Much of the power of R comes from the thousands of "packages" written by its community of Open Source contributors. These are optimized for specific statistical, graphical or data-processing tasks. To see what packages are available, select the `Packages` tab in the panel at bottom right. To find packages for particular tasks, try searching Google using appropriate keywords and the phrase "R package."
+Much of the power of R comes from the thousands of "packages" written by its community of open source contributors. These are optimized for specific statistical, graphical or data-processing tasks. To see what packages are available in the basic distribution of R, select the `Packages` tab in the panel at bottom right. To find packages for particular tasks, try searching Google using appropriate keywords and the phrase "R package."
 
-In this class, we will work with a series of useful packages, called **dplyr**, **tidyr**, **scales**, **ggplot2**, **RColorBrewer** and **WDI**. Click on `Install`, and enter these names, separated by commas, as follows:
+In this class, we will work with a series of useful packages, called **readr**, **ggplot2**, **dplyr**, **tidyr**, **scales**, and **WDI**. Click on `Install`, and enter these names, separated by commas, as follows:
 
-![](./img/class6_4.jpg)
+![](./img/class11_4.jpg)
 
 Make sure that `Install dependencies` is checked, as some packages will only run correctly if other packages are also installed. Click `Install` and all of the required packages should install.
 
 Having installed a package, you can load it into the current R session by checking its box in the `Packages` tab. However, we will enter the following code into our script, then highlight these lines of code and run them:
 
 ```r
-# two packages for manipulating data
-library(dplyr)
-library(tidyr)
+# package to quickly read data into R
+library(readr)
 
-# the main charting package we will use today
+# package to draw charts
 library(ggplot2)
+
+# package to format axes on those charts as %, $ and so on
+library(scales)
+
+# package for manipulating data
+library(dplyr)
 
 # package to format axes as %, $ and so on
 library(scales)
 
-# package for ColorBrewer palettes
-library(RColorBrewer)
-
-# package to import World Bank data
+# package to import data from World Bank World Development Indicators API
 library(WDI)
 ```
 
@@ -76,35 +96,31 @@ By saving this code in our script, the packages will load automatically when we 
 
 Each time you start R, it's a good idea to click on `Update` in the `Packages` panel to update all your installed packages to the latest versions.
 
-### Data
-
-The data for today's class, which includes some files we have used previously, is packaged together [here](./data/rclass.zip). Download and unzip the folder.
-
 ### Load, view and export data
 
-We can load data into the current R session by selecting `Import Dataset>From Text File...` in the `Environment` tab. Note that data saved in text files on the web can also be imported directly from their urls.
+We can load data into the current R session by selecting `Import Dataset>From Text File...` in the `Environment` tab.
 
-Import the disease and democracy data in this way. You should see the following dialog box:
+Import the food stamps data in this way. You should see the following dialog box:
 
-![](./img/class6_5.jpg)
+![](./img/class11_5.jpg)
 
 Check that R Studio has recognized whether the data has a `Heading` row, and that it has picked the correct `Separator` and the correct `Quote` character designating for text fields. `na.strings` will replace any null values with `NA`, which is standard in R. `Strings as factors` treats any text fields as labels for categorical variables. If this is unchecked they will be imported simply as strings of text.
 
 `Import` the data, and note that the following code should appear in the Console:
 
 ```r
-disease_democ <- read.delim("PathToFile/disease_democ.txt")
-	View(disease_democ)
+food_stamps <- read.csv("~/Desktop/week11/food_stamps.csv")
+	View(food_stamps)
 ```
-The data should open for inspection in the upper left panel, as instructed by the second line of the above code, and an object called `disease_democ` will now be visible in the `Environment` tab:
+The data should open for inspection in the upper left panel, as instructed by the second line of the above code, and an object called `food_stamps` will now be visible in the `Environment` tab:
 
-Note that `<-` is the preferred "assignment operator" in R, although you can use `=` instead. Essentially, `<-` means: "make the object named to the left equal to the output of the code to the right."
+![](./img/class11_6.jpg)
 
-![](./img/class6_6.jpg)
-
-The object we have created is a `data.frame`, the standard format for tables of data in R. Its `Value` details the number of variables, and the number of records, or observations, in the data.
+The object we have created is a "data frame," the standard format for tables of data in R. Its `Value` details the number of variables, and the number of records, or observations, in the data.
 
 We can `View` data at any time by clicking on its table icon in the `Environment` tab.
+
+***
 
 Data can also be imported by writing code:
 
@@ -121,12 +137,8 @@ str(disease_democ)
 ```
 This should give the following output in the R Console:
 
-```
-data.frame':	168 obs. of  4 variables:
- $ country     : Factor w/ 168 levels "Afghanistan",..: 11 10 127 88 13 134 42 101 40 159 ...
- $ income_group: Factor w/ 5 levels "High income: non-OECD",..: 1 1 1 1 1 1 1 1 1 1 ...
- $ democ_score : num  45.6 48.4 50.4 52.8 46 64 65.8 70.6 57.6 40.6 ...
- $ infect_rate : int  23 24 24 25 26 26 26 26 27 28 ...
+```JSON
+
 ```
 
 The `str` function shows the structure of a `data.frame`, telling us here that `country` and `income_group` are "Factors," which is what R calls categorical variables, `democ_score` is numeric, or a continuous variable, while `infect_rate` is a continuous variable that contains only integers.
@@ -134,31 +146,21 @@ The `str` function shows the structure of a `data.frame`, telling us here that `
 The following code shows the first `n` lines from an object, where `n` is the number given after the comma. It can be useful for quickly examining how data is organized:
 
 ```r
-head(disease_democ,10)
+head(food_stamps,10)
 ```
 This is the output:
 
-```
-                country          income_group democ_score infect_rate
-1               Bahrain High income: non-OECD        45.6          23
-2          Bahamas, The High income: non-OECD        48.4          24
-3                 Qatar High income: non-OECD        50.4          24
-4                Latvia High income: non-OECD        52.8          25
-5              Barbados High income: non-OECD        46.0          26
-6             Singapore High income: non-OECD        64.0          26
-7                Cyprus High income: non-OECD        65.8          26
-8                 Malta High income: non-OECD        70.6          26
-9               Croatia High income: non-OECD        57.6          27
-10 United Arab Emirates High income: non-OECD        40.6          28
+```JSON
+
 ```
 
 Often you may want to export data as a delimited text file after processing in R. So let's do this now for the disease and democracy data:
 
 ```r
-write.table(disease_democ, "PathToFile/disease_democ_export.txt", row.names = FALSE, sep = "\t", na = "")
+write.csv(food_stamps, "food_stamps_copy.csv", row.names = FALSE, na = "")
 ```
 
-If `row.names = FALSE` is not included, R will automatically add a number label to each row; `sep = "\t"` ensures that the delimiter or separator is `tab`. `na = ""` explains how to export any null values. Here they will be left blank, because there is nothing between the quote marks.
+If `row.names = FALSE` is not included, R will automatically add a number label to each row; `na = ""` explains how to export any null values. Here they will be left blank, because there is nothing between the quote marks. If you do not specify this, they will be exported with the value `NA`, which is how R designates null values.
 
 ### Draw a scatter plot from the disease and democracy data
 
