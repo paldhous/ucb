@@ -177,7 +177,7 @@ Choosing color schemes is a complex science and art, but there is no need to "ro
 
 In class, we will take some time to play around with ColorBrewer and examine its outputs. You will notice that the colors it suggests can be displayed according to their values on three color "models": HEX, RGB and CMYK. Here is a brief explanation of these and other common color models.
 
-- **RBG** Three values, describing a color in terms of combinations of red, blue and green light, with each scale ranging from 0 to 255; sometimes extended to RGB(A), where A is alpha, which encodes transparency. Example: `rgb(169, 104, 54)`.
+- **RGB** Three values, describing a color in terms of combinations of red, green, and blue light, with each scale ranging from 0 to 255; sometimes extended to RGB(A), where A is alpha, which encodes transparency. Example: `rgb(169, 104, 54)`.
 
 - **HEX** A six-figure "hexadecimal" encoding of RGB values, with each scale ranging from hex 00 (equivalent to 0) to hex ff (equivalent to 255); HEX values will be familiar if you have any experience with web design, as they are commonly used to denote color in HTML and CSS. Example: `#a96836`
 
@@ -187,7 +187,7 @@ In class, we will take some time to play around with ColorBrewer and examine its
 
 - **HSV/B** Similar to HSL, except that brightness (sometimes called value) replaces lightness, running from black to the color in question. `hsv(26.1, 68.07%, 66.25%)`
 
-[Colorizer](http://colorizer.org/) is one of several web apps for picking colors and coverting values from one model to another.
+[Colorizer](http://colorizer.org/) is one of several web apps for picking colors and converting values from one model to another.
 
 Custom color schemes can also work well, but experiment to see how different colors influence your story. The following graphic from *The Wall Street Journal*, for instance, uses an unusual pseudo-diverging scheme to encode data -- the US unemployment rate -- that would typically be represented using a sequential color scheme. It has the effect of strongly highlighting periods where the jobless rate rises to around 10%, which flow like rivers of blood through the graphic. This was presumably the designer's aim.
 
