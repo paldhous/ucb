@@ -58,10 +58,14 @@ These datasets are suggestions, in which there are definitely stories to be foun
 
 [This file](http://seanlahman.com/files/database/readme2014.txt) documents the tables and fields, and how the tables should be joined together. For the player tables ```playerID``` is the unique code for each player that can be used to make joins. When loading this data into SQLite, this field can be used as a primary key for the tables in which it appears. For tables relating to teams or managers, you should create a new primary key, as we did in week 5 for the FDA data.
 
-The Lahman database is also available as an [R package](https://cran.r-project.org/web/packages/Lahman/Lahman.pdf). However, note that this package has not yet been updated for the 2014 season. After installation in R Studio, the package can be loaded and the tables viewed with this code:
+The Lahman database is also available as an [R package](https://cran.r-project.org/web/packages/Lahman/Lahman.pdf). To install the most recent version, including data for the 2014 season, you will need to install from GitHub. First install the [devtools](https://cran.r-project.org/web/packages/devtools/devtools.pdf) package in RStudio, then use the following code:
 
 ```R
-# load the database
+# install latest Lahman package
+library(devtools)
+install_github("cdalzell/Lahman", ref="feature/v4.0-0")
+
+# load the Lahman package
 library(Lahman)
 
 # view, for example, the Master table

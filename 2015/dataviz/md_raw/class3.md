@@ -81,13 +81,13 @@ Now create a second calculated field giving the total number of neonatal deaths:
 
 ![](./img/class3_5.jpg)
 
-In the second formula, we have rounded the number of neonatal deaths to the nearest thousand, to avoid spurious precision in the numbers presented. See what happens if you replace`-3` in the above formula with `-2`. (As in Google Sheets, as we saw in Week 1, positive numbers define the number of decimal places, when rounding numbers with decimal fractions.)
+In the second formula, we have rounded the number of neonatal deaths to the nearest thousand using `-3` (`-2` would round to the nearest hundred, and so on), to avoid spurious precision in the numbers presented. (As in Google Sheets, as we saw in Week 1, positive numbers define the number of decimal places, when rounding numbers with decimal fractions.)
 
 Here we have simply run some simple arithmetic, but it's possible to use a wide variety of functions to manipulate data in Tableau in many ways. To see all of the available functions, click on the little gray triangle at the right of the dialog boxes above.
 
 #### Understand that Tableau's default behavior is to aggregate data
 
-As we work through today's exercise, we will see that Tableau  rountinely aggregates measures that are dropped into `Columns` and `Rows`, calculating a `SUM` or `AVG` (average), for example.
+As we work through today's exercise, we will see that Tableau routinely aggregates measures that are dropped into `Columns` and `Rows`, calculating a `SUM` or `AVG` (average), for example.
 
 This behavior can be turned off by selecting `Analysis` from the top menu and unchecking `Aggregate Measures`. However, I do not recommend doing this, as it will disable some Tableau functions. Instead, to visualize individual data points, we will use Tableau's filtering functions and the `Detail` shelf so that any aggregration is being performed on a single data point, and therefore has no effect.
 
@@ -95,7 +95,7 @@ This behavior can be turned off by selecting `Analysis` from the top menu and un
 
 For any one year, a treemap allows us to directly compare the neonatal deaths in each country, nested by region.
 
-In a new worksheet, drag `Country` and `Region` onto `Columns` and `Neonatal deaths` onto `Rows`. Then open `Show Me` and select the `treemap` option. The initial chart should look like this:
+Drag `Country` and `Region` onto `Columns` and `Neonatal deaths` onto `Rows`. Then open `Show Me` and select the `treemap` option. The initial chart should look like this:
 
 ![](./img/class3_6.jpg)
 
@@ -169,7 +169,7 @@ Hover over one of the rectangles, and notice the tooltip that appears. By defaul
 
 #### Save to the web
 
-Right-click on `Sheet 1` at bottom left and `Rename Sheet` to `Treemap bar chart`. Then select `File>Save to Tableau Public...` from the top menu. At the logon dialog box enter your Tableau Public account details, give the Wookbook a suitable name and click `Save`. When the save is complete, a view of the  visualization on Tableau's servers will open in your default browser.
+Right-click on `Sheet 1` at bottom left and `Rename Sheet` to `Treemap bar chart`. Then select `File>Save to Tableau Public...` from the top menu. At the logon dialog box enter your Tableau Public account details, give the Workbook a suitable name and click `Save`. When the save is complete, a view of the  visualization on Tableau's servers will open in your default browser.
 
 #### Make a map to use as a color legend
 
@@ -233,7 +233,7 @@ To freeze the Y axis, right-click on it, select `Edit Axis...`, make it `Fixed` 
 
 Right-click on the Y axis again, select `Format...` and increase the font size to `10pt` to make it easier to read.
 
-Now drag `Country` to `Filters`, make sure `All` are checked, and at the dialog box, and click `OK`:
+Now drag `Country` to `Filters`, make sure `All` are checked, and at the dialog box, click `OK`:
 
 ![](./img/class3_28.jpg)
 
@@ -251,7 +251,7 @@ Rename `Income Group` to `Income group` so its case is consistent with the other
 
 ![](./img/class3_31.jpg)
 
-Notice that the `Income group` filter lists the options in alphabetical order, rather than income order, which would make more sense. To fix this, selec `Income group` in the data panel, select `Manual` sort, edit the order as follows and click `OK`
+Notice that the `Income group` filter lists the options in alphabetical order, rather than income order, which would make more sense. To fix this, right-click on `Income group` in the data panel and select `Default Properties>Sort`. At the dialog box below, select `Manual` sort, edit the order as follows and click `OK`:
 
 ![](./img/class3_32.jpg)
 
@@ -271,7 +271,7 @@ Rename the sheet `Line chart` and save to the web.
 
 From the top menu, select `Dashboard>New Dashboard`. We can set the size of the dashboard to fit the web page in which it will be embedded, and this can be a `Range`, giving some basic responsive design. For simplicity, we will set the dashboard to `Laptop` size.
 
-To make a dashboard, drag charts, and other elements from the left-hand panel to the dashboard area. Notice that Tableau allows you to items including: horizontal and vertical containers, text boxes, images (useful for adding a publication's logo), embedded web pages and blank space.
+To make a dashboard, drag charts, and other elements from the left-hand panel to the dashboard area. Notice that Tableau allows you to add items including: horizontal and vertical containers, text boxes, images (useful for adding a publication's logo), embedded web pages and blank space.
 
 Drag `Treemap bar chart` from the panel at left to the main panel. The default title, from the worksheet name, isn't very informative, so right-click on that and select `Hide Title`. Select `Fit Width` to make the chart fill the dashboard area:
 

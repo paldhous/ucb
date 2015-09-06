@@ -18,9 +18,6 @@ library(WDI)
 # load food stamps data
 food_stamps <- read_csv("food_stamps.csv")
 
-x = c(0,20,40,60)
-
-food_stamps <- food_stamps %>% mutate(bin=.bincode(participants, x))
 
 str(food_stamps)
 
@@ -108,13 +105,24 @@ food_stamps_chart %>%
   + scale_fill_distiller(name="Costs \n($ billions)", palette="Reds", guide="legend") %>%
   + ggtitle("Food stamp nation")
 
-#scale_color_brewer for discrete
+#scale_color_brewer for categorical variables
 
+# binning data
 
+quantile(food_stamps$costs,(0:5)/5)
 
+breaks <- quantile(food_stamps$costs,(0:5)/5)
 
+food_stamps <- food_stamps %>% mutate(cost_bin=.bincode(costs, breaks, include.lowest=TRUE))
 
+food_stamps <- food_stamps %>% mutate(cost_bin=cut(costs, breaks, include.lowest=TRUE))
 
+food_stamps_chart %>%
+  + geom_bar(stat="identity", aes(fill=cost_bin)) %>%
+  + scale_fill_brewer(name="Costs \n($ billions)") %>%
+  + ggtitle("Food stamp nation")
+
+str(food_stamps)
 
 
 save.image("week11.RData")
