@@ -784,6 +784,7 @@ The [WDI](https://github.com/vincentarelbundock/WDI) package, for example, gives
 You can search for indicators containing key terms, such as "gdp," using the following code:
 
 ```r
+# search for WDI indicators
 WDIsearch("gdp")
 ```
 ![](./img/class11_27.jpg)
@@ -815,9 +816,11 @@ indicators <- WDI(indicator=indic_list, country="all", start=1990, end=2014) %>%
 
 This code used dplyr's `rename()` function to rename the variables. The data will take a little time to load. When it has done so, view the data and examine its structure.
 
+To finish, save your R script and environment and close RStudio using `RStudio>Quit RStudio` formt he top menu.
+
 ### Assignment
 
-- Use this data to make ggplot2 versions of three line charts shown above. You won't be able to exactly replicate the appearance of the charts -- for instance the legend and the gridlines will be different -- but get as close as you can.
+- Use this data to make ggplot2 versions of three line charts shown above. You won't be able to exactly replicate the appearance of the charts -- for instance the legend and the grid lines will be different -- but get as close as you can.
  
  Here are some hints:
 
