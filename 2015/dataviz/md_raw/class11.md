@@ -1,14 +1,14 @@
-# Making static graphics (and processing data) in R
+# Manipulating data and making graphics in R
 
-### Introducing R and R Studio
+### Introducing R and RStudio
 
 In today's class we will make graphics and process data using **[R](http://www.r-project.org/)**, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as "free software environment for statistical computing and graphics," R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.
 
 We will explore's R's potential for making interactive graphics in week 13. Our goal for this week's class is to get used to processing data in R, and start making some static graphics.
 
-**[R Studio](http://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a more user-friendly interface than working in the standard R Console.
+**[RStudio](http://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a more user-friendly interface than working in the standard R Console.
 
-Launch R Studio, and the screen should look like this:
+Launch RStudio, and the screen should look like this:
 
 ![](./img/class11_1.jpg)
 
@@ -22,15 +22,15 @@ print("Hello World!")
 
 Download the data for this session from [here](data/week11.zip), unzip the folder and place it on your desktop. It contains the following files:
 
-- `disease_democ.csv`
-- `food_stamps.csv`
-- `pfizer.csv` `fda.csv`
-
-
+- `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*, as used in week 1.
+- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program.
+- `pfizer.csv` `fda.csv` Data on payments to doctors by the drug company Pfizer and warning letters sent by the U.S. Food and Drug Administration, as used in week 5.
+- `column_theme.R` R script to set style for column charts using ggplot2 package.
+- `scatter_line_theme.R` R script to set style for scatter plots and line charts using ggplot2 package.
 
 ### Set your working directory
 
-When starting a new project in R, the first thing to do is set the directory/folder in which you are working. From the top menu, select `Session>Set Working Directory>Choose Directory ...
+When starting a new project in R, the first thing to do is set the directory/folder in which you are working. From the top menu, select `Session>Set Working Directory>Choose Directory ...`
 
 Notice how this code appears in the console:
 
@@ -38,25 +38,25 @@ Notice how this code appears in the console:
 setwd("~/Desktop/week11")
 ```
 
-### Reproducibility: save your scripts and your environment
+### Reproducibility: Save your scripts and your environment
 
-As we have already discussed, we should aim for all of our data journalism to be fully documented and reprodicible. R makes this easy, as every operation performed can be saved in a script. Click on the ![](./img/class11_2.jpg) icon at top left and select `R Script`. A new panel should now open:
+As we have already discussed, we should aim for all of our data journalism to be fully documented and reproducible. R makes this easy, as every operation performed can be saved in a script. Click on the ![](./img/class11_2.jpg) icon at top left and select `R Script`. A new panel should now open:
 
 ![](./img/class11_3.jpg)
 
 Any code we type in here can be run in the console. Hitting `Run` will run the line of code on which the cursor is sitting. To run multiple lines of code, highlight them and click `Run`.
 
-Copy the code `setwd("~/Desktop/week6")` into the script then save it as `week11`. It should automatically save with an `R` extension. Now next time you run this script, the working directory will be set automatically.
+Copy the code `setwd("~/Desktop/week11")` into the script then save it as `week11.R`, by clicking the small save/disk icon on the top left panel. Now the next time you run this script, the working directory will be set automatically.
 
-The panel at top right has two tabs, the first showing the `Environment`, or all of the "objects" loaded into memory for this R session. We can save this as well, so we don't have to load and process data again if we return to return to the project later.
+The panel at top right has two tabs, the first showing the `Environment`, or all of the "objects" loaded into memory for this R session. We can save this as well, so we don't have to load and process data again if we return to return to a project later.
 
-Click on the disk icon in the `Environment` panel to save and call the file `week11`. You should see code in the following format appear in the Console, as the environment is saved with an `RData` extension:
+Click on the save/disk icon in the `Environment` panel to save and call the file `week11.RData`. You should see the following code appear in the Console:
 
 ```r
-save.image("week11.RData")
+save.image("~/Desktop/week11/week11.RData")
 ```
 
-Copy this code into your script also, placing it at the end. By keeping this code at the end of your script, each tie you run the entire script the last action will be to save the environment.
+Copy this code into your script also, placing it at the end. By keeping this code at the end of your script, each time you run the entire script the last action will be to save the environment.
 
 The second tab in this panel shows the history of all the code run in the current R session.
 
@@ -64,7 +64,7 @@ The second tab in this panel shows the history of all the code run in the curren
 
 Much of the power of R comes from the thousands of "packages" written by its community of open source contributors. These are optimized for specific statistical, graphical or data-processing tasks. To see what packages are available in the basic distribution of R, select the `Packages` tab in the panel at bottom right. To find packages for particular tasks, try searching Google using appropriate keywords and the phrase "R package."
 
-In this class, we will work with a series of useful packages, called **readr**, **ggplot2**, **dplyr**, **tidyr**, **scales**, and **WDI**. Click on `Install`, and enter these names, separated by commas, as follows:
+In this class, we will work with a series of useful packages, called **[readr](https://cran.r-project.org/web/packages/readr/readr.pdf)**, **[ggplot2](http://docs.ggplot2.org/current/)**, **[dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)**, **[scales](https://cran.r-project.org/web/packages/scales/scales.pdf)**, **[RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf)**, and **[WDI](https://cran.r-project.org/web/packages/WDI/WDI.pdf)**. Click on `Install`, and enter these names, separated by commas or spaces, as follows:
 
 ![](./img/class11_4.jpg)
 
@@ -85,723 +85,755 @@ library(scales)
 # package for manipulating data
 library(dplyr)
 
-# package to format axes as %, $ and so on
-library(scales)
+# package to use ColorBrewer color schemes
+library(RColorBrewer)
 
 # package to import data from World Bank World Development Indicators API
 library(WDI)
 ```
 
-By saving this code in our script, the packages will load automatically when we run the script in future. Add comments explaining your code using `#`, which causes everything written subsequntly on that line to be ignored. It is good practice to comment your code extensively to remind you of what it does: Don't reply on your memory!
+By saving this code in our script, the packages will load automatically when we run the script in future. Add comments explaining your code using `#`, which causes everything written subseqeuntly on that line to be ignored. It is good practice to comment your code extensively to remind you of what it does: Don't reply on your memory!
 
 Each time you start R, it's a good idea to click on `Update` in the `Packages` panel to update all your installed packages to the latest versions.
 
 ### Load, view and export data
 
+#### Load data
+
 We can load data into the current R session by selecting `Import Dataset>From Text File...` in the `Environment` tab.
 
-Import the food stamps data in this way. You should see the following dialog box:
+Import the file `disease_democ.csv` in this way. You should see the following dialog box:
 
 ![](./img/class11_5.jpg)
 
-Check that R Studio has recognized whether the data has a `Heading` row, and that it has picked the correct `Separator` and the correct `Quote` character designating for text fields. `na.strings` will replace any null values with `NA`, which is standard in R. `Strings as factors` treats any text fields as labels for categorical variables. If this is unchecked they will be imported simply as strings of text.
+Check that RStudio has recognized whether the data has a `Heading` row, and that it has picked the correct `Separator` and the correct `Quote` character designating for text fields. `na.strings` will replace any null values with `NA`, which is standard in R. `Strings as factors` treats any text fields as labels for categorical variables. If this is unchecked they will be imported simply as strings of text.
 
 `Import` the data, and note that the following code should appear in the Console:
 
 ```r
-food_stamps <- read.csv("~/Desktop/week11/food_stamps.csv")
-	View(food_stamps)
+disease_democ <- read.csv("~/Desktop/week11/disease_democ.csv")
+	View(disease_democ)
 ```
-The data should open for inspection in the upper left panel, as instructed by the second line of the above code, and an object called `food_stamps` will now be visible in the `Environment` tab:
+
+`<-` is known as an “assignment operator.” Essentially, `<-` means: “Make the object named to the left equal to the output of the code to the right.”
+
+The data should open for inspection in the upper left panel, as instructed by the second line of the above code, and an object called `disease_democ` will now be visible in the `Environment` tab. At the top-right of this tab, switch from `List` to `Grid` view using the dropdown menu, to see the following:
 
 ![](./img/class11_6.jpg)
 
-The object we have created is a "data frame," the standard format for tables of data in R. Its `Value` details the number of variables, and the number of records, or observations, in the data.
+The object we have created is a `data.frame`, the standard format for tables of data in R. Its `Value` details the number of variables, and the number of records, or observations, in the data.
 
-We can `View` data at any time by clicking on its table icon in the `Environment` tab.
+We can `View` data at any time by clicking on its table icon in the `Environment` tab in the `Grid` view, or using the `View()` function.
 
-***
+You can remove any object from your environment by checking it in the `Grid` view and clikcing the broom icon.
 
-Data can also be imported by writing code:
+Now close the `disease_democ` view.
+
+Data can also be imported by writing code, and for the rest of this session we will use the **readr** package to import data. Add the following code to your script and run:
 
 ```r
-salaries_2013 <- read.delim("PathToFile/salaries_2013.txt")
+# load disease and democracy data
+disease_democ <- read_csv("disease_democ.csv")
 ```
+The object is now a `tbl_df`, which is simply a variant of a `data.frame`. You don't need to worry about the difference.
 
-If importing data in this way, you may need to set the options for Heading, Separator and so on in the code, as [explained here](http://stat.ethz.ch/R-manual/R-devel/library/utils/html/read.table.html).
+If you run into any trouble importing data with readr, you may need to specify the data types for some variables -- in particular for full date and time strings. [This link](https://github.com/hadley/readr/blob/master/vignettes/column-types.Rmd) explains how to set data types for individual variables when importing data with readr.
+
+#### View data
 
 Here are some useful commands for looking at data in R:
 
 ```r
+# view structure of data
 str(disease_democ)
 ```
 This should give the following output in the R Console:
 
 ```JSON
-
+Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	168 obs. of  4 variables:
+ $ country     : chr  "Bahrain" "Bahamas, The" "Qatar" "Latvia" ...
+ $ income_group: chr  "High income: non-OECD" "High income: non-OECD" "High income: non-OECD" "High income: non-OECD" ...
+ $ democ_score : num  45.6 48.4 50.4 52.8 46 64 65.8 70.6 57.6 40.6 ...
+ $ infect_rate : int  23 24 24 25 26 26 26 26 27 28 ...
 ```
 
-The `str` function shows the structure of a `data.frame`, telling us here that `country` and `income_group` are "Factors," which is what R calls categorical variables, `democ_score` is numeric, or a continuous variable, while `infect_rate` is a continuous variable that contains only integers.
+The `str` function shows the structure of an object, telling us here that `country` and `income_group` are characters, or strings of text, `democ_score` is numeric, or a continuous variable, while `infect_rate` is a continuous variable that contains only integers, or whole numbers.
 
-The following code shows the first `n` lines from an object, where `n` is the number given after the comma. It can be useful for quickly examining how data is organized:
+To select an individual variable from a `data.frame`, use the name of the data frame and the variable name, separated by `$`. Type this into your script and run:
 
-```r
-head(food_stamps,10)
+```R
+# view values for infect_rate variable
+disease_democ$infect_rate
 ```
-This is the output:
+The output will be all of the values for that variable.
 
-```JSON
-
-```
-
-Often you may want to export data as a delimited text file after processing in R. So let's do this now for the disease and democracy data:
-
-```r
-write.csv(food_stamps, "food_stamps_copy.csv", row.names = FALSE, na = "")
-```
-
-If `row.names = FALSE` is not included, R will automatically add a number label to each row; `na = ""` explains how to export any null values. Here they will be left blank, because there is nothing between the quote marks. If you do not specify this, they will be exported with the value `NA`, which is how R designates null values.
-
-### Draw a scatter plot from the disease and democracy data
-
-Now we will use the [ggplot2](http://ggplot2.org/) charting package to draw the scatter plot from week 1. Return to the [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/) and create the chart again. Then select `View` from the top menu and and check `code panel`. This will open a panel at the base of the page illustrating the ggplot2 code that would be used to create the graphic. (You cannot manipulate this code to change a chart in the app, but this feature makes the app a good tool for learning how to code ggplot2 graphics.)
-
-Copy that code, and insert into your R script, replacing `myData` with `disease_democ`, as follows:
-
-```r
-ggplot(disease_democ, aes(x=infect_rate, y=democ_score)) + geom_point(size=4) + geom_smooth(se=FALSE, method="lm")
-```
-
-Run that code, and the scatterplot will appear in the panel at bottom right, in the `Plots` tab:
-
-![](./img/class6_7.jpg)
-
-We can also first save the chart as an R object, and then plot it:
-
-```r
-disease_democ_scatter <- ggplot(disease_democ, aes(x=infect_rate, y=democ_score)) + geom_point(size=4) + geom_smooth(se=FALSE, method="lm")
-plot (disease_democ_scatter)
-```
-Notice that an object with the Type `gg` appears in the `Environment` tab.
-
-Now we can customize the chart, taking that object and defining ranges for the axes, and adding more informative labels for each. (This will gave the same result as entering the original code with the additional code appended.)
-
-This is the code:
-
-```r
-disease_democ_scatter + coord_cartesian(xlim=c(0,70), ylim=c(0,100)) + xlab("Infectious disease prevalence score") + ylab("Democratization score")
-```
-Notice the `c` or "combine" function. This takes a series of values, and combines them into a list. It crops up frequently in R code.
-
-You may see ggplot2 examples in which the range for axes are set using simpler code, for example:
-
-```r
-disease_democ_scatter + xlim=(0,70) + ylim(0,100) + xlab("Infectious disease prevalence score") + ylab("Democratization score")
-```
-
-While it has the same result in this case, I do not suggest using this option. As well as setting the axis ranges, the simpler code discards any data that appears outside the range, so that it will not be taken into account when drawing a trend line, for instance. The more complex version is safer, as it retains all the data.
-
-The chart should now look like this:
-
-![](./img/class6_8.jpg)
-
-### Export your plots
-
-R Studio makes it easy to export graphics from R. Select `Export>Save Plot as PDF...` from the menu in the `Plots` tab. At the dialog box, you can select the size and orientation for the export, choose where to save it, and give it an appropriate name:
-
-![](./img/class6_9.jpg)
-
-R Studio also offers the option to export in various image formats. If you are intending to edit the graphic subsequently, however, save as a PDF. For all the graphics we export today, export at `US Letter` size and `Landscape` orientation.
-
-Notice also the arrows at top left of the `Plots` tab. These allow us to browse back and forth through the charts drawn in the current R session.
-
-### ggplot2 and the grammar of graphics
-
-The "gg" in ggplot2 stands for ["grammar of graphics,"](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448) an approach to drawing charts devised by the statistician Leland Wilkinson. Rather than thinking in terms of finished charts like a scatter plot or a column chart, it starts by defining the coordinate system (usually the X and Y axes of a cartesian system), maps data onto those coordinates, and then adds layers such as points, bars and so on. This is the logic behind ggplot2 code.
-
-The function `aes`, for aesthetic mapping, is used whenever we map data values onto a chart -- to an axis, to a color scale, and so on. So ggplot2 code starts by mapping variables to the X and Y axes. Layers are then added the the graphic using various `geom` functions. The brackets following each of these each functions may contain global operations to be applied to every item in the layer, and also further `aes` mappings so that the color of points, for example, can be mapped to values of a categorical variable.
-
-To see this in action, let's color the points in our scatter plot according to each country's income group:
-
-```r
-ggplot(disease_democ, aes(x=infect_rate, y=democ_score)) + geom_point(size=4, aes(color=income_group)) + geom_smooth(se=FALSE,method="lm")
-```
-![](./img/class6_10.jpg)
-
-Note the difference between this plot, and the result we obtain by mapping color to income group in the initial aesthetic mapping, rather than specifically for the points:
-
-```r
-ggplot(disease_democ, aes(x=infect_rate, y=democ_score, color=income_group)) + geom_point(size=4) + geom_smooth(se=FALSE,method="lm")
-```
-
-![](./img/class6_11.jpg)
-
-### Draw box plots from the baseball salary data
-
-Here is the code for the basic baseball salaries boxplot:
-
-```r
-ggplot(salaries_2013, aes(x=team, y=salary, color=team)) + geom_boxplot()
-```
-
-![](./img/class6_12.jpg)
-
-
-Let's customize this plot to remove the legend, which adds little, format the salary axis in $ millions, and turn the team labels through 90 degrees to make them legible.
-
-First make a new variable giving salary in millions, by dividing `salary` by 1 million:
-
-```r
-salaries_2013$millions <- salaries_2013$salary/1000000
-```
-Notice how `$` is used to specify a variable within a `data.frame`.
-
-We can also do this with the `mutate` function from the [dplyr](http://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) package:
-
-```r
-salaries_2013 <- mutate(salaries_2013, millions2=salary/1000000)
-```
-Notice that here the object to the left of `<-` has the same name as the old object. This allows us to an edit an object with new code as we go along. We will do this later on with saved ggplot2 charts.
-
-View the data, and see that the new variables `millions` and `millions2` are identical.
-
-Now redraw the plot with the `millions` variable on y axis:
-
-```r
-ggplot(salaries_2013, aes(x=team, y=millions, color=team)) + geom_boxplot()
-```
-
-Again, let's save that chart:
-
-```r
-baseball_box <- ggplot(salaries_2013, aes(x=team, y=millions, colour=team)) + geom_boxplot()
-```
-Now customize the plot to remove the legend and change the axis labels:
-
-```r
-baseball_box + theme(legend.position="none", axis.text.x = element_text(angle=90)) + xlab("Team") + ylab("Salary ($ millions)")
-```
-This code introduces the `theme` function, which is used to custom various aspects of a chart's appearance.
-
-The final chart should look like this:
-
-![](./img/class6_13.jpg)
-
-### Draw column, line and other charts from food stamps data
-
-Now we will draw the variety of charts used in week 2 to illustrate different ways of charting participation over time in the U.S. federal government's food stamps nutritional assistance program.
-
-First import the food stamps data. The number of participants is in thousands. Again we can make a new column giving the number in millions:
-
-```r
-food_stamps <- mutate(food_stamps, mil_particip=particip/1000)
-```
-
-First create a basic plot area with no layers:
-```r
-food_stamps_chart <- ggplot(food_stamps, aes(x=year, y=mil_particip)) + coord_cartesian(xlim = c(1968, 2014), ylim = c(0, 50)) + xlab("Year") + ylab("Participants (millions)")
-```
-Notice how the ranges for the X and Y axes have been set after looking at the data to see the maximum values.
-
-Now we can use this object as the base to draw charts of different types. Let's start with a column chart. To make the height of the columns correspond to data values we use `stat="identity"`. Other options for `geom_bar` are explained [here](http://docs.ggplot2.org/0.9.3.1/geom_bar.html).
-
-```r
-food_stamps_chart + geom_bar(stat="identity") + ggtitle("Column chart")
-```
-
-Notice the use of `ggtitle` to add a title to the chart.
-
-And now a series of other chart types:
-
-```r
-# line chart, note use of "size" to draw thicker line
-food_stamps_chart + geom_line(size=2) + ggtitle("Line chart")
-
-# dot-and-line chart, note how more than one layer can be added to the chart
-food_stamps_chart + geom_line() + geom_point(size=4) + ggtitle("Dot-and-line chart")
-
-# dot-column chart, note the more complex code to draw the vertical lines
-food_stamps_chart + geom_linerange(aes(ymax=0,ymin=mil_particip)) + geom_point(size=4) + ggtitle("Dot-column chart")
-```
-This will draw the series of charts we saw in week 2:
-
-![](./img/class2_9.jpg)
-
-
-### Draw stacked bar chart and pie charts from presidential approval polling data
-
-Next we will draw the charts from the presidential approval polling data we saw in week 2. Import and view the data, in the file `obama.txt`:
-
-![](./img/class6_14.jpg)
-
-This data is in "wide" format -- much like the pivot table we made in week 4. We need to convert it to "long" format before we can use ggplot2 to chart the data. This is where the [tidyr](http://blog.rstudio.org/2014/07/22/introducing-tidyr/) package comes in. It has two main functions: `gather`, which converts from wide to long, and `spread`, which converts from long to wide.
-
-The following code tells tidyr to gather data from the obama `data.frame`, putting  existing column labels into a new variable called `category`, and the values for each record into a new variable called `rating`. The hyphen before `policy` specificies that this variable is not to be gathered.
-
-```r
-obama_long <- gather(obama, category, rating, -policy)
-```
-The data should now look like this:
-
-![](./img/class6_15.jpg)
-
-Now we will set a custom color palette, by creating a list of hex color values:
-
-```r
-palette <- c("#003380", "#aaccff", "#dbdee3")
-```
-This code saves and then plots the stacked column chart:
-
-```r
-poll_stacked_bar <- ggplot(obama_long, aes(x=policy, y=rating)) + geom_bar(stat="identity", aes(fill=category)) + scale_fill_manual(values=palette)
-plot(poll_stacked_bar)
-```
-![](./img/class6_16.jpg)
-
-Mapping `category` to the `fill` for the columns is what makes this into a stacked column chart.
-
-Notice how `fill` is used here rather than `color`, which would affect the outlines of the columns, not the color used to fill them. To see how this works, run this code:
-
-```r
-ggplot(obama_long, aes(x=policy, y=rating)) + geom_bar(stat="identity", aes(fill=category), color="black") + scale_fill_manual(values=palette)
-```
-Note that R understands some colors, like "black," [by name](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf) -- but we could also have used its hex value.
-
-The gray background does not work with this color palette. So let's customize the chart, switching to ggplot2's built-in alternate black-and-white theme:
-
-```r
-poll_stacked_bar + theme_bw()
-```
-
-![](./img/class6_17.jpg)
-
-As noted earlier, the `theme` function can be used to customize a basic R plot, see [here](http://docs.ggplot2.org/current/theme.html) for a complete reference. Here we will remove the panel border and grid lines, saving those changes:
-
-```r
-poll_stacked_bar <- poll_stacked_bar + theme_bw() + theme(panel.border=element_blank(), panel.grid=element_blank())
-plot(poll_stacked_bar)
-```
-![](./img/class6_18.jpg)
-
-Now add labels to the chart showing data values:
-
-```r
-poll_stacked_bar + geom_text(aes(label = rating), size = 5, vjust = 1.2, color = "#ffffff", position = "stack")
-```
-Try altering the `vjust` value to see how this part of the code works to set the vertical position of each label.
-
-![](./img/class6_19.jpg)
-
-This chart is still not finished, but from here is makes more sense to polish in a vector graphics editor such as Inkscape, as we will do next week. So export this chart as a PDF, so we can edit it later.
-
-ggplot2 can also be tortured into drawing pie charts, but the code gets rather complex. For completeness, here it is:
-
-```r
-ggplot(obama_long, aes(x="1", y=rating)) + geom_bar(stat="identity", aes(fill=category)) + coord_polar(theta="y") + facet_grid(facets=. ~ policy) + scale_fill_manual(values=palette) + theme_bw()
-```
-
-### Draw a scatter plot from gender pay gap data and add fixed lines
-
-Now we will draw the gender pay gap scatterplot shown in week 2, to illustrate adding fixed lines to a chart. Import the data, and notice that there are three years of data - so first we will need to filter to select just the data for 2013.
-
-We can do this with R's built-in `subset` function:
-
-```r
-gender_pay_2013 <- subset(gender_pay, year==2013)
-```
-
-Or we can the use the `filter` function from dplyr:
-
-```r
-gender_pay_2013 <- filter(gender_pay, year==2013)
-```
-
-Now let's draw and customize the scatter plot, mapping the variables representating men's and women's median weekly earnings for each job to the X and Y axes, respectively:
-
-```r
-# save and draw basic scatterplot, note use of "alpha" to set transparency for the points
-gender_pay_scatter <- ggplot(gender_pay_2013, aes(x=m_median_weekly_earnings, y=w_median_weekly_earnings)) + geom_point(size=4, alpha=0.5)
-plot(gender_pay_scatter)
-
-# set both axes to run from zero to 2500, and to have a size ratio of 1:1
-gender_pay_scatter <- gender_pay_scatter + coord_fixed(ratio = 1, xlim = c(0,2500), ylim = c(0,2500))
-plot(gender_pay_scatter)
-
-# set axis labels and bw theme
-gender_pay_scatter <- gender_pay_scatter + xlab("Men's median weekly earnings") + ylab("Women's median weekly earnings") + theme_bw()
-plot(gender_pay_scatter)
-```
-The chart should now look like this:
-
-![](./img/class6_20.jpg)
-
-You should now be getting sufficiently familiar with R and ggplot2 code that you can work out the logic of each step.
-
-Next we will customize the chart further, using the `labels` function from the [scales](http://cran.r-project.org/web/packages/scales/scales.pdf) package to display dollar values, and the `geom_abline` function to add fixed reference lines to the chart.
-
-```r
-# remove panel and tick marks, set axes to display dollar values using scales package
-gender_pay_scatter <- gender_pay_scatter + theme(panel.border=element_blank(), axis.ticks=element_blank()) + scale_x_continuous(labels = dollar) + scale_y_continuous(labels = dollar)
-plot(gender_pay_scatter)
-
-# add lines for equal pay and for women paid 75% of men's salaries; note use of "intercept" to define where line crosses Y axis
-gender_pay_scatter <- gender_pay_scatter + geom_abline(intercept = 0, slope = 1) + geom_abline(intercept = 0, slope = 0.75, linetype="dashed")
-plot(gender_pay_scatter)
-```
-The final chart should look like this:
-
-![](./img/class6_21.jpg)
-
-Export the chart as PDF, so we can edit it further and annotate later.
-
-### Use dplyr to filter Pfizer payments data, then draw bar chart
-
-You may be wondering why we bothered loading the dplyr package, as so far everything we have done with it could be achieved with standard R code.
-
-In this example we will see why dplyr is particularly useful for data processing by replicating one of the SQL queries we ran in Week 4, before drawing a chart from the data.
-
-Load the Pfizer payments data.
-
-We can use dplyr's SQL-like functions to repeat our task from Week 4 of filtering the data to select all doctors in California paid more than $10,000 to run Expert-led forums.
-
-- `select` does much the same job as `SELECT` in SQL, picking which fields or variables to return.
-
-- `filter` corresponds to `WHERE` and follows Boolean logic with `|` representing `OR` and `&` representing `AND`.
-
-- `arrange` does the same job as `ORDER BY` in SQL, sorting the data. 
-
-- dplyr also allows you to "chain" these functions together using `%>%`, or "then," making the output from one function the input for the next.
-
-This is the dplyr version of our SQL query:
-
-```r
-ca_docs <- select(pfizer, first_plus, last_name, city, state, category, total) %>%
-  filter(category=="Expert-Led Forums" & state=="CA" & total >= 10000) %>%
-  arrange(desc(total))
-```
-View the data to see the results.
-
-Next we want to draw a bar chart showing how much these doctors were paid. We want to label each bar with the doctor's full name, which means creating a new variable combining `first_plus` and `last_name`.
-
-We can use dplyr's `mutate` function for this:
-
-```r
-ca_docs <- mutate(ca_docs, full_name=paste(first_plus, last_name, sep=" "))
-```
-
-In this code, `sep = " "` ensures that the given and family names are separated by a space.
-
-Let's examine the structure of the data:
-
-```r
-str(ca_docs)
-```
-Which gives the output:
-
-```
-'data.frame':	31 obs. of  7 variables:
- $ first_plus: Factor w/ 4048 levels "","A MARK","AAKASH MOHAN",..: 1286 2611 3617 784 3368 1357 1516 2466 2974 1863 ...
- $ last_name : Factor w/ 3617 levels "---","ABBO","ABEBE",..: 2824 2324 2570 1145 1933 3068 202 432 2317 2944 ...
- $ city      : Factor w/ 1318 levels "A","ABERDEEN",..: 1058 673 867 673 1024 1303 122 701 612 1137 ...
- $ state     : Factor w/ 52 levels "AK","AL","AR",..: 5 5 5 5 5 5 5 5 5 5 ...
- $ category  : Factor w/ 9 levels "","Business Related Travel",..: 4 4 4 4 4 4 4 4 4 4 ...
- $ total     : int  146500 70500 48350 45750 41250 40000 26400 24000 22500 21500 ...
- $ full_name : chr  "GERALD MICHAEL SACKS" "MITCHELL NIDES" "STEVEN GARTH POTKIN" "DAVID ALAN GINSBERG" ...
-```
-Notice that the `full_name` isn't treated as a categorical variable, or `Factor`, but instead is a "character" variable, or `chr`, which is a simple string of text.
-
-Now we can make a bar charts from the filtered data. The code is the same as for a column chart, except that `coord_flip` is used to switch from vertical bars to horizontal columns.
-
-```r
-ggplot(ca_docs, aes(x=full_name, y=total)) + geom_bar(stat="identity") + coord_flip()
-```
-![](./img/class6_22.jpg)
-
-It makes more sense to sort the bars according to how much each doctor was paid, which we can do in either ascending or descending order by using the `reorder` function:
-
-```r
-#descending order
-ggplot(ca_docs, aes(x=reorder(full_name, total), y=total)) + geom_bar(stat="identity") + coord_flip()
-
-#ascending order
-ggplot(ca_docs, aes(x=reorder(full_name, -total), y=total)) + geom_bar(stat="identity") + coord_flip()
-```
-Here is the chart in descending order:
-
-![](./img/class6_23.jpg)
-
-That's fine, except it would look nicer if the names were not capitalized, and instead were written with inital capitals only -- proper case. We can fix that with a custom R function. You don't need to understand the details of how it works, but it is worth saving for future use:
-
-```r
-# function to convert any text string into proper case
-toproper <- function(x) {
-  sapply(x, function(strn)
-  { s <- strsplit(strn, "\\s")[[1]]
-    paste0(toupper(substring(s, 1,1)), 
-           tolower(substring(s, 2)),
-           collapse=" ")}, USE.NAMES=FALSE)
-}
-```
-Notice that when you run this code, the new function appears in the `Environment`.
-
-Having defined this function, we can now use it with dplyr's `mutate` to make a new variable giving each doctor's name in proper case:
-
-```r
-ca_docs <- mutate(ca_docs, proper_name = toproper(full_name))
-```
-
-Now let's redraw the bar chart using these names, and improve the formatting:
-
-```r
-# with improved axis labels
-pfizer_bars <- ggplot(ca_docs, aes(x=reorder(proper_name, total), y=total)) + geom_bar(stat="identity") + xlab("") + ylab("Total payments") + coord_flip()
-plot(pfizer_bars)
-
-# display dollar values, and move the names close to the start of the bars by expanding the grid just $500 from them
-pfizer_bars + scale_y_continuous(label = dollar, expand=c(0,500))
-```
-This is the final bar chart:
-
-![](./img/class6_24.jpg)
-
-Export the bar chart as a PDF so we can edit it later in Inkscape.
-
-### Use dplyr to filter by date, and to join data
-
-Now import the FDA warning letters data, so we can see how R handles dates.
-
-Examine the structure of this data:
-
-```r
-str(fda)
-```
-This is the output:
-
-```
-'data.frame':	272 obs. of  5 variables:
- $ name_last  : Factor w/ 253 levels "ADELGLASS","ADKINSON",..: 1 2 3 4 5 6 7 8 9 10 ...
- $ name_first : Factor w/ 162 levels "A.","ABDOOL",..: 70 108 96 32 59 24 33 122 119 75 ...
- $ name_middle: Factor w/ 51 levels "","A","A.","AL",..: 32 18 44 1 8 28 50 1 35 13 ...
- $ issued     : Factor w/ 239 levels "1996-11-19","1997-01-10",..: 29 46 77 131 122 40 53 89 111 38 ...
- $ office     : Factor w/ 8 levels "Baltimore District Office",..: 4 2 3 2 3 3 2 3 3 3 ...
-```
-Note that `issued` is being treated as a categorical variable, rather than a date. That is easy to fix:
-
-```r
-fda$issued <- as.Date(fda$issued)
-```
-
-Look at the structure of the data again, and this should be the output:
-
-```
-'data.frame':	272 obs. of  5 variables:
- $ name_last  : Factor w/ 253 levels "ADELGLASS","ADKINSON",..: 1 2 3 4 5 6 7 8 9 10 ...
- $ name_first : Factor w/ 162 levels "A.","ABDOOL",..: 70 108 96 32 59 24 33 122 119 75 ...
- $ name_middle: Factor w/ 51 levels "","A","A.","AL",..: 32 18 44 1 8 28 50 1 35 13 ...
- $ issued     : Date, format: "1999-05-25" "2000-04-19" "2002-01-28" "2004-11-17" ...
- $ office     : Factor w/ 8 levels "Baltimore District Office",..: 4 2 3 2 3 3 2 3 3 3 ...
-```
-Other functions to convert variables from one format to another include:
+If you need to change the data type for any variables, use the following functions:
 
 - `as.character` converts to text string
 - `as.numeric` converts to number
 - `as.factor` converts to categorical variable
 - `as.integer` converts to integer
+- `as.Date` converts to a date
 
-Now we can use dplyr to repeat our SQL query of filtering for letters published since the start of 2005:
+Conversions to full dates and times are a little more complex. If you need to do this, I suggest using the [lubridate](https://cran.r-project.org/web/packages/lubridate/lubridate.pdf) package, see notes [here](http://www.jstatsoft.org/v40/i03/paper).
+
+Now change `income_group` so it is treated as a categorical variable, like so:
+
+```R
+# convert income_group to categorical variable
+disease_democ$income_group <- as.factor(disease_democ$income_group)
+```
+
+The following code shows the first `n` lines from an object, where `n` is the number given after the comma. It can be useful for quickly examining how data is organized:
 
 ```r
-post2005 <- filter(fda, issued >= "2005-01-01") %>%
+#  view first ten rows of data
+head(food_stamps, 10)
+```
+This is the output:
+
+```JSON
+                country          income_group democ_score infect_rate
+1               Bahrain High income: non-OECD        45.6          23
+2          Bahamas, The High income: non-OECD        48.4          24
+3                 Qatar High income: non-OECD        50.4          24
+4                Latvia High income: non-OECD        52.8          25
+5              Barbados High income: non-OECD        46.0          26
+6             Singapore High income: non-OECD        64.0          26
+7                Cyprus High income: non-OECD        65.8          26
+8                 Malta High income: non-OECD        70.6          26
+9               Croatia High income: non-OECD        57.6          27
+10 United Arab Emirates High income: non-OECD        40.6          28
+```
+This would show the final 10 rows in the data:
+
+```R
+# view last ten rows of data
+tail(disease_democ, 10)
+```
+This code will run a quick statistical summary of the data, calculating mean, median and quartile values for continious variables:
+
+```R
+# summary statistics
+summary(disease_democ)
+```
+This will be the output:
+
+```JSON
+  country          income_group        democ_score     infect_rate   
+ Length:168         Length:168         Min.   :15.80   Min.   :23.00  
+ Class :character   Class :character   1st Qu.:28.40   1st Qu.:27.00  
+ Mode  :character   Mode  :character   Median :38.40   Median :32.00  
+                                       Mean   :42.78   Mean   :33.33  
+                                       3rd Qu.:52.65   3rd Qu.:39.00  
+                                       Max.   :86.60   Max.   :48.00  
+
+```
+
+Often you may want to export data from R. So let's export the disease and democracy data with a new name:
+
+```r
+# export a copy of the disease and democracy data
+write.csv(disease_democ, "disease_democ_copy.csv", row.names = FALSE, na = "")
+```
+A file with that name should appear in the folder on your Desktop.
+
+If `row.names = FALSE` is not included, R will automatically add a number label to each row; `na = ""` explains how to export any null values. Here they will be left blank, because there is nothing between the quote marks. If you do not specify this, they will be exported with the value `NA`.
+
+### Draw scatter plots from the disease and democracy data
+
+Now we will use the **ggplot2** charting package to draw the scatter plot from week 1.
+
+Add the following code to your script and run:
+
+```R
+# draw scatter plot
+ggplot(disease_democ, aes(x=infect_rate, y=democ_score)) + geom_point()
+```
+
+A chart should appear in the `Plots` tab at bottom-right:
+
+![](./img/class11_7.jpg)
+
+
+#### ggplot2 and the grammar of graphics
+
+The "gg" in ggplot2 stands for "[grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448)," an approach to drawing charts devised by the statistician Leland Wilkinson. Rather than thinking in terms of finished charts like a scatter plot or a column chart, it starts by defining the coordinate system (usually the X and Y axes of a cartesian system), maps data onto those coordinates, and then adds layers such as points, bars and so on. This is the logic behind ggplot2 code.
+
+The function `aes`, for "aesthetic mapping," is used to map data values onto a chart -- to an axis, to a color scale, and so on. So ggplot2 code usually starts by mapping variables to the X and Y axes. Layers are then added the the graphic using various `geom` functions. The brackets following each of these each functions may contain global operations to be applied to every item in the layer, and also further `aes` mappings, as we shall see.
+
+Before we start customizing the scatter plot, let's save the basic aesthetic mapping, with `infect_rate` on the X axis and `democ_score` on the Y, as an R object:
+
+```R
+# save the basic chart with data mapping, but no geom layers
+disease_democ_chart <- ggplot(disease_democ, aes(x=infect_rate, y=democ_score))
+```
+Notice that an object with the Type `gg` appears in the `Environment` tab.
+
+#### Customize the scatter plot
+
+Add the following code to your script and run:
+
+```R
+# draw scatter plot with a locally estimated smoothing trend line
+disease_democ_chart %>%
+  + geom_point() %>%
+  + geom_smooth()
+```
+This code introduces the `%>%` operator from the **dplyr** package, which takes the output from the previous code and hands it on to the next line. Think of `%>%` as meaning "then." Here it is simply being used to separate ggplot2 code into multiple lines, making it easier to read.
+
+The chart should now look like this:
+
+![](./img/class11_8.jpg)
+
+```R
+# change to linear trend line with no standard error ribbon
+# set axis ranges
+# customize axis labels
+disease_democ_chart %>%
+  + geom_point() %>%
+  + geom_smooth(method=lm, se=FALSE) %>%
+  + scale_x_continuous(limits=c(0,70)) %>%
+  + scale_y_continuous(limits=c(0,100)) %>%
+  + xlab("Infectious disease prevalence score") %>%
+  + ylab("Democratization score")
+```
+This code customizes the chart in the following ways:
+
+First, the `geom_smooth()` function has been altered: `method=lm` (for "linear model") calculates a straight trend line by linear regression; `se=FALSE` removes the standard error ribbon describing the statistical uncertainty around the line of best fit through the data.
+
+`scale_x-continuous(limits=c(0,70))` sets the range of the X axis, which is mapping a continuous variable, from 0 to 70. Notice the `c(0,70)`. Whenever you input a  list of two or more values into R, you must use the function `c()`, which means "combine values into a list." This crops up frequently in R code.
+
+`xlab("Infectious disease prevalance score")` changes the text of the X axis label from the default of the variable name to the text given in quote marks within the function brackets.
+
+The chart should now look like this:
+
+![](./img/class11_9.jpg)
+
+Now let's map the countries' `income_group` to the color of the points:
+
+```R
+# map countries' income group to the color of the points
+disease_democ_chart %>%
+  + geom_point(aes(color=income_group) %>%
+  + geom_smooth(method=lm, se=FALSE) %>%
+  + scale_x_continuous(limits=c(0,70)) %>%
+  + scale_y_continuous(limits=c(0,100)) %>%
+  + xlab("Infectious disease prevalence score") %>%
+  + ylab("Democratization score")
+```
+
+Notice the second `aes` mapping, used in the `geom_point()` function, to set the color of the points.
+
+The chart should now look like this:
+
+![](./img/class11_10.jpg)
+
+Return to the [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/) and recreate this chart -- although you won't be able to customize the axis labels and ranges. Then select `View` from the top menu and and check `code panel`. Look at the similarity betwen the code and what we just wrote. It will be written as a single line, without the `%>%` operators, but you should be able to recognize the structure.
+
+This feature makes the app a good tool for learning how to code ggplot2 graphics.
+
+### Export your plots
+
+RStudio makes it easy to export graphics from R. Select `Export>Save as PDF...` from the menu in the `Plots` tab. At the dialog box, you can select the size and orientation for the export, choose where to save it, and give it an appropriate name:
+
+![](./img/class11_11.jpg)
+
+RStudio also offers the option to export in various image formats. If you intend to edit the graphic subsequently in a vector graphics editor such as [Adobe Illustrator](http://www.adobe.com/products/illustrator.html), however, save as a PDF.
+
+Notice also the arrows at top left of the `Plots` tab. These allow you to browse back and forth through the charts drawn in the current R session.
+
+### Draw line, column and other charts from food stamps data
+
+Now we will draw the variety of charts used in week 2 to illustrate different ways of charting participation over time in the U.S. federal government's food stamps nutritional assistance program.
+
+First import the food stamps data:
+
+```r
+# load food stamps data
+food_stamps <- read_csv("food_stamps.csv")
+```
+First, create the basic chart with `year` mapped to the X axis and `participants` mapped to the Y axis, and customized axis labels:
+
+```R
+# save the basic chart with data mapping, but no geom layers
+food_stamps_chart <- ggplot(food_stamps, aes(x=year, y=participants))  %>%
+  + xlab("Year") %>%
+  + ylab("Participants (millions)")
+```
+
+Now let's make a line chart:
+
+```R
+# draw a line chart
+food_stamps_chart %>%
+  + geom_line() %>%
+  + ggtitle("Line chart")
+```
+
+`geom_line()` adds the line. Notice also the use of `ggtitle()` to add a title to the chart.
+
+This should be the result:
+
+![](./img/class11_12.jpg)
+
+Now add points to mark the data values:
+
+```R
+# draw a dot-and-line chart
+food_stamps_chart %>%
+  + geom_line() %>%
+  + geom_point() %>%
+  + ggtitle("Dot-and-line chart")
+```
+
+This will give the following:
+
+![](./img/class11_13.jpg)
+
+Which we can customize:
+
+```R
+# change size of line and points
+food_stamps_chart %>%
+  + geom_line(size=1.2) %>%
+  + geom_point(size=3) %>%
+  + ggtitle("Dot-and-line chart")
+```
+Here is the resulting chart:
+
+![](./img/class11_14.jpg)
+
+Now let's draw a column chart:
+
+```R
+# draw a column chart
+food_stamps_chart %>%
+  + geom_bar(stat="identity") %>%
+  + ggtitle("Column chart")
+```
+
+To plot the values from a variable using `geom_bar()`, we need to define `stat="identity"`. This is because the default behavior from `geom_bar` is `stat="bin"`, which counts the number of values when drawing a histogram, if you only map one variable to the Y axis. [These notes](http://docs.ggplot2.org/0.9.3.1/geom_bar.html) explain more. You can just remember it as a quirk of ggplot2 code.
+
+Here is the result:
+
+![](./img/class11_15.jpg)
+
+Note that a vertical bar chart can be turned into a horizontal column chart using the `coord_flip()` function. Add it to the code for the last chart and see what happens.
+
+### Use different color schemes
+
+Now we will experiment with various ways to use color in ggplot2, customizing the column chart.
+
+First, run the following code:
+
+```R
+# make columns light gray with darker gray border, amd make them semi-transparent
+food_stamps_chart %>%
+  + geom_bar(stat="identity", color="#888888", fill="#cccccc", alpha=0.5) %>%
+  + ggtitle("Column chart")
+```
+When working with `geom_bar()`, `color` means the border around the bar, while `fill` means the color of the shape itself. Here we used the HEX values for two different grays.
+
+When working with other layers, such as `geom_point()` and `geom_line()`, you can just use `color`.
+
+`alpha` can be used to set the opacity/transparency of any ggplot2 layer.
+
+Here is the resulting chart:
+
+![](./img/class11_16.jpg)
+
+Now let's set the color of the bars to correspond to the costs of the food stamps program in any given year:
+
+```R
+# map the costs of the program onto the color of the bars
+food_stamps_chart %>%
+  + geom_bar(stat="identity", aes(fill=costs)) %>%
+  + ggtitle("Column chart")
+```
+
+This code makes the following chart:
+
+![](./img/class11_17.jpg)
+
+Notice that this maps a smooth gradient of colors onto the continuous variable of costs, running from dark to light blue, for larger values.
+
+This is less intuitive than having darker, more intense colors represent larger numbers. So now let's control the color of the bars using our own color palette.
+
+First, create a list of colors called `pal`, for "palette," taken from ColorBrewer's Reds sequential color scheme:
+
+```R
+# use custom colors from ColorBrewer
+pal = c("#fee5d9","#fcae91","#fb6a4a","#de2d26")
+```
+
+Now we can use those colors to redraw the column chart:
+
+```R
+# draw column chart using custom palette
+food_stamps_chart %>%
+  + geom_bar(stat="identity", aes(fill=costs), color="888888") %>%
+  + scale_fill_gradientn(name="Costs \n($ billions)", colours=pal) %>%
+  + ggtitle("Column chart")
+```
+
+In the `geom_bar()` function, we have drawn a gray border around each column, and mapped the costs of the program onto the color of the bars.
+
+`scale_fill_gradientn()` defines the colors to use for this mapping, so here we set `colours=pal`, to use our custom palette. (The `n` at the end of `gradientn` means that the color gradient will pass through a number of listed colors.)
+
+Note that colors is here spelled `colours`. This is because ggplot2, like most of the R packages we are using today, was written by a New Zealander, [Hadley Wickham](https://github.com/hadley). In most instances, ggplot2 will accept both U.S. and British/New Zealand spellings, but this is one case where it does not.
+
+`name` in the `scale_fill_gradientn` function customizes the text for the color legend title. `/n` stands for "new line," so splits that title into two lines of text.
+
+Here is the result:
+
+![](./img/class11_18.jpg)
+
+We have only explored some of the ways to map data to color in ggplot2 graphics. For the full range of possibilities, see the `Scales` options in the [ggplot2 documentation](http://docs.ggplot2.org/current/index.html).
+
+We will later return to working with color after binning data by quantiles, but first we need to explore data processing in R.
+
+### Use dplyr to process data on Pfizer payments and FDA warning letters to doctors
+
+**dplyr** is an incredibly useful package that makes it possible to process data in various ways, replicating what can be done with SQL.
+
+So we will now import the doctors data from week 5, and repeat some of the queries we ran using dplyr code.
+
+First, load the data:
+
+```R
+# load pfizer and fda data
+pfizer <- read_csv("pfizer.csv")
+fda <- read_csv("fda.csv")
+
+# check fda$issued has been recognized as dates
+str(fda)
+```
+
+The following dplyr functions have clear counterparts in SQL:
+
+- `select()` does much the same job as `SELECT` in SQL, picking which fields or variables to return.
+
+- `filter()` corresponds to `WHERE` in a filtering query and follows Boolean logic with `|` representing `OR` and `&` representing `AND`.
+
+- `arrange()` does the same job as `ORDER BY` in SQL, sorting the data.
+
+So this is the dplyr version of the SQL query we used to find doctors in California paid $10,000 or more to run Expert-Led Forums:
+
+```r
+# select doctors in California paid $10,000 or more to run Expert-Led Forums
+ca_docs <- pfizer %>% 
+  select(first_plus, last_name, city, state, category, total) %>%
+  filter(category=="Expert-Led Forums" & state=="CA" & total >= 10000) %>%
+  arrange(desc(total))
+```
+
+Note the use of `==` to look for particular values, rather than a single `=`, which is used in R to make something equal to the specificied value.
+
+View the new `ca_docs` object to see the results.
+
+Now extend the query to also find doctors in New York state:
+
+```R
+# extend that query to doctors in New York state, also
+ca_ny_docs <- pfizer %>%
+  select(first_plus, last_name, city, state, category, total) %>%
+  filter(category=="Expert-Led Forums" & (state=="CA"|state=="NY") & total >= 10000) %>%
+  arrange(desc(total))
+```
+Note the use of `|` for `OR`, and the brackets around that part of the query to ensure that this is run first.
+
+Get all payments for speaking at Expert-Led Forums or for Professional Advising:
+
+```R
+# all payments for running Expert-led Forums and providing Professional advice
+speak_advice <- pfizer %>%
+  select(first_plus, last_name, city, state, category, total) %>%
+  filter(category=="Expert-Led Forums"|category=="Professional Advising") %>%
+  arrange(desc(total))
+```
+
+Just like SQL, dplyr can group and aggregate data, using the following functions:
+
+- `group_by()` does the same job as `GROUP BY` in SQL.
+
+- `summarize()` allows you to run various aggregations on the grouped data, including `sum()`, `mean()`, `median()`.
+
+So, for example, here is how to calculate total payments to doctors by state:
+
+```R
+# calculate total payments by state
+state_totals <- pfizer %>%
+  group_by(state) %>%
+  select(state, total) %>%
+  summarize(state_total = sum(total)) %>%
+  arrange(desc(state_total))
+```
+In the `summarize()` function, we have renamed the aggregated variable as `state_total`, like we did by using `AS` in SQL. Again, view the new object `state_totals` to see the result.
+
+Now let's run some queries using dates on the FDA warning letters data.
+
+Return letters sent from the start of 2005 onwards:
+
+```R
+# FDA warning letters sent from the start of 2005 onwards
+post2005 <- fda %>%
+  filter(issued >= "2005-01-01") %>%
   arrange(desc(issued))
 ```
 
-The dplyr package can handle joins, too. This, for example, is how to run the query that identified the four doctors paid by Pfizer to run Expert-Led Forums who had also received a warning letter from the FDA:
+For the next query, we will use another useful dplyr fuction:
 
-```r
+- `mutate()` creates a new variable in the data, or alters an existing one.
+
+So, we will use `mutate()` to create a version of the data with a new column showing the number of days that have elapsed since the letter was sent:
+
+```R
+# add a variable showing the number of days elapsed since each warning letter was sent
+elapsed <- fda %>%
+  mutate(days_elapsed = Sys.Date()-issued)
+```
+Notice that the new object `elapsed` contains a variable called `days_elapsed` giving the desired values.
+
+This code would modify the existing `fda` `data.frame`, adding the new variable, rather than creating a new object with a different name:
+
+```R
+# add a variable showing the number of days elapsed since each warning letter was sent
+fda <- fda %>%
+  mutate(days_elapsed = Sys.Date()-issued)
+```
+
+In this code, `Sys.Date()` returns the current date, so is equivalent to `date('now')` from our SQLite class. Subtracting dates is rather easier in R than in SQLite: Things will get more complicated with full dates and times, however -- again the I recommend using the lubridate package.
+
+Now count the number of letters issued by year:
+
+```R
+# count the number of warning letters sent by year
+letters_per_year <- fda %>%
+  group_by(year = format(issued, "%Y")) %>%
+  summarize(letters=n())
+```
+In the `group_by()` function, we used the code `year = format(issued, "%Y")` to extract the year from the dates, and call that new variable `year`.
+
+In the `summarize()` function, we used `n()`, which is the equivalent of `COUNT` in SQL; you can think of it as saying "get the number (n) of ...". We then named the new variable with the counts `letters`.
+
+Again, view the new object to see the results.
+
+There are also a number of join functions in dplyr to run queries across two tables of data. Here are the most useful:
+
+- `inner_join()` returns values from both tables only where there is a match.
+- `left_join()` returns all the values from the first-mentioned table, plus those from the second table that match.
+- `right_join()` returns all the values from the second-mentioned table, plus those from the first table that match.
+- `semi_join()` filters the first-mentioned table to include only values that have matches in the second table.
+- `anti_join()` filters the first-mentioned table to include only values that have no matches in the second table.
+
+To illustrate, here is the query we ran in SQLite to find doctors who were paid by Pfizer to run expert led forums who had also received a warning letter from the FDA:
+
+```R
+# join query to identify doctors paid to run Expert-led forums who also received a warning letter
 matches <- inner_join(pfizer, fda, by=c("first_name" = "name_first", "last_name" = "name_last")) %>%
   filter(category=="Expert-Led Forums")
+ ```
+The code in `by=c()` defines how the join should be made. If instructions on how to join the tables are not supplied, dplyr will look for variables with matching names, and perform the join based on those. So think carefully about how you are joining tables, just as you would in SQL!
+
+[Here is a useful reference](http://stat545-ubc.github.io/bit001_dplyr-cheatsheet.html) for running joins with dplyr.
+
+### Bin data by quantiles and redraw the food stamps column chart
+
+#### Bin the data
+
+Having learned the basics of dplyr, we will now return the the food stamps column chart, bin the costs data it into five quantiles, and then use that binned data to color the columns.
+
+This is how to calculate quantiles in R:
+
+```R
+# calculate five quantiles for the food stamps costs data
+quantile(food_stamps$costs,(0:5)/5)
 ```
-dplyr actually supports a wider variety of join types than SQLite: [here is a useful reference](http://stat545-ubc.github.io/bit001_dplyr-cheatsheet.html).
+This should be the output:
 
-### Import and process World Bank data
+```JSON
+   0%   20%   40%   60%   80%  100% 
+ 0.25  5.69 11.85 20.64 31.07 79.93 
+```
 
-In week 5, we noted that some organizations make their available online via APIs. When working in R, it is worthwhile to run some Google searches to find out if the data you are interested in is provided via an API, and whether anyone has written an R package to import data from this API.
+Now create a new object containing those quantile breaks, and use it to bin the costs data:
 
-The [WDI](https://github.com/vincentarelbundock/WDI) package allows  a wealth of [data from the World Bank](Explain WDI package gives access to World Bank indicators. http://data.worldbank.org/indicator/all) to be imported into R from the World Bank [API](http://data.worldbank.org/node/9).
+```R
+# calculate breaks for five quantile bins
+breaks <- quantile(food_stamps$costs,(0:5)/5)
 
-You can search for indicators containing key words, such as "gdp," using the following code:
+# create a new binned variable using these breaks
+food_stamps <- food_stamps %>%
+  mutate(cost_bin = cut(costs, breaks, include.lowest=TRUE))
+```
+Here were are using the `mutate()` function from dplyr to create a new variable called `cost_bin`, using the `cut()` function. A quirk of this function is that you must specify `include.lowest=TRUE`, otherwise this value will be ignored.
+
+View the `food_stamps` `data.frame` to see the new column:
+
+![](./img/class11_19.jpg)
+
+Run `str(food_stamps)` to see that the new variable is a `Factor`, or categorical variable.
+
+To change the labels for these bins to something we might actually want to use on a chart legend, use the following code:
+
+```R
+# clean up the labels for the bins
+levels(food_stamps$cost_bin) <- c("<5.69","5.69-11.8","11.8-20.6","20.6-31.1",">31.1")
+```
+Here we used the `levels()` function to rename the groups, or levels, of a categorical variable. The new names were supplied as a list.
+
+Again view the data to see the result:
+
+![](./img/class11_20.jpg)
+
+#### Redraw the column chart using the binned data
+
+First, create a new version of the basic food stamps chart, without any layers. We need to do this, because the new variable `cost_bin` was not included in the original `food_stamps_chart`:
+
+```R
+# save modified chart with data mapping but no geom layers
+food_stamps_chart_2 <- ggplot(food_stamps, aes(x=year, y=participants, fill=cost_bin)) %>%
+  + xlab("Year") %>%
+  + ylab("Participants (millions)")
+```
+Notice that this time we have mapped the fill of the bars in the initial aesthetic mapping, so it will carry through to the `geom_bar()` layer when we add that.
+
+So now let's add that layer:
+
+```R
+# draw the chart coloring the columns using the binned data
+food_stamps_chart_2 %>%
+  + geom_bar(stat="identity") %>%
+  + scale_fill_brewer(name="Costs \n($ billions)") %>%
+  + ggtitle("Column chart")
+```
+Notice that this time we have used `scale_fill_brewer()` to color the columns. This uses ColorBrewer schemes, and is very useful for mapping colors to categorical variables, or to continuous variables that have been binned to make categorical variables, as we did here.
+
+Note the differences from the charts with color gradients that we made earlier:
+
+![](./img/class11_21.jpg)
+
+Usually, however, you will want to select a particular ColorBrewer palette, rather than accepting the default blues.
+
+To see the available options, use the following code:
+
+```R
+# view ColorBrewer palettes
+display.brewer.all()
+```
+I recommending saving this plot as a PDF for future referencee:
+
+![](./img/class11_22.jpg)
+
+```R
+# redraw the chart using ColorBrewer Reds palette
+food_stamps_chart_2 %>%
+  + geom_bar(stat="identity") %>%
+  + scale_fill_brewer(name="Costs \n($ billions)", palette="Reds") %>%
+  + ggtitle("Column chart")
+```
+This should be the result:
+
+![](./img/class11_23.jpg)
+
+### Customize your ggplot2 charts using themes
+
+The charts we have made so far, using ggplot2's default gray theme, have a somewhat "academic" look to them. However, ggplot2 has some other built-in themes that you may wish to use.
+
+Run each of these lines of code, after each running the code for the last chart again
+
+```R
+# set ggplot2 themes
+theme_set(theme_bw())
+
+theme_set(theme_minimal())
+
+theme_set(theme_gray())
+```
+
+The results from the first two themes should be as follows:
+
+![](./img/class11_24.jpg)
+
+![](./img/class11_25.jpg)
+
+The last `theme_set()` will return to the default gray theme.
+
+You can also define your own customized theme to draw plots with just about any desired appearance, using the various options available under `Themes` in the [ggplot2 documentation](http://docs.ggplot2.org/current/index.html).
+
+However, I do not recommend coding your themes manually, certainly not on each chart you draw. Instead, use [this web app](https://bchartoff.shinyapps.io/ggShinyApp/) to set your theme options. When you are statisfied with the appearance of the chart in the app, click the `R script for theme (run every R session)` button to download your theme as an R script.
+
+The data folder for this week includes two themes downloaded from this app, intended for use with column/bar charts and line/scatter plots respectively.
+
+Double-click on the file `column_theme.R` and it will open in RStudio. Select and run all of the code in the file. Now run the code for the last chart again.
+
+This should be the result:
+
+![](./img/class11_26.jpg)
+
+
+### Import and process data from World Bank API
+
+One very nice thing about R is that its community of open source developers has written many packages that include useful datasets, or provide access to them by connecting to online APIs.
+
+When working in R, it is worthwhile to run some Google searches to look for the existence of such packages, which can save you a lot of time.
+
+The [WDI](https://github.com/vincentarelbundock/WDI) package, for example, gives access to [World Bank indicators](http://data.worldbank.org/indicator/all) via the World Bank's [API](http://data.worldbank.org/node/9).
+
+You can search for indicators containing key terms, such as "gdp," using the following code:
 
 ```r
 WDIsearch("gdp")
 ```
+![](./img/class11_27.jpg)
 
-Having identified which indicators you want to import, create a list of them:
+![](./img/class11_28.jpg)
 
-```r
-indic_list <- c("NY.GDP.PCAP.PP.KD","SP.DYN.LE00.IN","SH.XPD.PCAP.PP.KD","SP.DYN.IMRT.IN","SP.DYN.TFRT.IN")
-```
+![](./img/class11_29.jpg)
 
-Now import the data for all countries and all available years (the data go back at most to 1960):
-
-```r
-indicators <- WDI(indicator=indic_list, country="all", start=1960, end=2014)
-```
-
-This code will take a little time to run. Once the data imports, you will see a column for each indicator, plus three columns giving the year, country (or group of countries), and a two-letter identifying code for each country.
+We are going to import data for WDI variables used to make three charts in [this BuzzFeed News article](http://www.buzzfeed.com/peteraldhous/what-five-years-of-austerity-did-to-greeks-health).
 
 The indicators are:
 
-- `NY.GDP.PCAP.PP.KD` [GPD per capita, purchasing power parity (constant 2011 $)](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.KD)
-- `SP.DYN.LE00.IN` [Life expectancy at birth (years)](http://data.worldbank.org/indicator/SP.DYN.LE00.IN)
-- `SH.XPD.PCAP.PP.KD` [Health expenditure per capita. purchasing power parity (constant 2005 $)](http://data.worldbank.org/indicator/SH.XPD.PCAP.PP.KD)
-- `SP.DYN.IMRT.IN` [Infant mortality rate (per 1,000 live births)](http://data.worldbank.org/indicator/SP.DYN.IMRT.IN)
-- `SP.DYN.TFRT.IN` [Fertility rate (births per woman)](SP.DYN.TFRT.IN)
+- `SP.DYN.LE00.IN` Life expectancy at birth in years.
+- `SH.XPD.PCA.PP.KD` Health spending per person, public and private, in 2011 dollars, correcting for purchasing power in different territories.
+- `SL.UEM.TOTL.ZS` Unemployment rate, as a percentage of the total labor force.
 
-First we will filter this data to use later for maps showing GDP per capita by country for each year from 2009 to 2013.
-
-Use dplyr to select the data we want:
-
-```r
-gdp_pc <- select(indicators, year, iso2c, country, NY.GDP.PCAP.PP.KD) %>%
-  filter(year >= 2009)
+First make a list of the indicators to be imported:
+```R
+# list of indicators to be imported using WDI package
+indic_list <- c("SP.DYN.LE00.IN", "SH.XPD.PCAP.PP.KD", "SL.UEM.TOTL.ZS")
 ```
-Look at the data, which is in long format. To join to our map, we will need the data in a wide format, with each year's values in a separate column. So we need to use tidyr's `spread` function.
+Now import the data and give the variables less cumbersome names:
 
-```r
-gdp_pc_wide <- spread(gdp_pc, year, NY.GDP.PCAP.PP.KD)
+```R
+# import data from World Bank API, rename variables
+indicators <- WDI(indicator=indic_list, country="all", start=1990, end=2014) %>%
+  rename(life_expect=SP.DYN.LE00.IN, health_spend=SH.XPD.PCAP.PP.KD, unemploy_rate=SL.UEM.TOTL.ZS)
 ```
 
-Now export this data:
-
-```r
-write.table(gdp_pc_wide, "PathtoFile/gdp_pc.txt", row.names = FALSE, sep = "\t", na = "-99")
-```
-This is one of the files we used to demonstrate a SQL `LEFT JOIN` in Week 4. Note that we have set the null `na` values as -99.
-
-Just for practice with tidyr's `gather` function, let's convert the data back to long format:
-
-```r
-gdp_pc_long <- gather(gdp_pc_wide, year, gdp_pc, -iso2c, -country)
-```
-
-### Draw charts illustrating development of the BRICS nations from World Bank data
-
-Now let's draw some charts from the World Bank data. I selected these indicators to look at the wealth and well-being of the BRICS nations: Brazil, Russia, India, China and South Africa.
-
-BRICs is a grouping of the world's five most important emerging economies. However, the  circumstances of their recent economic growth and development are rather different, so there should be interesting stories to tell about the differences between these countries by charting these indicators.
-
-First, filter the imported data using dplyr to focus on the BRICS nations from 1990 onwards:
-
-```r
-brics <- filter(indicators, (iso2c=="BR" | iso2c=="CN" | iso2c=="IN" | iso2c=="RU" | iso2c=="ZA") & year >= 1990)
-```
-
-In making charts from this data, we will use palettes from ColorBrewer, so let's look at the possibilities allowed by RColorBrewer:
-
-```r
-display.brewer.all()
-```
-
-![](./img/class6_25.jpg)
-
-This image is worth exporting as PDF and saving for future reference.
-
-First let's draw a line chart, showing how GDP per capita has changed over time for each of the five countries, using the ColorBrewer `Set1` qualitative color scheme:
-
-```r
-ggplot(brics, aes(x=year, y=NY.GDP.PCAP.PP.KD)) + geom_line(aes(color=country), size=2) + scale_color_brewer(palette = "Set1")
-```
-![](./img/class6_26.jpg)
-
-Already, this chart shows some interesting differences between the five nations. Notice, for instance, how Brazil, South Africa and particularly Russia were affected by the financial crisis of 2007-8, while growth of GDP per capita in India and China was apparently unaffected. China's rapidly growing wealth stands out clearly, while Russia's trajectory is especially interesting. Its economy initially slumped, but turned around sharply in the late 1990s.
-
-To draw similar charts for the other variables, we could repeat this code, substituting in each of the variable names. But that is rather cumbersome. We already have a list of the variable names in the object `indic_list`. So we can write "for" loop to iterate over each variable in that list and draw a similar chart for each one:
-
-```r
-for (i in indic_list) {
-  brics_line <- ggplot(brics, aes_string(x="year", y=i)) + geom_line(aes(color=country), size=2) + scale_color_brewer(palette = "Set1")
-  plot(brics_line)
-}
-```
-For loops allow repetitive tasks to be run efficiently with a minimum of code.
-
-You may be wondering why we used `aes_string` rather than `aes` to map the data values to the axes. This is because items in `indic_list` are strings of text, which refer to the variables in the data, rather than the variables themselves. You can see that by typing `str(indic_list)`, which gives the following output:
-
-```
-chr [1:5] "NY.GDP.PCAP.PP.KD" "SP.DYN.LE00.IN" "SH.XPD.PCAP.PP.KD" "SP.DYN.IMRT.IN" ...
-```
-
-Using `aes_string`, we also need to specify `"year"` in quote marks, so that it is similarly cast as a text string referring to a variable in the data.
-
-Note also that each chart in the for loop needs to saved as an object and then plotted; the code will not work if you just start with `ggplot`.
-
-Use the arrows in the `Plots` tab to explore the charts drawn by the loop.
-
-Now let's draw a Gapminder-style trajectory trajectory for each country over time showing how life expectancy has varied with GDP per capita:
-
-```r
-ggplot(brics, aes(x=NY.GDP.PCAP.PP.KD, y=SP.DYN.LE00.IN, color=country)) + geom_point() + geom_path() + scale_color_brewer(palette = "Set1") + geom_text(aes(label=year), size=4, hjust=-0.2)
-```
-![](./img/class6_27.jpg)
-
-
-The `geom_path` function draws a line through the points in the original order in which they appear in the data. In this case, the data was already in chronological order. If not, we could use dplyr's `arrange` fucntion to order the data before plotting.
-
-The year labels make the chart look messy, but are worth including in the first instance so we know the direction of the trajectories over time. You can experiment with `hjust` to see how it affects the labels' horizontal position.
-
-We have used the `Set1` qualitative palette to color the countries. This is not ideal, given that the red and green will create problems for colorblind people -- however, there is no fully colorblind-safe qualitative ColorBrewer palette for five categories. (Note also that ColorBrewer is actually baked into ggplot2, so that the package didn't actually need to be loaded, other than to review the available options.)
-
-Again, we can write a for loop to draw similar plots to see how each of the variables have varied against GDP per capita over time:
-
-```r
-for (i in indic_list) {
-  brics_path <- ggplot(brics, aes_string(x="NY.GDP.PCAP.PP.KD", y=i, color="country", label="year")) + geom_point() + geom_path() + scale_color_brewer(palette = "Set1") + geom_text(aes(label=year), size=4, hjust=-0.2)
-  plot(brics_path)
-}
-```
-
-Again, use the arrows in the `Plots` tab to look at the charts drawn by the loop. The GDP per capita versus life expectancy chart still seems the most interesting, so let's continue to work with that.
-
-First save and draw the basic plot, omitting the "year" labels to remove clutter, and improving the formatting of the axes:
-
-```r
-brics_gdp_le <- ggplot(brics, aes(x=NY.GDP.PCAP.PP.KD, y=SP.DYN.LE00.IN, color=country)) + geom_point() + geom_path() + ylab("Life expectancy at birth (years)") + xlab("GDP per capita") + scale_x_continuous(labels = dollar) + scale_color_brewer(palette = "Set1")
-plot(brics_gdp_le)
-```
-![](./img/class6_28.jpg)
-
-It can sometimes be useful to create "faceted" plots, drawing multiple versions of a chart for each value of a categorical variable. So let's do that, creating one chart for each country:
-
-```r
-brics_gdp_le + facet_wrap(~country)
-```
-![](./img/class6_29.jpg)
-
-In this case the single chart looks better, so we will stick with that.
-
-Now let's add another variable, sizing the points according to the infant mortality rate:
-
-```r
-brics_gdp_le + geom_point(aes(size=SP.DYN.IMRT.IN))
-```
-
-![](./img/class6_30.jpg)
-
-There is a problem here: The bubbles aren't sized correctly by area. So let's fix that, remove the color legend, and also make the legend for infant mortality a little more informative (note that `\n` in the code for the legend name inserts a new line at that position.):
-
-```r
-brics_gdp_le + geom_point(aes(size=SP.DYN.IMRT.IN)) + scale_size_area(name="Infant mortality \n(per 1,000 live births)") + guides(color=FALSE)
-```
-
-![](./img/class6_31.jpg)
-
-We will edit and annotate this chart in Inkscape later, so save this as a PDF.
+This code used dplyr's `rename()` function to rename the variables. The data will take a little time to load. When it has done so, view the data and examine its structure.
 
 ### Assignment
 
-- Draw a line chart showing GDP per capita over time since 1990 for the [G8](http://en.wikipedia.org/wiki/G8) members. Customize as you see fit using R code to give a pleasing and informative display.
-- Do some background research to allow you to annotate the final chart on the BRICS nations. In particular, what may explain the unusual trajectories of South Africa and Russia, respectively?
-- Send me a PDF of your line chart, the R code you used to filter the data and draw the chart, and some brief notes for annotating the BRICS chart in next week’s class.
+- Use this data to make ggplot2 versions of three line charts shown above. You won't be able to exactly replicate the appearance of the charts -- for instance the legend and the gridlines will be different -- but get as close as you can.
+ 
+ Here are some hints:
+
+ - Before you start, remember that you need to load the packages you will use in each R session.
+ -  For two of the charts you will need to filter using dplyr to obtain just the data for Germany, Greece and the EU. For the life expectancy chart you will need to include Russia as well. To keep your code concise, filter using the `iso2c` country code variable rather than the full `country` name.
+  -  For the health spending chart, you will either need to filter by `year`, or customize the X axis range, so that the chart starts in 1995, rather than 1990. Try experimenting with both options.
+ -  Make these charts using ggplot2's `theme_minimal()`
+ - Customize the text on the X and Y axis labels.
+ -  Customize the `size` of the lines to make them a little thicker than the default.
+ -  Use a ColorBrewer qualatitative palette such as `Set1` or `Dark2 ` for the lines. You will need to use the `scale_color_brewer()` function to achieve this, which works like `scale_fill_brewer()`.
+ -  The units for the health spending chart should be `$`. This where the **scales** package comes in.`+ scale_y_continuous(label = dollar)` will format the axis as `$`.
+
+
+- Export your charts as PDFs and sabve the R script for this exercise. Send me your PDFs and R script by the start of next week's class.
+
+ This will be a challenging exercise, requiring you to review what we covered today and understand how the code works. Ask for help if you get stuck!
 
 ### Further reading
 
@@ -810,7 +842,11 @@ Winston Chang: [*R Graphics Cookbook*](http://www.amazon.com/R-Graphics-Cookbook
 
 Hadley Wickham: [*ggplot2: Elegant Graphics For Data Analysis*](http://www.amazon.com/gp/product/0387981403/)
 
-[ggplot2 Documentation](http://docs.ggplot2.org/current/)
+[ggplot2](https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf) and [dplyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) cheat sheets from RStudio. The latter also introduces the **[tidyr](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)** package, useful for converting data between wide and londg formats.
+
+[ggplot2 documentation](http://docs.ggplot2.org/current/)
+
+[ggplot2](http://stcorp.nl/R_course/tutorial_ggplot2.html) and [dplyr](http://stcorp.nl/R_course/tutorial_dplyr.html) tutorials from [Paul Hiemstra](http://www.numbertheory.nl/about/).
 
 [Stack Overflow](http://stackoverflow.com/)
 Search the site, or [browse R questions](http://stackoverflow.com/questions/tagged/r)
