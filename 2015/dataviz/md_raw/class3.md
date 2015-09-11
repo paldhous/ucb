@@ -349,7 +349,7 @@ As for all responsively designed web pages, make sure to include this line of co
 
  Here are some hints:
 
- - Drop `Year` into the `Pages` shelf to create the control to cycle throught the years.
+ - Drop `Year` into the `Pages` shelf to create the control to cycle through the years.
  - Remember to filter the data for the same year range as the first dashboard.
  - You will need to change the `Marks` to solid circles and sclae them by the total number of neonatal deaths. Have done so, you will also need to increase the size of all circles so countries with small numbers of neonatal deaths are visible. Good news: Tableau's default behavior is to size circles correctly by area, so they will be the correct sizes, relative to one another.
  - You will need to switch to a `Logarithmic` X axis and alter/fix its range.
