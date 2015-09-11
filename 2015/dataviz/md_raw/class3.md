@@ -351,7 +351,7 @@ As for all responsively designed web pages, make sure to include this line of co
 
  - Drop `Year` into the `Pages` shelf to create the control to cycle throught the years.
  - Remember to filter the data for the same year range as the first dashboard.
- - You will need to change the `Marks` to solid circles and increase their size. Good news: Tableau's default behavior is to size circles correctly by area, so they will be the correct sizes, relative to one another.
+ - You will need to change the `Marks` to solid circles and sclae them by the total number of neonatal deaths. Have done so, you will also need to increase the size of all circles so countries with small numbers of neonatal deaths are visible. Good news: Tableau's default behavior is to size circles correctly by area, so they will be the correct sizes, relative to one another.
  - You will need to switch to a `Logarithmic` X axis and alter/fix its range.
  - Format GDP per capita in dollars by clicking on it in the `Data` panel and selecting `Default Properties>Number Format>Currency (Custom)`.
  - Create a single trend line for each year's data, so that the line shifts with the circles from year to year. Do this by dragging `Trend line` into the chart area from the `Analytics` panel. You will then need to select `Analysis>Trend Lines>Edit Trend Lines...` and adjust the options to give a single line with the correct behavior.
