@@ -114,6 +114,7 @@ function show_error($myError)
 						</li>
 						<li><a href="software.html">Software</a></li>
 						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
 						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
 					</ul>
 				</div><!-- /.navbar-collapse -->
