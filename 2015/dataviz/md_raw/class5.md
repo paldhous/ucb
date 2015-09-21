@@ -175,13 +175,13 @@ ORDER BY state_total DESC;
 
 `SUM` is a function, and the data it acts on appears in brackets. This is similar to the spreadsheet formulas we explored in week 1, and will be a pattern that reappears in subsequent classes, as we work more with code.
 
-Now let’s total by state just for payments made for Expert-led forums, using this query:
+Now let’s get the totals by state just for payments made for Expert-led forums, and return data for states only where these totals were $250,000 or more:
 
 ```sql
 SELECT state, SUM(total) AS expert_total
 FROM pfizer
 GROUP BY state, category
-HAVING category LIKE 'Expert%'
+HAVING category LIKE 'Expert%' AND expert_total >= 250000
 ORDER BY expert_total DESC;
 ```
 Click `Run SQL` and you should see the following results:
@@ -193,10 +193,10 @@ This query introduces the `HAVING` clause:
 SELECT state, SUM(total) AS expert_total
 FROM pfizer
 GROUP BY state, category
-HAVING category LIKE 'Expert%'
+HAVING category LIKE 'Expert%' AND expert_total >= 250000
 ORDER BY expert_total DESC;
 ```
-After a `GROUP BY` clause, `HAVING` does the same filtering job as `WHERE` does in a simple filtering query; note that fields that appear in the `HAVING` clause must also appear under `GROUP BY`.
+`HAVING` does the same filtering job as `WHERE` does in a simple filtering query, but [is necessary](https://en.wikipedia.org/wiki/Having_%28SQL%29) if any of the values being filtered is an aggregated variable, like `expert_total` in this case. Try the same query using `WHERE` to verify this.
 
 We can also aggregate data by more than one field at a time. For example, this query calculates the total payments by state and by category:
 
@@ -211,7 +211,7 @@ This should be the result:
 
 ### Replicate this query as a pivot table in Google Sheets
 
-To human eyes, this data would be easier to read if it were in a table with the states in rows and the cateories in columns. This is sometimes called a "pivot table," and involves converting the data from a "long" to a "wide" format. Making pivot tables, or converting between these formats for specific visualization tasks, is a common task in data journalism.
+To human eyes, this data would be easier to read if it were in a table with the states in rows and the categories in columns. This is sometimes called a "pivot table," and involves converting the data from a "long" to a "wide" format. Making pivot tables, or converting between these formats for specific visualization tasks, is a common task in data journalism.
 
 SQLite lacks a pivot function, and this is one task where a spreadsheet has an advantage. So let's briefly put the database to one side, and import the Pfizer data, in the file `pfizer.csv`, into a spreadsheet in your Google Drive account.
 
@@ -261,13 +261,13 @@ The file contains the following fields:
 - `issued` The date the letter was issued.
 - `office` The FDA office that sent the letter.
 
-The dates are in the format `YYYY-MM-DD`. I strongly advise converting dates into this format for all of your data processing work, as it is an international standard, widely understood by data analysis software including SQLite. If your date/time also includes the time of day, use one of the following standard formats:
+The dates are in the format `YYYY-MM-DD`. I advise converting dates into this format for all of your data processing work, as it is an international standard, widely understood by data analysis software including SQLite. If your date/time also includes the time of day, use one of the following standard formats:
 
 `YYYY-MM-DD HH:MM:SS`
 
 `YYYY-MM-DDTHH:MM:SS`
 
-Return to the database, and create a table into which to import the data. Select `Table>Create Table` from the top menu, and `Select File`. You will need to change the `Format` at the dialog box from `CSV Files` to `All Files` to import a file with a `.txt` extension.
+Return to the database, and create a table into which to import the data. Select `Table>Create Table` from the top menu.
 
 Now fill in the import dialog box as follows:
 
@@ -281,7 +281,7 @@ The other `Column Names` match those in the data; take care to select the correc
 
 Click `Yes` at the next dialog box, which will show the SQL code being used to create the table.
 
-Now we can import the data, by clicking the `Import` icon: 
+Now we can import the data, by clicking the `Import` icon, and then `Select File` to navigate to `fda.csv`: 
 
 ![](./img/class5_14.jpg)
 
@@ -324,7 +324,7 @@ It will give the following results:
 
 ![](./img/class5_18.jpg)
 
-The following query illustrates other some other date functions, to return all the fields in the FDA table, with a new column showing how many days have elapsed since each letter was issued:
+The following query illustrates some other date functions, to return all the fields in the FDA table, with a new column showing how many days have elapsed since each letter was issued:
 
 ```sql
 SELECT *, (julianday(date('now')) - julianday(issued)) AS days_elapsed
@@ -402,7 +402,7 @@ Drag `Name Last` and `Name First` from the FDA data to `Rows` and `Total` to `Co
 
 - Run each of the following queries in your `pfizer.sqlite` database:
  - Identify the ten doctors paid the most for Professional Advising in the state of North Carolina, giving their full name and city, and listing them in descending order of the total paid.
- - Return all of the data in the `fda` table, with a new column giving the number of days elapsed from the date each letter was sent, until the end of 2010.
+ - Return all of the data in the `fda` table, with a new column giving the number of days elapsed from the date each letter was sent, until December 31, 2010.
  - Return data giving the number of FDA warning letters issued by month, irrespective of the year in which they were sent (i.e. your results should have 12 rows, with each giving the total number of letters sent in that month, over the entire period 1996 to 2010).
  - Return data showing the number of FDA warning letters issued in each month for the years 2000 to 2002 inclusive (i.e you should have a separate rows for letters sent in February in 2000, 2001 and 2002). Put the results in chronological order.
  - Return all fields from both tables, showing doctors who received FDA warning letters after the start of 2000, who were also paid by Pfizer for Professional Advising.

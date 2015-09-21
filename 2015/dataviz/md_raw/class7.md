@@ -443,6 +443,10 @@ Decide which dataset(s) you wish to explore for your final project. You can use 
 
 This is an open-ended assignment. What you get from it, and ultimately the quality of your final project, will depend on the energy, rigor and imagination with which your pursue this assignment.
 
+### Further reading
+
+Mark Monmonier: *[How to Lie With Maps](http://www.amazon.com/How-Lie-Maps-2nd-Edition/dp/0226534219)*
+This popular exploration of how all maps distort reality, and how some can  seriously deceive, provides a good overview of cartographic principles.
 
 
 
