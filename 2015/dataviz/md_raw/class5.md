@@ -175,7 +175,35 @@ ORDER BY state_total DESC;
 
 `SUM` is a function, and the data it acts on appears in brackets. This is similar to the spreadsheet formulas we explored in week 1, and will be a pattern that reappears in subsequent classes, as we work more with code.
 
-Now let’s get the totals by state just for payments made for Expert-led forums, and return data for states only where these totals were $250,000 or more:
+
+We can also aggregate data by more than one field at a time. For example, this query calculates the total payments by state and by category:
+
+```sql
+SELECT state, category, SUM(total) AS subtotal
+FROM pfizer
+GROUP BY state, category;
+```
+This should be the result:
+
+![](./img/class5_9.jpg)
+
+### Replicate this query as a pivot table in Google Sheets
+
+To human eyes, this data would be easier to read if it were in a table with the states in rows and the categories in columns. This is sometimes called a "pivot table," and involves converting the data from a "long" to a "wide" format. Making pivot tables, or converting between these formats for specific visualization tasks, is a common task in data journalism.
+
+SQLite lacks a pivot function, and this is one task where a spreadsheet has an advantage. So let's briefly put the database to one side, and import the Pfizer data, in the file `pfizer.csv`, into a spreadsheet in your Google Drive account.
+
+From the top menu, select `Data>Pivot table...` then using the `Add field` links at right, put `state` into `Rows`, `category` into `Columns` and `total` into `Values`, making sure the data is summarized using the function `SUM`:
+
+![](./img/class5_10.jpg)
+
+The default should be to aggregate the totals using `SUM`, which is what we want here. You can select other aggregate measures using the dropdown menu.
+
+Return to the database.
+
+### Filtering queries on aggregated variables
+
+Now let’s get the totals by state just for payments made for Expert-led forums, and return data for states only where these totals were $250,000 or more. Here we are filtering the data on the basis of an aggregated variable, `expert_total`, created within the query:
 
 ```sql
 SELECT state, SUM(total) AS expert_total
@@ -186,7 +214,7 @@ ORDER BY expert_total DESC;
 ```
 Click `Run SQL` and you should see the following results:
 
-![](./img/class5_9.jpg)
+![](./img/class5_11.jpg)
 
 This query introduces the `HAVING` clause:
 ```sql
@@ -198,30 +226,7 @@ ORDER BY expert_total DESC;
 ```
 `HAVING` does the same filtering job as `WHERE` does in a simple filtering query, but [is necessary](https://en.wikipedia.org/wiki/Having_%28SQL%29) if any of the values being filtered is an aggregated variable, like `expert_total` in this case. Try the same query using `WHERE` to verify this.
 
-We can also aggregate data by more than one field at a time. For example, this query calculates the total payments by state and by category:
-
-```sql
-SELECT state, category, SUM(total) AS subtotal
-FROM pfizer
-GROUP BY state, category;
-```
-This should be the result:
-
-![](./img/class5_10.jpg)
-
-### Replicate this query as a pivot table in Google Sheets
-
-To human eyes, this data would be easier to read if it were in a table with the states in rows and the categories in columns. This is sometimes called a "pivot table," and involves converting the data from a "long" to a "wide" format. Making pivot tables, or converting between these formats for specific visualization tasks, is a common task in data journalism.
-
-SQLite lacks a pivot function, and this is one task where a spreadsheet has an advantage. So let's briefly put the database to one side, and import the Pfizer data, in the file `pfizer.csv`, into a spreadsheet in your Google Drive account.
-
-From the top menu, select `Data>Pivot table...` then using the `Add field` links at right, put `state` into `Rows`, `category` into `Columns` and `total` into `Values`, making sure the data is summarized using the function `SUM`:
-
-![](./img/class5_11.jpg)
-
-The default should be to aggregate the totals using `SUM`, which is what we want here. You can select other aggregate measures using the dropdown menu.
-
-Now return to the database.
+Note that you also need to include the aggregated variable in the `GROUP_BY` clause.
 
 ### Run a query on a query
 
