@@ -17,14 +17,12 @@ Download the data from this session from [here](data/week8.zip), unzip the folde
 - `ca_healthcare`
  - `ca_counties_medicare` Shapefile with data on Medicare reimbursement per enrollee by California county in 2012, from the [Dartmouth Atlas of Healthcare](http://www.dartmouthatlas.org). 
  - `healthcare_facilities.csv` Locations and other data for hospitals and other healthcare facilities in California, from the [California Department of Public Health](https://cdph.data.ca.gov/Facilities-and-Services/Healthcare-Facility-Locations/n8ju-ifrh). I have geocoded those facilities that lacked latitude and longitude coordinates in the raw data.
+ - `hospitals` Shapefile with data on general acute care hospitals and skilled nursing facilities in Califoria, filtered from the data above.
 - `gdp_pc`
  - `gpd_pc.csv` `gdp_pc.csvt` CSV file with [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on GDP per capita for the world's nations in 2014, plus ancillary file for QGIS to understand the data types for each field.
 - `ne_50m_admin_0_countries` [Natural Earth shapefile](http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/) with boundary data for the world's nations.
 - `seismic_risk` [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014) detailing the risk of experiencing a major earthquake across the continental United States.
 - `sf_test_addresses` Shapefile derived from the addresses we geocoded in week 7.
-- `syria`
- - `2013_Q1` Shapefile with data on [violent events](http://paldhous.github.io/Syria/about.html) in Syria in the first quarter of 2013, derived from the [Global Data on Events, Location and Tone](http://gdeltproject.org/) dataset.
-
 
 ### Map Medicare reimbursements and hospital locations and capacities in California
 
