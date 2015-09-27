@@ -96,13 +96,13 @@ I often prefer white boundaries on a choropleth map. So open up the `Style` tab 
 
 Click on `Symbol>Change` once more, and and set the `Transparency` to 50%. This will keep the relative distinctions between the colors, but tone them down a little so they don't dominate the layer we will later plot on top.
 
-If you are likely to want to style data in the same format in the same way in future, it is a good idea to click the `Save Style` button at bottom right and save as a `QGIS Layer Style File`, which is a variant of [XML](http://www.w3.org/XML/). When loaded using the `Load Style ...` button at bottom left, it will automatically apply the saved styling to future maps.
+If you are likely to want to style data in the same format in the same way in future, it is a good idea to click the `Style` button at bottom left and select `Save Style>QGIS Layer Style File`. This saves the style in `QML`, which is a variant of [XML](http://www.w3.org/XML/). When loaded using the `Style>Load Style`, it will automatically apply the saved styling to future maps.
 
 The map should now look like this:
 
 ![](./img/class8_13.jpg)
 
-To add labels to the map, select `Properties>Labels` and fill in the dialog box. Here I am adding a `NAME` label to each county, using `Arial` font, `Italic` style at a size of `11` points and with the color set to a HEX value of `#4c4c4c` for a dark gray:
+To add labels to the map, select `Properties>Labels` and fill in the dialog box. Here I am adding a `NAME` label to each county, using `Arial` font, `Italic` style at a size of `8` points and with the color set to a HEX value of `#4c4c4c` for a dark gray:
 
 ![](./img/class8_14.jpg)
 
@@ -136,7 +136,7 @@ To import a CSV or other delimited text file with points described by latitude a
 
 If your text file is not a CSV you will have to select the correct delimiter, and if your latitude and longitude fields have other names, you may have to select the `X field` (longitude) and `Y field` (latitude) manually.
 
-When you click `OK` you will be asked to select a projection, or CRS, for the data. You may be tempted to select the same Albers projection we have set for the project, but this will cause an error. QGIS will handle the conversion to that projection: Because the data in the CSV file is not yet projected, instead select a datum with a default equirectangular projection, either `WGS 84 EPSG:4326` or `NAD83 EPSG:4297`.
+When you click `OK` you will be asked to select a projection, or CRS, for the data. You may be tempted to select the same Albers projection we have set for the project, but this will cause an error. QGIS will handle the conversion to that projection: Because the data in the CSV file is not yet projected, instead select a datum with a default equirectangular projection, either `WGS 84 EPSG:4326` or `NAD83 EPSG:4269`.
 
 Click `OK` and a large number of points will be added to the map:
 
@@ -144,7 +144,7 @@ Click `OK` and a large number of points will be added to the map:
 
 Now we will style these points, using color to distinguish hospitals from skilled nursing facilities, removing other facilities from the map, and scaling the circles according to the capacity of each facility.
 
-Select `Properties>Style` for the `healthcare_facilities` layer, and accept `Categorized` from the top dropdown menu. Select `TYPE` under `Column` and then hit the `Classify` button. (Keeping `Random colors` for the `Color ramp` is fine, as we will later edit the colors manually). Select and then `Delete` facilities other than `General Acute Care Hospital` and `Skilled Nursing Facility`, as follows (This will remove them from the map, but not from the underlying data):
+Select `Properties>Style` for the `healthcare_facilities` layer, and accept `Categorized` from the top dropdown menu. Select `TYPE` under `Column` and then hit the `Classify` button. (Keeping `Random colors` for the `Color ramp` is fine, as we will edit the colors manually). Select and then `Delete` facilities other than `General Acute Care Hospital` and `Skilled Nursing Facility`, as follows (This will remove them from the map, but not from the underlying data):
 
 ![](./img/class8_21.jpg)
 
@@ -152,62 +152,71 @@ You should be left with the following:
 
 ![](./img/class8_22.jpg)
 
-Now click the `Advanced` button to the right and select `Size scaled field`, making sure `Scale area` is checked (this will ensure that the circles we are about to draw scale correctly, by area). Check `CAPACITY` to select that as the field to scale the size of the circles. Click `OK` and the map should look like this:
+Under `Symbol` click `Change` and change the default color for the symbols to blue:
 
 ![](./img/class8_23.jpg)
 
-The relative sizes of the circles are fine, but they are too big.
-
-To fix this, return to `Properties>Style>Advanced`, then select
-`- expression -` and fill in the dialog box as follows:
+Also change the `Transparency` for the symbols to 50%, and edit the Legend entries so the are not in capitals:
 
 ![](./img/class8_24.jpg)
 
-Here we are simply dividing the numbers in the `CAPACITY` field by 30, which I have found through trial-and-error gives a reasonable display.
+Now double-click the symbols for each of the categories, and change the `Color` so that the hospitals are the same blue, and the nursing facilities are orange.
 
-In the main `Style` tab, click on each point symbol and select `Simple marker` to edit its color. Also set transparency for the symbols to 50%, as we did for the choropleth map.
-
-The final map should look like this:
+Our next task is to scale the healthcare facilities according to their `CAPACITY`, in beds. Select both of the categories, right click, and select `Change size`. At the dialog box, click on this symbol:
 
 ![](./img/class8_25.jpg)
 
-#### Export the finished map in raster image or vector graphic formats
-
-We will export our finished map with a legend explaining the colors, so let's change the name of the fields so they display nicely. Right-click on each layer and rename them `Facility type` and `Medicare reimbursement per enrollee` respectively.
-
-To export the map, select `Project>New Print Composer`, give the composer an appropriate name and click `OK`. In the print composer window, select the following options in the `Composition` tab (I have chosen a `Portrait` orientation to best fit the shape of California):
+Select `Size Assistant ...` and fill in the dialog box as follows:
 
 ![](./img/class8_26.jpg)
 
-Now click the `Add new map` icon:
+Using the `Scale method` of `Surface` will scale the circles by area, according to values in the data; `Flannery` is a [method of scaling](http://makingmaps.net/2007/08/28/perceptual-scaling-of-map-symbols/) that is designed to compensate for the errors people make when estimating the area of circles. You may wish to experiment with this, but I would strongly advise against using `Radius`, for the reasons we discussed in week 2.
+
+Click `OK` until you return to the map, which should now look like this:
 
 ![](./img/class8_27.jpg)
+
+#### Export the finished map in raster image or vector graphic formats
+
+We will export our finished map with a legend, so let's change the name of the fields so they display nicely. Right-click on each layer and rename them `Facility type` and `Medicare reimbursement per enrollee` respectively. Under `Properties>style`, also change the case in the legend for each category of facility, so they don't appear in capitals:
+
+![](./img/class8_28.jpg)
+
+To export the map, select `Project>New Print Composer`, give the composer an appropriate name and click `OK`. In the print composer window, select the following options in the `Composition` tab (I have chosen a `Portrait` orientation to best fit the shape of California):
+
+![](./img/class8_29.jpg)
+
+Now click the `Add new map` icon:
+
+![](./img/class8_30.jpg)
 
 Draw a rectangle over the page area, and the map should appear. At this point, you may need to alter the zoom level and position of your map in the main QGIS display to get a pleasing display in the print composer. (In this case, it is also worth changing the size/shape of the main QGIS window to match the portrait orientation.)
 
 Your print composer should end up looking something like this:
 
-![](./img/class8_28.jpg)
+![](./img/class8_31.jpg)
 
 Once you are statisfied with the appearance of your map in the print composer, click the `Add legend` icon:
 
-![](./img/class8_29.jpg)
+![](./img/class8_32.jpg)
 
 Draw a rectangle on the page where you want the legend to appear:
 
-![](./img/class8_30.jpg)
+![](./img/class8_33.jpg)
 
-In the `Item properties` tab, edit `Fonts` and other options as desired. Here I have simply deleted the default `Title` of `Legend`:
+In the `Item properties` tab, edit `Fonts` and other options as desired. Here I have deleted the default `Title` of `Legend`, removed the legend item for the scaling of the facilities, which was rather ugly, and edit the text for `Facilty type` to explain the scaling:
 
-![](./img/class8_31.jpg)
+![](./img/class8_34.jpg)
+
+Note: To remove an item from the legend, you must first uncheck `Auto update`; then select and use the red minus symbol to remove items.
 
 You can save your maps in raster image formats (JPG, PNG etc) from the Print Composer by clicking the `Save Image` icon:
 
-![](./img/class8_32.jpg)
+![](./img/class8_35.jpg)
 
 The map can be exported in SVG and PDF vector formats by clicking these export icons:
 
-![](./img/class8_33.jpg)
+![](./img/class8_36.jpg)
 
 Note that the SVG export may not clip the map to the page exactly. However, this can be fixed in a vector graphics editor such as [Adobe Illustrator](http://www.adobe.com/products/illustrator.html) or [Inkscape](https://inkscape.org/en/), and then saved as a PDF. This may provide a better rendering of the map than through a direct PDF export.
 
@@ -227,7 +236,7 @@ Now use `Add Vector Layer` to import the file `gdp_pc.csv`. (Note that when join
 
 After import, this file will appear as an isolated table in the `Layers` panel. Select it and open the attribute table to view the data, which contains country names, the three-letter country codes, and data on GDP per capita in 2014:
 
-![](./img/class8_34.jpg)
+![](./img/class8_37.jpg)
 
 Notice that some cells contain the value `-99`, which is here being used to designate `null` values, where there is no data.
 
@@ -241,13 +250,13 @@ When we make the join, this will tell QGIS what sort of data is in each field of
 
 Close the attribute table once more, right-click on the `gdp_pc` shapefile and select `Properties>Joins`. Click the green plus sign and fill in the dialog box as follows to join the CSV file to the shapefile by the `iso_a3` three-letter country codes:
 
-![](./img/class8_35.jpg)
+![](./img/class8_38.jpg)
 
 After completing the join, open the shapefile's attribute table once more to confirm that the data from the CSV file has appeared.
 
 #### Save the joined data in another geodata format
 
-Right-click on the joined shapefile, select `Save As ...` and notice the `Format` options include ESRI shapefile, GeoJSON and KML. You are also able to choose a projection (CRS) for the new shapefile and restrict its extent by latitude and longitude coordinates.
+Right-click on the joined shapefile, select `Save As ...` and notice the `Format` options include ESRI shapefile, GeoJSON and KML. You are also able to choose a projection (CRS) for the new file and restrict its extent by latitude and longitude coordinates.
 
 Save this file as GeoJSON with an appropriate name, keeping the default `WGS 84` CRS.
 
@@ -257,7 +266,7 @@ When displaying geodata online, it is sometimes necessary to simplify boundary d
 
 Select the joined shapefile, then select `Vector>Geometry Tools>Simplify geometries`, and fill in the dialog box as follows, saving as a shapefile with a new name:
 
-![](./img/class8_36.jpg)
+![](./img/class8_39.jpg)
 
 In practice, you will want to experiment with different values for `Simplify tolerance` to give an acceptable trade-off between file size and appearance at high zoom levels.
 
@@ -269,23 +278,28 @@ Alternatively, you can also simplify geodata outside of QGIS using the [**mapsha
 
 Start a new project, and import both the `ne_50m_admin_0_countries` shapefile, and the `seismic_risk` shapefile, which describes the risk of experiencing a damaging earthquake across the continental United States. Note that it extends beyond the boundaries and coastline of the U.S.:
 
-![](./img/class8_37.jpg)
+![](./img/class8_40.jpg)
 
 Open the attribute table for the `ne_50m_admin_0_countries` shapefile, and select the United States:
 
-![](./img/class8_38.jpg)
+![](./img/class8_41.jpg)
 
-Close the attribute table once more, and turn off the visibility of the seismic risk layer briefly to confirm that the United States is now highlighted.
+Close the attribute table once more, and turn off the visibility of the seismic risk layer to confirm that the United States is now highlighted.
+
+![](./img/class8_42.jpg)
+
 
 Select `Vector>Geoprocessing Tools>Clip` and fill in the dialog box as follows, making sure that `Use only selected features` is checked for the `Clip layer`:
 
-![](./img/class8_39.jpg)
+![](./img/class8_43.jpg)
 
-Click `OK` and a new shapefile will be created, clipped to the borders and coastline of the United States.
+Click `OK` and a new shapefile will be created, clipped to the borders and coastline of the United States:
+
+![](./img/class8_44.jpg)
 
 Sometimes you may need to draw your own shape to clip to, rather than using existing geodata. When drawing shapes based on city streets, [this web app](http://www.birdtheme.org/useful/v3tool.html) can be a useful tool. Select the `Polygon` and `KML` options from the dropdown menu and draw your shape over the basemap.
 
-![](./img/class8_40.jpg)
+![](./img/class8_45.jpg)
 
 Paste the resulting code into a text file and save with the extension `.kml`. You can then use this KML file as a clip layer in QGIS.
 
@@ -297,24 +311,23 @@ This is important, because we are going to create a "buffer" defining areas with
 
 To confirm the units for the `Google Mercator` projection, click on the globe symbol at bottom-right:
 
-![](./img/class8_40.jpg)
+![](./img/class8_46.jpg)
 
 You should see that the CRS/projection information that appears near the bottom of the dialog box contains `+units=m`, which tells us that distances in this projection are measure in meters:
 
-![](./img/class8_41.jpg)
-
+![](./img/class8_47.jpg)
 
 Creating a buffer shapefile is a task you might perform if, for example, working out which areas are off-limits for sex offenders under [residency restrictions](http://www.atsa.com/sexual-offender-residence-restrictions).
 
 Select `Vector>Geoprocessing Tools>Buffer(s)...` and fill in the dialog box as follows:
 
-![](./img/class8_42.jpg)
+![](./img/class8_48.jpg)
 
 Selecting the maximum value of `99` under `Segments to approximate` ensures that the resulting shapes are as smooth as possible. `Buffer distance` is set to `304.8` because the projection's units are meters; this value gives the 1,000 feet we require. Checking `Dissolve buffer results` merges overlapping buffers into the same polygon.
 
 Click `OK`, and this should be the result:
 
-![](./img/class8_43.jpg)
+![](./img/class8_49.jpg)
 
 #### Install QGIS plugins
 
@@ -324,37 +337,39 @@ We are going to install a plugin that will allow us to perform hexagonal binning
 
 From the top menu select `Plugins>Manage and Install Plugins...` and search for `MMQGIS`. Select the plugin, and click the `Install plugin` button.
 
-You should now have an `MMQGIS` menu at top:
+You should now have an `MMQGIS` menu at top.
 
-![](./img/class8_44.jpg)
+#### Use hexagonal binning to summarize data on California healthcare facilities
 
-#### Use hexagonal binning to summarize data on the Syrian conflict
+Open a new project and import the `hospitals` shapefile from the `ca_healthcare` subfolder. This is a filtered version of the `healthcare_facilities.csv` data, containing just hospitals and skilled nursing facilities. Again it is in a `Google Mercator` projection.
 
-Open a new project and import the `2013_Q1` shapefile from the `syria` subfolder. This displays violent events in Syria's civil war from the first quarter of 2013, as displayed on [this interactive](http://paldhous.github.io/Syria/), and again is in a `Google Mercator` projection.
-
-If you open the attribute table for this shapefile, you will see it contains more than 10,000 entries -- so clearly many of the points are lying over the top of one another.
-
-We will use the `MMQGIS` plugin to create a hexagonal grid over the map, and then count the number of points in each grid cell, to get a better picture of the intensity of the conflict by location.
+We will use the `MMQGIS` plugin to create a hexagonal grid over the map, and then count the number of facilites in each grid cell, and add up their total capacity.
 
 First use the zoom and pan controls to ensure that there is a little space around the points in the displayed area, giving a view something like this:
 
-![](./img/class8_45.jpg)
+![](./img/class8_50.jpg)
 
-Select `MMQGIS>Create>Create Grid Layer` and fill in the dialog box as follows:
+Select `MMQGIS>Create>Create Grid Lines Layer` and fill in the dialog box as follows:
 
-![](./img/class8_46.jpg)
+![](./img/class8_51.jpg)
 
 `Center X `and `Middle Y` will by default be the longitude and latitutude for the center of the displayed area. Make sure to select `Hexagon (polygon)`, and then set the `H Spacing`; `V Spacing` will adjust automatically. Because we are working with a shapefile in `Google Mercator` projection, the units will be in meters, so here we have set a horizonatal spacing for the hexagons of 20 kilometers.
 
 Click `OK` to create the grid layer, giving it the same `Google Mercator` projection. Drag the new grid layer under the points in the `Layers` panel and the map should look like this:
 
-![](./img/class8_47.jpg)
+![](./img/class8_52.jpg)
 
 Now select `Vector>Analysis Tools>Points in Polygon` and fill in the dialog box as follows:
 
-![](./img/class8_48.jpg)
+![](./img/class8_53.jpg)
 
-This will create a new shapefile with a field `PNTCNT`, giving the number of points in each cell in the grid. Again, give this a `Google Mercator` projection. Save this file in GeoJSON format.
+This will create a new shapefile with a field `PNTCNT`, giving the count of the facilities in each cell in the grid. It will also create a second field giving the total capacity of all the facilities in each cell, because we are aggregating the `CAPACITY` field using the function `sum`.
+
+Here is the attribute table from the resulting shapefile:
+
+![](./img/class8_54.jpg)
+
+Again, give this a `Google Mercator` projection. Save this file in GeoJSON format.
 
 ### Assignment
 

@@ -15,3 +15,10 @@ healthcare_facilities_edit <- rbind(working,working2)
 
 write.csv(healthcare_facilities_edit,"healthcare_facilities.csv", row.names = FALSE, na="")
 
+hospitals <- healthcare_facilities_edit %>%
+  filter(TYPE=="SKILLED NURSING FACILITY" | TYPE=="GENERAL ACUTE CARE HOSPITAL")
+
+write.csv(hospitals,"hospitals.csv", row.names = FALSE, na="")
+
+
+
