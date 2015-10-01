@@ -845,7 +845,7 @@ Winston Chang: [*R Graphics Cookbook*](http://www.amazon.com/R-Graphics-Cookbook
 
 Hadley Wickham: [*ggplot2: Elegant Graphics For Data Analysis*](http://www.amazon.com/gp/product/0387981403/)
 
-[ggplot2](https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf) and [dplyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) cheat sheets from RStudio. The latter also introduces the **[tidyr](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)** package, useful for converting data between wide and londg formats.
+[ggplot2](https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf) and [dplyr](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) cheat sheets from RStudio. The latter also introduces the **[tidyr](https://cran.r-project.org/web/packages/tidyr/tidyr.pdf)** package, useful for converting data between wide and long formats.
 
 [ggplot2 documentation](http://docs.ggplot2.org/current/)
 

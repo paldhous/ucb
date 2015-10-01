@@ -6,9 +6,9 @@ How to proceed:
 
 - Download data in CSV format for life expectancy at birth by nation over time from [here](http://data.worldbank.org/indicator/all).
 
-- Clean and process this data using Open Refine. Hints: when importing the data you will need to ignore the first few lines, and will have to tell Open Refine that the separators are commas. You will also need to convert the data from wide to long format.
+- Clean and process this data using Open Refine. Hints: when importing the data you will need to ignore the first few lines, and will have to tell Open Refine that the separators are commas. You will also need to convert the data from wide to long format; when doing this, I would call the new column with life expectancy data something generic like `value`.
 
-- Export the data in CSV format, and save the JSON that will enable you to process WDI data in the same way in future (you will need this for the assignment).
+- Export the data in CSV format, edit the `value` column name to something more descriptive of the data, and save the JSON that will enable you to process WDI data in the same way in future (you will need this for the assignment).
 
 - Using SQLite, join this data to the `nations.csv` file we used in week 3. Export the joined data as a CSV file.
 
