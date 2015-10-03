@@ -59,6 +59,16 @@ If you don't already have a Microsoft Account, you will first need to [create on
 - `seismic_risk` [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014) detailing the risk of experiencing a major earthquake across the continental United States.
 - `sf_test_addresses` Shapefile derived from the addresses we geocoded in week 7.
 
+#### [Week 9](./data/week9.zip)
+
+- `ca_healthcare`
+ - `ca_counties_medicare.zip` Zipped shapefile with data on Medicare reimbursement per enrollee by California county in 2012, as used in week 8.
+ - `healthcare_facilities.csv` Locations and other data for hospitals and other healthcare facilities in California, as used in week 8.
+- `seismic_risk.zip` Zipped shapefile detailing the risk of experiencing a major earthquake across the continental United States, as used in week 8.
+- `sf`
+ - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded
+ - `sfpd_stations.zip` Zipped shapefile with locations of San Francisco police stations.
+
 
 ## Final projects
 

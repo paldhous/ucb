@@ -57,9 +57,9 @@ We will use [QGIS](http://qgis.org/en/site/) to make a multi-layered map. We wil
 
 
 -  ####**Oct. 22:** [**Making interactive maps; processing geodata with SQL**](week9.html)
-We will use [CartoDB](https://cartodb.com/) and [Leaflet](http://leafletjs.com/) to create interactive online maps. We will also use SQL and [PostGIS](http://postgis.net/), which is built into CartoDB, to process and analyze geodata.
+We will use [CartoDB](https://cartodb.com/) to create interactive online maps. We will also use SQL and [PostGIS](http://postgis.net/), which is built into CartoDB, to process and analyze geodata.
 
- - **Assignment:** deliver finished online map; continue work on final project and deliver a progress report.
+ - **Assignment:** Continue work on final project and deliver a progress report.
 
 
 -  ####**Oct 29:**	**No Class**
