@@ -14,8 +14,7 @@ Download the data for this session from [here](data/week7.zip), unzip the folder
 
 The first two files can also be downloaded from [this Github respository](https://github.com/paldhous/refine-geocoder).
 
-For today's geocoding exercise, you will need a Bing Maps API key.
-If you don't already have a Microsoft Account, you will first need to [create one](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1). Then `Sign in` at the [Bing Maps Portal](https://www.bingmapsportal.com/) and select `My account>Create or view keys` from the top menu.
+For today's geocoding exercise, you will need a Bing Maps API key and a MapQuest API key. Obtain your Mapquest key from [here](https://developer.mapquest.com/). If you don't already have a Microsoft Account, you will first need to [create one](https://signup.live.com/signup.aspx?sf=1&id=38936&ru=https://account.live.com/%3fwa%3dwsignin1.0&tw=0&fs=0&kv=0&cb=&cbcxt=&wp=SAPI&wa=wsignin1.0&wreply=https://account.live.com/%3fwa%3dwsignin1.0&bk=1413566923&uiflavor=web&uaid=3affa9094c4e4ca5aa721863467ee2f0&mkt=EN-US&lc=1033&lic=1) before requesting a Bing Maps key. Then `Sign in` at the [Bing Maps Portal](https://www.bingmapsportal.com/) and select `My account>Create or view keys` from the top menu.
 
 ### Latitude and longitude
 
@@ -81,9 +80,9 @@ For a full address, this should return `Address` when the geocoding has been suc
 
 Finally, delete the `bing_json` column by selecting `Edit column>Remove column`.
 
-As we saw in week 4, it is now possible to extract JSON code that will allow you repeat these steps on any data in the same format.
+As we saw in week 4, it is now possible to extract JSON code that will allow you to repeat these steps on any data in the same format.
 
-The file `refine_geocoder.json` will geocode a sample of addresses using both the Bing and MapQuest Open APIs. Again, you will need to replace `BingMapsKey` in this file with your own Bing API key. In class we will use this code to geocode the larger `sf_test_addresses.tsv` dataset.
+The file `refine_geocoder.json` will geocode a sample of addresses using both the Bing and MapQuest Open APIs. Again, you will need to replace `BingMapsKey` in this file with your own Bing API key, and `MapQuestKey` with your MapQuest API key. In class we will use this code to geocode the larger `sf_test_addresses.tsv` dataset.
 
 For the MapQuest Open results, the `mapquest_class` column provides information on the accuracy of geocoding: `place`, `amenity` or `shop` indicate geocoding to a precise address; `highway` indicates geocoding to a street only. The `mapquest_type` column provides further information about the address or street concerned.
 
@@ -373,7 +372,7 @@ Here, for example, is a simple KML file coding for an exaggeratedly tall represe
 
 Here is how this file displays in Google Earth:
 
-![](./img/class8_22.jpg)
+![](./img/class7_29.jpg)
 
 (Source: [Google Earth](https://www.google.com/earth/))
 
@@ -412,7 +411,7 @@ See the [full GeoJSON specification](http://geojson.org/geojson-spec.html) for m
 
 #### Shapefile
 
-This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial Geograohic Information System (GIS) application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
+This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial Geographic Information System (GIS) application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
 
 Shapefiles are usually made available for download as zipped folders, and actually consist of a series of files. At a minimum, a shapefile must contain three component files, with the same root name and the following extensions:
 
@@ -441,7 +440,7 @@ Decide which dataset(s) you wish to explore for your final project. You can use 
 - Send me a pitch detailing your plans by Sun Oct 11 at 8pm.
 - Arrange a time to discuss your project plans with me in the coming week.
 
-This is an open-ended assignment. What you get from it, and ultimately the quality of your final project, will depend on the energy, rigor and imagination with which your pursue this assignment.
+This is an open-ended assignment. What you get from it, and ultimately the quality of your final project, will depend on the energy, rigor and imagination with which you pursue this assignment.
 
 ### Further reading
 

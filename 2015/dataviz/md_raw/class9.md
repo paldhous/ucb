@@ -15,7 +15,7 @@ Download the data from this session from [here](data/week9.zip), unzip the folde
  - `healthcare_facilities.csv` Locations and other data for hospitals and other healthcare facilities in California, as used in week 8.
 - `seismic_risk.zip` Zipped shapefile detailing the risk of experiencing a major earthquake across the continental United States, as used in week 8.
 - `sf`
- - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded
+ - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded.
  - `sfpd_stations.zip` Zipped shapefile with locations of San Francisco police stations.
 
 All of the shapefiles have been compressed/zipped, as this is required to load them into cartoDB.
