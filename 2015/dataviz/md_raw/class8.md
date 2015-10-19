@@ -17,7 +17,7 @@ Download the data from this session from [here](data/week8.zip), unzip the folde
 - `ca_healthcare`
  - `ca_counties_medicare` Shapefile with data on Medicare reimbursement per enrollee by California county in 2012, from the [Dartmouth Atlas of Healthcare](http://www.dartmouthatlas.org). 
  - `healthcare_facilities.csv` Locations and other data for hospitals and other healthcare facilities in California, from the [California Department of Public Health](https://cdph.data.ca.gov/Facilities-and-Services/Healthcare-Facility-Locations/n8ju-ifrh). I have geocoded those facilities that lacked latitude and longitude coordinates in the raw data.
- - `hospitals` Shapefile with data on general acute care hospitals and skilled nursing facilities in Califoria, filtered from the data above.
+ - `hospitals` Shapefile with data on general acute care hospitals and skilled nursing facilities in California, filtered from the data above.
 - `gdp_pc`
  - `gpd_pc.csv` `gdp_pc.csvt` CSV file with [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on GDP per capita for the world's nations in 2014, plus ancillary file for QGIS to understand the data types for each field.
 - `ne_50m_admin_0_countries` [Natural Earth shapefile](http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/) with boundary data for the world's nations.
@@ -122,7 +122,7 @@ Click `OK` and the map should reproject. Notice how `EPSG:3311` now appears at b
 
 ![](./img/class8_17.jpg)
 
-#### Add a layer showing locations and capacities hospitals/skilled nursing facilities
+#### Add a layer showing locations and capacities of hospitals/skilled nursing facilities
 
 To import a CSV or other delimited text file with points described by latitude and longitude coordinates, select `Layer>Add Delimited Text Layer` from the top menu or click this icon:
 
@@ -220,7 +220,7 @@ Note that the SVG export may not clip the map to the page exactly. However, this
 
 You can also save as an image from the main map display (so without any legend and annotation added in the Print Composer) by selecting `Project>Save as Image` from the top menu.
 
-Save the QGIS project, and then select `Project>Close` to close.
+Finally, save the QGIS project.
 
 #### Join external data to a shapefile
 

@@ -20,7 +20,7 @@ Download the data from this session from [here](data/week9.zip), unzip the folde
 
 All of the shapefiles have been compressed/zipped, as this is required to load them into cartoDB.
 
-### Map Medicare reimbursements and hospital locations and capacities in California
+### Map Medicare reimbursements and hospitals in California
 
 #### Import the data
 
@@ -30,7 +30,7 @@ Login to a new CartoDB account, and you should see a screen like this:
 
 ![](./img/class9_1.jpg)
 
-Open the drop-down menu under `Maps` at top left and switch to `Your datasets`. The click the green `NEW DATASET` button at top right:
+Open the drop-down menu under `Maps` at top left and switch to `Your datasets`. Then click the green `NEW DATASET` button at top right:
 
 ![](./img/class9_2.jpg)
 
@@ -38,7 +38,7 @@ You should now see the following screen:
 
 ![](./img/class9_3.jpg)
 
-With the `Data file` tab selected, click the `Browse` button, navigate to the zipped `ca_counties_medicare.zip` shapefile and click `Open`. The click the green `Connect dataset` button.
+With the `Data file` tab selected, click the `Browse` button, navigate to the zipped `ca_counties_medicare.zip` shapefile and click `Open`. Then click the green `Connect dataset` button.
 
 CartoDB can import data in a variety of formats, including CSV, KML, GeoJSON and zipped shapefiles. See [here](http://docs.cartodb.com/cartodb-editor.html) for more on imports and supported data formats.
 
@@ -123,7 +123,7 @@ Click on `1` to expose the `Visualization wizard` for the `ca_counties_medicare`
 
 (You can collapse the wizards at any time by clicking to the left of any of the icons.)
 
-Notice that opening the wizard has also exposed blue toggle controls for each layer which can be used to turn the visibility for each on and off. Hide the `healthcare_facilities` layer so we can see what we are doing.
+Notice that opening the wizard has also exposed blue toggle controls for each layer, which can be used to turn the visibility for each on and off. Hide the `healthcare_facilities` layer so we can see what we are doing.
 
 Scroll from left to right through the visualization options, and select `CHOROPLETH` to make a choropleth map.
 
@@ -137,7 +137,7 @@ Select `CATEGORY` and color the circles by the type of facility, by selecting `t
 
 ![](./img/class9_17.jpg)
 
-Now we need to filter for just the types of facility we are interested in. To do this click the SQL icon at left and replace the default query with the following:
+Now we need to filter for just the types of facility we are interested in. To do this click the `SQL` icon and replace the default query with the following:
 
 ```SQL
 SELECT *
@@ -198,7 +198,7 @@ Switch back to the `ca_counties_medicare` layer, click on the `CSS` icon, where 
    polygon-fill: #FFFFB2;
 }
 ```
-Edit this to the following, to reset the breaks between the bins, and to use the same color scheme we used yesterday, using HEX values taken from [ColorBrewer](http://colorbrewer2.org/)
+Edit this to the following, to reset the breaks between the bins, and to use the same color scheme we used in week 8, using HEX values taken from [ColorBrewer](http://colorbrewer2.org/)
 
 
 ```CSS
@@ -227,10 +227,9 @@ Edit this to the following, to reset the breaks between the bins, and to use the
    polygon-fill: #fee5d9;
 }
 ```
-Note that that I have also edited the operators for all but one of the formulas for the breaks from `<=` (less than or equal to) to `<` (less then). This will create the same breaks as we used in the QGIS map. Click the `Apply style` button at bottom right.
+Note that that we have also edited the operators for all but one of the formulas for the breaks from `<=` (less than or equal to) to `<` (less then). This will create the same breaks as we used in the QGIS map. Click the `Apply style` button at bottom right.
 
 Now switch to the CartoCSS editor for the `healthcare_facilities` layer, where you will find the following code:
-
 
 ```CSS
 
@@ -344,7 +343,7 @@ The map should now look like this:
 
 Notice that the legend still refers to the styling created by the wizard.
 
-For the `ca_counties_medicare` later, click on the legends icon:
+For the `ca_counties_medicare` layer, click on the legends icon:
 
 ![](./img/class9_25.jpg)
 
@@ -464,7 +463,7 @@ Navigate back to your datasets and import the zipped shapefile `seismic_risk`, w
 
 ![](./img/class9_32.jpg)
 
-In the `DATA VIEW`, notice that there are two fields with data: `acc_val` and `valley`.
+In the `DATA VIEW`, notice that there are two fields containing data about the mapped polygons: `acc_val` and `valley`.
 
 Navigate back to your datasets, click the `Data library` link, and `Search` for the `World borders` dataset. Select and then click the `Connect dataset` link.
 
@@ -488,7 +487,7 @@ Why does this query use `the_geom_webmercator` rather than `the_geom`? This is a
 
 The `FROM` clause needs to include both datasets mentioned in the `SELECT` clause, separated by commas.
 
-Finally, the `WHERE` clause filters the results so that the data returned overlaps witht he United States only.
+Finally, the `WHERE` clause filters the results so that the data returned overlaps with the United States only.
 
 Click on the `Create dataset from query` link, rename it as `seismic_risk_clip`, and switch to the `MAP VIEW`, which should look like this:
 
@@ -500,7 +499,7 @@ If you are processing data in CartoDB for use with other mapping tools, you woul
 
 #### Create buffers around geocoded San Fracisco addresses
 
-`sf_test_addresses.csv`. It will initially import with `the_geom` field containing `null` values, because there are no fields unambiguously labelled `longitude` and `latitude`:
+Import the file `sf_test_addresses.csv`. It will initially import with `the_geom` field containing `null` values, because there are no fields unambiguously labelled `longitude` and `latitude`:
 
 ![](./img/class9_36.jpg)
 
@@ -541,7 +540,7 @@ In the data view, you will notice that there is now just a single field, called 
 
 ![](./img/class9_39.jpg)
 
-Select `create dataset from query` and save the rename the new dataset as `buffer_dissolved`.
+Select `create dataset from query` and rename the new dataset as `buffer_dissolved`.
 
 Now click `VISUALIZE` at top right to create a map. Click the blue `+` symbol at top right, click on `Connect dataset` and import the zipped shapefile `sfpd_stations.zip`. using the `Data file` tab. Then use the `Simple` option in the `Visualization wizard` to color the points denoting the locations of San Francisco police stations black. The visualization, with its two layers, whould now look like this:
 
@@ -549,7 +548,7 @@ Now click `VISUALIZE` at top right to create a map. Click the blue `+` symbol at
 
 Next we are going to run a query to calculate the distance from each of the geocoded addresses to the nearest police stations. But first we need to create a new field called `distance` in the `sf_test_addresses` field to hold the results of this query.
 
-Select this layer in from the right toolbar, switch to `DATA VIEW` and then open the dropdown menu for any of the field headers. Select `Add new column...`, call it `distance` and make its type `number`.
+Select this layer from the right toolbar, switch to `DATA VIEW` and then open the dropdown menu for any of the field headers. Select `Add new column...`, call it `distance` and make its type `number`.
 
 Now select the `SQL` tab and apply this query:
 
