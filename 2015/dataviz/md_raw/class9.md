@@ -84,7 +84,6 @@ Now add the `healthcare_facilities` to the map, by clicking on the blue `+` butt
 
 ![](./img/class9_10.jpg)
 
-
 Now select `MAP VIEW` to see both layers on the same map:
 
 ![](./img/class9_11.jpg)
@@ -131,13 +130,9 @@ Set `hospital` as the data `Column`, select `5 Buckets`, set them by `Quantile` 
 
 ![](./img/class9_16.jpg)
 
-Now click `2` to switch to the `healthcare_facilities` layer and notice that there are different visualization possibilities for point layers.
+Now click `2` to switch to the `healthcare_facilities` layer.
 
-Select `CATEGORY` and color the circles by the type of facility, by selecting `type` as the data `Column`. The map should now look like this:
-
-![](./img/class9_17.jpg)
-
-Now we need to filter for just the types of facility we are interested in. To do this click the `SQL` icon and replace the default query with the following:
+First we need to filter for just the types of facility we are interested in. To do this click the `SQL` icon and replace the default query with the following:
 
 ```SQL
 SELECT *
@@ -147,24 +142,13 @@ WHERE type LIKE 'GENERAL%' OR type LIKE 'SKILLED%'
 
 You should be able to understand the basic structure of this query from our week 5 class on SQL and databases. Note, however, that [PostgreSQL](http://www.postgresql.org/), the database that underpins CartoDB, uses `%` as a wildcard for multiple characters, rather than the `*` used by SQLite.
 
-The map should now look like this:
+Now switch to the visualization wizard and notice that there are different visualization possibilities for point layers.
 
-![](./img/class9_18.jpg)
+Select `CATEGORY` and color the circles by the type of facility, by selecting `type` as the data `Column`. Turn back on the visibility of the `ca_counties_medicare` layer and the map should look like this:
 
-To remove the facility types we have filtered from view from the legend, click on the legends icon:
-
-![](./img/class9_19.jpg)
-
-Then select the HTML view by clicking `</>`, remove the superfluous HTML, and click `Apply`:
-
-![](./img/class9_20.jpg)
-
-Turn on the visibility of the `ca_counties_medicare` layer and the map should look like this:
-
-![](./img/class9_21.jpg)
+![](./img/class9_17.jpg)
 
 We now have a rough approximation of the map we made in week 8 using QGIS, but there are important differences: We do not have the custom bins we used for the choropleth map, the circles are not scaled by area according to capacity of the healthcare facilities, and the colors haven't been fully customized.
-
 
 #### Style the map using CartoCSS
 
@@ -246,42 +230,16 @@ Now switch to the CartoCSS editor for the `healthcare_facilities` layer, where y
    marker-allow-overlap: true;
 }
 
-#healthcare_facilities[type="ADULT DAY HEALTH CARE        "] {
+#healthcare_facilities[type="GENERAL ACUTE CARE HOSPITAL"] {
    marker-fill: #A6CEE3;
 }
-#healthcare_facilities[type="CHRONIC DIALYSIS CLINIC    "] {
-   marker-fill: #1F78B4;
-}
-#healthcare_facilities[type="COMMUNITY CLINIC     "] {
-   marker-fill: #B2DF8A;
-}
-#healthcare_facilities[type="GENERAL ACUTE CARE HOSPITAL"] {
-   marker-fill: #229A00;
-}
-#healthcare_facilities[type="HOME HEALTH AGENCY        "] {
-   marker-fill: #FB9A99;
-}
-#healthcare_facilities[type="HOSPICE    "] {
-   marker-fill: #E31A1C;
-}
-#healthcare_facilities[type="INTERMEDIATE CARE FACILITY-DD/H/N"] {
-   marker-fill: #FDBF6F;
-}
 #healthcare_facilities[type="SKILLED NURSING FACILITY"] {
-   marker-fill: #FF7F00;
-}
-#healthcare_facilities[type="SURGICAL CLINIC     "] {
-   marker-fill: #CAB2D6;
-}
-#healthcare_facilities[type="UNLICENSED/OTHER/MISSING"] {
-   marker-fill: #6A3D9A;
-}
-#healthcare_facilities {
-   marker-fill: #DDDDDD;
+   marker-fill: #1F78B4;
 }
 
 ```
-We can simplify this CartoCSS, and also make it size the circles accurately according to the capacity of the facilities. Looking at the CartoCSS above, the circles' size is set by `marker-width`, which is the diameter of the circles, or twice the radius. But as we learned in week 2, scaling the circles by their radius or diameter will *not* scale them by area. To do this, we need to create a new field to scale by, containing the square root of all the capacity values.
+
+We can alter this CartoCSS to scale the circles accurately according to the capacity of the facilities. Looking at the CartoCSS above, the circles' size is set by `marker-width`, which is the diameter of the circles, or twice the radius. But as we learned in week 2, scaling the circles by their radius or diameter will *not* scale them by area. To do this, we need to create a new field to scale by, containing the square root of all the capacity values.
 
 Switch to the `DATA VIEW` for the `healthcare_facilities` layer and then click the `clear view` link near the top of the page. This will remove the previous SQL query, and allow us to edit the data.
 
@@ -309,7 +267,9 @@ FROM healthcare_facilities
 WHERE type LIKE 'GENERAL%' OR type LIKE 'SKILLED%'
 ```
 
-Return to the `MAP VIEW`, open the `CSS` tab, and edit to the following:
+Return to the `MAP VIEW`, and if necessary set use the visualization wizard again to restore the styling by facility `type`.
+
+Now open the `CSS` tab, and edit to the following:
 
 ```CSS
 #healthcare_facilities {
@@ -431,7 +391,7 @@ We are almost ready to publish the visualization, but before doing so, click `Op
 
 Also explore the `Add Element` button at top left, which allows you to add a title and other annotations to your map.
 
-Having finished working on the visualization, click the `PUBISH` button at top right. This will call up the following options:
+Having finished working on the visualization, click the `PUBLISH` button at top right. This will call up the following options:
 
 ![](./img/class9_30.jpg)
 
@@ -542,7 +502,9 @@ In the data view, you will notice that there is now just a single field, called 
 
 Select `create dataset from query` and rename the new dataset as `buffer_dissolved`.
 
-Now click `VISUALIZE` at top right to create a map. Click the blue `+` symbol at top right, click on `Connect dataset` and import the zipped shapefile `sfpd_stations.zip`. using the `Data file` tab. Then use the `Simple` option in the `Visualization wizard` to color the points denoting the locations of San Francisco police stations black. The visualization, with its two layers, whould now look like this:
+Return to your datasets, open the original `sf_test_addresses` once more, and switch to the `MAP VIEW`.
+
+Now click `VISUALIZE` at top right to create a map. Click the blue `+` symbol at top right, click on `Connect dataset` and import the zipped shapefile `sfpd_stations.zip`. using the `Data file` tab. Then use the `Simple` option in the `Visualization wizard` to color the points denoting the locations of San Francisco police stations black. The visualization, with its two layers, should now look like this:
 
 ![](./img/class9_40.jpg)
 
