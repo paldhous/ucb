@@ -92,7 +92,7 @@ library(RColorBrewer)
 library(WDI)
 ```
 
-By saving this code in our script, the packages will load automatically when we run the script in future. Add comments explaining your code using `#`, which causes everything written subseqeuntly on that line to be ignored. It is good practice to comment your code extensively to remind you of what it does: Don't reply on your memory!
+By saving this code in our script, the packages will load automatically when we run the script in future. Add comments explaining your code using `#`, which causes everything written subseqeuntly on that line to be ignored. It is good practice to comment your code extensively to remind you of what it does: Don't rely on your memory!
 
 Each time you start R, it's a good idea to click on `Update` in the `Packages` panel to update all your installed packages to the latest versions.
 
@@ -188,7 +188,7 @@ The following code shows the first `n` lines from an object, where `n` is the nu
 
 ```r
 #  view first ten rows of data
-head(food_stamps, 10)
+head(disease_democ, 10)
 ```
 This is the output:
 
@@ -315,7 +315,7 @@ Now let's map the countries' `income_group` to the color of the points:
 ```R
 # map countries' income group to the color of the points
 disease_democ_chart %>%
-  + geom_point(aes(color=income_group) %>%
+  + geom_point(aes(color=income_group)) %>%
   + geom_smooth(method=lm, se=FALSE) %>%
   + scale_x_continuous(limits=c(0,70)) %>%
   + scale_y_continuous(limits=c(0,100)) %>%
@@ -329,7 +329,7 @@ The chart should now look like this:
 
 ![](./img/class11_10.jpg)
 
-Return to the [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/) and recreate this chart -- although you won't be able to customize the axis labels and ranges. Then select `View` from the top menu and and check `code panel`. Look at the similarity betwen the code and what we just wrote. It will be written as a single line, without the `%>%` operators, but you should be able to recognize the structure.
+Return to the [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/) and recreate this chart -- although you won't be able to customize the axis labels and ranges. Then select `View` from the top menu and and check `code panel`. Look at the similarity between the code and what we just wrote. It will be written as a single line, without the `%>%` operators, but you should be able to recognize the structure.
 
 This feature makes the app a good tool for learning how to code ggplot2 graphics.
 
@@ -642,7 +642,7 @@ The code in `by=c()` defines how the join should be made. If instructions on how
 
 #### Bin the data
 
-Having learned the basics of dplyr, we will now return the the food stamps column chart, bin the costs data it into five quantiles, and then use that binned data to color the columns.
+Having learned the basics of dplyr, we will now return the the food stamps column chart, bin the costs data into five quantiles, and then use that binned data to color the columns.
 
 This is how to calculate quantiles in R:
 
@@ -772,7 +772,6 @@ This should be the result:
 
 ![](./img/class11_26.jpg)
 
-
 ### Import and process data from World Bank API
 
 One very nice thing about R is that its community of open source developers has written many packages that include useful datasets, or provide access to them by connecting to online APIs.
@@ -816,7 +815,7 @@ indicators <- WDI(indicator=indic_list, country="all", start=1990, end=2014) %>%
 
 This code used dplyr's `rename()` function to rename the variables. The data will take a little time to load. When it has done so, view the data and examine its structure.
 
-To finish, save your R script and environment and close RStudio using `RStudio>Quit RStudio` formt he top menu.
+To finish, save your R script and environment and close RStudio using `RStudio>Quit RStudio` from the top menu.
 
 ### Assignment
 
