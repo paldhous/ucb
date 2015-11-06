@@ -69,6 +69,21 @@ If you don't already have a Microsoft Account, you will first need to [create on
  - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded.
  - `sfpd_stations.zip` Zipped shapefile with locations of San Francisco police stations.
 
+#### [Week 11](./data/week11.zip)
+
+- `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*, as used in week 1.
+- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program.
+- `pfizer.csv` `fda.csv` Data on payments to doctors by the drug company Pfizer and warning letters sent by the U.S. Food and Drug Administration, as used in week 5.
+- `column_theme.R` R script to set style for column charts using ggplot2 package.
+- `scatter_line_theme.R` R script to set style for scatter plots and line charts using ggplot2 package.
+
+#### [Week 12](./data/week12.zip)
+
+- `d3`
+ - `data` Folder with the files `brain_data.csv` and `brain_data2.csv`.
+ - `src` Folder with the `d3.min.js` source code.
+ - 	`shapes.html` Web page in which we will draw shapes using D3.
+
 
 ## Final projects
 

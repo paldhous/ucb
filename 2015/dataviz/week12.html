@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Coding interactive charts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
+								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Principles of mapping</a></li>
+								<li><a href="week8.html">Making static maps</a></li>
+								<li><a href="week9.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
+								<li><a href="week14.html">Other tools for online interactives</a></li>	
+								<li><a href="week15.html">Let's apply what we've learned</a></li>									
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<h1 id="coding-interactive-charts"><a name="coding-interactive-charts" href="#coding-interactive-charts"></a>Coding interactive charts</h1><h3 id="the-data-we-will-use"><a name="the-data-we-will-use" href="#the-data-we-will-use"></a>The data we will use</h3><p>Download the data for this session from <a href="data/week12.zip">here</a>, unzip the folder and place it on your desktop. It contains the following folders and files:</p><ul>
+<li><code>d3</code><ul>
+<li><code>data</code> Folder with the files <code>brain_data.csv</code> and <code>brain_data2.csv</code>.</li><li><code>src</code> Folder with the <code>d3.min.js</code> source code.</li><li><code>shapes.html</code> Web page in which we will draw shapes using D3.</li></ul>
+</li></ul><h3 id="introducing-d3"><a name="introducing-d3" href="#introducing-d3"></a>Introducing D3</h3><p>First we will explore how to code interactive, data-driven charts from scratch, using the <a href="http://d3js.org/">D3</a> JavaScript library.</p><p>There are several JavaScript libraries dedicated to making simple charts in standard formats: <a href="http://www.highcharts.com/">Highcharts</a>, <a href="Raphaël">Raphaël</a>, and <a href="http://dygraphs.com/">dygraphs</a> are good examples.</p><p>While we will only explore D3’s basic charting capabilities, it is a more flexible tool, and is behind many of the most impressive data visualizations in today’s digital media.</p><p>D3’s name derives from “Data-Driven Documents,” and it provides the means to bind data to elements of web pages and then manipulate those elements in a multitude of ways, based on attributes of the data (see the <a href="https://github.com/mbostock/d3/wiki/Gallery">D3 examples gallery</a> to get a flavor of the possibilities).</p><p>When building graphics with D3, those elements include scalable vector graphic (SVG) objects. SVG-based D3 graphics will display in modern browsers that support SVG rendering (see <a href="http://caniuse.com/#feat=svg">here</a> for a full breakdown), but not in Internet Explorer 8 or earlier. This was once a major restriction — however nowadays these browsers account for a only a tiny proportion of global usage.</p><h4 id="get-prepared:-data,-files-and-a-local-webserver"><a name="get-prepared:-data,-files-and-a-local-webserver" href="#get-prepared:-data,-files-and-a-local-webserver"></a>Get prepared: data, files and a local webserver</h4><p>Put the folder with this week’s data onto your desktop. Navigate to the D3 subfolder, and see that it, in turn, contains subfolders called <code>data</code> and <code>src</code>. The latter contains the code to run D3, in the file <code>d3.min.js</code>. This file was downloaded from <a href="https://github.com/mbostock/d3/releases/download/v3.5.6/d3.zip">here</a>. To use D3, your webpage must load this code. Alternatively, you can link directly to the latest release of D3, by inserting this code into the head of your web page:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">&lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+</code></pre><p>D3 visualizations may not display in your browser when the page is opened locally, due to security restrictions, but we can easily set up a local webserver. To do that, open a Terminal window (<code>Applications&gt;Utilities&gt;Terminal</code>) and navigate to your downloaded folder by typing <code>cd Desktop/week12/d3</code> and hitting <code>return</code>. Then type <code>python -m SimpleHTTPServer 8000</code> and again hit return.</p><p>Now open your browser, and go to the url: <code>http://127.0.0.1:8000/</code>. You should see the following:</p><p><img src="img/class12_1.jpg" alt=""></p><p>Click the <code>shapes.html</code> link and you will see an empty web page.</p><h4 id="first-steps:-draw-simple-svg-shapes-with-d3"><a name="first-steps:-draw-simple-svg-shapes-with-d3" href="#first-steps:-draw-simple-svg-shapes-with-d3"></a>First steps: draw simple SVG shapes with D3</h4><p>To learn the basics of D3, we will first use the library to draw some simple SVG shapes on the <code>shapes.html</code> page. Open the that file in your text editor (I recommend <a href="http://www.sublimetext.com/2">Sublime Text</a>), and you should see the following HTML code:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+  &amp;lt;meta charset=utf-8 /&amp;gt;
+  &amp;lt;title&amp;gt;Shapes&amp;lt;/title&amp;gt;
+  &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&amp;gt;
+
+  &amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+&amp;lt;!-- 
+  &amp;lt;script src=&quot;src/d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+ --&amp;gt;
+
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+
+&amp;lt;/body&amp;gt;
+</code></pre>">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+
+  &lt;meta charset=utf-8 /&gt;
+  &lt;title&gt;Shapes&lt;/title&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /&gt;
+
+  &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+
+&lt;!-- 
+  &lt;script src="src/d3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+ --&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+
+&lt;/body&gt;
+</code></pre><p>Notice that the head of the webpage links to the latest release of D3. It also includes a commented-out link to the local copy. You should use one or other of these links, commenting out the other.</p><p>We are going to use D3 to draw specific shapes into divs on this page, so we will first create those divs, by entering this code into the body of the web page, between the <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code> tags:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>    &amp;lt;div id=&quot;circleDiv&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div id=&quot;rectangleDiv&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+
+    &amp;lt;div id=&quot;lineDiv&quot;&amp;gt;
+    &amp;lt;/div&amp;gt;
+</code></pre>">    &lt;div id="circleDiv"&gt;
+    &lt;/div&gt;
+
+    &lt;div id="rectangleDiv"&gt;
+    &lt;/div&gt;
+
+    &lt;div id="lineDiv"&gt;
+    &lt;/div&gt;
+</code></pre><p>Now, immediately above the closing <code>&lt;/body&gt;</code> tag, enter the following:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    &amp;lt;script&amp;gt;
+
+        d3.select(&quot;#circleDiv&quot;)
+            .append(&quot;svg&quot;)
+            .attr(&quot;width&quot;, 500)
+            .attr(&quot;height&quot;, 500)
+            .append(&quot;circle&quot;)
+            .attr(&quot;cx&quot;, 250)
+            .attr(&quot;cy&quot;, 350)
+            .attr(&quot;r&quot;, 120)
+            .style(&quot;fill&quot;, &quot;blue&quot;)
+            .style(&quot;stroke&quot;, &quot;red&quot;)
+            .style(&quot;stroke-width&quot;, 20)
+            .style(&quot;fill-opacity&quot;, 0.5)
+            .style(&quot;stroke-opacity&quot;, 0.3);
+
+    &amp;lt;/script&amp;gt;
+</code></pre>">    &lt;script&gt;
+
+        d3.select(<span class="hljs-string">"#circleDiv"</span>)
+            .append(<span class="hljs-string">"svg"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">500</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">500</span>)
+            .append(<span class="hljs-string">"circle"</span>)
+            .attr(<span class="hljs-string">"cx"</span>, <span class="hljs-number">250</span>)
+            .attr(<span class="hljs-string">"cy"</span>, <span class="hljs-number">350</span>)
+            .attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">120</span>)
+            .style(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"blue"</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"red"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">20</span>)
+            .style(<span class="hljs-string">"fill-opacity"</span>, <span class="hljs-number">0.5</span>)
+            .style(<span class="hljs-string">"stroke-opacity"</span>, <span class="hljs-number">0.3</span>);
+
+    <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</span></code></pre><p>Save <code>shapes.html</code>, then refresh your browser, and this is what you should see:</p><p><img src="img/class12_2.jpg" alt=""></p><p>Let’s break this code down to understand what is going on. The first line, <code>d3.select("#circleDiv")</code> selects the element that D3 is going to work on, in this case the div with the id <code>circleDiv</code>. D3 uses CSS to make selections, so you can select elements in various ways, including by their tags (e.g. <code>div</code> or <code>p</code>), their ids, or their classes. As when styling using CSS, ids are preceded by <code>#</code>, while classes are preceded by a period. So if we had given the div a class of <code>circleDiv</code>, rather than using a unique id, the selection would be written: <code>d3.select(".circleDiv")</code>. See <a href="https://github.com/mbostock/d3/wiki/Selections">here</a> for more on D3 selections.</p><p>The subsequent code instructs D3 what to do with the selected element. It first appends an SVG element, which has two attributes, “width” and “height,” both 500 pixels. This is always the first step when using D3 to manipulate SVG objects, which will be drawn within this element.</p><p>A circle is then appended to this SVG element, which is given a series of attributes and styles: <code>cx</code> and <code>cy</code> define the position of the center of the circle, measured in pixels from the left and top of the SVG element, respectively; <code>r</code> is the radius of the circle, in pixels; <code>fill</code> and <code>stroke</code> control the of the circle and its outline respectively. When styling SVG, colors can be assigned using the <a href="http://www.w3schools.com/html/html_colornames.asp">HTML names listed here</a>, or by using HEX or RGB codes.</p><p>Try experimenting with altering the attributes and styling of the circle, saving the <code>shapes.html</code> file and refreshing your browser to review the results.</p><p>Now add the following code before the closing <code>&lt;/script&gt;</code> tag:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>        d3.select(&quot;#rectangleDiv&quot;)
+            .append(&quot;svg&quot;)
+            .attr(&quot;width&quot;, 500)
+            .attr(&quot;height&quot;, 500)
+            .append(&quot;rect&quot;)
+            .attr(&quot;x&quot;, 160)
+            .attr(&quot;y&quot;, 300)
+            .attr(&quot;width&quot;, 200)
+            .attr(&quot;height&quot;, 120)
+            .style(&quot;fill&quot;, &quot;yellow&quot;)
+            .style(&quot;stroke&quot;, &quot;green&quot;)
+            .style(&quot;stroke-width&quot;, 20)
+            .style(&quot;fill-opacity&quot;, 0.5)
+            .style(&quot;stroke-opacity&quot;, 0.5);
+
+       d3.select(&quot;#lineDiv&quot;)
+            .append(&quot;svg&quot;)
+            .attr(&quot;width&quot;, 500)
+            .attr(&quot;height&quot;, 500)
+            .append(&quot;line&quot;)
+            .attr(&quot;x1&quot;, 160)
+            .attr(&quot;y1&quot;, 300)
+            .attr(&quot;x2&quot;, 360)
+            .attr(&quot;y2&quot;, 450)
+            .style(&quot;stroke&quot;, &quot;black&quot;)
+            .style(&quot;stroke-width&quot;, 2)
+            .style(&quot;stroke-opacity&quot;, 0.5);
+</code></pre>">        d3.select(<span class="hljs-string">"#rectangleDiv"</span>)
+            .append(<span class="hljs-string">"svg"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">500</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">500</span>)
+            .append(<span class="hljs-string">"rect"</span>)
+            .attr(<span class="hljs-string">"x"</span>, <span class="hljs-number">160</span>)
+            .attr(<span class="hljs-string">"y"</span>, <span class="hljs-number">300</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">200</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">120</span>)
+            .style(<span class="hljs-string">"fill"</span>, <span class="hljs-string">"yellow"</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"green"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">20</span>)
+            .style(<span class="hljs-string">"fill-opacity"</span>, <span class="hljs-number">0.5</span>)
+            .style(<span class="hljs-string">"stroke-opacity"</span>, <span class="hljs-number">0.5</span>);
+
+       d3.select(<span class="hljs-string">"#lineDiv"</span>)
+            .append(<span class="hljs-string">"svg"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-number">500</span>)
+            .attr(<span class="hljs-string">"height"</span>, <span class="hljs-number">500</span>)
+            .append(<span class="hljs-string">"line"</span>)
+            .attr(<span class="hljs-string">"x1"</span>, <span class="hljs-number">160</span>)
+            .attr(<span class="hljs-string">"y1"</span>, <span class="hljs-number">300</span>)
+            .attr(<span class="hljs-string">"x2"</span>, <span class="hljs-number">360</span>)
+            .attr(<span class="hljs-string">"y2"</span>, <span class="hljs-number">450</span>)
+            .style(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"black"</span>)
+            .style(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">2</span>)
+            .style(<span class="hljs-string">"stroke-opacity"</span>, <span class="hljs-number">0.5</span>);
+</code></pre><p>Save the <code>shapes.html</code> file, refresh your browser, and the following two shapes should now appear beneath the original circle:</p><p><img src="img/class12_3.jpg" alt=""></p><p>Note that for SVG rectangles, the attributes <code>x</code> and <code>y</code> refer to the position of the top left hand corner, and are measured from left and top of the SVG element in pixels, as before. Lines are given both starting (<code>x1</code>, <code>y1</code>) and ending (<code>x2</code>, <code>y2</code>) coordinates, measured in the same way. For more on SVG attributes and styling, see <a href="http://alignedleft.com/tutorials/d3/an-svg-primer">this tutorial</a> from Scott Murray, author of an excellent introduction to visualizing data with D3, included in the further reading links below.</p><p>Experiment with altering the attributes and styling of the rectangle and line, as you did for the circle, then save and close the <code>shapes.html</code> file.</p><h4 id="make-a-simple-bar-chart"><a name="make-a-simple-bar-chart" href="#make-a-simple-bar-chart"></a>Make a simple bar chart</h4><p>Now we are going to create a simple bar chart based on some data loaded from an external file. Open a new text document, then paste into it the code below:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+
+&amp;lt;head&amp;gt;
+
+    &amp;lt;meta charset=utf-8 /&amp;gt;
+    &amp;lt;title&amp;gt;Bar chart&amp;lt;/title&amp;gt;
+    &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no&quot; /&amp;gt;
+
+    &amp;lt;script src=&quot;http://d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt;
+
+    &amp;lt;!-- &amp;lt;script src=&quot;src/d3.min.js&quot; charset=&quot;utf-8&quot;&amp;gt;&amp;lt;/script&amp;gt; --&amp;gt;
+
+    &amp;lt;style&amp;gt;
+
+
+    &amp;lt;/style&amp;gt;
+
+&amp;lt;/head&amp;gt;
+
+&amp;lt;body&amp;gt;
+
+    &amp;lt;div class=&quot;container&quot;&amp;gt;
+
+    &amp;lt;/div&amp;gt;
+
+     &amp;lt;script&amp;gt;
+
+     &amp;lt;/script&amp;gt;
+
+&amp;lt;/body&amp;gt;
+
+&amp;lt;/html&amp;gt;
+</code></pre>">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+
+    &lt;meta charset=utf-8 /&gt;
+    &lt;title&gt;Bar chart&lt;/title&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /&gt;
+
+    &lt;script src="http://d3js.org/d3.v3.min.js" charset="utf-8"&gt;&lt;/script&gt;
+
+    &lt;!-- &lt;script src="src/d3.min.js" charset="utf-8"&gt;&lt;/script&gt; --&gt;
+
+    &lt;style&gt;
+
+
+    &lt;/style&gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+    &lt;div class="container"&gt;
+
+    &lt;/div&gt;
+
+     &lt;script&gt;
+
+     &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>Save this page in the <code>d3</code> subfolder as <code>index.html</code>. Notice that the head of this page loads D3, while the body contains a div with the id <code>container</code>, which in turn contains an empty SVG element with the class <code>chart</code>. This is where we are going to draw the bar chart. There is also an empty script, which is where we will write our D3 code.</p><p>The page head also contains <code>&lt;style&gt; &lt;/style&gt;</code> tags, between which we will later add CSS styling to the page.</p><p>The chart we will make is based on <a href="http://mosaicscience.com/extra/does-brain-size-matter">this interactive graphic</a>, showing how various animals compare on different measures of their brains.</p><p><img src="img/class12_4.jpg" alt=""></p><p>(Source: <a href="http://mosaicscience.com/extra/does-brain-size-matter">Mosaic</a>)</p><p>In the first instance, we will draw a static version of the chart showing the animals’ brain sizes, in grams.</p><p>Before we start, let’s look at the data we will load, which is in the file <code>brain_data.csv</code> in the <code>data</code> subfolder. This is what it looks like, opened in a spreadsheet:</p><p><img src="img/class12_5.jpg" alt=""></p><p>There are three variables, <code>species</code>, <code>measure</code>, which in this simple version of the data has only one category, and the <code>value</code> for that measure.</p><p>Now copy the following text between the <code>&lt;script&gt; &lt;/script&gt;</code> tags for the page:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>     // set width, height, and margins for chart
+     var w = 700;
+     var h = 400;
+
+    var margin = {top: 20, right: 40, bottom: 30, left: 100},
+        width = w - margin.left - margin.right,
+        height = h - margin.top - margin.bottom;
+
+    // create chart object with those dimensions
+    var chart = d3.select(&quot;.chart&quot;)
+        .attr(&quot;width&quot;, width + margin.left + margin.right)
+        .attr(&quot;height&quot;, height + margin.top + margin.bottom)
+        .append(&quot;g&quot;)
+        .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;);
+
+    // set scales for X and Y axes
+    var x = d3.scale.linear()
+        .range([0, width]);
+
+    var y = d3.scale.ordinal()
+        .rangeRoundBands([height, 0], 0.3);
+
+    // load the data from CSV file    
+    d3.csv(&quot;data/brain_data.csv&quot;, type, function(error, data) {
+        x.domain([0, d3.max(data, function(d) { return (d.value); })]);
+        y.domain(data.map(function(d) { return d.species; }));
+
+    // draw the bars    
+    chart.selectAll(&quot;.bar&quot;)
+            .data(data)
+            .enter().append(&quot;rect&quot;)
+            .attr(&quot;height&quot;, y.rangeBand())
+            .attr(&quot;y&quot;, function(d) { return y(d.species); })
+            .attr(&quot;width&quot;, function(d) { return x(d.value); })
+            .attr(&quot;class&quot;, &quot;bar&quot;);    
+    });
+
+    // make sure value variable is treated as a number
+    function type(d) {
+        d.value = +d.value;
+        return d;
+    }
+</code></pre>">     <span class="hljs-comment">// set width, height, and margins for chart</span>
+     <span class="hljs-keyword">var</span> w = <span class="hljs-number">700</span>;
+     <span class="hljs-keyword">var</span> h = <span class="hljs-number">400</span>;
+
+    <span class="hljs-keyword">var</span> margin = {top: <span class="hljs-number">20</span>, right: <span class="hljs-number">40</span>, bottom: <span class="hljs-number">30</span>, left: <span class="hljs-number">100</span>},
+        width = w - margin.left - margin.right,
+        height = h - margin.top - margin.bottom;
+
+    <span class="hljs-comment">// create chart object with those dimensions</span>
+    <span class="hljs-keyword">var</span> chart = d3.select(<span class="hljs-string">".chart"</span>)
+        .attr(<span class="hljs-string">"width"</span>, width + margin.left + margin.right)
+        .attr(<span class="hljs-string">"height"</span>, height + margin.top + margin.bottom)
+        .append(<span class="hljs-string">"g"</span>)
+        .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate("</span> + margin.left + <span class="hljs-string">","</span> + margin.top + <span class="hljs-string">")"</span>);
+
+    <span class="hljs-comment">// set scales for X and Y axes</span>
+    <span class="hljs-keyword">var</span> x = d3.scale.linear()
+        .range([<span class="hljs-number">0</span>, width]);
+
+    <span class="hljs-keyword">var</span> y = d3.scale.ordinal()
+        .rangeRoundBands([height, <span class="hljs-number">0</span>], <span class="hljs-number">0.3</span>);
+
+    <span class="hljs-comment">// load the data from CSV file    </span>
+    d3.csv(<span class="hljs-string">"data/brain_data.csv"</span>, type, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+        x.domain([<span class="hljs-number">0</span>, d3.max(data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.value); })]);
+        y.domain(data.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.species; }));
+
+    <span class="hljs-comment">// draw the bars    </span>
+    chart.selectAll(<span class="hljs-string">".bar"</span>)
+            .data(data)
+            .enter().append(<span class="hljs-string">"rect"</span>)
+            .attr(<span class="hljs-string">"height"</span>, y.rangeBand())
+            .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> y(d.species); })
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.value); })
+            .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"bar"</span>);    
+    });
+
+    <span class="hljs-comment">// make sure value variable is treated as a number</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">type</span><span class="hljs-params">(d)</span> </span>{
+        d.value = +d.value;
+        <span class="hljs-keyword">return</span> d;
+    }
+</code></pre><p>Save <code>index.html</code> and open it in your browser. If necessary use the local webserver, navigating to <code>http://127.0.0.1:8000/</code>. You should see the following bar chart, minus axes, labelling, and styling:</p><p><img src="img/class12_6.jpg" alt=""></p><p>We needed to write all of the code above to create this very basic chart, so now let’s break it down piece by piece, to understand how it works.</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>     // set width, height, and margins for chart
+     var w = 700;
+     var h = 400;
+
+    var margin = {top: 20, right: 40, bottom: 30, left: 100},
+        width = w - margin.left - margin.right,
+        height = h - margin.top - margin.bottom;
+</code></pre>">     <span class="hljs-comment">// set width, height, and margins for chart</span>
+     <span class="hljs-keyword">var</span> w = <span class="hljs-number">700</span>;
+     <span class="hljs-keyword">var</span> h = <span class="hljs-number">400</span>;
+
+    <span class="hljs-keyword">var</span> margin = {top: <span class="hljs-number">20</span>, right: <span class="hljs-number">40</span>, bottom: <span class="hljs-number">30</span>, left: <span class="hljs-number">100</span>},
+        width = w - margin.left - margin.right,
+        height = h - margin.top - margin.bottom;
+</code></pre><p>This code sets the dimensions for the chart area, defining its height, width, and margins, measured in pixels. (The wide left margin is to accommodate the species names, when we later draw the chart axes.)</p><p>So far, this is pure JavaScript, not specific to D3.</p><p>The next chunk of code creates an object called <code>chart</code> in the SVG element of the same name, using <code>d3.select</code>. It then gives this object dimensions defined by the first chunk of code.</p><p>You may be wondering what <code>g</code> refers to. It is a “grouping” element, used to group together multiple SVG elements, see <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g">here</a>.</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    // create chart object with those dimensions
+    var chart = d3.select(&quot;.chart&quot;)
+        .attr(&quot;width&quot;, width + margin.left + margin.right)
+        .attr(&quot;height&quot;, height + margin.top + margin.bottom)
+        .append(&quot;g&quot;)
+        .attr(&quot;transform&quot;, &quot;translate(&quot; + margin.left + &quot;,&quot; + margin.top + &quot;)&quot;);
+</code></pre>">    <span class="hljs-comment">// create chart object with those dimensions</span>
+    <span class="hljs-keyword">var</span> chart = d3.select(<span class="hljs-string">".chart"</span>)
+        .attr(<span class="hljs-string">"width"</span>, width + margin.left + margin.right)
+        .attr(<span class="hljs-string">"height"</span>, height + margin.top + margin.bottom)
+        .append(<span class="hljs-string">"g"</span>)
+        .attr(<span class="hljs-string">"transform"</span>, <span class="hljs-string">"translate("</span> + margin.left + <span class="hljs-string">","</span> + margin.top + <span class="hljs-string">")"</span>);
+</code></pre><p>The next chunk of code sets the scale for the X and Y axes of our chart.</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    // set scales for X and Y axes
+    var x = d3.scale.linear()
+        .range([0, width]);
+
+    var y = d3.scale.ordinal()
+        .rangeRoundBands([height, 0], 0.3);
+</code></pre>">    <span class="hljs-comment">// set scales for X and Y axes</span>
+    <span class="hljs-keyword">var</span> x = d3.scale.linear()
+        .range([<span class="hljs-number">0</span>, width]);
+
+    <span class="hljs-keyword">var</span> y = d3.scale.ordinal()
+        .rangeRoundBands([height, <span class="hljs-number">0</span>], <span class="hljs-number">0.3</span>);
+</code></pre><p>Scales are central to how D3 works. Here we are using a <code>linear</code> scale for the X axis, which will display the <code>value</code> data, which is a continuous variable. We are giving that a <code>range</code> that runs from zero to the <code>width</code> we created earlier.</p><p>The different animal <code>species</code> will be displayed on the Y axis. <code>species</code> is a categorical variable, and for that we need an <code>ordinal</code> scale.</p><p><code>rangeRoundBands</code> is used with ordinal scales to assign portions of the scale to each categorical variable. See what happens if you replace <code>[height, 0]</code> with <code>[0, height]</code>. The bars should draw in the opposite order, as the scale is reversed.</p><p>The next number, here <code>0.3</code>, sets the padding or space between the bars. This number can vary between zero (for no padding) and 1 (the padding fills the entire space allowed for each bar, removing them from view). Experiment with changing this number and see what happens.</p><p>For more on how D3 scales work, follow the links from <a href="https://github.com/mbostock/d3/wiki/Scales">here</a>.</p><p>This section of code loads the data:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    d3.csv(&quot;data/brain_data.csv&quot;, type, function(error, data) {
+        x.domain([0, d3.max(data, function(d) { return d.value; })]);
+        y.domain(data.map(function(d) { return d.species; }));
+
+   });
+</code></pre>">    d3.csv(<span class="hljs-string">"data/brain_data.csv"</span>, type, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+        x.domain([<span class="hljs-number">0</span>, d3.max(data, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.value; })]);
+        y.domain(data.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.species; }));
+
+   });
+</code></pre><p><code>d3.csv</code>loads data from a CSV file. You can also load JSON data using <code>d3.json</code>. For more on loading data from files in common formats, see <a href="http://learnjsdata.com/read_data.html">here</a>.</p><p>In addition to having a <code>range</code>, D3 scales have a <code>domain</code>, drawn from the range of values in the data being used, which is mapped onto the <code>range</code>. Here the <code>species</code> data is mapped onto the Y axis, and the <code>value</code> data onto the X axis. For the X axis, the values are set to run from zero to <code>d3.max</code>, or the largest value in the data.</p><p>Values in the data are held in an object called <code>d</code>. They are accessed using JavaScript <a href="http://www.w3schools.com/js/js_functions.asp">functions</a> of this format:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>function(d) { return d.something; })
+</code></pre>"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.something; })
+</code></pre><p>Notice that these functions are wrapped in another function that creates an object called <code>data</code>, which we will next bind to elements on the page.</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>function(error, data) {
+    *some code goes here*
+})
+</code></pre>"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, data)</span> </span>{
+    *some code goes here*
+})
+</code></pre><p>The following section of code actually draws the bars. It is wrapped within the function that loads the data, so should be inserted before the final <code>});</code> from that code:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    // draw the bars    
+    chart.selectAll(&quot;.bar&quot;)
+            .data(data)
+            .enter()
+            .append(&quot;rect&quot;)
+            .attr(&quot;height&quot;, y.rangeBand())
+            .attr(&quot;y&quot;, function(d) { return y(d.species); })
+            .attr(&quot;width&quot;, function(d) { return x(d.value); })
+            .attr(&quot;class&quot;, &quot;bar&quot;);
+</code></pre>">    <span class="hljs-comment">// draw the bars    </span>
+    chart.selectAll(<span class="hljs-string">".bar"</span>)
+            .data(data)
+            .enter()
+            .append(<span class="hljs-string">"rect"</span>)
+            .attr(<span class="hljs-string">"height"</span>, y.rangeBand())
+            .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> y(d.species); })
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.value); })
+            .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"bar"</span>);
+</code></pre><p>This code is where the D3 magic of binding data to elements drawn on the page takes place.</p><p>Here, within the SVG <code>chart</code> element, we are selecting all elements with the class <code>bar</code> using <code>selectAll(".bar")</code> That seems odd because we haven’t yet created any elements with the class <code>bar</code>. But they are created, according to values in the data, from the subsequent code.</p><p>First, <code>.data(data)</code> binds these still-to-be-created elements to the data we just loaded; <code>.enter()</code> means that this happens for all of the rectangles that are about to enter the page when created by <code>.append("rect")</code>.</p><p>As D3’s inventor Mike Bostock explains <a href="http://bost.ocks.org/mike/circles/">here</a>, the <code>selectAll</code>, <code>data</code>, <code>enter</code>, <code>append</code> sequence is a common pattern in D3 code.</p><p>(While we will not do this, that link also explains the use of <code>exit</code> and <code>remove</code> for elements that are leaving the page.)</p><p>The rest of the code gives attributes to the rectangles. First, their height is set by <code>rangeBand</code>, which simply gives them all the same height, working with the <code>rangeRoundBands</code> code we used earlier. Their position on the Y axis is defined by the <code>species</code> data, and the width of the bars is set according to the <code>value</code> data.</p><p>Finally, the rectangles are all given the class of <code>bar</code>, which applies <code>selectAll</code> to each of them and draws the chart.</p><p>Because the rectangles all have the same class, we can now style them with some simple CSS. Add this code between the <code>&lt;style&gt; &lt;/style&gt;</code> tags:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>        /*style the bars with fill color and opacity*/
+        .bar {
+           fill: #888888;
+           opacity: 0.7;
+        }
+
+        /*change opacity on hover*/
+        .bar:hover {
+            opacity: 1;
+        }
+</code></pre>">        <span class="hljs-comment">/*style the bars with fill color and opacity*/</span>
+        <span class="hljs-class">.bar</span> <span class="hljs-rules">{
+           <span class="hljs-rule"><span class="hljs-attribute">fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888888</span></span></span>;
+           <span class="hljs-rule"><span class="hljs-attribute">opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.7</span></span></span>;
+        <span class="hljs-rule">}</span></span>
+
+        <span class="hljs-comment">/*change opacity on hover*/</span>
+        <span class="hljs-class">.bar</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{
+            <span class="hljs-rule"><span class="hljs-attribute">opacity</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+        <span class="hljs-rule">}</span></span>
+</code></pre><p>This gives the bars a gray color and 70% opacity, which changes to 100% when they are hovered over.</p><h4 id="add-axes"><a name="add-axes" href="#add-axes"></a>Add axes</h4><p>This chart has represented the data using the visual encoding of length on an aligned scale. But without axes and labelling, we don’t know what we are looking at.</p><p>D3 has built-in axis objects, so these don’t have to be drawn from scratch. To create axes for the chart, paste the following code beneath the section of code setting the scales for the chart’s X and Y axes:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>    // create axes
+    var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient(&quot;top&quot;)
+        .ticks(4);
+
+    var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient(&quot;left&quot;);
+</code></pre>">    <span class="hljs-comment">// create axes</span>
+    <span class="hljs-keyword">var</span> xAxis = d3.svg.axis()
+        .scale(x)
+        .orient(<span class="hljs-string">"top"</span>)
+        .ticks(<span class="hljs-number">4</span>);
+
+    <span class="hljs-keyword">var</span> yAxis = d3.svg.axis()
+        .scale(y)
+        .orient(<span class="hljs-string">"left"</span>);
+</code></pre><p>Having created the axis objects, now we need to add them to the chart. To to this, add the following code inside the function that loads the data, immediately beneath the section of code that drew the bars:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>    // add axes 
+    chart.append(&quot;g&quot;)
+        .attr(&quot;class&quot;, &quot;x axis&quot;)
+        .call(xAxis);
+
+    chart.append(&quot;g&quot;)
+        .attr(&quot;class&quot;, &quot;y axis&quot;)
+        .call(yAxis);
+</code></pre>">    <span class="hljs-comment">// add axes </span>
+    chart.append(<span class="hljs-string">"g"</span>)
+        .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"x axis"</span>)
+        .call(xAxis);
+
+    chart.append(<span class="hljs-string">"g"</span>)
+        .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"y axis"</span>)
+        .call(yAxis);
+</code></pre><p>Notice how the code that created the axes uses the <code>x</code> and <code>y</code> scales we made earlier; <code>orient</code> positions the axes, while <code>ticks</code> can be used to suggest a number of tick marks. This is a suggestion, rather than a literal instruction. If you experiment with different numbers, you will find that D3 uses the nearest number of ticks that divides up the data in a “sensible” way.</p><p>The code that added the axes to the chart appends them to the <code>g</code> element we discussed earlier, which groups together all of the elements that the chart is made up from.</p><p>The chart should now look like this:</p><p><img src="img/class12_7.jpg" alt=""></p><p>While we have axes, they are exceptionally ugly ones. The text of one of the labels also doesn’t fit within the margin to the left of the chart. We can fix all of this with some simple CSS, by adding the following code between the <code>&lt;style&gt; &lt;/style&gt;</code> tags:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>        /*style axes*/
+        .axis path,
+        .axis line {
+           fill: none;
+           stroke: #ccc;
+           shape-rendering: crispEdges;
+        }
+
+        /*set font style and size for axes*/
+        .x.axis text {
+           font: 10px sans-serif;
+        }
+</code></pre>">        <span class="hljs-comment">/*style axes*/</span>
+        <span class="hljs-class">.axis</span> <span class="hljs-tag">path</span>,
+        <span class="hljs-class">.axis</span> <span class="hljs-tag">line</span> <span class="hljs-rules">{
+           <span class="hljs-rule"><span class="hljs-attribute">fill</span>:<span class="hljs-value"> none</span></span>;
+           <span class="hljs-rule"><span class="hljs-attribute">stroke</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ccc</span></span></span>;
+           <span class="hljs-rule"><span class="hljs-attribute">shape-rendering</span>:<span class="hljs-value"> crispEdges</span></span>;
+        <span class="hljs-rule">}</span></span>
+
+        <span class="hljs-comment">/*set font style and size for axes*/</span>
+        <span class="hljs-class">.x</span><span class="hljs-class">.axis</span> <span class="hljs-tag">text</span> <span class="hljs-rules">{
+           <span class="hljs-rule"><span class="hljs-attribute">font</span>:<span class="hljs-value"> <span class="hljs-number">10px</span> sans-serif</span></span>;
+        <span class="hljs-rule">}</span></span>
+</code></pre><p>This should be the result:</p><p><img src="img/class12_8.jpg" alt=""></p><p>Thinking about the goal of avoiding chart junk, the Y axis and tick marks are not really necessary, so remove them by adding the following CSS code between the <code>&lt;style&gt; &lt;/style&gt;</code> tags:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>        /*remove y axis line and tick marks*/
+        .y.axis path,
+        .y.axis line {
+           display: none;
+        }
+</code></pre>">        <span class="hljs-comment">/*remove y axis line and tick marks*/</span>
+        <span class="hljs-class">.y</span><span class="hljs-class">.axis</span> <span class="hljs-tag">path</span>,
+        <span class="hljs-class">.y</span><span class="hljs-class">.axis</span> <span class="hljs-tag">line</span> <span class="hljs-rules">{
+           <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span>;
+        <span class="hljs-rule">}</span></span>
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class12_9.jpg" alt=""></p><p>See <a href="http://alignedleft.com/tutorials/d3/axes">Scott Murray’s tutorial</a> for more on D3 axes.</p><h4 id="load-the-full-data,-and-switch-between-measures"><a name="load-the-full-data,-and-switch-between-measures" href="#load-the-full-data,-and-switch-between-measures"></a>Load the full data, and switch between measures</h4><p>Now we will make the chart fully interactive, by loading the full dataset, and setting up a control to switch between different measures in the data. The full data is the file <code>brain_data2.csv</code> in the <code>data</code> subfolder. This is what it looks like, opened in a spreadsheet:</p><p><img src="img/class12_10.jpg" alt=""></p><p>First change the name of the file loaded in the script to <code>brain_data2.csv</code>, then comment out the section of the code that loads the bars, and beneath it add the following code:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    // draw the bars using brain_data2.csv
+        chart.selectAll(&quot;.bar&quot;)
+            .data(data.filter(function (d) { return d.measure==&quot;Brain size (g)&quot;; })) //filter to initially display data for brain size
+            .enter().append(&quot;rect&quot;)
+            // .style(&quot;fill&quot;, function(d) { return colors(d.species); }) //using custom colors
+            .attr(&quot;class&quot;, &quot;bar&quot;)
+            .attr(&quot;y&quot;, function(d) { return y(d.species); })
+            .attr(&quot;width&quot;, function(d) { return x(d.value); })
+            .attr(&quot;height&quot;, y.rangeBand());
+</code></pre>">    <span class="hljs-comment">// draw the bars using brain_data2.csv</span>
+        chart.selectAll(<span class="hljs-string">".bar"</span>)
+            .data(data.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.measure==<span class="hljs-string">"Brain size (g)"</span>; })) <span class="hljs-comment">//filter to initially display data for brain size</span>
+            .enter().append(<span class="hljs-string">"rect"</span>)
+            <span class="hljs-comment">// .style("fill", function(d) { return colors(d.species); }) //using custom colors</span>
+            .attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"bar"</span>)
+            .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> y(d.species); })
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.value); })
+            .attr(<span class="hljs-string">"height"</span>, y.rangeBand());
+</code></pre><p>All that has changed is the line of code that binds the data to the bars:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>            .data(data.filter(function (d) { return d.measure==&quot;Brain size (g)&quot;; })) //filter to initially display data for brain size
+</code></pre>">            .data(data.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.measure==<span class="hljs-string">"Brain size (g)"</span>; })) <span class="hljs-comment">//filter to initially display data for brain size</span>
+</code></pre><p>It now includes a function to filter the data, so that only one measure is shown. As this is the same measure displayed previously, the chart will appear as before.</p><p>Now add the following code to the html, immediately below <code>&lt;div class="container"&gt;</code>:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>        &amp;lt;div class=&quot;control&quot;&amp;gt;
+         &amp;lt;p&amp;gt;&amp;lt;strong&amp;gt;Measure:&amp;lt;/strong&amp;gt;    
+            &amp;lt;select id=&quot;measures&quot;&amp;gt;
+                &amp;lt;option value=&quot;Brain size (g)&quot;&amp;gt;Brain size (g)&amp;lt;/option&amp;gt;
+                &amp;lt;option value=&quot;Relative brain size (% of body mass)&quot;&amp;gt;Relative brain size (% body mass)&amp;lt;/option&amp;gt;
+                &amp;lt;option value=&quot;Encephalisation Quotient&quot;&amp;gt;Encephalisation Quotient&amp;lt;/option&amp;gt;
+                &amp;lt;option value=&quot;Brain neurons (billions)&quot;&amp;gt;Brain neurons (billions)&amp;lt;/option&amp;gt;
+                &amp;lt;option value=&quot;Cerebral cortex neurons (billions)&quot;&amp;gt;Cerebral cortex neurons (billions)&amp;lt;/option&amp;gt;
+            &amp;lt;/select&amp;gt; 
+         &amp;lt;/p&amp;gt;
+        &amp;lt;/div&amp;gt;
+</code></pre>">        &lt;div class="control"&gt;
+         &lt;p&gt;&lt;strong&gt;Measure:&lt;/strong&gt;    
+            &lt;select id="measures"&gt;
+                &lt;option value="Brain size (g)"&gt;Brain size (g)&lt;/option&gt;
+                &lt;option value="Relative brain size (% of body mass)"&gt;Relative brain size (% body mass)&lt;/option&gt;
+                &lt;option value="Encephalisation Quotient"&gt;Encephalisation Quotient&lt;/option&gt;
+                &lt;option value="Brain neurons (billions)"&gt;Brain neurons (billions)&lt;/option&gt;
+                &lt;option value="Cerebral cortex neurons (billions)"&gt;Cerebral cortex neurons (billions)&lt;/option&gt;
+            &lt;/select&gt; 
+         &lt;/p&gt;
+        &lt;/div&gt;
+</code></pre><p>This adds a dropdown menu control to the container div, which for the time being will not control the graphic.</p><p>The chart should now look like this:</p><p><img src="img/class12_11.jpg" alt=""></p><p>Add the following CSS code between the <code>&lt;style&gt; &lt;/style&gt;</code> tags to position the control level with the Y axis and adjust its appearance:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>        /*style the dropdown menu control*/
+        .control {
+           font: 12px sans-serif;
+           margin-left: 100px;
+           width: 400px;
+        }
+</code></pre>">        <span class="hljs-comment">/*style the dropdown menu control*/</span>
+        <span class="hljs-class">.control</span> <span class="hljs-rules">{
+           <span class="hljs-rule"><span class="hljs-attribute">font</span>:<span class="hljs-value"> <span class="hljs-number">12px</span> sans-serif</span></span>;
+           <span class="hljs-rule"><span class="hljs-attribute">margin-left</span>:<span class="hljs-value"> <span class="hljs-number">100px</span></span></span>;
+           <span class="hljs-rule"><span class="hljs-attribute">width</span>:<span class="hljs-value"> <span class="hljs-number">400px</span></span></span>;
+        <span class="hljs-rule">}</span></span>
+</code></pre><p>The chart will now look like this:</p><p><img src="img/class12_12.jpg" alt=""></p><p>Now add this code within the function that loads the data, immediately above the final <code>});</code>.</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>        //transition on dropdown select
+        d3.select(&quot;#measures&quot;).on(&quot;change&quot;, function() {
+            var logger = this.options[this.selectedIndex].value
+
+        x.domain([0, d3.max(data.filter(function (d) { return (d.measure==logger); }), function(d) { return d.value; })]);
+
+        chart.selectAll(&quot;rect&quot;)
+                .data(data.filter(function (d) { return (d.measure==logger); })) //filter data
+                .transition()
+                .duration(1000)
+                .attr(&quot;y&quot;, function(d) { return y(d.species); })
+                .attr(&quot;width&quot;, function(d) { return x(d.value); })
+                .attr(&quot;height&quot;, y.rangeBand());
+
+        chart.select(&quot;.x.axis&quot;)
+            .transition()
+            .duration(1000)
+            .call(xAxis);
+
+        });
+</code></pre>">        <span class="hljs-comment">//transition on dropdown select</span>
+        d3.select(<span class="hljs-string">"#measures"</span>).on(<span class="hljs-string">"change"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">var</span> logger = <span class="hljs-keyword">this</span>.options[<span class="hljs-keyword">this</span>.selectedIndex].value
+
+        x.domain([<span class="hljs-number">0</span>, d3.max(data.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.measure==logger); }), <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.value; })]);
+
+        chart.selectAll(<span class="hljs-string">"rect"</span>)
+                .data(data.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.measure==logger); })) <span class="hljs-comment">//filter data</span>
+                .transition()
+                .duration(<span class="hljs-number">1000</span>)
+                .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> y(d.species); })
+                .attr(<span class="hljs-string">"width"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.value); })
+                .attr(<span class="hljs-string">"height"</span>, y.rangeBand());
+
+        chart.select(<span class="hljs-string">".x.axis"</span>)
+            .transition()
+            .duration(<span class="hljs-number">1000</span>)
+            .call(xAxis);
+
+        });
+</code></pre><p>Having done so, take some time to explore the functionality of your now interactive graphic.</p><p>This code looks for a change in the element with the id <code>measures</code>, which is our select control. When it detects a change, it declares a variable called <code>logger</code> that corresponds to the  selected item. These are the different measures of the animals’ brains.</p><p>The next chunk of code uses this measure to filter the data, and alters the <code>domain</code> for the x axis so it reads from the corresponding data in the <code>value</code> column:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>        x.domain([0, d3.max(data.filter(function (d) { return (d.measure==logger); }), function(d) { return d.value; })]);
+</code></pre>">        x.domain([<span class="hljs-number">0</span>, d3.max(data.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.measure==logger); }), <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> d.value; })]);
+</code></pre><p>This part of the code redraws the bars with the new data:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>        chart.selectAll(&quot;rect&quot;)
+                .data(data.filter(function (d) { return (d.measure==logger); })) //filter data
+                .transition()
+                .duration(1000)
+                .attr(&quot;y&quot;, function(d) { return y(d.species); })
+                .attr(&quot;width&quot;, function(d) { return x(d.value); })
+                .attr(&quot;height&quot;, y.rangeBand());
+</code></pre>">        chart.selectAll(<span class="hljs-string">"rect"</span>)
+                .data(data.filter(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> (d.measure==logger); })) <span class="hljs-comment">//filter data</span>
+                .transition()
+                .duration(<span class="hljs-number">1000</span>)
+                .attr(<span class="hljs-string">"y"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> y(d.species); })
+                .attr(<span class="hljs-string">"width"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.value); })
+                .attr(<span class="hljs-string">"height"</span>, y.rangeBand());
+</code></pre><p>And this section redraws the X axis so it reflects the new values in the filtered data:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>        chart.select(&quot;.x.axis&quot;)
+            .transition()
+            .duration(1000)
+            .call(xAxis);
+</code></pre>">        chart.select(<span class="hljs-string">".x.axis"</span>)
+            .transition()
+            .duration(<span class="hljs-number">1000</span>)
+            .call(xAxis);
+</code></pre><p>Note that both these sections contain the following two lines of code:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>            .transition()
+            .duration(1000)
+</code></pre>">            .transition()
+            .duration(<span class="hljs-number">1000</span>)
+</code></pre><p>This is reponsible for the smooth transitions between the different states of the chart. The duration is set in milliseconds, so the value of <code>1000</code> means that each transition takes one second to complete. Experiment with different duration values, and see what happens if you comment out these lines of code.</p><p>Note that this code does not need to touch the Y axis, as it does not change with each transition.</p><h3 id="use-a-custom-color-palette"><a name="use-a-custom-color-palette" href="#use-a-custom-color-palette"></a>Use a custom color palette</h3><p>Gray bars are a little boring, so now we will give each animal’s bar a different color.</p><p>First, paste this code immediately below the section that sets the scales for the X and Y axes:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>    // set color palettes
+
+    var colors = d3.scale.category10();
+
+    // var colors = d3.scale.ordinal()
+    //   .range([&quot;#f0027f&quot;, &quot;#386cb0&quot;, &quot;#ffff99&quot; , &quot;#fdc086&quot;, &quot;#beaed4&quot;, &quot;#7fc97f&quot;]);
+</code></pre>">    <span class="hljs-comment">// set color palettes</span>
+
+    <span class="hljs-keyword">var</span> colors = d3.scale.category10();
+
+    <span class="hljs-comment">// var colors = d3.scale.ordinal()</span>
+    <span class="hljs-comment">//   .range(["#f0027f", "#386cb0", "#ffff99" , "#fdc086", "#beaed4", "#7fc97f"]);</span>
+</code></pre><p>This shows two ways of setting up a custom color palette for categorical data. The first uses one of D3’s built-in <a href="https://github.com/mbostock/d3/wiki/Ordinal-Scales">categorical/ordinal color palettes</a>. The second, which is commented out, sets the colors for each category individually using their HEX values.</p><p>Having set the color palette, we can now apply it by inserting this code into the section of code that initially draws the bars, after <code>.append("rect")</code>:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>            .style(&quot;fill&quot;, function(d) { return colors(d.species); }) //using custom colors
+</code></pre>">            .style(<span class="hljs-string">"fill"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> colors(d.species); }) <span class="hljs-comment">//using custom colors</span>
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class12_13.jpg" alt=""></p><p>Now swap the commenting for the code that created the color palettes to see the second version in action.</p><p>See <a href="https://github.com/mbostock/d3/wiki/Colors">here</a> for more on using colors in D3.</p><h4 id="make-the-chart-responsive"><a name="make-the-chart-responsive" href="#make-the-chart-responsive"></a>Make the chart responsive</h4><p>Currently, our chart stays the same size as the window or screen size change, and its 700px width means that it will extend off the side of smaller screens. So now we need to make the chart “responsive,” so that it adjusts to the space available.</p><p>First, at the top of the script, comment out <code>var w = 700;</code> and replace it with the following:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>     //responsive
+    var w = parseInt(d3.select(&quot;.container&quot;).style(&quot;width&quot;), 10);
+</code></pre>">     <span class="hljs-comment">//responsive</span>
+    <span class="hljs-keyword">var</span> w = <span class="hljs-built_in">parseInt</span>(d3.select(<span class="hljs-string">".container"</span>).style(<span class="hljs-string">"width"</span>), <span class="hljs-number">10</span>);
+</code></pre><p>This code reads the width of the div with the class <code>container</code>, which we are using to hold the chart, and sets the variable <code>w</code>, used to define the width of the chart, accordingly. (<code>parseInt())</code> simple ensures that the value is returned as a whole number, or integer, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">here</a>.</p><p>Now insert the following section of code right at the end of the script, just before the <code>&lt;script&gt;</code> tag.</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>    //resize chart on window resize
+    d3.select(window).on(&quot;resize&quot;, resize);
+
+    function resize() {
+        // update width
+        w = parseInt(d3.select(&quot;.container&quot;).style(&quot;width&quot;), 10);
+        width = w - margin.left - margin.right;
+
+        // resize the chart
+        x.range([0, width]);
+
+        d3.select(chart.node().parentNode)
+            .style(&quot;width&quot;, (width + margin.left + margin.right) + &quot;px&quot;);
+
+        chart.selectAll(&quot;rect&quot;)
+            .attr(&quot;width&quot;, function(d) { return x(d.value); });
+
+        chart.select(&quot;g&quot;).call(xAxis.orient(&quot;top&quot;));
+
+    }
+</code></pre>">    <span class="hljs-comment">//resize chart on window resize</span>
+    d3.select(<span class="hljs-built_in">window</span>).on(<span class="hljs-string">"resize"</span>, resize);
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">resize</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-comment">// update width</span>
+        w = <span class="hljs-built_in">parseInt</span>(d3.select(<span class="hljs-string">".container"</span>).style(<span class="hljs-string">"width"</span>), <span class="hljs-number">10</span>);
+        width = w - margin.left - margin.right;
+
+        <span class="hljs-comment">// resize the chart</span>
+        x.range([<span class="hljs-number">0</span>, width]);
+
+        d3.select(chart.node().parentNode)
+            .style(<span class="hljs-string">"width"</span>, (width + margin.left + margin.right) + <span class="hljs-string">"px"</span>);
+
+        chart.selectAll(<span class="hljs-string">"rect"</span>)
+            .attr(<span class="hljs-string">"width"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(d)</span> </span>{ <span class="hljs-keyword">return</span> x(d.value); });
+
+        chart.select(<span class="hljs-string">"g"</span>).call(xAxis.orient(<span class="hljs-string">"top"</span>));
+
+    }
+</code></pre><p>This code looks for changes in the size of the browser window, and when it detects one applies the function <code>resize()</code>. If you study the code in this function, you will see that it updates the width of the chart and then redraws the elements of the chart that need to change to fit the new width.</p><p>Experiment with resizing you browser window to see how the chart now behaves.</p><p>This responsive chart code is adapted from the example <a href="http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/">here</a>, by journalist-coder Chris Amico. He also has a demonstration of a <a href="http://eyeseast.github.io/visible-data/2013/08/26/responsive-d3/">responsive D3 map</a>.</p><h4 id="reusable-charts:-modifying-d3-templates"><a name="reusable-charts:-modifying-d3-templates" href="#reusable-charts:-modifying-d3-templates"></a>Reusable charts: modifying D3 templates</h4><p>As we’ve seen, making even a fairly simple chart in D3 involves a fairly large amount of code. For this reason, if you are going to be making charts with D3 regularly, it makes sense to keep on hand a number of templates that can construct common chart types into which you can plug new data, and then modify as required.</p><p>Mike Bostock’s <a href="http://bl.ocks.org/mbostock">bl.ocks.org page</a> is a great place to find code examples. Also look at the collected D3 tutorials in the further reading, below.</p><p>My D3 class from last year explains some basics on making scatter plots and line charts.</p><p>Berkeley J-School lecturer Jeremy Rue has also provided some chart samples,  in his D3 lessons, see <a href="http://jrue.github.io/coding/2014/lesson05/">here</a>, <a href="http://jrue.github.io/coding/2014/lesson06/">here</a>, and <a href="http://jrue.github.io/coding/2014/lesson07/">here</a>.</p><p>I did not cover creating tooltips in this class, but if you want to add those to a D3 chart, using the extension <a href="https://github.com/Caged/d3-tip">d3.tip</a> is the simplest option. Again, Jeremy <a href="http://jrue.github.io/coding/2014/lesson14/">has some notes</a> on this.</p><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p>Scott Murray. <a href="http://www.amazon.com/Interactive-Data-Visualization-Scott-Murray/dp/1449339735/"><em>Interactive Data Visualization for the Web</em></a><br>Some of the tutorials in this book are also <a href="http://alignedleft.com/tutorials">available for free</a> on Murray’s website.</p><p><a href="https://github.com/mbostock/d3/wiki/Tutorials">Collected D3 tutorials</a></p><p><a href="https://github.com/mbostock/d3/wiki">D3 wiki</a></p>
+
+
+
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

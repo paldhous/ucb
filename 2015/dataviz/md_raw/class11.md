@@ -464,7 +464,7 @@ First, create a list of colors called `pal`, for "palette," taken from ColorBrew
 
 ```R
 # use custom colors from ColorBrewer
-pal = c("#fee5d9","#fcae91","#fb6a4a","#de2d26")
+pal <- c("#fee5d9","#fcae91","#fb6a4a","#de2d26")
 ```
 
 Now we can use those colors to redraw the column chart:

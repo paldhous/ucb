@@ -298,9 +298,9 @@ food_stamps_chart %&gt;%
   + geom_bar(stat=<span class="hljs-string">"identity"</span>, aes(fill=costs)) %&gt;%
   + ggtitle(<span class="hljs-string">"Column chart"</span>)
 </code></pre><p>This code makes the following chart:</p><p><img src="img/class11_17.jpg" alt=""></p><p>Notice that this maps a smooth gradient of colors onto the continuous variable of costs, running from dark to light blue, for larger values.</p><p>This is less intuitive than having darker, more intense colors represent larger numbers. So now let’s control the color of the bars using our own color palette.</p><p>First, create a list of colors called <code>pal</code>, for “palette,” taken from ColorBrewer’s Reds sequential color scheme:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># use custom colors from ColorBrewer
-pal = c(&quot;#fee5d9&quot;,&quot;#fcae91&quot;,&quot;#fb6a4a&quot;,&quot;#de2d26&quot;)
+pal <- c(&quot;#fee5d9&quot;,&quot;#fcae91&quot;,&quot;#fb6a4a&quot;,&quot;#de2d26&quot;)
 </code></pre>"><span class="hljs-comment"># use custom colors from ColorBrewer</span>
-pal = c(<span class="hljs-string">"#fee5d9"</span>,<span class="hljs-string">"#fcae91"</span>,<span class="hljs-string">"#fb6a4a"</span>,<span class="hljs-string">"#de2d26"</span>)
+pal <- c(<span class="hljs-string">"#fee5d9"</span>,<span class="hljs-string">"#fcae91"</span>,<span class="hljs-string">"#fb6a4a"</span>,<span class="hljs-string">"#de2d26"</span>)
 </code></pre><p>Now we can use those colors to redraw the column chart:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># draw column chart using custom palette
 food_stamps_chart %&amp;gt;%
   + geom_bar(stat=&quot;identity&quot;, aes(fill=costs), color=&quot;888888&quot;) %&amp;gt;%
