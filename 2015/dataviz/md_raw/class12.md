@@ -13,7 +13,7 @@ Download the data for this session from [here](data/week12.zip), unzip the folde
 
 First we will explore how to code interactive, data-driven charts from scratch, using the [D3](http://d3js.org/) JavaScript library.
 
-There are several JavaScript libraries dedicated to making simple charts in standard formats: [Highcharts](http://www.highcharts.com/), [Raphaël](Raphaël), and [dygraphs](http://dygraphs.com/) are good examples.
+There are several JavaScript libraries dedicated to making simple charts in standard formats: [Highcharts](http://www.highcharts.com/), [Raphaël](http://raphaeljs.com/), and [dygraphs](http://dygraphs.com/) are good examples.
 
 While we will only explore D3's basic charting capabilities, it is a more flexible tool, and is behind many of the most impressive data visualizations in today's digital media.
 
@@ -39,7 +39,7 @@ Click the `shapes.html` link and you will see an empty web page.
 
 #### First steps: draw simple SVG shapes with D3
 
-To learn the basics of D3, we will first use the library to draw some simple SVG shapes on the `shapes.html` page. Open the that file in your text editor (I recommend [Sublime Text](http://www.sublimetext.com/2)), and you should see the following HTML code:
+To learn the basics of D3, we will first use the library to draw some simple SVG shapes on the `shapes.html` page. Open that file in your text editor (I recommend [Sublime Text](http://www.sublimetext.com/2)), and you should see the following HTML code:
 
 ```CSS
 <!DOCTYPE html>
@@ -110,7 +110,7 @@ Let's break this code down to understand what is going on. The first line, `d3.s
 
 The subsequent code instructs D3 what to do with the selected element. It first appends an SVG element, which has two attributes, "width" and "height," both 500 pixels. This is always the first step when using D3 to manipulate SVG objects, which will be drawn within this element.
 
-A circle is then appended to this SVG element, which is given a series of attributes and styles: `cx` and `cy` define the position of the center of the circle, measured in pixels from the left and top of the SVG element, respectively; `r` is the radius of the circle, in pixels; `fill` and `stroke` control the of the circle and its outline respectively. When styling SVG, colors can be assigned using the [HTML names listed here](http://www.w3schools.com/html/html_colornames.asp), or by using HEX or RGB codes.
+A circle is then appended to this SVG element, which is given a series of attributes and styles: `cx` and `cy` define the position of the center of the circle, measured in pixels from the left and top of the SVG element, respectively; `r` is the radius of the circle, in pixels; `fill` and `stroke` control the color of the circle and its outline respectively. When styling SVG, colors can be assigned using the [HTML names listed here](http://www.w3schools.com/html/html_colornames.asp), or by using HEX or RGB codes.
 
 Try experimenting with altering the attributes and styling of the circle, saving the `shapes.html` file and refreshing your browser to review the results.
 
@@ -182,6 +182,8 @@ Now we are going to create a simple bar chart based on some data loaded from an 
 <body>
 
 	<div class="container">
+
+		<svg class="chart"></svg>
 
 	</div>
 
@@ -476,7 +478,6 @@ First change the name of the file loaded in the script to `brain_data2.csv`, the
 		chart.selectAll(".bar")
 			.data(data.filter(function (d) { return d.measure=="Brain size (g)"; })) //filter to initially display data for brain size
 			.enter().append("rect")
-			// .style("fill", function(d) { return colors(d.species); }) //using custom colors
 			.attr("class", "bar")
 			.attr("y", function(d) { return y(d.species); })
 			.attr("width", function(d) { return x(d.value); })
@@ -533,11 +534,11 @@ Now add this code within the function that loads the data, immediately above the
 ```JavaScript
 		//transition on dropdown select
 		d3.select("#measures").on("change", function() {
-			var logger = this.options[this.selectedIndex].value
+			var logger = this.options[this.selectedIndex].value;
 
-		x.domain([0, d3.max(data.filter(function (d) { return (d.measure==logger); }), function(d) { return d.value; })]);
+			x.domain([0, d3.max(data.filter(function (d) { return (d.measure==logger); }), function(d) { return d.value; })]);
 
-		chart.selectAll("rect")
+			chart.selectAll("rect")
 				.data(data.filter(function (d) { return (d.measure==logger); })) //filter data
 				.transition()
 				.duration(1000)
@@ -545,13 +546,12 @@ Now add this code within the function that loads the data, immediately above the
 				.attr("width", function(d) { return x(d.value); })
 				.attr("height", y.rangeBand());
 
-		chart.select(".x.axis")
-			.transition()
-			.duration(1000)
-			.call(xAxis);
+			chart.select(".x.axis")
+				.transition()
+				.duration(1000)
+				.call(xAxis);
 
-		});	
-```
+		```
 
 Having done so, take some time to explore the functionality of your now interactive graphic.
 
@@ -593,7 +593,7 @@ Note that both these sections contain the following two lines of code:
 
 This is reponsible for the smooth transitions between the different states of the chart. The duration is set in milliseconds, so the value of `1000` means that each transition takes one second to complete. Experiment with different duration values, and see what happens if you comment out these lines of code.
 
-Note that this code does not need to touch the Y axis, as it does not change with each transition.
+Note that this code does not need to alter the Y axis, as it does not change with each transition.
 
 ### Use a custom color palette
 
@@ -636,9 +636,9 @@ First, at the top of the script, comment out `var w = 700;` and replace it with 
  	//responsive
 	var w = parseInt(d3.select(".container").style("width"), 10);
 ```
-This code reads the width of the div with the class `container`, which we are using to hold the chart, and sets the variable `w`, used to define the width of the chart, accordingly. (`parseInt())` simple ensures that the value is returned as a whole number, or integer, see [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt).
+This code reads the width of the div with the class `container`, which we are using to hold the chart, and sets the variable `w`, used to define the width of the chart, accordingly. (`parseInt())` simply ensures that the value is returned as a whole number, or integer, see [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt).
 
-Now insert the following section of code right at the end of the script, just before the `<script>` tag.
+Now insert the following section of code right at the end of the script, just before the closing `</script>` tag.
 
 ```JavaScript
 	//resize chart on window resize
@@ -665,18 +665,18 @@ Now insert the following section of code right at the end of the script, just be
 
 This code looks for changes in the size of the browser window, and when it detects one applies the function `resize()`. If you study the code in this function, you will see that it updates the width of the chart and then redraws the elements of the chart that need to change to fit the new width.
 
-Experiment with resizing you browser window to see how the chart now behaves.
+Experiment with resizing your browser window to see how the chart now behaves.
 
 This responsive chart code is adapted from the example [here](http://eyeseast.github.io/visible-data/2013/08/28/responsive-charts-with-d3/), by journalist-coder Chris Amico. He also has a demonstration of a [responsive D3 map](http://eyeseast.github.io/visible-data/2013/08/26/responsive-d3/).
 
 
 #### Reusable charts: modifying D3 templates
 
-As we've seen, making even a fairly simple chart in D3 involves a fairly large amount of code. For this reason, if you are going to be making charts with D3 regularly, it makes sense to keep on hand a number of templates that can construct common chart types into which you can plug new data, and then modify as required.
+As we've seen, making even a simple chart in D3 involves a fairly large amount of code. For this reason, if you are going to be making charts with D3 regularly, it makes sense to keep on hand a number of templates that can construct common chart types into which you can plug new data, and then modify as required.
 
 Mike Bostock's [bl.ocks.org page](http://bl.ocks.org/mbostock) is a great place to find code examples. Also look at the collected D3 tutorials in the further reading, below.
 
-My D3 class from last year explains some basics on making scatter plots and line charts.
+My D3 class from [last year](http://www.peteraldhous.com/ucb/2014/dataviz/week13.html) explains some basics on making scatter plots and line charts.
 
 Berkeley J-School lecturer Jeremy Rue has also provided some chart samples,  in his D3 lessons, see [here](http://jrue.github.io/coding/2014/lesson05/), [here](http://jrue.github.io/coding/2014/lesson06/), and [here](http://jrue.github.io/coding/2014/lesson07/).
 
