@@ -8,14 +8,14 @@ However, we will today explore another approach: Making JavaScript visualization
 
 I have used these in my own work to create simple interactive charts, in posts such as [this](http://www.buzzfeed.com/peteraldhous/what-five-years-of-austerity-did-to-greeks-health) and [this](http://www.buzzfeed.com/peteraldhous/why-katrina-was-the-storm-from-hell).
 
-One advantage of this approach is that I can work in a single environment both to process my data and to make my online charts. Maintaining a simple, streamlined workflow means I can produce graphics quickly on news deadlines.
+One advantage of this approach is that I can work in a single environment both to process my data and to make my online charts. Maintaining a simple, streamlined workflow allows me to produce graphics quickly on news deadlines.
 
 ### The data we will use today
 
 Download the data for this session from [here](data/week13.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
 
-- `src` Folder containing local copies of the following JavaScript libraries: These include D3, NVD3, Highcharts and jQuery
-- `css` Folder with a CSS style sheet for the NVD3 library.
+- `src` Folder containing local copies of the following JavaScript libraries: [D3](http://d3js.org/), [NVD3](http://nvd3.org/), [Highcharts](http://www.highcharts.com/) and [jQuery](https://jquery.com/).
+- `css` Folder with CSS style sheet for the NVD3 library.
 - `seismic_risk_clip` Folder containing [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014),  detailing the risk of experiencing a major earthquake, clipped to the boundaries of the continental United States.
 - `storms.csv` Data on North Atlantic [tropical storms and hurricanes](http://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html) compiled by by the Hurricane Research Division of the U.S. National Oceanic and Atmospheric Administration.
 - `senate-113-2014.json` JSON data on voting patterns in the U.S. Senate in 2014, detailing the number and percentage of times pairs of Senators voted the same way in each year. Scraped from [GovTrack.US](https://www.govtrack.us/), as described [here](http://paldhous.github.io/NICAR/2015/gephi.html).
@@ -30,7 +30,7 @@ setwd("~/Desktop/week13")
 ```
 Save the script as `week13.R`.
 
-We are going to install rCharts directly from its [GitHub repository](https://github.com/ramnathv/rCharts). To do this, we first need to install and load a package called devtools, which you can do with the following code:
+We are going to install rCharts directly from its [GitHub repository](https://github.com/ramnathv/rCharts). To do this, we first need to install and load a package called [devtools](https://cran.r-project.org/web/packages/devtools/devtools.pdf), which you can do with the following code:
 
 ```R
 # install and load devtools
@@ -47,7 +47,7 @@ library(rCharts)
 
 #### Make line charts from World Bank data
 
-As in Week 11, we are going to download and process data from the World Bank's World Development Indicators. So again, we need the WDI and dplyr packages. Load them now:
+As in Week 11, we are going to download and process data from the World Bank's World Development Indicators. So again, we need the [WDI](https://cran.r-project.org/web/packages/WDI/WDI.pdf) and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) packages. Load them now:
 
 ```R
 # load WDI and dplyr
@@ -90,7 +90,7 @@ Finally, we have used R's `gsub()` function, which substitutes one string of tex
 
 ##### Line chart with NVD3
 
-Now we will use rCharts with the [NVD3](http://nvd3.org/) JavaScript library to draw a line chart from this data. NVD3 sits on top of D3 (which must also be loaded), and can produce a range of standard chart types (see the examples in the further reading/resources, below).
+Now we will use rCharts with the [NVD3](http://nvd3.org/) JavaScript library to draw a line chart from this data. NVD3 sits on top of D3, and can produce a range of standard chart types (see the examples in the further reading/resources, below).
 
 This code will approximately replicate the last chart in [this article](http://www.buzzfeed.com/peteraldhous/what-five-years-of-austerity-did-to-greeks-health):
 
@@ -163,7 +163,7 @@ To do this, replace the block of code above with the following:
 
 (Here we are loading the `1.7` release of NVD3, because the `1.8` release currently has a bug that can cause the colors of a line chart to render incorrectly when the chart is redrawn.)
 
-Between the `<style> </style` tags immediately below, change `width: 800px;` to `width: 100%;`. Finally, scroll down the page and in the script that draws the chart, delete or comment out this line:
+Between the `<style> </style` tags immediately below, change `width: 800px;` to `width: 100%;`. Finally, scroll down the page and in the script that draws the chart, and delete or comment out this line:
 
 ```JavaScript
 "width":    800,
@@ -188,7 +188,7 @@ The chart should now look like this:
 
 ##### Line chart with Highcharts
 
-Now we'll draw a similar chart using the [Highcharts](http://www.highcharts.com/). (Note that Highcharts does require a [paid license](http://shop.highsoft.com/highcharts.html) for use on commercial websites.)
+Now we'll draw a similar chart using the [Highcharts](http://www.highcharts.com/). (Note that Highcharts requires a [paid license](http://shop.highsoft.com/highcharts.html) for use on commercial websites.)
 
 The basic code is similar to before, except that it uses the rCharts function `hPlot()`:
 
@@ -340,7 +340,7 @@ Open the file `storms_n.html` in your text editor, and replace the code that loa
   <script src="src/jquery-1.11.3.min.js"></script>
 ```
 
-Again we can some CSS to customize the chart between the `<style> </style>` tags, here removing the vertical grid lines and the Y axis:
+Again we can apply some CSS to customize the chart between the `<style> </style>` tags, here removing the vertical grid lines and the Y axis:
 
 ```CSS
 	/* remove x axis grid lines */
@@ -393,7 +393,7 @@ The first line of this code switches to stacked columns. If we want the columns 
 
 Edit the file `storms_h.html` as before, to load local copes of Highcharts and jQuery, and to make the chart responsive, rather than 800px wide.
 
-The final chart look like this:
+The final chart should look like this:
 
 ![](img/class13_10.jpg)
 
@@ -409,10 +409,10 @@ library(htmlwidgets)
 
 ### Make maps of seismic risks and earthquakes using Leaflet
 
-[Leaflet](http://leafletjs.com/) is the most widely-used JavaScript code library for making interactive online maps. It can be accessed from R using the leaflet htmlwidget. So install and load that:
+[Leaflet](http://leafletjs.com/) is the most widely-used JavaScript code library for making interactive online maps. It can be accessed from R using the [leaflet](http://rstudio.github.io/leaflet/) htmlwidget. So we need to install and load that:
 
 ```R
-# install and load htmlwidgets
+# install and load leaflet
 install.packages("leaflet")
 library(leaflet)
 ```
@@ -435,7 +435,7 @@ The following map should appear in your RStudio Viewer:
 
 ![](img/class13_11.jpg)
 
-The function `setView()` allows us to set the starting position of the map, centering it on the defined coordinated and with the defined zoom level; `addTiles()` adds [OpenStreetMap](https://www.openstreetmap.org/) tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.
+The function `setView()` allows us to set the starting position of the map, centering it on the defined coordinates and with the defined zoom level; `addTiles()` adds [OpenStreetMap](https://www.openstreetmap.org/) tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.
 
 
 We aren't limited to using OpenStreetMap tiles:
@@ -456,7 +456,7 @@ The map should now look like this:
 
 The function `addProviderTiles()` uses the [Leaflet Providers](https://github.com/leaflet-extras/leaflet-providers) plugin to add various tiles to a map. You can see the available options [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
 
-Now let's load the data we need to make the earthquakes map. To load the `seismic_risk_clip` shapefile, we need another R package, called rgdal.
+Now let's load the data we need to make the earthquakes map. To load the `seismic_risk_clip` shapefile, we need another R package, called [rgdal](https://cran.r-project.org/web/packages/rgdal/rgdal.pdf).
 
 So install and load that:
 
@@ -485,7 +485,12 @@ quakes <- read.csv("http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=19
 
 Using this url, we have loaded earthquakes since the start of 1965 that had a magnitude of 6 and above, within a 6,000 kilometer radius of the geographic center of the continental United States.
 
-Let's look at a summary of the `seismic_risk` data:
+Let's look at a summary of the `seismic_risk` data by running:
+
+```R
+# view summary of seismic_risk data
+summary(seismic_risk)
+```
 
 This is what should be returned in the R Console:
 
@@ -588,7 +593,7 @@ seismic
 ```
 The `addCircles()` function adds circles to the map; `color` sets the color for their outlines, while `weight` sets the thickness of these lines; `fillColor` and `fillOpacity` style the circles' interiors.
 
-The size if the circles is set by `radius = sqrt(quakes$mag^10)*50`. Here `50` is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The circles are set from the variable `mag` in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: This is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.
+The size if the circles is set by `radius = sqrt(quakes$mag^10)*50`. Here `50` is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable `mag` in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: This is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.
 
 Usually, when scaling circles, you will simply use the values from the data, and then take their square roots, using the `sqrt()` function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.
 
@@ -689,42 +694,246 @@ saveWidget(seismic, "seismic.html", selfcontained = TRUE, libdir = NULL,
            background = "white")
 ```
 
-The page will be saved with supporting JavaScript files in a folder called  `siesmic_files`. To pu the map online, it must be uploaded to a webserver together with this folder.
+The page will be saved with supporting JavaScript files in a folder called  `siesmic_files`. To put the map online, it must be uploaded to a webserver together with this folder.
 
+### Draw line charts of company stock prices over time using dygraphs
 
+Next we will use the [dygraphs](http://dygraphs.com/) Javascript charting library to draw a line graph of two companies' stock prices. While this is also possible with libraries like NVD3, dygraphs is better at handling large datasets with thousands of values in a time series.
 
+So let's now install and load the [dygraphs](http://rstudio.github.io/dygraphs/) htmlwidget:
 
+```R
+# install and load dygraphs
+install.packages("dygraphs")
+library(dygraphs)
+```
+We will compare changes on the stock price of a drug company called Valeant, which has [become controversial](http://www.businessinsider.com/why-have-valeant-pharmaceuticals-shares-collapsed-2015-11) in recent months because of alleged "price gouging," with the pharmaceuticals giant GlaxoSmithKline.
 
+First we need to load data on each company's stock market performance, which we can obtain from [Yahoo Finance](http://finance.yahoo.com/).
 
+```R
+# load and process data for Valeant
+valeant <- read.csv("http://real-chart.finance.yahoo.com/table.csv?s=VRX") %>%
+  mutate(Date=as.Date(Date)) %>%
+  select(Date, Close) %>%
+  rename(VRX = Close)
 
+# and for GSK
+gsk <- read.csv("http://real-chart.finance.yahoo.com/table.csv?s=GSK") %>%
+  mutate(Date=as.Date(Date))  %>%
+  select(Date, Close) %>%
+  rename(GSK = Close)
+```
 
+The data for each company will initially load with seven columns of data. This code ensures that the dates in the `Date` column are treated as such, then selects just the `Date` and `Close` variables, containing the closing prices for each day. Finally it renames the `Close` column with each company's stock market ticker.
 
+Dygraphs requires each time series to be plotted in a separate column, so now we need to create a data frame with a column for each companies' data. 
 
+The following code does with using a dplyr join, and then filters the data from the start of 2010 onwards:
 
+```R
+# combine into a single data frame with separate column for each company 
+# and filter for 2010 onwards
+valeant_gsk <- inner_join(gsk, valeant, by="Date") %>%
+  filter(Date >= "2010-01-01")
+```
+The dygraphs htmlwidget works with R objects called extensible time series, or xts, rather than standard data frames, so now we have to make that conversion.
 
+To do this, we need to install and load the [xts](https://cran.rstudio.com/web/packages/xts/xts.pdf) package:
 
+```R
+# install and load xts
+install.packages("xts")
+library(xts)
+```
 
+And then convert the dataframe to an xts object:
 
+```R
+# convert to extensible time series (xts)
+valeant_gsk <- xts(valeant_gsk, order.by = valeant_gsk$Date) 
+```
 
+We can then draw the time series chart with this code:
 
+```R
+# make dygraph line chart
+drug_cos <- dygraph(valeant_gsk) %>%
+  dyRangeSelector()
 
+# plot chart
+drug_cos
+```
 
+`dyRangeSelector()` adds a control to the bottom of the chart that can be used to focus in on parts of the time series.
 
+The chart should now look like this
 
+![](img/class13_16.jpg)
 
+As for rCharts, it is possible to customize dygraph chart. in various ways For example, this version of the code will create anarea chart with the areas filled with an opacity of 0.4:
 
+```R
+# make dygraph area chart
+drug_cos <- dygraph(valeant_gsk) %>%
+  dyOptions(fillGraph = TRUE, 
+            fillAlpha = 0.4) %>%
+  dyRangeSelector()
 
+dygraph(valeant) %>%
+  dyRangeSelector()
 
+# plot chart
+drug_cos
+```
 
+The resulting chart should look like this:
 
+![](img/class13_17.jpg)
 
+For more customization options, for example [adding shaded bands](http://rstudio.github.io/dygraphs/gallery-shaded-regions.html) to the chart area, see the dyrgraphs htmlwidget [documentation](http://rstudio.github.io/dygraphs).
 
+Again, we can now save the chart as a web page:
 
+```R
+# save the chart
+saveWidget(drug_cos, "drug_cos.html", selfcontained = TRUE, libdir = NULL,
+           background = "white")
+```
 
+Notice that saved htmlwidgets are responsive by default, and will expand to fill the space available. This means they can be easily iframed into divs on a web page.
 
+### Draw a network diagram of voting patterns in the U.S. Senate using networkD3
 
+In Week 2, we discussed how network diagrams can be used to visualize connections between people or things. Now we will use the [networkD3](http://christophergandrud.github.io/networkD3/) htmlwidget to draw a D3 network graphic illustrating patterns of voting in the U.S. Senate in 2014.
 
+See [here](http://paldhous.github.io/NICAR/2015/gephi.html) a more detailed tutorial on creating a similar network from Senate voting data, using [Gephi](https://gephi.github.io/) and the [Sigma.js](http://sigmajs.org/) JavaScript library, with notes on how the data was prepared.
 
+The data is in the file `senate-113-2014.json`. To load this into R, first install and load the [jsonlite](https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf) package:
+
+```R
+# install and load jsonlite
+install.packages("jsonlite")
+library(jsonlite)
+```
+Then load the data and view its structure:
+
+```R
+# load senate voting data and view its structure
+senate <- fromJSON("senate-113-2014.json")
+str(senate)
+```
+
+This is what should be returned in the R Console:
+
+```R
+List of 5
+ $ directed  : logi FALSE
+ $ graph     : list()
+ $ nodes     :'data.frame':	100 obs. of  3 variables:
+  ..$ color: chr [1:100] "red" "blue" "red" "blue" ...
+  ..$ party: chr [1:100] "R" "D" "R" "D" ...
+  ..$ id   : chr [1:100] "Alexander (R-TN)" "Klobuchar (D-MN)" "Graham (R-SC)" "Reid (D-NV)" ...
+ $ links     :'data.frame':	4679 obs. of  4 variables:
+  ..$ source       : int [1:4679] 0 0 0 0 0 0 0 0 0 0 ...
+  ..$ percent_agree: num [1:4679] 0.263 0.789 0.316 0.211 0.263 ...
+  ..$ target       : int [1:4679] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ votes_agree  : int [1:4679] 5 15 6 4 5 5 3 5 12 11 ...
+ $ multigraph: logi FALSE
+```
+
+This shows that `senate` is a list containing objects including two data frames, called `nodes` and `links`. 
+
+Let's now view the contents of each data frame
+
+```R
+# view contents of nodes and links 
+View(senate$nodes)
+View(senate$links)
+```
+The `nodes` data frame contains three columns, including an `id` for each Senator, and their `party`:
+
+![](img/class13_18.jpg)
+
+The `links` data frame contains four columns, including `source` and `target`, which refer to the row numbers for the Senators in the `nodes` data frame. The `percent_agree` column shows how often, as a digital fraction of 1, that pair of senators voted the same way in 2014.
+
+![](img/class13_19.jpg)
+
+We are going to create a network diagram of these voting patterns, first filtering the data so that a link is drawn between a pair of Senators only if they voted the same way at least two-thirds of the time. We need a filter to reveal the partisan dynamics of the chamber, because almost all Senators voted the same way at least once. It's how *often* they did so that matters.
+
+Now read the data frames from the list into the main R environment, and apply this filter to the links:
+
+```R
+# read nodes and links into the main R environment, and apply filter
+nodes <- senate$nodes
+
+links <- senate$links %>%
+  filter(percent_agree > 0.67)
+```
+
+We can now draw the network with this code:
+
+```R
+# create D3 network
+senate_network <- forceNetwork(
+  Links = links, 
+  Nodes = nodes, 
+  Source = "source",
+  Target = "target", 
+  NodeID = "id",
+  Group = "party", 
+  opacity = 1, 
+  bounded = TRUE, 
+  linkColour = "#cccccc" 
+)
+
+# plot the network
+senate_network
+```
+
+Notice that columns from the two data frames are referred to in quote marks. `linkColour = "#cccccc"` sets the color of the links to a light gray; note the British English spelling of `linkColour`: networkD3 was written by [Christopher Gandrud](http://christophergandrud.blogspot.com/p/biocontact.html), a political economist at City University in London.
+
+The following network graph should appear in your RStudio Viewer:
+
+![](img/class13_20.jpg)
+
+Notice that networkD3 by default uses the `d3.scale.category20()` color palette. To use colors that reflect the Democratic and Rebublican parties, simply adjust the code to the following:
+
+```R
+# set color palette
+colors <- JS("d3.scale.ordinal().range(['#ff0000','#0000ff','#d2691e'])")
+
+# create D3 network
+senate_network <- forceNetwork(
+             Links = links, 
+             Nodes = nodes, 
+             Source = "source",
+             Target = "target", 
+             NodeID = "id",
+             Group = "party", 
+             opacity = 1, 
+             bounded = TRUE, 
+             linkColour = "#cccccc", 
+             colourScale = colors
+             )
+
+# plot the network
+senate_network
+```
+
+For more networkD3 customization options, see [these code examples](https://github.com/christophergandrud/networkD3/blob/master/inst/examples/examples.R).
+
+The network graph should now look like this:
+
+![](img/class13_21.jpg)
+
+Again, we can save the graphic to a webpage with the following code:
+
+```R
+# save the network chart
+saveWidget(senate_network, "senate.html", selfcontained = TRUE, libdir = NULL,
+           background = "white")
+```
 
 ### Further reading/resources
 
