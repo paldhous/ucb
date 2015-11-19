@@ -91,15 +91,14 @@ We will explore R packages, including [rCharts](http://rcharts.io/), that allow 
  - **Assignment:** continue work on your final project.
 
 
-- ####**Dec. 3:** [**Other tools for online interactives**](week14.html)
-We will review other tools for making online interactives.
+- ####**Dec. 3:** [Let's apply what we've learned](week14.html)
+As in week 6, we will obtain and process data from online, and make some interactive charts, but this time using code.
 
  - **Assignment:** complete your final project.
 
 
-- ####**Dec. 10:** [Let's apply what we've learned; wrapping up](week15.html)
-As in week 6, we will obtain and process World Bank data, and make some interactive charts, but this time using code. We will conclude with a discussion of lessons learned, and next steps to continue developing your data manipulation and visualization skills.
-
+- ####**Dec. 10:** [Student presentations on final projects](week15.html)
+You will each present your final project work to the class, explain the process of creating the graphics, choices in  analysis and design, and problems that arose and how these were addressed.
 
 ### Recommended reading
 

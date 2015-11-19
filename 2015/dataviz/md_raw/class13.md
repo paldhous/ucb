@@ -6,7 +6,9 @@ As we saw in last week's class, coding graphics from scratch using D3 is a labor
 
 However, we will today explore another approach: Making JavaScript visualizations directly from R/RStudio. This has become possible recently thanks to an R package called [rCharts](http://rcharts.io/), which connects to multiple JavaScript charting libraries, and a group of packages collectively known as [htmlwidgets](http://www.htmlwidgets.org/).
 
-I have used these in my own work to create simple interactive charts, in posts such as [this](http://www.buzzfeed.com/peteraldhous/what-five-years-of-austerity-did-to-greeks-health) and [this](http://www.buzzfeed.com/peteraldhous/why-katrina-was-the-storm-from-hell).
+These packages take instructions in R code, and write the JavaScript and HTML necessary to draw charts using JavaScript visualization libraries. They also allow you to easily export the charts you create in R as web pages.
+
+I have used these in my own work to create simple interactive charts, in posts such as [this](http://www.buzzfeed.com/peteraldhous/why-katrina-was-the-storm-from-hell) and this.
 
 One advantage of this approach is that I can work in a single environment both to process my data and to make my online charts. Maintaining a simple, streamlined workflow allows me to produce graphics quickly on news deadlines.
 
@@ -170,7 +172,7 @@ Between the `<style> </style` tags immediately below, change `width: 800px;` to 
 ```
 These two changes will override the default width of 800px, allowing the chart to be responsive.
 
-It is also possibile to customize the chart using some CSS. Paste the following code between the page's <style> </style> tags to remove the Y axis and increase the thickness of the lines on the chart:
+It is also possibile to customize the chart using some CSS. Paste the following code between the page's `<style> </style>` tags to remove the Y axis and increase the thickness of the lines on the chart:
 
 ```CSS
 	/* remove y axis */
@@ -417,7 +419,7 @@ install.packages("leaflet")
 library(leaflet)
 ```
 
-Step by step, we are going to recreate a version of [this map](http://paldhous.github.io/earthquakes/), which I originally coded from Leaflet in scratch. After class, you may wish to download the code for that map from its [GitHub repository](https://github.com/paldhous/earthquakes), to compare with the R version.
+Step by step, we are going to recreate a version of [this map](http://paldhous.github.io/earthquakes/), which I originally coded using Leaflet from scratch. After class, you may wish to download the code for that map from its [GitHub repository](https://github.com/paldhous/earthquakes), to compare with the R version.
 
 First let's see how to make a basic Leaflet map, centered on Berkeley:
 
@@ -729,7 +731,7 @@ The data for each company will initially load with seven columns of data. This c
 
 Dygraphs requires each time series to be plotted in a separate column, so now we need to create a data frame with a column for each companies' data. 
 
-The following code does with using a dplyr join, and then filters the data from the start of 2010 onwards:
+The following code does this using a dplyr join, and then filters the data from the start of 2010 onwards:
 
 ```R
 # combine into a single data frame with separate column for each company 
@@ -765,13 +767,13 @@ drug_cos <- dygraph(valeant_gsk) %>%
 drug_cos
 ```
 
-`dyRangeSelector()` adds a control to the bottom of the chart that can be used to focus in on parts of the time series.
+`dyRangeSelector()` adds a control to the bottom of the chart which can be used to focus on parts of the time series.
 
 The chart should now look like this
 
 ![](img/class13_16.jpg)
 
-As for rCharts, it is possible to customize dygraph chart. in various ways For example, this version of the code will create anarea chart with the areas filled with an opacity of 0.4:
+It is possible to customize dygraph chart in various ways. For example, this version of the code will create an area chart with the areas filled with an opacity of 0.4:
 
 ```R
 # make dygraph area chart
@@ -791,7 +793,7 @@ The resulting chart should look like this:
 
 ![](img/class13_17.jpg)
 
-For more customization options, for example [adding shaded bands](http://rstudio.github.io/dygraphs/gallery-shaded-regions.html) to the chart area, see the dyrgraphs htmlwidget [documentation](http://rstudio.github.io/dygraphs).
+For more customization options, for example [adding shaded bands](http://rstudio.github.io/dygraphs/gallery-shaded-regions.html) to the chart area, see the dygraphs htmlwidget [documentation](http://rstudio.github.io/dygraphs).
 
 Again, we can now save the chart as a web page:
 
@@ -809,7 +811,15 @@ In Week 2, we discussed how network diagrams can be used to visualize connection
 
 See [here](http://paldhous.github.io/NICAR/2015/gephi.html) a more detailed tutorial on creating a similar network from Senate voting data, using [Gephi](https://gephi.github.io/) and the [Sigma.js](http://sigmajs.org/) JavaScript library, with notes on how the data was prepared.
 
-The data is in the file `senate-113-2014.json`. To load this into R, first install and load the [jsonlite](https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf) package:
+First we need to install and load the networkD3 htmlwidget:
+
+```R
+# install and load networkD3
+install.packages('networkD3')
+library(networkD3)
+```
+
+The data is in the file `senate-113-2014.json`. To load this into R, install and load the [jsonlite](https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf) package:
 
 ```R
 # install and load jsonlite
@@ -897,7 +907,7 @@ The following network graph should appear in your RStudio Viewer:
 
 ![](img/class13_20.jpg)
 
-Notice that networkD3 by default uses the `d3.scale.category20()` color palette. To use colors that reflect the Democratic and Rebublican parties, simply adjust the code to the following:
+Notice that networkD3 by default uses the `d3.scale.category20()` color palette. To use colors that reflect the Democratic and Republican parties, simply adjust the code to the following:
 
 ```R
 # set color palette

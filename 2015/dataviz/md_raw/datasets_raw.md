@@ -84,6 +84,16 @@ If you don't already have a Microsoft Account, you will first need to [create on
  - `src` Folder with the `d3.min.js` source code.
  - 	`shapes.html` Web page in which we will draw shapes using D3.
 
+#### [Week 13](./data/week12.zip)
+
+- `src` Folder containing local copies of the following JavaScript libraries: [D3](http://d3js.org/), [NVD3](http://nvd3.org/), [Highcharts](http://www.highcharts.com/) and [jQuery](https://jquery.com/).
+- `css` Folder with CSS style sheet for the NVD3 library.
+- `seismic_risk_clip` Folder containing [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014),  detailing the risk of experiencing a major earthquake, clipped to the boundaries of the continental United States.
+- `storms.csv` Data on North Atlantic [tropical storms and hurricanes](http://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html) compiled by by the Hurricane Research Division of the U.S. National Oceanic and Atmospheric Administration.
+- `senate-113-2014.json` JSON data on voting patterns in the U.S. Senate in 2014, detailing the number and percentage of times pairs of Senators voted the same way in each year. Scraped from [GovTrack.US](https://www.govtrack.us/), as described [here](http://paldhous.github.io/NICAR/2015/gephi.html).
+
+
+
 
 ## Final projects
 
