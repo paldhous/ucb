@@ -8,7 +8,7 @@ However, we will today explore another approach: Making JavaScript visualization
 
 These packages take instructions in R code, and write the JavaScript and HTML necessary to draw charts using JavaScript visualization libraries. They also allow you to easily export the charts you create in R as web pages.
 
-I have used these in my own work to create simple interactive charts, in posts such as [this](http://www.buzzfeed.com/peteraldhous/why-katrina-was-the-storm-from-hell) and this.
+I have used these in my own work to create simple interactive charts, in posts such as [this](http://www.buzzfeed.com/peteraldhous/why-katrina-was-the-storm-from-hell) and [this](http://www.buzzfeed.com/peteraldhous/american-terrorism-by-the-numbers).
 
 One advantage of this approach is that I can work in a single environment both to process my data and to make my online charts. Maintaining a simple, streamlined workflow allows me to produce graphics quickly on news deadlines.
 
@@ -227,7 +227,7 @@ You will see that code to change the axis labels and colors is a little differen
 
 The last line of the code used to customize the chart removes the point markers, rendering a simple line chart, which should now look like this:
 
-![](img/class13_4.jpg)
+![](img/class13_5.jpg)
 
 Save the chart as a web page:
 

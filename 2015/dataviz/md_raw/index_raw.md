@@ -53,37 +53,37 @@ Basic mapping principles:  projections, geocoding, geodata formats; approaches t
 - ####**Oct. 15:** [**Making static maps and processing geodata with GIS software**](week8.html)
 We will use [QGIS](http://qgis.org/en/site/) to make a multi-layered map. We will also learn how to use QGIS and its plugins to process geodata.
 
- - **Assignment:** make a simple map requiring a data join.
+ - **Assignment:** continue work on final project.
 
 
 -  ####**Oct. 22:** [**Making interactive maps; processing geodata with SQL**](week9.html)
 We will use [CartoDB](https://cartodb.com/) to create interactive online maps. We will also use SQL and [PostGIS](http://postgis.net/), which is built into CartoDB, to process and analyze geodata.
 
- - **Assignment:** Continue work on final project and deliver a progress report.
+ - **Assignment:** continue work on final project and deliver a progress report.
 
 
 -  ####**Oct 29:**	**No Class**
 Instead, one-on-one meetings will be arranged with instructor to discuss progress with your final projects.
 
- - **Assignment:** refine plan for your final project.
+ - **Assignment:** continue work on final project.
 
 
 - ####**Nov. 5:**	[**Manipulating data and making graphics with R**](week11.html)
 Introduction to [R](http://www.r-project.org/), [R Studio](http://www.rstudio.com/) and R packages including [ggplot2](http://ggplot2.org/) for visualization and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) for data manipulation.
 
- -  **Assignment:** make specified graphics with ggplot2.
+ -  **Assignment:** continue work on final project.
 
 
 - ####**Nov. 12:** [**Coding interactive graphics**](week12.html)
 We will use [D3](http://d3js.org/) to code from scratch a number of common chart types. This will be a challenging exercise, intended as an introduction to the huge possibilities offered by a JavaScript code library that powers many of today’s most impressive online news visualizations.
 
-  -  **Assignment:** continue work on your final project.
+  -  **Assignment:** continue work on final project.
 
 
 - ####**Nov. 19:**	[**Now let's make this easier: from R to interactive charts and maps**](week13.html)
 We will explore R packages, including [rCharts](http://rcharts.io/), that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
  
- -  **Assignment:** Continue work on your final project. Each of you should also an individual meetings with your instructor to refine your final projects, which are due on the last day of class.
+ -  **Assignment:** continue work on final project, delivering a progreee report. Each of you should also an individual meetings with your instructor to refine your final projects, which are due on the last day of class.
 
 
 - ####**Nov 26:** Thanksgiving -- No Class
