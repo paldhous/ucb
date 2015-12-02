@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Let's apply what we've learned</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
+								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Principles of mapping</a></li>
+								<li><a href="week8.html">Making static maps</a></li>
+								<li><a href="week9.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
+			
+								<li><a href="week14.html">Let's apply what we've learned</a></li>									
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<body class="markdown github">
+
+<h1 id="let's-apply-what-we've-learned"><a name="let's-apply-what-we've-learned" href="#let's-apply-what-we've-learned"></a>Let’s apply what we’ve learned</h1><p>Your task for this week’s class is to create a version of the interactive graphic below, showing carbon dioxide emissions, by world region, from 2000 to 2011. We will do this in R, which will require you to adapt the code we used in the previou weeks to process the data and turn it into an NVD3 chart.</p><h5 id="carbon-dioxide-emissions,-in-gigatonnes,-by-world-region"><a name="carbon-dioxide-emissions,-in-gigatonnes,-by-world-region" href="#carbon-dioxide-emissions,-in-gigatonnes,-by-world-region"></a>Carbon dioxide emissions, in gigatonnes, by world region</h5>
+<br>
+ <iframe src="raw-data/week14/co2.html" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+
+<h3 id="how-to-proceed"><a name="how-to-proceed" href="#how-to-proceed"></a>How to proceed</h3><ul>
+<li><p>Download <a href="data/week14.zip">this folder</a> to you desktop and unzip. It contains the JavaScript and CSS files necessary to draw an NVD3 chart.</p>
+</li><li><p>Use the WDI package to obtain the <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT">data</a> from the World Bank’s World Development Indicators site. Download the data for all countries in the first instance. The indicator name is <code>EN.ATM.CO2E.KT</code>.</p>
+</li><li><p>Then filter the data, using the dplyr package, for the seven World Bank regions. Use the <code>iso2c</code> codes to do this. The relevant codes for the regions are: <code>Z4</code>, <code>Z7</code>, <code>ZJ</code>, <code>ZQ</code>, <code>XU</code>, <code>8S</code>, and <code>ZG</code>. You will find a code example of filtering with dplyr in the previous week’s class notes.</p>
+</li><li><p>Create a new column in the data, using the <code>mutate</code> dplyr function, called <code>co2</code>, containing the carbon dioxide emission values divided by a million, and rounded to two decimal places. This will give the emission values in gigatonnes, formatted to display conveniently on the chart Y axis. You will need to use R’s <code>round</code> function; again, you can find code examples in the previous week’s class notes.</p>
+</li><li><p>Make an NVD3 chart from the processed data, using the rCharts package. The chart type will be <code>stackedAreaChart</code>.</p>
+</li><li><p>Save the chart, as we did in the previous week’s class, to the folder you downloaded above.</p>
+</li><li><p>Open the saved HTML file in your text editor, then swap out the existing links to JavaScript and CSS resources for the following:</p>
+<pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;css/nv.d3.css&quot;&amp;gt;
+&amp;lt;script src=&quot;src/d3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&quot;src/nv.d3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script src=&quot;src/jquery-1.11.3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">&lt;link rel="stylesheet" href="css/nv.d3.css"&gt;
+&lt;script src="src/d3.min.js"&gt;&lt;/script&gt;
+&lt;script src="src/nv.d3.min.js"&gt;&lt;/script&gt;
+&lt;script src="src/jquery-1.11.3.min.js"&gt;&lt;/script&gt;
+</code></pre>
+</li><li><p>Still in your text editor, change the width of the chart to <code>100%</code>, for a responsive design, and comment out the second mention of a default width of <code>800px</code>.</p>
+</li><li><p>Advanced: You will notice that some of your chart labels contain the phrase <code>(all income levels)</code>. See if you can go back to the R code and figure out how to remove these.</p>
+</li></ul>
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>
