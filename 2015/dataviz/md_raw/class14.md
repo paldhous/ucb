@@ -7,7 +7,7 @@ Your task for this week's class is to create a version of the interactive graphi
 
 ### How to proceed
 
-- Download [this folder](data/week14.zip) to you desktop and unzip. It contains the JavaScript and CSS files necessary to draw an NVD3 chart.
+- Download [this folder](data/week14.zip) to your desktop and unzip. It contains the JavaScript and CSS files necessary to draw an NVD3 chart.
 
 - Use the WDI package to obtain the [data](http://data.worldbank.org/indicator/EN.ATM.CO2E.KT) from the World Bank's World Development Indicators site. Download the data for all countries in the first instance. The indicator name is `EN.ATM.CO2E.KT`.
 

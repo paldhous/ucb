@@ -64,7 +64,7 @@
  <iframe src="raw-data/week14/co2.html" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 
 <h3 id="how-to-proceed"><a name="how-to-proceed" href="#how-to-proceed"></a>How to proceed</h3><ul>
-<li><p>Download <a href="data/week14.zip">this folder</a> to you desktop and unzip. It contains the JavaScript and CSS files necessary to draw an NVD3 chart.</p>
+<li><p>Download <a href="data/week14.zip">this folder</a> to your desktop and unzip. It contains the JavaScript and CSS files necessary to draw an NVD3 chart.</p>
 </li><li><p>Use the WDI package to obtain the <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.KT">data</a> from the World Bank’s World Development Indicators site. Download the data for all countries in the first instance. The indicator name is <code>EN.ATM.CO2E.KT</code>.</p>
 </li><li><p>Then filter the data, using the dplyr package, for the seven World Bank regions. Use the <code>iso2c</code> codes to do this. The relevant codes for the regions are: <code>Z4</code>, <code>Z7</code>, <code>ZJ</code>, <code>ZQ</code>, <code>XU</code>, <code>8S</code>, and <code>ZG</code>. You will find a code example of filtering with dplyr in the previous week’s class notes.</p>
 </li><li><p>Create a new column in the data, using the <code>mutate</code> dplyr function, called <code>co2</code>, containing the carbon dioxide emission values divided by a million, and rounded to two decimal places. This will give the emission values in gigatonnes, formatted to display conveniently on the chart Y axis. You will need to use R’s <code>round</code> function; again, you can find code examples in the previous week’s class notes.</p>
