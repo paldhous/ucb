@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Making interactive maps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
+								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Principles of mapping</a></li>
+								<li><a href="week8.html">Making static maps</a></li>
+								<li><a href="week9.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
+			
+								<li><a href="week14.html">Let's apply what we've learned</a></li>									
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<h1 id="making-online-maps-and-processing-geodata-with-sql"><a name="making-online-maps-and-processing-geodata-with-sql" href="#making-online-maps-and-processing-geodata-with-sql"></a>Making online maps and processing geodata with SQL</h1><h3 id="introducing-cartodb"><a name="introducing-cartodb" href="#introducing-cartodb"></a>Introducing CartoDB</h3><p><a href="http://qgis.org/en/site/"><strong>CartoDB</strong></a> is a cloud-based mapping application that makes it easy to produce interactive, online maps. These maps can include <a href="http://docs.cartodb.com/tutorials/introduction_torque.html">animations of data over time</a>.</p><p>It is also a geospatial database, allowing you to perform GIS analyses and process geodata using <a href="http://en.wikipedia.org/wiki/SQL">Structured Query Language</a>. If you are comfortable with working with databases, you may find CartoDB a good alternative to the point-and-click interface of QGIS for these tasks.</p><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data from this session from <a href="data/week9.zip">here</a>, unzip the folder and place it on your desktop. It contains the following folders and files:</p><ul>
+<li><code>ca_healthcare</code><ul>
+<li><code>ca_counties_medicare.zip</code> Zipped shapefile with data on Medicare reimbursement per enrollee by California county in 2012, as used in week 8.</li><li><code>healthcare_facilities.csv</code> Locations and other data for hospitals and other healthcare facilities in California, as used in week 8.</li></ul>
+</li><li><code>seismic_risk.zip</code> Zipped shapefile detailing the risk of experiencing a major earthquake across the continental United States, as used in week 8.</li><li><code>sf</code><ul>
+<li><code>sf_test_addresses.csv</code> Sample of 100 addresses in San Francisco, geocoded.</li><li><code>sfpd_stations.zip</code> Zipped shapefile with locations of San Francisco police stations.</li></ul>
+</li></ul><p>All of the shapefiles have been compressed/zipped, as this is required to load them into cartoDB.</p><h3 id="map-medicare-reimbursements-and-hospitals-in-california"><a name="map-medicare-reimbursements-and-hospitals-in-california" href="#map-medicare-reimbursements-and-hospitals-in-california"></a>Map Medicare reimbursements and hospitals in California</h3><h4 id="import-the-data"><a name="import-the-data" href="#import-the-data"></a>Import the data</h4><p>To demonstrate CartoDB’s core map-making functionality, we will first make an interactive online version of the static map we made in week 8.</p><p>Login to a new CartoDB account, and you should see a screen like this:</p><p><img src="img/class9_1.jpg" alt=""></p><p>Open the drop-down menu under <code>Maps</code> at top left and switch to <code>Your datasets</code>. Then click the green <code>NEW DATASET</code> button at top right:</p><p><img src="img/class9_2.jpg" alt=""></p><p>You should now see the following screen:</p><p><img src="img/class9_3.jpg" alt=""></p><p>With the <code>Data file</code> tab selected, click the <code>Browse</code> button, navigate to the zipped <code>ca_counties_medicare.zip</code> shapefile and click <code>Open</code>. Then click the green <code>Connect dataset</code> button.</p><p>CartoDB can import data in a variety of formats, including CSV, KML, GeoJSON and zipped shapefiles. See <a href="http://docs.cartodb.com/cartodb-editor.html">here</a> for more on imports and supported data formats.</p><p>Once the data has imported, you will see the uploaded data table in <code>DATA VIEW</code>:</p><p><img src="img/class9_4.jpg" alt=""></p><p>Notice that, in addition to the fields from the original data, each row has been given a <code>cartodb_id</code>, which is a unique identifier for each. The table also has a field called <code>the_geom</code> which has the tag <code>GEO</code>. This field is central to how CartoDB works, defining the geometry of any map you make. As in QGIS, these geometries can be points, lines or polygons — which is what we have here.</p><p>You can rename fields, sort the table by the data in them, or change their data type (for example from numbers to strings of text), by clicking the downward-pointing triangle next to the header of each.</p><p>Switch to <code>MAP VIEW</code> to see the basic, unstyled map:</p><p><img src="img/class9_5.jpg" alt=""></p><p>Click the small return arrow at top left to go back to the overview of your datasets.</p><p>Notice that the top menu has a link to <code>DOCUMENTATION</code>, which has links to CartoDB’s technical manuals. The <code>Data library</code> link contains useful datasets that you can import into your own account. Take a few minutes to explore what’s there, before returning to your <code>Datasets</code>.</p><p>Now click the <code>New datasets</code> button again and import the file <code>healthcare_facilities.csv</code>, which should look like this in the <code>DATA VIEW</code>:</p><p><img src="img/class9_6.jpg" alt=""></p><p>Notice that <code>the_geom</code> for points is given by their longitude and latitude co-ordinates.</p><p>Click on the <code>MAP VIEW</code> to see the locations of all of the facilities:</p><p><img src="img/class9_7.jpg" alt=""></p><h4 id="create-a-visualization-combining-both-datasets"><a name="create-a-visualization-combining-both-datasets" href="#create-a-visualization-combining-both-datasets"></a>Create a visualization combining both datasets</h4><p>Exit the <code>healthcare_facilities</code> map and reopen the <code>ca_counties_medicare</code> dataset. Then click the <code>Visualize</code> button at top right.</p><p>You will then see a prompt to create a new map. Click the green <code>OK, CREATE MAP</code> button:</p><p><img src="img/class9_8.jpg" alt=""></p><p>Rename this map <code>California healthcare</code> by clicking on its name at top left:</p><p><img src="img/class9_9.jpg" alt=""></p><p>Now add the <code>healthcare_facilities</code> to the map, by clicking on the blue <code>+</code> button to the right. At the dialog box, click the <code>ADD LAYER</code> button:</p><p><img src="img/class9_10.jpg" alt=""></p><p>Now select <code>MAP VIEW</code> to see both layers on the same map:</p><p><img src="img/class9_11.jpg" alt=""></p><h4 id="select-a-basemap"><a name="select-a-basemap" href="#select-a-basemap"></a>Select a basemap</h4><p>Close the panel at bottom left suggesting interesting maps.</p><p>Now choose a basemap for your visualization, by clicking <code>Select basemap</code> at bottom left. Take a few minutes to explore the built-in basemap options. You are not limited to these basemaps, however.</p><p>To import another tiled basemap from elsewhere on the web, click the blue plus sign next to <code>Yours</code> to call up the following dialog box:</p><p><img src="img/class9_12.jpg" alt=""></p><p>The <code>XYZ</code> tab allows you to call in publicly available basemaps using URLs in the following format:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>https://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png
+</code></pre>">https://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png
+</code></pre><p>We will use this basemap, provided by MapBox (see the other basemaps from MapBox <a href="http://a.tiles.mapbox.com/v3/mapbox/maps.html">here</a>). The <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">Leaflet Providers preview</a> is a good place to look for available basemaps from other providers. It previews the maps and also exposes their <code>XYZ</code> URLs:</p><p><img src="img/class9_13.jpg" alt=""></p><p>Back in CartoDB, enter the <code>XYZ</code> URL for the MapBox world bright map and click <code>Add basemap</code>. The map should now look like this:</p><p><img src="img/class9_14.jpg" alt=""></p><h4 id="style-the-maps-using-the-cartodb-wizard"><a name="style-the-maps-using-the-cartodb-wizard" href="#style-the-maps-using-the-cartodb-wizard"></a>Style the maps using the CartoDB wizard</h4><p>Notice that the toolbar at right has tabs numbered <code>1</code> and <code>2</code>. It you hover over them, you will see that they correspond to the <code>ca_counties_medicare</code> and <code>healthcare_facilities</code> layers respectively.</p><p>Click on <code>1</code> to expose the <code>Visualization wizard</code> for the <code>ca_counties_medicare</code> layer, which can also be reached by clicking the paintbrush icon:</p><p><img src="img/class9_15.jpg" alt=""></p><p>(You can collapse the wizards at any time by clicking to the left of any of the icons.)</p><p>Notice that opening the wizard has also exposed blue toggle controls for each layer, which can be used to turn the visibility for each on and off. Hide the <code>healthcare_facilities</code> layer so we can see what we are doing.</p><p>Scroll from left to right through the visualization options, and select <code>CHOROPLETH</code> to make a choropleth map.</p><p>Set <code>hospital</code> as the data <code>Column</code>, select <code>5 Buckets</code>, set them by <code>Quantile</code> and set the <code>Polygon Stroke</code> to zero to remove the lines from the map layer. The map should now look like this:</p><p><img src="img/class9_16.jpg" alt=""></p><p>Now click <code>2</code> to switch to the <code>healthcare_facilities</code> layer.</p><p>First we need to filter for just the types of facility we are interested in. To do this click the <code>SQL</code> icon and replace the default query with the following:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>SELECT *
+FROM healthcare_facilities
+WHERE type LIKE 'GENERAL%' OR type LIKE 'SKILLED%'
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> healthcare_facilities
+<span class="hljs-keyword">WHERE</span> type <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'GENERAL%'</span> <span class="hljs-keyword">OR</span> type <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'SKILLED%'</span>
+</span></code></pre><p>You should be able to understand the basic structure of this query from our week 5 class on SQL and databases. Note, however, that <a href="http://www.postgresql.org/">PostgreSQL</a>, the database that underpins CartoDB, uses <code>%</code> as a wildcard for multiple characters, rather than the <code>*</code> used by SQLite.</p><p>Now switch to the visualization wizard and notice that there are different visualization possibilities for point layers.</p><p>Select <code>CATEGORY</code> and color the circles by the type of facility, by selecting <code>type</code> as the data <code>Column</code>. Turn back on the visibility of the <code>ca_counties_medicare</code> layer and the map should look like this:</p><p><img src="img/class9_17.jpg" alt=""></p><p>We now have a rough approximation of the map we made in week 8 using QGIS, but there are important differences: We do not have the custom bins we used for the choropleth map, the circles are not scaled by area according to capacity of the healthcare facilities, and the colors haven’t been fully customized.</p><h4 id="style-the-map-using-cartocss"><a name="style-the-map-using-cartocss" href="#style-the-map-using-cartocss"></a>Style the map using CartoCSS</h4><p>To exert finer control over the map styling, we can use CartoCSS, which styles maps in much the same way that conventional CSS styles web pages. See <a href="https://github.com/mapbox/carto/blob/master/docs/latest.md">here</a> for a good CartoCSS reference.</p><p>Switch back to the <code>ca_counties_medicare</code> layer, click on the <code>CSS</code> icon, where you will see the following code:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>/** choropleth visualization */
+
+#ca_counties_medicare {
+  polygon-fill: #FFFFB2;
+  polygon-opacity: 0.8;
+  line-color: #FFF;
+  line-width: 0;
+  line-opacity: 0;
+}
+#ca_counties_medicare [ hospital &amp;lt;= 5627.16] {
+   polygon-fill: #BD0026;
+}
+#ca_counties_medicare [ hospital &amp;lt;= 4197.21] {
+   polygon-fill: #F03B20;
+}
+#ca_counties_medicare [ hospital &amp;lt;= 3801.62] {
+   polygon-fill: #FD8D3C;
+}
+#ca_counties_medicare [ hospital &amp;lt;= 3581.08] {
+   polygon-fill: #FECC5C;
+}
+#ca_counties_medicare [ hospital &amp;lt;= 3249] {
+   polygon-fill: #FFFFB2;
+}
+</code></pre>"><span class="hljs-comment">/** choropleth visualization */</span>
+
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFFFB2</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">polygon-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.8</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFF</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-width</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt;= 5627.16]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#BD0026</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt;= 4197.21]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#F03B20</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt;= 3801.62]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FD8D3C</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt;= 3581.08]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FECC5C</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt;= 3249]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFFFB2</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Edit this to the following, to reset the breaks between the bins, and to use the same color scheme we used in week 8, using HEX values taken from <a href="http://colorbrewer2.org/">ColorBrewer</a></p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>/** choropleth visualization */
+
+#ca_counties_medicare {
+  polygon-fill: #FFFFB2;
+  polygon-opacity: 0.5;
+  line-color: #FFF;
+  line-width: 0;
+  line-opacity: 0;
+}
+#ca_counties_medicare [ hospital &amp;lt;= 5627.16] {
+   polygon-fill: #a50f15;
+}
+#ca_counties_medicare [ hospital &amp;lt; 4000] {
+   polygon-fill: #de2d26;
+}
+#ca_counties_medicare [ hospital &amp;lt; 3750] {
+   polygon-fill: #fb6a4a;
+}
+#ca_counties_medicare [ hospital &amp;lt; 3500] {
+   polygon-fill: #fcae91;
+}
+#ca_counties_medicare [ hospital &amp;lt; 3250] {
+   polygon-fill: #fee5d9;
+}
+</code></pre>"><span class="hljs-comment">/** choropleth visualization */</span>
+
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFFFB2</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">polygon-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.5</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFF</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-width</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt;= 5627.16]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#a50f15</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt; 4000]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#de2d26</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt; 3750]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fb6a4a</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt; 3500]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fcae91</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#ca_counties_medicare</span> <span class="hljs-attr_selector">[ hospital &lt; 3250]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">polygon-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fee5d9</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Note that that we have also edited the operators for all but one of the formulas for the breaks from <code>&lt;=</code> (less than or equal to) to <code>&lt;</code> (less then). This will create the same breaks as we used in the QGIS map. Click the <code>Apply style</code> button at bottom right.</p><p>Now switch to the CartoCSS editor for the <code>healthcare_facilities</code> layer, where you will find the following code:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>
+/** category visualization */
+
+#healthcare_facilities {
+   marker-fill-opacity: 0.9;
+   marker-line-color: #FFF;
+   marker-line-width: 1;
+   marker-line-opacity: 1;
+   marker-placement: point;
+   marker-type: ellipse;
+   marker-width: 10;
+   marker-allow-overlap: true;
+}
+
+#healthcare_facilities[type=&quot;GENERAL ACUTE CARE HOSPITAL&quot;] {
+   marker-fill: #A6CEE3;
+}
+#healthcare_facilities[type=&quot;SKILLED NURSING FACILITY&quot;] {
+   marker-fill: #1F78B4;
+}
+</code></pre>">
+<span class="hljs-comment">/** category visualization */</span>
+
+<span class="hljs-id">#healthcare_facilities</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">marker-fill-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.9</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-line-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFF</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-line-width</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-line-opacity</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-placement</span>:<span class="hljs-value"> point</span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-type</span>:<span class="hljs-value"> ellipse</span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value"> <span class="hljs-number">10</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-allow-overlap</span>:<span class="hljs-value"> true</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#healthcare_facilities</span><span class="hljs-attr_selector">[type="GENERAL ACUTE CARE HOSPITAL"]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#A6CEE3</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#healthcare_facilities</span><span class="hljs-attr_selector">[type="SKILLED NURSING FACILITY"]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#1F78B4</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>We can alter this CartoCSS to scale the circles accurately according to the capacity of the facilities. Looking at the CartoCSS above, the circles’ size is set by <code>marker-width</code>, which is the diameter of the circles, or twice the radius. But as we learned in week 2, scaling the circles by their radius or diameter will <em>not</em> scale them by area. To do this, we need to create a new field to scale by, containing the square root of all the capacity values.</p><p>Switch to the <code>DATA VIEW</code> for the <code>healthcare_facilities</code> layer and then click the <code>clear view</code> link near the top of the page. This will remove the previous SQL query, and allow us to edit the data.</p><p>Open up the dropdown menu for the <code>capacity</code> field and select <code>Add new column...</code> Rename it as <code>scale</code> and then change its type from <code>string</code> to <code>number</code>:</p><p><img src="img/class9_22.jpg" alt=""></p><p>Now open the <code>SQL</code> tab, then enter and apply the following query:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>UPDATE healthcare_facilities SET scale=sqrt(capacity)
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> healthcare_facilities <span class="hljs-keyword">SET</span> scale=<span class="hljs-keyword">sqrt</span>(capacity)
+</span></code></pre><p><code>UPDATE</code> queries actually change the data in the table, in this case setting the values for the new field as the square root of the values in the <code>capacity</code> field.</p><p>See that the <code>scale</code> field has now been populated with values:</p><p><img src="img/class9_23.jpg" alt=""></p><p>Now enter the previous query to filter by facilty <code>type</code> once more:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>SELECT *
+FROM healthcare_facilities
+WHERE type LIKE 'GENERAL%' OR type LIKE 'SKILLED%'
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> healthcare_facilities
+<span class="hljs-keyword">WHERE</span> type <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'GENERAL%'</span> <span class="hljs-keyword">OR</span> type <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'SKILLED%'</span>
+</span></code></pre><p>Return to the <code>MAP VIEW</code>, and if necessary set use the visualization wizard again to restore the styling by facility <code>type</code>.</p><p>Now open the <code>CSS</code> tab, and edit to the following:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>#healthcare_facilities {
+   marker-fill-opacity: 0.5;
+   marker-line-color: #FFF;
+   marker-line-width: 1;
+   marker-line-opacity: 1;
+   marker-placement: point;
+   marker-type: ellipse;
+   marker-width: [scale];
+   marker-allow-overlap: true;
+}
+
+#healthcare_facilities[type=&quot;GENERAL ACUTE CARE HOSPITAL&quot;] {
+   marker-fill: #0000FF;
+}
+#healthcare_facilities[type=&quot;SKILLED NURSING FACILITY&quot;] {
+   marker-fill: #FF7F00;
+}
+</code></pre>"><span class="hljs-id">#healthcare_facilities</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">marker-fill-opacity</span>:<span class="hljs-value"> <span class="hljs-number">0.5</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-line-color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FFF</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-line-width</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-line-opacity</span>:<span class="hljs-value"> <span class="hljs-number">1</span></span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-placement</span>:<span class="hljs-value"> point</span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-type</span>:<span class="hljs-value"> ellipse</span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-width</span>:<span class="hljs-value"> [scale]</span></span>;
+   <span class="hljs-rule"><span class="hljs-attribute">marker-allow-overlap</span>:<span class="hljs-value"> true</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#healthcare_facilities</span><span class="hljs-attr_selector">[type="GENERAL ACUTE CARE HOSPITAL"]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#0000FF</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#healthcare_facilities</span><span class="hljs-attr_selector">[type="SKILLED NURSING FACILITY"]</span> <span class="hljs-rules">{
+   <span class="hljs-rule"><span class="hljs-attribute">marker-fill</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#FF7F00</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre><p>Setting the <code>marker-width</code> to <code>[scale]</code>, with the name of the field in square brackets, accurately scales the area of the circles according the capacity of the facilities. If necessary, when scaling circles in this way, you can use multiplication (<code>marker-width: [scale]*2;</code>) or division (<code>marker-width: [scale]*2;</code>) to increase or decrease the size of all the circles.</p><p>The CartoCSS above also makes the circles semi-transparent using <code>marker-fill-opacity: 0.5;</code> and changes the color for the hospitals to blue using <code>marker-fill: #0000FF;</code>.</p><p>The map should now look like this:</p><p><img src="img/class9_24.jpg" alt=""></p><h4 id="edit-the-legend"><a name="edit-the-legend" href="#edit-the-legend"></a>Edit the legend</h4><p>Notice that the legend still refers to the styling created by the wizard.</p><p>For the <code>ca_counties_medicare</code> layer, click on the legends icon:</p><p><img src="img/class9_25.jpg" alt=""></p><p>Edit the title to <code>Medicare reimbursement per enrollee</code> and check <code>show</code>, change the <code>Left label</code> to <code>&lt;$3,250</code> and the <code>Right label</code> to <code>&gt;$4,000</code>; then change the colors to those that are now displayed on the map:</p><p><img src="img/class9_26.jpg" alt=""></p><p>Select the <code>&lt;/&gt;</code> link to edit the html to the following:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;div class='cartodb-legend choropleth'&amp;gt;   
+&amp;lt;div class=&quot;legend-title&quot;&amp;gt;Medicare reimbursement per enrollee&amp;lt;/div&amp;gt;
+&amp;lt;ul&amp;gt;
+    &amp;lt;li class=&quot;min&quot;&amp;gt;
+        &amp;amp;lt;$3,250
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li class=&quot;max&quot;&amp;gt;
+        &amp;amp;gt;$4,000
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li class=&quot;graph count_315&quot;&amp;gt;
+    &amp;lt;div class=&quot;colors&quot;&amp;gt;
+    &amp;lt;div class=&quot;quartile&quot; style=&quot;background-color:#fee5d9; opacity:0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div class=&quot;quartile&quot; style=&quot;background-color:#fcae91; opacity:0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div class=&quot;quartile&quot; style=&quot;background-color:#fb6a4a; opacity:0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div class=&quot;quartile&quot; style=&quot;background-color:#de2d26; opacity:0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;div class=&quot;quartile&quot; style=&quot;background-color:#a50f15; opacity:0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+    &amp;lt;/div&amp;gt;
+    &amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+</code></pre>">&lt;div class='cartodb-legend choropleth'&gt;   
+&lt;div class="legend-title"&gt;Medicare reimbursement per enrollee&lt;/div&gt;
+&lt;ul&gt;
+    &lt;li class="min"&gt;
+        &amp;lt;$3,250
+    &lt;/li&gt;
+    &lt;li class="max"&gt;
+        &amp;gt;$4,000
+    &lt;/li&gt;
+    &lt;li class="graph count_315"&gt;
+    &lt;div class="colors"&gt;
+    &lt;div class="quartile" style="background-color:#fee5d9; opacity:0.5"&gt;&lt;/div&gt;
+    &lt;div class="quartile" style="background-color:#fcae91; opacity:0.5"&gt;&lt;/div&gt;
+    &lt;div class="quartile" style="background-color:#fb6a4a; opacity:0.5"&gt;&lt;/div&gt;
+    &lt;div class="quartile" style="background-color:#de2d26; opacity:0.5"&gt;&lt;/div&gt;
+    &lt;div class="quartile" style="background-color:#a50f15; opacity:0.5"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><p>Adding <code>opacity: 0.5</code> to the styling for each of the legend items makes them match the semi-transparency of the map layer.</p><p>Edit the legend for the <code>healthcare_facilities</code> similarly, changing the HTML to the following:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;div class='cartodb-legend custom'&amp;gt;   
+&amp;lt;div class=&quot;legend-title&quot;&amp;gt;Healthcare facilities (scaled by capacity)&amp;lt;/div&amp;gt;
+&amp;lt;p&amp;gt;
+  &amp;lt;ul&amp;gt;
+    &amp;lt;li&amp;gt;
+        &amp;lt;div class=&quot;bullet&quot; style=&quot;background:#0000ff; opacity: 0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+        General acute care hospital
+    &amp;lt;/li&amp;gt;
+    &amp;lt;li&amp;gt;
+        &amp;lt;div class=&quot;bullet&quot; style=&quot;background:#ff7f00; opacity: 0.5&quot;&amp;gt;&amp;lt;/div&amp;gt;
+        Skilled nursing facility
+    &amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+</code></pre>">&lt;div class='cartodb-legend custom'&gt;   
+&lt;div class="legend-title"&gt;Healthcare facilities (scaled by capacity)&lt;/div&gt;
+&lt;p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+        &lt;div class="bullet" style="background:#0000ff; opacity: 0.5"&gt;&lt;/div&gt;
+        General acute care hospital
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;div class="bullet" style="background:#ff7f00; opacity: 0.5"&gt;&lt;/div&gt;
+        Skilled nursing facility
+    &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+</code></pre><h3 id="configure-tooltips"><a name="configure-tooltips" href="#configure-tooltips"></a>Configure tooltips</h3><p>Select the <code>ca_counties_medicare</code> layer, and click on one of the counties and click the infowindow icon:</p><p><img src="img/class9_27.jpg" alt=""></p><p>In the <code>Hover</code> tab, select the <code>hospital</code> toggle control, uncheck <code>title?</code>, then select the <code>&lt;/&gt;</code> link to edit the HTML.</p><p>Insert a <code>$</code> symbol in front of <code>{{hospital}}</code>:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;div class=&quot;cartodb-tooltip-content-wrapper&quot;&amp;gt;
+  &amp;lt;div class=&quot;cartodb-tooltip-content&quot;&amp;gt;
+    &amp;lt;p&amp;gt;${{hospital}}&amp;lt;/p&amp;gt;
+  &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+</code></pre>">&lt;div class="cartodb-tooltip-content-wrapper"&gt;
+  &lt;div class="cartodb-tooltip-content"&gt;
+    &lt;p&gt;${{hospital}}&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>Click <code>Apply</code> and a tooltip showing the medicare reimbursement should now appear when you hover over each county.</p><p>Now switch to the <code>healthcare_facilities</code> label, select the infowindow tab, and in the <code>Click</code> tab select the <code>capacity</code> and <code>name</code> toggle controls. This time keep <code>title?</code> checked for each.</p><p>The map should now look like this:</p><p><img src="img/class9_28.jpg" alt=""></p><h4 id="configure-the-map-options,-and-publish"><a name="configure-the-map-options,-and-publish" href="#configure-the-map-options,-and-publish"></a>Configure the map options, and publish</h4><p>We are almost ready to publish the visualization, but before doing so, click <code>Options</code> at the bottom left of the map to select the controls and other items you want to include. Here  the <code>Search box</code>, which geocodes locations entered by the user and zooms to them is disabled; the option to switch to a <code>Fullscreen</code> view of the map is enabled:</p><p><img src="img/class9_29.jpg" alt=""></p><p>Also explore the <code>Add Element</code> button at top left, which allows you to add a title and other annotations to your map.</p><p>Having finished working on the visualization, click the <code>PUBLISH</code> button at top right. This will call up the following options:</p><p><img src="img/class9_30.jpg" alt=""></p><p>Copy the code from <code>Embed it</code> to obtain an <a href="http://www.w3schools.com/tags/tag_iframe.asp">iframe</a> which will allow you to embed the map on any web page, in the following format:</p><pre><code class="html" data-origin="<pre><code class=&quot;HTML&quot;>&amp;lt;iframe width=&quot;100%&quot; height=&quot;520&quot; frameborder=&quot;0&quot; src=&quot;https://ucbdataviz.cartodb.com/viz/2b14dcc2-6575-11e5-b56a-0ecbf97728a3/embed_map&quot; allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen&amp;gt;&amp;lt;/iframe&amp;gt;
+</code></pre>">&lt;iframe width="100%" height="520" frameborder="0" src="https://ucbdataviz.cartodb.com/viz/2b14dcc2-6575-11e5-b56a-0ecbf97728a3/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen&gt;&lt;/iframe&gt;
+</code></pre><p>(Note that you can edit the dimensions of the iframe — here set at <code>100%</code> of the width of the div in which it appears — and <code>520</code> pixels high) as required.)</p><p>Open the file <code>test.html</code> in your text editor, paste the iframe code between the <code>&lt;body&gt; &lt;/body&gt;</code> tags and save the file. Then open in a web browser to see the completed map:</p><p><img src="img/class9_31.jpg" alt=""></p><h3 id="other-visualization-types-with-cartodb"><a name="other-visualization-types-with-cartodb" href="#other-visualization-types-with-cartodb"></a>Other visualization types with CartoDB</h3><p>CartoDB has wizards to create other visualization types, which again can be customized using CartoCSS. These include <code>Torque</code> animations. See <a href="http://paldhous.github.io/kdmc-workshops/2015/advanced-mapping/cartodb.html">here</a> for a tutorial that includes an animated map of North Atlantic storms.</p><h3 id="process-geodata-and-perform-geospatial-analysis-using-sql"><a name="process-geodata-and-perform-geospatial-analysis-using-sql" href="#process-geodata-and-perform-geospatial-analysis-using-sql"></a>Process geodata and perform geospatial analysis using SQL</h3><p>CartoDB isn’t just a database — it is a “spatially aware” database that you can query to process geotdata, calculate distances or areas, and  perform other geospatial analyses. This is achieved using <a href="http://postgis.net/">PostGIS</a>, an extension to the open-source <a href="http://www.postgresql.org/">PostgreSQL</a> database that drives CartoDB.</p><h4 id="clip-the-seismic-risk-dataset-to-the-borders-of-the-united-states"><a name="clip-the-seismic-risk-dataset-to-the-borders-of-the-united-states" href="#clip-the-seismic-risk-dataset-to-the-borders-of-the-united-states"></a>Clip the seismic risk dataset to the borders of the United States</h4><p>From now on were are going to work with queries that use PostGIS spatial functions, which all have the prefix <code>ST_</code>.</p><p>Navigate back to your datasets and import the zipped shapefile <code>seismic_risk</code>, which should look like this in the <code>MAP VIEW</code>:</p><p><img src="img/class9_32.jpg" alt=""></p><p>In the <code>DATA VIEW</code>, notice that there are two fields containing data about the mapped polygons: <code>acc_val</code> and <code>valley</code>.</p><p>Navigate back to your datasets, click the <code>Data library</code> link, and <code>Search</code> for the <code>World borders</code> dataset. Select and then click the <code>Connect dataset</code> link.</p><p>In the <code>DATA VIEW</code>, notice that it contains a field with <code>iso3</code> country codes:</p><p><img src="img/class9_33.jpg" alt=""></p><p>Open the <code>SQL</code> tab, and run the following query to replicate the clip we ran last week using QGIS:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>SELECT seismic_risk.acc_val, seismic_risk.valley, ST_Intersection(seismic_risk.the_geom_webmercator, world_borders.the_geom_webmercator) AS the_geomwebmercator
+FROM seismic_risk, world_borders
+WHERE world_borders.iso3='USA'
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> seismic_risk.acc_val, seismic_risk.valley, ST_Intersection(seismic_risk.the_geom_webmercator, world_borders.the_geom_webmercator) <span class="hljs-keyword">AS</span> the_geomwebmercator
+<span class="hljs-keyword">FROM</span> seismic_risk, world_borders
+<span class="hljs-keyword">WHERE</span> world_borders.iso3=<span class="hljs-string">'USA'</span>
+</span></code></pre><p>Let’s break this query down:</p><p>The <code>SELECT</code> clause selects the two data fields from the <code>seismic_risk</code> dataset, and creates a third column called <code>the_geom_webmercator</code> using the PostGIS function <code>ST_Intersection</code>, which is the spatial overlap between the <code>seismic_risk</code> and <code>world_borders</code> maps.</p><p>Why does this query use <code>the_geom_webmercator</code> rather than <code>the_geom</code>? This is a quirk of CartoDB, which stores a projected version of the table’s geometry in a “hidden” field of this name, as explained <a href="http://docs.cartodb.com/tutorials/projections.html">here</a>. Some PostGIS functions will only work on this version of the geometry, but CartoDB should warn you when this is necessary — try running the same query using <code>the_geom</code> and you should be prompted to use <code>the_geom_webmercator</code>.</p><p>The <code>FROM</code> clause needs to include both datasets mentioned in the <code>SELECT</code> clause, separated by commas.</p><p>Finally, the <code>WHERE</code> clause filters the results so that the data returned overlaps with the United States only.</p><p>Click on the <code>Create dataset from query</code> link, rename it as <code>seismic_risk_clip</code>, and switch to the <code>MAP VIEW</code>, which should look like this:</p><p><img src="img/class9_34.jpg" alt=""></p><p>If you are processing data in CartoDB for use with other mapping tools, you would now want to export the data. To do this, click on the <code>Edit</code> link at top ight, select <code>Export...</code> and choose the desired format:</p><p><img src="img/class9_35.jpg" alt=""></p><h4 id="create-buffers-around-geocoded-san-fracisco-addresses"><a name="create-buffers-around-geocoded-san-fracisco-addresses" href="#create-buffers-around-geocoded-san-fracisco-addresses"></a>Create buffers around geocoded San Fracisco addresses</h4><p>Import the file <code>sf_test_addresses.csv</code>. It will initially import with <code>the_geom</code> field containing <code>null</code> values, because there are no fields unambiguously labelled <code>longitude</code> and <code>latitude</code>:</p><p><img src="img/class9_36.jpg" alt=""></p><p>Click on the orange <code>geo</code> symbol, select <code>bing_latitude</code> and <code>bing_longitude</code> as geographic co-ordinates and click <code>Continue</code>:</p><p><img src="img/class9_37.jpg" alt=""></p><p>Switch to <code>MAP VIEW</code> to confirm that the points are displaying correctly in San Francisco. Then select <code>Edit</code> at top right, <code>Duplicate dataset...</code> and change its name to <code>buffer</code>.</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>UPDATE buffer SET the_geom = ST_Buffer(the_geom::geography, 304.8)::geometry
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> buffer <span class="hljs-keyword">SET</span> the_geom = ST_Buffer(the_geom::geography, <span class="hljs-number">304.8</span>)::geometry
+</span></code></pre><p>This changes the map so that instead of points, we now have circles drawn around each of the points with a radius of 1,000 feet, or 304.8 meters. Notice that the entries in <code>the_geom</code> field are now all <code>Polygon</code>. Switch to <code>MAP VIEW</code>:</p><p><img src="img/class9_38.jpg" alt=""></p><p>Let’s break this query down to understand how it works. First, note that it is an <code>UPDATE</code> query, so rather than selecting records from a table, it is changing the table. The change being made is to <code>SET</code> the field <code>the_geom</code> using the PostGIS function <code>ST_Buffer</code>, which draws a buffer around an object using the value specified in meters.</p><p>That’s all fairly easy to understand, but why does the query contain <code>::geography</code> and <code>::geometry</code>? These are data conversions that are necessary for the buffers to be drawn. CartoDB stores <code>the_geom</code> in a <code>WGS84</code> datum, for which the units are degrees. The conversion from this <code>geometry</code> to <code>geography</code> is necessary for calculations to be made in meters. Once the buffer has been calculated, the data must be converted back to <code>geometry</code> to update the table in the database.</p><p>This query reverses the process, turning each circle into a point at its center:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>UPDATE buffer SET the_geom = ST_Centroid(the_geom)
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> buffer <span class="hljs-keyword">SET</span> the_geom = ST_Centroid(the_geom)
+</span></code></pre><p>Try it out, then use the first query again to return to the buffered points. If you switch to the <code>DATA VIEW</code>, you will see that the values in <code>the_geom</code> are now <code>Polygon</code> rather than point coordinates.</p><p>Now we will dissolve all of these separate circles into a single buffer layer, by running this query:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>SELECT ST_Union(the_geom_webmercator) AS the_geom_webmercator
+FROM buffer
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">SELECT</span> ST_Union(the_geom_webmercator) <span class="hljs-keyword">AS</span> the_geom_webmercator
+<span class="hljs-keyword">FROM</span> buffer
+</span></code></pre><p><code>ST_Union</code> is a function that dissolves multiple geometries into one, which again should be used with <code>the_geom_webmercator</code>.</p><p>In the data view, you will notice that there is now just a single field, called <code>the_geom_webmercator</code>, containing one <code>Polygon</code>. If you switch to the map view, you will see that the separate circles have now dissolved together:</p><p><img src="img/class9_39.jpg" alt=""></p><p>Select <code>create dataset from query</code> and rename the new dataset as <code>buffer_dissolved</code>.</p><p>Return to your datasets, open the original <code>sf_test_addresses</code> once more, and switch to the <code>MAP VIEW</code>.</p><p>Now click <code>VISUALIZE</code> at top right to create a map. Click the blue <code>+</code> symbol at top right, click on <code>Connect dataset</code> and import the zipped shapefile <code>sfpd_stations.zip</code>. using the <code>Data file</code> tab. Then use the <code>Simple</code> option in the <code>Visualization wizard</code> to color the points denoting the locations of San Francisco police stations black. The visualization, with its two layers, should now look like this:</p><p><img src="img/class9_40.jpg" alt=""></p><p>Next we are going to run a query to calculate the distance from each of the geocoded addresses to the nearest police stations. But first we need to create a new field called <code>distance</code> in the <code>sf_test_addresses</code> field to hold the results of this query.</p><p>Select this layer from the right toolbar, switch to <code>DATA VIEW</code> and then open the dropdown menu for any of the field headers. Select <code>Add new column...</code>, call it <code>distance</code> and make its type <code>number</code>.</p><p>Now select the <code>SQL</code> tab and apply this query:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>UPDATE sf_test_addresses SET distance = (
+  SELECT ST_Distance(
+            sf_test_addresses.the_geom::geography, 
+            sfpd_stations.the_geom::geography
+          )
+  FROM sfpd_stations
+  ORDER BY sf_test_addresses.the_geom &amp;lt;-&amp;gt; sfpd_stations.the_geom 
+  LIMIT 1
+)
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> sf_test_addresses <span class="hljs-keyword">SET</span> distance = (
+  <span class="hljs-keyword">SELECT</span> ST_Distance(
+            sf_test_addresses.the_geom::geography, 
+            sfpd_stations.the_geom::geography
+          )
+  <span class="hljs-keyword">FROM</span> sfpd_stations
+  <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> sf_test_addresses.the_geom &lt;-&gt; sfpd_stations.the_geom 
+  <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">1</span>
+)
+</span></code></pre><p>The <code>distance</code> field should now have been populated with numbers, representing the distance in meters from that address to the nearest police station.</p><p><code>ST_Distance</code> is fairly straightfoward, and you will recognize why <code>the_geom</code> fields must be converted to geography so that distances can be calculated in meters. This time they do not need to be converted back to geometry because neither of the <code>the_geom</code> fields is being updated by the query.</p><p>The really clever part is this:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>ORDER BY sf_test_addresses.the_geom &amp;lt;-&amp;gt; sfpd_stations.the_geom 
+LIMIT 1
+</code></pre>">ORDER BY sf_test_addresses.the_geom &lt;-&gt; sfpd_stations.the_geom 
+LIMIT 1
+</code></pre><p>This is performs an <a href="http://boundlessgeo.com/2011/09/indexed-nearest-neighbour-search-in-postgis/">indexed nearest neighbor search</a>. <code>&lt;-&gt;</code> measures the distance to each police station from each address, and then <code>ORDER BY</code> sorts these distances in ascending order, nearest first. Finally, <code>LIMIT 1</code> returns only the first value, which is the distance to the nearest police station from each address.</p><p>What if you want those distances in miles, rather than meters? One meter is 0.000621371 miles, so simply edit the query to include this conversion:</p><pre class="sql hljs"><code class="SQL" data-origin="<pre><code class=&quot;SQL&quot;>UPDATE sf_test_addresses SET distance = (
+  SELECT (ST_Distance(
+            sf_test_addresses.the_geom::geography, 
+            sfpd_stations.the_geom::geography
+          ))*0.000621371
+  FROM sfpd_stations
+  ORDER BY sf_test_addresses.the_geom &amp;lt;-&amp;gt; sfpd_stations.the_geom 
+  LIMIT 1
+)
+</code></pre>"><span class="hljs-operator"><span class="hljs-keyword">UPDATE</span> sf_test_addresses <span class="hljs-keyword">SET</span> distance = (
+  <span class="hljs-keyword">SELECT</span> (ST_Distance(
+            sf_test_addresses.the_geom::geography, 
+            sfpd_stations.the_geom::geography
+          ))*<span class="hljs-number">0.000621371</span>
+  <span class="hljs-keyword">FROM</span> sfpd_stations
+  <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> sf_test_addresses.the_geom &lt;-&gt; sfpd_stations.the_geom 
+  <span class="hljs-keyword">LIMIT</span> <span class="hljs-number">1</span>
+)
+</span></code></pre><h4 id="next-steps-with-postgis"><a name="next-steps-with-postgis" href="#next-steps-with-postgis"></a>Next steps with PostGIS</h4><p>I hope these queries have whetted your appetite to learn more about PostGIS. I suggest continuing with the NICAR below, which provides some more examples of queries, and how they have been used by news media to generate stories and visualizations.</p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="http://docs.cartodb.com/tutorials.html">CartoDB tutorials</a><br>CartoDB maintains a good set of tutorials, organized by level of difficulty.</p><p><a href="https://github.com/csvsoundsystem/nicar-cartodb-postgis">CartoDB/PostGIS workshop from NICAR 2014 meeting</a><br>Introduction to PostGIS and CartoDB from Andrew Hill of Vizzuality, the company behind CartoDB, and data journalist Michael Keller. From the annual meeting of the National Institute for Computer-Assisted Reporting.</p><p><a href="http://workshops.boundlessgeo.com/postgis-intro/index.html#">Introduction to PostGIS</a><br>Detailed series of tutorials, from Boundless. While this uses the <a href="http://boundlessgeo.com/solutions/opengeo-suite/download/">OpenGeo Suite</a>, rather than CartoDB, the lessons should be transferrable — but note that the OpenGeo Suite uses the field name <code>geom</code> rather than cartoDB’s <code>the_geom</code>.</p>
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

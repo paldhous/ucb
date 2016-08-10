@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
+								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Principles of mapping</a></li>
+								<li><a href="week8.html">Making static maps</a></li>
+								<li><a href="week9.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
+			
+								<li><a href="week14.html">Let's apply what we've learned</a></li>									
+
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+		<div class="panel panel-default quiz" style="margin:0 auto">
+			<div class="panel-body">
+				<form name="quizform" method="post" action="php/quizmailer.php" class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="inputName" class="col-lg-12">Name</label>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" id="inputName" name="inputName" placeholder="Your name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail" class="col-lg-12">Email</label>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Your email">
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ1" class="col-lg-12">1. Identify the categorical variables from this list: a) day of the week; b) height (metres); c) identifies as conservative or liberal; d) speed (mph); e) weight (lbs); f) speed (high, medium, low).</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ1" name="inputQ1" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ2" class="col-lg-12">2. List five possible aggregate measures for a continuous variable, with a one-sentence explanation of each. For example, sum is the result of adding together the values for all records in the dataset.</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ2" name="inputQ2" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ3" class="col-lg-12">3. Explain what is meant by a negative correlation.</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ3" name="inputQ3" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ4" class="col-lg-12">4. You suspect that children who get less sleep per night score worse on math tests because they are tired. When drawing a scatter plot of the data, what variable would you put on the Y axis, and why?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ4" name="inputQ4" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ5" class="col-lg-12">5. Under what circumstance might you draw a chart using a logarithmic scale for one axis?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ5" name="inputQ5" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ6" class="col-lg-12">6. List these visual cues in order of the accuracy with which values from the encoded data can be perceived, from most to least accurate: a) area; b) position (on an aligned scale); c) color/hue; d) length (not aligned).</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ6" name="inputQ6" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ7" class="col-lg-12">7. You need to plot the split between the Republican and Democratic vote for every presidential election since 1980. What type of chart would you choose? Explain your choice.</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ7" name="inputQ7" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ8" class="col-lg-12">8. You are encoding a continuous variable by the area of circles. If a value of 10 is represented by a circle of 4 pixels radius, what is the radius in pixels of a circle corresponding to a value of 40?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ8" name="inputQ8" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ9" class="col-lg-12">9. You need to represent two categorical variables using color. If you pick yellow for one variable, what would be a good choice for the second? Explain your choice.</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ9" name="inputQ9" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ10" class="col-lg-12">10. What type of color scheme would you pick to represent percentage change in population by county between the 2000 and 2010 U.S. Census: sequential, diverging, or qualitative? Explain your choice.</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ10" name="inputQ10" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<div class="col-lg-12">
+							<button type="submit" class="btn btn-default">
+								Submit
+							</button>
+							<p>(Your answers will also be sent to the email address you provided.)</p>
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

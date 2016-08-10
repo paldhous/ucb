@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>From R to interactive charts and maps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
+								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Principles of mapping</a></li>
+								<li><a href="week8.html">Making static maps</a></li>
+								<li><a href="week9.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
+			
+								<li><a href="week14.html">Let's apply what we've learned</a></li>									
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<h1 id="from-r-to-interactive-charts-and-maps"><a name="from-r-to-interactive-charts-and-maps" href="#from-r-to-interactive-charts-and-maps"></a>From R to interactive charts and maps</h1><h3 id="let's-make-this-easier"><a name="let's-make-this-easier" href="#let's-make-this-easier"></a>Let’s make this easier</h3><p>As we saw in last week’s class, coding graphics from scratch using D3 is a laborious process. For standard chart types, as we discussed, you may wish to write D3 templates that can be modified for individual projects.</p><p>However, we will today explore another approach: Making JavaScript visualizations directly from R/RStudio. This has become possible recently thanks to an R package called <a href="http://rcharts.io/">rCharts</a>, which connects to multiple JavaScript charting libraries, and a group of packages collectively known as <a href="http://www.htmlwidgets.org/">htmlwidgets</a>.</p><p>These packages take instructions in R code, and write the JavaScript and HTML necessary to draw charts using JavaScript visualization libraries. They also allow you to easily export the charts you create in R as web pages.</p><p>I have used these in my own work to create simple interactive charts, in posts such as <a href="http://www.buzzfeed.com/peteraldhous/why-katrina-was-the-storm-from-hell">this</a> and <a href="http://www.buzzfeed.com/peteraldhous/american-terrorism-by-the-numbers">this</a>.</p><p>One advantage of this approach is that I can work in a single environment both to process my data and to make my online charts. Maintaining a simple, streamlined workflow allows me to produce graphics quickly on news deadlines.</p><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data for this session from <a href="data/week13.zip">here</a>, unzip the folder and place it on your desktop. It contains the following folders and files:</p><ul>
+<li><code>src</code> Folder containing local copies of the following JavaScript libraries: <a href="http://d3js.org/">D3</a>, <a href="http://nvd3.org/">NVD3</a>, <a href="http://www.highcharts.com/">Highcharts</a> and <a href="https://jquery.com/">jQuery</a>.</li><li><code>css</code> Folder with CSS style sheet for the NVD3 library.</li><li><code>seismic_risk_clip</code> Folder containing <a href="http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014">U.S. Geological Survey shapefile</a>,  detailing the risk of experiencing a major earthquake, clipped to the boundaries of the continental United States.</li><li><code>storms.csv</code> Data on North Atlantic <a href="http://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html">tropical storms and hurricanes</a> compiled by by the Hurricane Research Division of the U.S. National Oceanic and Atmospheric Administration.</li><li><code>senate-113-2014.json</code> JSON data on voting patterns in the U.S. Senate in 2014, detailing the number and percentage of times pairs of Senators voted the same way in each year. Scraped from <a href="https://www.govtrack.us/">GovTrack.US</a>, as described <a href="http://paldhous.github.io/NICAR/2015/gephi.html">here</a>.</li></ul><h3 id="install-rcharts-and-make-some-simple-charts"><a name="install-rcharts-and-make-some-simple-charts" href="#install-rcharts-and-make-some-simple-charts"></a>Install rCharts and make some simple charts</h3><p>Launch RStudio, create a new RScript, and set the working directory to the downloaded folder using the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set working directory
+setwd(&quot;~/Desktop/week13&quot;)
+</code></pre>"><span class="hljs-comment"># set working directory</span>
+setwd(<span class="hljs-string">"~/Desktop/week13"</span>)
+</code></pre><p>Save the script as <code>week13.R</code>.</p><p>We are going to install rCharts directly from its <a href="https://github.com/ramnathv/rCharts">GitHub repository</a>. To do this, we first need to install and load a package called <a href="https://cran.r-project.org/web/packages/devtools/devtools.pdf">devtools</a>, which you can do with the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load devtools
+install.packages(&quot;devtools&quot;)
+library(devtools)
+</code></pre>"><span class="hljs-comment"># install and load devtools</span>
+install.packages(<span class="hljs-string">"devtools"</span>)
+<span class="hljs-keyword">library</span>(devtools)
+</code></pre><p>Now we can install and load rCharts:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load rCharts
+install_github(&quot;rCharts&quot;, &quot;ramnathv&quot;)
+library(rCharts)
+</code></pre>"><span class="hljs-comment"># install and load rCharts</span>
+install_github(<span class="hljs-string">"rCharts"</span>, <span class="hljs-string">"ramnathv"</span>)
+<span class="hljs-keyword">library</span>(rCharts)
+</code></pre><h4 id="make-line-charts-from-world-bank-data"><a name="make-line-charts-from-world-bank-data" href="#make-line-charts-from-world-bank-data"></a>Make line charts from World Bank data</h4><p>As in Week 11, we are going to download and process data from the World Bank’s World Development Indicators. So again, we need the <a href="https://cran.r-project.org/web/packages/WDI/WDI.pdf">WDI</a> and <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">dplyr</a> packages. Load them now:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load WDI and dplyr
+library(WDI)
+library(dplyr)
+</code></pre>"><span class="hljs-comment"># load WDI and dplyr</span>
+<span class="hljs-keyword">library</span>(WDI)
+<span class="hljs-keyword">library</span>(dplyr)
+</code></pre><p>Next run this block of code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># import World Bank data
+# list of indicators to be imported
+indic_list &amp;lt;- c(&quot;SP.DYN.LE00.IN&quot;, &quot;SH.XPD.PCAP.PP.KD&quot;, &quot;SL.UEM.TOTL.ZS&quot;)
+
+# import indicators, rename variables, and round numbers
+indicators &amp;lt;- WDI(indicator=indic_list, 
+                  country=&quot;all&quot;, 
+                  start=1990, 
+                  end=2013) %&amp;gt;%
+  rename(life_expect=SP.DYN.LE00.IN, 
+         health_spend=SH.XPD.PCAP.PP.KD, 
+         unemploy_rate=SL.UEM.TOTL.ZS) %&amp;gt;%
+  mutate(life_expect=round(life_expect, digits=2),
+         unemploy_rate=round(unemploy_rate, digits=2), 
+         health_spend=round(health_spend, digits=0))
+
+# filter for countries/region of interest
+countries &amp;lt;- filter(indicators, iso2c==&quot;GR&quot;|iso2c==&quot;DE&quot;|iso2c==&quot;EU&quot;|iso2c==&quot;RU&quot;)
+
+# edit country/region names
+countries$country &amp;lt;- gsub(&quot;Russian Federation&quot;, &quot;Russia&quot;, countries$country)
+countries$country &amp;lt;- gsub(&quot;European Union&quot;, &quot;EU&quot;, countries$country)
+</code></pre>"><span class="hljs-comment"># import World Bank data</span>
+<span class="hljs-comment"># list of indicators to be imported</span>
+indic_list &lt;- c(<span class="hljs-string">"SP.DYN.LE00.IN"</span>, <span class="hljs-string">"SH.XPD.PCAP.PP.KD"</span>, <span class="hljs-string">"SL.UEM.TOTL.ZS"</span>)
+
+<span class="hljs-comment"># import indicators, rename variables, and round numbers</span>
+indicators &lt;- WDI(indicator=indic_list, 
+                  country=<span class="hljs-string">"all"</span>, 
+                  start=<span class="hljs-number">1990</span>, 
+                  end=<span class="hljs-number">2013</span>) %&gt;%
+  rename(life_expect=SP.DYN.LE00.IN, 
+         health_spend=SH.XPD.PCAP.PP.KD, 
+         unemploy_rate=SL.UEM.TOTL.ZS) %&gt;%
+  mutate(life_expect=round(life_expect, digits=<span class="hljs-number">2</span>),
+         unemploy_rate=round(unemploy_rate, digits=<span class="hljs-number">2</span>), 
+         health_spend=round(health_spend, digits=<span class="hljs-number">0</span>))
+
+<span class="hljs-comment"># filter for countries/region of interest</span>
+countries &lt;- filter(indicators, iso2c==<span class="hljs-string">"GR"</span>|iso2c==<span class="hljs-string">"DE"</span>|iso2c==<span class="hljs-string">"EU"</span>|iso2c==<span class="hljs-string">"RU"</span>)
+
+<span class="hljs-comment"># edit country/region names</span>
+countries$country &lt;- gsub(<span class="hljs-string">"Russian Federation"</span>, <span class="hljs-string">"Russia"</span>, countries$country)
+countries$country &lt;- gsub(<span class="hljs-string">"European Union"</span>, <span class="hljs-string">"EU"</span>, countries$country)
+</code></pre><p>This is similar to the code we ran in Week 11. In addition, we have used the dplyr function <code>mutate()</code> to apply some rounding to the data in the renamed variables <code>life_expect</code>, <code>health_spend</code> and <code>unemploy_rate</code>.</p><p>Then we have created a new data frame called <code>countries</code> by filtering the full dataset.</p><p>Finally, we have used R’s <code>gsub()</code> function, which substitutes one string of text for another, to shorten the names for Russia and the EU, which will help keep the chart legend labels brief.</p><h5 id="line-chart-with-nvd3"><a name="line-chart-with-nvd3" href="#line-chart-with-nvd3"></a>Line chart with NVD3</h5><p>Now we will use rCharts with the <a href="http://nvd3.org/">NVD3</a> JavaScript library to draw a line chart from this data. NVD3 sits on top of D3, and can produce a range of standard chart types (see the examples in the further reading/resources, below).</p><p>This code will approximately replicate the last chart in <a href="http://www.buzzfeed.com/peteraldhous/what-five-years-of-austerity-did-to-greeks-health">this article</a>:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make life expectancy line chart with NVD3
+life_expect_n &amp;lt;- nPlot(life_expect ~ year, 
+                          group = &quot;country&quot;, 
+                          data = countries, 
+                          type = &quot;lineChart&quot;)
+</code></pre>"><span class="hljs-comment"># make life expectancy line chart with NVD3</span>
+life_expect_n &lt;- nPlot(life_expect ~ year, 
+                          group = <span class="hljs-string">"country"</span>, 
+                          data = countries, 
+                          type = <span class="hljs-string">"lineChart"</span>)
+</code></pre><p><code>nPlot()</code> is an rCharts function that creates a plot using the NVD3 library. The first part of the code in this function puts the variable <code>life_expect</code> on the Y axis and <code>year</code> on the X axis; <code>data = countries</code> draws the chart from the <code>countries</code> data frame, <code>type = "lineChart"</code> selects the relevant NVD3 chart type (see the <a href="http://nvd3-community.github.io/nvd3/">examples</a> for others that are available); <code>group = "country"</code> uses the categorical variable of <code>country</code> to draw a different line for each country in the data, in a different color. The chart type and grouping variable should be put inside quote marks.</p><p>Running this code creates an <code>Nvd3</code> object in your Environment that can then be plotted in RStudio’s Viewer just by running its name:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># plot chart
+life_expect_n
+</code></pre>"><span class="hljs-comment"># plot chart</span>
+life_expect_n
+</code></pre><p>Your RStudio window should now look like this:</p><p><img src="img/class13_1.jpg" alt=""></p><p>By default, NVD3 uses the <code>d3.scale.category20()</code> color palette for categorical variables. However, having made the basic chart, we can customize it, here manually applying a ColorBrewer qualitative palette, and adding a label for the Y axis.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize the chart
+life_expect_n$yAxis(axisLabel=(&quot;Life expectancy at birth (years)&quot;))
+life_expect_n$chart(color = c(&quot;#e41a1c&quot;, &quot;#377eb8&quot;, &quot;#4daf4a&quot;, &quot;#984ea3&quot;))
+</code></pre>"><span class="hljs-comment"># customize the chart</span>
+life_expect_n$yAxis(axisLabel=(<span class="hljs-string">"Life expectancy at birth (years)"</span>))
+life_expect_n$chart(color = c(<span class="hljs-string">"#e41a1c"</span>, <span class="hljs-string">"#377eb8"</span>, <span class="hljs-string">"#4daf4a"</span>, <span class="hljs-string">"#984ea3"</span>))
+</code></pre><p>Plot the chart again after running this code, and your RStudio window should look like this:</p><p><img src="img/class13_2.jpg" alt=""></p><p>Don’t worry if your chart extends beyond your Viewer panel: rCharts by default makes charts at 800px wide, but we will switch to a responsive width after we save the graphic to a web page.</p><p>So let’s save the page now now, by running this code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save chart as a web page
+life_expect_n$save(&quot;life_expect_n.html&quot;, cdn = FALSE)
+</code></pre>"><span class="hljs-comment"># save chart as a web page</span>
+life_expect_n$save(<span class="hljs-string">"life_expect_n.html"</span>, cdn = <span class="hljs-literal">FALSE</span>)
+</code></pre><p>The saved web page should now be in your <code>week13</code> folder. So open it in a web browser and explore its interactivity. There will be a tooltip, and you can remove a line by clicking on the corresponding legend item.</p><p>Now open the file <code>life_expect_n.html</code> in your text editor. You will notice the following between the <code>&lt;head&gt; &lt;/head&gt;</code> tags of the web page:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>    &amp;lt;link rel='stylesheet' href='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/css/nv.d3.css'&amp;gt;
+    &amp;lt;link rel='stylesheet' href='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/css/rNVD3.css'&amp;gt;
+
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/d3.v3.min.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/nv.d3.min-new.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/fisheye.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">    &lt;link rel='stylesheet' href='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/css/nv.d3.css'&gt;
+    &lt;link rel='stylesheet' href='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/css/rNVD3.css'&gt;
+
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/jquery-1.8.2.min.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/d3.v3.min.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/nv.d3.min-new.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/nvd3/js/fisheye.js' type='text/javascript'&gt;&lt;/script&gt;
+</code></pre><p>This shows that the page is loading the JavaScript libraries and CSS needed to make the graphic from within the rCharts package, so we need to switch to the local versions in the <code>week13</code> folder.</p><p>To do this, replace the block of code above with the following:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>  &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;css/nv.d3.css&quot;&amp;gt;
+  &amp;lt;script src=&quot;src/d3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src=&quot;src/nv.d3.1.7.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src=&quot;src/jquery-1.11.3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">  &lt;link rel="stylesheet" href="css/nv.d3.css"&gt;
+  &lt;script src="src/d3.min.js"&gt;&lt;/script&gt;
+  &lt;script src="src/nv.d3.1.7.js"&gt;&lt;/script&gt;
+  &lt;script src="src/jquery-1.11.3.min.js"&gt;&lt;/script&gt;
+</code></pre><p>(Here we are loading the <code>1.7</code> release of NVD3, because the <code>1.8</code> release currently has a bug that can cause the colors of a line chart to render incorrectly when the chart is redrawn.)</p><p>Between the <code>&lt;style&gt; &lt;/style</code> tags immediately below, change <code>width: 800px;</code> to <code>width: 100%;</code>. Finally, scroll down the page and in the script that draws the chart, and delete or comment out this line:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>&quot;width&quot;:    800,
+</code></pre>"><span class="hljs-string">"width"</span>:    <span class="hljs-number">800</span>,
+</code></pre><p>These two changes will override the default width of 800px, allowing the chart to be responsive.</p><p>It is also possibile to customize the chart using some CSS. Paste the following code between the page’s <code>&lt;style&gt; &lt;/style&gt;</code> tags to remove the Y axis and increase the thickness of the lines on the chart:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>    /* remove y axis */
+     .nv-axis path { display: none; }
+
+    /* set stroke width */
+    .nvd3 g.nv-groups path.nv-line {
+      stroke-width: 4px;
+    }
+</code></pre>">    <span class="hljs-comment">/* remove y axis */</span>
+     <span class="hljs-class">.nv-axis</span> <span class="hljs-tag">path</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span>; <span class="hljs-rule">}</span></span>
+
+    <span class="hljs-comment">/* set stroke width */</span>
+    <span class="hljs-class">.nvd3</span> <span class="hljs-tag">g</span><span class="hljs-class">.nv-groups</span> <span class="hljs-tag">path</span><span class="hljs-class">.nv-line</span> <span class="hljs-rules">{
+      <span class="hljs-rule"><span class="hljs-attribute">stroke-width</span>:<span class="hljs-value"> <span class="hljs-number">4px</span></span></span>;
+    <span class="hljs-rule">}</span></span>
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class13_3.jpg" alt=""></p><h5 id="line-chart-with-highcharts"><a name="line-chart-with-highcharts" href="#line-chart-with-highcharts"></a>Line chart with Highcharts</h5><p>Now we’ll draw a similar chart using the <a href="http://www.highcharts.com/">Highcharts</a>. (Note that Highcharts requires a <a href="http://shop.highsoft.com/highcharts.html">paid license</a> for use on commercial websites.)</p><p>The basic code is similar to before, except that it uses the rCharts function <code>hPlot()</code>:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make life expectancy line chart with HighCharts
+life_expect_h &amp;lt;- hPlot(life_expect ~ year, 
+                          group = &quot;country&quot;, 
+                          data = countries, 
+                          type = &quot;line&quot;)
+
+# plot chart
+life_expect_h
+</code></pre>"><span class="hljs-comment"># make life expectancy line chart with HighCharts</span>
+life_expect_h &lt;- hPlot(life_expect ~ year, 
+                          group = <span class="hljs-string">"country"</span>, 
+                          data = countries, 
+                          type = <span class="hljs-string">"line"</span>)
+
+<span class="hljs-comment"># plot chart</span>
+life_expect_h
+</code></pre><p>Note that Highcharts types have different names: See <a href="http://www.highcharts.com/docs/chart-and-series-types/chart-types">here</a> for the available options.</p><p>This code should draw the following chart:</p><p><img src="img/class13_4.jpg" alt=""></p><p>Again, we can customize the chart and replot:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize chart
+life_expect_h$yAxis(title = list(text = &quot;Life expectancy at birth (years)&quot;))
+life_expect_h$xAxis(title = list(text = &quot;&quot;))
+life_expect_h$colors(&quot;#e41a1c&quot;, &quot;#377eb8&quot;, &quot;#4daf4a&quot;, &quot;#984ea3&quot;)
+life_expect_h$plotOptions(line=list(marker=list(enabled=FALSE)))
+
+# plot chart
+life_expect_h
+</code></pre>"><span class="hljs-comment"># customize chart</span>
+life_expect_h$yAxis(title = list(text = <span class="hljs-string">"Life expectancy at birth (years)"</span>))
+life_expect_h$xAxis(title = list(text = <span class="hljs-string">""</span>))
+life_expect_h$colors(<span class="hljs-string">"#e41a1c"</span>, <span class="hljs-string">"#377eb8"</span>, <span class="hljs-string">"#4daf4a"</span>, <span class="hljs-string">"#984ea3"</span>)
+life_expect_h$plotOptions(line=list(marker=list(enabled=<span class="hljs-literal">FALSE</span>)))
+
+<span class="hljs-comment"># plot chart</span>
+life_expect_h
+</code></pre><p>You will see that code to change the axis labels and colors is a little different than for NVD3, which reflects differences in the two libraries’ syntax. <a href="https://github.com/ramnathv">Ramnath Vaidyanathan</a>, the author of rCharts, has a series of examples for <a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/nvd3/examples.R">NVD3</a> and <a href="https://github.com/ramnathv/rCharts/blob/master/inst/libraries/highcharts/examples.R">Highcharts</a>, which will help explain how to customize your charts using each library.</p><p>The last line of the code used to customize the chart removes the point markers, rendering a simple line chart, which should now look like this:</p><p><img src="img/class13_5.jpg" alt=""></p><p>Save the chart as a web page:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save the chart as web page
+life_expect_h$save(&quot;life_expect_h.html&quot;, cdn = FALSE)
+</code></pre>"><span class="hljs-comment"># save the chart as web page</span>
+life_expect_h$save(<span class="hljs-string">"life_expect_h.html"</span>, cdn = <span class="hljs-literal">FALSE</span>)
+</code></pre><p>Again, we need to swap out some code from the head of the page to use our local copies of Highcharts and jQuery. Between the <code>&lt;head&gt; &lt;/head&gt;</code> tags of the web page, replace this:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>   &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/jquery-1.9.1.min.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/highcharts.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/highcharts-more.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/exporting.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">   &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/jquery-1.9.1.min.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/highcharts.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/highcharts-more.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/Library/Frameworks/R.framework/Versions/3.2/Resources/library/rCharts/libraries/highcharts/js/exporting.js' type='text/javascript'&gt;&lt;/script&gt;
+</code></pre><p>With this:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>  &amp;lt;script src='src/jquery-1.11.3.min.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src='src/highcharts.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src='src/highcharts-more.js' type='text/javascript'&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">  &lt;script src='src/jquery-1.11.3.min.js' type='text/javascript'&gt;&lt;/script&gt;
+  &lt;script src='src/highcharts.js' type='text/javascript'&gt;&lt;/script&gt;
+  &lt;script src='src/highcharts-more.js' type='text/javascript'&gt;&lt;/script&gt;
+</code></pre><p>Finally, override the 800px width by making the same two changes as before.</p><p>Both of these charts are now ready to be uploaded to a web server — remembering to also include the <code>src</code> folder, and for the NVD3 chart, the <code>css</code> folder.</p><h4 id="make-column-charts-from-north-atlantic-storms-data"><a name="make-column-charts-from-north-atlantic-storms-data" href="#make-column-charts-from-north-atlantic-storms-data"></a>Make column charts from North Atlantic storms data</h4><p>First load the storms data:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># import storms data
+storms &amp;lt;- read.csv(&quot;storms.csv&quot;)
+</code></pre>"><span class="hljs-comment"># import storms data</span>
+storms &lt;- read.csv(<span class="hljs-string">"storms.csv"</span>)
+</code></pre><p>This contains observations of storms recorded every 6 hours, so to count the number of storms and hurricanes per year we will have to process the data uysing dplyr. To do this, run the following block of code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># count storms and hurricanes per year
+storms_year &amp;lt;- storms %&amp;gt;%
+  filter(year &amp;gt;= 1980) %&amp;gt;%
+  group_by(year,name) %&amp;gt;%
+  summarize(max_wind = max(max_wind_mph, na.rm = TRUE)) %&amp;gt;%
+  mutate(type = ifelse(max_wind &amp;gt;= 74, &quot;Hurricanes&quot;, &quot;Storms&quot;)) %&amp;gt;%
+  ungroup() %&amp;gt;%
+  group_by(year, type) %&amp;gt;%
+  summarize(count = n())
+</code></pre>"><span class="hljs-comment"># count storms and hurricanes per year</span>
+storms_year &lt;- storms %&gt;%
+  filter(year &gt;= <span class="hljs-number">1980</span>) %&gt;%
+  group_by(year,name) %&gt;%
+  summarize(max_wind = max(max_wind_mph, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
+  mutate(type = ifelse(max_wind &gt;= <span class="hljs-number">74</span>, <span class="hljs-string">"Hurricanes"</span>, <span class="hljs-string">"Storms"</span>)) %&gt;%
+  ungroup() %&gt;%
+  group_by(year, type) %&gt;%
+  summarize(count = n())
+</code></pre><p>This creates a new data frame called <code>storms_years</code>. First the storms data frame is filtered to retain only data from 1980 onwards. Then the data is grouped by year and name, which isolates individual storms, and then for each storm we calculate the maximum value of the recorded maximum wind speeds using dplyr’s <code>summarize()</code> function.</p><p>If a storm’s maximum wind speed exceeds 74 mph, it is classed as a hurricane, so this line of code creates a new column called <code>type</code>, labelling the storms as <code>Hurricanes</code> or <code>Storms</code> accordingly:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>  mutate(type=ifelse(max_wind &amp;gt;= 74, &quot;Hurricanes&quot;, &quot;Storms&quot;))
+</code></pre>">  mutate(type=ifelse(max_wind &gt;= <span class="hljs-number">74</span>, <span class="hljs-string">"Hurricanes"</span>, <span class="hljs-string">"Storms"</span>))
+</code></pre><p>Then we ungroup the data, and group again by year and type, to count the number of <code>Storms</code> and <code>Hurricanes</code> in each year.</p><h5 id="column-chart-with-nvd3"><a name="column-chart-with-nvd3" href="#column-chart-with-nvd3"></a>Column chart with NVD3</h5><p>Having processed the data, we can now make a column chart using NVD3, with the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make column chart with NVD3
+storms_n &amp;lt;- nPlot(count ~ year, 
+                       group= &quot;type&quot;, 
+                       data = storms_year, 
+                       type = &quot;multiBarChart&quot;)
+
+# plot chart
+storms_n
+</code></pre>"><span class="hljs-comment"># make column chart with NVD3</span>
+storms_n &lt;- nPlot(count ~ year, 
+                       group= <span class="hljs-string">"type"</span>, 
+                       data = storms_year, 
+                       type = <span class="hljs-string">"multiBarChart"</span>)
+
+<span class="hljs-comment"># plot chart</span>
+storms_n
+</code></pre><p>This will draw the following chart:</p><p><img src="img/class13_6.jpg" alt=""></p><p>Notice the control at top left, which allows users to switch between grouped and stacked columns. The latter is the best view for this data, so now we will customize the chart to force the stacked view, and remove the control:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize chart
+storms_n$chart(showControls = FALSE,
+               stacked = TRUE)
+storms_n$yAxis(axisLabel=(&quot;Number of storms&quot;),
+               tickFormat = &quot;#! d3.format(',0f') !#&quot;)
+
+# plot chart
+storms_n
+</code></pre>"><span class="hljs-comment"># customize chart</span>
+storms_n$chart(showControls = <span class="hljs-literal">FALSE</span>,
+               stacked = <span class="hljs-literal">TRUE</span>)
+storms_n$yAxis(axisLabel=(<span class="hljs-string">"Number of storms"</span>),
+               tickFormat = <span class="hljs-string">"#! d3.format(',0f') !#"</span>)
+
+<span class="hljs-comment"># plot chart</span>
+storms_n
+</code></pre><p>The second part of the Y axis customization sets the format for the tick labels on the chart, removing the decimal place to show whole numbers. This is done with D3 code, which is designated by appearing between <code>#!</code> and <code>!#</code>.</p><p>The following chart should now appear:</p><p><img src="img/class13_7.jpg" alt=""></p><p>Again save the chart as a web page:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save the chart as web page
+storms_n$save(&quot;storms_n.html&quot;, cdn = FALSE)
+</code></pre>"><span class="hljs-comment"># save the chart as web page</span>
+storms_n$save(<span class="hljs-string">"storms_n.html"</span>, cdn = <span class="hljs-literal">FALSE</span>)
+</code></pre><p>Open the file <code>storms_n.html</code> in your text editor, and replace the code that loads the JavaScript libraries and NVD3 CSS with the following:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>  &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;css/nv.d3.css&quot;&amp;gt;
+  &amp;lt;script src=&quot;src/d3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src=&quot;src/nv.d3.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+  &amp;lt;script src=&quot;src/jquery-1.11.3.min.js&quot;&amp;gt;&amp;lt;/script&amp;gt;
+</code></pre>">  &lt;link rel="stylesheet" href="css/nv.d3.css"&gt;
+  &lt;script src="src/d3.min.js"&gt;&lt;/script&gt;
+  &lt;script src="src/nv.d3.js"&gt;&lt;/script&gt;
+  &lt;script src="src/jquery-1.11.3.min.js"&gt;&lt;/script&gt;
+</code></pre><p>Again we can apply some CSS to customize the chart between the <code>&lt;style&gt; &lt;/style&gt;</code> tags, here removing the vertical grid lines and the Y axis:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>    /* remove x axis grid lines */
+     .nv-x .tick line { display: none} 
+    /* remove y axis */
+     .nv-axis path { display: none; }
+</code></pre>">    <span class="hljs-comment">/* remove x axis grid lines */</span>
+     <span class="hljs-class">.nv-x</span> <span class="hljs-class">.tick</span> <span class="hljs-tag">line</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span></span>} 
+    <span class="hljs-comment">/* remove y axis */</span>
+     <span class="hljs-class">.nv-axis</span> <span class="hljs-tag">path</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> none</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class13_8.jpg" alt=""></p><h5 id="column-chart-with-highcharts"><a name="column-chart-with-highcharts" href="#column-chart-with-highcharts"></a>Column chart with Highcharts</h5><p>Now we will make a similar chart with Highcharts:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make storms column chart with HighCharts
+storms_h &amp;lt;- hPlot(count ~ year, 
+                  group = &quot;type&quot;, 
+                  data = storms_year, 
+                  type = &quot;column&quot;)
+
+# plot chart
+storms_h
+</code></pre>"><span class="hljs-comment"># make storms column chart with HighCharts</span>
+storms_h &lt;- hPlot(count ~ year, 
+                  group = <span class="hljs-string">"type"</span>, 
+                  data = storms_year, 
+                  type = <span class="hljs-string">"column"</span>)
+
+<span class="hljs-comment"># plot chart</span>
+storms_h
+</code></pre><p>This will draw the following chart:</p><p><img src="img/class13_9.jpg" alt=""></p><p>If we want to stack the columns, and emulate the color scheme of our earlier NVD3 chart, we again need some customization:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize chart
+storms_h$plotOptions(column = list(stacking = &quot;normal&quot;))
+storms_h$yAxis(title = list(text = &quot;Number of storms&quot;),
+               reversedStacks = FALSE)
+storms_h$xAxis(title = list(text = &quot;&quot;))
+storms_h$colors(&quot;#1f77b4&quot;, &quot;#aec7e8&quot;)
+
+# plot chart
+storms_h
+
+# save chart
+storms_h$save(&quot;storms_h.html&quot;, cdn = FALSE)
+</code></pre>"><span class="hljs-comment"># customize chart</span>
+storms_h$plotOptions(column = list(stacking = <span class="hljs-string">"normal"</span>))
+storms_h$yAxis(title = list(text = <span class="hljs-string">"Number of storms"</span>),
+               reversedStacks = <span class="hljs-literal">FALSE</span>)
+storms_h$xAxis(title = list(text = <span class="hljs-string">""</span>))
+storms_h$colors(<span class="hljs-string">"#1f77b4"</span>, <span class="hljs-string">"#aec7e8"</span>)
+
+<span class="hljs-comment"># plot chart</span>
+storms_h
+
+<span class="hljs-comment"># save chart</span>
+storms_h$save(<span class="hljs-string">"storms_h.html"</span>, cdn = <span class="hljs-literal">FALSE</span>)
+</code></pre><p>The first line of this code switches to stacked columns. If we want the columns to stack in the same order as the NVD3 chart, we need also to include <code>reversedStacks = FALSE</code> in the Y axis customization.</p><p>Edit the file <code>storms_h.html</code> as before, to load local copes of Highcharts and jQuery, and to make the chart responsive, rather than 800px wide.</p><p>The final chart should look like this:</p><p><img src="img/class13_10.jpg" alt=""></p><h3 id="install-htmlwidgets"><a name="install-htmlwidgets" href="#install-htmlwidgets"></a>Install htmlwidgets</h3><p>Now we will explore the possibilities offered by htmlwidgets, so we need to install and load the htmlwidgets package:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load htmlwidgets
+install.packages(&quot;htmlwidgets&quot;)
+library(htmlwidgets)
+</code></pre>"><span class="hljs-comment"># install and load htmlwidgets</span>
+install.packages(<span class="hljs-string">"htmlwidgets"</span>)
+<span class="hljs-keyword">library</span>(htmlwidgets)
+</code></pre><h3 id="make-maps-of-seismic-risks-and-earthquakes-using-leaflet"><a name="make-maps-of-seismic-risks-and-earthquakes-using-leaflet" href="#make-maps-of-seismic-risks-and-earthquakes-using-leaflet"></a>Make maps of seismic risks and earthquakes using Leaflet</h3><p><a href="http://leafletjs.com/">Leaflet</a> is the most widely-used JavaScript code library for making interactive online maps. It can be accessed from R using the <a href="http://rstudio.github.io/leaflet/">leaflet</a> htmlwidget. So we need to install and load that:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load leaflet
+install.packages(&quot;leaflet&quot;)
+library(leaflet)
+</code></pre>"><span class="hljs-comment"># install and load leaflet</span>
+install.packages(<span class="hljs-string">"leaflet"</span>)
+<span class="hljs-keyword">library</span>(leaflet)
+</code></pre><p>Step by step, we are going to recreate a version of <a href="http://paldhous.github.io/earthquakes/">this map</a>, which I originally coded using Leaflet from scratch. After class, you may wish to download the code for that map from its <a href="https://github.com/paldhous/earthquakes">GitHub repository</a>, to compare with the R version.</p><p>First let’s see how to make a basic Leaflet map, centered on Berkeley:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley
+map &amp;lt;- leaflet() %&amp;gt;% 
+  setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %&amp;gt;%
+  addTiles() 
+
+# plot the map
+map
+</code></pre>"><span class="hljs-comment"># make leaflet map centered on Berkeley</span>
+map &lt;- leaflet() %&gt;% 
+  setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
+  addTiles() 
+
+<span class="hljs-comment"># plot the map</span>
+map
+</code></pre><p>The following map should appear in your RStudio Viewer:</p><p><img src="img/class13_11.jpg" alt=""></p><p>The function <code>setView()</code> allows us to set the starting position of the map, centering it on the defined coordinates and with the defined zoom level; <code>addTiles()</code> adds <a href="https://www.openstreetmap.org/">OpenStreetMap</a> tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.</p><p>We aren’t limited to using OpenStreetMap tiles:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley with CartoDB tiles
+map &amp;lt;- leaflet() %&amp;gt;% 
+  setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) 
+
+# plot the map
+map
+</code></pre>"><span class="hljs-comment"># make leaflet map centered on Berkeley with CartoDB tiles</span>
+map &lt;- leaflet() %&gt;% 
+  setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) 
+
+<span class="hljs-comment"># plot the map</span>
+map
+</code></pre><p>The map should now look like this:</p><p><img src="img/class13_12.jpg" alt=""></p><p>The function <code>addProviderTiles()</code> uses the <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet Providers</a> plugin to add various tiles to a map. You can see the available options <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">here</a>.</p><p>Now let’s load the data we need to make the earthquakes map. To load the <code>seismic_risk_clip</code> shapefile, we need another R package, called <a href="https://cran.r-project.org/web/packages/rgdal/rgdal.pdf">rgdal</a>.</p><p>So install and load that:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load rgdal
+install.packages(&quot;rgdal&quot;)
+library(rgdal)
+</code></pre>"><span class="hljs-comment"># install and load rgdal</span>
+install.packages(<span class="hljs-string">"rgdal"</span>)
+<span class="hljs-keyword">library</span>(rgdal)
+</code></pre><p>Now we can load the shapefile with the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load seismic risk shapefile
+seismic_risk &amp;lt;- readOGR(&quot;seismic_risk_clip&quot;, &quot;seismic_risk_clip&quot;)
+</code></pre>"><span class="hljs-comment"># load seismic risk shapefile</span>
+seismic_risk &lt;- readOGR(<span class="hljs-string">"seismic_risk_clip"</span>, <span class="hljs-string">"seismic_risk_clip"</span>)
+</code></pre><p>The two mentions of <code>seismic_risk_clip</code> refer to the folder and the shapefile within it, respectively.</p><p>You should now have in your environment an object called <code>seismic_risk</code> which is a <code>SpatialPolygonsDataFrame</code>.</p><p>We can also load data on earthquakes, from the U.S. Geological Survey API we encountered in week 4:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load quakes data from USGS earthquakes API
+quakes &amp;lt;- read.csv(&quot;http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;amp;minmagnitude=6&amp;amp;format=csv&amp;amp;latitude=39.828175&amp;amp;longitude=-98.5795&amp;amp;maxradiuskm=6000&amp;amp;orderby=magnitude&quot;)
+</code></pre>"><span class="hljs-comment"># load quakes data from USGS earthquakes API</span>
+quakes &lt;- read.csv(<span class="hljs-string">"http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;minmagnitude=6&amp;format=csv&amp;latitude=39.828175&amp;longitude=-98.5795&amp;maxradiuskm=6000&amp;orderby=magnitude"</span>)
+</code></pre><p>Using this url, we have loaded earthquakes since the start of 1965 that had a magnitude of 6 and above, within a 6,000 kilometer radius of the geographic center of the continental United States.</p><p>Let’s look at a summary of the <code>seismic_risk</code> data by running:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># view summary of seismic_risk data
+summary(seismic_risk)
+</code></pre>"><span class="hljs-comment"># view summary of seismic_risk data</span>
+summary(seismic_risk)
+</code></pre><p>This is what should be returned in the R Console:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>Object of class SpatialPolygonsDataFrame
+Coordinates:
+      min       max
+x -124.71 -66.98701
+y   24.60  49.36968
+Is projected: FALSE 
+proj4string :
+[+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
+Data attributes:
+    ACC_VAL           VALLEY       
+ Min.   :  0.00   Min.   :0.00000  
+ 1st Qu.: 18.00   1st Qu.:0.00000  
+ Median : 40.00   Median :0.00000  
+ Mean   : 44.57   Mean   :0.08264  
+ 3rd Qu.: 60.00   3rd Qu.:0.00000  
+ Max.   :200.00   Max.   :1.00000
+</code></pre>">Object of class SpatialPolygonsDataFrame
+Coordinates:
+      min       max
+x -<span class="hljs-number">124.71</span> -<span class="hljs-number">66.98701</span>
+y   <span class="hljs-number">24.60</span>  <span class="hljs-number">49.36968</span>
+Is projected: <span class="hljs-literal">FALSE</span> 
+proj4string :
+[+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+Data attributes:
+    ACC_VAL           VALLEY       
+ Min.   :  <span class="hljs-number">0.00</span>   Min.   :<span class="hljs-number">0.00000</span>  
+ 1st Qu.: <span class="hljs-number">18.00</span>   1st Qu.:<span class="hljs-number">0.00000</span>  
+ Median : <span class="hljs-number">40.00</span>   Median :<span class="hljs-number">0.00000</span>  
+ Mean   : <span class="hljs-number">44.57</span>   Mean   :<span class="hljs-number">0.08264</span>  
+ 3rd Qu.: <span class="hljs-number">60.00</span>   3rd Qu.:<span class="hljs-number">0.00000</span>  
+ Max.   :<span class="hljs-number">200.00</span>   Max.   :<span class="hljs-number">1.00000</span>
+</code></pre><p>The data defining the risk of a major earthquake is in the variable <code>ACC_VAL</code>, and has values that run from 0 to 200.</p><p>Now let’s load this data into a Leaflet map:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load the seismic risk data into a leaflet map
+seismic_map &amp;lt;- leaflet(data=seismic_risk)
+</code></pre>"><span class="hljs-comment"># load the seismic risk data into a leaflet map</span>
+seismic_map &lt;- leaflet(data=seismic_risk)
+</code></pre><p>For the time being this map will be blank, as we have not added any tiles, or styled the <code>seismic_risk</code> data in any way.</p><p>We are going to make a choropleth map, so we will first set breaks to divide the data in into bins:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set breaks for custom bins
+breaks &amp;lt;- c(0,19,39,59,79,200)
+</code></pre>"><span class="hljs-comment"># set breaks for custom bins</span>
+breaks &lt;- c(<span class="hljs-number">0</span>,<span class="hljs-number">19</span>,<span class="hljs-number">39</span>,<span class="hljs-number">59</span>,<span class="hljs-number">79</span>,<span class="hljs-number">200</span>)
+</code></pre><p>Then set a color palette, using these breaks and a “Reds” sequential color scheme from ColorBrewer (which can be called by name in the leaflet htmlwidget):</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set palette
+binpal &amp;lt;- colorBin(&quot;Reds&quot;, seismic_map$ACC_VAL, breaks)
+</code></pre>"><span class="hljs-comment"># set palette</span>
+binpal &lt;- colorBin(<span class="hljs-string">"Reds"</span>, seismic_map$ACC_VAL, breaks)
+</code></pre><p>Now we are ready to make a choropleth map, using the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make choropleth map of seismic risks
+seismic &amp;lt;- seismic_map %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;% 
+  addPolygons(
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  )
+
+# draw map
+seismic
+</code></pre>"><span class="hljs-comment"># make choropleth map of seismic risks</span>
+seismic &lt;- seismic_map %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;% 
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, 
+    fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  )
+
+<span class="hljs-comment"># draw map</span>
+seismic
+</code></pre><p>The function <code>addPolygons()</code> adds polygons to the map: <code>stroke = FALSE</code> gives them no outline; <code>fillOpacity = 0.7</code> makes them slightly transparent; <code>color = ~binpal(ACC_VAL)</code> uses the color palette and breaks we set up earlier to color the polygons according to values in the <code>ACC_VAL</code> data.</p><p><code>smoothFactor</code> controls the extent to which the polygons are simplified. See what happens to the map if you replace <code>0.1</code> with <code>10</code>. Simplified polygons will load more quickly, but there’s a tradeoff with the appearance of the map. Choose an appropriate value for your maps through trial and error.</p><p>Your RStudio Viewer should now contain the following map:</p><p><img src="img/class13_13.jpg" alt=""></p><p>We can add circles for the quakes as a second data layer, by extending the code as follows:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make choropleth map of seismic hazards
+seismic &amp;lt;- seismic_map %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;% 
+  addPolygons(
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  ) %&amp;gt;%
+  # add historical earthquakes
+  addCircles(
+    data = quakes, 
+    radius = sqrt(10^quakes$mag)*50, 
+    color = &quot;#000000&quot;,
+    weight = 0.2,
+    fillColor =&quot;#ffffff&quot;,
+    fillOpacity = 0.3,
+    popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
+                   &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;))
+  )
+
+# draw map
+seismic
+</code></pre>"><span class="hljs-comment"># make choropleth map of seismic hazards</span>
+seismic &lt;- seismic_map %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;% 
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, 
+    fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  ) %&gt;%
+  <span class="hljs-comment"># add historical earthquakes</span>
+  addCircles(
+    data = quakes, 
+    radius = sqrt(<span class="hljs-number">10</span>^quakes$mag)*<span class="hljs-number">50</span>, 
+    color = <span class="hljs-string">"#000000"</span>,
+    weight = <span class="hljs-number">0.2</span>,
+    fillColor =<span class="hljs-string">"#ffffff"</span>,
+    fillOpacity = <span class="hljs-number">0.3</span>,
+    popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
+                   <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
+  )
+
+<span class="hljs-comment"># draw map</span>
+seismic
+</code></pre><p>The <code>addCircles()</code> function adds circles to the map; <code>color</code> sets the color for their outlines, while <code>weight</code> sets the thickness of these lines; <code>fillColor</code> and <code>fillOpacity</code> style the circles’ interiors.</p><p>The size if the circles is set by <code>radius = sqrt(quakes$mag^10)*50</code>. Here <code>50</code> is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable <code>mag</code> in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: This is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.</p><p>Usually, when scaling circles, you will simply use the values from the data, and then take their square roots, using the <code>sqrt()</code> function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.</p><p><code>popup</code> is used to define the HTML code the appears in the popup that appears when any quake is clicked or tapped. here were are using the R function <code>paste0()</code> to paste together a series of elements, separated by commas, that will write the html. They include the <code>mag</code> and <code>time</code> values from the quakes data, the latter being formatted as an easy-to-read date using R’s <code>format()</code> function for dates. See <a href="http://www.statmethods.net/input/dates.html">here</a> for more on formatting dates in R.</p><p>The map should now look like this:</p><p><img src="img/class13_14.jpg" alt=""></p><p>We can add a legend, by extending the code again:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make choropleth map of seismic hazards
+seismic &amp;lt;- seismic_map %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;% 
+  addPolygons(
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  ) %&amp;gt;%
+  # add historical earthquakes
+  addCircles(
+    data = quakes, 
+    radius = sqrt(10^quakes$mag)*50, 
+    color = &quot;#000000&quot;,
+    weight = 0.2,
+    fillColor =&quot;#ffffff&quot;,
+    fillOpacity = 0.3,
+    popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
+                   &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;))
+  ) %&amp;gt;%
+  # add legend
+  addLegend (
+    &quot;bottomleft&quot;, pal = binpal, values = ~ACC_VAL,
+    title = &quot;Seismic risk&quot;,
+    opacity = 0.7)
+
+# draw map
+seismic
+</code></pre>"><span class="hljs-comment"># make choropleth map of seismic hazards</span>
+seismic &lt;- seismic_map %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;% 
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, 
+    fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  ) %&gt;%
+  <span class="hljs-comment"># add historical earthquakes</span>
+  addCircles(
+    data = quakes, 
+    radius = sqrt(<span class="hljs-number">10</span>^quakes$mag)*<span class="hljs-number">50</span>, 
+    color = <span class="hljs-string">"#000000"</span>,
+    weight = <span class="hljs-number">0.2</span>,
+    fillColor =<span class="hljs-string">"#ffffff"</span>,
+    fillOpacity = <span class="hljs-number">0.3</span>,
+    popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
+                   <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
+  ) %&gt;%
+  <span class="hljs-comment"># add legend</span>
+  addLegend (
+    <span class="hljs-string">"bottomleft"</span>, pal = binpal, values = ~ACC_VAL,
+    title = <span class="hljs-string">"Seismic risk"</span>,
+    opacity = <span class="hljs-number">0.7</span>)
+
+<span class="hljs-comment"># draw map</span>
+seismic
+</code></pre><p>The final version of the code, below, adds a second tileset, and sets up layer controls to allow users to switch between basemaps, and to turn the quakes layer on and off:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make multi-layered leaflet map with layer-switching control
+# make choropleth map of seismic hazards
+seismic &amp;lt;- seismic_map %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;, group = &quot;CartoDB&quot;) %&amp;gt;% 
+  addProviderTiles(&quot;Stamen.TonerLite&quot;, group = &quot;Toner&quot;) %&amp;gt;%
+  addPolygons(
+    stroke = FALSE, fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  ) %&amp;gt;%
+  # add historical earthquakes
+  addCircles(
+             data=quakes, 
+             radius = sqrt(10^quakes$mag)*50, 
+             weight = 0.2, 
+             color = &quot;#000000&quot;, 
+             fillColor =&quot;#ffffff&quot;,
+             fillOpacity = 0.3,
+             popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
+                            &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;)),
+             group = &quot;Quakes&quot;
+  ) %&amp;gt;%
+  # add legend
+  addLegend(
+            &quot;bottomleft&quot;, pal = binpal, values = ~ACC_VAL,
+            title = &quot;Seismic risk&quot;,
+            opacity = 0.7
+  ) %&amp;gt;%
+  # add layers control
+  addLayersControl(
+  baseGroups = c(&quot;CartoDB&quot;, &quot;Toner&quot;),
+  overlayGroups = &quot;Quakes&quot;,
+  options = layersControlOptions(collapsed = FALSE)
+  )
+
+# draw map
+seismic
+</code></pre>"><span class="hljs-comment"># make multi-layered leaflet map with layer-switching control</span>
+<span class="hljs-comment"># make choropleth map of seismic hazards</span>
+seismic &lt;- seismic_map %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>, group = <span class="hljs-string">"CartoDB"</span>) %&gt;% 
+  addProviderTiles(<span class="hljs-string">"Stamen.TonerLite"</span>, group = <span class="hljs-string">"Toner"</span>) %&gt;%
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  ) %&gt;%
+  <span class="hljs-comment"># add historical earthquakes</span>
+  addCircles(
+             data=quakes, 
+             radius = sqrt(<span class="hljs-number">10</span>^quakes$mag)*<span class="hljs-number">50</span>, 
+             weight = <span class="hljs-number">0.2</span>, 
+             color = <span class="hljs-string">"#000000"</span>, 
+             fillColor =<span class="hljs-string">"#ffffff"</span>,
+             fillOpacity = <span class="hljs-number">0.3</span>,
+             popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
+                            <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>)),
+             group = <span class="hljs-string">"Quakes"</span>
+  ) %&gt;%
+  <span class="hljs-comment"># add legend</span>
+  addLegend(
+            <span class="hljs-string">"bottomleft"</span>, pal = binpal, values = ~ACC_VAL,
+            title = <span class="hljs-string">"Seismic risk"</span>,
+            opacity = <span class="hljs-number">0.7</span>
+  ) %&gt;%
+  <span class="hljs-comment"># add layers control</span>
+  addLayersControl(
+  baseGroups = c(<span class="hljs-string">"CartoDB"</span>, <span class="hljs-string">"Toner"</span>),
+  overlayGroups = <span class="hljs-string">"Quakes"</span>,
+  options = layersControlOptions(collapsed = <span class="hljs-literal">FALSE</span>)
+  )
+
+<span class="hljs-comment"># draw map</span>
+seismic
+</code></pre><p>Study the differences between this code and the preceding example to understand how the layers control works.</p><p>The final map should now look like this:</p><p><img src="img/class13_15.jpg" alt=""></p><p>Having completed our map, we can save it as a web page using the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save the map
+saveWidget(seismic, &quot;seismic.html&quot;, selfcontained = TRUE, libdir = NULL,
+           background = &quot;white&quot;)
+</code></pre>"><span class="hljs-comment"># save the map</span>
+saveWidget(seismic, <span class="hljs-string">"seismic.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>,
+           background = <span class="hljs-string">"white"</span>)
+</code></pre><p>The page will be saved with supporting JavaScript files in a folder called  <code>siesmic_files</code>. To put the map online, it must be uploaded to a webserver together with this folder.</p><h3 id="draw-line-charts-of-company-stock-prices-over-time-using-dygraphs"><a name="draw-line-charts-of-company-stock-prices-over-time-using-dygraphs" href="#draw-line-charts-of-company-stock-prices-over-time-using-dygraphs"></a>Draw line charts of company stock prices over time using dygraphs</h3><p>Next we will use the <a href="http://dygraphs.com/">dygraphs</a> Javascript charting library to draw a line graph of two companies’ stock prices. While this is also possible with libraries like NVD3, dygraphs is better at handling large datasets with thousands of values in a time series.</p><p>So let’s now install and load the <a href="http://rstudio.github.io/dygraphs/">dygraphs</a> htmlwidget:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load dygraphs
+install.packages(&quot;dygraphs&quot;)
+library(dygraphs)
+</code></pre>"><span class="hljs-comment"># install and load dygraphs</span>
+install.packages(<span class="hljs-string">"dygraphs"</span>)
+<span class="hljs-keyword">library</span>(dygraphs)
+</code></pre><p>We will compare changes on the stock price of a drug company called Valeant, which has <a href="http://www.businessinsider.com/why-have-valeant-pharmaceuticals-shares-collapsed-2015-11">become controversial</a> in recent months because of alleged “price gouging,” with the pharmaceuticals giant GlaxoSmithKline.</p><p>First we need to load data on each company’s stock market performance, which we can obtain from <a href="http://finance.yahoo.com/">Yahoo Finance</a>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load and process data for Valeant
+valeant &amp;lt;- read.csv(&quot;http://real-chart.finance.yahoo.com/table.csv?s=VRX&quot;) %&amp;gt;%
+  mutate(Date=as.Date(Date)) %&amp;gt;%
+  select(Date, Close) %&amp;gt;%
+  rename(VRX = Close)
+
+# and for GSK
+gsk &amp;lt;- read.csv(&quot;http://real-chart.finance.yahoo.com/table.csv?s=GSK&quot;) %&amp;gt;%
+  mutate(Date=as.Date(Date))  %&amp;gt;%
+  select(Date, Close) %&amp;gt;%
+  rename(GSK = Close)
+</code></pre>"><span class="hljs-comment"># load and process data for Valeant</span>
+valeant &lt;- read.csv(<span class="hljs-string">"http://real-chart.finance.yahoo.com/table.csv?s=VRX"</span>) %&gt;%
+  mutate(Date=as.Date(Date)) %&gt;%
+  select(Date, Close) %&gt;%
+  rename(VRX = Close)
+
+<span class="hljs-comment"># and for GSK</span>
+gsk &lt;- read.csv(<span class="hljs-string">"http://real-chart.finance.yahoo.com/table.csv?s=GSK"</span>) %&gt;%
+  mutate(Date=as.Date(Date))  %&gt;%
+  select(Date, Close) %&gt;%
+  rename(GSK = Close)
+</code></pre><p>The data for each company will initially load with seven columns of data. This code ensures that the dates in the <code>Date</code> column are treated as such, then selects just the <code>Date</code> and <code>Close</code> variables, containing the closing prices for each day. Finally it renames the <code>Close</code> column with each company’s stock market ticker.</p><p>Dygraphs requires each time series to be plotted in a separate column, so now we need to create a data frame with a column for each companies’ data. </p><p>The following code does this using a dplyr join, and then filters the data from the start of 2010 onwards:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># combine into a single data frame with separate column for each company 
+# and filter for 2010 onwards
+valeant_gsk &amp;lt;- inner_join(gsk, valeant, by=&quot;Date&quot;) %&amp;gt;%
+  filter(Date &amp;gt;= &quot;2010-01-01&quot;)
+</code></pre>"><span class="hljs-comment"># combine into a single data frame with separate column for each company </span>
+<span class="hljs-comment"># and filter for 2010 onwards</span>
+valeant_gsk &lt;- inner_join(gsk, valeant, by=<span class="hljs-string">"Date"</span>) %&gt;%
+  filter(Date &gt;= <span class="hljs-string">"2010-01-01"</span>)
+</code></pre><p>The dygraphs htmlwidget works with R objects called extensible time series, or xts, rather than standard data frames, so now we have to make that conversion.</p><p>To do this, we need to install and load the <a href="https://cran.rstudio.com/web/packages/xts/xts.pdf">xts</a> package:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load xts
+install.packages(&quot;xts&quot;)
+library(xts)
+</code></pre>"><span class="hljs-comment"># install and load xts</span>
+install.packages(<span class="hljs-string">"xts"</span>)
+<span class="hljs-keyword">library</span>(xts)
+</code></pre><p>And then convert the dataframe to an xts object:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># convert to extensible time series (xts)
+valeant_gsk &amp;lt;- xts(valeant_gsk, order.by = valeant_gsk$Date)
+</code></pre>"><span class="hljs-comment"># convert to extensible time series (xts)</span>
+valeant_gsk &lt;- xts(valeant_gsk, order.by = valeant_gsk$Date)
+</code></pre><p>We can then draw the time series chart with this code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make dygraph line chart
+drug_cos &amp;lt;- dygraph(valeant_gsk) %&amp;gt;%
+  dyRangeSelector()
+
+# plot chart
+drug_cos
+</code></pre>"><span class="hljs-comment"># make dygraph line chart</span>
+drug_cos &lt;- dygraph(valeant_gsk) %&gt;%
+  dyRangeSelector()
+
+<span class="hljs-comment"># plot chart</span>
+drug_cos
+</code></pre><p><code>dyRangeSelector()</code> adds a control to the bottom of the chart which can be used to focus on parts of the time series.</p><p>The chart should now look like this</p><p><img src="img/class13_16.jpg" alt=""></p><p>It is possible to customize dygraph chart in various ways. For example, this version of the code will create an area chart with the areas filled with an opacity of 0.4:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make dygraph area chart
+drug_cos &amp;lt;- dygraph(valeant_gsk) %&amp;gt;%
+  dyOptions(fillGraph = TRUE, 
+            fillAlpha = 0.4) %&amp;gt;%
+  dyRangeSelector()
+
+dygraph(valeant) %&amp;gt;%
+  dyRangeSelector()
+
+# plot chart
+drug_cos
+</code></pre>"><span class="hljs-comment"># make dygraph area chart</span>
+drug_cos &lt;- dygraph(valeant_gsk) %&gt;%
+  dyOptions(fillGraph = <span class="hljs-literal">TRUE</span>, 
+            fillAlpha = <span class="hljs-number">0.4</span>) %&gt;%
+  dyRangeSelector()
+
+dygraph(valeant) %&gt;%
+  dyRangeSelector()
+
+<span class="hljs-comment"># plot chart</span>
+drug_cos
+</code></pre><p>The resulting chart should look like this:</p><p><img src="img/class13_17.jpg" alt=""></p><p>For more customization options, for example <a href="http://rstudio.github.io/dygraphs/gallery-shaded-regions.html">adding shaded bands</a> to the chart area, see the dygraphs htmlwidget <a href="http://rstudio.github.io/dygraphs">documentation</a>.</p><p>Again, we can now save the chart as a web page:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save the chart
+saveWidget(drug_cos, &quot;drug_cos.html&quot;, selfcontained = TRUE, libdir = NULL,
+           background = &quot;white&quot;)
+</code></pre>"><span class="hljs-comment"># save the chart</span>
+saveWidget(drug_cos, <span class="hljs-string">"drug_cos.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>,
+           background = <span class="hljs-string">"white"</span>)
+</code></pre><p>Notice that saved htmlwidgets are responsive by default, and will expand to fill the space available. This means they can be easily iframed into divs on a web page.</p><h3 id="draw-a-network-diagram-of-voting-patterns-in-the-u.s.-senate-using-networkd3"><a name="draw-a-network-diagram-of-voting-patterns-in-the-u.s.-senate-using-networkd3" href="#draw-a-network-diagram-of-voting-patterns-in-the-u.s.-senate-using-networkd3"></a>Draw a network diagram of voting patterns in the U.S. Senate using networkD3</h3><p>In Week 2, we discussed how network diagrams can be used to visualize connections between people or things. Now we will use the <a href="http://christophergandrud.github.io/networkD3/">networkD3</a> htmlwidget to draw a D3 network graphic illustrating patterns of voting in the U.S. Senate in 2014.</p><p>See <a href="http://paldhous.github.io/NICAR/2015/gephi.html">here</a> a more detailed tutorial on creating a similar network from Senate voting data, using <a href="https://gephi.github.io/">Gephi</a> and the <a href="http://sigmajs.org/">Sigma.js</a> JavaScript library, with notes on how the data was prepared.</p><p>First we need to install and load the networkD3 htmlwidget:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load networkD3
+install.packages('networkD3')
+library(networkD3)
+</code></pre>"><span class="hljs-comment"># install and load networkD3</span>
+install.packages(<span class="hljs-string">'networkD3'</span>)
+<span class="hljs-keyword">library</span>(networkD3)
+</code></pre><p>The data is in the file <code>senate-113-2014.json</code>. To load this into R, install and load the <a href="https://cran.r-project.org/web/packages/jsonlite/jsonlite.pdf">jsonlite</a> package:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load jsonlite
+install.packages(&quot;jsonlite&quot;)
+library(jsonlite)
+</code></pre>"><span class="hljs-comment"># install and load jsonlite</span>
+install.packages(<span class="hljs-string">"jsonlite"</span>)
+<span class="hljs-keyword">library</span>(jsonlite)
+</code></pre><p>Then load the data and view its structure:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load senate voting data and view its structure
+senate &amp;lt;- fromJSON(&quot;senate-113-2014.json&quot;)
+str(senate)
+</code></pre>"><span class="hljs-comment"># load senate voting data and view its structure</span>
+senate &lt;- fromJSON(<span class="hljs-string">"senate-113-2014.json"</span>)
+str(senate)
+</code></pre><p>This is what should be returned in the R Console:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>List of 5
+ $ directed  : logi FALSE
+ $ graph     : list()
+ $ nodes     :'data.frame':    100 obs. of  3 variables:
+  ..$ color: chr [1:100] &quot;red&quot; &quot;blue&quot; &quot;red&quot; &quot;blue&quot; ...
+  ..$ party: chr [1:100] &quot;R&quot; &quot;D&quot; &quot;R&quot; &quot;D&quot; ...
+  ..$ id   : chr [1:100] &quot;Alexander (R-TN)&quot; &quot;Klobuchar (D-MN)&quot; &quot;Graham (R-SC)&quot; &quot;Reid (D-NV)&quot; ...
+ $ links     :'data.frame':    4679 obs. of  4 variables:
+  ..$ source       : int [1:4679] 0 0 0 0 0 0 0 0 0 0 ...
+  ..$ percent_agree: num [1:4679] 0.263 0.789 0.316 0.211 0.263 ...
+  ..$ target       : int [1:4679] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ votes_agree  : int [1:4679] 5 15 6 4 5 5 3 5 12 11 ...
+ $ multigraph: logi FALSE
+</code></pre>">List of <span class="hljs-number">5</span>
+ $ directed  : logi <span class="hljs-literal">FALSE</span>
+ $ graph     : list()
+ $ nodes     :<span class="hljs-string">'data.frame'</span>:    <span class="hljs-number">100</span> obs. of  <span class="hljs-number">3</span> variables:
+  ..$ color: chr [<span class="hljs-number">1</span>:<span class="hljs-number">100</span>] <span class="hljs-string">"red"</span> <span class="hljs-string">"blue"</span> <span class="hljs-string">"red"</span> <span class="hljs-string">"blue"</span> <span class="hljs-keyword">...</span>
+  ..$ party: chr [<span class="hljs-number">1</span>:<span class="hljs-number">100</span>] <span class="hljs-string">"R"</span> <span class="hljs-string">"D"</span> <span class="hljs-string">"R"</span> <span class="hljs-string">"D"</span> <span class="hljs-keyword">...</span>
+  ..$ id   : chr [<span class="hljs-number">1</span>:<span class="hljs-number">100</span>] <span class="hljs-string">"Alexander (R-TN)"</span> <span class="hljs-string">"Klobuchar (D-MN)"</span> <span class="hljs-string">"Graham (R-SC)"</span> <span class="hljs-string">"Reid (D-NV)"</span> <span class="hljs-keyword">...</span>
+ $ links     :<span class="hljs-string">'data.frame'</span>:    <span class="hljs-number">4679</span> obs. of  <span class="hljs-number">4</span> variables:
+  ..$ <span class="hljs-keyword">source</span>       : int [<span class="hljs-number">1</span>:<span class="hljs-number">4679</span>] <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-keyword">...</span>
+  ..$ percent_agree: num [<span class="hljs-number">1</span>:<span class="hljs-number">4679</span>] <span class="hljs-number">0.263</span> <span class="hljs-number">0.789</span> <span class="hljs-number">0.316</span> <span class="hljs-number">0.211</span> <span class="hljs-number">0.263</span> <span class="hljs-keyword">...</span>
+  ..$ target       : int [<span class="hljs-number">1</span>:<span class="hljs-number">4679</span>] <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span> <span class="hljs-number">10</span> <span class="hljs-keyword">...</span>
+  ..$ votes_agree  : int [<span class="hljs-number">1</span>:<span class="hljs-number">4679</span>] <span class="hljs-number">5</span> <span class="hljs-number">15</span> <span class="hljs-number">6</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">5</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span> <span class="hljs-number">12</span> <span class="hljs-number">11</span> <span class="hljs-keyword">...</span>
+ $ multigraph: logi <span class="hljs-literal">FALSE</span>
+</code></pre><p>This shows that <code>senate</code> is a list containing objects including two data frames, called <code>nodes</code> and <code>links</code>. </p><p>Let’s now view the contents of each data frame</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># view contents of nodes and links 
+View(senate$nodes)
+View(senate$links)
+</code></pre>"><span class="hljs-comment"># view contents of nodes and links </span>
+View(senate$nodes)
+View(senate$links)
+</code></pre><p>The <code>nodes</code> data frame contains three columns, including an <code>id</code> for each Senator, and their <code>party</code>:</p><p><img src="img/class13_18.jpg" alt=""></p><p>The <code>links</code> data frame contains four columns, including <code>source</code> and <code>target</code>, which refer to the row numbers for the Senators in the <code>nodes</code> data frame. The <code>percent_agree</code> column shows how often, as a digital fraction of 1, that pair of senators voted the same way in 2014.</p><p><img src="img/class13_19.jpg" alt=""></p><p>We are going to create a network diagram of these voting patterns, first filtering the data so that a link is drawn between a pair of Senators only if they voted the same way at least two-thirds of the time. We need a filter to reveal the partisan dynamics of the chamber, because almost all Senators voted the same way at least once. It’s how <em>often</em> they did so that matters.</p><p>Now read the data frames from the list into the main R environment, and apply this filter to the links:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># read nodes and links into the main R environment, and apply filter
+nodes &amp;lt;- senate$nodes
+
+links &amp;lt;- senate$links %&amp;gt;%
+  filter(percent_agree &amp;gt; 0.67)
+</code></pre>"><span class="hljs-comment"># read nodes and links into the main R environment, and apply filter</span>
+nodes &lt;- senate$nodes
+
+links &lt;- senate$links %&gt;%
+  filter(percent_agree &gt; <span class="hljs-number">0.67</span>)
+</code></pre><p>We can now draw the network with this code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># create D3 network
+senate_network &amp;lt;- forceNetwork(
+  Links = links, 
+  Nodes = nodes, 
+  Source = &quot;source&quot;,
+  Target = &quot;target&quot;, 
+  NodeID = &quot;id&quot;,
+  Group = &quot;party&quot;, 
+  opacity = 1, 
+  bounded = TRUE, 
+  linkColour = &quot;#cccccc&quot; 
+)
+
+# plot the network
+senate_network
+</code></pre>"><span class="hljs-comment"># create D3 network</span>
+senate_network &lt;- forceNetwork(
+  Links = links, 
+  Nodes = nodes, 
+  Source = <span class="hljs-string">"source"</span>,
+  Target = <span class="hljs-string">"target"</span>, 
+  NodeID = <span class="hljs-string">"id"</span>,
+  Group = <span class="hljs-string">"party"</span>, 
+  opacity = <span class="hljs-number">1</span>, 
+  bounded = <span class="hljs-literal">TRUE</span>, 
+  linkColour = <span class="hljs-string">"#cccccc"</span> 
+)
+
+<span class="hljs-comment"># plot the network</span>
+senate_network
+</code></pre><p>Notice that columns from the two data frames are referred to in quote marks. <code>linkColour = "#cccccc"</code> sets the color of the links to a light gray; note the British English spelling of <code>linkColour</code>: networkD3 was written by <a href="http://christophergandrud.blogspot.com/p/biocontact.html">Christopher Gandrud</a>, a political economist at City University in London.</p><p>The following network graph should appear in your RStudio Viewer:</p><p><img src="img/class13_20.jpg" alt=""></p><p>Notice that networkD3 by default uses the <code>d3.scale.category20()</code> color palette. To use colors that reflect the Democratic and Republican parties, simply adjust the code to the following:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set color palette
+colors &amp;lt;- JS(&quot;d3.scale.ordinal().range(['#ff0000','#0000ff','#d2691e'])&quot;)
+
+# create D3 network
+senate_network &amp;lt;- forceNetwork(
+             Links = links, 
+             Nodes = nodes, 
+             Source = &quot;source&quot;,
+             Target = &quot;target&quot;, 
+             NodeID = &quot;id&quot;,
+             Group = &quot;party&quot;, 
+             opacity = 1, 
+             bounded = TRUE, 
+             linkColour = &quot;#cccccc&quot;, 
+             colourScale = colors
+             )
+
+# plot the network
+senate_network
+</code></pre>"><span class="hljs-comment"># set color palette</span>
+colors &lt;- JS(<span class="hljs-string">"d3.scale.ordinal().range(['#ff0000','#0000ff','#d2691e'])"</span>)
+
+<span class="hljs-comment"># create D3 network</span>
+senate_network &lt;- forceNetwork(
+             Links = links, 
+             Nodes = nodes, 
+             Source = <span class="hljs-string">"source"</span>,
+             Target = <span class="hljs-string">"target"</span>, 
+             NodeID = <span class="hljs-string">"id"</span>,
+             Group = <span class="hljs-string">"party"</span>, 
+             opacity = <span class="hljs-number">1</span>, 
+             bounded = <span class="hljs-literal">TRUE</span>, 
+             linkColour = <span class="hljs-string">"#cccccc"</span>, 
+             colourScale = colors
+             )
+
+<span class="hljs-comment"># plot the network</span>
+senate_network
+</code></pre><p>For more networkD3 customization options, see <a href="https://github.com/christophergandrud/networkD3/blob/master/inst/examples/examples.R">these code examples</a>.</p><p>The network graph should now look like this:</p><p><img src="img/class13_21.jpg" alt=""></p><p>Again, we can save the graphic to a webpage with the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save the network chart
+saveWidget(senate_network, &quot;senate.html&quot;, selfcontained = TRUE, libdir = NULL,
+           background = &quot;white&quot;)
+</code></pre>"><span class="hljs-comment"># save the network chart</span>
+saveWidget(senate_network, <span class="hljs-string">"senate.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>,
+           background = <span class="hljs-string">"white"</span>)
+</code></pre><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="https://media.readthedocs.org/pdf/rcharts/latest/rcharts.pdf">rCharts Documentation</a></p><p><a href="http://rcharts.io/gallery/#title=all">rCharts Gallery</a><br>Contains many examples with underlying code. Some use additional libraries that will need to be installed separately.</p><p><a href="http://nvd3-community.github.io/nvd3/">NVD3 Examples</a></p><p><a href="http://www.highcharts.com/demo/">Highcharts Demos</a></p><p><a href="http://www.highcharts.com/docs">Highcharts Documentation</a></p><p><a href="http://www.htmlwidgets.org/showcase_leaflet.html">htmlwidgets Showcase</a><br>Gives links tp documentation and code examples for the htmlwidgets developed so far.</p>
+
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

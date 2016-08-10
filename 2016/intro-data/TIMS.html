@@ -1,0 +1,2661 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TIMS - Transportation Injury Mapping System</title><meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<link rel="shortcut icon" href="http://tims.berkeley.edu/images/favicon.ico">
+<link rel="stylesheet" href="http://tims.berkeley.edu/screen.css">
+<link rel="stylesheet" href="http://tims.berkeley.edu/include/css/jquery-button-tuning.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- Jquery -->
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/redmond/jquery-ui.min.css">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-43044018-1', 'berkeley.edu');
+  ga('send', 'pageview');
+</script></head>
+
+<body>
+<div class="capsule">
+<div><script type="text/javascript">
+function updateField(id, t){
+	$("#"+id).css("display","block");
+	$("#"+id).html('<span class="ui-icon ui-icon-info" style="float: left"></span>'+t).addClass("ui-state-highlight");
+}
+function stateError(o){
+	o.addClass( "ui-state-error" );
+}
+function checkEmpty(o){
+	if(o.val().length==0) return true;
+	else return false;
+}
+function checkbrowser(){
+	var Browser = {
+		Version: function() {
+			var version = 999; // we assume a sane browser
+			if (navigator.appVersion.indexOf("MSIE") != -1)
+				// bah, IE again, lets downgrade version number
+				version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+			return version;
+		}
+	}
+	if (navigator.appName=="Microsoft Internet Explorer" && Browser.Version() < 9) return false;
+	else return true;
+}
+function inArray(needle, haystack) {
+    var length = haystack.length;
+    for(var i = 0; i < length; i++) {
+        if(haystack[i] == needle) return true;
+    }
+    return false;
+}
+function showUserInfo(userid){
+	$.ajax({
+		type: "GET",
+		url: "http://tims.berkeley.edu/member/userinfo_new.php?userid="+userid,
+		success: function(response){
+			var s=response.split("|");
+			if(s[0]!="false" && s.length>1){
+				$("#i_name").val(s[6]);
+				$("#i_email").val(s[7]);
+				$("#i_organization").val(s[0]);
+				$("#i_department").val(s[1]);
+				$("#i_title").val(s[2]);
+				$("#i_reason").val(s[3]);
+				$("#i_agency").val(s[4]);
+				$("#i_agency_user").val(s[5]);
+
+				if($("#i_agency").val()=="None of Above") document.getElementById("i_agency_userinput").style.display="block";
+				else document.getElementById("i_agency_userinput").style.display="none";
+
+				$("#i_fieldCheck").css("display","none");
+				$("#userInformation").data("userid",userid);
+				$("#userInformation").dialog("open");
+			}
+		}
+	});
+}
+$(function() {
+	var agency=document.getElementById("i_agency");
+	var list=["University","Local School","Federal","State","County","City","Local/Regional Gov","MPO","California Highway Patrol","Caltrans","Law Enforcement","Legal","NPO","Private Organization","Medical Center","Media","Personal","None of Above"];
+	for(temp in list){
+		var option=document.createElement("option");
+		option.text=list[temp];
+		try {
+			// for IE earlier than version 8
+			agency.add(option,agency.options[null]);
+		}
+		catch (e) {
+			agency.add(option,null);
+		}
+	}
+	$("#i_agency").change(function(){
+		if(this.value=="None of Above") document.getElementById("i_agency_userinput").style.display="block";
+		else document.getElementById("i_agency_userinput").style.display="none";
+	});
+	$("#welcome").click(function(){
+		showUserInfo(8249);
+	});
+
+	function loginProcess(form_data){
+		if ($("#userMain").length){
+			var form_data = {
+				username: $("#userMain").val(),
+				password: $("#pwMain").val()
+			};
+		}
+		else{
+			var form_data = {
+				username: $("#user").val(),
+				password: $("#pw").val()
+			};
+		}
+		$.ajax({
+			type: "POST",
+			url: "http://tims.berkeley.edu/member/login_process.php",
+			data: form_data,
+			success: function(response){
+				if(response != "false"){
+					var member = $.parseJSON(response);
+					if (member.email.length == 0) {
+						alert("We do not have your email information. Please update your email by clicking 'Welcome! " + member.name + "' text next to the logout button");
+					}
+											location.reload(true);
+						//location.href="http://tims.berkeley.edu/";
+										/*
+					$('.login_table').hide();
+					$('#welcome').html(
+						'&nbsp;&nbsp;<a style="color:#0000ff" href="#">'+response+'</a>'
+					);
+					$('.logout_table').show();
+					*/
+				}
+				else{
+					alert("Invalid email/username or password. Please try again or contact to tims_info@berkeley.edu for help.");
+				}
+			}
+		});
+	}
+	$("#login,#logout,#findpw").button();
+	$("#login").click(function() {
+		var name = $("#user"), password = $("#pw"), allFields = $([]).add(name).add(password);
+		var bValid = true;
+		allFields.removeClass("ui-state-error");
+
+		$.each(allFields, function(){
+			var o=$(this);
+			if(checkEmpty(o)){
+				stateError(o);
+				bValid=false;
+			}
+		});
+		if(bValid){
+			var form_data = {
+				username: $("#user").val(),
+				password: $("#pw").val()
+			};
+			$.ajax({
+				type: "POST",
+				url: "http://tims.berkeley.edu/member/caltrans_check.php",
+				data: form_data,
+				success: function(response){
+					if(response !="Caltrans") loginProcess();
+					else $("#confirm").dialog("open");
+				}
+			});
+		}
+		return false;
+	});
+	$("#logout").click(function() {
+		var action = $("#logoutform").attr('action');
+		$.ajax({
+			type: "POST",
+			url: action,
+			success: function(){
+				location.reload("http://tims.berkeley.edu/login.php");
+				/*
+				$("#user").val("");
+				$("#pw").val("");
+				$('.login_table').show();
+				$('.logout_table').hide();
+				*/
+			}
+		});
+		return false;
+	});
+	$("#confirm").dialog({
+		autoOpen: false,
+		height: 580,
+		width: 750,
+		modal: true,
+		resizable: false,
+		buttons: {
+			"I Agree": function() {
+				$(this).dialog( "close" );
+				loginProcess();
+				return false;
+			},
+			"I Decline": function() {
+				$(this).dialog("close");
+				return false;
+			}
+		}
+	});
+			$('.login_table').hide();
+		$('.logout_table').show();
+		$("#forgot").dialog({
+		autoOpen: false,
+		height: 380,
+		width: 430,
+		modal: true,
+		resizable: false,
+		buttons: {
+			close: function() {
+				$("#findresult").css("display","none");
+				$(this).dialog( "close" );
+				return false;
+			}
+		}
+	});
+	$("#findpw").click(function(){
+		var email = $("#email2");
+		var bValid = true;
+
+		var data = {
+			email: $("#email2").val()
+		};
+		$.ajax({
+			type: "POST",
+			url: "http://tims.berkeley.edu/member/send_pw.php",
+			data: data,
+			success: function(response){
+				response=$.trim(response);
+				updateField("findresult",response);
+			}
+		});
+	});
+	$("#userInformation").dialog({
+		autoOpen: false,
+		height: 550,
+		width: 820,
+		modal: false,
+		resizable: false,
+		buttons: {
+			update: function(){
+				//var phone = $("#i_phone");
+				var organization=$("#i_organization"), reason=$("#i_reason"), agencyList=$("#i_agency");
+				//var allFields = $([]).add(phone).add(organization).add(reason);
+				var allFields = $([]).add(organization).add(reason).add(agencyList);
+				allFields.removeClass("ui-state-error");
+				$("#i_agency_user").removeClass( "ui-state-error" );
+				$("#i_fieldCheck").css("display","none");
+				var bValid=true;
+
+				$.each(allFields, function(){
+					var o=$(this);
+					if(checkEmpty(o)){
+						updateField("i_fieldCheck","Please input the information at highlighted field(s).");
+						stateError(o);
+						bValid=false;
+					}
+				});
+				if(bValid){
+					if(agencyList.val()=="None of Above" && !$("#i_agency_user").val()){
+						updateField("i_fieldCheck","Please specify your agency Type.");
+						$("#i_agency_user").addClass( "ui-state-error" );
+					}
+					else{
+						var disabled = $('#i_userinfo').find(':input:disabled').removeAttr('disabled');
+						$.ajax({
+							type: "POST",
+							url: "http://tims.berkeley.edu/member/update_userinfo_new.php?userid="+$("#userInformation").data('userid'),
+							data: $('#i_userinfo').serialize(),
+							dataType: "html",
+							success: function(response){
+								updateField("i_fieldCheck",response);
+								disabled.attr('disabled','disabled');
+							}
+						});
+					}
+				}
+			},
+			close: function() {
+				//var phone = $("#i_phone");
+				var organization=$("#i_organization"), reason=$("#i_reason"), agencyList=$("#i_agency");
+				//var allFields = $([]).add(phone).add(organization).add(reason);
+				var allFields = $([]).add(organization).add(reason).add(agencyList);
+				allFields.removeClass("ui-state-error");
+				$("#i_agency_user").removeClass( "ui-state-error" );
+				$("#i_fieldCheck").css("display","none");
+
+				$(this).dialog( "close" );
+				return false;
+			}
+		}
+	});
+});
+</script>
+
+<div id="tims_header" style="margin: auto; width: 1020px;">
+	<div style="-webkit-border-top-right-radius: 10px;-webkit-border-top-left-radius: 10px;-moz-border-radius-topright: 10px;-moz-border-radius-topleft: 10px;border-top-right-radius: 10px;border-top-left-radius: 10px;height:10px;background-color:white;margin-top:5px"></div>
+</div>
+<!-- Div for dialog -->
+<div id="confirm" title="License Agreement" style="background-color:#F2FAFD;display:none;">
+	<div>
+		<p style="font: italic bold 14px arial; text-decoration:underline;">General License Agreement:</p><br />
+		<iframe src="http://tims.berkeley.edu/member/agreement.php" name="agreement" width="650" style="background: white; margin-bottom: 20px; height: 160px;"></iframe><br /><br />
+		<p style="font: italic bold 14px arial; text-decoration:underline;">Note to Users from California Department of Transportation (Caltrans):</p><br />
+		<iframe src="http://tims.berkeley.edu/member/caltrans.php" name="caltrans" width="650" style="background: white;"></iframe><br /><br />
+	</div>
+</div>
+<div id="forgot" title="Find Password" style="display:none;">
+	<div>
+		<br>
+		<div id="forgotpwtext" style="width:300px;margin-left:50px;text-align:left;">
+			<br>Please input your email information. Your new password will be sent to the email address.<br><br>
+			<br>Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="text" class="text ui-widget-content ui-corner-all" style="height:16px;width:160px;" id="email2" name="email2"><br>
+			<br><button id="findpw">Send</button>
+		</div>
+		<br>
+		<div style="width:300px;margin-left:50px;text-align:left;"><p class="text ui-widget-content ui-corner-all" id="findresult" style="display:none;padding:5px"></p></div>
+	</div>
+</div>
+<div id="userInformation" title="User Information" style="display:none;">
+	<div>
+		<br>
+		<form id="i_userinfo" name="i_userinfo">
+			<div class="home_title" style="width:100%">Your Information</div>
+			<table style="text-align:left;margin-left:10px;float:left"><tr>
+				<td width="100">Name *</td>
+				<td><input type="text" id="i_name" name="i_name" size="30" maxlength="50" disabled></td>
+			</tr><tr>
+				<td>Email *</td>
+				<td><input type="text" id="i_email" name="i_email" size="30" maxlength="100" disabled></td>
+			</tr>
+			</table>
+			<div style="text-align:left;margin-left:10px;margin-bottom:20px;width:720px;float:left">Please contact to <b style="color:#FF0000">tims_info@berkeley.edu</b> if you want to change your name and/or email.</div>
+			<div class="home_title">Company / Institution Information</div>
+			<table style="text-align:left;margin-left:10px;width:98%;float:left"><tr>
+				<td width="140">Agency Type *</td>
+				<td>
+					<select id="i_agency" name="i_agency"></select>
+					<div id="i_agency_userinput" style="float:right;display:none">Please Specify Your Agency Type *&nbsp;<input type="text" id="i_agency_user" name="i_agency_user" size="20" maxlength="80"></div>
+				</td>
+			</tr><tr>
+				<td>Company Name *</td>
+				<td><input type="text" id="i_organization" name="i_organization" size="45" maxlength="80"></td>
+			</tr><tr>
+				<td>Department</td>
+				<td><input type="text" id="i_department" name="i_department" size="45" maxlength="80"></td>
+			</tr><tr>
+				<td>Title</td><td>
+				<input type="text" id="i_title" name="i_title" size="45" maxlength="80"></td>
+			</tr><tr>
+				<td>Reason for Use *</td>
+				<td><input type="text" id="i_reason" name="i_reason" size="86" maxlength="200"></td>
+			</tr>
+			</table>
+			<div style="text-align:right;width:720px;float:left">* Indicates that a field is required.</div>
+			<div id="i_fieldCheck" style="padding:5px;width:720px;float:left"></div>
+		</form>
+	</div>
+</div></div>
+<div class="colmask threecol">
+<div style="margin: 10px;">
+<p align="center">
+	<strong>SWITRS <u>Collision</u> Raw Data </strong></p>
+<p align="center">
+	&nbsp;</p>
+<table border="1" cellpadding="0" cellspacing="0" width="961">
+	<tbody>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					<strong>Item Name</strong></p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>Variable Name</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					<strong>Description</strong></p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					<strong>Label</strong></p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					<strong>Possible Values</strong></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Case Id</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CASEID</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the unique identifier of the collision report (barcode beginning 2002; 19 digit code prior to 2002)</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					X-Coordinate Location</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>POINT_X</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					The longitude of the geocoded location; uses the World Geodetic System from 1984 (WGS84).</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Y-Coordinate Location</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>POINT_Y</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					The latitude of the geocoded location; uses the World Geodetic System from 1984 (WGS84).</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Collision Year</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>YEAR_</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the year when the collision occurred</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CountyCityLocation</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>LOCATION</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the location code of where the collision occurred</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Data may appear with no leading zero.</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP Beat Type</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CHPTYPE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					<strong>0 &quot;Not CHP&quot;</strong></p>
+				<p>
+					<strong>1 &ldquo;Interstate&quot;</strong></p>
+				<p>
+					<strong>2 &quot;US Highway&quot;</strong></p>
+				<p>
+					<strong>3 &quot;State Route&quot;</strong></p>
+				<p>
+					<strong>4 &quot;County Road Line&quot;</strong></p>
+				<p>
+					<strong>5 &quot;County Road Area&quot;</strong></p>
+				<p>
+					<strong>6 &quot;US Highway&quot;</strong></p>
+				<p>
+					<strong>7 &quot;State Route&quot;</strong></p>
+				<p>
+					<strong>8 &quot;County Road Line&quot;</strong></p>
+				<p>
+					<strong>9 &quot;County Road Area&quot;</strong></p>
+				<p>
+					<strong>10 &quot;Safety Services Program Beats&quot;</strong></p>
+				<p>
+					<strong>11 &quot;Administrative Beats (900&rsquo;s)&quot;</strong></p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - Interstate</p>
+				<p>
+					2 - US Highway</p>
+				<p>
+					3 - State Route</p>
+				<p>
+					4 - County RoadLine</p>
+				<p>
+					5 - County RoadArea</p>
+				<p>
+					A - Safety Services Program Beats</p>
+				<p>
+					S - Administrative Beats (900&rsquo;s)</p>
+				<p>
+					0 - Not CHP</p>
+				<p>
+					ContractCity:</p>
+				<p>
+					6 - US Highway</p>
+				<p>
+					7 - State Route</p>
+				<p>
+					8 - County RoadLine</p>
+				<p>
+					9 - County RoadArea</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Day of Week</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>DAYWEEK</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the code for the day of the week when the collision occurred</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - Monday</p>
+				<p>
+					2 - Tuesday</p>
+				<p>
+					3 - Wednesday</p>
+				<p>
+					4 - Thursday</p>
+				<p>
+					5 - Friday</p>
+				<p>
+					6 - Saturday</p>
+				<p>
+					7 - Sunday</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Collision Severity</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CRASHSEV</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the injury level severity of the collision</p>
+				<p align="center">
+					(highest level of injury in collision)</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - Fatal</p>
+				<p>
+					2 - Injury (Severe)</p>
+				<p>
+					3 - Injury (Other Visible)</p>
+				<p>
+					4 - Injury (Complaint of Pain)</p>
+				<p>
+					0 &ndash; Property Damage Only (PDO) (PDO collisions not included on TIMS)</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					PCF Violation Category</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>VIOLCAT</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					01 - Driving or Bicycling Under the Influence of Alcohol or Drug</p>
+				<p>
+					02 - Impeding Traffic</p>
+				<p>
+					03 - Unsafe Speed</p>
+				<p>
+					04 - Following Too Closely</p>
+				<p>
+					05 - Wrong Side of Road</p>
+				<p>
+					06 - Improper Passing</p>
+				<p>
+					07 - Unsafe Lane Change</p>
+				<p>
+					08 - Improper Turning</p>
+				<p>
+					09 - Automobile Right of Way</p>
+				<p>
+					10 - Pedestrian Right of Way</p>
+				<p>
+					11 - Pedestrian Violation</p>
+				<p>
+					12 - Traffic Signals and Signs</p>
+				<p>
+					13 - Hazardous Parking</p>
+				<p>
+					14 - Lights</p>
+				<p>
+					15 - Brakes</p>
+				<p>
+					16 - Other Equipment</p>
+				<p>
+					17 - Other Hazardous Violation</p>
+				<p>
+					18 - Other Than Driver (or Pedestrian)</p>
+				<p>
+					19 -</p>
+				<p>
+					20 -</p>
+				<p>
+					21 - Unsafe Starting or Backing</p>
+				<p>
+					22 - Other Improper Driving</p>
+				<p>
+					23 - Pedestrian or &quot;Other&quot; Under the Influence of Alcohol or Drug</p>
+				<p>
+					24 - Fell Asleep</p>
+				<p>
+					00 - Unknown</p>
+				<p>
+					-&nbsp;&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Killed victims</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>KILLED</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with degree of injury of 1</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Injured victims</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>INJURED</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with degree of injury of 2, 3, or 4</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Weather 1</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>WEATHER1</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the weather condition at the time of the collision</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Clear</p>
+				<p>
+					B - Cloudy</p>
+				<p>
+					C - Raining</p>
+				<p>
+					D - Snowing</p>
+				<p>
+					E - Fog</p>
+				<p>
+					F - Other</p>
+				<p>
+					G - Wind</p>
+				<p>
+					&nbsp;-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Pedestrian Collision</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PEDCOL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates whether the collision involved a pedestrian</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Y or blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Bicycle Collision</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BICCOL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates whether the collision involved a bicycle</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Y or blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Motorcycle Collision</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>MCCOL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates whether the collision involved a motorcycle</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Y or blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Truck Collision</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>TRUCKCOL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates whether the collision involved a big truck</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Y or blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Alcohol Involved</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>ETOH</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates whether the collision involved a party that had been drinking</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Y or blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Time Category</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>TIMECAT</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the time of the collision aggregated by 3 hour categories</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					300 - Time is between 0:00 and 2:59</p>
+				<p>
+					600 - Time is between 3:00 and &nbsp;5:59</p>
+				<p>
+					900 - Time is between 6:00 and 8:59</p>
+				<p>
+					1200 - Time is between 9:00 and 11:59</p>
+				<p>
+					1500 - Time is between 12:00 and 14:59</p>
+				<p>
+					1800 - Time is between15:00 and 17:59</p>
+				<p>
+					2100 - Time is between 18:00 and 20:59</p>
+				<p>
+					2400 &ndash; Time is between 21:00 and 23:59</p>
+				<p>
+					2500 &ndash; Time = 25:00 (Unknown)</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Month</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>MONTH_</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					The month of the year</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 &ndash; January</p>
+				<p>
+					2 - February</p>
+				<p>
+					3 &ndash; March</p>
+				<p>
+					4 - April</p>
+				<p>
+					5 &ndash; May</p>
+				<p>
+					6 &ndash; June</p>
+				<p>
+					7 &ndash; July</p>
+				<p>
+					8 &ndash; August</p>
+				<p>
+					9 &ndash; September</p>
+				<p>
+					10 &ndash; October</p>
+				<p>
+					11 &ndash; November</p>
+				<p>
+					12 - December</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Type of Collision</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CRASHTYP</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Head-On</p>
+				<p>
+					B - Sideswipe</p>
+				<p>
+					C - Rear End</p>
+				<p>
+					D - Broadside</p>
+				<p>
+					E - Hit Object</p>
+				<p>
+					F - Overturned</p>
+				<p>
+					G - Vehicle/Pedestrian</p>
+				<p>
+					H - Other</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Motor Vehicle Involved With</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>INVOLVE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Non-Collision</p>
+				<p>
+					B - Pedestrian</p>
+				<p>
+					C - Other Motor Vehicle</p>
+				<p>
+					D - Motor Vehicle on Other Roadway</p>
+				<p>
+					E - Parked Motor Vehicle</p>
+				<p>
+					F - Train</p>
+				<p>
+					G - Bicycle</p>
+				<p>
+					H - Animal</p>
+				<p>
+					I - Fixed Object</p>
+				<p>
+					J - Other Object</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Ped Action</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PED</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - No Pedestrian Involved</p>
+				<p>
+					B - Crossing in Crosswalk at Intersection</p>
+				<p>
+					C - Crossing in Crosswalk Not at Intersection</p>
+				<p>
+					D - Crossing Not in Crosswalk</p>
+				<p>
+					E - In Road, Including Shoulder</p>
+				<p>
+					F - Not in Road</p>
+				<p>
+					G - Approaching/Leaving School Bus</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Primary Rd</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PRIMARYRD</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					The road the collision occurred on</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Secondary Rd</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>SECONDRD</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					A secondary reference road that DISTANCE and DIRECT are measured from</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Distance</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>DISTANCE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Offset distance from secondary road</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					distance converted to feet</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Direction</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>DIRECT</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Direction of offset distance</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					N - North</p>
+				<p>
+					E - East</p>
+				<p>
+					S - South</p>
+				<p>
+					W - West</p>
+				<p>
+					- or blank&nbsp; - Not Stated, in Intersection</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Intersection</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>INTERSECT_</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Indicates where a collision occurred at an intersection</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					Y - Intersection</p>
+				<p>
+					N - Not Intersection</p>
+				<p>
+					Blank - Not stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Processing Date</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PROCDATE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Date the record was processed</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Jurisdiction</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>JURIS</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Jurisdiction</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Collision Date</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>DATE_</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the date when the collision occurred</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Collision Time</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>TIME_</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the time when the collision occurred (24 hour time)</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Data may appear with no leading zero(s).</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Officer Id</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BADGE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Reporting District</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>JURDIST</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP Shift</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>SHIFT</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - 0600 thru 1359</p>
+				<p>
+					2 - 1400 thru 2159</p>
+				<p>
+					3 - 2200 thru 0559</p>
+				<p>
+					4 - CHP Not Stated</p>
+				<p>
+					5 - Not CHP</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Population</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>POP</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - Incorporated (less than 2500)</p>
+				<p>
+					2 - Incorporated (2500 - 10000)</p>
+				<p>
+					3 - Incorporated (10000 - 25000)</p>
+				<p>
+					4 - Incorporated (25000 - 50000)</p>
+				<p>
+					5 - Incorporated (50000 - 100000)</p>
+				<p>
+					6 - Incorporated (100000 - 250000)</p>
+				<p>
+					7 - Incorporated (over 250000)</p>
+				<p>
+					9 - Unincorporated (Rural)</p>
+				<p>
+					0 - University (Private Property)</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Special Condition</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>SPECIAL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - Schoolbus on Public Roadway (CHP Beat or CHP Adm Beat 901)</p>
+				<p>
+					2 - State University (Also SFIA)</p>
+				<p>
+					3 - Schoolbus Not on Public Roadway (CHP Adm Beat 903)</p>
+				<p>
+					4 - Offroad (Unimproved) (CHP Adm Beat 906, 907)</p>
+				<p>
+					5 - Vista Point or Rest Area (CHP Adm Beat 903) or Scales or Inspection Facility (CHP Com Beat 860-898)</p>
+				<p>
+					6 - Other Public Access (Improved) (CHP Adm Beat 903)</p>
+				<p>
+					0 - Not Above</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Beat Type</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BEATTYPE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - CHP State Highway</p>
+				<p>
+					2 - CHP County RoadLine</p>
+				<p>
+					3 - CHP County RoadArea</p>
+				<p>
+					4 - Schoolbus on City Roadway (CHP Adm Beat 901)</p>
+				<p>
+					5 - Schoolbus not on Public Roadway (CHP Adm Beat 903)</p>
+				<p>
+					6 - Offroad (Unimproved) (CHP Adm Beat 906, 907)</p>
+				<p>
+					7 - Vista Point or Rest Area (CHP Adm Beat 903) or Scales or Inspection Facility (CHP Com Beat 860-898)</p>
+				<p>
+					8 - Other Public Access (Improved) (CHP Adm Beat 903)</p>
+				<p align="center">
+					0 - Not CHP</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					City Division LAPD</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>LAPDDIV</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					Includes blanks and dashes as not stated.</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP Beat Class</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BEATCLAS</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - CHP Primary</p>
+				<p>
+					2 - CHP Other</p>
+				<p>
+					0 - Not CHP</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Beat Number</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BEATNUMB</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Weather 2</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>WEATHER2</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					the weather condition at the time of the collision, if a second description is necessary</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					same as weather 1 above</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					State Highway Indicator</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>STATEHW</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Indicates whether a collision occurred on a state highway</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					Y - State Highway</p>
+				<p>
+					N - Not State Highway</p>
+				<p>
+					Blank - Not stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CaltransCounty</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CALTRANC</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Includes blanks and nulls</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Caltrans District</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CALTRAND</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					State Route</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>STROUTE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					0 = Not State Highway</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Route Suffix</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>ROUTESUF</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Postmile Prefix</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>POSTPRE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Postmile</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>POSTMILE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Location Type</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>LOCATYPE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					H - Highway</p>
+				<p>
+					I&nbsp;&nbsp; - Intersection</p>
+				<p>
+					R - Ramp (or Collector)</p>
+				<p>
+					- or blank&nbsp; - Not State Highway</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Ramp Intersection</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>RAMP</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					1 - Ramp Exit, Last 50 Feet</p>
+				<p>
+					2 - Mid-Ramp</p>
+				<p>
+					3 - Ramp Entry, First 50 Feet</p>
+				<p>
+					4 - Not State Highway, Ramp-related, Within 100 Feet</p>
+				<p>
+					5 - Intersection</p>
+				<p>
+					6 - Not State Highway, Intersection-related, Within 250 Feet</p>
+				<p>
+					7 - Highway</p>
+				<p>
+					8 - Not State Highway</p>
+				<p align="center">
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Side Of Highway</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>SIDEHW</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Code provided by Caltrans Coders; applies to divided highway, based on nominal direction of route; for single vehicle is same as nominal direction of travel, overruled by impact with second vehicle after crossing median</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					N - Northbound</p>
+				<p>
+					S - Southbound</p>
+				<p>
+					E - Eastbound</p>
+				<p>
+					W - Westbound</p>
+				<p>
+					Blank - Not stated/not state highway</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Tow Away</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>TOWAWAY</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					Y - Yes</p>
+				<p>
+					N - No</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Party Count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PARTIES</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts total parties in the collision</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					1 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Primary Collision Factor</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PCF</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - (Vehicle) Code Violation</p>
+				<p>
+					B - Other Improper Driving</p>
+				<p>
+					C - Other Than Driver</p>
+				<p>
+					D - Unknown</p>
+				<p>
+					E - Fell Asleep</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					PCF Violation Code</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>VIOLCODE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					B - Business and Professions</p>
+				<p>
+					C - Vehicle</p>
+				<p>
+					H - City Health and Safety</p>
+				<p>
+					I - City Ordinance</p>
+				<p>
+					O - County Ordinance</p>
+				<p>
+					P - Penal</p>
+				<p>
+					S - Streets and Highways</p>
+				<p>
+					W - Welfare and Institutions</p>
+				<p align="center">
+					-&nbsp;&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					PCF Violation</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>VIOL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Corresponds to violcat categories and described in vehicle code manual - (<a href="http://www.dmv.ca.gov/pubs/vctop/vc/vc.htm" target="_blank">http://www.dmv.ca.gov/pubs/vctop/vc/vc.htm</a>)</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					PCF Violation Subsection</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>VIOLSUB</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Blank if no subsection.</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Hit And Run</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>HITRUN</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					F - Felony</p>
+				<p>
+					M - Misdemeanor</p>
+				<p>
+					N - Not Hit and Run</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Road Surface</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>ROADSURF</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Dry</p>
+				<p>
+					B - Wet</p>
+				<p>
+					C - Snowy or Icy</p>
+				<p>
+					D - Slippery (Muddy, Oily, etc.)</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Road Condition 1</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>RDCOND1</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Holes, Deep Ruts</p>
+				<p>
+					B - Loose Material on Roadway</p>
+				<p>
+					C - Obstruction on Roadway</p>
+				<p>
+					D - Construction or Repair Zone</p>
+				<p>
+					E - Reduced Roadway Width</p>
+				<p>
+					F - Flooded</p>
+				<p>
+					G - Other</p>
+				<p>
+					H - No Unusual Condition</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Road Condition 2</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>RDCOND2</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					same as road condition 1 above</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Lighting</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>LIGHTING</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Daylight</p>
+				<p>
+					B - Dusk - Dawn</p>
+				<p>
+					C - Dark - Street Lights</p>
+				<p>
+					D - Dark - No Street Lights</p>
+				<p>
+					E - Dark - Street Lights Not Functioning</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Control Device</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>RIGHTWAY</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					A - Functioning</p>
+				<p>
+					B - Not Functioning</p>
+				<p>
+					C - Obscured</p>
+				<p>
+					D - None</p>
+				<p>
+					-&nbsp; - Not Stated</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP RoadType</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CHPRDTYP</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					May be blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Not Private Property</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>NOTPRIV</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates whether the collision occurred on private property</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					Y or blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Statewide Vehicle Type At Fault</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>STFAULT</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates the Statewide Vehicle Type of the party who is at fault</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					see Party folder Statewide Vehicle Type item</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP Vehicle Type At Fault</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CHPFAULT</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					indicates the CHP Vehicle Type of the party who is at fault</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					see Party folder CHP Vehicle Type Towing item</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Severe Injury count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>SEVINJ</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with degree of injury of 2</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Other Visible Injury count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>OTHERINJ</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with degree of injury of 3</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Complaint of Pain Injury count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>COP</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with degree of injury of 4</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Pedestrian Killed count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PEDKILL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Counts the victims in the collision with party type of 2 and degree of injury is 1</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 or 1 for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Pedestrian Injured count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>PEDINJ</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Counts the victims in the collision with party type of 2 and degree of injury is 2, 3, or 4</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 or 1 for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Bicyclist Killed count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BICKILL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Counts the victims in the collision with (((victim role of 2 and statewide vehicle type of &lsquo;L&rsquo;) or (victim role of 4)) and (victim degree of injury is 1))</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Bicyclist Injured count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>BICINJ</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					Counts the victims in the collision with (((victim role of 2 and statewide vehicle type of &lsquo;L&rsquo;) or (victim role of 4)) and (victim degree of injury is 2, 3, or 4))</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Motorcyclist Killed count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>MCKILL</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with statewide vehicle type of C or O and degree of injury of 1</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Motorcyclist Injured count</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>MCINJURE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					counts victims in the collision with statewide vehicle type of C or O and degree of injury of 2, 3, or 4</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					0 to N for each collision</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Primary Ramp</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>RAMP1</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					NO-NB On Ramp, NF-NB Off Ramp, SO-SB On Ramp, SF-SB Off Ramp, EO-EB On Ramp, EF-EB Off Ramp, WO-WB On Ramp, WF-WB Off Ramp, To, From, Transition, Collector, Connector &amp; blank</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					Secondary Ramp</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>RAMP2</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					Same as above</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					City</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CITY</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					County</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>COUNTY</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					State</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>STATE</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP generated GPS longitude coordinate</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CHP_X</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					The longitude of the GPS position</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p align="center">
+					&nbsp;</p>
+			</td>
+		</tr>
+		<tr>
+			<td style="width:129px;">
+				<p align="center">
+					CHP generated GPS latitude coordinate</p>
+			</td>
+			<td style="width:136px;">
+				<p align="center">
+					<strong>CHP_Y</strong></p>
+			</td>
+			<td style="width:216px;">
+				<p align="center">
+					The latitude of the GPS position</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+			<td style="width:240px;">
+				<p>
+					&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+<div class="footer_main">
+	<a href='http://tims.berkeley.edu/index.php'>Home</a> | <a href='http://tims.berkeley.edu/page.php?page=about'>About</a> | <a href='http://tims.berkeley.edu/page.php?page=tools'>Tools</a> | <a href='http://tims.berkeley.edu/page.php?page=resources'>Resources</a> | <a href='http://tims.berkeley.edu/news/main.php'>News</a> | <a href='http://tims.berkeley.edu/helpdoc/Gen_FAQs.php'>Help</a> &copy; UC Regents, 2011-<script>document.write(new Date().getFullYear());</script>
+</div>
+
+</div> <!-- Close Capsule div -->
+
+</body>
+</html>
