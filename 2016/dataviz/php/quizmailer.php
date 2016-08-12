@@ -99,16 +99,16 @@ function show_error($myError)
 								<li><a href="week1.html">What is data?</a></li>
 								<li><a href="week2.html">Data visualization: basic principles</a></li>
 								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
-								<li><a href="week4.html">Acquiring, cleaning and formatting data</a></li>
-								<li><a href="week5.html">Interviewing data: using databases</a></li>
+								<li><a href="week4.html">Using GitHub</a></li>
+								<li><a href="week5.html">Acquiring, cleaning, and formatting data</a></li>
 								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
-								<li><a href="week7.html">Principles of mapping</a></li>
-								<li><a href="week8.html">Making static maps</a></li>
-								<li><a href="week9.html">Making interactive maps</a></li>
-								<li><a href="week11.html">Manipulating data and making graphics with R</a></li>
-								<li><a href="week12.html">Coding interactive graphics</a></li>
+								<li><a href="week7.html">Manipulating data and making graphics with R</a></li>
+								<li><a href="week8.html">Principles of mapping</a></li>
+								<li><a href="week9.html">Making static maps and processing geodata</a></li>
+								<li><a href="week10.html">Making interactive maps</a></li>
+								<li><a href="week11.html">Coding interactive graphics</a></li>
 								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
-								<li><a href="week14.html">Let's apply what we've learned</a></li>									
+								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>	
 							</ul>
 						</li>
 						<li><a href="software.html">Software</a></li>
