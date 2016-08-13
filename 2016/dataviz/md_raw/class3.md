@@ -64,7 +64,7 @@ Over to the right you should see the `Show Me` panel, which will highlight chart
 
 The starting point for creating any chart or map in Tableau is to place fields into `Columns` and `Rows`, which for most charts correspond to the X and Y axes, respectively. When making maps, longitude goes in `Columns` and latitude in `Rows`. If you display the data as a table, then these labels are self-explanatory.
 
-#### Some questions to ask about this data
+#### Some questions to ask this data
 
 - How have the total number of neonatal deaths changed over time, globally, regionally and nationally?
 - How has the neonatal death rate for each country changed over time?
@@ -89,7 +89,7 @@ Here we have simply run some simple arithmetic, but it's possible to use a wide 
 
 As we work through today's exercise, we will see that Tableau routinely aggregates measures that are dropped into `Columns` and `Rows`, calculating a `SUM` or `AVG` (average), for example.
 
-This behavior can be turned off by selecting `Analysis` from the top menu and unchecking `Aggregate Measures`. However, I do not recommend doing this, as it will disable some Tableau functions. Instead, to visualize individual data points, we will use Tableau's filtering functions and the `Detail` shelf so that any aggregration is being performed on a single data point, and therefore has no effect.
+This behavior can be turned off by selecting `Analysis` from the top menu and unchecking `Aggregate Measures`. However, I do not recommend doing this, as it will disable some Tableau functions. Instead, if you don't want to aggregate *all* of the data, drop categorical variables into the `Detail` shelf so that any aggregration will be performed at the correct level for your analysis. If necessary, you can set the aggregation so it is being performed on a single data point, and therefore has no effect.
 
 #### Make a series of treemaps showing neonatal deaths over time
 
@@ -102,6 +102,7 @@ Drag `Country` and `Region` onto `Columns` and `Neonatal deaths` onto `Rows`. Th
 Now remove `Region` from `Label` to  show just the country names, and drag `Region` to `Color`, and the rectangles will be colored using Tableau's default qualitative color scheme for categorical data:
 
 ![](./img/class3_7.jpg)
+Replace
 
 (Tableau's qualitative color schemes are well designed, so there is no need to adopt a ColorBrewer scheme. However, it is possible to edit colors individually as you wish.)
 
@@ -121,17 +122,17 @@ To see one year at a time, we need to filter by year. If you drag the existing `
 
 Instead, we need to be able check individual years, and draw a treemap for each one. To do that, select `Year` in the `Dimensions` panel and `Duplicate`.
 
-Select the new variable and `Convert to Discrete` and then rename it `Year (discrete)`. Now drag this new variable to `Filters` and select 2013 (the last year for which there is data).
+Select the new variable and `Convert to Discrete` and then rename it `Year (discrete)`. Now drag this new variable to `Filters` and select 2014.
 
 ![](./img/class3_10.jpg)
 
-The treemap now displays the data for 2013:
+The treemap now displays the data for 2014:
 
 ![](./img/class3_11.jpg)
 
 That's good for a snapshot of the data, but with a little tinkering, we can adapt this visualization to show change in the number of neonatal deaths over time at the national, regional and global levels.
 
-Select `Year (discrete)` in the `Filters` shelf and `Filter ...` to edit the filter. Select all the years with odd numbers and click `OK`:
+Select `Year (discrete)` in the `Filters` shelf and `Filter ...` to edit the filter. Select all the years with even numbers and click `OK`:
 
 ![](./img/class3_12.jpg)
 
@@ -149,7 +150,7 @@ I find it more intuitive to have the most recent year at the top, so click on th
 
 ![](./img/class3_15.jpg)
 
-The rectangles are now too small for the labels to work well. Rather than removing them entirely, let's just leave a label for India in 2013, to make it clear that this is the country with by far the largest number of neonatal deaths. Click on `Label` in the `Marks` shelf, and switch from `All` to `Selected` under `Marks to Label`. Then right-click on the rectangle for India in 2012, and select `Mark Label>Always Show`. Right click again on the rectangle and select `Format`. Under `Sheet`, open the dropdown menu for `Default>Pane` and set the color to a dark gray. The chart should now look like this:
+The rectangles are now too small for the labels to work well. Rather than removing them entirely, let's just leave a label for India in 2014, to make it clear that this is the country with by far the largest number of neonatal deaths. Click on `Label` in the `Marks` shelf, and switch from `All` to `Selected` under `Marks to Label`. Then right-click on the rectangle for India in 2014, and select `Mark Label>Always Show`. Right click again on the rectangle and select `Format`. Under `Sheet`, open the dropdown menu for `Default>Pane` and set the color to a dark gray. The chart should now look like this:
 
 ![](./img/class3_16.jpg)
 
@@ -194,12 +195,13 @@ To explore the neonatal death rate over time by country, we can use a line chart
 First, rename `Neonat Mortal` as `Neonatal death rate (per 1,000 births)`. Then, open a new worksheet, drag this variable to `Rows` and `Year` to `Columns`.  The chart should now look like this:
 
 ![](./img/class3_21.jpg)
+Replace!
 
 Now drag `Country` to `Detail` in the `Marks` shelf to draw one line per country:
 
 ![](./img/class3_22.jpg)
 
-Drag region to `Color`, set the transparency to 75%, and remove the color legend. Notice that this data starts in 1990. To make the range consistent with the treemaps, drag `Year (discrete)` to filter and select all years apart from 1990 and 2014.
+Drag region to `Color`, set the transparency to 75%, and remove the color legend.
 
 Now right-click on the X axis, select `Edit Axis`, edit the dialog box as follows and click `OK`:
 
@@ -224,6 +226,7 @@ Tableau's default behavior when data is filtered is to redraw charts to reflect 
 To freeze the line thicknesses, hover over the title bar for the line thickness legend, select `Edit Sizes...` and fill in the dialog box as follows:
 
 ![](./img/class3_26.jpg)
+Replace!
 
 Now remove this legend from the visualization. We will later add an annotation to our dashboard to explain the line thickness.
 
@@ -305,8 +308,6 @@ Now drag a `Text` box to the bottom of the dahboard and add a footnote giving so
 
 ![](./img/class3_40.jpg)
 
-Now switch to the `Floating` option for new objects, which allows one to be placed over the top of another. Then drag a `Text` box to the top of the line chart to add an annotation explaining the thickness of the lines.
-
 Give the dashboard an appropriate name, and save to the web.
 
 The final dashboard should look like this:
@@ -318,6 +319,7 @@ Take some time to consider how this visualization of the data works, in relation
 Once the dashboard is online, use the `Share` link at the bottom to obtain an embed code, which can be inserted into the HTML of any web page.
 
 ![](./img/class3_42.jpg)
+Replace!
 
 (You can also `Download` a static view of the graphic as a PNG image or a PDF.)
 
@@ -370,6 +372,6 @@ As for all responsively designed web pages, make sure to include this line of co
 
 [Gallery of Tableau Public visualizations](http://www.tableausoftware.com/public/gallery/all): Again, you can download the workbooks to see how they were put together.
 
-[Tableau Public Knowledge Base](http://www.tableausoftware.com/public/knowledgebase/all): Useful resource with the answers to many queries about how to use the software.
+[Tableau Public Knowledge Base](http://kb.tableau.com/): Useful resource with the answers to many queries about how to use the software.
 
 

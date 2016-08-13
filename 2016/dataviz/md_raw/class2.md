@@ -14,9 +14,11 @@ These cues are not created equal, however. In the mid-1980s, statisticians Willi
 
 This perceptual hierarchy of visual cues is important. When making comparisons with continuous variables, aim to use cues near the top of the scale wherever possible.
 
-That doesn't mean the other possibilities are always to be avoided in visualization -- indeed, color hue can a good way of encoding categorical data. The human brain is particularly good at recognizing patterns and differences. This means that variations in color, shape and orientation, while poor for accurately encoding the precise value of continuous variables, can be good choices for representing categorical data.
+### But this doesn't mean that everything becomes a bar chart
 
-You can also combine different visual cues into the same graphic to encode different variables. But always think about the main messages you are trying to impart, and where you can use visual cues near the top of the visual heirarchy to communicate that message most effectively.
+Length on an aligned scale may be the best option to allow people to compare numbers accurately, but that doesn't mean the other possibilities are always to be avoided in visualization. Indeed, color hue is a good way of encoding categorical data. The human brain is particularly good at recognizing patterns and differences. This means that variations in color, shape and orientation, while poor for accurately encoding the precise value of continuous variables, can be good choices for representing categorical data.
+
+You can also combine different visual cues in the same graphic to encode different variables. But always think about the main messages you are trying to impart, and where you can use visual cues near the top of the visual hierarchy to communicate that message most effectively.
 
 To witness this perceptual hierarchy, look at the following visual encodings of the same simple dataset. In which of the three charts is it easiest to compare the numerical values that are encoded?
 
@@ -40,7 +42,7 @@ This is a frequently asked question, and the best answer is: Experiment with dif
 
 (Source: A. Abela, [Extreme Presentation Method](http://extremepresentation.typepad.com/files/choosing-a-good-chart-09.pdf))
 
-In week 1, we covered charts to show the **distribution** of a single continuous variable, and to study the **relationship** between two continuous variables. So let's now explore possibilities for **comparison** between items for a single continuous variable, and **composition**, or how parts make up the whole. In each case, this framework considers both a snapshot at one point in time, and how to visualize comparison and composition over time -- a common task in data journalism.
+In Week 1, we covered charts to show the **distribution** of a single continuous variable, and to study the **relationship** between two continuous variables. So let's now explore possibilities for **comparison** between items for a single continuous variable, and **composition**, or how parts make up the whole. In each case, this framework considers both a snapshot at one point in time, and how to visualize comparison and composition over time -- a common task in data journalism.
 
 I like to add a couple more answers to the question: **connection**, or visualizing how people, things, or organizations relate to one another; and **location**, which covers maps.
 
@@ -93,7 +95,7 @@ If you are comparing two points in time for many items, a slope graph can be an 
 
 This is where the much-maligned pie chart does have a role, although it is not the only option. Which of these two representations of an August 2014 poll of public opinion on President Barack Obama's job performance makes the differences between his approval ratings for difference policy areas easiest to read, the pie charts or the stacked column charts below?
 
-These graphics involve both comparison and composition -- a common situation in data journalism. Note also the use of color: The darker, more intense shade of blue serves to highlight the percentage of the public that approved of Obama's performance, while a neutral gray is used for the "unsures," to de-emphasize this category and draw attention to the difference between the size of the "approve" and "disapprove" values.
+These graphics involve both comparison and composition -- a common situation in data journalism.
 
 ![](./img/class2_12.jpg)
 
@@ -103,7 +105,13 @@ In class, we'll discuss how both of these representations of the data could have
 
 I would suggest abandoning pie charts if there are any more than three parts to the whole, as they become very hard to read when there are many segments. ProPublica's [graphics style guide](https://github.com/propublica/guides/blob/master/news-apps.md) goes further, allowing pie charts with two segments only.
 
-Another approach, known as a treemap, uses area to encode the size of parts of the whole. Although area falls lower on the perceptual hierarchy of visual cues than position/length, it can be effective to display "nested" variables -- where each part of the whole is broken down into further parts. Here *The New York Times* used a treemap to display President Obama's 2012 budget request to Congress, also using color to indicate whether the proposal represented an increase (shades of green) or decrease (red) in spending:
+[Recent research](https://eagereyes.org/blog/2016/a-reanalysis-of-a-study-about-square-pie-charts-from-2009) into how people perceive composition visualizations with just categories suggests that the best approach may actually be a square chart. Surprisingly, this is an example where an encoding of area seems to beat length for accuracy:
+
+![](./img/squarepies.jpg)
+
+(Source: [Eagereyes](http://flowingdata.com/2016/07/15/square-pie-chart-beats-out-the-rest-in-perception-study/))
+
+Another approach, known as a treemap, similarly uses area to encode the size of parts of the whole, and can be effective to display "nested" variables -- where each part of the whole is broken down into further parts. Here *The New York Times* used a treemap to display President Obama's 2012 budget request to Congress, also using color to indicate whether the proposal represented an increase (shades of green) or decrease (red) in spending:
 
 ![](./img/class2_13.jpg)
 
@@ -144,6 +152,74 @@ Journalists may be interested in exploring **connection** -- which donors gave m
 Complex network graphs can be very hard to read -- "hairball" is a pejorative term used to describe them -- so networks often need to be filtered to tell a clear story to your audience.
 
 If you are interested in learning how to make network graphs, I have tutorials [here](http://paldhous.github.io/NICAR/2015/gephi.html) and [here](http://www.peteraldhous.com/CAR/CAR2014_NodeXL.pdf).
+
+
+#### Case study: Immunization in California kindergartens
+
+Now we'll explore a dataset at different levels of analysis, to show how different visual encodings may be needed for different visualization tasks with the same data.
+
+This data, from the [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx), gives numbers on immunization and enrollment at kindergartens across the state. The data is provided at the level of individual schools, but can be aggregated to look at counties, or the entire state.
+
+When looking at change over time at the state level, the perceptual hierarchy makes a column chart a good choice:
+
+![](./img/infodes_5.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+Notice that I've focused on the percentage of children with *incomplete* vaccination, rather than the percentage complete, for two reasons: 
+- The differences between the lengths of the bars are greater, and so is easier to read. 
+- More importantly, incomplete vaccination is what increases the risk of infectious disease outbreaks, which is why we care about this data.
+
+But as for the food stamps data, a bar chart is not the only choice:
+
+Here's the same information presented as a line chart:
+
+![](./img/infodes_6.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+
+Notice that here, I haven't started the Y axis at zero. This would be unforgivable for a bar chart, where the length of the bar *is* the visual encoding, and so starting at an arbitrary value would distort the comparison between the bars. Here, however, I'm emphasizing the relative slope, to show change over time, so starting at zero is less crucial.
+
+And here's the data as a dot-and-line chart:
+
+![](./img/infodes_7.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+
+Here, I've returned to a Y axis that starts at zero, so that the relative positions of the points can be compared accurately.
+
+But what if we want to look at individual counties? When comparing a handful of counties, the dot-and-line chart, combining the visual cues of position on an aligned scale (for the yearly values) and slope (for the rate of change from year to year) works well:
+
+![](./img/infodes_8.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+But there are 58 counties in California, and trying to compare them all using a dot-and-line chart results in chaos:
+
+![](./img/infodes_9.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+In this case, it makes sense to drop down the perceptual hierarchy, and use the intensity of color to represent the percentage of incomplete immunization:
+
+![](./img/infodes_10.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+This type of chart is called a heat map. It provides a quick and easy way to scan for the counties and years with the highest rates of incomplete immunization.
+
+What if we want to visualize the data for every kindergarten on a single chart, to give an overview of how immunization rates vary across schools?
+
+Here's my best attempt at this:
+
+![](./img/infodes_11.png)
+
+(Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
+
+Here I've drawn a circle for every school, and used their position on an aligned scale, along the Y axis, to encode the percentage of incomplete immunization. I've also used the area of the circles to encode the enrollment at each kindergarten -- but this is secondary to the chart's main message, which is about the variation of immunization rates across schools.
+
 
 ### Using color effectively
 
@@ -242,23 +318,23 @@ Here is a nice example of a graphic that minimizes chart junk, and maximizes dat
 
 Contrast this with the proliferation of chart junk in the earlier misleading Fox News column chart.
 
-Labels and spot-color highlights can be particularly useful to highlight your story, as shown in the following scatter plots, used here to show the relationship between the median salaries paid to women and men for the same jobs in 2013. In this case there is no suggestion of causation; here the scatter plot format is being used to display two distributions simultaneously -- see the chart types thought-starter.
+Labels and spot-color highlights can be particularly useful to highlight your story, as shown in the following scatter plots, used here to show the relationship between the median salaries paid to women and men for the same jobs in 2015. In this case there is no suggestion of causation; here the scatter plot format is being used to display two distributions simultaneously -- see the chart types thought-starter.
 
 It is clear from the first, unlabeled plot, that male and female salaries for the same job are strongly correlated, as we would expect, but that relationship is not very interesting. Notice also how I have used transparency to help distinguish overlapping individual points.
 
-![](./img/class2_27.jpg)
+![](./img/salaries1.jpg)
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
 What we are interested in here is whether men and women are compensated similarly for doing the same jobs. The story in the data starts to emerge if you add a line of equal pay, with a slope of 1 (note that this isn't a trend line, as we discussed last week). Here I have also highlighted the few jobs in which women in 2013 enjoyed a marginal pay gap over men:
 
-![](./img/class2_28.jpg)
+![](./img/salaries2.jpg)
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
 Notice how adding another line, representing a 25% pay gap, and highlighting the jobs where the pay gap between men and women is largest, emphasizes different aspects of the story:
 
-![](./img/class2_29.jpg)
+![](./img/salaries3.jpg)
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
@@ -380,7 +456,7 @@ Over the coming weeks and beyond, make a habit of looking for innovative graphic
 
 ![](./img/class2_41.jpg)
 
-(Source: [*The New York Times*](http://www.nytimes.com/interactive/2015/04/16/upshot/marriage-penalty-couples-income.html?abt=0002&abg=0))
+(Source: [*The New York Times*](http://www.nytimes.com/interactive/2016/08/08/sports/olympics/history-olympic-dominance-charts.html))
 
 ![](./img/class2_42.jpg)
 

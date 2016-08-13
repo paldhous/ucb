@@ -12,7 +12,7 @@ I hope you will get hooked on the power of a statistical way of thinking. As dat
 
 Download the data for this session from [here](data/week1.zip), unzip the folder and place it on your desktop. It contains the following files:
 
-- `mlb_salaries_2013.csv` Salaries of players in Major League Baseball at the start of the 2013 season, from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).
+- `mlb_salaries_2014.csv` Salaries of players in Major League Baseball at the start of the 2014 season, from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).
 
 - `disease_democ.csv` Data illustrating a [controversial theory](http://www.newscientist.com/article/mg21028133.300-genes-germs-and-the-origins-of-politics.html) suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*.
 
@@ -33,13 +33,15 @@ Statisticians often use the term “variable.” This simply means any measure o
 
 - **Continuous** data is richer, consisting of numbers that can have a range of values on a sliding scale. When working with weather data, for instance, continuous variables might include temperature and amount of rainfall.
 
-Datasets will usually contain a mixture of categorical and continuous variables. Here, for example, is a small part of a spreadsheet containing data on salaries for Major League Baseball players at the opening of the 2013 season:
+There's a third type of data we often need to consider: **date and time**. Perhaps the most common task in data journalism is to consider how a variable or variables have changed over time.
+
+Datasets will usually contain a mixture of categorical and continuous variables. Here, for example, is a small part of a spreadsheet containing data on salaries for Major League Baseball players at the opening of the 2014 season:
 
 ![](./img/class1_1.jpg)
 
 (Source: Peter Aldhous, data from [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/) data)
 
-This is a typical data table layout, with the individual records -- the players -- forming the rows and the variables recorded for each player arranged in columns. Here it is easy to recognize the two continuous variables, showing the players' salaries in dollars and millions of dollars, because they are entered as numbers.
+This is a typical data table layout, with the individual records -- the players -- forming the rows and the variables recorded for each player arranged in columns. Here it is easy to recognize the categorical variables of `teamID` and `teamName` because they are each entered as text. The numbers for `salary`, expressed in full or in millions of dollars (`salary_mil`), are continuous variables.
 
 Don’t assume, however, that every number in a dataset represents a continuous variable. Text descriptions can make datasets unwieldy, so database managers often adopt simpler codes, which are often be numbers, to store categorical data. You can see this in the following example, showing data on traffic accidents resulting in injury or death in Berkeley, downloaded from a database maintained by researchers here on campus.
 
@@ -49,7 +51,7 @@ Don’t assume, however, that every number in a dataset represents a continuous 
 
 Of the numbers seen here, only the `YEAR`, latitudes and longitudes (`POINT_Y` and `POINT_X`) and numbers of people `KILLED` or `INJURED` actually represent continuous variables. (Look carefully, and you will see that these numbers are justified right within each cell. The other numbers are justified left, like the text entries, because they were imported into the spreadsheet as text values.)
 
-Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables (which will probably be called “fields” in a database), and how they are coded. [Here is the codebook](./data/traffic/SWITRS_codebook.pdf) for the traffic accident data.
+Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables/fields, and how they are coded. [Here is the codebook](data/tableau/collisions/SWITRS_codebook.pdf) for the traffic accident data.
 
 ### What shape is your data?
 
@@ -68,7 +70,6 @@ So if you receive "wide" data, you will usually need to covert it to "long" form
 (Source: Peter Aldhous, from [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/IEDIndex3.cfm?tid=5&pid=53&aid=1) data)
 
 Notice that now there is one column for each variable, which makes it easier for computers to understand.
-
 
 
 ### How do I interview data? The basic operations
@@ -117,7 +118,7 @@ But Meyer’s team only interviewed a sample of people from the affected neighbo
 
 Philip Meyer's analysis of the Detroit riot raises a general issue: only sometimes is it possible to obtain and analyze all of the data.
 
-There are only 30 teams in Major League Baseball, which at the start of the 2013 season just over 800 players on their rosters. So compiling all of the data on their contracts and salaries is a manageable task.
+There are only 30 teams in Major League Baseball, which at the start of the 2014 season just over 800 players on their rosters. So compiling all of the data on their contracts and salaries is a manageable task.
 
 But Meyer's team couldn't talk to all of the people in the riot-affected neighborhoods, and pollsters can’t ask every voter which candidate they intend to vote for in an upcoming election. Instead they take a sample. This is common in many forms of data analysis, not just opinion polling.
 
@@ -153,17 +154,17 @@ In this example, the X axis is labeled with multiples of a summary statistic cal
 
 Normal distributions are so common that many statistical methods have been invented specifically to work with them. It is also possible to run tests to tell whether data deviates significantly from a normal distribution, to check whether it’s valid to use these methods.
 
-Sometimes, however, it’s very clear just from looking at the shape of a dataset that it is not normally distributed. Here, for example, is the distribution of 2013 Major League Baseball salaries, dividing the values into “bins” rising in increments of S500,000. This type of chart is called a "histogram":
+Sometimes, however, it’s very clear just from looking at the shape of a dataset that it is not normally distributed. Here, for example, is the distribution of 2014 Major League Baseball salaries, drawn as columns in increments of $500,000. This type of chart is called a histogram:
 
 ![](./img/class1_7.jpg)
 
 (Source: Peter Aldhous, data from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/))
 
-This distribution is highly “skewed.” Almost half of the players are in the lowest two bins, paid less than $1 million. There are just a handful of players who were paid more than $20 million; Alex Rodriguez, paid $29 million by the New York Yankees, lies to the right of the chart on his own. Knowing this distribution may influence the story you would choose to tell from the data, the summary statistics you would choose to aggregate it, and the methods you might use to visualize it.
+This distribution is highly “skewed.” Almost half of the players are paid less than $1 million, while there are just a handful of players who were paid more than $20 million; the highest-paid was pitcher Zack Grienke, paid $26 million by the Los Angeles Dodgers. Knowing this distribution may influence the story you would choose to tell from the data, the summary statistics you would choose to aggregate it, and the methods you might use to visualize it.
 
-In class, we will plot the distribution of the 2013 baseball salary data using [this web app](http://rweb.stat.ucla.edu/ggplot2/).
+In class, we will plot the distribution of the 2014 baseball salary data using [this web app](http://rweb.stat.ucla.edu/ggplot2/).
 
-Select `Open Data>Upload File` and navigate to the file `mlb_salaries_2013.csv`. The app should recognize that this is a CSV file, but if the preview of the data looks wrong, use `import options` to correct things. Once the data has imported, and view the variables in the `Data Panel` at right in folders marked `Factor` (for categorical variables) and `Numeric` (for continuous variables).
+Select `Open Data>Upload File` and navigate to the file `mlb_salaries_2014.csv`. The app should recognize that this is a CSV file, but if the preview of the data looks wrong, use `import options` to correct things. Once the data has imported, and view the variables in the `Data Panel` at right in folders marked `Factor` (for categorical variables) and `Numeric` (for continuous variables).
 
 First we need to tell the app what goes on the X and Y axis, respectively. Right-click anywhere in the main panel and select `Map x(required)>salary_mil`. Were are not going to plot another variable from the data on the Y axis; we just want a count of the players in each salary bin. So select `Map y(required)>..count..` and click the `Draw Plot` button at bottom right.
 
@@ -192,7 +193,7 @@ For a perfect normal distribution, the mean, median and mode are all the same nu
 
 ### Calculate mean, median and mode
 
-Navigate in your browser to your [**Google Drive**](https://drive.google.com/) account, then click the red `NEW` button at top left and select `File upload`. Navigate to the file `mlb_salaries_2013.csv` and click `Open`.
+Navigate in your browser to your [**Google Drive**](https://drive.google.com/) account, then click the red `NEW` button at top left and select `File upload`. Navigate to the file `mlb_salaries_2014.csv` and click `Open`.
 
 When the file has uploaded, click on its icon in the main panel of your Google Drive, then select `Open>Google Sheets`:
 
@@ -213,7 +214,7 @@ Select column `H` by clicking its gray header containing the letter, then from t
 In the first cell of the `mean` column enter the following formula, which calculates the mean (called `average` in a spreadsheet) of all of the values in column `H`, containing the salaries in $ millions for each player.
 
 ```SQL
-=average(H2:H816)
+=average(H2:H747)
 ```
 
 Or alternatively, to select all the values in colum `H` without having to define their row numbers:
@@ -236,26 +237,9 @@ And the mode:
 
 These spreadsheet formulas are, in programming terms, functions. They act on the data specified in the brackets. This will become a familiar concept as we work with code in subsequent weeks.
 
-Across Major League Baseball at the start of the 2013 reason, the mean salary was $3.72 million. But when summarizing a distribution in a single value, we usually want to give a “typical” number. Here the mean is inflated by the vast salaries paid to a handful of star players, and may be a bad choice. The median salary of $1.35 million gives a more realistic view of what a typical MLB player was paid.
+Across Major League Baseball at the start of the 2014 season, the mean salary was $3.99 million. But when summarizing a distribution in a single value, we usually want to give a “typical” number. Here the mean is inflated by the vast salaries paid to a handful of star players, and may be a bad choice. The median salary of $1.5 million gives a more realistic view of what a typical MLB player was paid.
 
-The mode is less commonly used, but in this case also tells us something interesting: it was $490,000. This was the minimum salary paid under 2013 MLB contracts, which explains why it turns up more frequently than any other number. A data journalist who considered the median, mode and full range of the salary distribution may produce a richer story than one who failed to think beyond the “average.”
-
-### Summarizing and comparing distributions
-
-Sometimes you may want to separately consider the distribution of a continuous variable for different groups within the data -- for instance salaries by baseball team. You could draw a histogram for each group, but in such cases statisticians often use graphics called box plots, which summarize distributions, making differences between them easy to spot.
-
-Here are box plots showing the 2013 Major League Baseball salary data, by team:
-
-![](./img/class1_12.jpg)
-
-(Source: Peter Aldhous, data from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/))
-
-The middle line in each box is the median value. The plot also divides the distribution for each group into four “quartiles,” each containing one quarter of the values, and draws the box around the middle two quartiles. The “whiskers” extending up and down from the central box show the full range, not including any extreme values that may be statistical “outliers,” which are shown as separate points.
-
-Here, the box plots focus our attention on the teams with a large variation in salaries across their rosters, notably the Los Angeles Dodgers (LAN) and the New York Yankees (NYA), and also those that paid the lowest salaries with the smallest ranges: the Houston Astros (HOU), the Miami Marlins (MIA) and the New York Mets (NYN).
-
-I would not suggest box plots in a news graphic, as they would need explaining to most people. But they can be a useful tool when you start to explore a new dataset, revealing how distributions vary across different groups.
-
+The mode is less commonly used, but in this case also tells us something interesting: it was $500,000, a sum earned by 35 out of the 746 players. This was the minimum salary paid under 2014 MLB contracts, which explains why it turns up more frequently than any other number. A journalist who considered the median, mode and full range of the salary distribution may produce a richer story than one who failed to think beyond the “average.”
 
 ### Choosing bins for your data
 
