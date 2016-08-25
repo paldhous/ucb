@@ -118,7 +118,7 @@ But Meyer’s team only interviewed a sample of people from the affected neighbo
 
 Philip Meyer's analysis of the Detroit riot raises a general issue: only sometimes is it possible to obtain and analyze all of the data.
 
-There are only 30 teams in Major League Baseball, which at the start of the 2014 season just over 800 players on their rosters. So compiling all of the data on their contracts and salaries is a manageable task.
+There are only 30 teams in Major League Baseball, which at the start of the 2014 season had just under 750 players on their rosters. So compiling all of the data on their contracts and salaries is a manageable task.
 
 But Meyer's team couldn't talk to all of the people in the riot-affected neighborhoods, and pollsters can’t ask every voter which candidate they intend to vote for in an upcoming election. Instead they take a sample. This is common in many forms of data analysis, not just opinion polling.
 
@@ -160,7 +160,7 @@ Sometimes, however, it’s very clear just from looking at the shape of a datase
 
 (Source: Peter Aldhous, data from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/))
 
-This distribution is highly “skewed.” Almost half of the players are paid less than $1 million, while there are just a handful of players who were paid more than $20 million; the highest-paid was pitcher Zack Grienke, paid $26 million by the Los Angeles Dodgers. Knowing this distribution may influence the story you would choose to tell from the data, the summary statistics you would choose to aggregate it, and the methods you might use to visualize it.
+This distribution is highly “skewed.” Almost half of the players were paid less than $1 million, while there are just a handful of players who were paid more than $20 million; the highest-paid was pitcher Zack Grienke, paid $26 million by the Los Angeles Dodgers. Knowing this distribution may influence the story you would choose to tell from the data, the summary statistics you would choose to aggregate it, and the methods you might use to visualize it.
 
 In class, we will plot the distribution of the 2014 baseball salary data using [this web app](http://rweb.stat.ucla.edu/ggplot2/).
 
@@ -467,7 +467,6 @@ A logarithmic curve is just one example of a “non-linear” mathematical relat
 ### Assignment
 
 - Calculate the values needed to group nations into five quantile bins, according to the 2014 GDP per capita data in the file `gdp_pc.csv`.
-- Create a version of the baseball salaries box plot above with the app we used in class.
 - Modify the infectious disease and democratization scatter plot so that the points are color-coded by a nation's income group. Note, if your solution results in multiple trend lines, you are mapping color at the wrong point in building the chart!
 - Save both of these plots as PDF files. If the points on the scatter plot do not render correctly, paste the url for the PDF into another browser; it should work in Google Chrome.
 - Subscribe to visualization blogs, follow visualization thought leaders on Twitter, and take other steps to track developments in data viz and data journalism.

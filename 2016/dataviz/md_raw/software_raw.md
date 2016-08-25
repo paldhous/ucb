@@ -30,9 +30,8 @@ The Public version of the software requires you to save your visualizations to t
 ### [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/)
 Two handy Firefox add-ons, which will help you extract data from the web. Install them in Firefox [here](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [here](https://addons.mozilla.org/en-US/firefox/addon/downthemall/).
 
-### [Kimono](https://www.kimonolabs.com/)
-
-A web scraping tool that works from your web browser. Sign up for a free account from the home page, then [install the Bookmarklet](https://www.kimonolabs.com/learn/getstarted). There is also an extension for Google Chrome.
+### [Import.io](https://import.io/)
+A tool for scraping data from the web, without the need to write code. You will need to sign up for an account at the `Sign up` link on the home page.
 
 ### [Open Refine](http://openrefine.org/)
 A powerful tool for data cleaning, once owned by Google, now open source. Download the latest **stable version** [from here](http://openrefine.org/download.html). When launched, Open Refine will work in your default web browser; note that your data remains on your computer, and is not uploaded to the web.
@@ -40,16 +39,12 @@ A powerful tool for data cleaning, once owned by Google, now open source. Downlo
 ### [Mr. Data Converter](http://shancarter.github.io/mr-data-converter/)
 Allows you to convert tabular (spreadsheet/CSV) data to web-friendly formats including JSON. Web app: no installation required.
 
-### [SQLite Manager](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/)
-We will manage SQLite databases using this Firefox add-on. Install in Firefox [from here](https://addons.mozilla.org/en-US/firefox/addon/sqlite-manager/). There is no need to separately install SQLite.
 
 ### [GPS Visualizer batch geocoder](http://www.gpsvisualizer.com/geocoder/)
 Allows you to convert addresses to latitude and longitude coordinates. Web app: no installation required; however, you will need to sign up for API keys for the geocoding services it uses.
 
-### [CartoDB](https://cartodb.com)
+### [CARTO](https://cartodb.com)
 A sophisticated cloud-based mapping application that also functions as a geospatial database, allowing you to analyze and process geodata. [Sign up](https://cartodb.com/signup) here for a free account.
-
-Members of IRE [are eligible](https://ire.org/blog/ire-news/2015/03/06/free-upgraded-cartodb-accounts-ire-members/) for an upgraded account with more storage space and additional features.
 
 ### [Leaflet](http://leafletjs.com/)
 A JavaScript code library for making interactive online maps. Download the latest stable version [from here](http://leafletjs.com/download.html) and unzip, or place the code for the hosted version of this release between the `<head></head>` tags of your HTML code.
@@ -58,14 +53,14 @@ A JavaScript code library for making interactive online maps. Download the lates
 The leading open source Geographic Information System, which we will use to make maps and process geodata. Download the latest **standard** version of QGIS and its requirements [from here](http://www.kyngchaos.com/software/qgis/). Install GDAL and the Matplotlib Python module before installing QGIS itself.
 
 ### [R](http://www.r-project.org/) and [R Studio](http://www.rstudio.com/)
-R is a software environment and programming language for statistical computing and graphics. Download the latest [package](https://cran.rstudio.com/) for Mavericks and hugher. R Studio provides a user interface that makes it much easier to use. Download the latest installer [from here](http://www.rstudio.com/products/rstudio/download/).
+R is a software environment and programming language for statistical computing and graphics. Download the latest [package](https://cran.rstudio.com/) for OSX. R Studio provides a user interface that makes it much easier to use. Download the latest free version of RStudio Desktop [from here](http://www.rstudio.com/products/rstudio/download/).
 
 ### [D3](http://d3js.org/)
 
 A JavaScript code library for manipulating documents based on data, which has emerged in recent years as a powerful and flexible tool for interactive data visualization. Download the latest version [from here](http://d3js.org/) and unzip, or include the following code snippet in your HTML:
 
 ```CSS
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 ```
 
 
