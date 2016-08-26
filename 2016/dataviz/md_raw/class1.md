@@ -193,11 +193,15 @@ For a perfect normal distribution, the mean, median and mode are all the same nu
 
 ### Calculate mean, median and mode
 
-Navigate in your browser to your [**Google Drive**](https://drive.google.com/) account, then click the red `NEW` button at top left and select `File upload`. Navigate to the file `mlb_salaries_2014.csv` and click `Open`.
-
-When the file has uploaded, click on its icon in the main panel of your Google Drive, then select `Open>Google Sheets`:
+Navigate in your browser to your [**Google Drive**](https://drive.google.com/) account, then click the `NEW` button at top left and select `Google Sheets`. Once the spreadsheet opens select `File>Import...` from the top menu in Google Sheets and select the `Upload` tab in the dialog box that appears:
 
 ![](./img/class1_9.jpg)
+
+Click `Select a file from your computer`, navigate to the file `mlb_salaries_2014.csv` and click `Open`.
+
+At the next dialog box click `Import` and the file should upload.
+
+![](./img/class1_9a.jpg)
 
 When the data has uploaded, drag the darker gray line at the bottom of the light gray cell at top left below row `1`, so that the first row becomes a header.
 
@@ -468,9 +472,9 @@ A logarithmic curve is just one example of a “non-linear” mathematical relat
 
 - Calculate the values needed to group nations into five quantile bins, according to the 2014 GDP per capita data in the file `gdp_pc.csv`.
 - Modify the infectious disease and democratization scatter plot so that the points are color-coded by a nation's income group. Note, if your solution results in multiple trend lines, you are mapping color at the wrong point in building the chart!
-- Save both of these plots as PDF files. If the points on the scatter plot do not render correctly, paste the url for the PDF into another browser; it should work in Google Chrome.
+- Save the plot as a PDF file. If the points on the scatter plot do not render correctly, paste the url for the PDF into another browser; it should work in Google Chrome.
 - Subscribe to visualization blogs, follow visualization thought leaders on Twitter, and take other steps to track developments in data viz and data journalism.
-- Send me your calculated quantile values, your two plots, and your initial list of visualization blogs etc by the start of next week's class.
+- Send me your calculated quantile values, your scatter plot, and your initial list of visualization blogs etc by the start of next week's class.
 
 ### Further reading
 
