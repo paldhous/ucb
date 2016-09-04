@@ -3,129 +3,158 @@
 
 ### Blogs etc
 
-**[VizWiz](http://vizwiz.blogspot.com/p/data-viz-blogs.html)**
-Links to many other blogs etc.
-
 **[FlowingData](http://flowingdata.com/)**
+Also see the site's [list](https://flowingdata.com/2012/04/27/data-and-visualization-blogs-worth-following/) of blogs worth following.
 
-**[Information aesthetics](http://infosthetics.com/)**
+**[Reddit Data Is Beautiful](https://www.reddit.com/r/dataisbeautiful/)**
 
-**[DataVisualization.ch](http://datavisualization.ch/)**
+**[Visualising Data](http://www.visualisingdata.com/blog/)**
 
-**[Information is beautiful](http://www.informationisbeautiful.net/)**
+**[eagereyes](https://eagereyes.org/)**
 
-**[Dadaviz](http://dadaviz.com/)**
+**[Data Pointed](http://www.datapointed.net/)**
 
-**[Visualising Data](http://www.visualisingdata.com/)**
+**[feltron](http://feltron.tumblr.com/)**
 
-**[Junk Charts](http://junkcharts.typepad.com//)**
+**[information aesthetics](http://infosthetics.com/)**
 
-**[Storytelling with Data](http://www.storytellingwithdata.com/)**
+**[Information is Beautiful](http://www.informationisbeautiful.net/)**
 
-**[RoadToLarissa](http://roadtolarissa.com/)**
+**[I ❤ ❤ Charts](http://ilovecharts.tumblr.com/)**
 
-**[Source](https://source.opennews.org/en-US/)**
-Journalism code and the people who make it.
+**[Michael Sandberg's Data Visualization Blog](https://datavizblog.com/)**
 
-**[StoryBench](http://www.storybench.org/)**
+**[blprnt.blg (Jer Thorp)](http://blog.blprnt.com/)**
 
-**[Driven by Data](http://driven-by-data.net/)**
+**[Chart Porn](http://chartporn.org/)**
 
-**[Visual Cinnamon](http://www.visualcinnamon.com)**
+**[The ProPublica Nerd Blog](https://www.propublica.org/nerds)**
 
-**[Alberto Cairo](http://www.thefunctionalart.com)** 
+**[ProPublica Data](https://www.propublica.org/data/)**
 
-**[CreativeBloq](http://www.creativebloq.com/design-tools/data-visualization-712402)**
-This article provides a compilation of dataviz tools.
+**[DataVisualizationCH](https://datavisualization.ch/)**
 
-**[Cross Validated](http://stats.stackexchange.com)** 
-Questions and answers on statistics.
+**[30 Thought Leaders in Data Visulization](http://bigdata-madesimple.com/30-thought-leaders-in-data-visualization/)**
 
-**[Michael Sandberg's Data Visualization Blog](http://datavizblog.com)** 
+**[Washington Post Information Graphics](http://postgraphics.tumblr.com/)**
 
-**[Well-Formed Data](http://well-formed-data.net/)**
+**[NPR Visuals Team](http://blog.apps.npr.org/)**
 
-**[The Daily Viz](http://thedailyviz.com)**
+**[Cool Infographics](http://www.coolinfographics.com/)**
 
-####Media sites
-**[The Numbers/Wall Street Journal](http://blogs.wsj.com/numbers/)**
+**[Maga Design Blog](http://www.coolinfographics.com/)**
 
-**[By The Numbers/New York Times](http://blow.blogs.nytimes.com/)**
+**[Junk Charts](http://junkcharts.typepad.com/)**
 
-**[Los Angeles Times Data Desk](http://www.latimes.com/local/datadesk/)**
+**[Francesco Franchi](https://flowingdata.com/2012/04/27/data-and-visualization-blogs-worth-following/)**
 
-**[ProPublica Nerd Blog](https://www.propublica.org/nerds/)**
+**[WSJ Graphics](http://graphics.wsj.com/)**
 
-**[Guardian DataBlog](http://www.theguardian.com/data)**
+**[NYT Labs](http://nytlabs.com/blog/)**
 
-
-
-####R
-
-**[R-bloggers](http://www.r-bloggers.com)**
-
-####D3
-
-**[Dashing D3](https://www.dashingd3js.com/)**
-D3 tutorials.
-
-**[Block Explorer](http://bl.ocksplorer.org/)**
-Search for D3 examples by the code used.
-
-**[D3 Google Group](https://groups.google.com/forum/#!forum/d3-js)**
-
-**[Mike Bostock's Blocks](bl.ocks.org/mbostock)**
-D3 examples from the library's inventor.
-
-
-### Twitter accounts
-
-**[Andy Kirk](https://twitter.com/visualisingdata)**
-
-**[Scott Murray](https://twitter.com/alignedleft)**
-
-**[Robert Kosara](https://twitter.com/eagereyes)**
+### Twitter accounts/lists
 
 **[Nathan Yau](https://twitter.com/flowingdata)**
 
-**[Noah Iliinsky](https://twitter.com/noahi)**
+**[Randy Olsen](https://twitter.com/randal_olson)**
 
-**[Jorge Camoes](https://twitter.com/camoesjo)**
+**[Jon Schwabish](https://twitter.com/jschwabish)**
 
-**[Cole Nussbaumer](https://twitter.com/storywithdata)**
+**[Lisa Charlotte Rost](https://twitter.com/lisacrost)**
 
-**[Edward Tufte](https://twitter.com/EdwardTufte)**
+**[Cole Nussbaumer ](https://twitter.com/storywithdata)**
 
-**[Naomi B Robbins](https://twitter.com/nbrgraphs)**
+**[Stefanie Posavec](https://twitter.com/stefpos)**
 
-**[Info Aesthetics](https://twitter.com/infosthetics)**
+**[Jan Willem Tulp](https://twitter.com/janwillemtulp)**
 
-**[Info=Beautiful](https://twitter.com/infobeautiful)**
+**[Giorgia Lupi](https://twitter.com/giorgialupi)**
 
-**[Martin Wattenberg](https://twitter.com/wattenberg)** 
+**[Robert Kosara](https://twitter.com/eagereyes)**
 
-**[Jan Willem Tulp](https://twitter.com/JanWillemTulp)**
+**[Andy Kirk](https://twitter.com/visualisingdata)**
 
-**[Alberto Cairo](https://twitter.com/albertocairo)**
-
-**[NYT Graphics](https://twitter.com/nytgraphics)**
-
-**[Bloomberg VisualData](@BBGVisualData)**
-
-**[Archie Tse](https://twitter.com/archietse/)**
-
-**[Gregor Aisch](https://twitter.com/driven_by_data)**
+**[Mona Chalabi](https://twitter.com/monachalabi)**
 
 **[Derek Watkins](https://twitter.com/dwtkns)**
 
-**[Kevin Quealy](https://twitter.com/KevinQ)**
+**[Graham Roberts](https://twitter.com/grahaphics)**
 
-**[Peter Richardson](https://twitter.com/meetar)**
+**[Steve Duenes](https://twitter.com/duenes)**
 
-**[NPR Visuals team](https://twitter.com/nprviz)**
+**[Scott Byrne-Fraser](https://twitter.com/sbyrnefraser)**
+
+**[Ola Rosling](https://twitter.com/olarosling)**
+
+**[Nigel Holmes](https://twitter.com/nigelblue)**
+
+**[Nicholas Felton](https://twitter.com/feltron)**
+
+**[Martin Wattenberg](https://twitter.com/wattenberg)**
+
+**[Kim Rees](https://twitter.com/krees)**
+
+**[Jeffrey Heer](https://twitter.com/jeffrey_heer)**
 
 **[Hannah Fairfield](https://twitter.com/hfairfield)**
 
-**[Gregory Piatetsky](https://twitter.com/kdnuggets)**
+**[Fernanda Viegas](https://twitter.com/viegasf)**
 
+**[Info=Beautiful](https://twitter.com/infobeautiful)**
+
+**[David McCandless](https://twitter.com/mccandelish)**
+
+**[Ben Fry](https://twitter.com/ben_fry)**
+
+**[Ben Shneiderman](https://twitter.com/benbendc)**
+
+**[Kevin Quealy](https://twitter.com/kevinq)**
+
+**[Mike Bostock](https://twitter.com/mbostock)**
+
+**[Amanda Cox](https://twitter.com/amandacox)**
+
+**[Alvaro Valino](https://twitter.com/alvarovalino)**
+
+**[Alberto Cairo](https://twitter.com/albertocairo)**
+
+**[Aaron Koblin](https://twitter.com/aaronkoblin)**
+
+**[Open Knowledge Intl](https://twitter.com/OKFN)**
+
+**[Open Data Institute](https://twitter.com/ODIHQ)**
+
+**[Chart Porn](https://twitter.com/ChartPornOrg)**
+
+**[The Upshot](https://twitter.com/UpshotNYT)**
+
+**[Edward Tufte](https://twitter.com/EdwardTufte)**
+
+**[Jer Thorp (blprnt)](https://twitter.com/blprnt)**
+
+**[Jonathan Harris](https://twitter.com/jjhnumber27)**
+
+**[David Eads](https://twitter.com/eads)**
+
+**[Texas Tribune NewsApps](https://twitter.com/newsapps)**
+
+**[Quoctrung Bui](https://twitter.com/qdbui)**
+
+**[Nate Silver](https://twitter.com/NateSilver538)**
+
+**[Jeremy C.F. Lin](https://twitter.com/Jeremy_CF_Lin)**
+
+**[Armand Emamdjomeh](https://twitter.com/emamd)**
+
+**[Kuang Keng Kuek Ser](https://twitter.com/kuangkeng)**
+
+**[Lily Mihalik](https://twitter.com/mazet)**
+
+**[FiveThirtyEight](https://twitter.com/FiveThirtyEight)**
+
+**[Tableau Public](https://twitter.com/tableaupublic)**
+
+**[Women in Dataviz](https://twitter.com/sarahslo/lists/women-in-dataviz)**
+
+**[Data Journalism](https://twitter.com/sandhya__k/lists/data-journalism1)**
 

@@ -90,13 +90,13 @@ We will explore R packages, including [htmlwidgets](http://www.htmlwidgets.org/)
 
 
 
-- ####**Dec. 3:** [Iteration and animation: loops, GIFs and videos](week14.html)
+- ####**Dec. 2:** [Iteration and animation: loops, GIFs and videos](week14.html)
 We will explore how to make multiple variants of the same chart by writing loops in R, and use [ImageMagick](http://imagemagick.org/script/index.php) and [FFmpeg](http://ffmpeg.org/) to turn them into animated GIFs and videos.
 
  - **Assignment:** complete your final project, file via your GitHub account.
 
 
-- ####**Dec. 10:** [Student presentations on final projects](week15.html)
+- ####**Dec. 9:** [Student presentations on final projects](week15.html)
 You will each present your final project work to the class, explain the process of creating the graphics, choices in  analysis and design, and problems that arose and how these were addressed.
 
 ### Recommended reading
