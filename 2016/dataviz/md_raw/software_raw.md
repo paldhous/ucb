@@ -27,6 +27,14 @@ Visualization software designed for exploratory graphic analysis, which also all
 
 The Public version of the software requires you to save your visualizations to the open web. However, members of Investigative Reporters and Editors can obtain a [license for the Professional version](https://www.ire.org/blog/ire-news/2013/06/20/tableau-makes-its-desktop-software-free-ire-member/), which allows you to save workbooks on your machine. In any case, I strongly recommend that J-School students [join IRE](http://www.ire.org/membership/apply/) as a student member: it is a leader for training in data journalism.
 
+### [GitHub Desktop](https://desktop.github.com/)
+
+Point-and-click GUI for version control of your projects, and synching with remote hosting at [GitHub](https://github.com/). Download from [here](https://desktop.github.com/). You will also need to sign up [here](https://github.com/) for a free GitHub account.
+
+### [Haroopad](http://pad.haroopress.com/)
+
+[Markdown](https://en.wikipedia.org/wiki/Markdown) editor, which will make authoring webpages much easier. Download from [here](http://pad.haroopress.com/user.html). (If you are already using Markdown, feel free to keep using the editor of your choice.)
+
 ### [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/)
 Two handy Firefox add-ons, which will help you extract data from the web. Install them in Firefox [here](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [here](https://addons.mozilla.org/en-US/firefox/addon/downthemall/).
 
