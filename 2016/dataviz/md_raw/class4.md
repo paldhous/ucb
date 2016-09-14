@@ -26,11 +26,11 @@ Download the files for this session from [here](data/week4.zip), unzip the folde
 - `repository` or `repo` Think of this as a folder for a project. A repository contains all of the project files, and stores each file's revision history. Repositories on GitHub can have multiple collaborators and can be either public or private.
 - `clone` Copy a repository from GitHub to your local computer.
 - `master` This is the main version of your repository, created automatically when you make a new repository.
-- `branch` A version of your repository separate from the master branch. As you switch back and forth between branches, the files on your computer are automatically modified to reflect those changes. Branches are used commonly when multiple collaborators are working
+- `branch` A version of your repository separate from the master branch. As you switch back and forth between branches, the files on your computer are automatically modified to reflect those changes. Branches are used commonly when multiple collaborators are working on different aspects of a project.
 - `pull request` Proposed changes to a repository submitted by a collaborator who has been working on a branch.
 - `merge` Taking the changes from on branch and applying them to another. This is often done after a pull request.
 - `push` or `sync` Submitting your latest commits to the remote responsitory, on GitHub and syncing any changes from there back to your computer.
-- `gh-pages` a special branch that can be published on the web. This is how you host websites on GitHub. Even if a repository is private, its published version will be visible to anyone who has the url.
+- `gh-pages` A special branch that is published on the web. This is how you host websites on GitHub. Even if a repository is private, its published version will be visible to anyone who has the url.
 - `fork` Split off a separate version of a repository. You can fork anyone’s code on GitHub to make your own version of their repo.
 
 [Here](https://help.github.com/articles/github-glossary/) is a more extended GitHub glossary.
@@ -53,7 +53,7 @@ Now view your profile by clicking on the icon at top right and selecting `Your p
 
 ![](img/class4_5.jpg)
 
-At the next screen you can add personal details about yourself, and a profile picture. For now just add the name you want to display on GitHub. Fill in the rest in your own time after class.
+Here you can add your personal details, and a profile picture. For now just add the name you want to display on GitHub. Fill in the rest in your own time after class.
 
 You should have been sent a confirmation email to the address you used to sign up. Click on the verification link to verify this address on GitHub.
 
@@ -83,7 +83,7 @@ You will then be sent a new two-factor authentication code which you will need t
 
 ![](img/class4_10.jpg)
 
-At the next screen, enter your name and email address if they do not automatically appear, and click `Install Command Line Tools`:
+At the next screen, enter your name and email address if they do not automatically appear, click `Install Command Line Tools`, and then `Continue`:
 
 ![](img/class4_11.jpg)
 
@@ -93,7 +93,7 @@ The following screen should now open:
 
 ![](img/class4_12.jpg)
 
-You workspace contains one repo, which is an automated GitHub tutorial. Complete this in your own time if you wish. It will repeat many of the steps we will explore today.
+Your workspace contains one repo, which is an automated GitHub tutorial. Complete this in your own time if you wish. It will repeat many of the steps we will explore today.
 
 ### Your first repository
 
@@ -128,12 +128,12 @@ Now you should be able to see the repo in the GitHub Desktop app:
 
 ![](img/class4_18.jpg)
 
-You should also be able to find the folder you just cloned:
+You should also be able to find the folder you just cloned in the location you specified:
 
 ![](img/class4_19.jpg)
 
 It contains a single file called `README.md`. This is a simple text file written in a language called Markdown, which we will explore shortly. You use this file to
-write a description for your project, which will be displayed on the repo's page on GitHub.
+write an extended description for your project, which will be displayed on the repo's page on GitHub.
 
 #### Make a simple change to the project
 
@@ -157,7 +157,7 @@ Back in the `History` tab, you should now see two commits:
 
 So far you have committed the change on your local computer, but you haven't pushed it to GitHub, To do that, click the `Sync` button at top right.
 
-Now go to the project page on the GitHub website, refresh your browser if necessary, and see that there are now two commits, and the `index.html` file is in the remote repo:
+Go to the project page on the GitHub website, refresh your browser if necessary, and see that there are now two commits, and the `index.html` file is in the remote repo:
 
 ![](img/class4_23.jpg)
 
@@ -169,7 +169,7 @@ Back in GitHub Desktop, click on the new branch button at top left, and create a
 
 You can now switch between your two branches using the button to the immediate right of the new branch, which will display either `master` or `test-branch`. Do pay close attention to which branch you are working in!
 
-Here I am working in the test branch:
+Here I am working in the test branch, having made the edit below:
 
 ![](img/class4_25.jpg)
 
