@@ -58,18 +58,11 @@ The characters used to separate the columns in a text file, called "delimiters,"
 
 Before attempting to analyze a dataset, it’s important to know what, exactly, you’re working with. So the first thing you should do with any data is open it up in a spreadsheet, and make sure you understand how it is structured.
 
-Go to your [**Google Drive**](https://drive.google.com/drive/my-drive) account. Before uploading any files, click the gear icon at top right and make sure that the `Convert uploads` box is checked:
-
-![](./img/class1_1a.jpg)
-
-
-Now select `NEW>File upload`:
+Go to your [**Google Drive**](https://drive.google.com/drive/my-drive) account. Now select `NEW>Google Sheets`. In the spreadsheet, select `File>Import...` from the top menu, and at the next dialog box, select the  `Upload` tab:
 
 ![](./img/class1_2.jpg)
 
-Navigate to the file `richmond_collisions.csv` and `Open`. Once it has finished uploading, double-click on the file icon. You may be sent straight to the file, but if you see the following preview, open in Google Sheets:
-
-![](./img/class1_3.jpg)
+Navigate to the file `richmond_collisions.csv` and complete the import.
 
 In Google Sheets, the file should look like this:
 
@@ -151,7 +144,7 @@ There are many sophisticted statistical methods for crunching data, beyond the s
 
 - **Filter:** Select a defined subset of the data.
 
-- **Aggregate:** Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you'll **group** data into categories first, and then aggregate by group.
+- **Summarize/Aggregate:** Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you'll **group** data into categories first, and then aggregate by group.
 
 - **Join:** Merging entries from two or more datasets based on common field(s), for example a unique code, or last name and first name.
 
@@ -217,7 +210,7 @@ Statisticians also sometimes consider the “mode,” which is the value that ap
 
 ### Look at the distribution
 
-In your Google Drive account, upload the file `mlb_salaries_2014.csv`, open it in Google Sheets, and create a header row as before:
+In your Google Drive account, upload the file `mlb_salaries_2014.csv` in a new Google Sheet, and create a header row as before:
 
 ![](./img/class1_15.jpg)
 
@@ -424,6 +417,7 @@ You can say from this calculation that black applicants are about 2.7 times *as*
 
 ### Assignment
 
+- **Before next week's class**, complete this [quiz](week1_quiz.html), drawn from the principles discussed in this lesson, and your initial reading assignment from Sarah Cohen's book, below.
 
 ### Further reading
 

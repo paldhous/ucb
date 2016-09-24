@@ -368,42 +368,6 @@ Click the `Export` button at top right and export as a Excel file.
 
 Open Refine is a very powerful tool that will reward efforts to explore its wide range of its functions for manipulating data -- in this class we have barely scratched the surface of what it can do. See the **Further reading**, below, for more.
 
-
-### Correct for inflation (and cost of living)
-
-A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2014 dollars for a time series ending in 2014. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
-
-So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [**Consumer Price Index**](http://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use this [online calculator](http://www.bls.gov/data/inflation_calculator.htm) to obtain conversions.
-
-If, for example, you need to convert a column of data in a spreadsheet from 2010 dollars into today's values, fill in the calculator like this:
-
-![](./img/class2_27.jpg)
-
-
-A dollar today is worth the same as 0.9 dollars in 2010.
-
-So to convert today's values into 2010 dollars, use the following formula:
-
-```SQL
-2016 value * 0.9
-```
-
-And to convert the 2010 values to today's values, divide rather than multiply:
-
-```SQL
-2010 value / 0.9
-```
-
-Alternatively, fill in the calculator the other way round, and multiply as before.
-
-![](./img/class2_28.jpg)
-
-Convert 2010 to today's values:
-
-```SQL
-2010 value * 1.11
-```
-
 In a spreadsheet, you would need to insert `=` at the start of each formula.
 
 For comparing currency values across nations, regions or cities, you may also need to correct for the cost of living -- or differences in what a dollar can buy in different places. For World Bank indicators, look for the phrase "purchasing power parity," or PPP, for data that includes this correction. PPP conversion factors for nations over time are given [here](http://data.worldbank.org/indicator/PA.NUS.PPPC.RF).

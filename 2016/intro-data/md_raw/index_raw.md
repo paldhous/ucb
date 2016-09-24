@@ -9,7 +9,7 @@ Over four weeks, these classes will provide an introduction to data journalism. 
 
 **Rich Con/Oakland North/Tech** students will in **108/Lower Newsroom** on Thursdays from 8.30am - 10.00am.
 
-Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** **[time TBD]**. You are encouraged to arrange appointments to discuss your work.
+Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** from 10.00am-1.00pm after each class. You are encouraged to arrange appointments to discuss your work.
 
  - ####**Week 1:**	[**What can data journalism do for me?**](week1.html)
  #####(Sep. 19 and Sep. 22)
@@ -17,7 +17,7 @@ It can make you a better journalist. Basic principles of data analysis, includin
 
 - ####**Week 2:** 	[**Acquiring, cleaning, and formatting data**](week2.html)
 #####(Sep. 26 and Sep. 29)
-How to find, aqcuire, and process data, Including: data search and download tricks, including [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox plugins; processing and cleaning data with [Open Refine](http://openrefine.org/); correcting for inflation.
+How to find, acquire, and process data, Including: data search and download tricks, including [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox plugins; processing and cleaning data with [Open Refine](http://openrefine.org/); correcting for inflation.
 
 - ####**Week 3:** [**Interviewing data: Journalism with spreadsheets**](week3.html)
 #####(Oct. 24 and Oct. 27)
@@ -27,7 +27,7 @@ We will ask specific questions of data revelant to your J200 classes, by filteri
 #####(Oct. 31 and Nov. 3)
 We will again ask specific questions of data revelant to your J200 classes, this time by making charts and maps with Tableau Public and Google Fusion Tables.
 
-### Reruired reading
+### Required reading
 
 **Sarah Cohen:** [***Numbers in the Newsroom: Using Math and Statistics in News***](http://store.ire.org/products/numbers-in-the-newsroom-using-math-and-statistics-in-news-second-edition)
 

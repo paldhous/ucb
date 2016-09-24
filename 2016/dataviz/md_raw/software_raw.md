@@ -39,7 +39,7 @@ Point-and-click GUI for version control of your projects, and synching with remo
 Two handy Firefox add-ons, which will help you extract data from the web. Install them in Firefox [here](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [here](https://addons.mozilla.org/en-US/firefox/addon/downthemall/).
 
 ### [Import.io](https://import.io/)
-A tool for scraping data from the web, without the need to write code. You will need to sign up for an account at the `Sign up` link on the home page.
+A tool for scraping data from the web, without the need to write code. You will need to sign up for an account at the `Sign up` link on the home page, and download the app from [here](https://www.import.io/download/download-no-longer-supported/). (Import.io is still in the progress of migrating from a Desktop app to a web-only application.)
 
 ### [Open Refine](http://openrefine.org/)
 A powerful tool for data cleaning, once owned by Google, now open source. Download the latest **stable version** [from here](http://openrefine.org/download.html). When launched, Open Refine will work in your default web browser; note that your data remains on your computer, and is not uploaded to the web.

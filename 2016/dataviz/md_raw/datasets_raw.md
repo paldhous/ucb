@@ -63,7 +63,7 @@ You can use the [dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)
 
 #### [North Atlantic storms](./data/storms.zip)
 
-The file `storms.csv` contains [data on tropical storms and hurricanes](http://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html) compiled by the Hurricane Research Division of the U.S. National Oceanic and Atmospheric Administration. I have processed the [raw data](http://www.aoml.noaa.gov/hrd/hurdat/hurdat2.html) to give the following fields:
+The file `storms.csv` contains [data on tropical storms and hurricanes](http://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html) compiled by the Hurricane Research Division of the U.S. National Oceanic and Atmospheric Administration. I have processed the [raw data](http://www.aoml.noaa.gov/hrd/hurdat/hurdat2-1851-2015-070616.txt) to give the following fields:
 - `name` Official name for each storm; unnamed storms are listed as `Unnamed` and also numbered.
 - `year` `month` `day` `hour` `minute` Date and time fields for each observation. For recent storms, observations are recorded every six hours.
 - `timestamp` Date and time fields combined into a full timestamp for each observation in standard `YYYY-MM-DD HH:MM` format.
@@ -73,7 +73,7 @@ The file `storms.csv` contains [data on tropical storms and hurricanes](http://w
 -  `max_wind_kts` `max_wind_kph` `max_wind_mph` Maximum sustained wind for each observation.
 - `min_press` Minimum air pressure at the center of the system for each observation.
 
-This file contains data on storms from 1851 to 2014. However, you may wish to restrict your visualizations to storms from 1990 and later, as data on storms before the modern satellite era is less reliable.
+This file contains data on storms from 1851 to 2015. However, you may wish to restrict your visualizations to storms from 1990 and later, as data on storms before the modern satellite era is less reliable.
 
 This collection of data is good for mapping. If you need shapefiles for context and basemaps, try [Natural Earth](http://www.naturalearthdata.com/downloads/). These shapefiles each come with a `README.html` file that can be opened in a web browser for more information.
 
@@ -106,5 +106,5 @@ The [Transportation Injury Mapping System](http://tims.berkeley.edu/page.php?pag
 
 You will need to create an account. I can help if you have problems querying and downloading data,.
 
-The codebook `SWITRS_codebook.pdf` explains the fields in these tables, and how they should be joined.
+The [codebook](./data/SWITRS_codebook.pdf) explains the fields in these tables, and how they should be joined.
 

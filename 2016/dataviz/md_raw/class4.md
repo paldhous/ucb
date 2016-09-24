@@ -6,7 +6,7 @@ This avoids the hell of having to search through multiple versions of similar fi
 
 Version control was invented for programmers working on complex coding projects. But it is good practice for any project -- even if all you are managing are versions of a simple website, or a series of spreadsheets.
 
-This tutorial borrows from the [Workflow and GitHub](https://newmedia.report/classes/coding/2015/workflow-and-github/) lession in Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2016/) class -- see the further reading links below.
+This tutorial borrows from the [Workflow and GitHub](https://newmedia.report/classes/coding/2016/workflow-and-github/) lession in Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2016/) class -- see the further reading links below.
 
 ### Introducing Git, GitHub and GitHub Desktop
 
@@ -325,7 +325,8 @@ There are various sites on the web that provide customized Bootstrap themes -- s
 - In Markdown, write a pitch for your final project in a file called `project-pitch.md`. Your final project accounts for 45% of your grade for this class, so it's important that you get off to a good start with a substantial and thoughtful pitch. You will also be graded separately on this pitch assignment.
  - Explain the goals of your project.
  - Detail the data sources you intend to use, and explain how you intend to search for data if you have not identified them.
- - Provide an initial outline of how you intend the visualize the data, describing the charts/maps you are considering.
+ - Identify the questions you wish to address.
+ - Building from these questions, provide an initial outline of how you intend the visualize the data, describing the charts/maps you are considering.
 
 - Using Haroopad, save the Markdown document as an HTML file with the same name.
 - Create a `gh-pages` branch for your repository and publish it on GitHub. View the webpage at created at `http://[username].github.io/[project]/project-pitch.html` where `[username]` is your GitHub user name and `[project]` is the name of your project repository.
@@ -334,7 +335,7 @@ There are various sites on the web that provide customized Bootstrap themes -- s
 
 ### Further reading
 
-[Workflow and Github](https://newmedia.report/classes/coding/2015/workflow-and-github/)
+[Workflow and Github](https://newmedia.report/classes/coding/2016/workflow-and-github/)
 Lesson from Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2016/) class.
 
 [Getting Started with GitHub Desktop](https://help.github.com/desktop/guides/getting-started/)

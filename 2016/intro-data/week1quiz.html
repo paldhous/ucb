@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Journalism
+					</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data? And what can it do for me?</a></li>
+								<li><a href="week2.html">Acquiring, cleaning, and formatting data</a></li>
+								<li><a href="week3.html">Journalism with spreadsheets</a></li>
+								<li><a href="week4.html">Making charts and maps</a></li>	
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+	<div class="container all">
+
+		<div class="panel panel-default quiz" style="margin:0 auto">
+			<div class="panel-body">
+				<form name="quizform" method="post" action="php/quizmailer.php" class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="inputName" class="col-lg-12">Name</label>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" id="inputName" name="inputName" placeholder="Your name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputEmail" class="col-lg-12">Email</label>
+						<div class="col-lg-12">
+							<input type="text" class="form-control" id="inputEmail" name="inputEmail" placeholder="Your email">
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ1" class="col-lg-12">1. Identify the categorical variables from this list: a) day of the week; b) height (meters); c) identifies as conservative or liberal; d) speed (mph); e) weight (lbs); f) speed (high, medium, low).</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ1" name="inputQ1" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ2" class="col-lg-12">2. List three possible summary statistics (aggregate measures) for a continuous variable, with a one-sentence explanation of each. For example, sum is the result of adding together the values for all records in the dataset. (Do not repeat this example!)</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ2" name="inputQ2" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ3" class="col-lg-12">3. What should be the delimiter in a text file of data with the extension <code>.csv</code>?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ3" name="inputQ3" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ4" class="col-lg-12">4. When writing a spreadsheet formula, what is the first character that you should type?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ4" name="inputQ4" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ5" class="col-lg-12">5. What type of chart is this?</label>
+						<div class="col-lg-12">
+							<img src="img/class1_13.jpg" alt="">
+							<textarea class="form-control" rows="4" id="inputQ5" name="inputQ5" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ6" class="col-lg-12">6. Donald Trump’s support is estimatated at 40% in a new poll. The margin of error is 3.5 percentage points. What is the range of values that his support is likely to fall within 95% of the time, if the same poll had been repeated 100 times?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ6" name="inputQ6" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ7" class="col-lg-12">7. An agency’s budget was $21 million in 2015. It is $23.5 million in 2016. What was the percentage increase, rounded to one decimal place?</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ7" name="inputQ7" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ8" class="col-lg-12">8. There is a problem with this polling question: “Do you favor Hillary Clinton’s tax policy?” Suggest a rewrite to solve that problem.</label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ8" name="inputQ8" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ9" class="col-lg-12">9. There were 15,000 violent crimes in 2015 in city A, which had a population of 350,000. There were 9,000 violent crimes in City B, which had a population of 500,000. Complete the following sentence with a number rounded to one decimal place: “City A’s violent crime rate was ….. times that of city B.” </label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ9" name="inputQ9" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<label for="inputQ10" class="col-lg-12">10. <a href="http://www.nytimes.com/2010/09/16/nyregion/16caps.html?_r=0">This story</a> made page A1 of <em>The New York Times</em>, but is flawed as a work of data journalism. In no more than two paragraphs, explain what was wrong. </label>
+						<div class="col-lg-12">
+							<textarea class="form-control" rows="4" id="inputQ10" name="inputQ10" placeholder="Answer here"></textarea>
+						</div>
+					</div><br>
+					<div class="form-group">
+						<div class="col-lg-12">
+							<button type="submit" class="btn btn-default">
+								Submit
+							</button>
+							<p>(Your answers will also be sent to the email address you provided.)</p>
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

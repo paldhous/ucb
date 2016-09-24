@@ -51,7 +51,7 @@ Don’t assume, however, that every number in a dataset represents a continuous 
 
 Of the numbers seen here, only the `YEAR`, latitudes and longitudes (`POINT_Y` and `POINT_X`) and numbers of people `KILLED` or `INJURED` actually represent continuous variables. (Look carefully, and you will see that these numbers are justified right within each cell. The other numbers are justified left, like the text entries, because they were imported into the spreadsheet as text values.)
 
-Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables/fields, and how they are coded. [Here is the codebook](data/tableau/collisions/SWITRS_codebook.pdf) for the traffic accident data.
+Like this example, many datasets are difficult to interpret without their supporting documentation. So each time you acquire a dataset, if necessary make sure you also obtain the  “codebook” describing all of the variables/fields, and how they are coded. [Here is the codebook](./data/SWITRS_codebook.pdf) for the traffic accident data.
 
 ### What shape is your data?
 
