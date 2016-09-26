@@ -373,10 +373,6 @@ In a spreadsheet, you would need to insert `=` at the start of each formula.
 For comparing currency values across nations, regions or cities, you may also need to correct for the cost of living -- or differences in what a dollar can buy in different places. For World Bank indicators, look for the phrase "purchasing power parity," or PPP, for data that includes this correction. PPP conversion factors for nations over time are given [here](http://data.worldbank.org/indicator/PA.NUS.PPPC.RF).
 
 
-### Assignment
-
-
-
 ### Further reading
 
 [Open Refine Wiki](https://github.com/OpenRefine/OpenRefine/wiki)

@@ -28,8 +28,23 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 
 #### [Week 4](./data/week4.zip)
 
-`index.html` `index2.html` Two simple webpages, which we will edit and publish on GitHub.
-`css` `fonts` `js` Folders with files to run the Bootstrap web framework.
+- `index.html` `index2.html` Two simple webpages, which we will edit and publish on GitHub.
+- `css` `fonts` `js` Folders with files to run the Bootstrap web framework.
+
+#### [Week 5](./data/week5.zip)
+
+- `oil_production.csv` Data on oil production by world region from 2000 to 2014, in thousands of barrels per day, from the [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/iedindex3.cfm?tid=5&pid=53&aid=1&cid=regions,&syid=2000&eyid=2014&unit=TBPD).
+
+- `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/Pages/Default.aspx).
+
+- `urls.xls` A spreadsheet that we'll use in webscraping.
+
+
+#### [Week 6](./data/week6.zip)
+
+- `nations.csv` As for week three but lacking data on life expectancy, to allow you to practice data processing and a data join.
+
+
 
 ## Final projects
 
