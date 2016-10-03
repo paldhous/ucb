@@ -102,13 +102,13 @@ function show_error($myError)
 								<li><a href="week4.html">Using GitHub</a></li>
 								<li><a href="week5.html">Acquiring, cleaning, and formatting data</a></li>
 								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
-								<li><a href="week7.html">Manipulating data and making graphics with R</a></li>
-								<li><a href="week8.html">Principles of mapping</a></li>
-								<li><a href="week9.html">Making static maps and processing geodata</a></li>
-								<li><a href="week10.html">Making interactive maps</a></li>
-								<li><a href="week11.html">Coding interactive graphics</a></li>
-								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
-								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>	
+								<li><a href="week7.html">Manipulating data with R</a></li>
+								<li><a href="week8.html">Making static graphics with R</a></li>
+								<li><a href="week9.html">Principles of mapping</a></li>
+								<li><a href="week10.html">Making static maps and processing geodata</a></li>
+								<li><a href="week11.html">Making interactive maps</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a>
+								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>
 							</ul>
 						</li>
 						<li><a href="software.html">Software</a></li>

@@ -35,13 +35,14 @@
 								<li><a href="week4.html">Using GitHub</a></li>
 								<li><a href="week5.html">Acquiring, cleaning, and formatting data</a></li>
 								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
-								<li><a href="week7.html">Manipulating data and making graphics with R</a></li>
-								<li><a href="week8.html">Principles of mapping</a></li>
-								<li><a href="week9.html">Making static maps and processing geodata</a></li>
-								<li><a href="week10.html">Making interactive maps</a></li>
-								<li><a href="week11.html">Coding interactive graphics</a></li>
-								<li><a href="week13.html">From R to interactive charts and maps</a></li>									
-								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>	
+								<li><a href="week7.html">Manipulating data with R</a></li>
+								<li><a href="week8.html">Making static graphics with R</a></li>
+								<li><a href="week9.html">Principles of mapping</a></li>
+								<li><a href="week10.html">Making static maps and processing geodata</a></li>
+								<li><a href="week11.html">Making interactive maps</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a>
+								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>
+							</ul>
 							</ul>
 						</li>
 						<li><a href="software.html">Software</a></li>
@@ -56,31 +57,25 @@
 
 	<div class="container all">
 
-<h1 id="let's-apply-what-we've-learned-so-far"><a name="let's-apply-what-we've-learned-so-far" href="#let's-apply-what-we've-learned-so-far"></a>Let’s apply what we’ve learned so far</h1>
-<p>Your task for this week’s class is to create a Tableau version of the visualization in <a href="http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/">this Gapminder video</a>, using data from the World Bank’s <a href="http://data.worldbank.org/indicator/?tab=all">World Development Indicators</a> (WDI).</p>
-<p>Rather than using the data from week 3, start from <a href="data/week6.zip">this version</a> of the data, which lacks the variable giving life expectancy at birth.</p>
-<p>How to proceed:</p>
-<ul>
+<h1 id="let's-apply-what-we've-learned-so-far"><a name="let's-apply-what-we've-learned-so-far" href="#let's-apply-what-we've-learned-so-far"></a>Let’s apply what we’ve learned so far</h1><p>Your task for this week’s class is to create a Tableau version of the visualization in <a href="http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/">this Gapminder video</a>, using data from the World Bank’s <a href="http://data.worldbank.org/indicator/?tab=all">World Development Indicators</a> (WDI).</p><p>Rather than using the data from week 3, start from <a href="data/week6.zip">this version</a> of the data, which lacks the variable giving life expectancy at birth.</p><p>How to proceed:</p><ul>
 <li>Download data in Excel format for life expectancy at birth by nation over time from <a href="http://data.worldbank.org/indicator/SP.DYN.LE00.IN">here</a>.</li><li><p>Open in a spreadsheet and edit to remove the couple of rows above the header row, and remove columns to leave just the country names, country codes, and data from 1990 onwards,</p>
 </li><li><p>Process this data using Open Refine to convert from wide to long format. When doing this, I would call the new column with life expectancy data something generic like <code>value</code>, so that it can be used on other World Bank data in the same format. I would also rename <code>Country Code</code> to <code>iso3c</code> and rename <code>Country Name</code> to <code>country</code>.  Then the variable names will match those in <code>nations.csv</code>.</p>
 </li><li><p>Export the data in CSV format, and save the steps from Open Refine that will enable you to process WDI data in the same way in future (you can then use this for the assignment). Place this file in your <code>week6</code> folder.</p>
 </li><li><p>Launch Tableau, and connect to the <code>nations.csv</code> file in the <code>week6</code> folder.</p>
-<p><img src="./img/class6_1.jpg" alt=""></p>
+<p><img src="img/class6_1.jpg" alt=""></p>
 <p>Now double-click on the file with the life expectancy data. Tableau will now attempt to <strong>join</strong> the data based on common fields:</p>
-<p><img src="./img/class6_2.jpg" alt=""></p>
+<p><img src="img/class6_2.jpg" alt=""></p>
 <p>To control how the join is performed, click on the circles with the blue area of overlap. Remember that there is one row in this data for each country in each year. So to join the data appropriately, we need to join by <code>year</code> and the <code>iso3c</code> country code (joining by unambiguous codes is generally a better idea than joining by names). Choosing an inner join will retain rows from each file only where there are matches.</p>
-<p><img src="./img/class6_3.jpg" alt=""></p>
+<p><img src="img/class6_3.jpg" alt=""></p>
 <p>The joined data should look like this in a Tableau worksheet. You can see which variables came from which file:</p>
-<p><img src="./img/class6_4.jpg" alt=""></p>
+<p><img src="img/class6_4.jpg" alt=""></p>
 <p>At this point, I would rename <code>value</code> to <code>Life expectancy at birth</code>.</p>
 </li><li><p>Use the joined data to create a version of the Gapminder visualization, covering the period from 1990 to 2014.</p>
-</li></ul>
-<h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3>
-<ul>
+</li></ul><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
 <li><p>Download data in Excel format on carbon dioxide emissions in metric tonnes per capita, from <a href="http://data.worldbank.org/indicator/EN.ATM.CO2E.PC">here</a>.</p>
 </li><li><p>Process this data in Open Refine using the JSON you saved from the class exercise above, and export as a CSV file.</p>
 </li><li><p>Join to the exported data to the file <code>nations.csv</code> in Tableau as above, then create the simple dashboard shown below, recording total carbon dioxide emissions by region and nation, from 2000 to 2011. Hint: You will need to create a calculated variable for total emissions, using the per capita emissions data and the population data from <code>nations.csv</code>.</p>
-<p><img src="./img/class6_5.jpg" alt=""></p>
+<p><img src="img/class6_5.jpg" alt=""></p>
 </li></ul>
 
 	</div> <!-- /.container all -->

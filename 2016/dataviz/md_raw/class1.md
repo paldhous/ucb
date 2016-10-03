@@ -80,7 +80,7 @@ There are many sophisticted statistical methods for crunching data, beyond the s
 
 - **Filter:** Select a defined subset of the data.
 
-- **Aggregate:** Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you'll group data into categories first, and then aggregate by group.
+- **Summarize/Aggregate:** Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you'll group data into categories first, and then aggregate by group.
 
 - **Join:** Merging entries from two or more datasets based on common field(s), e.g. unique ID number, last name and first name.
 

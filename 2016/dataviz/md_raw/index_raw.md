@@ -44,32 +44,30 @@ You will obtain and process World Bank data on life expectancy and GDP per capit
  - **Assignment:** download and process World Bank data on nations' carbon dioxide emissions per capita, and make a simple Tableau dashboard.
 
 
-- #### **Oct. 7:**	[**Manipulating data and making graphics with R**](week7.html)
-Introduction to [R](http://www.r-project.org/), [R Studio](http://www.rstudio.com/) and R packages including [ggplot2](http://ggplot2.org/) for visualization and [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) for data manipulation.
-
-- **Assignment:** process data and make charts using R.
+- #### **Oct. 7:**	[**Manipulating data with R**](week7.html)
+Introduction to [R](http://www.r-project.org/), [R Studio](http://www.rstudio.com/) and the [dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) package for data manipulation.
 
 
-- #### **Oct. 14:** [** Principles of mapping**](week8.html)
+- #### **Oct. 14:** [**Making static graphics with R**](week8.html)
+Making charts with the [ggplot2](http://ggplot2.org/) R package.
+
+ - **Assignment:** process data and make charts using R.
+
+
+-  ####**Oct. 21:**[** Principles of mapping**](week9.html)
 Basic mapping principles:  projections, geocoding, geodata formats; approaches to putting data onto maps, including choropleth maps, scaled symbols, hexagonal binning and cartograms.
 
- - **Assignment:** submit a progress report on your final project.
+ - **Assignment:** continue work on final project, delivering a progress report.
 
 
--  ####**Oct. 21:** [**Making static maps and processing geodata with GIS software**](week9.html)
+-  ####**Oct. 28:** [**Making static maps and processing geodata with GIS software**](week9.html)
 We will use [QGIS](http://qgis.org/en/site/) to make a multi-layered map. We will also learn how to use QGIS and its plugins to process geodata.
 
  - **Assignment:** continue work on final project, delivering a progress report.
 
 
--  ####**Oct. 28:** [**Making interactive maps**](week10.html)
+-  ####**Nov.4:** [**Making interactive maps**](week11.html)
 We will use [Carto](https://carto.com/) and cartodb.js/Leaflet to create interactive online maps.
-
- - **Assignment:** mapping assignment.
-
-
-- ####**Nov. 4:** [**Coding interactive graphics**](week11.html)
-We will use [D3](http://d3js.org/) to code from scratch a number of common chart types. This will be a challenging exercise, intended as an introduction to the huge possibilities offered by a JavaScript code library that powers many of today’s most impressive online news visualizations.
 
   -  **Assignment:** Submit a full project update, via your GitHub account, for review in next week's meetings.
 
@@ -78,7 +76,7 @@ We will use [D3](http://d3js.org/) to code from scratch a number of common chart
 Instead, one-on-one meetings will be arranged with instructor to discuss progress with your final projects.
 
 
-- ####**Nov. 18:**	[**Now let's make this easier: from R to interactive charts and maps**](week13.html)
+- ####**Nov. 18:**	[**From R to interactive charts and maps**](week13.html)
 We will explore R packages, including [htmlwidgets](http://www.htmlwidgets.org/) and [rCharts](http://rcharts.io/), that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
 
  -  **Assignment:** continue work on final project, delivering a progress report.
@@ -87,7 +85,6 @@ We will explore R packages, including [htmlwidgets](http://www.htmlwidgets.org/)
 - ####**Nov 25:** Thanksgiving -- No Class
 
  - **Assignment:** continue work on your final project.
-
 
 
 - ####**Dec. 2:** [Iteration and animation: loops, GIFs and videos](week14.html)
