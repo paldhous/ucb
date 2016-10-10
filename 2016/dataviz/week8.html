@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Making static graphics with R</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Using GitHub</a></li>
+								<li><a href="week5.html">Acquiring, cleaning, and formatting data</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Manipulating data with R</a></li>
+								<li><a href="week8.html">Making static graphics with R</a></li>
+								<li><a href="week9.html">Principles of mapping</a></li>
+								<li><a href="week10.html">Making static maps and processing geodata</a></li>
+								<li><a href="week11.html">Making interactive maps</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a>
+								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="resources.html">Resources</a></li>
+						<li><a href="mailto:peter@peteraldhous.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<h1 id="making-static-graphics-with-r"><a name="making-static-graphics-with-r" href="#making-static-graphics-with-r"></a>Making static graphics with R</h1><p>In today’s class, we will begin to explore how R can be used to make graphics from data, making customized static graphics with the <strong><a href="http://docs.ggplot2.org/current/">ggplot2</a></strong> package. This is part of Hadley Wickham’s <a href="https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/">tidyverse</a>, so you already have it installed from last week.</p><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data for this session from <a href="data/week8.zip">here</a>, unzip the folder and place it on your desktop. It contains the following files:</p><ul>
+<li><code>disease_democ.csv</code> Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the <a href="http://www.gideononline.com/">Global Infectious Diseases and Epidemiology Network</a> and <em><a href="http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602">Democratization: A Comparative Analysis of 170 Countries</a></em>, as used in week 1.</li><li><code>food_stamps.csv</code> <a href="http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap">U.S. Department of Agriculture data</a> on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program.</li><li><code>nations.csv</code> Data from World Bank World Development Indicators portal, giving data on population, GDP per capita, life Expectancy, birth rate, neonatal mortality rate, region and income group for the world’s nations, from 1990 onwards, as used in week 3.</li></ul><h3 id="introducing-ggplot2-and-the-grammar-of-graphics"><a name="introducing-ggplot2-and-the-grammar-of-graphics" href="#introducing-ggplot2-and-the-grammar-of-graphics"></a>Introducing ggplot2 and the grammar of graphics</h3><p>The “gg” in <strong>ggplot2</strong> stands for “<a href="http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448">grammar of graphics</a>,” an approach to drawing charts devised by the statistician Leland Wilkinson. Rather than thinking in terms of finished charts like a scatter plot or a column chart, it starts by defining the coordinate system (usually the X and Y axes of a cartesian system), maps data onto those coordinates, and then adds layers such as points, bars and so on. This is the logic behind ggplot2 code.</p><p>Some key things to understand about <strong>ggplot2</strong>:</p><ul>
+<li><code>ggplot</code> This is the master function that creates a <strong>ggplot2</strong> chart.</li><li><code>aes</code> This function, named for “aesthetic mapping,” is used whenever data values are mapped onto a chart. So it is used when you define which variables are plotted onto the X and Y axes, and also if you want to change the size or color of parts of the chart according to values for a variable.</li><li><code>geom</code> All of the functions that add layers to a chart start with <code>geom</code>, followed by an underscore, for example <code>geom_point()</code> or <code>geom_bar()</code>. The code in the brackets for any <code>geom</code> layer styles the items in that layer, and can include <code>aes</code> mappings of values from data.</li><li><code>+</code> is used each time you add a layer to a chart. After a <code>+</code> you can continue on the same line of code or move the next line. I usually  write a new line for each layer, which makes the code easier to follow.</li><li><code>theme</code> This function modifies the appearance of elements of a plot, used, for example, to set size and font face for text, the position of a legend, and so on.</li><li><code>scale</code> Functions that begin with <code>scale</code>, followed by an underscore, are used to modify the way an <code>aes</code> mapping of data appears on a chart. They can change the axis range, for example, or specify a color palette to be used to encode values in the data.</li></ul><h3 id="make-scatter-plot-from-disease-and-democracy-data"><a name="make-scatter-plot-from-disease-and-democracy-data" href="#make-scatter-plot-from-disease-and-democracy-data"></a>Make scatter plot from disease and democracy data</h3><p>We’ll start by making and modifying a scatter plot from the disease and democracy data that we first encountered in week 1.</p><h4 id="load-required-packages-and-the-data"><a name="load-required-packages-and-the-data" href="#load-required-packages-and-the-data"></a>Load required packages and the data</h4><p>Open a new R script in RStudio, save the blank script to the folder with the data for this week, and then set your working directory to this location by selecting from the top menu <code>Session&gt;Set Working Directory&gt;To Source File Location</code>.</p><p>Now copy the following code into your script to load <strong>readr</strong>, <strong>ggplot2</strong>, and the then load the disease and democracy data:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load required packages
+library(ggplot2)
+library(readr)
+
+# load disease and democracy data
+disease_democ &amp;lt;- read_csv(&quot;disease_democ.csv&quot;)
+</code></pre>"><span class="hljs-comment"># load required packages</span>
+<span class="hljs-keyword">library</span>(ggplot2)
+<span class="hljs-keyword">library</span>(readr)
+
+<span class="hljs-comment"># load disease and democracy data</span>
+disease_democ &lt;- read_csv(<span class="hljs-string">"disease_democ.csv"</span>)
+</code></pre><h4 id="map-variables-in-the-data-onto-the-x-and-y-axes"><a name="map-variables-in-the-data-onto-the-x-and-y-axes" href="#map-variables-in-the-data-onto-the-x-and-y-axes"></a>Map variables in the data onto the X and Y axes</h4><p>Copy this code into your R script and run:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># map values in data to X and Y axes
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score))
+</code></pre>"><span class="hljs-comment"># map values in data to X and Y axes</span>
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score))
+</code></pre><p>The brackets after the <code>ggplot</code> function define the data frame to be used, followed by the <code>aes</code> mapping of variables in the data to the chart’s X and Y axes.</p><p>The following chart should appear in the <code>Plots</code> panel at bottom right:</p><p><img src="img/class8_1.jpg" alt=""></p><p>The axis ranges are automatically set to values in the data, but at this point there is just a black chart grid, because we haven’t added any <code>geom</code> layers to the chart. </p><h4 id="change-the-axis-labels"><a name="change-the-axis-labels" href="#change-the-axis-labels"></a>Change the axis labels</h4><p>By default, the axis labels will be the names of the variables of in the data. But it’s easy to customize, using the following code:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># customize axis labels
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab(&quot;Infectious disease prevalence score&quot;) +
+  ylab(&quot;Democratization score&quot;)
+</code></pre>"><span class="hljs-comment"># customize axis labels</span>
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab(<span class="hljs-string">"Infectious disease prevalence score"</span>) +
+  ylab(<span class="hljs-string">"Democratization score"</span>)
+</code></pre><p><img src="img/class8_2.jpg" alt=""></p><h4 id="change-the-theme"><a name="change-the-theme" href="#change-the-theme"></a>Change the theme</h4><p>The default gray theme of <strong>ggplot2</strong> has a rather academic look. See <a href="http://docs.ggplot2.org/current/theme.html">here</a> and <a href="http://docs.ggplot2.org/dev/vignettes/themes.html">here</a> for how to use the <code>theme</code> option to customize individual elements of a chart. However, for my charts, I typically use one of the <strong>ggplot2</strong> <a href="http://docs.ggplot2.org/current/ggtheme.html">built-in themes</a>, and then customize the fonts.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Change the theme
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab(&quot;Infectious disease prevalence score&quot;) + 
+  ylab(&quot;Democratization score&quot;) +
+  theme_minimal(base_size = 16, base_family = &quot;Georgia&quot;)
+</code></pre>"><span class="hljs-comment"># Change the theme</span>
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab(<span class="hljs-string">"Infectious disease prevalence score"</span>) + 
+  ylab(<span class="hljs-string">"Democratization score"</span>) +
+  theme_minimal(base_size = <span class="hljs-number">16</span>, base_family = <span class="hljs-string">"Georgia"</span>)
+</code></pre><p><img src="img/class8_3.jpg" alt=""></p><p>Notice how the <code>base_family</code> and <code>base_size</code> can be used with a built-in theme to change font face and size. R’s basic fonts are fairly limited (run <code>names(postscriptFonts()))</code> to view those available). However, you can use the <strong><a href="https://github.com/wch/extrafont">extrafonts</a></strong> package to make other fonts available.</p><p>However, I do not recommend coding your themes manually, certainly not on each chart you draw. Instead, use <a href="https://bchartoff.shinyapps.io/ggShinyApp/">this web app</a> to set your theme options. When you are statisfied with the appearance of the chart in the app, click the <code>R script for theme (run every R session)</code> button to download your theme as an R script.</p><p>However, I do not recommend coding your themes manually, certainly not on each chart you draw. Instead, use this <a href="https://bchartoff.shinyapps.io/ggShinyApp/">ggplot2 Theme Builder</a> web app to set your theme options. When you are statisfied with the appearance of the chart in the app, click the <code>R script for theme (run every R session)</code> button to download your theme as an R script.</p><p>If you then load and run run this script at the start of your R session, your <strong>ggplot2</strong> charts for that session will use the downloaded theme.</p><h4 id="save-the-basic-chart-template"><a name="save-the-basic-chart-template" href="#save-the-basic-chart-template"></a>Save the basic chart template</h4><p>You can save a <strong>ggplot2</strong> chart as an object in your environment using the <code>&lt;-</code> assignment operator. So we’ll do that here to save the basic template, with no <code>geom</code> layers.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save chart template, and plot
+disease_democ_chart &amp;lt;- ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab(&quot;Infectious disease prevalence score&quot;) + 
+  ylab(&quot;Democratization score&quot;) +
+  theme_minimal(base_size = 16, base_family = &quot;Georgia&quot;)
+
+plot(disease_democ_chart)
+</code></pre>"><span class="hljs-comment"># save chart template, and plot</span>
+disease_democ_chart &lt;- ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab(<span class="hljs-string">"Infectious disease prevalence score"</span>) + 
+  ylab(<span class="hljs-string">"Democratization score"</span>) +
+  theme_minimal(base_size = <span class="hljs-number">16</span>, base_family = <span class="hljs-string">"Georgia"</span>)
+
+plot(disease_democ_chart)
+</code></pre><p>There should now be an object of type <code>gg</code> in your Environment called <code>disease_democ_chart</code>.</p><p>The <code>plot</code> function will plot a saved <strong>ggplot2</strong> object.</p><h4 id="add-a-layer-with-points"><a name="add-a-layer-with-points" href="#add-a-layer-with-points"></a>Add a layer with points</h4><p>This code will add a <code>geom</code> layer with points to the template:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># add a layer with points
+disease_democ_chart +
+  geom_point()
+</code></pre>"><span class="hljs-comment"># add a layer with points</span>
+disease_democ_chart +
+  geom_point()
+</code></pre><p><img src="img/class8_4.jpg" alt=""></p><h4 id="add-a-layer-with-a-smoothed-trend-line,-fitted-to-the-data"><a name="add-a-layer-with-a-smoothed-trend-line,-fitted-to-the-data" href="#add-a-layer-with-a-smoothed-trend-line,-fitted-to-the-data"></a>Add a layer with a smoothed trend line, fitted to the data</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># add a trend line
+disease_democ_chart +
+  geom_point() +
+  geom_smooth()
+</code></pre>"><span class="hljs-comment"># add a trend line</span>
+disease_democ_chart +
+  geom_point() +
+  geom_smooth()
+</code></pre><p><img src="img/class8_5.jpg" alt=""></p><h4 id="customize-the-two-layers-we've-added-to-the-chart"><a name="customize-the-two-layers-we've-added-to-the-chart" href="#customize-the-two-layers-we've-added-to-the-chart"></a>Customize the two layers we’ve added to the chart</h4><p>The following code modifies the two <code>geom</code> layers to change their appearance.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># customize the two geom layers
+disease_democ_chart +
+  geom_point(size = 3, alpha = 0.5) +
+  geom_smooth(method = lm, se=FALSE, color = &quot;red&quot;)
+</code></pre>"><span class="hljs-comment"># customize the two geom layers</span>
+disease_democ_chart +
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>) +
+  geom_smooth(method = lm, se=<span class="hljs-literal">FALSE</span>, color = <span class="hljs-string">"red"</span>)
+</code></pre><p><img src="img/class8_6.jpg" alt=""></p><p>In the <code>geom_point</code> layer, we have increased set size of each point, and reduced its transparency using <code>alpha</code>.</p><p>In the <code>geom_smooth</code> function, we have changed the <code>color</code> of the line, removed the ribbon showing the <code>se</code> or “standard error,” a measure of the uncertainty surrounding the fit to the data, and changed the <code>method</code> used to fit the data from a smoothed fit by a method called locally-weighted scatterplot smoothing to a linear regression, or linear model (<code>lm</code>).</p><p>When setting colors in <strong>ggplot2</strong> you can use their <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">R color names</a>, or their HEX values. This code will produce the same result:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># customize the two geom layers
+disease_democ_chart +
+  geom_point(size = 3, alpha = 0.5) +
+  geom_smooth(method = lm, se=FALSE, color = &quot;#FF0000&quot;)
+</code></pre>"><span class="hljs-comment"># customize the two geom layers</span>
+disease_democ_chart +
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>) +
+  geom_smooth(method = lm, se=<span class="hljs-literal">FALSE</span>, color = <span class="hljs-string">"#FF0000"</span>)
+</code></pre><p>Until you are familiar with the options for each <code>geom</code>, you will need to look up how to change the appearance of each layer: Follow the links for each <code>geom</code> form <a href="http://docs.ggplot2.org/current/">here</a>.</p><p>The following code customizes the trend line further, and includes an <code>aes</code> mapping in to set the color of the points to that they reflect the categorical variable of World Bank income group.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># customize again, coloring the points by income group
+disease_democ_chart + 
+  geom_point(size = 3, alpha = 0.5, aes(color = income_group)) +
+  geom_smooth(method = lm, se  =FALSE, color = &quot;black&quot;, linetype = &quot;dotdash&quot;, size = 0.3)
+</code></pre>"><span class="hljs-comment"># customize again, coloring the points by income group</span>
+disease_democ_chart + 
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>, aes(color = income_group)) +
+  geom_smooth(method = lm, se  =<span class="hljs-literal">FALSE</span>, color = <span class="hljs-string">"black"</span>, linetype = <span class="hljs-string">"dotdash"</span>, size = <span class="hljs-number">0.3</span>)
+</code></pre><p><img src="img/class8_7.jpg" alt=""></p><p>Notice how the <code>aes</code> function colors the points by values in the data, rather . <strong>ggplot2</strong> recognizes that<code>income_group</code> is a categorical variable, and uses its default qualitative color palette.</p><p>Now run this code, to see the different effect of setting the <code>aes</code> color mapping for the <em>entire chart</em>, rather than just one <code>geom</code> layer.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># color the entire chart by income group
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score, color=income_group)) +
+  xlab(&quot;Infectious disease prevalence score&quot;) + 
+  ylab(&quot;Democratization score&quot;) +
+  theme_minimal(base_size = 16, base_family = &quot;Georgia&quot;) + 
+  geom_point(size = 3, alpha = 0.5) +
+  geom_smooth(method=lm, se=FALSE, linetype= &quot;dotdash&quot;, size = 0.3)
+</code></pre>"><span class="hljs-comment"># color the entire chart by income group</span>
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score, color=income_group)) +
+  xlab(<span class="hljs-string">"Infectious disease prevalence score"</span>) + 
+  ylab(<span class="hljs-string">"Democratization score"</span>) +
+  theme_minimal(base_size = <span class="hljs-number">16</span>, base_family = <span class="hljs-string">"Georgia"</span>) + 
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>) +
+  geom_smooth(method=lm, se=<span class="hljs-literal">FALSE</span>, linetype= <span class="hljs-string">"dotdash"</span>, size = <span class="hljs-number">0.3</span>)
+</code></pre><p><img src="img/class8_8.jpg" alt=""></p><h4 id="set-the-axis-ranges,-and-use-a-different-color-palette"><a name="set-the-axis-ranges,-and-use-a-different-color-palette" href="#set-the-axis-ranges,-and-use-a-different-color-palette"></a>Set the axis ranges, and use a different color palette</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># set the axis ranges, change color palette
+disease_democ_chart + 
+  geom_point(size = 3, alpha = 0.5, aes(color = income_group)) +
+  geom_smooth(method = lm, se = FALSE, color = &quot;black&quot;, linetype = &quot;dotdash&quot;, size = 0.3) + 
+  scale_x_continuous(limits=c(0,70)) + 
+  scale_y_continuous(limits=c(0,100)) +
+  scale_color_brewer(name=&quot;Income group&quot;, palette = &quot;Set1&quot;)
+</code></pre>"><span class="hljs-comment"># set the axis ranges, change color palette</span>
+disease_democ_chart + 
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>, aes(color = income_group)) +
+  geom_smooth(method = lm, se = <span class="hljs-literal">FALSE</span>, color = <span class="hljs-string">"black"</span>, linetype = <span class="hljs-string">"dotdash"</span>, size = <span class="hljs-number">0.3</span>) + 
+  scale_x_continuous(limits=c(<span class="hljs-number">0</span>,<span class="hljs-number">70</span>)) + 
+  scale_y_continuous(limits=c(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>)) +
+  scale_color_brewer(name=<span class="hljs-string">"Income group"</span>, palette = <span class="hljs-string">"Set1"</span>)
+</code></pre><p><img src="img/class8_9.jpg" alt=""></p><p>Notice how the first two <code>scale</code> functions are used to set the ranges for the axis, which are entered as a list, using the <code>c</code> function we saw last week.</p><p>You can use <a href="http://colorbrewer2.org">ColorBrewer</a> qualitative palettes by using the <code>scale_color_brewer</code> function. Add the text you want to appear as a legend title using <code>name</code>.</p><h3 id="save-your-charts"><a name="save-your-charts" href="#save-your-charts"></a>Save your charts</h3><p>Having made a series of charts, you can browse through them using the blue arrows at the top of the <code>Plots</code> tab in the panel at bottom right. The broom icon will clear all of your charts; the icon to its immediate left remove the chart in the current view.</p><p>You can export any chart by selecting <code>Export&gt;Save as Image...</code>. At the dialog box, you can select the desired image format, and size. If you wish to edit or annotate the chart in a vector graphics editor such as <a href="https://helpx.adobe.com/illustrator/how-to/what-is-illustrator.html">Abode Illustrator</a>, export as an SVG file.</p><p><img src="img/class8_10.jpg" alt=""></p><p>You can also save your final <strong>ggplot2</strong> chart as an object in your R environment:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save final disease and democracy chart
+final_disease_democ_chart &amp;lt;- disease_democ_chart + 
+  geom_point(size = 3, alpha = 0.5, aes(color = income_group)) +
+  geom_smooth(method = lm, se = FALSE, color = &quot;black&quot;, linetype =  &quot;dotdash&quot;, size = 0.3) + 
+  scale_x_continuous(limits = c(0,70)) + 
+  scale_y_continuous(limits = c(0,100)) +
+  scale_color_brewer(name = &quot;Income group&quot;, palette = &quot;Set1&quot;)
+</code></pre>"><span class="hljs-comment"># save final disease and democracy chart</span>
+final_disease_democ_chart &lt;- disease_democ_chart + 
+  geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>, aes(color = income_group)) +
+  geom_smooth(method = lm, se = <span class="hljs-literal">FALSE</span>, color = <span class="hljs-string">"black"</span>, linetype =  <span class="hljs-string">"dotdash"</span>, size = <span class="hljs-number">0.3</span>) + 
+  scale_x_continuous(limits = c(<span class="hljs-number">0</span>,<span class="hljs-number">70</span>)) + 
+  scale_y_continuous(limits = c(<span class="hljs-number">0</span>,<span class="hljs-number">100</span>)) +
+  scale_color_brewer(name = <span class="hljs-string">"Income group"</span>, palette = <span class="hljs-string">"Set1"</span>)
+</code></pre><h3 id="make-a-series-of-charts-from-food-stamps-data"><a name="make-a-series-of-charts-from-food-stamps-data" href="#make-a-series-of-charts-from-food-stamps-data"></a>Make a series of charts from food stamps data</h3><p>Now we will explore a series of other <code>geom</code> functions using the food stamps data.</p><h4 id="load-the-data,-map-variables-onto-the-x-and-y-axes,-and-save-chart-template"><a name="load-the-data,-map-variables-onto-the-x-and-y-axes,-and-save-chart-template" href="#load-the-data,-map-variables-onto-the-x-and-y-axes,-and-save-chart-template"></a>Load the data, map variables onto the X and Y axes, and save chart template</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load data
+food_stamps &amp;lt;- read_csv(&quot;food_stamps.csv&quot;)
+
+# save basic chart template
+food_stamps_chart &amp;lt;- ggplot(food_stamps, aes(x = year, y = participants)) + 
+  xlab(&quot;Year&quot;) +
+  ylab(&quot;Participants (millions)&quot;) +
+  theme_minimal(base_size = 16, base_family = &quot;Georgia&quot;)
+</code></pre>"><span class="hljs-comment"># load data</span>
+food_stamps &lt;- read_csv(<span class="hljs-string">"food_stamps.csv"</span>)
+
+<span class="hljs-comment"># save basic chart template</span>
+food_stamps_chart &lt;- ggplot(food_stamps, aes(x = year, y = participants)) + 
+  xlab(<span class="hljs-string">"Year"</span>) +
+  ylab(<span class="hljs-string">"Participants (millions)"</span>) +
+  theme_minimal(base_size = <span class="hljs-number">16</span>, base_family = <span class="hljs-string">"Georgia"</span>)
+</code></pre><h4 id="make-a-line-chart"><a name="make-a-line-chart" href="#make-a-line-chart"></a>Make a line chart</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># line chart
+food_stamps_chart +  
+  geom_line()
+</code></pre>"><span class="hljs-comment"># line chart</span>
+food_stamps_chart +  
+  geom_line()
+</code></pre><p><img src="img/class8_11.jpg" alt=""></p><h4 id="customize-the-line,-and-add-a-title"><a name="customize-the-line,-and-add-a-title" href="#customize-the-line,-and-add-a-title"></a>Customize the line, and add a title</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># customize the line, add a title
+food_stamps_chart +
+  geom_line(size = 1.5, color = &quot;red&quot;) +
+  ggtitle(&quot;Line chart&quot;)
+</code></pre>"><span class="hljs-comment"># customize the line, add a title</span>
+food_stamps_chart +
+  geom_line(size = <span class="hljs-number">1.5</span>, color = <span class="hljs-string">"red"</span>) +
+  ggtitle(<span class="hljs-string">"Line chart"</span>)
+</code></pre><p><img src="img/class8_12.jpg" alt=""></p><p>The function <code>ggtitle</code> adds a title to the chart.</p><h4 id="add-a-second-layer-to-make-a-dot-and-line-chart"><a name="add-a-second-layer-to-make-a-dot-and-line-chart" href="#add-a-second-layer-to-make-a-dot-and-line-chart"></a>Add a second layer to make a dot-and-line chart</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Add a second layer to make a dot-and-line chart
+food_stamps_chart +
+  geom_line() +
+  geom_point() +
+  ggtitle(&quot;Dot-and-line chart&quot;)
+</code></pre>"><span class="hljs-comment"># Add a second layer to make a dot-and-line chart</span>
+food_stamps_chart +
+  geom_line() +
+  geom_point() +
+  ggtitle(<span class="hljs-string">"Dot-and-line chart"</span>)
+</code></pre><p><img src="img/class8_13.jpg" alt=""></p><h4 id="make-a-column-chart,-then-flip-its-coordinates-to-make-a-bar-chart"><a name="make-a-column-chart,-then-flip-its-coordinates-to-make-a-bar-chart" href="#make-a-column-chart,-then-flip-its-coordinates-to-make-a-bar-chart"></a>Make a column chart, then flip its coordinates to make a bar chart</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Make a column chart
+food_stamps_chart +
+  geom_bar(stat = &quot;identity&quot;) +
+  ggtitle(&quot;Column chart&quot;)
+``
+![](./img/class8_14.jpg)
+
+`geom_bar` works a little differently to the `geoms` we have considered previously. If you have not mapped data values to the Y axis with `aes`, its default behavior is to set the heights of the bars by counting the number of records for values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values in the data, use you must use `stat=&quot;identity&quot;`.
+
+
+ ```r
+# Make a bar chart
+food_stamps_chart +
+  geom_bar(stat = &quot;identity&quot;) +
+  ggtitle(&quot;Bar chart&quot;) +
+  coord_flip()
+</code></pre>"><span class="hljs-comment"># Make a column chart</span>
+food_stamps_chart +
+  geom_bar(stat = <span class="hljs-string">"identity"</span>) +
+  ggtitle(<span class="hljs-string">"Column chart"</span>)
+``
+![](./img/class8_14.jpg)
+
+`geom_bar` works a little differently to the `geoms` we have considered previously. If you have not mapped data values to the Y axis with `aes`, its default behavior is to set the heights of the bars by counting the number of records <span class="hljs-keyword">for</span> values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values <span class="hljs-keyword">in</span> the data, use you must use `stat="identity"`.
+
+
+ ```r
+# Make a bar chart
+food_stamps_chart +
+  geom_bar(stat = "identity") +
+  ggtitle("Bar chart") +
+  coord_flip()
+</code></pre><p><img src="img/class8_15.jpg" alt=""></p><p><code>coord_flip</code> switches the X and Y axes.</p><h4 id="the-difference-between-color-and-fill"><a name="the-difference-between-color-and-fill" href="#the-difference-between-color-and-fill"></a>The difference between color and fill</h4><p>For some <code>geoms</code>, notably <code>geom_bar</code>, you can set color for their outline as well as the color used to fill the shapes.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># set color and fill
+food_stamps_chart +
+  geom_bar(stat = &quot;identity&quot;, color = &quot;#888888&quot;, fill = &quot;#cccccc&quot;, alpha = 0.5) +
+  ggtitle(&quot;Column chart&quot;)
+</code></pre>"><span class="hljs-comment"># set color and fill</span>
+food_stamps_chart +
+  geom_bar(stat = <span class="hljs-string">"identity"</span>, color = <span class="hljs-string">"#888888"</span>, fill = <span class="hljs-string">"#cccccc"</span>, alpha = <span class="hljs-number">0.5</span>) +
+  ggtitle(<span class="hljs-string">"Column chart"</span>)
+</code></pre><p>When setting colors, <code>color</code> refers to the outline, <code>fill</code> to the interior of the shape.</p><p><img src="img/class8_16.jpg" alt=""></p><h4 id="map-color-to-the-values-of-a-continuous-variable"><a name="map-color-to-the-values-of-a-continuous-variable" href="#map-color-to-the-values-of-a-continuous-variable"></a>Map color to the values of a continuous variable</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># fill the bars according to values for the cost of the program
+food_stamps_chart +
+  geom_bar(stat = &quot;identity&quot;, aes(fill = costs))
+</code></pre>"><span class="hljs-comment"># fill the bars according to values for the cost of the program</span>
+food_stamps_chart +
+  geom_bar(stat = <span class="hljs-string">"identity"</span>, aes(fill = costs))
+</code></pre><p><img src="img/class8_17.jpg" alt=""></p><p>This code uses an <code>aes</code> mapping to color the bars according values for the costs of the program, in billions of dollars. <em>ggplot2</em> recognizes that <code>costs</code> is a continuous variable, but its default sequential scheme applies more intense blues to lower values, which is counterintuitive.</p><h4 id="use-a-colorbrewer-sequential-color-palette"><a name="use-a-colorbrewer-sequential-color-palette" href="#use-a-colorbrewer-sequential-color-palette"></a>Use a ColorBrewer sequential color palette</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># use a colorbrewer sequential palette
+food_stamps_chart +
+  geom_bar(stat = &quot;identity&quot;, color = &quot;#888888&quot;, aes(fill = costs)) +
+  scale_fill_distiller(name = &quot;Cost\n($ billion)&quot;, palette = &quot;Reds&quot;, direction = 1)
+</code></pre>"><span class="hljs-comment"># use a colorbrewer sequential palette</span>
+food_stamps_chart +
+  geom_bar(stat = <span class="hljs-string">"identity"</span>, color = <span class="hljs-string">"#888888"</span>, aes(fill = costs)) +
+  scale_fill_distiller(name = <span class="hljs-string">"Cost\n($ billion)"</span>, palette = <span class="hljs-string">"Reds"</span>, direction = <span class="hljs-number">1</span>)
+</code></pre><p><img src="img/class8_18.jpg" alt=""></p><p><code>scale_fill_distiller</code> (and <code>scale_color_distiller</code>) work like <code>scale_color_brewer</code>, but set color gradients for ColorBrewer’s sequential and diverging color palettes; <code>direction = 1</code> ensures that larger numbers are mapped to more intense colors (<code>direction = -1</code> reverses the color mapping).</p><p>Notice also the <code>\n</code> in the title for the legend. This introduces a new line.</p><h4 id="control-the-position-of-the-legend"><a name="control-the-position-of-the-legend" href="#control-the-position-of-the-legend"></a>Control the position of the legend</h4><p>This code uses the <code>theme</code> function to moves the legend from its default position to the right of the chart to use some empty space on the chart itself.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>food_stamps_chart +
+  geom_bar(stat=&quot;identity&quot;, color = &quot;#888888&quot;, aes(fill=costs)) +
+  scale_fill_distiller(name = &quot;Cost\n($ billion)&quot;, palette = &quot;Reds&quot;, direction = 1) +
+  theme(legend.position=c(0.15,0.8))
+</code></pre>">food_stamps_chart +
+  geom_bar(stat=<span class="hljs-string">"identity"</span>, color = <span class="hljs-string">"#888888"</span>, aes(fill=costs)) +
+  scale_fill_distiller(name = <span class="hljs-string">"Cost\n($ billion)"</span>, palette = <span class="hljs-string">"Reds"</span>, direction = <span class="hljs-number">1</span>) +
+  theme(legend.position=c(<span class="hljs-number">0.15</span>,<span class="hljs-number">0.8</span>))
+</code></pre><p><img src="img/class8_19.jpg" alt=""></p><p>The coordinates for the legend are given as a list: The first number sets the horizontal position, from left to right, on a scale from 0 to 1; the second number sets the vertical position, from bottom to top, again on a scale form 0 to 1.</p><h3 id="other-useful-packages-to-use-with-ggplot2"><a name="other-useful-packages-to-use-with-ggplot2" href="#other-useful-packages-to-use-with-ggplot2"></a>Other useful packages to use with ggplot2</h3><p>The <a href="https://www.ggplot2-exts.org/">ggplot2 extensions</a> page documents a series of packges that extend the capabilities of ggplot2. See the <a href="http://www.ggplot2-exts.org/gallery/">gallery</a>.</p><h3 id="putting-it-all-together"><a name="putting-it-all-together" href="#putting-it-all-together"></a>Putting it all together</h3><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
+<li>t/k</li><li>t/k</li><li>t/k</li></ul><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p>Winston Chang: <a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956"><em>R Graphics Cookbook</em></a><br>(Chang also has <a href="http://www.cookbook-r.com/">a helpful website</a> with much of the same information, available for free.)</p><p>Hadley Wickham: <a href="http://www.amazon.com/gp/product/0387981403/"><em>ggplot2: Elegant Graphics For Data Analysis</em></a></p><p><a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf">ggplot2</a> cheat sheet from RStudio.</p><p><a href="http://docs.ggplot2.org/current/">ggplot2 documentation</a></p><p><a href="http://stcorp.nl/R_course/tutorial_ggplot2.html">ggplot2</a> and <a href="http://stcorp.nl/R_course/tutorial_dplyr.html">dplyr</a> tutorials from <a href="http://www.numbertheory.nl/about/">Paul Hiemstra</a>.</p><p><a href="http://stackoverflow.com/">Stack Overflow</a><br>Search the site, or <a href="http://stackoverflow.com/questions/tagged/r">browse R questions</a></p>
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

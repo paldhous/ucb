@@ -20,9 +20,9 @@ print("Hello World!")
 
 ### The data we will use today
 
-Download the data for this session from [here](data/week7.zip), unzip the folder and place it on your desktop. It contains the following files, used in reporting [this story](https://www.newscientist.com/article/dn18806-revealed-pfizers-payments-to-censured-doctors/), which revealed that some of the doctors paid as "experts" by Pfizer had troubling disciplinary records:
+Download the data for this session from [here](data/week7.zip), unzip the folder and place it on your desktop. It contains the following files, used in reporting [this story](https://www.newscientist.com/article/dn18806-revealed-pfizers-payments-to-censured-doctors/), which revealed that some of the doctors paid as "experts" by the drug company Pfizer had troubling disciplinary records:
 
-- `pfizer.csv` Payments made by the drug company Pfizer to doctors across the United States in the xecond half on 2009. Contains the following variables:
+- `pfizer.csv` Payments made by Pfizer to doctors across the United States in the second half on 2009. Contains the following variables:
  - `org_indiv` Full name of the doctor, or their organization.
  - `first_plus` Doctor's first and middle names.
  - `first_name` `last_name`. First and last names.
@@ -35,7 +35,7 @@ Download the data for this session from [here](data/week7.zip), unzip the folder
 - `fda.csv` Data on warning letters sent to doctors by the U.S. Food and Drug Administration, because of problems in the way in which they ran clinical trials testing experimental treatments. Contains the following variables:
  - `name_last` `name_first` `name_middle` Doctor's last, first, and middle names.
  - `issued` Date letter was sent.
- - `office` Office with the FDA that sent the letter.
+ - `office` Office within the FDA that sent the letter.
 
 ### Reproducibility: Save your scripts
 
@@ -113,7 +113,7 @@ In this class, we will work with two incredibly useful packages developed by [Ha
 - **[readr](https://cran.r-project.org/web/packages/readr/readr.pdf)** For reading and writes CSV and other text files.
 - **[dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)** For processing and manipulating data.
 
-These and several other useful packages have been combined into a super-package called **[tidyverse](http://insight.livestories.com/)**.
+These and several other useful packages have been combined into a super-package called **[tidyverse](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/)**.
 
 To install a package, click on the `Install` icon in the `Packages` tab, type its name into the dialog box, and make sure that `Install dependencies` is checked, as some packages will only run correctly if other packages are also installed. Click `Install` and all of the required packages should install:
 
@@ -421,7 +421,7 @@ When you run this code, a CSV file with the data should be saved in your `week7`
 state_sum <- pfizer %>%
   group_by(state) %>%
   summarize(sum = sum(total)) %>%
-  arrange(desc(state_total))
+  arrange(desc(sum))
 ```
 Notice the use of `group_by` followed by `summarize` to **group** and **summarize** data, here using the function `sum`.
 

@@ -45,6 +45,24 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 - `nations.csv` As for week three but lacking data on life expectancy, to allow you to practice data processing and a data join.
 
 
+#### [Week 7](./data/week7.zip)
+
+Data used in reporting [this story](https://www.newscientist.com/article/dn18806-revealed-pfizers-payments-to-censured-doctors/), which revealed that some of the doctors paid as "experts" by the drug company Pfizer had troubling disciplinary records:
+
+- `pfizer.csv` Payments made by Pfizer to doctors across the United States in the second half on 2009. Contains the following variables:
+ - `org_indiv` Full name of the doctor, or their organization.
+ - `first_plus` Doctor's first and middle names.
+ - `first_name` `last_name`. First and last names.
+ - `city` `state` City and state.
+ - `category of payment` Type of payment, which include `Expert-led Forums`, in which doctors lecture their peers on using Pfizer's drugs, and `Professional Advising.
+ - `cash` Value of payments made in cash.
+ - `other` Value of payments made in-kind, for example puschase of meals.
+ - `total` value of payment, whether cash or in-kind.
+
+- `fda.csv` Data on warning letters sent to doctors by the U.S. Food and Drug Administration, because of problems in the way in which they ran clinical trials testing experimental treatments. Contains the following variables:
+ - `name_last` `name_first` `name_middle` Doctor's last, first, and middle names.
+ - `issued` Date letter was sent.
+ - `office` Office within the FDA that sent the letter.
 
 ## Final projects
 

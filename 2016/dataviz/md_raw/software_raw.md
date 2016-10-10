@@ -61,7 +61,7 @@ A JavaScript code library for making interactive online maps. Download the lates
 The leading open source Geographic Information System, which we will use to make maps and process geodata. Download the latest **standard** version of QGIS and its requirements [from here](http://www.kyngchaos.com/software/qgis/). Install GDAL and the Matplotlib Python module before installing QGIS itself.
 
 ### [R](http://www.r-project.org/) and [R Studio](http://www.rstudio.com/)
-R is a software environment and programming language for statistical computing and graphics. Download the latest [package](https://cran.rstudio.com/) for OSX. R Studio provides a user interface that makes it much easier to use. Download the latest free version of RStudio Desktop [from here](http://www.rstudio.com/products/rstudio/download/).
+R is a software environment and programming language for statistical computing and graphics. Download the for OSX from [here](https://cran.rstudio.com/). R Studio provides a user interface that makes it much easier to use. Download the latest free version of RStudio Desktop [from here](http://www.rstudio.com/products/rstudio/download/).
 
 ### [D3](http://d3js.org/)
 
