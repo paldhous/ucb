@@ -64,6 +64,22 @@ Data used in reporting [this story](https://www.newscientist.com/article/dn18806
  - `issued` Date letter was sent.
  - `office` Office within the FDA that sent the letter.
 
+#### [Week 8](./data/week8.zip)
+
+- `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*, as used in week 1.
+- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of `participants`, in millions, and `costs`, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2015. 
+- `kindergarten.csv` Data from the [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx), documenting enrollment and the number of children with complete immunizations at entry into kindergartens in California from 2001 to 2015. Contains the following variables:
+  - `district` School district.
+  - `sch_code` Unique identifying code for each school.
+  - `pub_priv` Whether school is public or private.
+  - `school` School name.
+  - `enrollment` Number of children enrolled.
+  - `complete` Number of children with complete immunizations.
+  - `start_year` Year of entry (for the 2015-2016 school year, for example, this would be 2015).
+- `nations.csv` Data from World Bank World Development Indicators portal, giving data on population, GDP per capita, life Expectancy, birth rate, neonatal mortality rate, region and income group for the world's nations, from 1990 onwards, as used in week 3.
+
+
+
 ## Final projects
 
 These datasets are suggestions, in which there are definitely stories to be found and visualized. But you are encouraged to work on other datasets.

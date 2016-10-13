@@ -7,8 +7,16 @@ In today's class, we will begin to explore how R can be used to make graphics fr
 Download the data for this session from [here](data/week8.zip), unzip the folder and place it on your desktop. It contains the following files:
 
 - `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*, as used in week 1.
-- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program.
-- `nations.csv` Data from World Bank World Development Indicators portal, giving data on population, GDP per capita, life Expectancy, birth rate, neonatal mortality rate, region and income group for the world's nations, from 1990 onwards, as used in week 3.
+- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of `participants`, in millions, and `costs`, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2015. 
+- `kindergarten.csv` Data from the [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx), documenting enrollment and the number of children with complete immunizations at entry into kindergartens in California from 2001 to 2015. Contains the following variables:
+  - `district` School district.
+  - `sch_code` Unique identifying code for each school.
+  - `pub_priv` Whether school is public or private.
+  - `school` School name.
+  - `enrollment` Number of children enrolled.
+  - `complete` Number of children with complete immunizations.
+  - `start_year` Year of entry (for the 2015-2016 school year, for example, this would be 2015).
+- `nations.csv` Data from World Bank World Development Indicators portal, giving data on population, GDP per capita, life expectancy, birth rate, neonatal mortality rate, region and income group for the world's nations, from 1990 onwards, as used in week 3.
 
 
 ### Introducing ggplot2 and the grammar of graphics
@@ -20,9 +28,9 @@ Some key things to understand about **ggplot2**:
 - `ggplot` This is the master function that creates a **ggplot2** chart.
 - `aes` This function, named for "aesthetic mapping," is used whenever data values are mapped onto a chart. So it is used when you define which variables are plotted onto the X and Y axes, and also if you want to change the size or color of parts of the chart according to values for a variable.
 - `geom` All of the functions that add layers to a chart start with `geom`, followed by an underscore, for example `geom_point()` or `geom_bar()`. The code in the brackets for any `geom` layer styles the items in that layer, and can include `aes` mappings of values from data.
-- `+` is used each time you add a layer to a chart. After a `+` you can continue on the same line of code or move the next line. I usually  write a new line for each layer, which makes the code easier to follow.
 - `theme` This function modifies the appearance of elements of a plot, used, for example, to set size and font face for text, the position of a legend, and so on.
 - `scale` Functions that begin with `scale`, followed by an underscore, are used to modify the way an `aes` mapping of data appears on a chart. They can change the axis range, for example, or specify a color palette to be used to encode values in the data.
+- `+` is used each time you add a layer, a scale, a theme, or elements like axis labels and a title After a `+` you can continue on the same line of code or move the next line. I usually write a new line after each `+`, which makes the code easier to follow.
 
 ### Make scatter plot from disease and democracy data
 
@@ -32,7 +40,7 @@ We'll start by making and modifying a scatter plot from the disease and democrac
 
 Open a new R script in RStudio, save the blank script to the folder with the data for this week, and then set your working directory to this location by selecting from the top menu `Session>Set Working Directory>To Source File Location`.
 
-Now copy the following code into your script to load **readr**, **ggplot2**, and the then load the disease and democracy data:
+Now copy the following code into your script and run to load **readr**, **ggplot2**, and then load the disease and democracy data:
 
 ```r
 # load required packages
@@ -58,12 +66,12 @@ The following chart should appear in the `Plots` panel at bottom right:
 
 ![](./img/class8_1.jpg)
 
-The axis ranges are automatically set to values in the data, but at this point there is just a black chart grid, because we haven't added any `geom` layers to the chart. 
+The axis ranges are automatically set to values in the data, but at this point there is just a black chart grid, because we haven't added any `geom` layers to the chart.
 
 
 #### Change the axis labels
 
-By default, the axis labels will be the names of the variables of in the data. But it's easy to customize, using the following code:
+By default, the axis labels will be the names of the variables in the data. But it's easy to customize, using the following code:
 
 ```r
 # customize axis labels
@@ -83,16 +91,14 @@ The default gray theme of **ggplot2** has a rather academic look. See [here](htt
 ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
   xlab("Infectious disease prevalence score") + 
   ylab("Democratization score") +
-  theme_minimal(base_size = 16, base_family = "Georgia")
+  theme_minimal(base_size = 14, base_family = "Georgia")
 ```
 
 ![](./img/class8_3.jpg)
 
 Notice how the `base_family` and `base_size` can be used with a built-in theme to change font face and size. R's basic fonts are fairly limited (run `names(postscriptFonts()))` to view those available). However, you can use the **[extrafonts](https://github.com/wch/extrafont)** package to make other fonts available.
 
-However, I do not recommend coding your themes manually, certainly not on each chart you draw. Instead, use [this web app](https://bchartoff.shinyapps.io/ggShinyApp/) to set your theme options. When you are statisfied with the appearance of the chart in the app, click the `R script for theme (run every R session)` button to download your theme as an R script.
-
-However, I do not recommend coding your themes manually, certainly not on each chart you draw. Instead, use this [ggplot2 Theme Builder](https://bchartoff.shinyapps.io/ggShinyApp/) web app to set your theme options. When you are statisfied with the appearance of the chart in the app, click the `R script for theme (run every R session)` button to download your theme as an R script.
+If you wish to develop your own customized theme, I recommend using [this web app](https://bchartoff.shinyapps.io/ggShinyApp/) to select your theme options. When you are statisfied with the appearance of the chart in the app, click the `R script for theme (run every R session)` button to download your theme as an R script.
 
 If you then load and run run this script at the start of your R session, your **ggplot2** charts for that session will use the downloaded theme.
 
@@ -105,7 +111,7 @@ You can save a **ggplot2** chart as an object in your environment using the `<-`
 disease_democ_chart <- ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
   xlab("Infectious disease prevalence score") + 
   ylab("Democratization score") +
-  theme_minimal(base_size = 16, base_family = "Georgia")
+  theme_minimal(base_size = 14, base_family = "Georgia")
 
 plot(disease_democ_chart)
 ```
@@ -149,9 +155,9 @@ disease_democ_chart +
 ```
 ![](./img/class8_6.jpg)
 
-In the `geom_point` layer, we have increased set size of each point, and reduced its transparency using `alpha`.
+In the `geom_point` layer, we have increased the size of each point, and reduced its transparency using `alpha`.
 
-In the `geom_smooth` function, we have changed the `color` of the line, removed the ribbon showing the `se` or "standard error," a measure of the uncertainty surrounding the fit to the data, and changed the `method` used to fit the data from a smoothed fit by a method called locally-weighted scatterplot smoothing to a linear regression, or linear model (`lm`).
+In the `geom_smooth` function, we have changed the `color` of the line, removed the ribbon showing the `se` or "standard error," a measure of the uncertainty surrounding the fit to the data, and changed the `method` used to fit the data from a smoothed fit from a method called locally-weighted scatterplot smoothing to a linear regression, or linear model (`lm`).
 
 When setting colors in **ggplot2** you can use their [R color names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf), or their HEX values. This code will produce the same result:
 
@@ -162,7 +168,7 @@ disease_democ_chart +
   geom_smooth(method = lm, se=FALSE, color = "#FF0000")
 ```
 
-Until you are familiar with the options for each `geom`, you will need to look up how to change the appearance of each layer: Follow the links for each `geom` form [here](http://docs.ggplot2.org/current/).
+Until you are familiar with the options for each `geom`, you will need to look up how to change the appearance of each layer: Follow the links for each `geom` from [here](http://docs.ggplot2.org/current/).
 
 The following code customizes the trend line further, and includes an `aes` mapping in to set the color of the points to that they reflect the categorical variable of World Bank income group.
 
@@ -174,7 +180,7 @@ disease_democ_chart +
 ```
 ![](./img/class8_7.jpg)
 
-Notice how the `aes` function colors the points by values in the data, rather . **ggplot2** recognizes that`income_group` is a categorical variable, and uses its default qualitative color palette.
+Notice how the `aes` function colors the points by values in the data, rather than setting them to a single color. **ggplot2** recognizes that`income_group` is a categorical variable, and uses its default qualitative color palette.
 
 Now run this code, to see the different effect of setting the `aes` color mapping for the *entire chart*, rather than just one `geom` layer.
 
@@ -183,11 +189,13 @@ Now run this code, to see the different effect of setting the `aes` color mappin
 ggplot(disease_democ, aes(x = infect_rate, y = democ_score, color=income_group)) +
   xlab("Infectious disease prevalence score") + 
   ylab("Democratization score") +
-  theme_minimal(base_size = 16, base_family = "Georgia") + 
+  theme_minimal(base_size = 14, base_family = "Georgia") + 
   geom_point(size = 3, alpha = 0.5) +
   geom_smooth(method=lm, se=FALSE, linetype= "dotdash", size = 0.3)
 ```
 ![](./img/class8_8.jpg)
+
+Because here we mapped the variable `income group` to color for the whole chart, and not just the points, it also affects the `geom_smooth` layer, so a separate trend line, colored the same as the points, is calculated for each `income_group`.
 
 #### Set the axis ranges, and use a different color palette
 
@@ -205,13 +213,13 @@ disease_democ_chart +
 
 Notice how the first two `scale` functions are used to set the ranges for the axis, which are entered as a list, using the `c` function we saw last week.
 
-You can use [ColorBrewer](http://colorbrewer2.org) qualitative palettes by using the `scale_color_brewer` function. Add the text you want to appear as a legend title using `name`.
+You can apply [ColorBrewer](http://colorbrewer2.org) qualitative palettes by using the `scale_color_brewer` function. Add the text you want to appear as a legend title using `name`.
 
 ### Save your charts
 
 Having made a series of charts, you can browse through them using the blue arrows at the top of the `Plots` tab in the panel at bottom right. The broom icon will clear all of your charts; the icon to its immediate left remove the chart in the current view.
 
-You can export any chart by selecting `Export>Save as Image...`. At the dialog box, you can select the desired image format, and size. If you wish to edit or annotate the chart in a vector graphics editor such as [Abode Illustrator](https://helpx.adobe.com/illustrator/how-to/what-is-illustrator.html), export as an SVG file.
+You can export any chart by selecting `Export>Save as Image...`. At the dialog box, you can select the desired image format, and size. If you wish to subsquently edit or annotate the chart in a vector graphics editor such as [Abode Illustrator](https://helpx.adobe.com/illustrator/how-to/what-is-illustrator.html), export as an SVG file.
 
 ![](./img/class8_10.jpg)
 
@@ -241,7 +249,7 @@ food_stamps <- read_csv("food_stamps.csv")
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) + 
   xlab("Year") +
   ylab("Participants (millions)") +
-  theme_minimal(base_size = 16, base_family = "Georgia")
+  theme_minimal(base_size = 14, base_family = "Georgia")
 ```
 
 #### Make a line chart
@@ -284,18 +292,24 @@ food_stamps_chart +
 # Make a column chart
 food_stamps_chart +
   geom_bar(stat = "identity") +
-  ggtitle("Column chart")
-``
+  ggtitle("Column chart") +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
+```
+
 ![](./img/class8_14.jpg)
 
 `geom_bar` works a little differently to the `geoms` we have considered previously. If you have not mapped data values to the Y axis with `aes`, its default behavior is to set the heights of the bars by counting the number of records for values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values in the data, use you must use `stat="identity"`.
 
+Notice also the use of `theme` options to remove the X axis grid lines.
 
  ```r
 # Make a bar chart
 food_stamps_chart +
   geom_bar(stat = "identity") +
   ggtitle("Bar chart") +
+  theme(panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank()) +
   coord_flip()
 ```
 
@@ -305,12 +319,12 @@ food_stamps_chart +
 
 #### The difference between color and fill
 
-For some `geoms`, notably `geom_bar`, you can set color for their outline as well as the color used to fill the shapes.
+For some `geoms`, notably `geom_bar`, you can set color for their outline as well as the interior of the shape.
 
 ```r
 # set color and fill
 food_stamps_chart +
-  geom_bar(stat = "identity", color = "#888888", fill = "#cccccc", alpha = 0.5) +
+  geom_bar(stat = "identity", color = "#888888", fill = "#CCCCCC", alpha = 0.5) +
   ggtitle("Column chart")
 ```
 When setting colors, `color` refers to the outline, `fill` to the interior of the shape.
@@ -322,7 +336,7 @@ When setting colors, `color` refers to the outline, `fill` to the interior of th
 ```r
 # fill the bars according to values for the cost of the program
 food_stamps_chart +
-  geom_bar(stat = "identity", aes(fill = costs))
+  geom_bar(stat = "identity", color= "white", aes(fill = costs))
 ```
 
 ![](./img/class8_17.jpg)
@@ -363,16 +377,164 @@ The coordinates for the legend are given as a list: The first number sets the ho
 
 The [ggplot2 extensions](https://www.ggplot2-exts.org/) page documents a series of packges that extend the capabilities of ggplot2. See the [gallery](http://www.ggplot2-exts.org/gallery/).
 
+The **[scales](https://cran.r-project.org/web/packages/scales/scales.pdf)** package allows you to format axes to display as currency, as percentages, or so that large numbers use commas as thusands separators.
+
 ### Putting it all together
 
+Here are some examples of using **dplyr**, **ggplot2**, and **scales** to process data and make charts.
+
+#### Load California immunization and immunization data
+
+```r
+# load required package
+library(scales)
+
+# load data
+immun <- read_csv("kindergarten.csv")
+```
+#### Calculate proportion of children with incomplete immunizations for the entire state and by county
+
+```r
+# proportion incomplete, entire state, by year
+immun_year <- immun %>%
+  group_by(start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm=TRUE),completed = sum(complete, na.rm=TRUE)) %>%
+  mutate(incomplete = round(((enrolled-completed)/enrolled),4))
+
+# proportion incomplete, by county, by year
+immun_counties_year <- immun %>%
+  group_by(county,start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE),completed = sum(complete, na.rm = TRUE)) %>%
+  mutate(incomplete = round(((enrolled-completed)/enrolled),4))
+
+# identify five counties with the largest enrollment over all years
+top5 <- immun %>%
+  group_by(county) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE)) %>%
+  arrange(desc(enrolled)) %>%
+  head(5) %>%
+  select(county)
+
+# proportion incomplete, top 5 counties by enrollment, by year
+immun_top5_year <- semi_join(immun_counties_year, top5)
+```
+The code above uses **dplyr** to group and summarixe the data for the charts that follow. Notice the use of `na.rm = TRUE` with the `sum` function. This is needed when summarizing data using functions like `sum`, `mean`, and `median` if there are any missing values in the data. It is a good idea to get into the habit if including it when using these functions.
+
+The calculated variable `incomplete` gives the proportion of children who did not have complete immunizations, as a decimal fraction between 0 and 1. In the **ggplot2** that follows, we will use **scales** to display these numbers as percentages.
+
+
+#### Make a bar chart showing the percentage of children with incomplete immunization for the entire state, over time
+
+```r
+# bar chart by year, entire state
+ggplot(immun_year, aes(x = start_year, y = incomplete)) + 
+  geom_bar(stat = "identity", fill = "red", alpha = 0.7) +
+  theme_minimal(base_size = 12) +
+  scale_y_continuous(labels = percent) +
+  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
+  xlab("") +
+  ylab("Incomplete") +
+  ggtitle("Immunization in California kindergartens, entire state") + 
+  theme(panel.grid.major.x = element_blank(),
+          panel.grid.minor.x = element_blank())
+```
+![](./img/class8_20.jpg)
+
+Here, the code `scale_y_continuous(labels = percent)` uses `labels = percent` from **scales** to format the decimal fractions in `incomplete` as percentages.
+
+The code `scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014))` manually sets the positions of the X axis tick labels, rather than accepting the default values selected by **ggplot2**.
+
+#### Make a dot and line chart showing the percentage of children with incomplete immunization for the five counties with the highest kindergarten enrollment, over time
+
+```r
+# dot and line chart, top5 counties, by year
+ggplot(immun_top5_year, aes(x = start_year, y = incomplete, color = county)) + 
+  scale_color_brewer(palette = "Set1", name = "") +
+  geom_line(size=1) +
+  geom_point(size=3) +
+  theme_minimal(base_size = 12) +
+  scale_y_continuous(labels = percent, limits = c(0,0.15)) +
+  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
+  xlab("") +
+  ylab("Incomplete") +
+  theme(legend.position = "bottom") +
+  ggtitle("Immunization in California kindergartens\n(five largest counties)")
+```
+![](./img/class8_21.jpg)
+
+#### Make a heat map showing the percentage of children with incomplete immunization for each California county, over time
+
+```r
+# heat map, all counties, by year
+ggplot(immun_counties_year, aes(x = start_year, y = county)) +
+  geom_tile(aes(fill = incomplete), colour = "white") +
+  scale_fill_gradient(low = "white",
+                      high = "red", 
+                      name="",
+                      labels = percent) +
+  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
+  theme_minimal(base_size = 12) +
+  xlab("") +
+  ylab("County") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position="bottom",
+        legend.key.height = unit(0.4, "cm")) +
+  ggtitle("Immunization in California kindergartens, by county")
+```
+
+![](./img/class8_22.jpg)
+
+This code uses `geom_tile` to make a heat map, and `scale_fill_gradient` to create a color gradient by manually setting the colors for the end of the scale. This is an alternative to using `scale_fill_distiller` to use a ColorBrewer sequential palette.
+
+#### Make a Gapminder-style bubble chart showing the relationship between GDP per capita and life expectancy for the world's nations in 2014
+
+```r
+# load data
+nations <- read_csv(nations)
+
+# filter for 2014 data only
+nations2014 <- nations %>%
+  filter(year == 2014)
+
+# make bubble chart
+ggplot(nations2014, aes(x = gdp_percap, y = life_expect)) +
+  xlab("GDP per capita") +
+  ylab("Life expectancy at birth") +
+  theme_minimal(base_size = 12, base_family = "Georgia") +
+  geom_point(aes(size = population, color = region), alpha = 0.7) +
+  scale_size_area(guide = FALSE, max_size = 15) +
+  scale_x_continuous(labels = dollar) +
+  stat_smooth(formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype="dotted") +
+  scale_color_brewer(name = "", palette = "Set2") +
+  theme(legend.position=c(0.8,0.4))
+```
+![](./img/class8_23.jpg)
+
+In this code, `scale_size_area` ensures that the size of the circles scales by their area according to the population data, up to the specified `max_size`; `guide = FALSE` within the brackets of this function prevents a legend for size being drawn.
+
+`labels = dollar` from **scales** formats the X axis labels as currency in dollars.
+
+`stat_smooth` works like `geom_smooth` but allows you to use a `formula` to specify the type of curve to use for to trend line fitted to the data, here a logarithmic curve.
 
 
 ### Assignment
 
- - t/k
- - t/k
- - t/k
+ - Use **dplyr** and **ggplot2** to process data and draw these two charts from the `nations` dataset:
 
+![](./img/class8_24.jpg)
+
+![](./img/class8_25.jpg)
+
+ - For both charts, you will first need to create a new variable in the data, using `mutate` from **dplyr**, giving the GDP of each country in trillions of dollars, by multiplying `gdp_percap` by `population` and dividing by a trillion. When drawing both charts with **ggplot2** you should also manually set the X axis tick mark labels (otherwise the default will be to include a label for 2015, for which there is no data.)
+
+ - For the first chart, you will need to `filter` the data with **dplyr** for the four desired countries. When making the chart with **ggplot2** you will need to add both `geom_point` and `geom_line` layers, and use the `Set1` ColorBrewer palette.
+
+ - For the second chart, using **dplyr** you will need to `group_by` region and year, and then summarize using `sum`. There will be null values, or NAs, in this data, so you will need to use `na.rm = TRUE`. When drawing the chart with **ggplot2**, you will need to use `geom_area` and the `Set2` ColorBrewer palette. Think about the difference between `fill` and `color` when making the chart, and  put a very thin white line around each area. You should also manually set the X axis tick mark labels (otherwise the default will be to include a label for 2015, for which there is no data.)
+
+ - File each chart as a JPEG image, setting its size to 750 pixels wide and 500 pixels high.
+
+ - Also file your R script containing the code used to process the data and draw your charts.
 
 ### Further reading
 
