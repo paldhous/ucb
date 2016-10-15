@@ -286,11 +286,13 @@ food_stamps_chart +
   theme(legend.position=c(<span class="hljs-number">0.15</span>,<span class="hljs-number">0.8</span>))
 </code></pre><p><img src="img/class8_19.jpg" alt=""></p><p>The coordinates for the legend are given as a list: The first number sets the horizontal position, from left to right, on a scale from 0 to 1; the second number sets the vertical position, from bottom to top, again on a scale form 0 to 1.</p><h3 id="other-useful-packages-to-use-with-ggplot2"><a name="other-useful-packages-to-use-with-ggplot2" href="#other-useful-packages-to-use-with-ggplot2"></a>Other useful packages to use with ggplot2</h3><p>The <a href="https://www.ggplot2-exts.org/">ggplot2 extensions</a> page documents a series of packges that extend the capabilities of ggplot2. See the <a href="http://www.ggplot2-exts.org/gallery/">gallery</a>.</p><p>The <strong><a href="https://cran.r-project.org/web/packages/scales/scales.pdf">scales</a></strong> package allows you to format axes to display as currency, as percentages, or so that large numbers use commas as thusands separators.</p><h3 id="putting-it-all-together"><a name="putting-it-all-together" href="#putting-it-all-together"></a>Putting it all together</h3><p>Here are some examples of using <strong>dplyr</strong>, <strong>ggplot2</strong>, and <strong>scales</strong> to process data and make charts.</p><h4 id="load-california-immunization-and-immunization-data"><a name="load-california-immunization-and-immunization-data" href="#load-california-immunization-and-immunization-data"></a>Load California immunization and immunization data</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load required package
 library(scales)
+library(dplyr)
 
 # load data
 immun &amp;lt;- read_csv(&quot;kindergarten.csv&quot;)
 </code></pre>"><span class="hljs-comment"># load required package</span>
 <span class="hljs-keyword">library</span>(scales)
+<span class="hljs-keyword">library</span>(dplyr)
 
 <span class="hljs-comment"># load data</span>
 immun &lt;- read_csv(<span class="hljs-string">"kindergarten.csv"</span>)
@@ -417,7 +419,7 @@ ggplot(immun_counties_year, aes(x = start_year, y = county)) +
         legend.key.height = unit(<span class="hljs-number">0.4</span>, <span class="hljs-string">"cm"</span>)) +
   ggtitle(<span class="hljs-string">"Immunization in California kindergartens, by county"</span>)
 </code></pre><p><img src="img/class8_22.jpg" alt=""></p><p>This code uses <code>geom_tile</code> to make a heat map, and <code>scale_fill_gradient</code> to create a color gradient by manually setting the colors for the end of the scale. This is an alternative to using <code>scale_fill_distiller</code> to use a ColorBrewer sequential palette.</p><h4 id="make-a-gapminder-style-bubble-chart-showing-the-relationship-between-gdp-per-capita-and-life-expectancy-for-the-world's-nations-in-2014"><a name="make-a-gapminder-style-bubble-chart-showing-the-relationship-between-gdp-per-capita-and-life-expectancy-for-the-world's-nations-in-2014" href="#make-a-gapminder-style-bubble-chart-showing-the-relationship-between-gdp-per-capita-and-life-expectancy-for-the-world's-nations-in-2014"></a>Make a Gapminder-style bubble chart showing the relationship between GDP per capita and life expectancy for the world’s nations in 2014</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load data
-nations &amp;lt;- read_csv(nations)
+nations &amp;lt;- read_csv(&quot;nations.csv&quot;)
 
 # filter for 2014 data only
 nations2014 &amp;lt;- nations %&amp;gt;%
@@ -435,7 +437,7 @@ ggplot(nations2014, aes(x = gdp_percap, y = life_expect)) +
   scale_color_brewer(name = &quot;&quot;, palette = &quot;Set2&quot;) +
   theme(legend.position=c(0.8,0.4))
 </code></pre>"><span class="hljs-comment"># load data</span>
-nations &lt;- read_csv(nations)
+nations &lt;- read_csv(<span class="hljs-string">"nations.csv"</span>)
 
 <span class="hljs-comment"># filter for 2014 data only</span>
 nations2014 &lt;- nations %&gt;%
@@ -456,7 +458,7 @@ ggplot(nations2014, aes(x = gdp_percap, y = life_expect)) +
 <li>Use <strong>dplyr</strong> and <strong>ggplot2</strong> to process data and draw these two charts from the <code>nations</code> dataset:</li></ul><p><img src="img/class8_24.jpg" alt=""></p><p><img src="img/class8_25.jpg" alt=""></p><ul>
 <li><p>For both charts, you will first need to create a new variable in the data, using <code>mutate</code> from <strong>dplyr</strong>, giving the GDP of each country in trillions of dollars, by multiplying <code>gdp_percap</code> by <code>population</code> and dividing by a trillion. When drawing both charts with <strong>ggplot2</strong> you should also manually set the X axis tick mark labels (otherwise the default will be to include a label for 2015, for which there is no data.)</p>
 </li><li><p>For the first chart, you will need to <code>filter</code> the data with <strong>dplyr</strong> for the four desired countries. When making the chart with <strong>ggplot2</strong> you will need to add both <code>geom_point</code> and <code>geom_line</code> layers, and use the <code>Set1</code> ColorBrewer palette.</p>
-</li><li><p>For the second chart, using <strong>dplyr</strong> you will need to <code>group_by</code> region and year, and then summarize using <code>sum</code>. There will be null values, or NAs, in this data, so you will need to use <code>na.rm = TRUE</code>. When drawing the chart with <strong>ggplot2</strong>, you will need to use <code>geom_area</code> and the <code>Set2</code> ColorBrewer palette. Think about the difference between <code>fill</code> and <code>color</code> when making the chart, and  put a very thin white line around each area. You should also manually set the X axis tick mark labels (otherwise the default will be to include a label for 2015, for which there is no data.)</p>
+</li><li><p>For the second chart, using <strong>dplyr</strong> you will need to <code>group_by</code> region and year, and then summarize using <code>sum</code>. There will be null values, or NAs, in this data, so you will need to use <code>na.rm = TRUE</code>. When drawing the chart with <strong>ggplot2</strong>, you will need to use <code>geom_area</code> and the <code>Set2</code> ColorBrewer palette. Think about the difference between <code>fill</code> and <code>color</code> when making the chart, and  put a very thin white line around each area.</p>
 </li><li><p>File each chart as a JPEG image, setting its size to 750 pixels wide and 500 pixels high.</p>
 </li><li><p>Also file your R script containing the code used to process the data and draw your charts.</p>
 </li></ul><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p>Winston Chang: <a href="http://www.amazon.com/R-Graphics-Cookbook-Winston-Chang/dp/1449316956"><em>R Graphics Cookbook</em></a><br>(Chang also has <a href="http://www.cookbook-r.com/">a helpful website</a> with much of the same information, available for free.)</p><p>Hadley Wickham: <a href="http://www.amazon.com/gp/product/0387981403/"><em>ggplot2: Elegant Graphics For Data Analysis</em></a></p><p><a href="https://www.rstudio.com/wp-content/uploads/2015/08/ggplot2-cheatsheet.pdf">ggplot2</a> cheat sheet from RStudio.</p><p><a href="http://docs.ggplot2.org/current/">ggplot2 documentation</a></p><p><a href="http://stcorp.nl/R_course/tutorial_ggplot2.html">ggplot2</a> and <a href="http://stcorp.nl/R_course/tutorial_dplyr.html">dplyr</a> tutorials from <a href="http://www.numbertheory.nl/about/">Paul Hiemstra</a>.</p><p><a href="http://stackoverflow.com/">Stack Overflow</a><br>Search the site, or <a href="http://stackoverflow.com/questions/tagged/r">browse R questions</a></p>

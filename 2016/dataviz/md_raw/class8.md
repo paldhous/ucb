@@ -388,6 +388,7 @@ Here are some examples of using **dplyr**, **ggplot2**, and **scales** to proces
 ```r
 # load required package
 library(scales)
+library(dplyr)
 
 # load data
 immun <- read_csv("kindergarten.csv")
@@ -491,7 +492,7 @@ This code uses `geom_tile` to make a heat map, and `scale_fill_gradient` to crea
 
 ```r
 # load data
-nations <- read_csv(nations)
+nations <- read_csv("nations.csv")
 
 # filter for 2014 data only
 nations2014 <- nations %>%
@@ -530,7 +531,7 @@ In this code, `scale_size_area` ensures that the size of the circles scales by t
 
  - For the first chart, you will need to `filter` the data with **dplyr** for the four desired countries. When making the chart with **ggplot2** you will need to add both `geom_point` and `geom_line` layers, and use the `Set1` ColorBrewer palette.
 
- - For the second chart, using **dplyr** you will need to `group_by` region and year, and then summarize using `sum`. There will be null values, or NAs, in this data, so you will need to use `na.rm = TRUE`. When drawing the chart with **ggplot2**, you will need to use `geom_area` and the `Set2` ColorBrewer palette. Think about the difference between `fill` and `color` when making the chart, and  put a very thin white line around each area. You should also manually set the X axis tick mark labels (otherwise the default will be to include a label for 2015, for which there is no data.)
+ - For the second chart, using **dplyr** you will need to `group_by` region and year, and then summarize using `sum`. There will be null values, or NAs, in this data, so you will need to use `na.rm = TRUE`. When drawing the chart with **ggplot2**, you will need to use `geom_area` and the `Set2` ColorBrewer palette. Think about the difference between `fill` and `color` when making the chart, and  put a very thin white line around each area.
 
  - File each chart as a JPEG image, setting its size to 750 pixels wide and 500 pixels high.
 
