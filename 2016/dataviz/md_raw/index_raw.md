@@ -60,7 +60,7 @@ Basic mapping principles:  projections, geocoding, geodata formats; approaches t
  - **Assignment:** continue work on final project, delivering a progress report.
 
 
--  ####**Oct. 28:** [**Making static maps and processing geodata with GIS software**](week9.html)
+-  ####**Oct. 28:** [**Making static maps and processing geodata with GIS software**](week10.html)
 We will use [QGIS](http://qgis.org/en/site/) to make a multi-layered map. We will also learn how to use QGIS and its plugins to process geodata.
 
  - **Assignment:** continue work on final project, delivering a progress report.

@@ -24,7 +24,7 @@ Download the data for this session from [here](data/week3.zip), unzip the folder
 
 ### Analyze data on high-technology exports
 
-Load the file `techexports_gdp.csv` into Google Sheets, set up a header row and resize the columns as we did in Week 1. The data should look like this:
+Load the file `techexports_gdp.csv` into Google Sheets, set up a header row as we did in Week 1. The data should look like this:
 
 ![](./img/class3_1.jpg)
 
@@ -121,7 +121,7 @@ To do this for our last column of calculated values, select the entire column by
 
 ![](./img/class3_10a.jpg)
 
-Only ever replace your formalas with values if you are 100% confident that the calculations were correct!
+Only ever replace your formulas with values if you are 100% confident that the calculations were correct!
 
 
 #### Filter for the most recent year with reasonably complete data
@@ -291,7 +291,7 @@ Remember that column `J`, containing the gender pay gap calculations, will show 
 
 Our last question was:
 
-- For which occupations was the gender pay gap proportinately greatest?
+- For which occupations was the gender pay gap proportionately greatest?
 
 To answer this question, we need to **sort** the data using the same column in the opposite direction, from `Z → A`:
 
@@ -378,15 +378,11 @@ Copy the result down the column, and the table should look like this:
 
 The pivot table raises some questions that could help direct further reporting:
 
-- Why did was the number of deaths and injuries so high in 2005, compared to all the other years?
+- Why was the number of deaths and injuries so high in 2005, compared to all the other years?
 
 - And why were there so few alcohol-related deaths and injuries in 2010?
 
 It may be that these simply represent random fluctuations in the data from year to year. Or perhaps some changes in policing, or other factors, were involved. Further reporting would be required to investigate.
-
-
-### Assignment
-
 
 
 ### Further reading/viewing
