@@ -160,15 +160,9 @@ Hover over one of the points on the map, and see that the tooltip displays value
 
 #### Set up a filter to map the collisions by year
 
-Now we a control to **filter** the data by year. Tableau's default behavior is to redraw a map or chart each time it is filtered. In this case, the map will redraw to center on the collisions in any given year, and the circles will all rescale to reflect the range of values in the **filtered** data.
+Now we a control to **filter** the data by year. Tableau's default behavior is to redraw the `Marks` on a map or chart each time it is filtered. In this case, the circles will all rescale to reflect the range of values in the **filtered** data.
 
-If we do not want that to happen, we need to freeze the map, and the size of the circles.
-
-To freeze the map, make sure the pin icon is facing downwards:
-
-![](./img/class4_18.jpg)
-
-If it is not, click on it to freeze the map.
+If we do not want that to happen, we need to freeze the size of the circles.
 
 To freeze the size of the circles, hover over the title bar for the size legend, select `Edit sizes...` and fill in the dialog box as follows:
 
@@ -473,9 +467,16 @@ If you change the width in the iframe code to `100%`, rather than giving a value
 
 To put the map onto its own page, paste the code that appears in the box under `Get HTML and JavaScript` into a blank file in a text editor. Save this file with the extension `html`.
 
-
 ### Assignment
 
+- Complete both the Tableau Public and Google Fusion exercises.
+- Email me the following:
+ - Having saved your Tableau dashboard of Richmond traffic accidents to the web, click `Share` and send me the link at `Link`.
+
+   ![](img/class4_57.jpg)
+
+ - For the Fusion Tables map of Bay Area gentrification, select `Tools>Publish` and send me the link at `Send a link in email or IM`.
+   ![](img/class4_58.jpg)
 
 
 ### Further reading/viewing
