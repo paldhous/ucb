@@ -453,11 +453,10 @@ In the `DATA VIEW`, notice that it contains a field with `iso3` country codes:
 Open the `SQL` tab, and run the following query to replicate the clip we ran in week 10 using QGIS:
 
 ```SQL
-SELECT seismic_risk.acc_val, seismic_risk.valley, ST_Intersection(seismic_risk.the_geom, world_borders.the_geom) AS the_geom
+SELECT seismic_risk.acc_val, seismic_risk.valley, ST_Intersection(seismic_risk.the_geom, world_borders.the_geom) AS the_geom_webmercator
 FROM seismic_risk, world_borders
 WHERE world_borders.iso3='USA'
 ```
-
 Let's break this query down:
 
 The `SELECT` clause selects the two data fields from the `seismic_risk` dataset, and creates a third column called `the_geom` using the PostGIS function `ST_Intersection`, which is the spatial overlap between the `seismic_risk` and `world_borders` maps.
@@ -465,6 +464,8 @@ The `SELECT` clause selects the two data fields from the `seismic_risk` dataset,
 The `FROM` clause needs to include both datasets mentioned in the `SELECT` clause, separated by commas.
 
 Finally, the `WHERE` clause filters the results so that the data returned overlaps with the United States only.
+
+Why does this query use `the_geom_webmercator` rather than `the_geom`? This is a quirk of Carto, which stores a projected version of the table's geometry in a "hidden" field of this name, as explained [here](https://carto.com/docs/tutorials/projections/). Some PostGIS functions will only work on this version of the geometry, but Carto should warn you when this is necessary -- try running the same query using `the_geom` and you should be prompted to use `the_geom_webmercator`.
 
 Click on the `Create dataset from query` link, rename it as `seismic_risk_clip`, and switch to the `MAP VIEW`, which should look like this:
 
@@ -514,8 +515,6 @@ SELECT ST_Union(the_geom_webmercator) AS the_geom_webmercator
 FROM buffer
 ```
 `ST_Union` is a function that dissolves multiple geometries into one.
-
-Why does this query use `the_geom_webmercator` rather than `the_geom`? This is a quirk of Carto, which stores a projected version of the table's geometry in a "hidden" field of this name, as explained [here](https://carto.com/docs/tutorials/projections/). Some PostGIS functions will only work on this version of the geometry, but Carto should warn you when this is necessary -- try running the same query using `the_geom` and you should be prompted to use `the_geom_webmercator`.
 
 In the data view, you will notice that there is now just a single field, called `the_geom_webmercator`, containing one `Polygon`. If you switch to the map view, you will see that the separate circles have now dissolved together:
 
@@ -578,6 +577,16 @@ UPDATE sf_test_addresses SET distance = (
 #### Next steps with PostGIS
 
 I hope these queries have whetted your appetite to learn more about PostGIS. I suggest continuing with the NICAR tutorial below, which provides some more examples of queries, and how they have been used by news media to generate stories and visualizations.
+
+### Assignment
+
+File a full project update via your GitHub account, so that I can see your visualizations, data etc. Also write a summary, including:
+
+- What you have done
+-  What you intend to do
+- Problems, obstacles
+
+Share this with me by **6pm** on **Wed Nov 9**.
 
 
 ### Further reading/resources

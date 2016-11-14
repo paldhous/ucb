@@ -105,6 +105,12 @@ Data used in reporting [this story](https://www.newscientist.com/article/dn18806
  - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded in week 9.
  - `sfpd_stations.zip` Zipped shapefile with locations of San Francisco police stations.
 
+#### [Week 13](./data/week13.zip)
+
+- `nations.csv` Data from the World Bank Indicators portal, as used in week 3 and subsequently.
+- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2015, as used in week 8.
+- `seismic_risk_clip` Folder containing [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014), detailing the risk of experiencing a major earthquake, clipped to the boundaries of the continental United States.
+
 
 ## Final projects
 
