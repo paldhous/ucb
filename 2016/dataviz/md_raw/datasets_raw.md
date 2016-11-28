@@ -4,7 +4,7 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 
 ## Class exercises
 
-#### [Week 1](./data/week1.zip)
+#### [Download Week 1](./data/week1.zip)
 
 - `mlb_salaries_2014.csv` Salaries of players in Major League Baseball at the start of the 2014 season, from the [Lahman Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/).
 
@@ -12,7 +12,7 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 
 - `gdp_pc.csv` [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on 2014 Gross Domestic Product (GDP) per capita for the world's nations, in current international dollars, corrected for purchasing power in different territories.
 
-#### [Week 3](./data/week3.zip)
+#### [Download Week 3](./data/week3.zip)
 
 - `nations.csv` Data from the [World Bank Indicators](http://data.worldbank.org/indicator/all) portal, which is an incredibly rich resource. Contains the following fields:
  -  `iso2c` `iso3c` Two- and Three-letter [codes](http://www.nationsonline.org/oneworld/country_code_list.htm) for each country, assigned by the [International Organization for Standardization](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63545).
@@ -26,12 +26,12 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
  - `neonat_mortal_rate` [Neonatal mortality rate](http://data.worldbank.org/indicator/SH.DYN.NMRT): babies dying before reaching 28 days of age, per 1,000 live births in a given year.
  - `region` `income` World Bank [regions and income groups](http://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS), explained [here](http://data.worldbank.org/about/country-and-lending-groups).
 
-#### [Week 4](./data/week4.zip)
+#### [Download Week 4](./data/week4.zip)
 
 - `index.html` `index2.html` Two simple webpages, which we will edit and publish on GitHub.
 - `css` `fonts` `js` Folders with files to run the Bootstrap web framework.
 
-#### [Week 5](./data/week5.zip)
+#### [Download Week 5](./data/week5.zip)
 
 - `oil_production.csv` Data on oil production by world region from 2000 to 2014, in thousands of barrels per day, from the [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/iedindex3.cfm?tid=5&pid=53&aid=1&cid=regions,&syid=2000&eyid=2014&unit=TBPD).
 
@@ -40,12 +40,12 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 - `urls.xls` A spreadsheet that we'll use in webscraping.
 
 
-#### [Week 6](./data/week6.zip)
+#### [Download Week 6](./data/week6.zip)
 
 - `nations.csv` As for week three but lacking data on life expectancy, to allow you to practice data processing and a data join.
 
 
-#### [Week 7](./data/week7.zip)
+#### [Download Week 7](./data/week7.zip)
 
 Data used in reporting [this story](https://www.newscientist.com/article/dn18806-revealed-pfizers-payments-to-censured-doctors/), which revealed that some of the doctors paid as "experts" by the drug company Pfizer had troubling disciplinary records:
 
@@ -64,7 +64,7 @@ Data used in reporting [this story](https://www.newscientist.com/article/dn18806
  - `issued` Date letter was sent.
  - `office` Office within the FDA that sent the letter.
 
-#### [Week 8](./data/week8.zip)
+#### [Download Week 8](./data/week8.zip)
 
 - `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](http://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](http://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*, as used in week 1.
 - `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of `participants`, in millions, and `costs`, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2015. 
@@ -78,13 +78,13 @@ Data used in reporting [this story](https://www.newscientist.com/article/dn18806
   - `start_year` Year of entry (for the 2015-2016 school year, for example, this would be 2015).
 - `nations.csv` Data from World Bank World Development Indicators portal, giving data on population, GDP per capita, life Expectancy, birth rate, neonatal mortality rate, region and income group for the world's nations, from 1990 onwards, as used in week 3.
 
-#### [Week 9](./data/week9.zip)
+#### [Download Week 9](./data/week9.zip)
 
 - `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
 - `refine_geocoder.json` JSON file to geocode using Open Refine.
 - `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
 
-#### [Week 10](./data/week10.zip) 
+#### [Download Week 10](./data/week10.zip) 
 
 - `ca_healthcare`
  - `ca_counties_medicare` Shapefile with data on Medicare reimbursement per enrollee by California county in 2012, from the [Dartmouth Atlas of Healthcare](http://www.dartmouthatlas.org). 
@@ -95,7 +95,7 @@ Data used in reporting [this story](https://www.newscientist.com/article/dn18806
 - `seismic_risk` [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014) detailing the risk of experiencing a major earthquake across the continental United States.
 - `sf_test_addresses` Shapefile derived from the addresses we geocoded in week 9.
 
-#### [Week 11](./data/week11.zip)
+#### [Download Week 11](./data/week11.zip)
 
 - `ca_healthcare`
  - `ca_counties_medicare.zip` Zipped shapefile with data on Medicare reimbursement per enrollee by California county in 2012, as used in week 10.
@@ -105,11 +105,19 @@ Data used in reporting [this story](https://www.newscientist.com/article/dn18806
  - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded in week 9.
  - `sfpd_stations.zip` Zipped shapefile with locations of San Francisco police stations.
 
-#### [Week 13](./data/week13.zip)
+#### [Download Week 13](./data/week13.zip)
 
 - `nations.csv` Data from the World Bank Indicators portal, as used in week 3 and subsequently.
 - `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2015, as used in week 8.
 - `seismic_risk_clip` Folder containing [U.S. Geological Survey shapefile](http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014), detailing the risk of experiencing a major earthquake, clipped to the boundaries of the continental United States.
+
+#### [Dowload Week 14](./data/week14.zip)
+
+- `nations.csv` Data from the World Bank Indicators portal, as used in week 3 and subsequently.
+- `warming.csv` [NASA data](http://data.giss.nasa.gov/gistemp/graphs/) on the annual average global temperature, from 1880 to 2015, compared the the average from 1951-1980.
+- `maps` Folder containing individual frames, from 1880 to 2015, each showing annual average temperatures across the globe, from 1880 to 2015, again compared the the average from 1951-1980.
+- `charts` `combined` Empty folders into which we will save individual frames from which to make a video animation.
+
 
 
 ## Final projects

@@ -12,36 +12,36 @@ Class time will also be scheduled for each of you to critique and lead class dis
  - ####**Aug. 26:**	[**What is data?**](week1.html)
 Categorical and continuous variables; basic operations for interviewing a dataset; sampling and margins of error; plotting and summarizing distributions; choosing bins for your data; basic newsroom math; correlation and its pitfalls; exploring differences between groups; scatter plots and box plots.
 
-  - **Assignment:** make plots using [ggplot2 web app](http://rweb.stat.ucla.edu/ggplot2/); subscribe to data viz blogs etc to follow latest developments in visualization.
+  - **Assignment:** Calculate summary statistics; subscribe to data viz blogs etc to follow latest developments in visualization.
 
 - ####**Sept. 2:** 	[**Data visualization: basic principles**](week2.html)
 Encoding data using visual cues; choosing chart types to show comparisons, composition (parts of the whole) and connections; using color effectively; using chart furniture, minimizing chart junk and highlighting the story; avoiding pitfalls; good practice, including for interactive graphics.
 
- - **Assignment:** quiz on good practice in visualization and data analysis.
+ - **Assignment:** Quiz on good practice in visualization and data analysis.
 
 
 - ####**Sept. 9:** [**Interviewing data: exploratory graphical analysis**](week3.html)
 We will use [Tableau Public](http://www.tableausoftware.com/public/) to explore and visualize World Bank data on neonatal deaths across the globe, creating an interactive online dashboard.
 
- - **Assignment:** make another dashboard from the same data, and combine into a Tableau story.
+ - **Assignment:** Make another dashboard from the same data.
 
 
 - ####**Sept. 16:** [**Using GitHub, and starting your final projects**](week4.html)
 We will explore how to use [GitHub](https://github.com/) for version control of a project, before you pitch ideas for your final projects.
 
- - **Assignment:** submit a pitch for your final project; also make an appointment to discuss this with your instructor the following week.
+ - **Assignment:** Submit a pitch for your final project; also make an appointment to discuss this with your instructor the following week.
 
 
 - ####**Sept. 23:** [**Acquiring, cleaning and formatting data**](week5.html)
 Data search and download tricks, including [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) and [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox plugins; manipulating urls and using APIs to acquire data; scraping data from the web with [Import.io](https://www.import.io/); cleaning data with [Open Refine](http://openrefine.org/); converting data between different formats using [Mr. Data Converter](http://shancarter.github.io/mr-data-converter/).
 
- - **Assignment:** data cleaning task.
+ - **Assignment:** Data cleaning task.
 
 
 - ####**Sep. 30:** [Let's apply what we've learned so far](week6.html)
 You will obtain and process World Bank data on life expectancy and GDP per capita for the world's nations from the web, and then create a Tableau visualization inspired by [this Gapminder video](http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/).
 
- - **Assignment:** download and process World Bank data on nations' carbon dioxide emissions per capita, and make a simple Tableau dashboard.
+ - **Assignment:** Download and process World Bank data on nations' carbon dioxide emissions per capita, and make a simple Tableau dashboard.
 
 
 - #### **Oct. 7:**	[**Manipulating data with R**](week7.html)
@@ -51,13 +51,13 @@ Introduction to [R](http://www.r-project.org/), [R Studio](http://www.rstudio.co
 - #### **Oct. 14:** [**Making static graphics with R**](week8.html)
 Making charts with the [ggplot2](http://ggplot2.org/) R package.
 
- - **Assignment:** process data and make charts using R.
+ - **Assignment:** Process data and make charts using R.
 
 
 -  ####**Oct. 21:**[** Principles of mapping**](week9.html)
 Basic mapping principles:  projections, geocoding, geodata formats; approaches to putting data onto maps, including choropleth maps, scaled symbols, hexagonal binning and cartograms.
 
- - **Assignment:** continue work on final project, delivering a progress report.
+ - **Assignment:** Continue work on final project, delivering a progress report.
 
 
 -  ####**Oct. 28:** [**Making static maps and processing geodata with GIS software**](week10.html)
@@ -67,7 +67,7 @@ We will use [QGIS](http://qgis.org/en/site/) to make a multi-layered map. We wil
 
 
 -  ####**Nov.4:** [**Making interactive maps**](week11.html)
-We will use [Carto](https://carto.com/) and cartodb.js/Leaflet to create interactive online maps.
+We will use [CARTO](https://carto.com/) to create interactive online maps.
 
   -  **Assignment:** Submit a full project update, via your GitHub account, for review in next week's meetings.
 
@@ -77,18 +77,18 @@ Instead, one-on-one meetings will be arranged with instructor to discuss progres
 
 
 - ####**Nov. 18:**	[**From R to interactive charts and maps**](week13.html)
-We will explore R packages, including [htmlwidgets](http://www.htmlwidgets.org/) and [rCharts](http://rcharts.io/), that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
+We will explore R packages called [htmlwidgets](http://www.htmlwidgets.org/) that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
 
- -  **Assignment:** continue work on final project, delivering a progress report.
+ -  **Assignment:** Continue work on final project, delivering a progress report.
 
 
 - ####**Nov 25:** Thanksgiving -- No Class
 
- - **Assignment:** continue work on your final project.
+ - **Assignment:** Continue work on your final project.
 
 
-- ####**Dec. 2:** [Iteration and animation: loops, GIFs and videos](week14.html)
-We will explore how to make multiple variants of the same chart by writing loops in R, and use [ImageMagick](http://imagemagick.org/script/index.php) and [FFmpeg](http://ffmpeg.org/) to turn them into animated GIFs and videos.
+- ####**Dec. 2:** [Iteration and animation: loops, GIFs, and videos](week14.html)
+We will explore how to make animation frames by writing loops in R, and use [ImageMagick](http://imagemagick.org/script/index.php), [FFmpeg](http://ffmpeg.org/) and the [gganimate](https://github.com/dgrtwo/gganimate) package to make animated GIFs and videos.
 
  - **Assignment:** complete your final project, file via your GitHub account.
 

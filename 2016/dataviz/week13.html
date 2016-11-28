@@ -470,7 +470,7 @@ highchart() %&amp;gt;%
            tickInterval = 5) %&amp;gt;%
   hc_colors(cols) %&amp;gt;%
   hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
-                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+                        fontWeight = &quot;bold&quot;))
 </code></pre>"><span class="hljs-comment"># load data</span>
 food_stamps &lt;- read_csv(<span class="hljs-string">"food_stamps.csv"</span>)
 
@@ -489,7 +489,7 @@ highchart() %&gt;%
            tickInterval = <span class="hljs-number">5</span>) %&gt;%
   hc_colors(cols) %&gt;%
   hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
-                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+                        fontWeight = <span class="hljs-string">"bold"</span>))
 </code></pre><p><img src="img/class13_12.jpg" alt=""></p><p>Notice that each variable is added separately to the chart using the function <code>hc_add_series</code>, rather than adding the entire data frame to the chart using <code>hc_add_series_df</code> as before. This allows the <code>type</code> to be set separately for each series.</p><p>This code adds the years to the X axis, and puts a tick label every 5 years:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>hc_xAxis(categories = unique(food_stamps$year),
            tickInterval = 5)
 </code></pre>">hc_xAxis(categories = unique(food_stamps$year),

@@ -429,7 +429,7 @@ highchart() %>%
            tickInterval = 5) %>%
   hc_colors(cols) %>%
   hc_chart(style = list(fontFamily = "Georgia",
-                        fontWeight = "bold")) %>%
+                        fontWeight = "bold"))
 
 ```
 ![](./img/class13_12.jpg)

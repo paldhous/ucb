@@ -54,8 +54,6 @@ Allows you to convert addresses to latitude and longitude coordinates. Web app: 
 ### [CARTO](https://cartodb.com)
 A sophisticated cloud-based mapping application that also functions as a geospatial database, allowing you to analyze and process geodata. [Sign up](https://cartodb.com/signup) here for a free account.
 
-### [Leaflet](http://leafletjs.com/)
-A JavaScript code library for making interactive online maps. Download the latest stable version [from here](http://leafletjs.com/download.html) and unzip, or place the code for the hosted version of this release between the `<head></head>` tags of your HTML code.
 
 ### [QGIS](http://qgis.org/en/site/)
 The leading open source Geographic Information System, which we will use to make maps and process geodata. Download the latest **standard** version of QGIS and its requirements [from here](http://www.kyngchaos.com/software/qgis/). Install GDAL and the Matplotlib Python module before installing QGIS itself.
@@ -63,13 +61,39 @@ The leading open source Geographic Information System, which we will use to make
 ### [R](http://www.r-project.org/) and [R Studio](http://www.rstudio.com/)
 R is a software environment and programming language for statistical computing and graphics. Download the for OSX from [here](https://cran.rstudio.com/). R Studio provides a user interface that makes it much easier to use. Download the latest free version of RStudio Desktop [from here](http://www.rstudio.com/products/rstudio/download/).
 
-### [D3](http://d3js.org/)
+### [ImageMagick](http://imagemagick.org/script/index.php) and [FFmpeg](http://ffmpeg.org/)
 
-A JavaScript code library for manipulating documents based on data, which has emerged in recent years as a powerful and flexible tool for interactive data visualization. Download the latest version [from here](http://d3js.org/) and unzip, or include the following code snippet in your HTML:
+ImageMagick is a software library for creating, editing, converting and manipulating images, including animated GIFs. FFmpeg is a software library that records and converts audio and video.
 
-```CSS
-<script src="https://d3js.org/d3.v4.min.js"></script>
-```
+We will use them in conjunction with R to make animated graphics. They take some time to install, so it is important that you do this before class.
+
+Here are the steps for installation:
+
+ - Download and install **Xcode**. 
+  - If you have Mac OS 10.11 El Capitan, you should be able to download and install [from the App Store](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12). 
+  - If you have Mac OS 10.10 Yosemite, first sign up as an Apple Developer, [here](https://developer.apple.com/programs/enroll/). Then go [here](https://developer.apple.com/download/more/), and download and install **Xcode 7.2.1**. Later versions will not work.
+  - If you are unsure which version of the operating system you have, click the Apple symbol at the left of the top menu and select `About this Mac`.
+  - You may need to launch **Xcode**  and agree to the terms of service.
+
+ - Open a Terminal window (find under `Applications>Utilities`) and enter:
+ ```R
+xcode-select --install
+ ```
+ This will install Xcode's command line tools, which are required for [**MacPorts**](https://www.macports.org/), the installer we will use to install the two software libraries.
+ - [Download and install](https://www.macports.org/install.php) the correct version of MacPorts for your Mac OS.
+
+ - In the Terminal, enter: 
+ ```R
+ sudo port install ImageMagick
+ ```
+ You will be required to enter your Mac password. The installation will take some time to complete. This is a good time to make a cup of coffee.
+ - When ImageMagick has installed, repeat the process for FFmpeg:
+  ```R
+ sudo port install ffmpeg
+ ```
+
+
+
 
 
 
