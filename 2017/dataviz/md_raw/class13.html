@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>class13.html</title>
+  <meta name="generator" content="Haroopad 0.13.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>div.oembedall-githubrepos{border:1px solid #DDD;border-radius:4px;list-style-type:none;margin:0 0 10px;padding:8px 10px 0;font:13.34px/1.4 helvetica,arial,freesans,clean,sans-serif;width:452px;background-color:#fff}div.oembedall-githubrepos .oembedall-body{background:-moz-linear-gradient(center top,#FAFAFA,#EFEFEF);background:-webkit-gradient(linear,left top,left bottom,from(#FAFAFA),to(#EFEFEF));border-bottom-left-radius:4px;border-bottom-right-radius:4px;border-top:1px solid #EEE;margin-left:-10px;margin-top:8px;padding:5px 10px;width:100%}div.oembedall-githubrepos h3{font-size:14px;margin:0;padding-left:18px;white-space:nowrap}div.oembedall-githubrepos p.oembedall-description{color:#444;font-size:12px;margin:0 0 3px}div.oembedall-githubrepos p.oembedall-updated-at{color:#888;font-size:11px;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats{border:none;float:right;font-size:11px;font-weight:700;padding-left:15px;position:relative;z-index:5;margin:0}div.oembedall-githubrepos ul.oembedall-repo-stats li{border:none;color:#666;display:inline-block;list-style-type:none;margin:0!important}div.oembedall-githubrepos ul.oembedall-repo-stats li a{background-color:transparent;border:none;color:#666!important;background-position:5px -2px;background-repeat:no-repeat;border-left:1px solid #DDD;display:inline-block;height:21px;line-height:21px;padding:0 5px 0 23px}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a{border-left:medium none;margin-right:-3px}div.oembedall-githubrepos ul.oembedall-repo-stats li a:hover{background:5px -27px no-repeat #4183C4;color:#FFF!important;text-decoration:none}div.oembedall-githubrepos ul.oembedall-repo-stats li:first-child a:hover{border-bottom-left-radius:3px;border-top-left-radius:3px}ul.oembedall-repo-stats li:last-child a:hover{border-bottom-right-radius:3px;border-top-right-radius:3px}span.oembedall-closehide{background-color:#aaa;border-radius:2px;cursor:pointer;margin-right:3px}div.oembedall-container{margin-top:5px;text-align:left}.oembedall-ljuser{font-weight:700}.oembedall-ljuser img{vertical-align:bottom;border:0;padding-right:1px}.oembedall-stoqembed{border-bottom:1px dotted #999;float:left;overflow:hidden;width:730px;line-height:1;background:#FFF;color:#000;font-family:Arial,Liberation Sans,DejaVu Sans,sans-serif;font-size:80%;text-align:left;margin:0;padding:0}.oembedall-stoqembed a{color:#07C;text-decoration:none;margin:0;padding:0}.oembedall-stoqembed a:hover{text-decoration:underline}.oembedall-stoqembed a:visited{color:#4A6B82}.oembedall-stoqembed h3{font-family:Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;font-size:130%;font-weight:700;margin:0;padding:0}.oembedall-stoqembed .oembedall-reputation-score{color:#444;font-size:120%;font-weight:700;margin-right:2px}.oembedall-stoqembed .oembedall-user-info{height:35px;width:185px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-gravatar32{float:left;height:32px;width:32px}.oembedall-stoqembed .oembedall-user-info .oembedall-user-details{float:left;margin-left:5px;overflow:hidden;white-space:nowrap;width:145px}.oembedall-stoqembed .oembedall-question-hyperlink{font-weight:700}.oembedall-stoqembed .oembedall-stats{background:#EEE;margin:0 0 0 7px;padding:4px 7px 6px;width:58px}.oembedall-stoqembed .oembedall-statscontainer{float:left;margin-right:8px;width:86px}.oembedall-stoqembed .oembedall-votes{color:#555;padding:0 0 7px;text-align:center}.oembedall-stoqembed .oembedall-vote-count-post{font-size:240%;color:#808185;display:block;font-weight:700}.oembedall-stoqembed .oembedall-views{color:#999;padding-top:4px;text-align:center}.oembedall-stoqembed .oembedall-status{margin-top:-3px;padding:4px 0;text-align:center;background:#75845C;color:#FFF}.oembedall-stoqembed .oembedall-status strong{color:#FFF;display:block;font-size:140%}.oembedall-stoqembed .oembedall-summary{float:left;width:635px}.oembedall-stoqembed .oembedall-excerpt{line-height:1.2;margin:0;padding:0 0 5px}.oembedall-stoqembed .oembedall-tags{float:left;line-height:18px}.oembedall-stoqembed .oembedall-tags a:hover{text-decoration:none}.oembedall-stoqembed .oembedall-post-tag{background-color:#E0EAF1;border-bottom:1px solid #3E6D8E;border-right:1px solid #7F9FB6;color:#3E6D8E;font-size:90%;line-height:2.4;margin:2px 2px 2px 0;padding:3px 4px;text-decoration:none;white-space:nowrap}.oembedall-stoqembed .oembedall-post-tag:hover{background-color:#3E6D8E;border-bottom:1px solid #37607D;border-right:1px solid #37607D;color:#E0EAF1}.oembedall-stoqembed .oembedall-fr{float:right}.oembedall-stoqembed .oembedall-statsarrow{background-image:url(http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=3);background-repeat:no-repeat;overflow:hidden;background-position:0 -435px;float:right;height:13px;margin-top:12px;width:7px}.oembedall-facebook1{border:1px solid #1A3C6C;padding:0;font:13.34px/1.4 verdana;width:500px}.oembedall-facebook2{background-color:#627add}.oembedall-facebook2 a{color:#e8e8e8;text-decoration:none}.oembedall-facebookBody{background-color:#fff;vertical-align:top;padding:5px}.oembedall-facebookBody .contents{display:inline-block;width:100%}.oembedall-facebookBody div img{float:left;margin-right:5px}div.oembedall-lanyard{-webkit-box-shadow:none;-webkit-transition-delay:0s;-webkit-transition-duration:.4000000059604645s;-webkit-transition-property:width;-webkit-transition-timing-function:cubic-bezier(0.42,0,.58,1);background-attachment:scroll;background-clip:border-box;background-color:transparent;background-image:none;background-origin:padding-box;border-width:0;box-shadow:none;color:#112644;display:block;float:left;font-family:'Trebuchet MS',Trebuchet,sans-serif;font-size:16px;height:253px;line-height:19px;margin:0;max-width:none;min-height:0;outline:#112644 0;overflow-x:visible;overflow-y:visible;padding:0;position:relative;text-align:left;vertical-align:baseline;width:804px}div.oembedall-lanyard .tagline{font-size:1.5em}div.oembedall-lanyard .wrapper{overflow:hidden;clear:both}div.oembedall-lanyard .split{float:left;display:inline}div.oembedall-lanyard .prominent-place .flag:active,div.oembedall-lanyard .prominent-place .flag:focus,div.oembedall-lanyard .prominent-place .flag:hover,div.oembedall-lanyard .prominent-place .flag:link,div.oembedall-lanyard .prominent-place .flag:visited{float:left;display:block;width:48px;height:48px;position:relative;top:-5px;margin-right:10px}div.oembedall-lanyard .place-context{font-size:.889em}div.oembedall-lanyard .prominent-place .sub-place{display:block}div.oembedall-lanyard .prominent-place{font-size:1.125em;line-height:1.1em;font-weight:400}div.oembedall-lanyard .main-date{color:#8CB4E0;font-weight:700;line-height:1.1}div.oembedall-lanyard .first{width:48.57%;margin:0 0 0 2.857%}.mermaid .label{color:#333}.node circle,.node polygon,.node rect{fill:#cde498;stroke:#13540c;stroke-width:1px}.edgePath .path{stroke:green;stroke-width:1.5px}.cluster rect{fill:#cdffb2;rx:40;stroke:#6eaa49;stroke-width:1px}.cluster text{fill:#333}.actor{stroke:#13540c;fill:#cde498}text.actor{fill:#000;stroke:none}.actor-line{stroke:grey}.messageLine0{stroke-width:1.5;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#333}.messageLine1{stroke-width:1.5;stroke-dasharray:"2 2";stroke:#333}#arrowhead{fill:#333}#crosshead path{fill:#333!important;stroke:#333!important}.messageText{fill:#333;stroke:none}.labelBox{stroke:#326932;fill:#cde498}.labelText,.loopText{fill:#000;stroke:none}.loopLine{stroke-width:2;stroke-dasharray:"2 2";marker-end:"url(#arrowhead)";stroke:#326932}.note{stroke:#6eaa49;fill:#fff5ad}.noteText{fill:#000;stroke:none;font-family:'trebuchet ms',verdana,arial;font-size:14px}.section{stroke:none;opacity:.2}.section0,.section2{fill:#6eaa49}.section1,.section3{fill:#fff;opacity:.2}.sectionTitle0,.sectionTitle1,.sectionTitle2,.sectionTitle3{fill:#333}.sectionTitle{text-anchor:start;font-size:11px;text-height:14px}.grid .tick{stroke:lightgrey;opacity:.3;shape-rendering:crispEdges}.grid path{stroke-width:0}.today{fill:none;stroke:red;stroke-width:2px}.task{stroke-width:2}.taskText{text-anchor:middle;font-size:11px}.taskTextOutsideRight{fill:#000;text-anchor:start;font-size:11px}.taskTextOutsideLeft{fill:#000;text-anchor:end;font-size:11px}.taskText0,.taskText1,.taskText2,.taskText3{fill:#fff}.task0,.task1,.task2,.task3{fill:#487e3a;stroke:#13540c}.taskTextOutside0,.taskTextOutside1,.taskTextOutside2,.taskTextOutside3{fill:#000}.active0,.active1,.active2,.active3{fill:#cde498;stroke:#13540c}.activeText0,.activeText1,.activeText2,.activeText3{fill:#000!important}.done0,.done1,.done2,.done3{stroke:grey;fill:lightgrey;stroke-width:2}.doneText0,.doneText1,.doneText2,.doneText3{fill:#000!important}.crit0,.crit1,.crit2,.crit3{stroke:#f88;fill:red;stroke-width:2}.activeCrit0,.activeCrit1,.activeCrit2,.activeCrit3{stroke:#f88;fill:#cde498;stroke-width:2}.doneCrit0,.doneCrit1,.doneCrit2,.doneCrit3{stroke:#f88;fill:lightgrey;stroke-width:2;cursor:pointer;shape-rendering:crispEdges}.activeCritText0,.activeCritText1,.activeCritText2,.activeCritText3,.doneCritText0,.doneCritText1,.doneCritText2,.doneCritText3{fill:#000!important}.titleText{text-anchor:middle;font-size:18px;fill:#000}text{font-family:'trebuchet ms',verdana,arial;font-size:14px}html{height:100%}body{margin:0!important;padding:5px 20px 26px!important;background-color:#fff;font-family:"Lucida Grande","Segoe UI","Apple SD Gothic Neo","Malgun Gothic","Lucida Sans Unicode",Helvetica,Arial,sans-serif;font-size:.9em;overflow-x:hidden;overflow-y:auto}br,h1,h2,h3,h4,h5,h6{clear:both}hr.page{background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x;border:0;height:3px;padding:0}hr.underscore{border-top-style:dashed!important}body >:first-child{margin-top:0!important}img.plugin{box-shadow:0 1px 3px rgba(0,0,0,.1);border-radius:3px}iframe{border:0}figure{-webkit-margin-before:0;-webkit-margin-after:0;-webkit-margin-start:0;-webkit-margin-end:0}kbd{border:1px solid #aaa;-moz-border-radius:2px;-webkit-border-radius:2px;border-radius:2px;-moz-box-shadow:1px 2px 2px #ddd;-webkit-box-shadow:1px 2px 2px #ddd;box-shadow:1px 2px 2px #ddd;background-color:#f9f9f9;background-image:-moz-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-o-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:-webkit-linear-gradient(top,#eee,#f9f9f9,#eee);background-image:linear-gradient(top,#eee,#f9f9f9,#eee);padding:1px 3px;font-family:inherit;font-size:.85em}.oembeded .oembed_photo{display:inline-block}img[data-echo]{margin:25px 0;width:100px;height:100px;background:url(../img/ajax.gif) center center no-repeat #fff}.spinner{display:inline-block;width:10px;height:10px;margin-bottom:-.1em;border:2px solid rgba(0,0,0,.5);border-top-color:transparent;border-radius:100%;-webkit-animation:spin 1s infinite linear;animation:spin 1s infinite linear}.spinner:after{content:'';display:block;width:0;height:0;position:absolute;top:-6px;left:0;border:4px solid transparent;border-bottom-color:rgba(0,0,0,.5);-webkit-transform:rotate(45deg);transform:rotate(45deg)}@-webkit-keyframes spin{to{-webkit-transform:rotate(360deg)}}@keyframes spin{to{transform:rotate(360deg)}}p.toc{margin:0!important}p.toc ul{padding-left:10px}p.toc>ul{padding:10px;margin:0 10px;display:inline-block;border:1px solid #ededed;border-radius:5px}p.toc li,p.toc ul{list-style-type:none}p.toc li{width:100%;padding:0;overflow:hidden}p.toc li a::after{content:"."}p.toc li a:before{content:"• "}p.toc h5{text-transform:uppercase}p.toc .title{float:left;padding-right:3px}p.toc .number{margin:0;float:right;padding-left:3px;background:#fff;display:none}input.task-list-item{margin-left:-1.62em}.markdown{font-family:"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",'Segoe UI',AppleSDGothicNeo-Medium,'Malgun Gothic',Verdana,Tahoma,sans-serif;padding:20px}.markdown a{text-decoration:none;vertical-align:baseline}.markdown a:hover{text-decoration:underline}.markdown h1{font-size:2.2em;font-weight:700;margin:1.5em 0 1em}.markdown h2{font-size:1.8em;font-weight:700;margin:1.275em 0 .85em}.markdown h3{font-size:1.6em;font-weight:700;margin:1.125em 0 .75em}.markdown h4{font-size:1.4em;font-weight:700;margin:.99em 0 .66em}.markdown h5{font-size:1.2em;font-weight:700;margin:.855em 0 .57em}.markdown h6{font-size:1em;font-weight:700;margin:.75em 0 .5em}.markdown h1+p,.markdown h1:first-child,.markdown h2+p,.markdown h2:first-child,.markdown h3+p,.markdown h3:first-child,.markdown h4+p,.markdown h4:first-child,.markdown h5+p,.markdown h5:first-child,.markdown h6+p,.markdown h6:first-child{margin-top:0}.markdown hr{border:1px solid #ccc}.markdown p{margin:1em 0;word-wrap:break-word}.markdown ol{list-style-type:decimal}.markdown li{display:list-item;line-height:1.4em}.markdown blockquote{margin:1em 20px}.markdown blockquote>:first-child{margin-top:0}.markdown blockquote>:last-child{margin-bottom:0}.markdown blockquote cite:before{content:'\2014 \00A0'}.markdown .code{border-radius:3px;word-wrap:break-word}.markdown pre{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;overflow:auto;padding:.5em}.markdown pre code{border:0;display:block}.markdown pre>code{font-family:Consolas,Inconsolata,Courier,monospace;font-weight:700;white-space:pre;margin:0}.markdown code{border-radius:3px;word-wrap:break-word;border:1px solid #ccc;padding:0 5px;margin:0 2px}.markdown img{max-width:100%}.markdown mark{color:#000;background-color:#fcf8e3}.markdown table{padding:0;border-collapse:collapse;border-spacing:0;margin-bottom:16px}.markdown table tr td,.markdown table tr th{border:1px solid #ccc;margin:0;padding:6px 13px}.markdown table tr th{font-weight:700}.markdown table tr th>:first-child{margin-top:0}.markdown table tr th>:last-child{margin-bottom:0}.markdown table tr td>:first-child{margin-top:0}.markdown table tr td>:last-child{margin-bottom:0}.github{padding:20px;font-family:"Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",STHeiti,SimSun,"Segoe UI",AppleSDGothicNeo-Medium,'Malgun Gothic',Arial,freesans,sans-serif;font-size:15px;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}.github a{color:#3269a0}.github a:hover{color:#4183c4}.github h2{border-bottom:1px solid #e6e6e6;line-height:1.6}.github h6{color:#777}.github hr{border:1px solid #e6e6e6}.github pre>code{font-size:.9em;font-family:Consolas,Inconsolata,Courier,monospace}.github blockquote>code,.github h1>code,.github h2>code,.github h3>code,.github h4>code,.github h5>code,.github h6>code,.github li>code,.github p>code,.github td>code{background-color:rgba(0,0,0,.07);font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;font-size:85%;padding:.2em .5em;border:0}.github blockquote{border-left:4px solid #e6e6e6;padding:0 15px;font-style:italic}.github table{background-color:#fafafa}.github table tr td,.github table tr th{border:1px solid #e6e6e6}.github table tr:nth-child(2n){background-color:#f2f2f2}.hljs{display:block;overflow-x:auto;padding:.5em;color:#333;background:#f8f8f8;-webkit-text-size-adjust:none}.diff .hljs-header,.hljs-comment,.hljs-javadoc{color:#998;font-style:italic}.css .rule .hljs-keyword,.hljs-keyword,.hljs-request,.hljs-status,.hljs-subst,.hljs-winutils,.nginx .hljs-title{color:#333;font-weight:700}.hljs-hexcolor,.hljs-number,.ruby .hljs-constant{color:teal}.hljs-dartdoc,.hljs-phpdoc,.hljs-string,.hljs-tag .hljs-value,.tex .hljs-formula{color:#d14}.hljs-id,.hljs-title,.scss .hljs-preprocessor{color:#900;font-weight:700}.hljs-list .hljs-keyword,.hljs-subst{font-weight:400}.hljs-class .hljs-title,.hljs-type,.tex .hljs-command,.vhdl .hljs-literal{color:#458;font-weight:700}.django .hljs-tag .hljs-keyword,.hljs-rules .hljs-property,.hljs-tag,.hljs-tag .hljs-title{color:navy;font-weight:400}.hljs-attribute,.hljs-variable,.lisp .hljs-body{color:teal}.hljs-regexp{color:#009926}.clojure .hljs-keyword,.hljs-prompt,.hljs-symbol,.lisp .hljs-keyword,.ruby .hljs-symbol .hljs-string,.scheme .hljs-keyword,.tex .hljs-special{color:#990073}.hljs-built_in{color:#0086b3}.hljs-cdata,.hljs-doctype,.hljs-pi,.hljs-pragma,.hljs-preprocessor,.hljs-shebang{color:#999;font-weight:700}.hljs-deletion{background:#fdd}.hljs-addition{background:#dfd}.diff .hljs-change{background:#0086b3}.hljs-chunk{color:#aaa}.MathJax_Hover_Frame{border-radius:.25em;-webkit-border-radius:.25em;-moz-border-radius:.25em;-khtml-border-radius:.25em;box-shadow:0 0 15px #83A;-webkit-box-shadow:0 0 15px #83A;-moz-box-shadow:0 0 15px #83A;-khtml-box-shadow:0 0 15px #83A;border:1px solid #A6D!important;display:inline-block;position:absolute}.MathJax_Hover_Arrow{position:absolute;width:15px;height:11px;cursor:pointer}#MathJax_About{position:fixed;left:50%;width:auto;text-align:center;border:3px outset;padding:1em 2em;background-color:#DDD;color:#000;cursor:default;font-family:message-box;font-size:120%;font-style:normal;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:15px;-webkit-border-radius:15px;-moz-border-radius:15px;-khtml-border-radius:15px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_Menu{position:absolute;background-color:#fff;color:#000;width:auto;padding:5px 0;border:1px solid #CCC;margin:0;cursor:default;font:menu;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;z-index:201;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;-khtml-border-radius:5px;box-shadow:0 10px 20px gray;-webkit-box-shadow:0 10px 20px gray;-moz-box-shadow:0 10px 20px gray;-khtml-box-shadow:0 10px 20px gray;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}.MathJax_MenuItem{padding:1px 2em;background:0 0}.MathJax_MenuArrow{position:absolute;right:.5em;color:#666}.MathJax_MenuActive .MathJax_MenuArrow{color:#fff}.MathJax_MenuArrow.RTL{left:.5em;right:auto}.MathJax_MenuCheck{position:absolute;left:.7em}.MathJax_MenuCheck.RTL{right:.7em;left:auto}.MathJax_MenuRadioCheck{position:absolute;left:.7em}.MathJax_MenuRadioCheck.RTL{right:.7em;left:auto}.MathJax_MenuLabel{padding:1px 2em 3px 1.33em;font-style:italic}.MathJax_MenuRule{border-top:1px solid #DDD;margin:4px 3px}.MathJax_MenuDisabled{color:GrayText}.MathJax_MenuActive{background-color:#606872;color:#fff}.MathJax_Menu_Close{position:absolute;width:31px;height:31px;top:-15px;left:-15px}#MathJax_Zoom{position:absolute;background-color:#F0F0F0;overflow:auto;display:block;z-index:301;padding:.5em;border:1px solid #000;margin:0;font-weight:400;font-style:normal;text-align:left;text-indent:0;text-transform:none;line-height:normal;letter-spacing:normal;word-spacing:normal;word-wrap:normal;white-space:nowrap;float:none;box-shadow:5px 5px 15px #AAA;-webkit-box-shadow:5px 5px 15px #AAA;-moz-box-shadow:5px 5px 15px #AAA;-khtml-box-shadow:5px 5px 15px #AAA;filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}#MathJax_ZoomOverlay{position:absolute;left:0;top:0;z-index:300;display:inline-block;width:100%;height:100%;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}#MathJax_ZoomFrame{position:relative;display:inline-block;height:0;width:0}#MathJax_ZoomEventTrap{position:absolute;left:0;top:0;z-index:302;display:inline-block;border:0;padding:0;margin:0;background-color:#fff;opacity:0;filter:alpha(opacity=0)}.MathJax_Preview{color:#888}#MathJax_Message{position:fixed;left:1px;bottom:2px;background-color:#E6E6E6;border:1px solid #959595;margin:0;padding:2px 8px;z-index:102;color:#000;font-size:80%;width:auto;white-space:nowrap}#MathJax_MSIE_Frame{position:absolute;top:0;left:0;width:0;z-index:101;border:0;margin:0;padding:0}.MathJax_Error{color:#C00;font-style:italic}footer{position:fixed;font-size:.8em;text-align:right;bottom:0;margin-left:-25px;height:20px;width:100%}</style>
+</head>
+<body class="markdown github">
+<h1 id="from-r-to-interactive-charts-and-maps"><a name="from-r-to-interactive-charts-and-maps" href="#from-r-to-interactive-charts-and-maps"></a>From R to interactive charts and maps</h1><p>As some of you have already experienced, coding online graphics from scratch using JavaScript libraries such as <a href="https://d3js.org/">D3</a> is a laborious process.</p><p>For standard, reproducible chart types, we will today explore another approach: Making JavaScript visualizations directly from R/RStudio. This has become possible recently thanks to a group of packages collectively known as <a href="http://www.htmlwidgets.org/"><strong>htmlwidgets</strong></a>.</p><p>These packages take instructions in R code, and write the JavaScript and HTML necessary to draw charts using JavaScript visualization libraries. They also allow you to easily export the charts you create in R as responsively designed web pages, which can be embedded in other projects through simple <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe">iframes</a>.</p><p>While this lacks the broad flexibility and interactivity possible with D3, it also means that you can work in a single environment to both process data and make online charts. Maintaining a simple, streamlined workflow makes it easier to produce graphics quickly on news deadlines.</p><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data for this session from <a href="data/week13.zip">here</a>, unzip the folder and place it on your desktop. It contains the following folders and files:</p><ul>
+<li><code>nations.csv</code> Data from the World Bank Indicators portal, as used in week 3 and subsequently.</li><li><code>food_stamps.csv</code> <a href="http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap">U.S. Department of Agriculture data</a> on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2015, as used in week 8.</li><li><code>seismic_risk_clip</code> Folder containing <a href="http://earthquake.usgs.gov/hazards/products/conterminous/index.php#2014">U.S. Geological Survey shapefile</a>, detailing the risk of experiencing a major earthquake, clipped to the boundaries of the continental United States.</li></ul><h3 id="setting-up"><a name="setting-up" href="#setting-up"></a>Setting up</h3><p>Launch RStudio, create a new RScript, and set the working directory to the downloaded data folder. Save the script as <code>week13.R</code>.</p><h4 id="install-and-load-htmlwidgets"><a name="install-and-load-htmlwidgets" href="#install-and-load-htmlwidgets"></a>Install and load htmlwidgets</h4><p>First we will install the package <strong>htmlwidgets</strong>, which will make it possible to save the charts and maps we make as standalone web pages:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load htmlwidgets
+install.packages(&quot;htmlwidgets&quot;)
+library(htmlwidgets)
+</code></pre>"><span class="hljs-comment"># install and load htmlwidgets</span>
+install.packages(<span class="hljs-string">"htmlwidgets"</span>)
+<span class="hljs-keyword">library</span>(htmlwidgets)
+</code></pre><h3 id="make-a-range-of-simple-charts-using-the-highcharter-package"><a name="make-a-range-of-simple-charts-using-the-highcharter-package" href="#make-a-range-of-simple-charts-using-the-highcharter-package"></a>Make a range of simple charts using the highcharter package</h3><p><a href="http://jkunst.com/highcharter/index.html"><strong>Highcharter</strong></a> is a package within the htmlwidgets framework that connects R to the <a href="http://www.highcharts.com/">Highcharts</a> and <a href="http://www.highcharts.com/products/highstock">Highstock</a> JavaScript visualization libraries. These are free for non-commercial use, but require <a href="https://shop.highsoft.com/highcharts/?utm_expid=116444199-8.wmOnFKwGTY-LUbcbVjWH6g.0&amp;utm_referrer=https%3A%2F%2Fshop.highsoft.com%2Fhighstock#HC-DEV-1">paid</a> <a href="https://shop.highsoft.com/highstock">licenses</a> for commercial projects. If you are thinking of pitching to a for-profit news outlet, and want to inlcude a Highcharts or Highstock chart, you will need to make sure that the organization has a license to cover its use.</p><h4 id="install-and-load-required-packages"><a name="install-and-load-required-packages" href="#install-and-load-required-packages"></a>Install and load required packages</h4><p>Now install and load highcharter, plus <strong><a href="https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf">RColorBrewer</a></strong>, which will make it possible to use <a href="http://colorbrewer2.org">ColorBrewer</a> color palettes.</p><p>Also load <strong>dplyr</strong> and <strong>readr</strong> for loading and processing data.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install highcharter, RColorBrewer
+install.packages(&quot;highcharter&quot;,&quot;RColorBrewer&quot;)
+
+# load required packages
+library(htmlwidgets)
+library(highcharter)
+library(RColorBrewer)
+library(readr)
+library(dplyr)
+</code></pre>"><span class="hljs-comment"># install highcharter, RColorBrewer</span>
+install.packages(<span class="hljs-string">"highcharter"</span>,<span class="hljs-string">"RColorBrewer"</span>)
+
+<span class="hljs-comment"># load required packages</span>
+<span class="hljs-keyword">library</span>(htmlwidgets)
+<span class="hljs-keyword">library</span>(highcharter)
+<span class="hljs-keyword">library</span>(RColorBrewer)
+<span class="hljs-keyword">library</span>(readr)
+<span class="hljs-keyword">library</span>(dplyr)
+</code></pre><h4 id="load-and-process-nations-data"><a name="load-and-process-nations-data" href="#load-and-process-nations-data"></a>Load and process nations data</h4><p>Load the nations data, and add a column showing GDP in trillions of dollars.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>nations &amp;lt;- read_csv(&quot;nations.csv&quot;) %&amp;gt;%
+  mutate(gdp_tn = gdp_percap*population/1000000000000)
+</code></pre>">nations &lt;- read_csv(<span class="hljs-string">"nations.csv"</span>) %&gt;%
+  mutate(gdp_tn = gdp_percap*population/<span class="hljs-number">1000000000000</span>)
+</code></pre><h4 id="make-a-version-of-the-" china's-rise"-chart-from-the-week-8-assignment"=""><a name="make-a-version-of-the-" china's-rise"-chart-from-the-week-8-assignment"="" href="#make-a-version-of-the-"></a>Make a version of the “China’s rise” chart from the week 8 assignment</h4><p>First, prepare the data using <strong>dplyr</strong>:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># prepare data
+big4 &amp;lt;- nations %&amp;gt;%
+  filter(iso3c == &quot;CHN&quot; | iso3c == &quot;DEU&quot; | iso3c == &quot;JPN&quot; | iso3c == &quot;USA&quot;) %&amp;gt;%
+  arrange(year)
+</code></pre>"><span class="hljs-comment"># prepare data</span>
+big4 &lt;- nations %&gt;%
+  filter(iso3c == <span class="hljs-string">"CHN"</span> | iso3c == <span class="hljs-string">"DEU"</span> | iso3c == <span class="hljs-string">"JPN"</span> | iso3c == <span class="hljs-string">"USA"</span>) %&gt;%
+  arrange(year)
+</code></pre><p>The <code>arrange</code> step is important, because <strong>highcharter</strong> needs the data in order when drawing a time series — otherwise any line drawn through the data will follow the path of the data order, not the correct time order.</p><p>Now draw a basic chart with default settings:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># basic symbol-and-line chart, default settings
+highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country)
+</code></pre>"><span class="hljs-comment"># basic symbol-and-line chart, default settings</span>
+highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country)
+</code></pre><p>The following chart should appear in the <code>Viewer</code> panel at bottom right:</p><p><img src="img/class13_1.jpg" alt=""></p><p>In the code above, the function <code>highchart()</code> creates a chart.</p><p>Clicking on the legend items allows you to remove or add series from the chart.</p><p>Highcharts works by adding data “series” to a chart, and from R you can add the variables from a data frame all in one go using the <code>hc_add_series_df</code> function. Inside this function we define the data frame to be used, with <code>data</code>, the <code>type</code> of chart, the variables to be mapped to the <code>x</code> and <code>y</code> axes, and the variable to <code>group</code> the data: here this draws a separate line for each <code>country</code> in the <code>data</code>.</p><p>See <a href="http://www.highcharts.com/docs/chart-and-series-types/chart-types">here</a> for the chart types available in Highcharts.</p><p>Notice how <strong>highcharter</strong> uses the <code>%&gt;%</code> or “then” operator, which we have previously used with <strong>dplyr</strong>.</p><p>Now let’s begin customizing the chart.</p><h5 id="use-a-colorbrewer-palette"><a name="use-a-colorbrewer-palette" href="#use-a-colorbrewer-palette"></a>Use a ColorBrewer palette</h5><p>Using <strong>RColorBrewer</strong>, we can set a palette, and then use it in <strong>highcharter</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># define color palette
+cols &amp;lt;- brewer.pal(4, &quot;Set1&quot;)
+
+highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols)
+</code></pre>"><span class="hljs-comment"># define color palette</span>
+cols &lt;- brewer.pal(<span class="hljs-number">4</span>, <span class="hljs-string">"Set1"</span>)
+
+highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols)
+</code></pre><p>The first line of code sets a palette with four colors, using the “Set1” palette from ColorBrewer. This is then fed to the function <code>hc_colors()</code> to use those colors on the chart.</p><p>The chart should now look like this:</p><p><img src="img/class13_2.jpg" alt=""></p><h5 id="add-axis-labels"><a name="add-axis-labels" href="#add-axis-labels"></a>Add axis labels</h5><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;))
+</code></pre>">highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>))
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class13_3.jpg" alt=""></p><p>The <code>hc_xAxis()</code> and <code>hc_yAxis</code> functions can also be used to add axis labels, to set the range of values for an axis, and to add reference lines or bands to a plot. See <a href="http://jkunst.com/highcharter/highcharts-api.html#hc_xaxis-and-hc_yaxis">here</a> for more.</p><h5 id="customize-the-fonts"><a name="customize-the-fonts" href="#customize-the-fonts"></a>Customize the fonts</h5><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize fonts
+highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;))
+</code></pre>"><span class="hljs-comment"># customize fonts</span>
+highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>))
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class13_4.jpg" alt=""></p><p>To set options for the entire chart, here the fonts used, use the <code>hc_chart()</code> function.</p><h5 id="customize-the-symbols"><a name="customize-the-symbols" href="#customize-the-symbols"></a>Customize the symbols</h5><p>By default, Highcharts used a different symbol for reach series. But we can override this, for example to use circles for every line.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make all of the markers appear as circles
+highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_plotOptions(series = list(marker = list(symbol = &quot;circle&quot;)))
+</code></pre>"><span class="hljs-comment"># make all of the markers appear as circles</span>
+highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_plotOptions(series = list(marker = list(symbol = <span class="hljs-string">"circle"</span>)))
+</code></pre><p>The chart should now look like this:</p><p><img src="img/class13_5.jpg" alt=""></p><p>This code uses the <code>hc_plotOptions</code> function to set the markers to circles troughout the chart.</p><h5 id="change-the-legend-position"><a name="change-the-legend-position" href="#change-the-legend-position"></a>Change the legend position</h5><p>For this, we use the <code>hc_legend</code> function.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_plotOptions(series = list(marker = list(symbol = &quot;circle&quot;))) %&amp;gt;%
+  hc_legend(align = &quot;right&quot;, 
+            verticalAlign = &quot;top&quot;)
+</code></pre>">highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_plotOptions(series = list(marker = list(symbol = <span class="hljs-string">"circle"</span>))) %&gt;%
+  hc_legend(align = <span class="hljs-string">"right"</span>, 
+            verticalAlign = <span class="hljs-string">"top"</span>)
+</code></pre><p><img src="img/class13_6.jpg" alt=""></p><h5 id="customize-the-tooltips"><a name="customize-the-tooltips" href="#customize-the-tooltips"></a>Customize the tooltips</h5><p>By default we have a tooltip for each series, or line, and the numbers run to man y decimal places. We can change to one tooltip for each year, and round all the numbers to two decimal places.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize the tooltips
+highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_plotOptions(series = list(marker = list(symbol = &quot;circle&quot;))) %&amp;gt;%
+  hc_legend(align = &quot;right&quot;, 
+            verticalAlign = &quot;top&quot;) %&amp;gt;%
+  hc_tooltip(shared = TRUE,
+             borderColor = &quot;black&quot;,
+             pointFormat = &quot;{point.country}: {point.gdp_tn:.2f}&amp;lt;br&amp;gt;&quot;)
+</code></pre>"><span class="hljs-comment"># customize the tooltips</span>
+highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_plotOptions(series = list(marker = list(symbol = <span class="hljs-string">"circle"</span>))) %&gt;%
+  hc_legend(align = <span class="hljs-string">"right"</span>, 
+            verticalAlign = <span class="hljs-string">"top"</span>) %&gt;%
+  hc_tooltip(shared = <span class="hljs-literal">TRUE</span>,
+             borderColor = <span class="hljs-string">"black"</span>,
+             pointFormat = <span class="hljs-string">"{point.country}: {point.gdp_tn:.2f}&lt;br&gt;"</span>)
+</code></pre><p><img src="img/class13_7.jpg" alt=""></p><p>Tooltips are customized using the function <code>hc_tooltip()</code>. Here we have switched to a <code>SHARED</code> tooltip for all the points in the same year, set the <code>borderColor</code> so it does not simply inherit the color of the first series, and then defined the text that appears in the HTML of the tooltip. The values definied in the <code>{}</code> brackets are taken from the data; <code>:.2f</code> rounds the numbers to two decimal places, and <code>&lt;br&gt;</code> starts a new line after each value. To turn tooltips off, use <code>hc_tooltip(enabled = FALSE)</code>.</p><h5 id="save-the-chart-as-an-r-object,-and-modify"><a name="save-the-chart-as-an-r-object,-and-modify" href="#save-the-chart-as-an-r-object,-and-modify"></a>Save the chart as an R object, and modify</h5><p>At any stage, you can save you code as an R object.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>big4_chart &amp;lt;- highchart() %&amp;gt;%
+  hc_add_series_df(data = big4,
+                   type = &quot;line&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_plotOptions(series = list(marker = list(symbol = &quot;circle&quot;))) %&amp;gt;%
+  hc_legend(align = &quot;right&quot;, 
+            verticalAlign = &quot;top&quot;) %&amp;gt;%
+  hc_tooltip(shared = TRUE,
+             borderColor = &quot;black&quot;,
+             pointFormat = &quot;{point.country}: {point.gdp_tn:.2f}&amp;lt;br&amp;gt;&quot;)
+</code></pre>">big4_chart &lt;- highchart() %&gt;%
+  hc_add_series_df(data = big4,
+                   type = <span class="hljs-string">"line"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = country) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_plotOptions(series = list(marker = list(symbol = <span class="hljs-string">"circle"</span>))) %&gt;%
+  hc_legend(align = <span class="hljs-string">"right"</span>, 
+            verticalAlign = <span class="hljs-string">"top"</span>) %&gt;%
+  hc_tooltip(shared = <span class="hljs-literal">TRUE</span>,
+             borderColor = <span class="hljs-string">"black"</span>,
+             pointFormat = <span class="hljs-string">"{point.country}: {point.gdp_tn:.2f}&lt;br&gt;"</span>)
+</code></pre><p>As object of type <code>highchart</code> should now have appeared in your     <code>Environment</code>.</p><h5 id="switch-to-a-simple-line-chart,-with-no-symbols"><a name="switch-to-a-simple-line-chart,-with-no-symbols" href="#switch-to-a-simple-line-chart,-with-no-symbols"></a>Switch to a simple line chart, with no symbols</h5><p>As in <strong>ggplot2</strong>, you can modify a saved object with further code.</p><p>The following code uses the <code>hc_plotOptions()</code> function to disable to circle markers, and make the lines thicker.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>big4_chart %&amp;gt;%
+  hc_plotOptions(series = list(marker = list(enabled = FALSE),
+                               lineWidth = 4))
+</code></pre>">big4_chart %&gt;%
+  hc_plotOptions(series = list(marker = list(enabled = <span class="hljs-literal">FALSE</span>),
+                               lineWidth = <span class="hljs-number">4</span>))
+</code></pre><p><img src="img/class13_8.jpg" alt=""></p><h5 id="export-the-saved-chart-as-a-web-page"><a name="export-the-saved-chart-as-a-web-page" href="#export-the-saved-chart-as-a-web-page"></a>Export the saved chart as a web page</h5><p>The following code uses the <strong>htmlwidgets</strong> package to export the save chart as a standalone web page.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>saveWidget(big4_chart, &quot;big4.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
+</code></pre>">saveWidget(big4_chart, <span class="hljs-string">"big4.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
+</code></pre><p>Open the saved webpage in a web browser, and see what happens when you change the window size. The chart should be completely responsive, expanding or contracting to fill the available space.</p><p>This means that is can be dropped into another webpage in the same folder using a simple iframe:</p><pre class="css hljs"><code class="CSS" data-origin="<pre><code class=&quot;CSS&quot;>&amp;lt;iframe src=&quot;big4_chart.html&quot; width=&quot;100%&quot; height=&quot;500&quot; frameborder=&quot;0&quot; marginheight=&quot;0&quot; marginwidth=&quot;0&quot;&amp;gt;&amp;lt;/iframe&amp;gt;
+</code></pre>">&lt;iframe src="big4_chart.html" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0"&gt;&lt;/iframe&gt;
+</code></pre><p>Here the iframe is given a constant height of 500px and a width of 100%, allowing for responsive design. </p><h4 id="make-a-version-of-the-gdp-by-region-chart-from-the-week-8-assignment"><a name="make-a-version-of-the-gdp-by-region-chart-from-the-week-8-assignment" href="#make-a-version-of-the-gdp-by-region-chart-from-the-week-8-assignment"></a>Make a version of the GDP by region chart from the week 8 assignment</h4><h5 id="prepare-the-data"><a name="prepare-the-data" href="#prepare-the-data"></a>Prepare the data</h5><p>First, prepare the data using <strong>dplyr</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># prepare data
+regions &amp;lt;- nations %&amp;gt;%
+  group_by(year,region) %&amp;gt;%
+  summarize(gdp_tn = sum(gdp_tn, na.rm = TRUE)) %&amp;gt;%
+  arrange(year,region)
+</code></pre>"><span class="hljs-comment"># prepare data</span>
+regions &lt;- nations %&gt;%
+  group_by(year,region) %&gt;%
+  summarize(gdp_tn = sum(gdp_tn, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
+  arrange(year,region)
+</code></pre><h5 id="make-an-area-chart-using-default-options"><a name="make-an-area-chart-using-default-options" href="#make-an-area-chart-using-default-options"></a>Make an area chart using default options</h5><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># basic area chart, default options
+highchart () %&amp;gt;%
+  hc_add_series_df(data = regions,
+                   type = &quot;area&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = region)
+</code></pre>"><span class="hljs-comment"># basic area chart, default options</span>
+highchart () %&gt;%
+  hc_add_series_df(data = regions,
+                   type = <span class="hljs-string">"area"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = region)
+</code></pre><p><img src="img/class13_9.jpg" alt=""></p><p>This is an area chart, but the areas are plotted over one another, rather than stacked. The following code fixes that, and customizes the chart in other ways. It uses the same ColorBrewer palette, with seven colors, that we used in week 8.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set color palette
+cols &amp;lt;- brewer.pal(7, &quot;Set2&quot;)
+
+# stacked area chart
+highchart () %&amp;gt;%
+  hc_add_series_df(data = regions,
+                   type = &quot;area&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = region) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;% 
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_plotOptions(series = list(stacking = &quot;normal&quot;,
+                               marker = list(enabled = FALSE,
+                                             states = list(hover = list(enabled = FALSE))),
+                               lineWidth = 0.5,
+                               lineColor = &quot;white&quot;)) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_legend(align = &quot;right&quot;, verticalAlign = &quot;top&quot;,
+            layout = &quot;vertical&quot;) %&amp;gt;%
+  hc_tooltip(enabled = FALSE)
+</code></pre>"><span class="hljs-comment"># set color palette</span>
+cols &lt;- brewer.pal(<span class="hljs-number">7</span>, <span class="hljs-string">"Set2"</span>)
+
+<span class="hljs-comment"># stacked area chart</span>
+highchart () %&gt;%
+  hc_add_series_df(data = regions,
+                   type = <span class="hljs-string">"area"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = region) %&gt;%
+  hc_colors(cols) %&gt;% 
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_plotOptions(series = list(stacking = <span class="hljs-string">"normal"</span>,
+                               marker = list(enabled = <span class="hljs-literal">FALSE</span>,
+                                             states = list(hover = list(enabled = <span class="hljs-literal">FALSE</span>))),
+                               lineWidth = <span class="hljs-number">0.5</span>,
+                               lineColor = <span class="hljs-string">"white"</span>)) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_legend(align = <span class="hljs-string">"right"</span>, verticalAlign = <span class="hljs-string">"top"</span>,
+            layout = <span class="hljs-string">"vertical"</span>) %&gt;%
+  hc_tooltip(enabled = <span class="hljs-literal">FALSE</span>)
+</code></pre><p><img src="img/class13_10.jpg" alt=""></p><p>We have already encountered the main functions used here. The key changes are in the <code>hc_plotOptions()</code> function:</p><ul>
+<li><code>stacking = "normal"</code> creates the stacked chart. See what happens if you use <code>stacking = "percent"</code>.</li><li><code>lineWidth</code> and <code>lineColor</code> set the width and color for the lines</li><li>under <code>marker = list()</code> the code <code>states = list(hover = list(enabled = FALSE))</code> turns off the hovering effect for each marker on the chart, so that the markers no longer reappear when hovered or tapped.</li></ul><p>In the <code>hc_legend()</code> function, <code>layout = "vertical"</code> changes the layout so that the legend items appear in a vertical column.</p><p>This chart matches the one we made with <strong>ggplot2</strong>, except that the regions are stacked in the opposite direction. We can fix that by turning <code>region</code> into a categorical variable, and reversing its order.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load forcats package, for handling categorical variables
+library(forcats)
+
+# convert region to a categorical variable, reverse order from default alphabetical using fct_relevel()
+regions &amp;lt;- regions %&amp;gt;%
+  mutate(region = as.factor(region),
+         region = fct_relevel(region,
+                              &quot;Sub-Saharan Africa&quot;,
+                              &quot;South Asia&quot;,
+                              &quot;North America&quot;,
+                              &quot;Middle East &amp;amp; North Africa&quot;,
+                              &quot;Latin America &amp;amp; Caribbean&quot;,
+                              &quot;Europe &amp;amp; Central Asia&quot;,
+                              &quot;East Asia &amp;amp; Pacific&quot;))
+
+# run the chart code again, also reversing the colors, and the order of the legend
+cols &amp;lt;- rev(cols)
+
+highchart () %&amp;gt;%
+  hc_add_series_df(data = regions,
+                   type = &quot;area&quot;,
+                   x = year,
+                   y = gdp_tn, 
+                   group = region) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;% 
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_plotOptions(series = list(stacking = &quot;normal&quot;,
+                               marker = list(enabled = FALSE,
+                                             states = list(hover = list(enabled = FALSE))),
+                               lineWidth = 0.5,
+                               lineColor = &quot;white&quot;)) %&amp;gt;%
+  hc_xAxis(title = list(text=&quot;Year&quot;)) %&amp;gt;%
+  hc_yAxis(title = list(text=&quot;GDP ($ trillion)&quot;)) %&amp;gt;%
+  hc_legend(align = &quot;right&quot;, 
+            verticalAlign = &quot;top&quot;,
+            layout = &quot;vertical&quot;,
+            reversed = TRUE) %&amp;gt;%
+  hc_tooltip(enabled = FALSE)
+</code></pre>"><span class="hljs-comment"># load forcats package, for handling categorical variables</span>
+<span class="hljs-keyword">library</span>(forcats)
+
+<span class="hljs-comment"># convert region to a categorical variable, reverse order from default alphabetical using fct_relevel()</span>
+regions &lt;- regions %&gt;%
+  mutate(region = as.factor(region),
+         region = fct_relevel(region,
+                              <span class="hljs-string">"Sub-Saharan Africa"</span>,
+                              <span class="hljs-string">"South Asia"</span>,
+                              <span class="hljs-string">"North America"</span>,
+                              <span class="hljs-string">"Middle East &amp; North Africa"</span>,
+                              <span class="hljs-string">"Latin America &amp; Caribbean"</span>,
+                              <span class="hljs-string">"Europe &amp; Central Asia"</span>,
+                              <span class="hljs-string">"East Asia &amp; Pacific"</span>))
+
+<span class="hljs-comment"># run the chart code again, also reversing the colors, and the order of the legend</span>
+cols &lt;- rev(cols)
+
+highchart () %&gt;%
+  hc_add_series_df(data = regions,
+                   type = <span class="hljs-string">"area"</span>,
+                   x = year,
+                   y = gdp_tn, 
+                   group = region) %&gt;%
+  hc_colors(cols) %&gt;% 
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_plotOptions(series = list(stacking = <span class="hljs-string">"normal"</span>,
+                               marker = list(enabled = <span class="hljs-literal">FALSE</span>,
+                                             states = list(hover = list(enabled = <span class="hljs-literal">FALSE</span>))),
+                               lineWidth = <span class="hljs-number">0.5</span>,
+                               lineColor = <span class="hljs-string">"white"</span>)) %&gt;%
+  hc_xAxis(title = list(text=<span class="hljs-string">"Year"</span>)) %&gt;%
+  hc_yAxis(title = list(text=<span class="hljs-string">"GDP ($ trillion)"</span>)) %&gt;%
+  hc_legend(align = <span class="hljs-string">"right"</span>, 
+            verticalAlign = <span class="hljs-string">"top"</span>,
+            layout = <span class="hljs-string">"vertical"</span>,
+            reversed = <span class="hljs-literal">TRUE</span>) %&gt;%
+  hc_tooltip(enabled = <span class="hljs-literal">FALSE</span>)
+</code></pre><p><img src="img/class13_11.jpg" alt=""></p><h3 id="combine-more-than-one-highchart-stype-into-a-single-chart"><a name="combine-more-than-one-highchart-stype-into-a-single-chart" href="#combine-more-than-one-highchart-stype-into-a-single-chart"></a>Combine more than one Highchart stype into a single chart</h3><p>It is also possible to combine different chart types into one, for example columns and dot-and-line.</p><p>The following code does this for the food stamps data, plotting the number of participants as columns and the cost as dot-and-line.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load data
+food_stamps &amp;lt;- read_csv(&quot;food_stamps.csv&quot;)
+
+# set colors
+cols &amp;lt;- c(&quot;red&quot;,&quot;black&quot;)
+
+# draw chart
+highchart() %&amp;gt;%
+  hc_add_series(data = food_stamps$participants,
+                name = &quot;Participants (millions)&quot;,
+                type = &quot;column&quot;) %&amp;gt;%
+  hc_add_series(data = food_stamps$costs,
+                name = &quot;Costs ($ billions)&quot;,
+                type = &quot;line&quot;) %&amp;gt;%
+  hc_xAxis(categories = food_stamps$year,
+           tickInterval = 5) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;))
+</code></pre>"><span class="hljs-comment"># load data</span>
+food_stamps &lt;- read_csv(<span class="hljs-string">"food_stamps.csv"</span>)
+
+<span class="hljs-comment"># set colors</span>
+cols &lt;- c(<span class="hljs-string">"red"</span>,<span class="hljs-string">"black"</span>)
+
+<span class="hljs-comment"># draw chart</span>
+highchart() %&gt;%
+  hc_add_series(data = food_stamps$participants,
+                name = <span class="hljs-string">"Participants (millions)"</span>,
+                type = <span class="hljs-string">"column"</span>) %&gt;%
+  hc_add_series(data = food_stamps$costs,
+                name = <span class="hljs-string">"Costs ($ billions)"</span>,
+                type = <span class="hljs-string">"line"</span>) %&gt;%
+  hc_xAxis(categories = food_stamps$year,
+           tickInterval = <span class="hljs-number">5</span>) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>))
+</code></pre><p><img src="img/class13_12.jpg" alt=""></p><p>Notice that each variable is added separately to the chart using the function <code>hc_add_series</code>, rather than adding the entire data frame to the chart using <code>hc_add_series_df</code> as before. This allows the <code>type</code> to be set separately for each series.</p><p>This code adds the years to the X axis, and puts a tick label every 5 years:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>hc_xAxis(categories = unique(food_stamps$year),
+           tickInterval = 5)
+</code></pre>">hc_xAxis(categories = unique(food_stamps$year),
+           tickInterval = <span class="hljs-number">5</span>)
+</code></pre><p>It is also possible to draw a separate y axis for each series.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>cols &amp;lt;- c(&quot;red&quot;,&quot;black&quot;)
+
+highchart() %&amp;gt;%
+  hc_yAxis_multiples(
+    list(title = list(text = &quot;Participants (millions)&quot;)),
+    list(title = list(text = &quot;Costs ($ billions)&quot;),
+         opposite = TRUE)
+  ) %&amp;gt;%
+  hc_add_series(data = food_stamps$participants,
+                name = &quot;Participants (millions)&quot;,
+                type = &quot;column&quot;,
+                yAxis = 0) %&amp;gt;%
+  hc_add_series(data = food_stamps$costs,
+                name = &quot;Costs ($ billions)&quot;,
+                type = &quot;line&quot;,
+                yAxis = 1) %&amp;gt;%
+  hc_xAxis(categories = food_stamps$year,
+           tickInterval = 5) %&amp;gt;%
+  hc_colors(cols) %&amp;gt;%
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;))
+</code></pre>">cols &lt;- c(<span class="hljs-string">"red"</span>,<span class="hljs-string">"black"</span>)
+
+highchart() %&gt;%
+  hc_yAxis_multiples(
+    list(title = list(text = <span class="hljs-string">"Participants (millions)"</span>)),
+    list(title = list(text = <span class="hljs-string">"Costs ($ billions)"</span>),
+         opposite = <span class="hljs-literal">TRUE</span>)
+  ) %&gt;%
+  hc_add_series(data = food_stamps$participants,
+                name = <span class="hljs-string">"Participants (millions)"</span>,
+                type = <span class="hljs-string">"column"</span>,
+                yAxis = <span class="hljs-number">0</span>) %&gt;%
+  hc_add_series(data = food_stamps$costs,
+                name = <span class="hljs-string">"Costs ($ billions)"</span>,
+                type = <span class="hljs-string">"line"</span>,
+                yAxis = <span class="hljs-number">1</span>) %&gt;%
+  hc_xAxis(categories = food_stamps$year,
+           tickInterval = <span class="hljs-number">5</span>) %&gt;%
+  hc_colors(cols) %&gt;%
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>))
+</code></pre><p><img src="img/class13_13.jpg" alt=""></p><p>In the function <code>hc_yAxis_multiples()</code>, the code <code>opposite = TRUE</code> puts the second axis on the right of the chart. You then need to map each series to the correct axis in each <code>hc_add_series</code> function, using <code>yAxis = 0</code>, <code>yAxis = 1</code> and so on. Notice that the indexing of axes begins at 0, not 1.</p><h3 id="financial-charts-using-highstock"><a name="financial-charts-using-highstock" href="#financial-charts-using-highstock"></a>Financial charts using Highstock</h3><p>Highcharts can be used to produce a wide range of charts, including heatmaps and treemaps. Its cousin Highstock is designed specifically to produce time series of financial data, similar to the charts on Yahoo Finance and Google Finance.</p><p>To see this in action, we will first install and load a package called <strong><a href="http://www.quantmod.com/">quantmod</a></strong>, used for financial modeling, which allows you to retrieve stock price data from Yahoo Finance or Google Finance, among other sources.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load quantmod
+install.packages(&quot;quantmod&quot;)
+library(quantmod)
+</code></pre>"><span class="hljs-comment"># install and load quantmod</span>
+install.packages(<span class="hljs-string">"quantmod"</span>)
+<span class="hljs-keyword">library</span>(quantmod)
+</code></pre><p>The following code retreives stock data for leading technology companies from Yahoo Finance, then draws a Highstocks chart of their daily adjusted closing prices.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># retrieve data for each company
+google &amp;lt;- getSymbols(&quot;GOOG&quot;, src = &quot;yahoo&quot;, auto.assign = FALSE)
+facebook &amp;lt;- getSymbols(&quot;FB&quot;, src = &quot;yahoo&quot;, auto.assign = FALSE)
+amazon &amp;lt;- getSymbols(&quot;AMZN&quot;, src = &quot;yahoo&quot;, auto.assign = FALSE)
+
+# set color palette
+cols &amp;lt;- brewer.pal(3,&quot;Set1&quot;)
+
+# draw chart
+highchart(type = &quot;stock&quot;) %&amp;gt;% 
+  hc_colors(cols) %&amp;gt;%
+  hc_add_series_xts(google$GOOG.Adjusted, name = &quot;Google&quot;) %&amp;gt;%
+  hc_add_series_xts(facebook$FB.Adjusted, name = &quot;Facebook&quot;) %&amp;gt;%
+  hc_add_series_xts(amazon$AMZN.Adjusted, name = &quot;Amazon&quot;) %&amp;gt;%
+  hc_legend(enabled = TRUE,
+            verticalAlign = &quot;top&quot;) %&amp;gt;% 
+  hc_chart(style = list(fontFamily = &quot;Georgia&quot;,
+                        fontWeight = &quot;bold&quot;)) %&amp;gt;%
+  hc_tooltip(borderColor = &quot;black&quot;)
+</code></pre>"><span class="hljs-comment"># retrieve data for each company</span>
+google &lt;- getSymbols(<span class="hljs-string">"GOOG"</span>, src = <span class="hljs-string">"yahoo"</span>, auto.assign = <span class="hljs-literal">FALSE</span>)
+facebook &lt;- getSymbols(<span class="hljs-string">"FB"</span>, src = <span class="hljs-string">"yahoo"</span>, auto.assign = <span class="hljs-literal">FALSE</span>)
+amazon &lt;- getSymbols(<span class="hljs-string">"AMZN"</span>, src = <span class="hljs-string">"yahoo"</span>, auto.assign = <span class="hljs-literal">FALSE</span>)
+
+<span class="hljs-comment"># set color palette</span>
+cols &lt;- brewer.pal(<span class="hljs-number">3</span>,<span class="hljs-string">"Set1"</span>)
+
+<span class="hljs-comment"># draw chart</span>
+highchart(type = <span class="hljs-string">"stock"</span>) %&gt;% 
+  hc_colors(cols) %&gt;%
+  hc_add_series_xts(google$GOOG.Adjusted, name = <span class="hljs-string">"Google"</span>) %&gt;%
+  hc_add_series_xts(facebook$FB.Adjusted, name = <span class="hljs-string">"Facebook"</span>) %&gt;%
+  hc_add_series_xts(amazon$AMZN.Adjusted, name = <span class="hljs-string">"Amazon"</span>) %&gt;%
+  hc_legend(enabled = <span class="hljs-literal">TRUE</span>,
+            verticalAlign = <span class="hljs-string">"top"</span>) %&gt;% 
+  hc_chart(style = list(fontFamily = <span class="hljs-string">"Georgia"</span>,
+                        fontWeight = <span class="hljs-string">"bold"</span>)) %&gt;%
+  hc_tooltip(borderColor = <span class="hljs-string">"black"</span>)
+</code></pre><p><img src="img/class13_14.jpg" alt=""></p><p>The time period shown can be filtered using the buttons and date boxes at the top, or the slider at the bottom of the chart.</p><p>The <strong>quantmod</strong> package returns R objects called extensible time series or xts. Their contents can be viewed just like data frames in R Studio, but must be added to a Highcharts or Highstocks chart using the function <code>hc_add_series_xts()</code></p><h3 id="financial-charts-using-dygraphs"><a name="financial-charts-using-dygraphs" href="#financial-charts-using-dygraphs"></a>Financial charts using Dygraphs</h3><p>Highstock, which is not free for commercial sites, is not the only option for makign financial and other time series charts.</p><p>The following code achieves a similar result using another htmlwidget, the <strong><a href="http://rstudio.github.io/dygraphs/">dygraphs</a></strong> package. It assumes the data has already between retrived with <strong>quantmod</strong>, as above.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load dygraphs
+install.packages(&quot;dygraphs&quot;)
+library(dygraphs)
+
+# combine adjusted prices into a single xts object
+companies &amp;lt;- cbind(google$GOOG.Adjusted, facebook$FB.Adjusted, amazon$AMZN.Adjusted)
+
+# rename the variables, so that they displace nicely in the legend
+names(companies) &amp;lt;- c(&quot;Google&quot;,&quot;Facebook&quot;,&quot;Amazon&quot;)
+
+# draw the chart
+dygraph(companies,
+        ylab = &quot;Adjusted close&quot;) %&amp;gt;% 
+  dyOptions(colors = brewer.pal(3, &quot;Set1&quot;)) %&amp;gt;%
+  dyRangeSelector() %&amp;gt;%
+  dyAxis(&quot;x&quot;, drawGrid = FALSE)
+</code></pre>"><span class="hljs-comment"># install and load dygraphs</span>
+install.packages(<span class="hljs-string">"dygraphs"</span>)
+<span class="hljs-keyword">library</span>(dygraphs)
+
+<span class="hljs-comment"># combine adjusted prices into a single xts object</span>
+companies &lt;- cbind(google$GOOG.Adjusted, facebook$FB.Adjusted, amazon$AMZN.Adjusted)
+
+<span class="hljs-comment"># rename the variables, so that they displace nicely in the legend</span>
+names(companies) &lt;- c(<span class="hljs-string">"Google"</span>,<span class="hljs-string">"Facebook"</span>,<span class="hljs-string">"Amazon"</span>)
+
+<span class="hljs-comment"># draw the chart</span>
+dygraph(companies,
+        ylab = <span class="hljs-string">"Adjusted close"</span>) %&gt;% 
+  dyOptions(colors = brewer.pal(<span class="hljs-number">3</span>, <span class="hljs-string">"Set1"</span>)) %&gt;%
+  dyRangeSelector() %&gt;%
+  dyAxis(<span class="hljs-string">"x"</span>, drawGrid = <span class="hljs-literal">FALSE</span>)
+</code></pre><p>Some explanation:</p><ul>
+<li>The data is added in the main <code>dygraph()</code> function, together with the y axis label.</li><li>Colors can be set, here using RColorBrewer, in the <code>dyOptions()</code> function.</li><li>The <code>dyRangeSelector()</code> function adds the date selector slider control at the bottom of the chart.</li><li>The <code>dyAxis()</code> function is configured to turn off vertical grid lines on the chart.</li></ul><p>See <a href="http://rstudio.github.io/dygraphs/">here</a> for more on how to customize dygraphs.</p><p><img src="img/class13_15.jpg" alt=""></p><h3 id="make-maps-of-seismic-risk-and-earthquakes-using-leaflet"><a name="make-maps-of-seismic-risk-and-earthquakes-using-leaflet" href="#make-maps-of-seismic-risk-and-earthquakes-using-leaflet"></a>Make maps of seismic risk and earthquakes using Leaflet</h3><p><a href="http://leafletjs.com/">Leaflet</a> is the most widely-used JavaScript library for making interactive online maps. It can be accessed from R using the <a href="http://rstudio.github.io/leaflet/">leaflet</a> package, another part of the htmlwidgets framework. So we need to install and load that, together with a package called <strong><a href="https://cran.r-project.org/web/packages/rgdal/rgdal.pdf">rgdal</a></strong>, which makes it possible to laod shapefiles and other geodata into R.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load leaflet and rdgal
+install.packages(&quot;leaflet&quot;, &quot;rgdal&quot;)
+library(leaflet)
+library(rgdal)
+</code></pre>"><span class="hljs-comment"># install and load leaflet and rdgal</span>
+install.packages(<span class="hljs-string">"leaflet"</span>, <span class="hljs-string">"rgdal"</span>)
+<span class="hljs-keyword">library</span>(leaflet)
+<span class="hljs-keyword">library</span>(rgdal)
+</code></pre><p>We are going to recreate a version of <a href="http://paldhous.github.io/earthquakes/">this map</a>, which I originally coded using Leaflet from scratch. After class, you may wish to download the code for that map from its <a href="https://github.com/paldhous/earthquakes">GitHub repository</a>, to compare with the R version.</p><p>First let’s see how to make a basic Leaflet map, centered on Berkeley:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley
+leaflet() %&amp;gt;% 
+  setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %&amp;gt;%
+  addTiles()
+</code></pre>"><span class="hljs-comment"># make leaflet map centered on Berkeley</span>
+leaflet() %&gt;% 
+  setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
+  addTiles()
+</code></pre><p><img src="img/class13_16.jpg" alt=""></p><p>The function <code>leaflet()</code> creates a leaflet map.</p><p>The function <code>setView()</code> sets the starting position of the map, centering it on the defined coordinates and with the defined zoom level; <code>addTiles()</code> adds <a href="https://www.openstreetmap.org/">OpenStreetMap</a> tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.</p><p>We aren’t limited to using OpenStreetMap tiles:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley with CartoDB tiles
+leaflet() %&amp;gt;%
+  setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;)
+</code></pre>"><span class="hljs-comment"># make leaflet map centered on Berkeley with CartoDB tiles</span>
+leaflet() %&gt;%
+  setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>)
+</code></pre><p>The map should now look like this:</p><p><img src="img/class13_17.jpg" alt=""></p><p>The function <code>addProviderTiles()</code> uses the <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet Providers</a> plugin to add various tiles to a map. As we discussed in week 11, you can see the available options <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">here</a>.</p><p>Now load the data we need to make the earthquakes map, starting with the <code>seismic_risk</code> shapefile, using the <code>readOGR()</code> function from <strong>rgdal</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load seismic risk shapefile
+seismic_risk &amp;lt;- readOGR(&quot;seismic_risk_clip&quot;, &quot;seismic_risk_clip&quot;)
+</code></pre>"><span class="hljs-comment"># load seismic risk shapefile</span>
+seismic_risk &lt;- readOGR(<span class="hljs-string">"seismic_risk_clip"</span>, <span class="hljs-string">"seismic_risk_clip"</span>)
+</code></pre><p>The two mentions of <code>seismic_risk_clip</code> refer to the folder and the shapefile within it, respectively.</p><p>You should now have in your environment an object called <code>seismic_risk</code> which is a <code>SpatialPolygonsDataFrame</code>.</p><p>We can also load data on earthquakes, directly from the U.S. Geological Survey API described in the notes for week 5:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load quakes data from USGS earthquakes API
+quakes &amp;lt;- read_csv(&quot;http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;amp;minmagnitude=6&amp;amp;format=csv&amp;amp;latitude=39.828175&amp;amp;longitude=-98.5795&amp;amp;maxradiuskm=6000&amp;amp;orderby=magnitude&quot;)
+</code></pre>"><span class="hljs-comment"># load quakes data from USGS earthquakes API</span>
+quakes &lt;- read_csv(<span class="hljs-string">"http://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1965-01-01T00:00:00&amp;minmagnitude=6&amp;format=csv&amp;latitude=39.828175&amp;longitude=-98.5795&amp;maxradiuskm=6000&amp;orderby=magnitude"</span>)
+</code></pre><p>Using this url, we have loaded earthquakes since the start of 1965 that had a magnitude of 6 and above, within a 6,000 kilometer radius of the geographic center of the continental United States.</p><p>Let’s look at a summary of the <code>seismic_risk</code> data</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># view summary of seismic_risk data
+summary(seismic_risk)
+</code></pre>"><span class="hljs-comment"># view summary of seismic_risk data</span>
+summary(seismic_risk)
+</code></pre><p>This should be returned in the R Console:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>Object of class SpatialPolygonsDataFrame
+Coordinates:
+      min       max
+x -124.71 -66.98701
+y   24.60  49.36968
+Is projected: FALSE 
+proj4string :
+[+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
+Data attributes:
+    ACC_VAL           VALLEY       
+ Min.   :  0.00   Min.   :0.00000  
+ 1st Qu.: 18.00   1st Qu.:0.00000  
+ Median : 40.00   Median :0.00000  
+ Mean   : 44.57   Mean   :0.08264  
+ 3rd Qu.: 60.00   3rd Qu.:0.00000  
+ Max.   :200.00   Max.   :1.00000
+</code></pre>">Object of class SpatialPolygonsDataFrame
+Coordinates:
+      min       max
+x -<span class="hljs-number">124.71</span> -<span class="hljs-number">66.98701</span>
+y   <span class="hljs-number">24.60</span>  <span class="hljs-number">49.36968</span>
+Is projected: <span class="hljs-literal">FALSE</span> 
+proj4string :
+[+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]
+Data attributes:
+    ACC_VAL           VALLEY       
+ Min.   :  <span class="hljs-number">0.00</span>   Min.   :<span class="hljs-number">0.00000</span>  
+ 1st Qu.: <span class="hljs-number">18.00</span>   1st Qu.:<span class="hljs-number">0.00000</span>  
+ Median : <span class="hljs-number">40.00</span>   Median :<span class="hljs-number">0.00000</span>  
+ Mean   : <span class="hljs-number">44.57</span>   Mean   :<span class="hljs-number">0.08264</span>  
+ 3rd Qu.: <span class="hljs-number">60.00</span>   3rd Qu.:<span class="hljs-number">0.00000</span>  
+ Max.   :<span class="hljs-number">200.00</span>   Max.   :<span class="hljs-number">1.00000</span>
+</code></pre><p>The data defining the risk of a major earthquake is in the variable <code>ACC_VAL</code>, and has values that run from 0 to 200.</p><p>Now load this data into a Leaflet map, saving it as as an R object called <code>seismic</code>:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load the seismic risk data into a leaflet map
+seismic &amp;lt;- leaflet(data=seismic_risk)
+</code></pre>"><span class="hljs-comment"># load the seismic risk data into a leaflet map</span>
+seismic &lt;- leaflet(data=seismic_risk)
+</code></pre><p>You should now see an object of type <code>leaflet</code> in your environment.</p><p>We are going to make a choropleth map, so we will first set breaks to divide the data in into bins:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set breaks for custom bins
+breaks &amp;lt;- c(0,19,39,59,79,200)
+</code></pre>"><span class="hljs-comment"># set breaks for custom bins</span>
+breaks &lt;- c(<span class="hljs-number">0</span>,<span class="hljs-number">19</span>,<span class="hljs-number">39</span>,<span class="hljs-number">59</span>,<span class="hljs-number">79</span>,<span class="hljs-number">200</span>)
+</code></pre><p>Then set a color palette, using these breaks and a “Reds” sequential color scheme from ColorBrewer (which can be called by name in the leaflet package):</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set palette
+binpal &amp;lt;- colorBin(&quot;Reds&quot;, seismic_risk$ACC_VAL, breaks)
+</code></pre>"><span class="hljs-comment"># set palette</span>
+binpal &lt;- colorBin(<span class="hljs-string">"Reds"</span>, seismic_risk$ACC_VAL, breaks)
+</code></pre><p>Now we are ready to make a choropleth map, using the following code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make choropleth map of seismic risks
+seismic %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;% 
+  addPolygons(
+    stroke = FALSE,
+    fillOpacity = 0.7,
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  )
+</code></pre>"><span class="hljs-comment"># make choropleth map of seismic risks</span>
+seismic %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;% 
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>,
+    fillOpacity = <span class="hljs-number">0.7</span>,
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  )
+</code></pre><p><img src="img/class13_18.jpg" alt=""></p><p>The function <code>addPolygons()</code> adds polygons to the map: <code>stroke = FALSE</code> gives them no outline; <code>fillOpacity = 0.7</code> makes them slightly transparent; <code>color = ~binpal(ACC_VAL)</code> uses the color palette and breaks we set up earlier to color the polygons according to values in the <code>ACC_VAL</code> data.</p><p><code>smoothFactor</code> controls the extent to which the polygons are simplified. See what happens to the map if you replace <code>0.1</code> with <code>10</code>. Simplified polygons will load more quickly, but there’s a tradeoff with the appearance of the map. Choose an appropriate value for your maps through trial and error.</p><p>We can add circles for the quakes as a second data layer, by extending the code as follows:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make choropleth map of seismic hazards
+seismic %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;% 
+  addPolygons(
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  ) %&amp;gt;%
+  # add historical earthquakes
+  addCircles(
+    data = quakes, 
+    radius = sqrt(10^quakes$mag)*50, 
+    color = &quot;#000000&quot;,
+    weight = 0.2,
+    fillColor =&quot;#ffffff&quot;,
+    fillOpacity = 0.3,
+    popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
+                   &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;))
+  )
+</code></pre>"><span class="hljs-comment"># make choropleth map of seismic hazards</span>
+seismic %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;% 
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, 
+    fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  ) %&gt;%
+  <span class="hljs-comment"># add historical earthquakes</span>
+  addCircles(
+    data = quakes, 
+    radius = sqrt(<span class="hljs-number">10</span>^quakes$mag)*<span class="hljs-number">50</span>, 
+    color = <span class="hljs-string">"#000000"</span>,
+    weight = <span class="hljs-number">0.2</span>,
+    fillColor =<span class="hljs-string">"#ffffff"</span>,
+    fillOpacity = <span class="hljs-number">0.3</span>,
+    popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
+                   <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
+  )
+</code></pre><p>The <code>addCircles()</code> function adds circles to the map; <code>color</code> sets the color for their outlines, while <code>weight</code> sets the thickness of these lines; <code>fillColor</code> and <code>fillOpacity</code> style the circles’ interiors.</p><p>The size if the circles is set by <code>radius = sqrt(quakes$mag^10)*50</code>. Here <code>50</code> is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable <code>mag</code> in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: This is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.</p><p>When scaling circles, use the values from the data, and then take their square roots, using the <code>sqrt()</code> function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.</p><p><code>popup</code> is used to define the HTML code the appears in the popup that appears when any quake is clicked or tapped. here were are using the R function <code>paste0()</code> to paste together a series of elements, separated by commas, that will write the HTML. They include the <code>mag</code> and <code>time</code> values from the quakes data, the latter being formatted as an easy-to-read date using R’s <code>format()</code> function for dates. See <a href="http://www.statmethods.net/input/dates.html">here</a> for more on formatting dates in R.</p><p>The map should now look like this:</p><p><img src="img/class13_19.jpg" alt=""></p><p>We can add a legend, by extending the code again:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make choropleth map of seismic hazards
+seismic &amp;lt;- seismic_map %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;% 
+  addPolygons(
+    stroke = FALSE, 
+    fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  ) %&amp;gt;%
+  # add historical earthquakes
+  addCircles(
+    data = quakes, 
+    radius = sqrt(10^quakes$mag)*50, 
+    color = &quot;#000000&quot;,
+    weight = 0.2,
+    fillColor =&quot;#ffffff&quot;,
+    fillOpacity = 0.3,
+    popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
+                   &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;))
+  ) %&amp;gt;%
+  # add legend
+  addLegend (
+    &quot;bottomleft&quot;, pal = binpal, values = ~ACC_VAL,
+    title = &quot;Seismic risk&quot;,
+    opacity = 0.7)
+</code></pre>"><span class="hljs-comment"># make choropleth map of seismic hazards</span>
+seismic &lt;- seismic_map %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;% 
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, 
+    fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  ) %&gt;%
+  <span class="hljs-comment"># add historical earthquakes</span>
+  addCircles(
+    data = quakes, 
+    radius = sqrt(<span class="hljs-number">10</span>^quakes$mag)*<span class="hljs-number">50</span>, 
+    color = <span class="hljs-string">"#000000"</span>,
+    weight = <span class="hljs-number">0.2</span>,
+    fillColor =<span class="hljs-string">"#ffffff"</span>,
+    fillOpacity = <span class="hljs-number">0.3</span>,
+    popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
+                   <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
+  ) %&gt;%
+  <span class="hljs-comment"># add legend</span>
+  addLegend (
+    <span class="hljs-string">"bottomleft"</span>, pal = binpal, values = ~ACC_VAL,
+    title = <span class="hljs-string">"Seismic risk"</span>,
+    opacity = <span class="hljs-number">0.7</span>)
+</code></pre><p>The final version of the code, below, adds a second tileset, and sets up layer controls to allow users to switch between basemaps, and to turn the quakes layer on and off. It also saves the entire code in the R object <code>seismic</code>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make multi-layered leaflet map with layer-switching control
+# make choropleth map of seismic hazards
+seismic &amp;lt;- seismic %&amp;gt;%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
+  addProviderTiles(&quot;CartoDB.Positron&quot;, group = &quot;CartoDB&quot;) %&amp;gt;% 
+  addProviderTiles(&quot;Stamen.TonerLite&quot;, group = &quot;Toner&quot;) %&amp;gt;%
+  addPolygons(
+    stroke = FALSE, fillOpacity = 0.7, 
+    smoothFactor = 0.1,
+    color = ~binpal(ACC_VAL)
+  ) %&amp;gt;%
+  # add historical earthquakes
+  addCircles(
+             data=quakes, 
+             radius = sqrt(10^quakes$mag)*50, 
+             weight = 0.2, 
+             color = &quot;#000000&quot;, 
+             fillColor =&quot;#ffffff&quot;,
+             fillOpacity = 0.3,
+             popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
+                            &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;)),
+             group = &quot;Quakes&quot;
+  ) %&amp;gt;%
+  # add legend
+  addLegend(
+            &quot;bottomleft&quot;, pal = binpal, values = ~ACC_VAL,
+            title = &quot;Seismic risk&quot;,
+            opacity = 0.7
+  ) %&amp;gt;%
+  # add layers control
+  addLayersControl(
+  baseGroups = c(&quot;CartoDB&quot;, &quot;Toner&quot;),
+  overlayGroups = &quot;Quakes&quot;,
+  options = layersControlOptions(collapsed = FALSE)
+  )
+
+# draw map
+print(seismic)
+</code></pre>"><span class="hljs-comment"># make multi-layered leaflet map with layer-switching control</span>
+<span class="hljs-comment"># make choropleth map of seismic hazards</span>
+seismic &lt;- seismic %&gt;%
+  setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>, group = <span class="hljs-string">"CartoDB"</span>) %&gt;% 
+  addProviderTiles(<span class="hljs-string">"Stamen.TonerLite"</span>, group = <span class="hljs-string">"Toner"</span>) %&gt;%
+  addPolygons(
+    stroke = <span class="hljs-literal">FALSE</span>, fillOpacity = <span class="hljs-number">0.7</span>, 
+    smoothFactor = <span class="hljs-number">0.1</span>,
+    color = ~binpal(ACC_VAL)
+  ) %&gt;%
+  <span class="hljs-comment"># add historical earthquakes</span>
+  addCircles(
+             data=quakes, 
+             radius = sqrt(<span class="hljs-number">10</span>^quakes$mag)*<span class="hljs-number">50</span>, 
+             weight = <span class="hljs-number">0.2</span>, 
+             color = <span class="hljs-string">"#000000"</span>, 
+             fillColor =<span class="hljs-string">"#ffffff"</span>,
+             fillOpacity = <span class="hljs-number">0.3</span>,
+             popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
+                            <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>)),
+             group = <span class="hljs-string">"Quakes"</span>
+  ) %&gt;%
+  <span class="hljs-comment"># add legend</span>
+  addLegend(
+            <span class="hljs-string">"bottomleft"</span>, pal = binpal, values = ~ACC_VAL,
+            title = <span class="hljs-string">"Seismic risk"</span>,
+            opacity = <span class="hljs-number">0.7</span>
+  ) %&gt;%
+  <span class="hljs-comment"># add layers control</span>
+  addLayersControl(
+  baseGroups = c(<span class="hljs-string">"CartoDB"</span>, <span class="hljs-string">"Toner"</span>),
+  overlayGroups = <span class="hljs-string">"Quakes"</span>,
+  options = layersControlOptions(collapsed = <span class="hljs-literal">FALSE</span>)
+  )
+
+<span class="hljs-comment"># draw map</span>
+print(seismic)
+</code></pre><p>The final map should look like this:</p><p><img src="img/class13_21.jpg" alt=""></p><p>Having completed our map, we can again save it as a web page.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save the map
+saveWidget(seismic, &quot;seismic.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
+</code></pre>"><span class="hljs-comment"># save the map</span>
+saveWidget(seismic, <span class="hljs-string">"seismic.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
+</code></pre><p>I hope these examples illustrate the potential of <strong>htmlwidgets</strong>. There are many more which we have not covered. Understanding how the code for each will take some time. But if you follow the documentation, the results can be impressive.</p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="http://www.htmlwidgets.org/showcase_leaflet.html">htmlwidgets Showcase</a><br>Links to documentation and code examples for the leading htmlwidgets.</p><p><a href="http://gallery.htmlwidgets.org/">htmlwidgets Gallery</a><br>A more extensive collection of htmlwidgets</p>
+
+<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
+</body>
+</html>

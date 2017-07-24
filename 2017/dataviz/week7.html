@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Manipulating data with R</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Using GitHub</a></li>
+								<li><a href="week5.html">Acquiring, cleaning, and formatting data</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Manipulating data with R</a></li>
+								<li><a href="week8.html">Making static graphics with R</a></li>
+								<li><a href="week9.html">Principles of mapping</a></li>
+								<li><a href="week10.html">Making static maps and processing geodata</a></li>
+								<li><a href="week11.html">Making interactive maps</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a>
+								<li><a href="week14.html">Iteration and animation: loops, GIFs and videos</a></li>
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="mailto:p.aldhous@gmail.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+
+<h1 id="manipulating-data-with-r"><a name="manipulating-data-with-r" href="#manipulating-data-with-r"></a>Manipulating data with R</h1><h3 id="introducing-r-and-rstudio"><a name="introducing-r-and-rstudio" href="#introducing-r-and-rstudio"></a>Introducing R and RStudio</h3><p>In today’s class we will process data using <strong><a href="http://www.r-project.org/">R</a></strong>, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as “free software environment for statistical computing and graphics,” R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.</p><p>Next week we will make static graphics with R. We will explore’s its potential for making interactive charts and maps in week 13, and use it to make animations in week 14. Our goal for this week’s class is to get used to working with data in R.</p><p><strong><a href="http://www.rstudio.com/">RStudio</a></strong> is an “integrated development environment,” or IDE, for R that provides a user-friendly interface.</p><p>Launch RStudio, and the screen should look like this:</p><p><img src="img/class7_1.jpg" alt=""></p><p>The main panel to the left is the R Console. Type valid R code into here, hit <code>return</code>, and it will be run. See what happens if you run:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>print(&quot;Hello World!&quot;)
+</code></pre>">print(<span class="hljs-string">"Hello World!"</span>)
+</code></pre><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data for this session from <a href="data/week7.zip">here</a>, unzip the folder and place it on your desktop. It contains the following files, used in reporting <a href="https://www.newscientist.com/article/dn18806-revealed-pfizers-payments-to-censured-doctors/">this story</a>, which revealed that some of the doctors paid as “experts” by the drug company Pfizer had troubling disciplinary records:</p><ul>
+<li><p><code>pfizer.csv</code> Payments made by Pfizer to doctors across the United States in the second half on 2009. Contains the following variables:</p>
+<ul>
+<li><code>org_indiv</code> Full name of the doctor, or their organization.</li><li><code>first_plus</code> Doctor’s first and middle names.</li><li><code>first_name</code> <code>last_name</code>. First and last names.</li><li><code>city</code> <code>state</code> City and state.</li><li><code>category of payment</code> Type of payment, which include <code>Expert-led Forums</code>, in which doctors lecture their peers on using Pfizer’s drugs, and `Professional Advising.</li><li><code>cash</code> Value of payments made in cash.</li><li><code>other</code> Value of payments made in-kind, for example puschase of meals.</li><li><code>total</code> value of payment, whether cash or in-kind.</li></ul>
+</li><li><p><code>fda.csv</code> Data on warning letters sent to doctors by the U.S. Food and Drug Administration, because of problems in the way in which they ran clinical trials testing experimental treatments. Contains the following variables:</p>
+<ul>
+<li><code>name_last</code> <code>name_first</code> <code>name_middle</code> Doctor’s last, first, and middle names.</li><li><code>issued</code> Date letter was sent.</li><li><code>office</code> Office within the FDA that sent the letter.</li></ul>
+</li></ul><h3 id="reproducibility:-save-your-scripts"><a name="reproducibility:-save-your-scripts" href="#reproducibility:-save-your-scripts"></a>Reproducibility: Save your scripts</h3><p>Data journalism should ideally be fully documented and reproducible. R makes this easy, as every operation performed can be saved in a script, and repeated by running that script. Click on the <img src="img/class7_2.jpg" alt=""> icon at top left and select <code>R Script</code>. A new panel should now open:</p><p><img src="img/class7_3.jpg" alt=""></p><p>Any code we type in here can be run in the console. Hitting <code>Run</code> will run the line of code on which the cursor is sitting. To run multiple lines of code, highlight them and click <code>Run</code>.</p><p>Click on the save/disk icon in the script panel and save the blank script to the file on your desktop with the data for this week, calling it <code>week7.R</code>.</p><h3 id="set-your-working-directory"><a name="set-your-working-directory" href="#set-your-working-directory"></a>Set your working directory</h3><p>Now we can set the working directory to this folder by selecting from the top menu <code>Session&gt;Set Working Directory&gt;To Source File Location</code>. (Doing so means we can load the files in this directory without having to refer to the full path for their location, and anything we save will be written to this folder.)</p><p>Notice how this code appears in the console:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>setwd(&quot;~/Desktop/week7&quot;)
+</code></pre>">setwd(<span class="hljs-string">"~/Desktop/week7"</span>)
+</code></pre><h3 id="save-your-data"><a name="save-your-data" href="#save-your-data"></a>Save your data</h3><p>The panel at top right has two tabs, the first showing the <code>Environment</code>, or all of the “objects” loaded into memory for this R session. We can save this as well, so we don’t have to load and process data again if we return to return to a project later.</p><p>(The second tab shows the <code>History</code> of the operations you have performed in RStudio.)</p><p>Click on the save/disk icon in the <code>Environment</code> panel to save and call the file <code>week7.RData</code>. You should see the following code appear in the Console:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>save.image(&quot;~/Desktop/week7/week7.RData&quot;)
+</code></pre>">save.image(<span class="hljs-string">"~/Desktop/week7/week7.RData"</span>)
+</code></pre><p>Copy this code into your script, placing it at the end, with a comment, explaining what it does:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save session data
+save.image(&quot;~/Desktop/week7/week7.RData&quot;)
+</code></pre>"><span class="hljs-comment"># save session data</span>
+save.image(<span class="hljs-string">"~/Desktop/week7/week7.RData"</span>)
+</code></pre><h3 id="comment-your-code"><a name="comment-your-code" href="#comment-your-code"></a>Comment your code</h3><p>Anything that appears on a line after <code>#</code> will be treated as a comment, and will be ignored when the code is run. Get into the habit of commenting your code: Don’t trust yourself to remember what it does!</p><h3 id="some-r-code-basics"><a name="some-r-code-basics" href="#some-r-code-basics"></a>Some R code basics</h3><ul>
+<li><code>&lt;-</code> is known as an “assignment operator.” It means: “Make the object named to the left equal to the output of the code to the right.”</li><li><code>&amp;</code> means AND, in Boolean logic, which we discussed in week 5 when working with web search forms.</li><li><code>|</code> means OR, in Boolean logic.</li><li><code>!</code> means NOT, in Boolean logic.</li><li>When referring to values entered as text, or to dates, put them in quote marks, like this: <code>"United States"</code>, or <code>"2016-07-26"</code>. Numbers are not quoted.</li><li>When entering two or more values as a list, combine them using the function <code>c</code>, with the values separated by commas, for example: <code>c("2016-07-26","2016-08-04")</code></li><li>As in a spreadsheet, you can specify a range of values with a colon, for example: <code>c(1:10)</code> creates a list of integers (whole numbers) from one to ten.</li><li><p>Some common operators:</p>
+<ul>
+<li><code>+</code> <code>-</code> add, subtract.</li><li><code>*</code> <code>/</code> multiply, divide.</li><li><code>&gt;</code> <code>&lt;</code> greater than, less than.</li><li><code>&gt;=</code> <code>&lt;=</code> greater than or equal to, less than or equal to.</li><li><code>!=</code> not equal to.</li></ul>
+</li><li><p>Equals signs can be a little confusing, but see how they are used in the code we use today:</p>
+<ul>
+<li><code>==</code> test whether an object is equal to a value. This is often used when filtering data, as we will see.</li><li><code>=</code> make an object equal to a value; works like <code>&lt;-</code>, but used within the brackets of a function.</li></ul>
+</li></ul><p>We encountered <strong>functions</strong> in week 1 in the context of spreadsheet formulas. They are followed by brackets, and act on the code in the brackets.</p><p><strong>Important:</strong> Object and variable names in R should not contain spaces.</p><h3 id="install-and-load-r-packages"><a name="install-and-load-r-packages" href="#install-and-load-r-packages"></a>Install and load R packages</h3><p>Much of the power of R comes from the thousands of “packages” written by its community of open source contributors. These are optimized for specific statistical, graphical or data-processing tasks. To see what packages are available in the basic distribution of R, select the <code>Packages</code> tab in the panel at bottom right. To find packages for particular tasks, try searching Google using appropriate keywords and the phrase “R package.”</p><p>In this class, we will work with two incredibly useful packages developed by <a href="http://hadley.nz/">Hadley Wickham</a>, chief scientist at RStudio:</p><ul>
+<li><strong><a href="https://cran.r-project.org/web/packages/readr/readr.pdf">readr</a></strong> For reading and writes CSV and other text files.</li><li><strong><a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf">dplyr</a></strong> For processing and manipulating data.</li></ul><p>These and several other useful packages have been combined into a super-package called <strong><a href="http://insight.livestories.com/">tidyverse</a></strong>.</p><p>To install a package, click on the <code>Install</code> icon in the <code>Packages</code> tab, type its name into the dialog box, and make sure that <code>Install dependencies</code> is checked, as some packages will only run correctly if other packages are also installed. Click <code>Install</code> and all of the required packages should install:</p><p><img src="img/class7_4.jpg" alt=""></p><p>Notice that the following code appears in the console:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>install.packages(&quot;tidyverse&quot;)
+</code></pre>">install.packages(<span class="hljs-string">"tidyverse"</span>)
+</code></pre><p>So you can also install packages with cod in this format, without using the point-and-click interface.</p><p>Each time you start R, it’s a good idea to click on <code>Update</code> in the <code>Packages</code> panel to update all your installed packages to the latest versions.</p><p>Installing a package makes it available to you, but to use it in any R session you need to load it. You can do this by checking its box in the <code>Packages</code> tab. However, we will enter the following code into our script, then highlight these lines of code and run them:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load packages to read, write and manipulate data
+library(readr)
+library(dplyr)
+</code></pre>"><span class="hljs-comment"># load packages to read, write and manipulate data</span>
+<span class="hljs-keyword">library</span>(readr)
+<span class="hljs-keyword">library</span>(dplyr)
+</code></pre><p>At this point, and at regular intervals, save your script, by clicking the save/disk icon in the script panel, or using the <code>⌘-S</code> keyboard shortcut.</p><h3 id="load-and-view-data"><a name="load-and-view-data" href="#load-and-view-data"></a>Load and view data</h3><h4 id="load-data"><a name="load-data" href="#load-data"></a>Load data</h4><p>You can load data into the current R session by selecting <code>Import Dataset&gt;From Text File...</code> in the <code>Environment</code> tab.</p><p>However, we will use the <code>read_csv</code> function from the <strong>readr</strong> package. Copy the following code into your script and <code>Run</code>:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load data of pfizer payments to doctors and warning letters sent by food and drug adminstration
+pfizer &amp;lt;- read_csv(&quot;pfizer.csv&quot;)
+fda &amp;lt;- read_csv(&quot;fda.csv&quot;)
+</code></pre>"><span class="hljs-comment"># load data of pfizer payments to doctors and warning letters sent by food and drug adminstration</span>
+pfizer &lt;- read_csv(<span class="hljs-string">"pfizer.csv"</span>)
+fda &lt;- read_csv(<span class="hljs-string">"fda.csv"</span>)
+</code></pre><p>Notice that the <code>Environment</code> now contains two objects, of the type <code>tbl_df</code>, a variety of the standard R object for holding tables of data, known as a <strong>data frame</strong>:</p><p><img src="img/class7_5.jpg" alt=""></p><p>The <code>Value</code> for each data frame details the number of columns, and the number of rows, or observations, in the data.</p><p>You can remove any object from your environment by checking it in the <code>Grid</code> view and clicking the broom icon.</p><h4 id="examine-the-data"><a name="examine-the-data" href="#examine-the-data"></a>Examine the data</h4><p>We can <code>View</code> data at any time by clicking on its table icon in the <code>Environment</code> tab in the <code>Grid</code> view.</p><p>Here, for example, I am looking at the <code>pfizer</code> view:</p><p><img src="img/class7_6.jpg" alt=""></p><p>The <code>str</code> function will tell you more about the columns in your data, including their data type. Copy this code into your script and <code>Run</code>:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># view structure of data
+str(pfizer)
+</code></pre>"><span class="hljs-comment"># view structure of data</span>
+str(pfizer)
+</code></pre><p>This should give the following output in the R Console:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>Classes ‘tbl_df’, ‘tbl’ and 'data.frame':    10087 obs. of  10 variables:
+ $ org_indiv : chr  &quot;3-D MEDICAL SERVICES LLC&quot; &quot;AA DOCTORS, INC.&quot; &quot;ABBO, LILIAN MARGARITA&quot; &quot;ABBO, LILIAN MARGARITA&quot; ...
+ $ first_plus: chr  &quot;STEVEN BRUCE&quot; &quot;AAKASH MOHAN&quot; &quot;LILIAN MARGARITA&quot; &quot;LILIAN MARGARITA&quot; ...
+ $ first_name: chr  &quot;STEVEN&quot; &quot;AAKASH&quot; &quot;LILIAN&quot; &quot;LILIAN&quot; ...
+ $ last_name : chr  &quot;DEITELZWEIG&quot; &quot;AHUJA&quot; &quot;ABBO&quot; &quot;ABBO&quot; ...
+ $ city      : chr  &quot;NEW ORLEANS&quot; &quot;PASO ROBLES&quot; &quot;MIAMI&quot; &quot;MIAMI&quot; ...
+ $ state     : chr  &quot;LA&quot; &quot;CA&quot; &quot;FL&quot; &quot;FL&quot; ...
+ $ category  : chr  &quot;Professional Advising&quot; &quot;Expert-Led Forums&quot; &quot;Business Related Travel&quot; &quot;Meals&quot; ...
+ $ cash      : int  2625 1000 0 0 1800 750 0 825 3000 0 ...
+ $ other     : int  0 0 448 119 0 0 47 0 0 396 ...
+ $ total     : int  2625 1000 448 119 1800 750 47 825 3000 396 ...
+</code></pre>">Classes ‘tbl_df’, ‘tbl’ and 'data.frame':    10087 obs. of  10 variables:
+ $ org_indiv : chr  "3-D MEDICAL SERVICES LLC" "AA DOCTORS, INC." "ABBO, LILIAN MARGARITA" "ABBO, LILIAN MARGARITA" ...
+ $ first_plus: chr  "STEVEN BRUCE" "AAKASH MOHAN" "LILIAN MARGARITA" "LILIAN MARGARITA" ...
+ $ first_name: chr  "STEVEN" "AAKASH" "LILIAN" "LILIAN" ...
+ $ last_name : chr  "DEITELZWEIG" "AHUJA" "ABBO" "ABBO" ...
+ $ city      : chr  "NEW ORLEANS" "PASO ROBLES" "MIAMI" "MIAMI" ...
+ $ state     : chr  "LA" "CA" "FL" "FL" ...
+ $ category  : chr  "Professional Advising" "Expert-Led Forums" "Business Related Travel" "Meals" ...
+ $ cash      : int  2625 1000 0 0 1800 750 0 825 3000 0 ...
+ $ other     : int  0 0 448 119 0 0 47 0 0 396 ...
+ $ total     : int  2625 1000 448 119 1800 750 47 825 3000 396 ...
+</code></pre><p><code>chr</code> means “character,” or a string of text (which can be treated as a categorical variable); <code>int</code> means an integer, or whole number.</p><p>Also examine the structure of the <code>fda</code> data frame using the following code:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>str(fda)
+</code></pre>">str(fda)
+</code></pre><p>This should be the console output:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>Classes ‘tbl_df’, ‘tbl’ and 'data.frame':    272 obs. of  5 variables:
+ $ name_last  : chr  &quot;ADELGLASS&quot; &quot;ADKINSON&quot; &quot;ALLEN&quot; &quot;AMSTERDAM&quot; ...
+ $ name_first : chr  &quot;JEFFREY&quot; &quot;N.&quot; &quot;MARK&quot; &quot;DANIEL&quot; ...
+ $ name_middle: chr  &quot;M.&quot; &quot;FRANKLIN&quot; &quot;S.&quot; NA ...
+ $ issued     : Date, format: &quot;1999-05-25&quot; ...
+ $ office     : chr  &quot;Center for Drug Evaluation and Research&quot; &quot;Center for Biologics Evaluation and Research&quot; &quot;Center for Devices and Radiological Health&quot; &quot;Center for Biologics Evaluation and Research&quot; ...
+</code></pre>">Classes ‘tbl_df’, ‘tbl’ and 'data.frame':    272 obs. of  5 variables:
+ $ name_last  : chr  "ADELGLASS" "ADKINSON" "ALLEN" "AMSTERDAM" ...
+ $ name_first : chr  "JEFFREY" "N." "MARK" "DANIEL" ...
+ $ name_middle: chr  "M." "FRANKLIN" "S." NA ...
+ $ issued     : Date, format: "1999-05-25" ...
+ $ office     : chr  "Center for Drug Evaluation and Research" "Center for Biologics Evaluation and Research" "Center for Devices and Radiological Health" "Center for Biologics Evaluation and Research" ...
+</code></pre><p>Notice that <code>issued</code> has been recognized as a <code>Date</code> variable. Other common data types include <code>num</code>, for numbers that may contain decimals and <code>POSIXct</code> for full date and time.</p><p>If you run into any trouble importing data with <strong>readr</strong>, you may need to specify the data types for some columns — in particular for date and time. <a href="https://github.com/hadley/readr/blob/master/vignettes/column-types.Rmd">This link</a> explains how to set data types for individual variables when importing data with <strong>readr</strong>.</p><p>To specify an individual column use the name of the data frame and the column name, separated by <code>$</code>. Type this into your script and run:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># print values for total in pfizer data
+pfizer$total
+</code></pre>"><span class="hljs-comment"># print values for total in pfizer data</span>
+pfizer$total
+</code></pre><p>The output will be the first 10,000 values for that column.</p><p>If you need to change the data type for any column, use the following functions:</p><ul>
+<li><code>as.character</code> converts to a text string.</li><li><code>as.numeric</code> converts to a number.</li><li><code>as.factor</code> converts to a categorical variable.</li><li><code>as.integer</code> converts to an integer</li><li><code>as.Date</code> converts to a date</li><li><code>as.POSIXct</code> convets to a full date and time.</li></ul><p>(Conversions to full dates and times can get complicated, because of timezones. Contact me for advice if you need to work with full dates and times for your project!)</p><p>Now add the following code to your script to convert the convert <code>total</code> in the <code>pfizer</code> data to a numeric variable (which would allow it to hold decimal values, if we had any).</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># convert total to numeric variable
+pfizer$total &amp;lt;- as.numeric(pfizer$total)
+str(pfizer)
+</code></pre>"><span class="hljs-comment"># convert total to numeric variable</span>
+pfizer$total &lt;- as.numeric(pfizer$total)
+str(pfizer)
+</code></pre><p>Notice that the data type for <code>total</code> has now changed:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>Classes ‘tbl_df’, ‘tbl’ and 'data.frame':    10087 obs. of  10 variables:
+ $ org_indiv : chr  &quot;3-D MEDICAL SERVICES LLC&quot; &quot;AA DOCTORS, INC.&quot; &quot;ABBO, LILIAN MARGARITA&quot; &quot;ABBO, LILIAN MARGARITA&quot; ...
+ $ first_plus: chr  &quot;STEVEN BRUCE&quot; &quot;AAKASH MOHAN&quot; &quot;LILIAN MARGARITA&quot; &quot;LILIAN MARGARITA&quot; ...
+ $ first_name: chr  &quot;STEVEN&quot; &quot;AAKASH&quot; &quot;LILIAN&quot; &quot;LILIAN&quot; ...
+ $ last_name : chr  &quot;DEITELZWEIG&quot; &quot;AHUJA&quot; &quot;ABBO&quot; &quot;ABBO&quot; ...
+ $ city      : chr  &quot;NEW ORLEANS&quot; &quot;PASO ROBLES&quot; &quot;MIAMI&quot; &quot;MIAMI&quot; ...
+ $ state     : chr  &quot;LA&quot; &quot;CA&quot; &quot;FL&quot; &quot;FL&quot; ...
+ $ category  : chr  &quot;Professional Advising&quot; &quot;Expert-Led Forums&quot; &quot;Business Related Travel&quot; &quot;Meals&quot; ...
+ $ cash      : int  2625 1000 0 0 1800 750 0 825 3000 0 ...
+ $ other     : int  0 0 448 119 0 0 47 0 0 396 ...
+ $ total     : num  2625 1000 448 119 1800 ...
+</code></pre>">Classes ‘tbl_df’, ‘tbl’ and 'data.frame':    10087 obs. of  10 variables:
+ $ org_indiv : chr  "3-D MEDICAL SERVICES LLC" "AA DOCTORS, INC." "ABBO, LILIAN MARGARITA" "ABBO, LILIAN MARGARITA" ...
+ $ first_plus: chr  "STEVEN BRUCE" "AAKASH MOHAN" "LILIAN MARGARITA" "LILIAN MARGARITA" ...
+ $ first_name: chr  "STEVEN" "AAKASH" "LILIAN" "LILIAN" ...
+ $ last_name : chr  "DEITELZWEIG" "AHUJA" "ABBO" "ABBO" ...
+ $ city      : chr  "NEW ORLEANS" "PASO ROBLES" "MIAMI" "MIAMI" ...
+ $ state     : chr  "LA" "CA" "FL" "FL" ...
+ $ category  : chr  "Professional Advising" "Expert-Led Forums" "Business Related Travel" "Meals" ...
+ $ cash      : int  2625 1000 0 0 1800 750 0 825 3000 0 ...
+ $ other     : int  0 0 448 119 0 0 47 0 0 396 ...
+ $ total     : num  2625 1000 448 119 1800 ...
+</code></pre><p>The <code>summary</code> function will run a quick statistical summary of a data frame, calculating mean, median and quartile values for continuous variables:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># summary of pfizer data
+summary(pfizer)
+</code></pre>"><span class="hljs-comment"># summary of pfizer data</span>
+summary(pfizer)
+</code></pre><p>Here is the last part of the console output:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>     total        
+ Min.   :      0  
+ 1st Qu.:    191  
+ Median :    750  
+ Mean   :   3507  
+ 3rd Qu.:   2000  
+ Max.   :1185466
+</code></pre>">     total        
+ Min.   :      0  
+ 1st Qu.:    191  
+ Median :    750  
+ Mean   :   3507  
+ 3rd Qu.:   2000  
+ Max.   :1185466
+</code></pre><h3 id="manipulate-and-analyze-data"><a name="manipulate-and-analyze-data" href="#manipulate-and-analyze-data"></a>Manipulate and analyze data</h3><p>Now we will use <strong>dplyr</strong> to manipulate the data, using the basic operations we discussed in week 1:</p><ul>
+<li><p><strong>Sort:</strong> Largest to smallest, oldest to newest, alphabetical etc.</p>
+</li><li><p><strong>Filter:</strong> Select a defined subset of the data.</p>
+</li><li><p><strong>Summarize/Aggregate:</strong> Deriving one value from a series of other values to produce a summary statistic. Examples include: count, sum, mean, median, maximum, minimum etc. Often you’ll <strong>group</strong> data into categories first, and then aggregate by group.</p>
+</li><li><p><strong>Join:</strong> Merging entries from two or more datasets based on common field(s), e.g. unique ID number, last name and first name.</p>
+</li></ul><p>Here are some of the most useful functions in <strong>dplyr</strong>:</p><ul>
+<li><code>select</code> Choose which columns to include.</li><li><code>filter</code> <strong>Filter</strong> the data.</li><li><code>arrange</code> <strong>Sort</strong> the data, by size for continuous variables, by date, or alphabetically.</li><li><code>group_by</code> <strong>Group</strong> the data by a categorical variable.</li><li><code>summarize</code> <strong>Summarize</strong>, or aggregate (for each group if following <code>group_by</code>). Often used in conjunction with functions including:<ul>
+<li><code>mean</code> Calculate the mean, or average.</li><li><code>median</code> Calculate the median.</li><li><code>max</code> Find the maximum value.</li><li><code>min</code> Find the minimum value</li><li><code>sum</code> Add all the values together.</li><li><code>n</code> Count the number of records.</li></ul>
+</li><li><code>mutate</code> Create new column(s) in the data, or change existing column(s).</li><li><code>rename</code> Rename column(s).</li><li><code>bind_rows</code> Merge two data frames into one, combining data from columns with the same name.</li></ul><p>There are also various functions to <strong>join</strong> data, which we will explore below.</p><p>These functions can be chained together using the operator <code>%&gt;%</code> which makes the output of one line of code the input for the next. This allows you to run through a series of operations in logical order. I find it helpful to think of <code>%&gt;%</code> as “then.”</p><h4 id="filter-and-sort-data"><a name="filter-and-sort-data" href="#filter-and-sort-data"></a>Filter and sort data</h4><p>Now we will <strong>filter</strong> and <strong>sort</strong> the data in specific ways. For each of the following examples, copy the code that follows into your script, and view the results. Notice how we create a new objects to hold the processed data.</p><h5 id="find-doctors-in-california-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”"><a name="find-doctors-in-california-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”" href="#find-doctors-in-california-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”"></a>Find doctors in California paid $10,000 or more by Pfizer to run “Expert-Led Forums.”</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># doctors in California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”
+ca_expert_10000 &amp;lt;- pfizer %&amp;gt;%
+  filter(state == &quot;CA&quot; &amp;amp; total &amp;gt;= 10000 &amp;amp; category == &quot;Expert-Led Forums&quot;)
+</code></pre>"><span class="hljs-comment"># doctors in California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”</span>
+ca_expert_10000 &lt;- pfizer %&gt;%
+  filter(state == <span class="hljs-string">"CA"</span> &amp; total &gt;= <span class="hljs-number">10000</span> &amp; category == <span class="hljs-string">"Expert-Led Forums"</span>)
+</code></pre><p>Notice the use of <code>==</code> to find values that match the specified text, <code>&gt;=</code> for greater than or equal to, and the Boolean operator <code>&amp;</code>.</p><p>Now add a <strong>sort</strong> to the end of the code to list the doctors in descending order by the payments received:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># doctors in California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”
+ca_expert_10000 &amp;lt;- pfizer %&amp;gt;%
+  filter(state == &quot;CA&quot; &amp;amp; total &amp;gt;= 10000 &amp;amp; category == &quot;Expert-Led Forums&quot;) %&amp;gt;%
+  arrange(desc(total))
+</code></pre>"><span class="hljs-comment"># doctors in California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”</span>
+ca_expert_10000 &lt;- pfizer %&gt;%
+  filter(state == <span class="hljs-string">"CA"</span> &amp; total &gt;= <span class="hljs-number">10000</span> &amp; category == <span class="hljs-string">"Expert-Led Forums"</span>) %&gt;%
+  arrange(desc(total))
+</code></pre><p>If you <code>arrange</code> without the <code>desc</code> function, the <strong>sort</strong> will be from smallest to largest.</p><h5 id="find-doctors-in-california-*or*-new-york-who-were-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”"><a name="find-doctors-in-california-*or*-new-york-who-were-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”" href="#find-doctors-in-california-*or*-new-york-who-were-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”"></a>Find doctors in California <em>or</em> New York who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>ca_ny_expert_10000 &amp;lt;- pfizer %&amp;gt;%
+  filter((state == &quot;CA&quot; | state == &quot;NY&quot;) &amp;amp; total &amp;gt;= 10000 &amp;amp; category == &quot;Expert-Led Forums&quot;) %&amp;gt;%
+  arrange(desc(total))
+</code></pre>">ca_ny_expert_10000 &lt;- pfizer %&gt;%
+  filter((state == <span class="hljs-string">"CA"</span> | state == <span class="hljs-string">"NY"</span>) &amp; total &gt;= <span class="hljs-number">10000</span> &amp; category == <span class="hljs-string">"Expert-Led Forums"</span>) %&gt;%
+  arrange(desc(total))
+</code></pre><p>Notice the use of the <code>|</code> Boolean operator, and the brackets around that part of the query. This ensures that this part of the query is run first. See what happens if you exclude them.</p><h5 id="find-doctors-in-states-*other-than*-california-who-were-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”"><a name="find-doctors-in-states-*other-than*-california-who-were-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”" href="#find-doctors-in-states-*other-than*-california-who-were-paid-$10,000-or-more-by-pfizer-to-run-“expert-led-forums.”"></a>Find doctors in states <em>other than</em> California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>not_ca_expert_10000 &amp;lt;- pfizer %&amp;gt;%
+  filter(state != &quot;CA&quot; &amp;amp; total &amp;gt;= 10000 &amp;amp; category==&quot;Expert-Led Forums&quot;)) %&amp;gt;%
+  arrange(desc(total))
+</code></pre>">not_ca_expert_10000 &lt;- pfizer %&gt;%
+  filter(state != <span class="hljs-string">"CA"</span> &amp; total &gt;= <span class="hljs-number">10000</span> &amp; category==<span class="hljs-string">"Expert-Led Forums"</span>)) %&gt;%
+  arrange(desc(total))
+</code></pre><p>Notice the use of the <code>!=</code> operator to exclude doctors in California.</p><h5 id="find-the-20-doctors-across-the-four-largest-states-(ca,-tx,-fl,-ny)-who-were-paid-the-most-for-professional-advice."><a name="find-the-20-doctors-across-the-four-largest-states-(ca,-tx,-fl,-ny)-who-were-paid-the-most-for-professional-advice." href="#find-the-20-doctors-across-the-four-largest-states-(ca,-tx,-fl,-ny)-who-were-paid-the-most-for-professional-advice."></a>Find the 20 doctors across the four largest states (CA, TX, FL, NY) who were paid the most for professional advice.</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>ca_ny_tx_fl_prof_top20 &amp;lt;- pfizer %&amp;gt;%
+  filter((state==&quot;CA&quot; | state == &quot;NY&quot; | state == &quot;TX&quot; | state == &quot;FL&quot;) &amp;amp; category == &quot;Professional Advising&quot;) %&amp;gt;%
+  arrange(desc(total)) %&amp;gt;%
+  head(20)
+</code></pre>">ca_ny_tx_fl_prof_top20 &lt;- pfizer %&gt;%
+  filter((state==<span class="hljs-string">"CA"</span> | state == <span class="hljs-string">"NY"</span> | state == <span class="hljs-string">"TX"</span> | state == <span class="hljs-string">"FL"</span>) &amp; category == <span class="hljs-string">"Professional Advising"</span>) %&gt;%
+  arrange(desc(total)) %&gt;%
+  head(<span class="hljs-number">20</span>)
+</code></pre><p>Notice the use of <code>head</code>, which grabs a defined number of rows from the start of a data frame. Here, it is crucial to run the sort first! See what happens if you change the order of the last two lines.</p><h5 id="filter-the-data-for-all-payments-for-running-expert-led-forums-or-for-professional-advising,-and-arrange-alphabetically-by-doctor-(last-name,-then-first-name)"><a name="filter-the-data-for-all-payments-for-running-expert-led-forums-or-for-professional-advising,-and-arrange-alphabetically-by-doctor-(last-name,-then-first-name)" href="#filter-the-data-for-all-payments-for-running-expert-led-forums-or-for-professional-advising,-and-arrange-alphabetically-by-doctor-(last-name,-then-first-name)"></a>Filter the data for all payments for running Expert-Led Forums or for Professional Advising, and arrange alphabetically by doctor (last name, then first name)</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Filter the data for all payments for running Expert-Led Forums or for Professional Advising, and arrange alphabetically by doctor (last name, then first name)
+expert_advice &amp;lt;- pfizer %&amp;gt;%
+  filter(category == &quot;Expert-Led Forums&quot; | category == &quot;Professional Advising&quot;) %&amp;gt;%
+  arrange(last_name, first_name)
+</code></pre>"><span class="hljs-comment"># Filter the data for all payments for running Expert-Led Forums or for Professional Advising, and arrange alphabetically by doctor (last name, then first name)</span>
+expert_advice &lt;- pfizer %&gt;%
+  filter(category == <span class="hljs-string">"Expert-Led Forums"</span> | category == <span class="hljs-string">"Professional Advising"</span>) %&gt;%
+  arrange(last_name, first_name)
+</code></pre><p>Notice that you can <strong>sort</strong> by multiple variables, separated by commas.</p><h5 id="use-pattern-matching-to-filter-text"><a name="use-pattern-matching-to-filter-text" href="#use-pattern-matching-to-filter-text"></a>Use pattern matching to filter text</h5><p>The following code uses the <code>grepl</code> function to find values containing a particular string of text. This can simplify the code used to <strong>filter</strong> based on text.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># use pattern matching to filter text
+expert_advice &amp;lt;- pfizer %&amp;gt;%
+  filter(grepl(&quot;Expert|Professional&quot;, category)) %&amp;gt;%
+  arrange(last_name, first_name)
+
+not_expert_advice &amp;lt;- pfizer %&amp;gt;%
+  filter(!grepl(&quot;Expert|Professional&quot;, category)) %&amp;gt;%
+  arrange(last_name, first_name)
+</code></pre>"><span class="hljs-comment"># use pattern matching to filter text</span>
+expert_advice &lt;- pfizer %&gt;%
+  filter(grepl(<span class="hljs-string">"Expert|Professional"</span>, category)) %&gt;%
+  arrange(last_name, first_name)
+
+not_expert_advice &lt;- pfizer %&gt;%
+  filter(!grepl(<span class="hljs-string">"Expert|Professional"</span>, category)) %&gt;%
+  arrange(last_name, first_name)
+</code></pre><p>This code differs only by the <code>!</code> Boolean operator. Notice that it has split the data into two, based on categories of payment.</p><h4 id="append-one-data-frame-to-another"><a name="append-one-data-frame-to-another" href="#append-one-data-frame-to-another"></a>Append one data frame to another</h4><p>The following code uses the <code>bind_rows</code> function to append one data frame to another, here recreating the unfiltered data from the two data frames above.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># merge/append data frames
+pfizer2 &amp;lt;- bind_rows(expert_advice, not_expert_advice)
+</code></pre>"><span class="hljs-comment"># merge/append data frames</span>
+pfizer2 &lt;- bind_rows(expert_advice, not_expert_advice)
+</code></pre><h4 id="write-data-to-a-csv-file"><a name="write-data-to-a-csv-file" href="#write-data-to-a-csv-file"></a>Write data to a CSV file</h4><p><strong>readr</strong> can write data to CSV and other text files.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># write expert_advice data to a csv file
+write_csv(expert_advice, &quot;expert_advice.csv&quot;, na=&quot;&quot;)
+</code></pre>"><span class="hljs-comment"># write expert_advice data to a csv file</span>
+write_csv(expert_advice, <span class="hljs-string">"expert_advice.csv"</span>, na=<span class="hljs-string">""</span>)
+</code></pre><p>When you run this code, a CSV file with the data should be saved in your <code>week7</code> folder. <code>na=""</code> ensures that any empty cells in the data frame are saved as blanks — R represents null values as <code>NA</code>, so if you don’t include this, any null values will appear as <code>NA</code> in the saved file.</p><h4 id="group-and-summarize-data"><a name="group-and-summarize-data" href="#group-and-summarize-data"></a>Group and summarize data</h4><h5 id="calculate-the-total-payments,-by-state"><a name="calculate-the-total-payments,-by-state" href="#calculate-the-total-payments,-by-state"></a>Calculate the total payments, by state</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># calculate total payments by state
+state_sum &amp;lt;- pfizer %&amp;gt;%
+  group_by(state) %&amp;gt;%
+  summarize(sum = sum(total)) %&amp;gt;%
+  arrange(desc(sum))
+</code></pre>"><span class="hljs-comment"># calculate total payments by state</span>
+state_sum &lt;- pfizer %&gt;%
+  group_by(state) %&gt;%
+  summarize(sum = sum(total)) %&gt;%
+  arrange(desc(sum))
+</code></pre><p>Notice the use of <code>group_by</code> followed by <code>summarize</code> to <strong>group</strong> and <strong>summarize</strong> data, here using the function <code>sum</code>.</p><h5 id="calculate-some-additional-summary-statistics,-by-state"><a name="calculate-some-additional-summary-statistics,-by-state" href="#calculate-some-additional-summary-statistics,-by-state"></a>Calculate some additional summary statistics, by state</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># As above, but for each state also calculate the median payment, and the number of payments
+state_summary &amp;lt;- pfizer %&amp;gt;%
+  group_by(state) %&amp;gt;%
+  summarize(sum = sum(total), median = median(total), count = n()) %&amp;gt;%
+  arrange(desc(sum))
+</code></pre>"><span class="hljs-comment"># As above, but for each state also calculate the median payment, and the number of payments</span>
+state_summary &lt;- pfizer %&gt;%
+  group_by(state) %&gt;%
+  summarize(sum = sum(total), median = median(total), count = n()) %&gt;%
+  arrange(desc(sum))
+</code></pre><p>Notice the use of multiple summary functions, <code>sum</code>, <code>median</code>, and <code>n</code>. (You don’t specify a variable for <code>n</code> because it is simply counting the number of rows in the data.)</p><h5 id="group-and-summarize-for-multiple-categories"><a name="group-and-summarize-for-multiple-categories" href="#group-and-summarize-for-multiple-categories"></a>Group and summarize for multiple categories</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># as above, but group by state and category
+state_category_summary &amp;lt;- pfizer %&amp;gt;%
+  group_by(state, category) %&amp;gt;%
+  summarize(sum = sum(total), median = median(total), count = n()) %&amp;gt;%
+  arrange(state, category)
+</code></pre>"><span class="hljs-comment"># as above, but group by state and category</span>
+state_category_summary &lt;- pfizer %&gt;%
+  group_by(state, category) %&gt;%
+  summarize(sum = sum(total), median = median(total), count = n()) %&gt;%
+  arrange(state, category)
+</code></pre><p>As for <code>arrange</code>, you can <code>group_by</code> by multiple variables, separated by commas.</p><h4 id="working-with-dates"><a name="working-with-dates" href="#working-with-dates"></a>Working with dates</h4><p>Now let’s run see how to work with dates, using the FDA warning letters data.</p><h5 id="filter-the-data-for-letters-sent-from-the-start-of-2005-onwards"><a name="filter-the-data-for-letters-sent-from-the-start-of-2005-onwards" href="#filter-the-data-for-letters-sent-from-the-start-of-2005-onwards"></a>Filter the data for letters sent from the start of 2005 onwards</h5><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># FDA warning letters sent from the start of 2005 onwards
+post2005 &amp;lt;- fda %&amp;gt;%
+  filter(issued &amp;gt;= &quot;2005-01-01&quot;) %&amp;gt;%
+  arrange(issued)
+</code></pre>"><span class="hljs-comment"># FDA warning letters sent from the start of 2005 onwards</span>
+post2005 &lt;- fda %&gt;%
+  filter(issued &gt;= <span class="hljs-string">"2005-01-01"</span>) %&gt;%
+  arrange(issued)
+</code></pre><p>Notice that operators like <code>&gt;=</code> can be used for dates, as well as for numbers.</p><h5 id="count-the-number-of-letters-issued-by-year"><a name="count-the-number-of-letters-issued-by-year" href="#count-the-number-of-letters-issued-by-year"></a>Count the number of letters issued by year</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># count the letters by year
+letters_year &amp;lt;- fda %&amp;gt;%
+  mutate(year = format(issued, &quot;%Y&quot;)) %&amp;gt;%
+  group_by(year) %&amp;gt;%
+  summarize(letters=n())
+</code></pre>"><span class="hljs-comment"># count the letters by year</span>
+letters_year &lt;- fda %&gt;%
+  mutate(year = format(issued, <span class="hljs-string">"%Y"</span>)) %&gt;%
+  group_by(year) %&gt;%
+  summarize(letters=n())
+</code></pre><p>This code introduces <strong>dplyr’s</strong> <code>mutate</code> function to create a new column in the data. The new variable <code>year</code> is the four-digit year <code>"%Y</code> (see <a href="https://www.r-bloggers.com/date-formats-in-r/">here</a> for more on time and date formats in R), extracted from the <code>issued</code> dates using the <code>format</code> function. Then the code groups by year and counts the number of letters for each one.</p><h5 id="add-columns-giving-the-number-of-days-and-weeks-that-have-elapsed-since-each-letter-was-sent"><a name="add-columns-giving-the-number-of-days-and-weeks-that-have-elapsed-since-each-letter-was-sent" href="#add-columns-giving-the-number-of-days-and-weeks-that-have-elapsed-since-each-letter-was-sent"></a>Add columns giving the number of days and weeks that have elapsed since each letter was sent</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># add new columns showing many days and weeks elapsed since each letter was sent
+fda &amp;lt;- fda %&amp;gt;%
+  mutate(days_elapsed = Sys.Date() - issued,
+          weeks_elapsed = difftime(Sys.Date(), issued, units = &quot;weeks&quot;))
+</code></pre>"><span class="hljs-comment"># add new columns showing many days and weeks elapsed since each letter was sent</span>
+fda &lt;- fda %&gt;%
+  mutate(days_elapsed = Sys.Date() - issued,
+          weeks_elapsed = difftime(Sys.Date(), issued, units = <span class="hljs-string">"weeks"</span>))
+</code></pre><p>Notice in the first line that this code changes the <code>fda</code> data frame, rather than creating a new object. The function <code>Sys.Date</code> returns the current date, and if you subtract another date, it will calculate the difference in days. To calculate date and time differences using other units, use the <code>difftime</code> function.</p><p>Notice also that you can <code>mutate</code> multiple columns at one go, separated by commas.</p><h4 id="join-data-from-two-data-frames"><a name="join-data-from-two-data-frames" href="#join-data-from-two-data-frames"></a>Join data from two data frames</h4><p>There are also a number of <strong>join</strong> functions in <strong>dplyr</strong> to combine data from two data frames. Here are the most useful:</p><ul>
+<li><code>inner_join()</code> returns values from both tables only where there is a match.</li><li><code>left_join()</code> returns all the values from the first-mentioned table, plus those from the second table that match.</li><li><code>semi_join()</code> filters the first-mentioned table to include only values that have matches in the second table.</li><li><code>anti_join()</code> filters the first-mentioned table to include only values that have no matches in the second table.</li></ul><p>To illustrate, these <strong>joins</strong> will find doctors paid by Pfizer to run expert led forums who had also received a warning letter from the FDA:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># join to identify doctors paid to run Expert-led forums who also received a warning letter
+expert_warned_inner &amp;lt;- inner_join(pfizer, fda, by=c(&quot;first_name&quot; = &quot;name_first&quot;, &quot;last_name&quot; = &quot;name_last&quot;)) %&amp;gt;%
+  filter(category==&quot;Expert-Led Forums&quot;)
+
+expert_warned_semi &amp;lt;- semi_join(pfizer, fda, by=c(&quot;first_name&quot; = &quot;name_first&quot;, &quot;last_name&quot; = &quot;name_last&quot;)) %&amp;gt;%
+  filter(category==&quot;Expert-Led Forums&quot;)
+</code></pre>"><span class="hljs-comment"># join to identify doctors paid to run Expert-led forums who also received a warning letter</span>
+expert_warned_inner &lt;- inner_join(pfizer, fda, by=c(<span class="hljs-string">"first_name"</span> = <span class="hljs-string">"name_first"</span>, <span class="hljs-string">"last_name"</span> = <span class="hljs-string">"name_last"</span>)) %&gt;%
+  filter(category==<span class="hljs-string">"Expert-Led Forums"</span>)
+
+expert_warned_semi &lt;- semi_join(pfizer, fda, by=c(<span class="hljs-string">"first_name"</span> = <span class="hljs-string">"name_first"</span>, <span class="hljs-string">"last_name"</span> = <span class="hljs-string">"name_last"</span>)) %&gt;%
+  filter(category==<span class="hljs-string">"Expert-Led Forums"</span>)
+</code></pre><p>The code in <code>by=c()</code> defines how the <strong>join</strong> should be made. If instructions on how to join the tables are not supplied, <strong>dplyr</strong> will look for columns with matching names, and perform the <strong>join</strong> based on those.</p><p>The difference between the two <strong>joins</strong>  above is that the first contains all of the columns from both data frames, while the second gives only columns from the <code>pfizer</code> data frame.</p><p>In practice, you may wish to <code>inner_join</code> and then use <strong>dplyr’s</strong> <code>select</code> function to select the columns that you want to retain, for example:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># as above, but select desired columns from data
+expert_warned &amp;lt;- inner_join(pfizer, fda, by=c(&quot;first_name&quot; = &quot;name_first&quot;, &quot;last_name&quot; = &quot;name_last&quot;)) %&amp;gt;%
+  filter(category==&quot;Expert-Led Forums&quot;) %&amp;gt;%
+  select(first_plus, last_name, city, state, total, issued)
+
+expert_warned &amp;lt;- inner_join(pfizer, fda, by=c(&quot;first_name&quot; = &quot;name_first&quot;, &quot;last_name&quot; = &quot;name_last&quot;)) %&amp;gt;%
+  filter(category==&quot;Expert-Led Forums&quot;) %&amp;gt;%
+  select(2:5,10,12)
+</code></pre>"><span class="hljs-comment"># as above, but select desired columns from data</span>
+expert_warned &lt;- inner_join(pfizer, fda, by=c(<span class="hljs-string">"first_name"</span> = <span class="hljs-string">"name_first"</span>, <span class="hljs-string">"last_name"</span> = <span class="hljs-string">"name_last"</span>)) %&gt;%
+  filter(category==<span class="hljs-string">"Expert-Led Forums"</span>) %&gt;%
+  select(first_plus, last_name, city, state, total, issued)
+
+expert_warned &lt;- inner_join(pfizer, fda, by=c(<span class="hljs-string">"first_name"</span> = <span class="hljs-string">"name_first"</span>, <span class="hljs-string">"last_name"</span> = <span class="hljs-string">"name_last"</span>)) %&gt;%
+  filter(category==<span class="hljs-string">"Expert-Led Forums"</span>) %&gt;%
+  select(<span class="hljs-number">2</span>:<span class="hljs-number">5</span>,<span class="hljs-number">10</span>,<span class="hljs-number">12</span>)
+</code></pre><p>Notice that you can select by columns’ names, or by their positions, where     <code>1</code>    is the first column, <code>3</code> is the third, and so on.</p><p><a href="http://stat545-ubc.github.io/bit001_dplyr-cheatsheet.html">Here is a useful reference</a> for managing joins with <strong>dplyr</strong>.</p><h3 id="further-reading"><a name="further-reading" href="#further-reading"></a>Further reading</h3><p><strong><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">Introduction to dplyr</a></strong></p><p><strong><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">RStudio Data Wrangling Cheet Sheet</a></strong><br>Also introduces the <a href="https://blog.rstudio.org/2014/07/22/introducing-tidyr/">tidyr</a> package, which can manage wide-to-long transformations, among other data manipulations.</p><p><strong><a href="http://stackoverflow.com/">Stack Overflow</a></strong><br>For any work involving code, this question-and-answer site is a great resource for when you get stuck, to see how others have solved similar problems. Search the site, or <a href="http://stackoverflow.com/questions/tagged/r">browse R questions</a></p>
+
+	</div> <!-- /.container all -->
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>
