@@ -466,7 +466,7 @@ A logarithmic curve is just one example of a “non-linear” mathematical relat
 ### Assignment
 
 - Calculate the values needed to group nations into five quantile bins, according to the 2015 GDP per capita data in the file `gdp_pc_2015.csv`.
-- Make a histogram chart showing the distribution of
+- Make a histogram chart showing the distribution of this data.
 - Subscribe to visualization blogs, follow visualization thought leaders on Twitter, and take other steps to track developments in data viz and data journalism.
 - Share your Google spreadsheet with your calculated quantile values and histogram chart, and send me your initial list of visualization blogs etc by the start of next week's class.
 
