@@ -12,7 +12,7 @@ These cues are not created equal, however. In the mid-1980s, statisticians Willi
 
 ![](./img/class2_2.jpg)
 
-This perceptual hierarchy of visual cues is important. When making comparisons with continuous variables, aim to use cues near the top of the scale wherever possible.
+This **perceptual hierarchy of visual cues** is important. When making comparisons with continuous variables, aim to use cues near the top of the scale wherever possible.
 
 ### But this doesn't mean that everything becomes a bar chart
 
@@ -25,13 +25,7 @@ To witness this perceptual hierarchy, look at the following visual encodings of 
 ![](./img/class2_3.jpg)
 
 
-If you have spent any time reading blogs on data visualization, you will know the disdain in which pie charts are often held. It should be clear which of these two charts is easiest to read:
-
-![](./img/class2_4.jpg)
-
-(Source: [VizThinker](http://vizthinker.com/grudge-match-pie-chart-vs-bar-chart/))
-
-Pie charts encode continuous variables primarily using the angles made in the center of the circle. It is certainly true that angles are harder read accurately than aligned bars. However, note that encoding data using the area of circles -- which has become a "fad" in data visualization in recent years -- makes even tougher demands on your audience.
+Note that encoding data using the area of circles -- which has become popular in data visualization in recent years, [for example](http://www.informationisbeautiful.net/visualizations/snake-oil-supplements/) -- makes even tougher demands on your audience.
 
 
 ### Which chart type should I use?
@@ -66,24 +60,19 @@ There is one sacrosanct rule with bar and column charts: Because they rely on th
 
 ### Comparisons: change over time
 
-Bar or column charts can also be used to illustrate change over time, but there are other possibilities, as shown in these charts showing participation in the federal government's food stamps nutritional assistance program, from 1969 to 2014.
+Bar or column charts can also be used to illustrate change over time, but there are other possibilities, as shown in these charts showing participation in the federal government's food stamps nutritional assistance program, from 1969 to 2016.
 
-![](./img/class2_9.jpg)
+![](./img/class2_9.png)
 
 (Source: Peter Aldhous, from [U.S. Department of Agriculture](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) data)
 
-Each of these charts communicates the same basic information with a subtly different emphasis. The column chart emphasizes each year as a discrete point in time, while the line chart focuses on the overall trend or trajectory. The dot-and-line chart is a compromise between these two approaches, showing the trend while also drawing attention to the value for each year. (The dot-column chart is an unusual variant of a column chart, included here to show another possible design approach.)
+Each of these charts communicates the same basic information with a subtly different emphasis. The column chart emphasizes each year as a discrete point in time, while the line chart focuses on the overall trend or trajectory. The dot and line chart is a compromise between these two approaches, showing the trend while also drawing attention to the value for each year. (The dot column chart is an unusual variant of a column chart, included here to show another possible design approach.)
 
-
-### Multiple comparisons, including over time
-
-When comparing very many items, or how one item has changed over time, "small multiples" provide another approach. They has been used very successfully in recent years by several news organizations. Here is a small section from a larger graphic showing the severity of drought in California in late 2013 and early 2014:
+When comparing very many items over time, another approach may be needed to avoid charts getting too busy. One option is to encode data using color, dropping down the perceptual heiarchy of visual cues, to create a type of chart known as a heat map:
 
 ![](./img/class2_10.jpg)
 
-(Source: [*Los Angeles Times*](http://www.latimes.com/science/la-me-g-california-drought-map-htmlstory.html))
-
-Small multiples are becoming more popular as more people consume news graphics on mobile devices. Unlike larger conventional graphics, they can be made to reflow easily in responsive web designs to display effectively on small screens.
+(Source: [*The Wall Street Journal*](http://graphics.wsj.com/infectious-diseases-and-vaccines/))
 
 If you are comparing two points in time for many items, a slope graph can be an effective choice. Slope falls about midway on the perceptual hierarchy of visual cues, but allows us to scan many items at once and note obvious differences. Here I used slope graphs to visualize data from a study examining the influence of putting house plants in hospital rooms on patient's sense of well-being, measured before abdominal surgery, and after a period of recovery. I used thicker lines and color to highlight ratings that showed statistically significant improvements.
 
@@ -93,7 +82,7 @@ If you are comparing two points in time for many items, a slope graph can be an 
 
 ### Composition: parts of the whole
 
-This is where the much-maligned pie chart does have a role, although it is not the only option. Which of these two representations of an August 2014 poll of public opinion on President Barack Obama's job performance makes the differences between his approval ratings for difference policy areas easiest to read, the pie charts or the stacked column charts below?
+Pie charts are often maligned, but have a legitimate role in visualizing parts of a whole -- although they are not the only option. Which of these two representations of an August 2014 poll of public opinion on President Barack Obama's job performance makes the differences between his approval ratings for difference policy areas easiest to read, the pie charts or the stacked column charts below?
 
 These graphics involve both comparison and composition -- a common situation in data journalism.
 
@@ -101,15 +90,21 @@ These graphics involve both comparison and composition -- a common situation in 
 
 (Source: Peter Aldhous, from CBS poll data, via [PollingReport.com](http://pollingreport.com/obama_ad.htm))
 
-In class, we'll discuss how both of these representations of the data could have been improved.
+In class, we'll discuss how both of these representations of the data could have been improved, given what we've learned about encoding data using visual cues.
 
 I would suggest abandoning pie charts if there are any more than three parts to the whole, as they become very hard to read when there are many segments. ProPublica's [graphics style guide](https://github.com/propublica/guides/blob/master/news-apps.md) goes further, allowing pie charts with two segments only.
 
-[Recent research](https://eagereyes.org/blog/2016/a-reanalysis-of-a-study-about-square-pie-charts-from-2009) into how people perceive composition visualizations with just categories suggests that the best approach may actually be a square chart. Surprisingly, this is an example where an encoding of area seems to beat length for accuracy:
+[Recent research](https://eagereyes.org/blog/2016/a-reanalysis-of-a-study-about-square-pie-charts-from-2009) into how people perceive composition visualizations with just two categories suggests that the best approach may actually be a square chart. Surprisingly, this is an example where an encoding of area seems to beat length for accuracy:
 
 ![](./img/squarepies.jpg)
 
 (Source: [Eagereyes](http://flowingdata.com/2016/07/15/square-pie-chart-beats-out-the-rest-in-perception-study/))
+
+Charts that explictly divide a square or rectangle into component squares, sometimes called waffle charts, can be very effective, as in this visualization of voting in the 2016 presidential primary elections:
+
+![](./img/class2_12a.jpg)
+
+(Source: [*The New York Times*](https://www.nytimes.com/interactive/2016/08/01/us/elections/nine-percent-of-america-selected-trump-and-clinton.html))
 
 Another approach, known as a treemap, similarly uses area to encode the size of parts of the whole, and can be effective to display "nested" variables -- where each part of the whole is broken down into further parts. Here *The New York Times* used a treemap to display President Obama's 2012 budget request to Congress, also using color to indicate whether the proposal represented an increase (shades of green) or decrease (red) in spending:
 
@@ -127,11 +122,11 @@ Data journalists frequently need to show how parts of the whole vary over time. 
 
 In the drought example, the size of the whole remains constant. Even if the size of the whole changes, this format can be used to show changes in the relative size of parts of the whole, by converting all of the values at each time interval into percentages of the total.
 
-Stacked column charts can also be used to simultaneously show change in composition over time and change in the size of the whole. This example is from one of my own articles, looking at change over time in the numbers of three categories of scientific research papers in published in *Proceedings of the National Academy of Sciences*:
+Stacked column charts can also be used to simultaneously show change in composition over time and change in the size of the whole. This example is from one of my own articles, looking at change over time in the numbers of monkeys used in the U.S. in experiments involing unalleviated pain or distress.
 
 ![](./img/class2_15.jpg)
 
-(Source: [*Nature*](http://www.nature.com/news/scientific-publishing-the-inside-track-1.15424))
+(Source: [BuzzFeed News](https://www.buzzfeed.com/peteraldhous/the-monkey-victims-of-the-war-on-terror))
 
 Just as for simple comparisons over time, columns are not the only possibility when plotting changes in composition over time. The parts-of-the-whole equivalent of the line chart, stressing the overall trend rather than values at discrete points in time, is the stacked area chart. Again, these charts can be used to show change of time with the size of the whole held constant, or varying over time. This 2009 interactive from the *The New York Times* used this format to reveal how Americans typically spend their day:
 
@@ -162,7 +157,7 @@ This data, from the [California Department of Public Health](https://www.cdph.ca
 
 When looking at change over time at the state level, the perceptual hierarchy makes a column chart a good choice:
 
-![](./img/infodes_5.png)
+![](./img/infodes_5.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
@@ -174,7 +169,7 @@ But as for the food stamps data, a bar chart is not the only choice:
 
 Here's the same information presented as a line chart:
 
-![](./img/infodes_6.png)
+![](./img/infodes_6.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
@@ -183,7 +178,7 @@ Notice that here, I haven't started the Y axis at zero. This would be unforgivab
 
 And here's the data as a dot-and-line chart:
 
-![](./img/infodes_7.png)
+![](./img/infodes_7.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
@@ -192,19 +187,19 @@ Here, I've returned to a Y axis that starts at zero, so that the relative positi
 
 But what if we want to look at individual counties? When comparing a handful of counties, the dot-and-line chart, combining the visual cues of position on an aligned scale (for the yearly values) and slope (for the rate of change from year to year) works well:
 
-![](./img/infodes_8.png)
+![](./img/infodes_8.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
 But there are 58 counties in California, and trying to compare them all using a dot-and-line chart results in chaos:
 
-![](./img/infodes_9.png)
+![](./img/infodes_9.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
 In this case, it makes sense to drop down the perceptual hierarchy, and use the intensity of color to represent the percentage of incomplete immunization:
 
-![](./img/infodes_10.png)
+![](./img/infodes_10.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
@@ -214,7 +209,7 @@ What if we want to visualize the data for every kindergarten on a single chart, 
 
 Here's my best attempt at this:
 
-![](./img/infodes_11.png)
+![](./img/infodes_11.jpg)
 
 (Source: Peter Aldhous, from [California Department of Public Health](https://www.cdph.ca.gov/programs/immunize/Pages/ImmunizationLevels.aspx) data)
 
@@ -306,8 +301,6 @@ Chart furniture can also be used to encode data, as in this example, which shows
 
 (Source: [*The New York Times*](http://www.nytimes.com/interactive/2013/12/04/nyregion/how-crime-declined-in-new-york-city-and-the-us.html))
 
-In this example, the label for the Y axis is displayed horizonatally in the main chart area, rather than vertically alongside the chart. News media often do this so that readers don't have to crane their necks to read the label. If you do this, check that it is clear to users that the label refers to scale on the Y axis.
-
 Think carefully about how much chart furniture you really need, and make sure that the story told by your data is front and center. Think data-ink: What proportion the ink or pixels in your chart is actually encoding data, and what proportion is embellishment, adding little to your story?
 
 Here is a nice example of a graphic that minimizes chart junk, and maximizes data-ink. Notice how the Y axis doesn't need to be drawn, and the gridlines are an absence of ink, consisting of white lines passing through the columns:
@@ -322,19 +315,19 @@ Labels and spot-color highlights can be particularly useful to highlight your st
 
 It is clear from the first, unlabeled plot, that male and female salaries for the same job are strongly correlated, as we would expect, but that relationship is not very interesting. Notice also how I have used transparency to help distinguish overlapping individual points.
 
-![](./img/salaries1.jpg)
+![](./img/class2_27.jpg)
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
 What we are interested in here is whether men and women are compensated similarly for doing the same jobs. The story in the data starts to emerge if you add a line of equal pay, with a slope of 1 (note that this isn't a trend line, as we discussed last week). Here I have also highlighted the few jobs in which women in 2013 enjoyed a marginal pay gap over men:
 
-![](./img/salaries2.jpg)
+![](./img/class2_28.jpg)
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
 Notice how adding another line, representing a 25% pay gap, and highlighting the jobs where the pay gap between men and women is largest, emphasizes different aspects of the story:
 
-![](./img/salaries3.jpg)
+![](./img/class2_29.jpg)
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
@@ -416,7 +409,11 @@ Increasingly, news content is being viewed on mobile devices with small screens
 
 At the most basic level, this means making graphics "responsive," so that their size adjusts to screen size. But there is more to effective design for mobile than this.
 
-We have already discussed the value of small multiples, which can be made to reflow for different screen sizes.
+“Small multiples,” showing multiple variants small charts or maps, provide another approach to graphics on mobile. They can reflow easily for different screen widths, and have been used very successfully in recent years by several news organizations. Here is a small section from a larger graphic showing the severity of drought in California in late 2013 and early 2014:
+
+![](./img/class2_37a.jpg)
+
+(Source: [*Los Angeles Times*](http://www.latimes.com/science/la-me-g-california-drought-map-htmlstory.html))
 
 [This interactive](http://chicagosmilliondollarblocks.com), exploring spending on incarceration by block in Chicago, is a nice example of organizing and displaying the same material differently for different screen sizes. Open it up on your laptop then reduce the size of your browswer window to see how it behaves.
 
@@ -460,7 +457,7 @@ Over the coming weeks and beyond, make a habit of looking for innovative graphic
 
 ![](./img/class2_42.jpg)
 
-(Source: [*The New York Times*](http://www.nytimes.com/interactive/2012/10/15/us/politics/swing-history.html))
+(Source: [*The New York Times*](https://www.nytimes.com/interactive/2017/07/28/climate/more-frequent-extreme-summer-heat.html))
 
 Similarly, make note of graphics that communicate less effectively, and see if you can work out why.
 

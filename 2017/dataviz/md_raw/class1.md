@@ -267,7 +267,7 @@ To produce informative graphics that tell a clear story, data journalists often 
 
 There is no simple answer to this question, as it really depends on the story you are telling. In the jobless rate example, the bins divided the population into groups of young, mid-career and older workers, revealing how young workers in particular were bearing the brunt of the Great Recession.
 
-When binning data, it is again a good idea to look at the distribution, and experiment with different possibilities. For example, the wealth of nations, measured in terms of gross domestic product (GDP) per capita in 2015, has a skewed distribution, similar to the baseball salaries. If we look at the distribution, drawn here in increments of $2,500, we will see that it is highly skewed, rather like the baseball salaries:
+When binning data, it is again a good idea to look at the distribution, and experiment with different possibilities. For example, the wealth of nations, measured in terms of gross domestic product (GDP) per capita in 2015, has a skewed distribution, similar to the baseball salaries. Here it is, drawn in increments of $2,500:
 
 ![](./img/class1_14.jpg)
 
