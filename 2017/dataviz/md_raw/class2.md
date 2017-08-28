@@ -311,7 +311,7 @@ Here is a nice example of a graphic that minimizes chart junk, and maximizes dat
 
 Contrast this with the proliferation of chart junk in the earlier misleading Fox News column chart.
 
-Labels and spot-color highlights can be particularly useful to highlight your story, as shown in the following scatter plots, used here to show the relationship between the median salaries paid to women and men for the same jobs in 2015. In this case there is no suggestion of causation; here the scatter plot format is being used to display two distributions simultaneously -- see the chart types thought-starter.
+Labels and spot-color highlights can be particularly useful to highlight your story, as shown in the following scatter plots, used here to show the relationship between the median salaries paid to women and men for the same jobs in 2016. In this case there is no suggestion of causation; here the scatter plot format is being used to display two distributions simultaneously -- see the chart types thought-starter.
 
 It is clear from the first, unlabeled plot, that male and female salaries for the same job are strongly correlated, as we would expect, but that relationship is not very interesting. Notice also how I have used transparency to help distinguish overlapping individual points.
 
@@ -319,7 +319,7 @@ It is clear from the first, unlabeled plot, that male and female salaries for th
 
 (Source: Peter Aldhous, from [Bureau of Labor Statistics](http://www.bls.gov/cps/cpsaat39.htm) data)
 
-What we are interested in here is whether men and women are compensated similarly for doing the same jobs. The story in the data starts to emerge if you add a line of equal pay, with a slope of 1 (note that this isn't a trend line, as we discussed last week). Here I have also highlighted the few jobs in which women in 2013 enjoyed a marginal pay gap over men:
+What we are interested in here is whether men and women are compensated similarly for doing the same jobs. The story in the data starts to emerge if you add a line of equal pay, with a slope of 1 (note that this isn't a trend line, as we discussed last week). Here I have also highlighted the job in which women in 2016 enjoyed a the biggest (although still marginal) pay gap over men:
 
 ![](./img/class2_28.jpg)
 

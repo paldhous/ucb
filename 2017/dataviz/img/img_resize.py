@@ -13,14 +13,13 @@ for infile in glob.glob("*.jpg"):
     im.save(file + ".jpg", "JPEG", quality = 100)
     print "processing " + file
 
-# resize tiffs
-for infile in glob.glob("*.tiff"):
+# resize pngs
+for infile in glob.glob("*.png"):
     file, ext = os.path.splitext(infile)
     im = Image.open(infile)
     im.thumbnail(size, Image.ANTIALIAS)
     im.save(file + ".jpg", "JPEG", quality = 100)
     print "processing " + file
-
 
 print "DONE!"
 
