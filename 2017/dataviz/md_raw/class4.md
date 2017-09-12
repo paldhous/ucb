@@ -6,20 +6,19 @@ This avoids the hell of having to search through multiple versions of similar fi
 
 Version control was invented for programmers working on complex coding projects. But it is good practice for any project -- even if all you are managing are versions of a simple website, or a series of spreadsheets.
 
-This tutorial borrows from the [Workflow and GitHub](https://newmedia.report/classes/coding/2016/workflow-and-github/) lession in Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2016/) class -- see the further reading links below.
+This tutorial borrows from the [Workflow and GitHub](https://newmedia.report/classes/coding/2017/workflow-and-github/) lession in Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2017/) class -- see the further reading links below.
 
 ### Introducing Git, GitHub and GitHub Desktop
 
 The version control software we will use is called **[Git](https://git-scm.com/)**. It is installed automatically when you install and configure **[GitHub Desktop](https://desktop.github.com/)**. GitHub Desktop is a point-and-click GUI that allows you to manage version control for local versions of projects on your own computer, and sync them remotely with **[GitHub](https://github.com/)**. GitHub is a social network, based on Git, that allows developers to view and share one another's code, and collaborate on projects.
 
-Even if you are working on a project alone, it is worth regularly synching to GitHub. Not only does this provides a backup copy of the entire project history in the event of a problem with your local version, but GitHub also allows you to host websites. This means you can go straight from a project you are developing to a published website. If you don't already have a personal portfolio website, you can host one for free on GitHub.
+Even if you are working on a project alone, it is worth regularly syncing to GitHub. Not only does this provides a backup copy of the entire project history in the event of a problem with your local version, but GitHub also allows you to host websites. This means you can go straight from a project you are developing to a published website. If you don't already have a personal portfolio website, you can host one for free on GitHub.
 
 ### The files we will use today
 
-Download the files for this session from [here](data/week4.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
+Download the files for this session from [here](data/week4.zip), unzip the folder and place it on your desktop. It contains the following files:
 
 `index.html` `index2.html` Two simple webpages, which we will edit and publish on GitHub.
-`css` `fonts` `js` Folders with files to run the Bootstrap web framework.
 
 ### Some terminology
 
@@ -67,11 +66,13 @@ At the next screen, click `Set up using SMS`. Then enter your phone number, send
 
 ![](img/class4_7.jpg)
 
-At the next screen click `Download and print recovery codes`. These will allow you to get back into your account if you lose your phone. Do print them out, keep them somewhere safe, and delete the file.
+At the next screen click `Download` recovery codes. These will allow you to get back into your account if you lose your phone. Do print them out, keep them somewhere safe or safe them in a password manager, and delete the file.
+
+Click `Enable two-factor authentication`.
 
 ### Open and authenticate GitHub desktop
 
-Open the GitHub Desktop app. At the opening screen, click `Continue`:
+Open the GitHub Desktop app. At the opening screen, click `Sign into GitHub Com`:
 
 ![](img/class4_8.jpg)
 
@@ -83,17 +84,15 @@ You will then be sent a new two-factor authentication code which you will need t
 
 ![](img/class4_10.jpg)
 
-At the next screen, enter your name and email address if they do not automatically appear, click `Install Command Line Tools`, and then `Continue`:
+At the next screen, enter your name and email address if they do not automatically appear, and then `Continue`:
 
 ![](img/class4_11.jpg)
 
-Then click `Done` at the `Find local repositories` screen, as you don't have local repositories to add.
+Then click `Finish` at the next screen.
 
 The following screen should now open:
 
 ![](img/class4_12.jpg)
-
-Your workspace contains one repo, which is an automated GitHub tutorial. Complete this in your own time if you wish. It will repeat many of the steps we will explore today.
 
 ### Your first repository
 
@@ -124,7 +123,7 @@ You should now be sent to the GitHub Desktop app, where you will be asked where 
 
 ![](img/class4_17.jpg)
 
-Now you should be able to see the repo in the GitHub Desktop app:
+Now you should now see the following screen:
 
 ![](img/class4_18.jpg)
 
@@ -132,14 +131,12 @@ You should also be able to find the folder you just cloned in the location you s
 
 ![](img/class4_19.jpg)
 
-It contains a single file called `README.md`. This is a simple text file written in a language called Markdown, which we will explore shortly. You use this file to
-write an extended description for your project, which will be displayed on the repo's page on GitHub.
+It contains a single file called `README.md`. This is a simple text file written in a language called Markdown, which we will explore shortly. You use this file to write an extended description for your project, which will be displayed on the repo's page on GitHub.
 
 #### Make a simple change to the project
 
-Add the file `index.html` to the project folder on your computer. Notice that you now have `1 Uncommitted Change` in GitHub Desktop.
+Add the file `index.html` to the project folder on your computer. Your GitHub Desktop screen should now look like this.
 
-Click on that tab, and you should see the following screen:
 
 ![](img/class4_20.jpg)
 
@@ -151,25 +148,23 @@ Write a summary and description for your commit, then click `Commit to master`:
 
 ![](img/class4_21.jpg)
 
-Back in the `History` tab, you should now see two commits:
+In the `History` tab, you should now see two commits:
 
 ![](img/class4_22.jpg)
 
-So far you have committed the change on your local computer, but you haven't pushed it to GitHub, To do that, click the `Sync` button at top right.
+So far you have committed the change on your local computer, but you haven't pushed it to GitHub, To do that, click the `Push to origin` link at top right.
 
 Go to the project page on the GitHub website, refresh your browser if necessary, and see that there are now two commits, and the `index.html` file is in the remote repo:
 
 ![](img/class4_23.jpg)
 
-#### Make a new branch, make a pull request, and merge with master
+#### Make a new branch, edit, and merge with master
 
-Back in GitHub Desktop, click on the new branch button at top left, and create a new branch called `test-branch`:
+Back in GitHub Desktop, click on `Branch>New Branch` from the top menu, and create a new branch called `test-branch`:
 
 ![](img/class4_24.jpg)
 
-You can now switch between your two branches using the button to the immediate right of the new branch, which will display either `master` or `test-branch`. Do pay close attention to which branch you are working in!
-
-Here I am working in the test branch, having made the edit below:
+You can now switch between your two branches using the `Current Branch` dropdown menu. Do pay close attention to which branch you are working in!
 
 ![](img/class4_25.jpg)
 
@@ -180,31 +175,17 @@ While in the `test-branch` on Github Desktop, open `index.html` in a text editor
 <p>I'm a new paragraph</p>
 ```
 
-Save the file, then return to GitHub Desktop to view the changes in the `test-branch`.
-
-Now switch to the `master` branch and look at the file `index.html` in your text editor. It should have reverted to the earlier version, because you haven't merged the change in `test-branch` with `master`.
-
-Switch back to `test-branch` in Github Desktop, and commit the change as before with an appropriate summary and description:
+Save the file and view the changes in the `test-branch`:
 
 ![](img/class4_26.jpg)
 
-Click the `Pull request` at top right and then `Send Pull Request`:
+Commit this change in the `test-branch` as before with an appropriate summary and description.
+
+Now switch to the `master` branch and look at the file `index.html` in your text editor. It should have reverted to the earlier version, because you haven't merged the change in `test-branch` with `master`.
+
+Select `Branch>Merge Into Current Branch...` from the top menu, select to merge from the `test-branch`, and click `Merge into master`:
 
 ![](img/class4_27.jpg)
-
-You should now be able to see the pull request on GitHub:
-
-![](img/class4_28.jpg)
-
-Click `Compare & pull request` to see the following screen:
-
-![](img/class4_29.jpg)
-
-If another collaborator had made this pull request, you might merge this into `master` online and then sync your local version of the repo with the remote to incorporate it.
-
-However, you made this pull request, so `Close pull request` and return to GitHub desktop. In the `master` branch, click `Compare` at top left. Select `test-branch` and then click `Update from test-branch`. This should merge the changes from `test-branch` into `master`:
-
-![](img/class4_30.jpg)
 
 Make sure you are in the `master` branch on GitHub Desktop, then view the file in your text editor to confirm that it is now the version you edited in `test-branch`.
 
@@ -214,13 +195,13 @@ In your `master` branch on Github Desktop, make a branch called `gh-pages`:
 
 ![](img/class4_31.jpg)
 
-In this branch, click the `Publish` button at top right.
+In this branch, click on `Publish branch` at top right.
 
-Now go to the GitHib repo page, refresh your browser if necessary, and notice that this branch now exists there:
+Now go to the GitHub repo page, refresh your browser if necessary, and notice that this branch now exists there:
 
 ![](img/class4_32.jpg)
 
-Now go the the url `https://[username].github.io/my-first-repo/`, whhere `[username]` is your GitHub user name, and the webpage `index.html` should be online:
+Now go the the url `https://[username].github.io/my-first-repo/`, where `[username]` is your GitHub user name, and the webpage `index.html` should be online:
 
 ![](img/class4_33.jpg)
 
@@ -249,7 +230,7 @@ Now edit to the following:
 
 Here is some text. Notice that it doesn't have the # used to denote various weights of HTML headings (You can use up to six #).
 
-And here is a [link](http://severnc6.github.io/my-first-repo) to the `gh-pages` website for this repo.
+And here is a [link](https://petera-ucb.github.io/my-first-repo/) to the `gh-pages` website for this repo.
 
 *Here* is some italic text.
 
@@ -276,7 +257,7 @@ You now have a template Bootstrap page with a navigation bar at the top. Open in
 
 ![](img/class4_36.jpg)
 
-The links in the dropdown menu are currently to pages that don't exist, and the email link will send a message to me. Open in a text editor to view the code for the page:
+The links in the dropdown menu are currently to pages that don't exist. Open in a text editor to view the code for the page:
 
 ![](img/class4_37.jpg)
 
@@ -291,31 +272,42 @@ And also some text.
 ```
 From the top menu in Haroopad, select `File>Export...>HTML` and notice that it has saved as a webpage in your repo your computer.
 
-We just want to take the text from the web page and copy it into our `index.html` page. To do this, select `File>Export...>Plain HTML` from the top menu in Haroopad, open `index.html` in your text editor, position your cursor between immediately below the `<div class="container">` tag, and `⌘-V` to paste in the HTML for the text we wrote in Haroopad.
+We just want to take the text from the web page and copy it into our `index.html` page. To do this, select `File>Export...>Plain HTML` from the top menu in Haroopad, open `index.html` in your text editor, select `<h1>Hello, world!</h1>`, and `⌘-V` to paste in its placethe HTML for the text we wrote in Haroopad.
 
 Save `index.html` and view in your browser.
 
 ![](img/class4_38.jpg)
 
-In GitHub Desktop, view the uncommited changes, `Commit to master` and `Sync` to GitHub.
-
-Now switch to the `gh-pages` branch, `Update from master` and `Sync`:
+In GitHub Desktop, view the uncommited changes:
 
 ![](img/class4_39.jpg)
 
-Both the `master` and `gh-pages` branches should now be updated on GitHub:
+If you see the file `.DS_Store`, which on the Mac stores attributes f the folder in which it resides, uncheck that so it won't be part of your commit.
+
+Then `Commit to master` and click `Push origin` to push that commit to GitHub.
+
+Now view your GitHub repo online and see that the `master` branch reflects the new changes:
 
 ![](img/class4_40.jpg)
 
-Follow the link we included in the `README`, and you'll be sent to the hosted webpage, at `https://[username].github.io/my-first-repo/`, where `[username`] is your GitHub user name.
+But the `gh-pages` branch does not:
 
 ![](img/class4_41.jpg)
 
+Back in GitHub Desktop, switch to the `gh-pages` branch, select
+`Branch>Update From Default Branch`, and click `Push origin`.
+
+The `gh-pages` branch for your online repo should now reflect the latest changes:
+
+![](img/class4_42.jpg)
+
+In your browser, go to the link for your Github hosted webpage, at `https://[username].github.io/my-first-repo/`, where `[username`] is your GitHub user name. You should see the web page we made:
+
+![](img/class4_43.jpg)
+
 #### Next steps with Bootstrap
 
-W3Schools has a tutorial [here](http://www.w3schools.com/bootstrap/default.asp), and Jeremy Rue has a tutorial [here](https://newmedia.report/classes/webskills/2016/2016-11-29-bootstrap-framework/). The key to responsive design with Bootstrap is its grid system, which allows up to 12 columns across a page. [This section](http://www.w3schools.com/bootstrap/bootstrap_grid_system.asp) of the W3schools tutorial explains how to use the grid system to customize layouts for different devices.
-
-[This site](http://bootstrap3-menu.codedorigin.com/) helps you customize a Bootstrap navigation bar.
+W3Schools has a tutorial [here] (http://www.w3schools.com/bootstrap/default.asp), and Jeremy Rue has a tutorial [here](https://newmedia.report/classes/webskills/2016/2016-11-29-bootstrap-framework/). The key to responsive design with Bootstrap is its grid system, which allows up to 12 columns across a page. [This section](http://www.w3schools.com/bootstrap/bootstrap_grid_system.asp) of the W3schools tutorial explains how to use the grid system to customize layouts for different devices.
 
 There are various sites on the web that provide customized Bootstrap themes -- some free, some not. Search "Bootstrap themes" to find them. A theme is a customized version of Bootstrap that can be used as a starting point for your own website. Jeremy Rue has also created a [suggested portfolio theme](https://newmedia.report/images/classes/webskills/portfolio-template.zip).
 
@@ -335,8 +327,8 @@ There are various sites on the web that provide customized Bootstrap themes -- s
 
 ### Further reading
 
-[Workflow and Github](https://newmedia.report/classes/coding/2016/workflow-and-github/)
-Lesson from Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2016/) class.
+[Workflow and Github](https://newmedia.report/classes/coding/2017/workflow-and-github/)
+Lesson from Jeremy Rue's [Advanced Coding Interactives](https://newmedia.report/classes/coding/2017/) class.
 
 [Getting Started with GitHub Desktop](https://help.github.com/desktop/guides/getting-started/)
 
@@ -345,9 +337,7 @@ This explains how you can creates web pages automatically from GitHub. However, 
 
 [Git Reference Manual](https://git-scm.com/doc)
 
-[Getting started with Bootstrap](http://getbootstrap.com/getting-started/)
-
-[W3Schools Bootstrap tutorial](http://www.w3schools.com/bootstrap/)
+[Getting started with Bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
 
 [Using Bootstrap Framework For Building Websites](https://newmedia.report/classes/webskills/2016/2016-11-29-bootstrap-framework/)
 Lesson from Jeremy Rue's [Intro to Multimedia Web Skills](https://newmedia.report/classes/webskills/2016/) class.
