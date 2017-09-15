@@ -307,7 +307,7 @@ In your browser, go to the link for your Github hosted webpage, at `https://[use
 
 #### Next steps with Bootstrap
 
-W3Schools has a tutorial [here] (http://www.w3schools.com/bootstrap/default.asp), and Jeremy Rue has a tutorial [here](https://newmedia.report/classes/webskills/2016/2016-11-29-bootstrap-framework/). The key to responsive design with Bootstrap is its grid system, which allows up to 12 columns across a page. [This section](http://www.w3schools.com/bootstrap/bootstrap_grid_system.asp) of the W3schools tutorial explains how to use the grid system to customize layouts for different devices.
+W3Schools has a tutorial [here](http://www.w3schools.com/bootstrap/default.asp), and Jeremy Rue has a tutorial [here](https://newmedia.report/classes/webskills/2016/2016-11-29-bootstrap-framework/). The key to responsive design with Bootstrap is its grid system, which allows up to 12 columns across a page. [This section](http://www.w3schools.com/bootstrap/bootstrap_grid_system.asp) of the W3schools tutorial explains how to use the grid system to customize layouts for different devices.
 
 There are various sites on the web that provide customized Bootstrap themes -- some free, some not. Search "Bootstrap themes" to find them. A theme is a customized version of Bootstrap that can be used as a starting point for your own website. Jeremy Rue has also created a [suggested portfolio theme](https://newmedia.report/images/classes/webskills/portfolio-template.zip).
 
