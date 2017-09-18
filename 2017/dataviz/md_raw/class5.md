@@ -12,11 +12,14 @@ In this class, we will cover some tips and tricks for finding the data you need 
 
 Download the data for this session from [here](data/week5.zip), unzip the folder and place it on your desktop. It contains the following files:
 
-- `oil_production.csv` Data on oil production by world region from 2000 to 2014, in thousands of barrels per day, from the [U.S. Energy Information Administration](http://www.eia.gov/cfapps/ipdbproject/iedindex3.cfm?tid=5&pid=53&aid=1&cid=regions,&syid=2000&eyid=2014&unit=TBPD).
+- `oil_production.csv` Data on oil production by world region from 2000 to 2016, in thousands of barrels per day, from the [U.S. Energy Information Administration](https://www.eia.gov/beta/international/data/browser/#/?pa=0000000000000000000000000000000000g&c=ruvvvvvfvtvnvv1urvvvvfvvvvvvfvvvou20evvvvvvvvvnvvuvo&ct=0&tl_id=5-A&vs=INTL.53-1-AFG-TBPD.A&vo=0&v=H&start=1980&end=2016).
 
 - `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/Pages/Default.aspx).
 
-- `urls.xls` A spreadsheet that we'll use in webscraping.
+- `ny.txt` file scraped from State of New York site documenting disciplinary actions against doctors.
+
+- `NY.html` web page with a table giving links to pages documenting individual disciplinary actions against New York doctors.
+
 
 ### Data portals
 
@@ -24,13 +27,15 @@ Life is much easier if you can find everything you need in one place. The main e
 
 Be warned, however, that Data.gov is a work in progress, and does not contain all of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. [FedStats](http://fedstats.sites.usa.gov/) has [links to agencies](http://fedstats.sites.usa.gov/agencies/) with with data collections.
 
-As a data journalist, it is worth familiarizing yourself with the main federal government agencies that have responsibility for the beats you are interested in, and the datasets they maintain. Here are some examples of agencies with useful data:
+It is worth familiarizing yourself with the main government agencies that have responsibility for the beats you are interested in, and the datasets they maintain.
 
-- **[U.S. Census Bureau](http://www.census.gov/)**: population, demographic, economic and other data, including trade and manufacturing statistics. The [American FactFinder](http://factfinder2.census.gov/faces/nav/jsf/pages/index.xhtml) is especially useful for summary data about specific geographical areas. As well as running the decadal national census, the bureau operates other surveys, which provide more detailed information from representative samples of the U.S. population, including the [Current Population Survey](http://www.census.gov/cps/) (run jointly with the Bureau of Labor Statistics, see below) and the [American Community Survey](http://www.census.gov/acs/www/).
+Here are some examples of agencies with useful data:
+
+- **[U.S. Census Bureau](http://www.census.gov/)**: population, demographic, economic and other data, including trade and manufacturing statistics. The [American FactFinder](http://factfinder2.census.gov/faces/nav/jsf/pages/index.xhtml) is especially useful for summary data about specific geographical areas. As well as running the decadal national census, the bureau operates other surveys, which provide more detailed information from representative samples of the U.S. population, including the [Current Population Survey](https://www.census.gov/programs-surveys/cps.html) (run jointly with the Bureau of Labor Statistics, see below) and the [American Community Survey](https://www.census.gov/programs-surveys/acs/).
 
 - **[Bureau of Labor Statistics](http://www.bls.gov/)**: employment and unemployment, workplace injuries, time use, pay and consumer spending, including the [Consumer Price Index](http://www.bls.gov/cpi/), a key measure of inflation. Browse its datasets [here](http://www.bls.gov/data/).
 
-- [**Bureau of Justice Statistics**](http://www.bjs.gov/): crime and law enforcement. [Here](http://www.bjs.gov/index.cfm?ty=dca) is its full list of data collections. The [National Crime Victimization Survey](http://www.bjs.gov/index.cfm?ty=dcdetail&iid=245) is an especially useful resource, which together with the Federal Bureau of Investigation's [Uniform Crime Reports](http://www.fbi.gov/stats-services/crimestats) provides the best national data on crime.
+- [**Bureau of Justice Statistics**](http://www.bjs.gov/): crime and law enforcement. [Here](http://www.bjs.gov/index.cfm?ty=dca) is its full list of data collections. The [National Crime Victimization Survey](http://www.bjs.gov/index.cfm?ty=dcdetail&iid=245) is an especially useful resource, which together with the Federal Bureau of Investigation's [Uniform Crime Reporting](http://www.fbi.gov/stats-services/crimestats) program provides the best national data on crime.
 
 - **[Centers for Disease Control and Prevention](http://www.cdc.gov/)**: The [WONDER](http://wonder.cdc.gov/) online databases provide a wealth of information, including on causes of death. Other health datasets are available through the CDC's [National Center for Health Statistics](http://www.cdc.gov/nchs/).
 
@@ -38,39 +43,37 @@ As a data journalist, it is worth familiarizing yourself with the main federal g
 
 Other data portals at various levels of government are emerging. The City and County of San Francisco, for example, was at the forefront of the Open Data movement, establishing [DataSF](https://data.sfgov.org/) in 2009.
 
-If you need to make comparisons between nations, the [**World Bank**](http://www.worldbank.org/) probably has what you need. Its [World Development Indicators catalog](http://data.worldbank.org/indicator/?tab=all) containing data for more than 7,000 different measures, compiled by the bank and other UN agencies.
+If you need to make comparisons between nations, the [**World Bank**](http://www.worldbank.org/) probably has what you need. Its [World Development Indicators catalog](http://data.worldbank.org/indicator/?tab=all) contains data for more than 7,000 different measures, compiled by the bank and other UN agencies.
 
-You can navigate the site using the search box or using the topics links to the right. When you click on a particular indicator, you are sent to a page that gives options to download the dataset from a link near the top right of the page. The data in some cases goes back as far as 1960, and is listed both by individual country and summarized by regions and income groups. We have already worked with some of this data in Week 3.
+You can navigate the site using the search box or using the topics links to the right. When you click on a particular indicator, you are sent to a page that gives options to download the dataset from a link near the top right of the page. The data in some cases goes back as far as 1960, and is listed both by individual country and summarized by regions and income groups.
 
-Other useful sources of data for international comparisons are [**Gapminder**](http://www.gapminder.org/data/) and the **[UN Statistical Division](http://unstats.un.org/unsd/default.htm)**. For health data in particular, try the **[Organisation for Economic Co-operation and Development](http://www.oecd.org/els/health-systems/health-data.htm)** and the **[World Health Organization](http://who.int/research/en/)**.
+Other useful sources of data for international comparisons are [**Gapminder**](http://www.gapminder.org/data/) and the **[UN Statistical Division](http://unstats.un.org/unsd/default.htm)**. For health data in particular, try the **[Organisation for Economic Co-operation and Development](http://www.oecd.org/els/health-systems/health-data.htm)** and the **[World Health Organization](http://www.who.int/gho/en/)**.
 
 ### Search for data on the web
 
-Often, however, your starting point in searching for data will be Google. Often simply combining a few keywords in a Google search with “data” or “database” is enough to find what you need, but it can be worth focusing your queries using Google’s [advanced search](http://www.google.com/advanced_search):
+Often, your starting point in searching for data and documents will be Google. It can be worth focusing your queries using Google’s [advanced search](http://www.google.com/advanced_search):
 
 ![](./img/class5_1.jpg)
 
 (Source: [Google](http://www.google.com/advanced_search))
 
-The options to search by `site or domain` and `file type`can be very useful when looking for data. For example, the [U.S. Geological Survey](http://www.usgs.gov/) is the best source of data on earthquakes and seismic risk, so when searching for this information, specifying the domain `usgs.gov` would be a good idea. You can make the domains as narrow or broad as you like: `.gov`, for instance, would search a wide range of U.S. government sites, while `.edu` would search the sites of all academic institutions using that top-level domain; `journalism.berkeley.edu` would search the web pages of the Berkeley J-School only.
+The options to search by `site or domain` and `file type` can be especially useful when looking for data. For example, the [U.S. Geological Survey](http://www.usgs.gov/) is the best source of data on earthquakes and seismic risk, so when searching for this information, specifying the domain `usgs.gov` would be a good idea. You can make the domains as narrow or broad as you like: `.edu`, for instance, would search the sites of all US academic institutions using that top-level domain; `berkeley.edu` would search the web pages of this university only.
 
 The file type search offers a drop-down menu, with the options including Excel spreadsheets, and Google Earth `KML` and `KMZ` files. These are common data formats, but you are not limited to those on the menu. In a regular Google search, type a space after your search terms followed by `filetype:xxx`, where `xxx` is the suffix for the file type in question. For example, `dbf` will look for database tables in this format. Combining file type and domain searches can be a good way to find data an agency has posted online -- some of which may not otherwise be readily accessible.
 
-One common data format doesn’t show up in file-type searches. Geographical data is often made available as “shapefiles,” a format we will explore in our later mapping classes. Because they consist of multiple files that are usually stored in compressed folders, shapefiles can’t readily be searched using a file type suffix, but they can usually be found by adding the terms “shapefile” or “GIS data” to a regular Google search.
+Searching for PDFs and `PPT` presentations can be a good way to find documents that may not otherwise be easy to find.
 
 ### Search online databases
 
-Many important public databases can be searched online, and some offer options to download the results of your queries. Most of these databases give a simple search box, but it’s always worth looking for the advanced search page, which will offer more options to customize your search. Here, for example, is the [advanced search](http://clinicaltrials.gov/ct2/search/advanced) page for [ClinicalTrials.gov](http://clinicaltrials.gov/), a database of tests of experimental drugs and other medical treatments taking place in the U.S. and beyond:
+Many important public databases can be searched online, and some offer options to download the results of your queries. Most of these databases give a simple search box, but it’s always worth looking for the advanced search page, which will offer more options to customize your search. Here, for example, is the [advanced search](https://clinicaltrials.gov/ct2/search/advanced) page for [ClinicalTrials.gov](https://clinicaltrials.gov/):
 
 ![](./img/class5_2.jpg)
 
-(Source: [ClinicalTrials.gov](http://clinicaltrials.gov/ct2/search/advanced))
+(Source: [ClinicalTrials.gov](https://clinicaltrials.gov/ct2/search/advanced))
 
-When you start working with a new online database, take some time to familiarize yourself with how its searches work: Read the Help or FAQs, and then run test searches to see what results you obtain. [Here](http://clinicaltrials.gov/ct2/help/how-find/index), for example, is the "How To" section of ClinicalTrials.gov.
+When you start working with a new online database, take some time to familiarize yourself with how its searches work: Read the Help or FAQs, and then run test searches to see what results you obtain. [Here](https://clinicaltrials.gov/ct2/help/how-find/index), for example, is the "How To" section of ClinicalTrials.gov.
 
-Many online databases can be searched using Boolean logic, using the operators `AND`, `OR` and `NOT` to link search terms together. `AND` will return only data including both search terms; `OR` will return data containing either term; `NOT` will return data containing the first term but not the second.
-
-So find out how a particular database uses Boolean logic -- and the default settings that it will use if you list search terms without any Boolean operators.
+Many online databases can be searched using Boolean logic, using the operators `AND`, `OR` and `NOT` to link search terms together. So find out how a particular database uses Boolean logic -- and the default settings that it will use if you list search terms without any Boolean operators.
 
 Putting search terms in quote marks often searches for a specific phrase. For example, searching for “heart attack” on ClinicalTrials.gov will give only give results in which those two words appear together; leaving out the quote marks will include any trial in which both words appear.
 
@@ -86,42 +89,22 @@ If broad searches on a database keep returning the same number of results, that 
 
 ### Download the entire database
 
-Downloading an entire database, where this is allowed, frees you from the often-limited options given on an online advanced search form: You can then upload the data into your own database, and query it in any way that you want.
+Downloading an entire database, where this is allowed, frees you from the often-limited options given on an online advanced search form: You can then upload the data into your own database software, and query it in any way that you want. We will learn how to do this next week.
 
 So always look for ways to grab all of the data. One trick is to run a search on just the database’s wildcard character, or with the query boxes left blank. If you do the latter at ClinicalTrials.gov, for instance, your search will return all of the trials in the database, which can then be downloaded using the options at the bottom of the results page.
 
-Other databases have an online search form, but also have a separate link from where data to be downloaded in its entirety, usually as a text file or series of text files. One example is the U.S. Food and Drug Administration’s Bioresearch Monitoring Information System (BMIS), which lists doctors and other researchers involved in testing experimental drugs. It can be searched online [here](http://www.accessdata.fda.gov/scripts/cder/BMIS/index.cfm?fuseaction=Search.ShowAdvancedSearchForm), but can also be downloaded in full from [here](http://www.fda.gov/Drugs/InformationOnDrugs/ucm135162.htm).
+Other databases have an online search form, but also have a separate link from where data to be downloaded in its entirety, usually as a text file or series of text files. One example is Bioresearch Monitoring Information System, which lists doctors and other researchers involved in testing experimental drugs being considered for marketing approval by the Food and Drug Administration. It can be searched online [here](https://www.accessdata.fda.gov/scripts/cder/BMIS/index.cfm?fuseaction=Search.ShowAdvancedSearchForm), but can also be downloaded in full from [here](https://www.fda.gov/Drugs/InformationOnDrugs/ucm135162.htm).
 
-Note that large text files are again often stored in compressed folders, so may be invisible to a Google search by file type.
-
-### Where there's a government form, there's usually a database
-
-The BMIS database also illustrates another useful tip when looking for data. It is compiled from information supplied in [this government form](http://www.fda.gov/downloads/AboutFDA/ReportsManualsForms/Forms/UCM074728.pdf):
-
-![](./img/class5_3.jpg)
-
-(Source: [Food and Drug Administration](http://www.fda.gov/downloads/AboutFDA/ReportsManualsForms/Forms/UCM074728.pdf))
-
-Wherever a government agency collects information using paper or electronic forms, this information is likely to be entered into an electronic database. Even if it is not available online, you can often obtain the database in its entirety (minus any redactions that may be required by law) through a public records request.
-
-### Ask for what you don't find
-
-That leads to another general tip: If you don't find what you're looking for, speak to government officials, academic experts and other sources who should know about what data exists, and ask whether they can provide it for you. I have often obtained data, including for this [animated map of cicada swarms](http://paldhous.github.io/cicadas/), simply by asking for it (and, of course, promising proper attribution):
-
-![](./img/class5_4.jpg)
-
-(Source: *[New Scientist](http://paldhous.github.io/cicadas/)*)
 
 ### Automate downloads of multiple data files
 
-Often data doesn't reside in a single searchable database, but instead exists online as a series of separate files. In such cases, clicking on each link is tedious and time-consuming. But you can automate the process using the [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox add-on.
+Often data or documents don't reside in a single searchable database, but instead exist online as a series of separate files. In such cases, clicking on each link is tedious and time-consuming. But you can automate the process using the [DownThemAll!](https://addons.mozilla.org/en-US/firefox/addon/downthemall/) Firefox add-on.
 
-To illustrate, go to [Gapminder's data catalog](http://www.gapminder.org/data/), and select `All` indicators. The webpage now includes links to more than 500 downloadable spreadsheets.
+To illustrate, go to [Gapminder's data catalog](http://www.gapminder.org/data/), and select `All` indicators. The webpage now includes links to more than 500 downloadable spreadsheets. Right-click and select `DownThemAll!`.
 
-At the dialog box, you can choose where to save the files, and to filter the links to select just the files you want. In this case, unchecking all the boxes and `Fast Filtering` using the term `xls` will correctly identify the spreadsheet downloads:
+At the dialog box, you can choose where to save the files, and to filter the links to select just the files you want. There are check boxes to download documents or images, and so on. In this case, all the spreadsheet downloads contain the text `xls`, defining the format of the download from Google Sheets, so `Fast Filtering` using the term `xls` will correctly identify these downloads:
 
-![](./img/class5_5.jpg)
-
+![](./img/class5_3.jpg)
 
 ### Extract data from tables on the web
 
@@ -129,155 +112,225 @@ On other occasions, data may exist in tables on the web. Copying and pasting dat
 
 Before using the add-on, select `Tools>Table2Clipboard` and choose the following options under the `CSV` tab:
 
-![](./img/class5_6.jpg)
+![](./img/class5_4.jpg)
 
 This will ensure that each row in the extracted data is put on a `new line`, and each column is separated by a `tab`.
 
-To illustrate what Table2Clipboard does, go to the Women's Tennis Association [singles rankings page](http://www.wtatennis.com/singles-rankings), right-click anywhere in the table and select `Table2Clipboard>Copy whole table`:
+To illustrate what Table2Clipboard does, go to the Women's Tennis Association [singles rankings page](http://www.wtatennis.com/rankings), right-click anywhere in the table and select `Table2Clipboard>Copy whole table`:
 
-![](./img/class5_7.jpg)
+![](./img/class5_5.jpg)
 
-You can now paste the data into an empty text file, or into a spreadsheet.
+You can now paste the data into an empty text file, or into a spreadsheet. (This data particular will also come throgh with a first line containing the date the table was updated, and a list of countries.)
+
 
 ### Manipulate urls to expose the data you need
 
-As you search for data using web query forms, make a habit of looking at what happens to the url. Often the urls will contain patterns detailing the search you have run, and it will be possible to alter the data provided by manipulating the url. This can be quicker than filling in search forms. In some cases it may even reveal more data than the search form alone would provide, overriding controls on the number of records displayed.
+As you search for data using web query forms, make a habit of looking at what happens to the url. Often it will contain patterns detailing the search you have run, and it will be possible to alter the data provided by manipulating the url. This can be quicker than filling in search forms. In some cases it may even reveal more data than default search options will allow.
 
-To illustrate how this works, go to the [ISCRTN Registry](http://www.isrctn.com/), one of the main international registries of clinical trials. Find the [Advanced Search](http://www.isrctn.com/editAdvancedSearch) and search for `breast cancer` under `condition`:
+To illustrate how this works, go to the [ISRCTN clinical tral registry](https://www.isrctn.com/), and then navigate to the [advanced search page](https://www.isrctn.com/editAdvancedSearch). Enter `cancer` under `Condition` and note that more than 2,000 trials are returned.
 
-When the data is returned, note the url:
+The url should now have changed to the following:
 
-```SQL
-http://www.isrctn.com/search?q=&filters=condition%3Abreast+cancer&searchType=advanced-search
+```Javascript
+https://www.isrctn.com/search?q=&filters=condition%3Acancer&searchType=advanced-search
 ```
-Notice how the url changes if you select `100` under `Show results`:
+Notice that the default is to display 10 results per page, and then change the view to see the maximum of 100 trials allowed by the dropdown menu. The url should now read:
 
-```SQL
-http://www.isrctn.com/search?pageSize=100&sort=&page=1&q=&filters=condition%3Abreast+cancer&searchType=advanced-search```
+```Javascript
+https://www.isrctn.com/search?pageSize=100&sort=&page=1&q=&filters=condition%3Acancer&searchType=advanced-search
+```
+Now change that url to:
 
-Now change the page size in the url to `500`:
-
-```SQL
-http://www.isrctn.com/search?pageSize=500&sort=&page=1&q=&filters=condition%3Abreast+cancer&searchType=advanced-search```
-
+```Javascript
+https://www.isrctn.com/search?pageSize=3000&sort=&page=1&q=&filters=condition%3Acancer&searchType=advanced-search
+```
 Having done so, all of the registered clinical trials involving cancer should now be displayed on a single page. We could now use DownThemAll! to download all of the individual web pages describing each of these trials, or we could use this url as the starting point to scrape data from each of those pages.
-
-### Scrape data from the web
-
-Sometimes you will need to compile your own dataset from information that is not available for easy download, but is instead spread across a series of webpages, or in a database that imposes limits on the amount of data that can be downloaded from any search, or doesn't include a download button. This is where web scraping comes in.
-
-Using programming languages such as [Python](https://www.python.org/) or [R](https://www.r-project.org/), it is possible to write scripts that will pull data down from many webpages, or query web search forms to download an entire database piece by piece. The idea behind web scraping is to identify the patterns you would need to follow if collecting the data manually, then automate the process and write the results to a data file. That often means experimenting to reveal the most efficient way of exposing all of the data you require.
-
-Teaching the programming skills needed for webscraping is beyond the scope of this class -- see the Further reading links for resources, if you are interested in learning to scrape by coding.
-
-However, software is starting to emerge that allows non-programmers to scrape data from the web. These include [OutWit Hub](https://www.outwit.com/) and the Windows-only [Helium Scraper](http://www.heliumscraper.com/en/index.php?p=home). In today's class, we will use [**Import.io**](https://import.io/).
-
-To demonstrate webscraping, we will download data on disciplinary actions against doctors in the state of New York.
-
-Navigate to [this page](http://w3.health.state.ny.us/opmc/factions.nsf/byphysician?openview), which is the start of the list. Then click on the `Next Page` link, and see that the url changes to the following:
-
-```SQL
-http://w3.health.state.ny.us/opmc/factions.nsf/byphysician?OpenView&Start=30
-```
-Notice that the first entry on this list is actually the last entry on the previous one, so this url is the next page with no duplicates:
-
-
-```SQL
-http://w3.health.state.ny.us/opmc/factions.nsf/byphysician?OpenView&Start=31
-```
-
-Experiment with different numbers at the end of the url until you find the end of the list. As of writing, this url exposed the end of the list, revealing that there were 7420 disciplinary actions in the database.
-
-```SQL
-http://w3.health.state.ny.us/opmc/factions.nsf/byphysician?OpenView&Start=7420
-```
-
-![](./img/class5_8.jpg)
-
-Click on the link for the last doctor's name, and notice that data on each disciplinary action, plus a link to the official documentation as a PDF, are on separate web pages. So we need to cycle through all of these pages to grab data on every disciplinary action.
-
-![](./img/class5_9.jpg)
-
-The first step is to cycle through the entire list, grabbing all of the urls for the individual plages.
-
-The best way of doing this in Import.io is to set up a scrape from all of the urls that define the list. In a Google spreadsheet, copy the base url down about 250 rows, then put the numbers that define the first three pages in the first three cells of the next column:
-
-![](./img/class5_10.jpg)
-
-Select those three cells, then move the cursor to the bottom right-hand corner until it becomes a cross, and double-click to copy the pattern down the entire column.
-
-In the first cell in the third column, type the following formula:
-
-```SQL
-=concatenate(A1,B1)
-```
-
-Hit return, and copy this formula down the column to give the urls we will use to scrape the list. To save time in class, I have already made this spreadsheet, `urls.xls` for you to use. It is in the folder `scraping`.
-
-Open Import.io, and you should see a screen like this:
-
-![](./img/class5_11.jpg)
-
-Click the pink `New` button to start setting up a scraper, and at the dialog box select `Start Extractor`:
-
-![](./img/class5_12.jpg)
-
-You can close the tutorial video that appears by clicking the `OK, got it!` button. Enter the url for the first page of the list in the search box, and then move the slider on `ON`
-
-Write `name` in the box at top left, replacing the default `my_column`, and click on the first link under `Physician Name`. At the dialog box that appears, tell Import.io that your table will contain `Many rows`.
-
-Import.io will now grab the text and links in a column called name. This is all we need for the first phase of the scrape, so click the `DONE` button and select a name for the API, such as `ny_doctors`, and click `PUBLISH`.
-
-At the next window, select `Bulk Extract` under `How would you like to use this API?` and paste into the box the urls from the spreadsheet:
-
-![](./img/class5_13.jpg)
-
-Click `Save URLS` and then `Run queries` and the scrape should begin. It will take a couple of minutes to process all of the urls. If any fail, click on the warning message to retry.
-
-Now click on the `Export` button and select `HTML` to export as web page, which should look like this. Save it on your desktop, and open in a browser. The column `name` now contains all the urls we need for the second stage of the scrape:
-
-![](./img/class5_14.jpg)
-
-Click the `New` button to set up the second phase of the scrape, and again `Start Extractor`. Enter the second url from your HTML table, to select a named doctor, rather than a practice. Call the column `first name`, click on the doctor's first name, and this time tell Import.io that your scrape will have `Just one row` -- because each of the pages we are about to scrape contains data on one disciplinary action.
-
-Click `+ NEW COLUMN` and repeat for the doctor's last name and the other fields in the data. Make sure to click on the empty box for `License Restrictions`, so the scrape does grab this data where it exists, and the link to the PDF document. When you are done, the screen should look like this:
-
-![](./img/class5_15.jpg)
-
-Click `DONE`, select a name for the API, such as `ny_orders`, and click `PUBLISH`.
-
-Again select `Bulk Extract`, and paste into the box the entire column of urls from your html table. You can do this is Firefox using Table2Clipboard, using its `Select column` option. Remember to delete the column header `name` from the list of urls before clicking `Save URLs` and `Run queries`.
-
-Once the scrape has completed, click the `Export` button and select `Spreadsheet` to export as a CSV file.
 
 
 ### Use application programming interfaces (APIs)
 
-Websites like the ISRCTN clinical trials registry are not expressly designed to be searched by manipulating their urls, but some organizations make their data available through APIs that can be queried by constructing a url in a similar way. This allows websites and apps to call in specific chunks of data as required, and work with it "on the fly."
+Websites like the ISRCTN clinical trial registry are not expressly designed to be searched by manipulating their urls, but some organizations make their data available through APIs that can be queried by constructing a url in a similar way. This allows websites and apps to call in specific chunks of data as required, and work with it "on the fly."
 
-To see how this works, go to the U.S. Geological Survey's [Earthquake Archive Search & URL Builder](http://earthquake.usgs.gov/earthquakes/search/), where we will search for all earthquakes with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 6 or greater that occurred within 6,000 kilometres of the geographic center of the contiguous United States, which [this site](http://tools.wmflabs.org/geohack/geohack.php?pagename=Geographic_center_of_the_contiguous_United_States&params=39.828175_N_98.579500_W_region:US_type:landmark) tells us lies at a latitude of `39.828175` degrees and a longitude of `-98.5795` degrees. We will initially use the `Output Options` to ask for the data in a format called [GeoJSON](http://geojson.org/) (a variant of JSON). Enter `1900-01-01T00:00:00` under `Start` for `Date & Time` boxes so that we obtain all recorded earthquakes from the beginning of 1900 onward. The search form should look like this:
+To see how this works, go to the U.S. Geological Survey's [Search Earthquake Archives](https://earthquake.usgs.gov/earthquakes/search/) page, where we will search for all earthquakes with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 5 or greater that occured witin 6,000 kilometers of the geographic center of the contiguous United States, which [this site](https://tools.wmflabs.org/geohack/geohack.php?pagename=Geographic_center_of_the_contiguous_United_States&params=39.828175_N_98.579500_W_region:US_type:landmark) tells us lies at a latitude of `39.828175` degrees and a longitude of `-98.5795` degrees. We will initially ask for the data in a format called [GeoJSON](https://geojson.org/) (a variant of JSON, a common format used to trasmit data over the web). Enter `1960-01-01T00:00:00` under `Start` for `Date & Time` boxes so that we obtain all recorded earthquakes from the beginning of 1960 onward. The search form should look like this:
 
-![](./img/class5_19.jpg)
+![](./img/class5_6.jpg)
 
-(Source: [U.S. Geological Survey](http://earthquake.usgs.gov/earthquakes/search/))
+(Source: [U.S. Geological Survey](https://earthquake.usgs.gov/earthquakes/search/))
 
-You should receive a quantity of data at the following url:
+You should recieve a quantity of data at the following url:
 
-```CSS
-http://earthquake.usgs.gov/fdsnws/event/1/query.geojson?starttime=1900-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&orderby=time
+```Javascript
+https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=5&format=geojson&orderby=time
 ```
 
-See what happens if you append `-asc` to the end of that url: This should sort the the earthquakes from oldest to newest, rather than the default of newest to oldest. [Here](http://earthquake.usgs.gov/fdsnws/event/1/) is the full documentation for querying the earthquake API by manipulating these urls.
+See what happens if you append `-asc` to the end of that url: This should sort the the earthquakes from oldest to newest, rather than the default of newest to oldest. [Here](https://earthquake.usgs.gov/fdsnws/event/1/) is the full documentation for querying the earthquake API by manipulating these urls,
 
-Now remove the `-asc` and replace `geojson` in the url with `csv`. The data should now download in CSV format.
+Now remove the `-asc` and replace `geojson` in the url with `csv`. The data should now download in 	CSV format.
+
+### Scrape data from the web
+
+Sometimes you will need to compile your own data from information that is spread across a series of webpages, or maintained in a database that doesn't allow simple downloads of the data or API access. This is where web scraping comes in.
+
+Using programming languages such as [R](https://www.r-project.org/) or [Python](https://www.python.org/), it is possible to write scripts that will pull data down from many webpages, or query web search forms to download an entire database piece by piece.
+
+Web scraping by coding is beyond the scope of this class. However, the underlying process is simple to understand: Identify the patterns you would need to follow if collecting the data manually, then write a program to automate the process and write the results to a data file. That often means experimenting to reveal the most efficient way of exposing all of the data you require.
+
+We have already been performing some of the elements of web scraping, by manipulating urls on web search forms and downloading the individual links *en masse*.
+
+There are a number of tools that allow non-programmers to scrape data from the web. These include the web-based [Import.io](https://import.io/). In this class, we will use [**OutWit Hub**](https://www.outwit.com/). You can use the free version to see its capabilities. A license to the full Pro cost $89 at the time of writing, so is [considerably cheaper](https://www.import.io/standard-plans/) than an Import.io account.
+
+To demonstrate webscraping, we will download data on disciplinary actions against doctors in the state of New York.
+
+Navigate to [this page](https://apps.health.ny.gov/pubdoh/professionals/doctors/conduct/factions/AllRecordsAction.action?d-49653-p=1), which is the start of the list. Then click on the `Next` link, and see that the url changes to the following:
+
+```Javascript
+https://apps.health.ny.gov/pubdoh/professionals/doctors/conduct/factions/AllRecordsAction.action?d-49653-p=2
+```
+
+Experiment with changing the number at the end of the link until you find the end of the list. As of writing, there were 384 pages in the database.
+
+```Javascript
+https://apps.health.ny.gov/pubdoh/professionals/doctors/conduct/factions/AllRecordsAction.action?d-49653-p=384
+```
+
+![](./img/class5_7.jpg)
+
+Click on the link for the last doctor's name, and notice that data on each disciplinary action, plus a link to the official documentation as a PDF, are on separate web pages. So we need to cycle through all of these pages to grab data on every disciplinary action.
+
+![](./img/class5_8.jpg)
+
+These disciplinary action pages have urls of the following form:
+
+```Javascript
+https://apps.health.ny.gov/pubdoh/professionals/doctors/conduct/factions/PhysicianDetailsAction.action?finalActionId=6450
+```
+
+The first step is to cycle through the entire list, scraping all of the urls for the individual pages. Then we need to set up a second scraper to grab the information from each of the individual disciplinary action pages, using this list of urls.
+
+Outwit Hub can usually recognize a when a website is a paginated list, and can automatically follow "next page" links.
+
+To scrape the list of urls, navigate in Outwit Hub to the first page in the list of disciplinary actions:
+
+![](./img/class5_9.jpg)
+
+Now select `automators>scrapers` from the panel at left:
+
+![](./img/class5_10.jpg)
+
+Notice that this exposes the HTML code for the page.
+
+Click the `New` button at the bottom, and give the scraper an appropriate name, such as `NY doctor discipline IDs`, and click `OK`. You will now see a screen that allows you to extract data/text from the page, according to markers in the HTML code before and after the target.
+
+Scroll through the HTML, and highlight this section of code, which appears before the Action ID number in the link to each disciplinary page.
+
+```Javascript
+finalActionId="
+```
+In the row numbered `1` in the instructions for your scraper, enter `Action ID` under `Description` and that HTML code under `Marker Before`:
+
+![](./img/class5_11.jpg)
+
+After each url the link closes with the following:
+
+```Javascript
+">
+```
+
+So copy that under `Marker After` and your scraper is ready to run:
+
+![](./img/class5_12.jpg)
+
+Click `Save` and then `Execute` and you should see a screen like this under `data>scraped`, which has captured the 20 links on the page:
+
+![](./img/class5_13.jpg)
+
+Now set the two buttons with drop down menus at bottom right to `Catch on Demand` and `Empty on Demand`. This ensures that the scraped data is appended into a single file for export at the end.
+
+Having completed the set-up, click this control button at the top, which should automatically follow the "next page" links and scrape the IDs from each page in sequence:
+
+![](./img/class5_14.jpg)
+
+Running the full scraper will take some time. When it is complete, notice that the right-hand export panel under `data>scraped` has a series of dropdown menus, including `CSV`, `TXT`, `SQLite` and `Excel`. We will export as `TXT`, giving a list in a single text file.
+
+One you are sure that the text file has saved correctly, click the `Empty` button under `data>scraped` to clear the results of the scrape.
+
+In an empty Google sheet, import the file `ny.txt`, delete the header ro and all of the entries from `B`. Then copy the stem for the urls into cell `A1`:
+
+```Javascript
+https://apps.health.ny.gov/pubdoh/professionals/doctors/conduct/factions/PhysicianDetailsAction.action?finalActionId=
+```
+Hover over the bottom right corner of this cell, until the cursor turns into a cross, then double-click to autofill down the entire column.
+
+Now enter the following into cell `C1`:
+
+```Javascript
+=CONCATENATE(A1,B1)
+```
+This will append the two together to create the full url. Again use autofill to copy the formula down the column and create the urls for each of the disciplinary actions.
+
+Now save the spreadsheet as an HTML file (using `File>Download as>Web page (.html, zipped)`).
+
+We will use this file to direct our second scraper, which we now need to set up.
+
+In Outwit Hub, navigate to one of the displinary action pages and select `automators>scrapers`. Click `New` and give the scraper an appropriate name, such as `NY doctor disciplinary actions`.
+
+Most of the data we want to extract follows the heading, a colon, and some HTML code, for example:
+
+```Javascript
+Physician Last Name:</font></b></td><td width="70%"><p><font size="2">
+```
+These entries are each followed by this HTML code:
+
+```Javascript
+</font>
+```
+
+The ID for the PDF of the board order is at an link preceded in the HTML code by:
+
+```Javascript
+filename=
+```
+
+The link is followed by:
+
+```Javascript
+&amp;fileSeqNum=1
+```
+
+So set the scraper up like this:
+
+![](./img/class5_15.jpg)
+
+Click `Save`, then switch to `data>tables`. From the top menu in Outwit Hub, select `File>Open ...` and open the HTML file with the urls.
+
+The urls should be in third column of the table, named `Url`. Select the first, then `⌘-A` (Mac) or `Crtl-A` (Windows) to select all the urls in the column:
+
+![](./img/class5_16.jpg)
+
+Again, set the two buttons with drop down menus at bottom right to `Catch on Demand` and `Empty on Demand`.
+
+Now right-click, and select `Auto-Explore Pages>Fast Scrape>` and the scraper we just set up:
+
+![](./img/class5_17.jpg)
+
+The scraper should now start to run:
+
+![](./img/Class5_18.jpg)
+
+The full scrape will again take some time to run. When it is completed, export the data as a `TXT` file and an `Excel` spreadsheet.
+
 
 ### PDFs: the bane of data journalism
 
 Some organizations persist in making data available as PDFs, rather than text files, spreadsheets or databases. This makes the data hard to extract. While you should always ask for data in a more friendly format -- ideally a CSV or other simple text file -- as a data journalist you are at some point likely to find yourself needing to pull data out of a PDF.
 
-For digital PDFs, **[Tabula](http://tabula.technology/)** is a useful data extraction tool -- however it will not work with PDFs created by scanning the original document, which have to be interpreted using Optical Character Recognition (OCR) software (which is, for example, included in [Adobe Acrobat](https://acrobat.adobe.com/us/en/acrobat.html)).
+For digital PDFs, **[Tabula](http://tabula.technology/)** is a useful data extraction tool -- however it will not work with PDFs created by scanning the original document, which have to be interpreted using Optical Character Recognition (OCR) software.
 
 Also useful is the online service **[Cometdocs](http://www.cometdocs.com/)**. While it is a commercial tool, members of Investigative Reporters and Editors can [obtain a free account](http://ire.org/blog/ire-news/2013/05/22/ire-announces-partnership-cometdocs/). Cometdocs can read scanned PDFs, however its accuracy will vary depending on how well the OCR works on the document in question.
+
+**[Adobe Acrobat Pro](https://acrobat.adobe.com/us/en/products/acrobat-pro.html)** will also perform OCR on scanned PDFs.
+
+[Here](https://github.com/jsfenfen/parsing-prickly-pdfs) is a useful set of resources detailing more advanced tools for dealing with hard-to-parse PDFs.
 
 ### Can I trust this data?
 
@@ -303,7 +356,7 @@ In practice, however, often the best available data has some flaws, which may ne
 
 ![](./img/class5_21.jpg)
 
-(Source: Peter Aldhous, from [Bioresearch Information Monitoring System](http://www.fda.gov/Drugs/InformationOnDrugs/ucm135162.htm) data)
+(Source: Peter Aldhous, from [Bioresearch Information Monitoring System](https://www.fda.gov/Drugs/InformationOnDrugs/ucm135162.htm) data)
 
 Look for glitches in the alignment of columns, which may cause data to appear in the wrong field.
 
@@ -331,11 +384,13 @@ The opening screen should look like this:
 
 #### Reshape data from wide to long format
 
-Click the `Browse` button and navigate to the file `oil_production.csv`. Click `Next>>`, and check that data looks correct:
+Click the `Choose Files` button and navigate to the file `oil_production.csv`. Click `Next>>`, and at the next screen make sure `Parse cell text into numbers, dates,...` is checked:
 
 ![](./img/class5_23.jpg)
 
-Open Refine should recognize that the data is in a CSV file, but if not you can use the panel at bottom to specify the correct file type and format for the data. When you are satisfied that the data has been read correctly, click the `Create Project >>` button at top right. The screen should now look like this:
+Open Refine diplays numbers and dates in green, and text entires in black. SO checking this button should make the numbers turn green. Open Refine should also recognize that the data is in a CSV file, but if not you can use the panel at bottom to specify the correct file type and format for the data.
+
+When you are satisfied that the data has been read correctly, click the `Create Project >>` button at top right. The screen should now look like this:
 
 ![](./img/class5_24.jpg)
 
@@ -353,11 +408,7 @@ Click the `Export` button at top right and you will see options to export the da
 
 #### Clean and process dirty data
 
-Click the Google Refine logo at top left to return to the opening screen. Create a new project from the file `ucb_stanford_2014.csv`.
-
-Entries recognized as numbers or dates will be green, those treated as text strings will be black:
-
-![](./img/class5_27.jpg)
+Click the Open Refine logo at top left to return to the opening screen. Create a new project from the file `ucb_stanford_2014.csv`.
 
 Again, each field/column has a button with a downward-pointing triangle. Click on these buttons and you get the option to create “facets” for the column, which provide a powerful way to edit and clean data.
 
@@ -402,7 +453,7 @@ Select `Edit colum>Add column based on this column...` and fill in the dialog bo
 
 ![](./img/class5_33.jpg)
 
-Here `value` refers to the value in the original column, and `replace` is a function that replaces characters in the value. We can run several `replace` operations by "chaining" them together. This is a concept we'll meet again in subsequent weeks, when we work with the [D3](http://d3js.org/) JavaScript library and R.
+Here `value` refers to the value in the original column, and `replace` is a function that replaces characters in the value. We can run several `replace` operations by "chaining" them together.
 
 Here we are replacing the "$" symbols, the commas separating thousands, and the closing brackets with nothing; we are replacing the opening brackets with a hyphen to designate negative numbers.
 
@@ -448,7 +499,7 @@ Mr People can save you time, but it is not infallible -- it may give errors with
 
 A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2014 dollars for a time series ending in 2014. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
 
-So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [**Consumer Price Index**](http://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use this [online calculator](http://www.bls.gov/data/inflation_calculator.htm) to obtain conversions.
+So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [**Consumer Price Index**](http://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use this [online calculator](https://data.bls.gov/cgi-bin/cpicalc.pl) to obtain conversions.
 
 If, for example, you need to convert a column of data in a spreadsheet from 2010 dollars into today's values, fill in the calculator like this:
 
@@ -478,7 +529,6 @@ Convert 2010 to today's values:
 ```SQL
 2010 value * 1.11
 ```
-
 
 For comparing currency values across nations, regions or cities, you may also need to correct for the cost of living -- or differences in what a dollar can buy in different places. For World Bank indicators, look for the phrase "purchasing power parity," or PPP, for data that includes this correction. PPP conversion factors for nations over time are given [here](http://data.worldbank.org/indicator/PA.NUS.PPPC.RF).
 
@@ -516,7 +566,7 @@ In XML data is structured by enclosing values within “tags,” similar to thos
 </rows>
 ```
 
-**[Mr Data Converter](http://shancarter.github.io/mr-data-converter/)** is a web app made by Shan Carter of the graphics team at *The New York Times* that makes it easy to convert data from a spreadsheet or delimited text file to JSON or XML.
+**[Mr Data Converter](https://shancarter.github.io/mr-data-converter/)** is a web app made by Shan Carter, formerly of the graphics team at *The New York Times* and now with [Google Brain](https://research.google.com/teams/brain/), that makes it easy to convert data from a spreadsheet or delimited text file to JSON or XML.
 
 Copy the data from a `CSV` or tab-delimited text file and paste it into the top box, select the output you want, and it will appear at the bottom. You will generally want to select the `Properties` variants of JSON or XML.
 
@@ -524,19 +574,20 @@ You can then copy and paste this output into a text editor, and save the file wi
 
 ![](./img/class5_39.jpg)
 
-(Source: [Mr Data Converter](http://shancarter.github.io/mr-data-converter/))
+(Source: [Mr Data Converter](https://shancarter.github.io/mr-data-converter/))
 
 To convert data from JSON or XML into text files, you can use Open Refine. First create a new project and import your JSON or XML file. Use the `Export` button and select `Tab-separated value` or `Comma-separated value` to export as a text file.
 
 ### Assignment
 
-- Grab the data for the [top 100 ranked women's singles tennis players](http://www.wtatennis.com/singles-rankings).
+- Grab the data for the [top 100 ranked women's singles tennis players](http://www.wtatennis.com/rankings).
 - Use Open Refine to process this data as follows:
- - Create new columns for `First Name` and `Last Name`. Hint: First create a copy of the `Player` column with a new name using `Edit Column>Add column based on this column...`. Then look under `Edit column` for an option to split this new column into two; you will also need to rename the resulting columns.
- - Convert the birth dates for the players to standard date/time format.
- - Create a new column for the `Previous Rank` with the square brackets removed, converted to numbers. Hint: First copy the old column as above; this time you can delete the old column when you are done.
+ - When importing, skip the first row with the date and list of countries.
+ - Create new columns for `First Name` and `Last Name`. Hint: First create a copy of the `Player` column with a new name using `Edit Column`. Make sure not to delete the existing column. You will also need to rename the resulting columns.
+ - Create a new column for the `Country` with the square brackets removed.
+ - Create a new column showing points gained per tournament. Hint: to do this you will need to run a culaculation dividing the values in the `Points` columen by the values in the `Tourn Played` column. You refer to values in a particular column like this: `cells["Points"].value`.
 - Extract the operations to process this data, and save in a file with the extension `.json`.
-- Now go back to the WTA site and grab the singles rankings for all U.S. players for the first ranking of 2016 (made on January 4). Hint: Make sure you hit `Search` after adjusting the menus.
+- Now go back to the WTA site and grab the singles rankings made on April 3, 2017, for U.S. players only.
 - Process this data in Open Refine using your extracted JSON, then export the processed data as a CSV file.
 - Send me your JSON and CSV files.
 
