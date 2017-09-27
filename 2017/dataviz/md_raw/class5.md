@@ -108,7 +108,7 @@ At the dialog box, you can choose where to save the files, and to filter the lin
 
 ### Extract data from tables on the web
 
-On other occasions, data may exist in tables on the web. Copying and pasting data from web tables can be tricky, but the [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) Firefox add-on can simplify the process.
+On other occasions, data may exist in tables on the web. Copying and pasting data from web tables can be tricky, but the [Table2Clipboard](https://addons.mozilla.org/en-US/firefox/addon/dafizilla-table2clipboard/) Firefox add-on simplifies the process.
 
 Before using the add-on, select `Tools>Table2Clipboard` and choose the following options under the `CSV` tab:
 
@@ -116,12 +116,17 @@ Before using the add-on, select `Tools>Table2Clipboard` and choose the following
 
 This will ensure that each row in the extracted data is put on a `new line`, and each column is separated by a `tab`.
 
-To illustrate what Table2Clipboard does, go to the Women's Tennis Association [singles rankings page](http://www.wtatennis.com/rankings), right-click anywhere in the table and select `Table2Clipboard>Copy whole table`:
+To illustrate what Table2Clipboard does, go to [this table](https://www.nih.gov/about-nih/what-we-do/nih-almanac/appropriations-section-1) showing the budget history for components of the National Institutes of Health.
 
 ![](./img/class5_5.jpg)
 
-You can now paste the data into an empty text file, or into a spreadsheet. (This data particular will also come throgh with a first line containing the date the table was updated, and a list of countries.)
+(Source: [NIH](https://www.nih.gov/about-nih/what-we-do/nih-almanac/appropriations-section-1))
 
+Right-click anywhere within it and select `Table2Clipboard>Copy whole table`.
+
+You can now paste the data into an empty text file, or into a spreadsheet. We'll paste it into a spreadsheet.
+
+This table is in two parts, so click on the `Section 2` link, and repeat the process to grab all the data.
 
 ### Manipulate urls to expose the data you need
 
@@ -244,9 +249,9 @@ Click `Save` and then `Execute` and you should see a screen like this under `dat
 
 ![](./img/class5_13.jpg)
 
-Now set the two buttons with drop down menus at bottom right to `Catch on Demand` and `Empty on Demand`. This ensures that the scraped data is appended into a single file for export at the end.
+Now set the two buttons with drop down menus at bottom right to `Catch on Demand` and `Empty on Demand`. This ensures that the scraped data is appended into a single file for export at the end. Also make sure to check the `Deduplicate` box at the bottom, to make sure the scraper doesn't duplicate data if it happens to visit any page more than once.
 
-Having completed the set-up, click this control button at the top, which should automatically follow the "next page" links and scrape the IDs from each page in sequence:
+Having completed the set-up, click this control button at the top, which should automatically follow the links to all the other pages in the list and scrape all of the IDs:
 
 ![](./img/class5_14.jpg)
 
@@ -254,7 +259,7 @@ Running the full scraper will take some time. When it is complete, notice that t
 
 One you are sure that the text file has saved correctly, click the `Empty` button under `data>scraped` to clear the results of the scrape.
 
-In an empty Google sheet, import the file `ny.txt`, delete the header ro and all of the entries from `B`. Then copy the stem for the urls into cell `A1`:
+In an empty Google sheet, import the file `ny.txt`, delete the header row and all of the entries from `B`. Then copy the stem for the urls into cell `A1`:
 
 ```Javascript
 https://apps.health.ny.gov/pubdoh/professionals/doctors/conduct/factions/PhysicianDetailsAction.action?finalActionId=
@@ -499,39 +504,9 @@ Mr People can save you time, but it is not infallible -- it may give errors with
 
 A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2014 dollars for a time series ending in 2014. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
 
-So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [**Consumer Price Index**](http://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use this [online calculator](https://data.bls.gov/cgi-bin/cpicalc.pl) to obtain conversions.
+So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [**Consumer Price Index**](http://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use these [online](http://cpiinflationcalculator.com/) [calculators](https://data.bls.gov/cgi-bin/cpicalc.pl) to obtain conversions.
 
-If, for example, you need to convert a column of data in a spreadsheet from 2010 dollars into today's values, fill in the calculator like this:
-
-![](./img/class5_37.jpg)
-
-
-A dollar today is worth the same as 0.9 dollars in 2010.
-
-So to convert today's values into 2010 dollars, use the following formula:
-
-```SQL
-2016 value * 0.9
-```
-
-And to convert the 2010 values to today's values, divide rather than multiply:
-
-```SQL
-2010 value / 0.9
-```
-
-Alternatively, fill in the calculator the other way round, and multiply as before.
-
-![](./img/class5_38.jpg)
-
-Convert 2010 to today's values:
-
-```SQL
-2010 value * 1.11
-```
-
-For comparing currency values across nations, regions or cities, you may also need to correct for the cost of living -- or differences in what a dollar can buy in different places. For World Bank indicators, look for the phrase "purchasing power parity," or PPP, for data that includes this correction. PPP conversion factors for nations over time are given [here](http://data.worldbank.org/indicator/PA.NUS.PPPC.RF).
-
+For comparing currency values across nations, regions or cities, you may also need to correct for the cost of living -- or differences in what a dollar can buy in different places. For World Bank indicators, look for the phrase "purchasing power parity," or PPP, for data that includes this correction. PPP conversion factors for nations over time are given [here](https://data.worldbank.org/indicator/PA.NUS.PPPC.RF).
 
 ### Understand common data formats, and convert between them
 
@@ -580,16 +555,14 @@ To convert data from JSON or XML into text files, you can use Open Refine. First
 
 ### Assignment
 
-- Grab the data for the [top 100 ranked women's singles tennis players](http://www.wtatennis.com/rankings).
+- Grab the data for the historical budgets of all of the agencies within the NIH, from [this page](https://www.nih.gov/about-nih/what-we-do/nih-almanac/appropriations-section-1). (Remember that you will have to grab the data from the `Section 2` link, as well!)
 - Use Open Refine to process this data as follows:
- - When importing, skip the first row with the date and list of countries.
- - Create new columns for `First Name` and `Last Name`. Hint: First create a copy of the `Player` column with a new name using `Edit Column`. Make sure not to delete the existing column. You will also need to rename the resulting columns.
- - Create a new column for the `Country` with the square brackets removed.
- - Create a new column showing points gained per tournament. Hint: to do this you will need to run a culaculation dividing the values in the `Points` columen by the values in the `Tourn Played` column. You refer to values in a particular column like this: `cells["Points"].value`.
+ - The data is in a wide format, with columns for each agency. So convert it into long format, with one column for each variable: `FY`, `Agency`, `Budget`.
+ - You will need to perform some further edits. Notice that many of the agency abbreviations contain numbers, which correspond to footnotes. So you want to create a cleaned-up Agency column without these numbers. You can do this by creating a new column with the following formula, which tells Open Refine to replace all digits with a blank: `value.replace(/\d/,''))`.
+ - In 1976 the definition of Fiscal Year or `FY` changed, which is why there is a row for 1976 TQ, which stands for transition quarter. So before exporting the processed data as a CSV file, filter to include only data from 1980 onwards, using a numeric facet as follows (you will need to uncheck the `Non-numeric` box as well as moving the slider):
+ ![](./img/class5_40.jpg)
 - Extract the operations to process this data, and save in a file with the extension `.json`.
-- Now go back to the WTA site and grab the singles rankings made on April 3, 2017, for U.S. players only.
-- Process this data in Open Refine using your extracted JSON, then export the processed data as a CSV file.
-- Send me your JSON and CSV files.
+- Send me your CSV file with the processed data and your JSON file with the operations to repeat what you did.
 
 ### Further reading
 
