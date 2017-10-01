@@ -29,7 +29,37 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 #### [Download Week 4](./data/week4.zip)
 
 - `index.html` `index2.html` Two simple webpages, which we will edit and publish on GitHub.
-- `css` `fonts` `js` Folders with files to run the Bootstrap web framework.
+
+#### [Download Week 5](./data/week5.zip)
+
+- `oil_production.csv` Data on oil production by world region from 2000 to 2016, in thousands of barrels per day, from the [U.S. Energy Information Administration](https://www.eia.gov/beta/international/data/browser/#/?pa=0000000000000000000000000000000000g&c=ruvvvvvfvtvnvv1urvvvvfvvvvvvfvvvou20evvvvvvvvvnvvuvo&ct=0&tl_id=5-A&vs=INTL.53-1-AFG-TBPD.A&vo=0&v=H&start=1980&end=2016).
+
+- `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/Pages/Default.aspx).
+
+- `ny.txt` file scraped from State of New York site documenting disciplinary actions against doctors.
+
+- `NY.html` web page with a table giving links to pages documenting individual disciplinary actions against New York doctors.
+
+#### [Download Week 6](./data/week6.zip)
+
+- `nations.csv` As for week 3, but lacking data for life expectancy.
+
+#### [Download Week 7](./data/week7.zip)
+
+- `pfizer.csv` Payments made by Pfizer to doctors across the United States in the second half on 2009. Contains the following variables:
+ - `org_indiv` Full name of the doctor, or their organization.
+ - `first_plus` Doctor's first and middle names.
+ - `first_name` `last_name`. First and last names.
+ - `city` `state` City and state.
+ - `category of payment` Type of payment, which include `Expert-led Forums`, in which doctors lecture their peers on using Pfizer's drugs, and `Professional Advising.
+ - `cash` Value of payments made in cash.
+ - `other` Value of payments made in-kind, for example puschase of meals.
+ - `total` value of payment, whether cash or in-kind.
+
+- `fda.csv` Data on warning letters sent to doctors by the U.S. Food and Drug Administration, because of problems in the way in which they ran clinical trials testing experimental treatments. Contains the following variables:
+ - `name_last` `name_first` `name_middle` Doctor's last, first, and middle names.
+ - `issued` Date letter was sent.
+ - `office` Office within the FDA that sent the letter.
 
 
 ## Final projects

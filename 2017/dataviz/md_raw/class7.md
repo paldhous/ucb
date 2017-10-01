@@ -4,9 +4,10 @@
 
 In today's class we will process data using **[R](http://www.r-project.org/)**, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as "free software environment for statistical computing and graphics," R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.
 
-Next week we will make static graphics with R. We will explore's its potential for making interactive charts and maps in week 13, and use it to make animations in week 14. Our goal for this week's class is to get used to working with data in R.
+Next week we will make static graphics with R. We will explore's its potential for making interactive charts and maps in week 13, and use it to make animations in week 14. Our goal for this week's class is to get used to working with data in R. In particular, we will
+learn how to run **[SQL](https://en.wikipedia.org/wiki/SQL)**-like analysis in R using the **[dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)** package
 
-**[RStudio](http://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a user-friendly interface.
+**[RStudio](https://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a user-friendly interface.
 
 Launch RStudio, and the screen should look like this:
 
@@ -86,7 +87,7 @@ Anything that appears on a line after `#` will be treated as a comment, and will
 - `|` means OR, in Boolean logic.
 - `!` means NOT, in Boolean logic.
 - When referring to values entered as text, or to dates, put them in quote marks, like this: `"United States"`, or `"2016-07-26"`. Numbers are not quoted.
-- When entering two or more values as a list, combine them using the function `c`, with the values separated by commas, for example: `c("2016-07-26","2016-08-04")`
+- When entering two or more values as a list, combine them using the function `c`, with the values separated by commas, for example: `c("2017-07-26","2017-08-04")`
 - As in a spreadsheet, you can specify a range of values with a colon, for example: `c(1:10)` creates a list of integers (whole numbers) from one to ten.
 - Some common operators:
  - `+` `-` add, subtract.
@@ -99,6 +100,11 @@ Anything that appears on a line after `#` will be treated as a comment, and will
 
  -  `==` test whether an object is equal to a value. This is often used when filtering data, as we will see.
  -  `=` make an object equal to a value; works like `<-`, but used within the brackets of a function.
+
+- Handling null values:
+ - Nulls are designated as `NA`.
+ - `is.na(x)` looks for nulls within variable `x`.
+ - `!is.na(x)` looks for non-null values within variable `x`.
 
 We encountered **functions** in week 1 in the context of spreadsheet formulas. They are followed by brackets, and act on the code in the brackets.
 
@@ -124,7 +130,7 @@ Notice that the following code appears in the console:
 ```r
 install.packages("tidyverse")
 ```
-So you can also install packages with cod in this format, without using the point-and-click interface.
+So you can also install packages with code in this format, without using the point-and-click interface.
 
 Each time you start R, it's a good idea to click on `Update` in the `Packages` panel to update all your installed packages to the latest versions.
 
@@ -213,7 +219,7 @@ Classes ‘tbl_df’, ‘tbl’ and 'data.frame':	272 obs. of  5 variables:
 
 Notice that `issued` has been recognized as a `Date` variable. Other common data types include `num`, for numbers that may contain decimals and `POSIXct` for full date and time.
 
-If you run into any trouble importing data with **readr**, you may need to specify the data types for some columns -- in particular for date and time. [This link](https://github.com/hadley/readr/blob/master/vignettes/column-types.Rmd) explains how to set data types for individual variables when importing data with **readr**.
+If you run into any trouble importing data with **readr**, you may need to specify the data types for some columns -- in particular for date and time. [This link](https://cran.r-project.org/web/packages/readr/vignettes/readr.html) explains how to set data types for individual variables when importing data with **readr**.
 
 To specify an individual column use the name of the data frame and the column name, separated by `$`. Type this into your script and run:
 
@@ -221,7 +227,7 @@ To specify an individual column use the name of the data frame and the column na
 # print values for total in pfizer data
 pfizer$total
 ```
-The output will be the first 10,000 values for that column.
+The output will be the first 1,000 values for that column.
 
 If you need to change the data type for any column, use the following functions:
 
@@ -230,7 +236,7 @@ If you need to change the data type for any column, use the following functions:
 - `as.factor` converts to a categorical variable.
 - `as.integer` converts to an integer
 - `as.Date` converts to a date
-- `as.POSIXct` convets to a full date and time.
+- `as.POSIXct` converts to a full date and time.
 
 (Conversions to full dates and times can get complicated, because of timezones. Contact me for advice if you need to work with full dates and times for your project!)
 
@@ -296,12 +302,13 @@ Here are some of the most useful functions in **dplyr**:
 - `arrange` **Sort** the data, by size for continuous variables, by date, or alphabetically.
 - `group_by` **Group** the data by a categorical variable.
 - `summarize` **Summarize**, or aggregate (for each group if following `group_by`). Often used in conjunction with functions including:
-	- `mean` Calculate the mean, or average.
-	- `median` Calculate the median.
-	- `max` Find the maximum value.
-	- `min` Find the minimum value
-	- `sum` Add all the values together.
-	- `n` Count the number of records.
+	- `mean(x)` Calculate the mean, or average, for variable `x`.
+	- `median(x)` Calculate the median.
+	- `max(x)` Find the maximum value.
+	- `min(x)` Find the minimum value.
+	- `sum(x)` Add all the values together.
+	- `n()` Count the number of records. Here there isn't a variable in the brackets of the function, because the number of records applies to all variables.
+	- `n_distinct(x`) Count the number of unique values in variable `x`.
 - `mutate` Create new column(s) in the data, or change existing column(s).
 - `rename` Rename column(s).
 - `bind_rows` Merge two data frames into one, combining data from columns with the same name.
@@ -322,7 +329,7 @@ ca_expert_10000 <- pfizer %>%
   filter(state == "CA" & total >= 10000 & category == "Expert-Led Forums")
 ```
 
-Notice the use of `==` to find values that match the specified text, `>=` for greater than or equal to, and the Boolean operator `&`.
+Notice the use of `==` to find values that match the specified text, `>=` for greater than or equal to, and the Boolean operator `&`. When referring to text values, they should be put inside quote marks, like this:`"CA"`.
 
 Now add a **sort** to the end of the code to list the doctors in descending order by the payments received:
 
@@ -338,6 +345,7 @@ If you `arrange` without the `desc` function, the **sort** will be from smallest
 ##### Find doctors in California *or* New York who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”
 
 ```r
+# doctors in California *or* New York who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.
 ca_ny_expert_10000 <- pfizer %>%
   filter((state == "CA" | state == "NY") & total >= 10000 & category == "Expert-Led Forums") %>%
   arrange(desc(total))
@@ -347,8 +355,9 @@ Notice the use of the `|` Boolean operator, and the brackets around that part of
 ##### Find doctors in states *other than* California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.”
 
 ```r
+# doctors in states *other than* California who were paid $10,000 or more by Pfizer to run “Expert-Led Forums.
 not_ca_expert_10000 <- pfizer %>%
-  filter(state != "CA" & total >= 10000 & category=="Expert-Led Forums")) %>%
+  filter(state != "CA" & total >= 10000 & category=="Expert-Led Forums") %>%
   arrange(desc(total))
 ```
 Notice the use of the `!=` operator to exclude doctors in California.
@@ -356,6 +365,7 @@ Notice the use of the `!=` operator to exclude doctors in California.
 ##### Find the 20 doctors across the four largest states (CA, TX, FL, NY) who were paid the most for professional advice.
 
 ```r
+# 20 doctors across the four largest states (CA, TX, FL, NY) who were paid the most for professional advice.
 ca_ny_tx_fl_prof_top20 <- pfizer %>%
   filter((state=="CA" | state == "NY" | state == "TX" | state == "FL") & category == "Professional Advising") %>%
   arrange(desc(total)) %>%
@@ -398,8 +408,8 @@ The following code uses the `bind_rows` function to append one data frame to ano
 ```r
 # merge/append data frames
 pfizer2 <- bind_rows(expert_advice, not_expert_advice)
-
 ```
+The new data frame `pfizer2` contains the same data as the original `pfizer`, although the order of the records will be different.
 
 #### Write data to a CSV file
 
@@ -528,7 +538,7 @@ Notice that you can select by columns' names, or by their positions, where 	`1`	
 
 ### Further reading
 
-**[Introduction to dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)**
+**[Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)**
 
 **[RStudio Data Wrangling Cheet Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)**
 Also introduces the [tidyr](https://blog.rstudio.org/2014/07/22/introducing-tidyr/) package, which can manage wide-to-long transformations, among other data manipulations.
