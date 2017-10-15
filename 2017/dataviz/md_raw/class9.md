@@ -94,25 +94,25 @@ GPS Visualizer's geocoder will work from a simple list of addresses, or from tab
 
 Checking `Include source+precision info in output` will ensure that the output includes notification of the accuracy of the geocoding for each record: `address` indicates precise geocoding to a particular address.
 
-Select `Bing Maps` as the source and paste you Bing Maps API key into the box. Then paste the address data, minus the header row, from the `sf_test_addresses.tsv` file into the `Input:` box, click `Start geocoding` and the results will appear in the `Results as text:` box. When all the addresses have been processed, copy and paste the results into a text file and save. If you have a large number of addresses to geocode, I recommend breaking them down into batches of 1,000 or fewer.
+Select `Bing Maps` as the source and paste your Bing Maps API key into the box. Then paste the address data, minus the header row, from the `sf_test_addresses.tsv` file into the `Input:` box, click `Start geocoding` and the results will appear in the `Results as text:` box. When all the addresses have been processed, copy and paste the results into a text file and save. If you have a large number of addresses to geocode, I recommend breaking them down into batches of 1,000 or fewer.
 
 Whichever service you use to geocode addresses, provide appropriate acknowledgement. MapQuest's terms and conditions require that you include this acknowledgement on any website or app using data geocoded through its service:
 
 ```JSON
-<p>Geocoding Courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png"></p>
+<p>Geocoding Courtesy of <a href="https://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png"></p>
 ```
 Data should also be sourced to OpenStreetMap, [see here](http://wiki.openstreetmap.org/wiki/Legal_FAQ#3a._I_would_like_to_use_OpenStreetMap_maps._How_should_I_credit_you.3F) for instructions on how to credit appropriately.
 
 Here is an HTML acknowledgment to Bing in the same style as above:
 
 ```JSON
-<p>Geocoding Courtesy of <a href="http://www.microsoft.com/maps/product/terms.html" target="_blank">Bing</a> <img src="http://www.microsoft.com/maps/images/branding/Bing%20logo%20gray_50px-19px.png"></p>
+<p>Geocoding Courtesy of <a href="https://www.microsoft.com/maps/product/terms.html" target="_blank">Bing</a></p>
 ```
 
 Be aware that different geocoders will give slightly different results. In my experience, MapQuest Open tends to locate addresses to sidewalks or building fronts, while Bing tends to locate to the middle of the building concerned. Bing's failure rate also appears to be lower. You may need to manually record the coordinates of addresses that fail, or which do not geocode to a precise address. In these cases, try searching for the address on Bing Maps or Google Maps. For the latter, note the latitude and longitude for the placemarker than appears, shown here after the `@` symbol:
 
 ```JSON
-https://www.google.com/maps/place/1875+Cesar+Chavez+St,+San+Francisco,+CA+94107/@37.7497825,-122.395751,17z
+https://www.google.com/maps/place/1875+Cesar+Chavez+St,+San+Francisco,+CA+94107/@37.7497825,-122.395751,17z/data=!4m5!3m4!1s0x808f7fae0a545527:0x564005c073e75262!8m2!3d37.7497705!4d-122.3957525
 ```
 
 You may also wish to experiment with [Texas A&M University's GeoServices](https://geoservices.tamu.edu/), which will geocode from an uploaded text file, emailing you when the results are ready for download. First [sign up for a free account](https://geoservices.tamu.edu/Signup/), then [upload your data](https://geoservices.tamu.edu/Services/Geocode/BatchProcess/).
@@ -125,7 +125,7 @@ Maps can be made simply by plotting latitude on the X axis and longitude on the 
 
 ![](./img/class9_3.jpg)
 
-(Source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Equirectangular_projection_SW.jpg))
+(Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Equirectangular_projection_SW.jpg))
 
 Most maps are drawn according to a more sophisticated projection system, however. There are many different systems, each of which has advantages and drawbacks. Some projections are optimized to minimize the distortion of area; others aim to preserve shape or distance; yet others keep directions constant.
 
@@ -133,13 +133,13 @@ Google and most other online maps use a Mercator projection, which was originall
 
 ![](./img/class9_4.jpg)
 
-(Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Mercator_projection_SW.jpg))
+(Source: [Wikimedia Commons](https://en.wikipedia.org/wiki/File:Mercator_projection_SW.jpg))
 
 When mapping the continental United States, particularly when coloring or shading different areas according to the values of data, it is common to use the Albers Equal Area Conic projection, as seen in this map of drought conditions across the nation:
 
 ![](./img/class9_5.jpg)
 
-(Source: [*The New York Times*](http://www.nytimes.com/interactive/2014/upshot/mapping-the-spread-of-drought-across-the-us.html))
+(Source: [*The New York Times*](https://www.nytimes.com/interactive/2014/upshot/mapping-the-spread-of-drought-across-the-us.html))
 
 As the name suggests, this projection minimizes distortions of area. It does not preserve compass bearing: Notice that the border with Canada, which runs along a parallel at a latitude of 45 degrees N, is a curve, rather that a straight line.
 
@@ -147,19 +147,19 @@ The Albers Equal Area Conic projection is rarely used to show the entire Earth, 
 
 ![](./img/class9_6.jpg)
 
-(Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Albers_projection_SW.jpg))
+(Source: [Wikimedia Commons](https://en.wikipedia.org/wiki/File:Albers_projection_SW.jpg))
 
 To minimize the distortion of area on a global map, a better choice is the Mollweide projection:
 
 ![](./img/class9_7.jpg)
 
-(Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Mollweide_projection_SW.jpg))
+(Source: [Wikimedia Commons](https://en.wikipedia.org/wiki/File:Mollweide_projection_SW.jpg))
 
 The Mollweide projection is also often used for maps of the entire sky (which can be thought of as the inside of a sphere). I used it [here](http://paldhous.github.io/CMB/) to compare the resolution of maps of the cosmic microwave background radiation, which reveal ripples in space-time that are the remnants of conditions in the early Universe, with views of the Earth:
 
 ![](./img/class9_8.jpg)
 
-(Source: [*New Scientist*](http://paldhous.github.io/CMB/))
+(Source: [*New Scientist*](https://paldhous.github.io/CMB/))
 
 The Mollweide projection's main disadvantage is the distortion of shape at high latitudes and longitudes -- look, for example, at Alaska on the above Mollweide maps.
 
@@ -167,13 +167,13 @@ Under certain circumstances, preserving distance may by the most important goal.
 
 ![](./img/class9_9.jpg)
 
-(Source: [Wikimedia Commons](http://commons.wikimedia.org/wiki/File:Azimuthal_equidistant_projection_SW.jpg))
+(Source: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Azimuthal_equidistant_projection_SW.jpg))
 
 Below, an Azimuthal Equidistant projection, centered on North Korea, is used to illustrate the locations that might lie within the range of that country's ballistic missiles:
 
-![](./img/class9_10.jpg)
+![](./img/class9_10.png)
 
-(Source: [Jason Davies](http://www.jasondavies.com/maps/north-korea-distance/))
+(Source: [BuzzFeed News](https://www.buzzfeed.com/peteraldhous/north-korea-missiles-and-nukes))
 
 Here, for comparison, is a map that highlights the zone within 10,000 km of North Korea using Google Maps' Mercator projection:
 
@@ -187,13 +187,13 @@ Distortions of shape, area, distance and direction are most obvious when represe
 
 ![](./img/class9_12.jpg)
 
-(Source: [Wikimedia Commons](http://en.wikipedia.org/wiki/File:Robinson_projection_SW.jpg))
+(Source: [Wikimedia Commons](https://en.wikipedia.org/wiki/File:Robinson_projection_SW.jpg))
 
 This was the projection I used for the global GDP per capita maps we saw in week 1:
 
 ![](./img/class1_16.jpg)
 
-In addition to a projection, a map also has a [datum](http://en.wikipedia.org/wiki/Geodetic_datum), which refers to a mathematical model accounting for the shape of the Earth -- which is not a perfect sphere.
+In addition to a projection, a map also has a [datum](https://en.wikipedia.org/wiki/Geodetic_datum), which refers to a mathematical model accounting for the shape of the Earth -- which is not a perfect sphere.
 
 
 ### Putting data onto maps
@@ -204,15 +204,15 @@ Data can be put onto maps in various ways. When continuous variables are plotted
 
 ![](./img/class9_13.jpg)
 
-(Source: [*The New York Times*](http://www.nytimes.com/interactive/2011/04/28/us/tornado-deaths.html))
+(Source: [*The New York Times*](https://www.nytimes.com/interactive/2011/04/28/us/tornado-deaths.html))
 
-When plotting data to geographical areas, the most common approach is to fill the areas with color according to the data values, like my maps of GDP per capita, or the US drought map above. These are known as [choropleth maps](http://indiemapper.com/app/learnmore.php?l=choropleth).
+When plotting data to geographical areas, the most common approach is to fill the areas with color according to the data values, like my maps of GDP per capita, or the US drought map above. These are known as [choropleth maps](https://datavizcatalogue.com/methods/choropleth.html).
 
 Choropleth maps have an important drawback: Our eyes are drawn to expanses of color, which means that large geographic areas will attract greater attention, whether or not these are actually more important for the story you are trying to tell from the data. This becomes a particular problem with maps illustrating election results, where the significance of small geographical areas with large populations that have a major impact on the overall result gets downplayed, while sparsely populated large areas are overemphasized. Looking at this map of results from the 2012 Presidential election by county, for example, one would think at a glance that Mitt Romney was the winner:
 
 ![](./img/class9_14.jpg)
 
-(Source: [*The New York Times*](http://elections.nytimes.com/2012/results/president?view=county_margin_change_view))
+(Source: [*The New York Times*](https://elections.nytimes.com/2012/results/president?view=county_margin_change_view))
 
 In such cases, scaled circles located to the center of geographic areas can be a better option. Here is another map from the same interactive, using that approach to visualize the size of each candidate's lead in each county, measured by the absolute number of votes. This shows how Barack Obama won the election through his strong support in densely populated urban areas:
 
@@ -230,11 +230,11 @@ There are several algorithms for making cartograms which preserve the boundaries
 
 (Source: [Mark Newman](http://www-personal.umich.edu/~mejn/election/2012/))
 
-A good tool for making maps like this is [Scapetoad](http://scapetoad.choros.ch/). However, bear in mind that the impact of these maps derives from their disconcerting perspective. That can be useful to make your audience think about an issue in a new way, which was the thinking behind these maps of mine, comparing nations measured by GDP, and by a measure called the [Happy Planet Index](http://www.happyplanetindex.org/):
+A good tool for making maps like this is [Scapetoad](http://scapetoad.choros.ch/). However, bear in mind that the impact of these maps derives from their disconcerting perspective. That can be useful to make your audience think about an issue in a new way, which was the thinking behind these maps of mine, comparing nations measured by GDP, and by a measure called the [Happy Planet Index](https://happyplanetindex.org/):
 
 ![](./img/class9_17.jpg)
 
-(Source: *[New Scientist](http://www.newscientist.com/article/mg21428694.800-us-fails-on-happy-planet-index.html)*)
+(Source: *[New Scientist](https://www.newscientist.com/article/mg21428694.800-us-fails-on-happy-planet-index.html)*)
 
 The cartograms we have seen so far retain common borders between areas, which constrains the accuracy with which areas can be resized according to values for a continuous variable. By relaxing this constraint, it is possible to resize areas more precisely:
 
@@ -248,7 +248,7 @@ It is also possible to make geometric cartograms, which use the area of shapes (
 
 ![](./img/class9_19.jpg)
 
-(Source: *[The New York Times](http://elections.nytimes.com/2012/ratings/electoral-map)*)
+(Source: *[The New York Times](https://elections.nytimes.com/2012/ratings/electoral-map)*)
 
 Along similar lines, for its coverage of the 2010 U.K. General Election, the BBC represented each parliamentary constituency as a hexagon of equal area. The resulting map bore sufficient resemblance to an actual map of the United Kingdom to be meaningful, and users of the website could switch between the proportional and geographical maps to gain a more complete picture of the results by location:
 
@@ -256,13 +256,13 @@ Along similar lines, for its coverage of the 2010 U.K. General Election, the BBC
 
 ￼(Source: [BBC](http://news.bbc.co.uk/2/shared/election2010/results/))
 
-Hexagons have advantages for mapping because they tile perfectly in a honeycomb-like grid. Maps of this type, sometimes called "tilegrams" have since become popular for representing election results and forecasts. Here, for example, is a map representing the electoral college for the 2016 presidential election, from [FiveThirtyEight](http://projects.fivethirtyeight.com/2016-election-forecast/?ex_cid=rrpromo):
+Hexagons have advantages for mapping because they tile perfectly in a honeycomb-like grid. Maps of this type, sometimes called "tilegrams" have since become popular for representing election results and forecasts. Here, for example, is a map representing the electoral college for the 2016 presidential election, from [FiveThirtyEight](https://projects.fivethirtyeight.com/2016-election-forecast/?ex_cid=rrpromo):
 
 ![](./img/class9_20a.jpg)
 
-(Source: *[FiveThirtyEight](http://projects.fivethirtyeight.com/2016-election-forecast/?ex_cid=rrpromo)*)
+(Source: *[FiveThirtyEight](https://projects.fivethirtyeight.com/2016-election-forecast/?ex_cid=rrpromo)*)
 
-The data visualization studio [Pitch Interactive](http://www.pitchinteractive.com/) recently created a tool for making U.S. tilegrams. To use the resulting map in other mapping tools, click the `Export Toposon` button. You can then use [mapshaper](http://mapshaper.org/) to convert to other geodata types, see below. There is also an R package called **[tilegramsR](https://github.com/bhaskarvk/tilegramsR)**, see [here](http://rpubs.com/bhaskarvk/tilegramsR) and [here](http://rpubs.com/bhaskarvk/electoral-Map-2016) for examples.
+The data visualization studio [Pitch Interactive](https://www.pitchinteractive.com/) has created a [tool](https://pitchinteractiveinc.github.io/tilegrams/) for making U.S. tilegrams. To use the resulting map in other mapping tools, click the `Export Toposon` button. You can then use [mapshaper](http://mapshaper.org/) to convert to other geodata types, see below. There is also an R package called **[tilegramsR](https://github.com/bhaskarvk/tilegramsR)**, see [here](http://rpubs.com/bhaskarvk/tilegramsR) and [here](http://rpubs.com/bhaskarvk/electoral-Map-2016) for examples.
 
 
 #### Dot density maps: Seeing the big picture by showing all (or most) of the data
@@ -271,15 +271,15 @@ Sometimes patterns emerge from geographic data when we see the spatial distribut
 
 ![](./img/class9_21.jpg)
 
-(Source: [Dustin Cable, University of Virginia](http://demographics.coopercenter.org/DotMap/index.html))
+(Source: [Dustin Cable, University of Virginia](http://demographics.coopercenter.org/racial-dot-map/))
 
-The overall effect is rather like [pointillist](http://en.wikipedia.org/wiki/Pointillism) art. These maps work well when zoomed out, but are not so informative at high zoom levels.
+The overall effect is rather like [pointillist](https://en.wikipedia.org/wiki/Pointillism) art. These maps work well when zoomed out, but are not so informative at high zoom levels.
 
 A similar approach can work with aggregations of data, as in this project from *The New York Times*, which drew one dot for every 200 people, rather than one dot per person:
 
 ![](./img/class9_22.jpg)
 
-(Source: *[The New York Times](http://projects.nytimes.com/census/2010/explorer?ref=nyregion)*)
+(Source: *[The New York Times](https://projects.nytimes.com/census/2010/explorer?ref=nyregion)*)
 
 #### Making sense of many overlapping points: Heatmaps vs. hexagonal binning
 
@@ -291,13 +291,13 @@ Under such circumstances, other approaches are necessary. Heat maps, for example
 
 ![](./img/class9_24.jpg)
 
-(Source: Peter Aldhous, from [GDELT](http://gdeltproject.org/) data)
+(Source: Peter Aldhous, from [GDELT](https://www.gdeltproject.org/) data)
 
 While heatmaps are good for qualitatively identifying hotspots, they are less useful for communicating quantitative information. For this purpose, a better approach is to superimpose a hexagonal grid over the map, count the points in each cell, and use those counts to create a choropleth map, based on the grid. I used that approach on the same data to make this map of Syria's conflict:
 
 ![](./img/class9_25.jpg)
 
-(Source: *[New Scientist](http://paldhous.github.io/Syria/)*)
+(Source: *[New Scientist](https://paldhous.github.io/Syria/)*)
 
 ### Think before you map: Is this the best representation of the data?
 
@@ -414,13 +414,13 @@ KML has been adopted as a standard for geographic data, and so can be used by a 
 ]
 }
 ```
-See the [full GeoJSON specification](http://geojson.org/geojson-spec.html) for more details.
+See the [full GeoJSON specification](https://tools.ietf.org/html/rfc7946) for more details.
 
 [TopoJSON](https://github.com/mbostock/topojson/wiki) is an extension of GeoJSON which is more compact, because polygons are described by line segments, rather than their entire boundaries. This means that the boundary between California and Nevada, for instance, is represented only once, rather than twice -- once for each state. This keeps file sizes small, which can be advantageous when data must be loaded and rendered in a web browser.
 
 #### Shapefile
 
-This is a geodata format developed by [ESRI](http://www.esri.com/), manufacturer of ArcGIS, the leading commercial Geographic Information System (GIS) application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
+This is a geodata format developed by [ESRI](https://www.esri.com/), manufacturer of ArcGIS, the leading commercial Geographic Information System (GIS) application. Shapefiles can represent elements including points, lines and polygons, and can also include information on map projection and datums.
 
 Shapefiles are usually made available for download as zipped folders, and actually consist of a series of files. At a minimum, a shapefile must contain three component files, with the same root name and the following extensions:
 
@@ -428,17 +428,17 @@ Shapefiles are usually made available for download as zipped folders, and actual
 - `.dbf` A database file in dBASE format containing a table of data relating to the components of the geometry. For example, in a world shapefile giving national boundaries, this table might contain data about the countries including their names, capital cities, population, annual GDP, and so on.
 - `.shx` A positional index of the shapefile’s geometry.
 
-There are several optional file types that may also be included, including a `.prj` file, which defines the map projection and datum to be used when loading the shapefile into GIS software. Refer to [ESRI’s technical specification](http://www.esri.com/library/whitepapers/pdfs/shapefile.pdf) and the [informative Wikipedia entry](http://en.wikipedia.org/wiki/Shapefile) for more details.
+There are several optional file types that may also be included, including a `.prj` file, which defines the map projection and datum to be used when loading the shapefile into GIS software. Refer to [ESRI’s technical specification](https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf) and the [informative Wikipedia entry](https://en.wikipedia.org/wiki/Shapefile) for more details.
 
-Many government agencies, such as the [U.S. Census Bureau](http://www.census.gov/geo/maps-data/data/tiger-line.html), provide data for mapping as shapefiles. You can also download shapefiles from repositories such as [Natural Earth](http://www.naturalearthdata.com/downloads/).
+Many government agencies, such as the [U.S. Census Bureau](https://www.census.gov/geo/maps-data/data/tiger-line.html), provide data for mapping as shapefiles. You can also download shapefiles from repositories such as [Natural Earth](http://www.naturalearthdata.com/downloads/).
 
 ### Converting between vector geodata formats
 
-We will later learn how to use [QGIS](http://qgis.org/en/site/) to convert between the main geodata formats. In addition, [this site](http://www.shpescape.com//) converts shapefiles to GeoJSON and TopoJSON. [Mapshaper](http://mapshaper.org/), which we will later also use to simplify the geometry of geodata, will import and export data as Shapefile, GeoJSON, and TopoJSON, and so can also be used for data conversion.
+We will later learn how to use [QGIS](https://qgis.org/en/site/) to convert between the main geodata formats. In addition, [this site](http://shpescape.com/) converts shapefiles to GeoJSON and TopoJSON. [Mapshaper](http://mapshaper.org/), which we will later also use to simplify the geometry of geodata, will import and export data as Shapefile, GeoJSON, and TopoJSON, and so can also be used for data conversion.
 
 ### Mapping images: raster geodata
 
-Satellite and aerial images can also be placed into maps, which requires the images to be georeferenced, or have location imformation associated with them. Formats for raster geodata include [GeoTIFF](http://trac.osgeo.org/geotiff/). If you need to make maps with raster geodata for your final projects, contact me for help!
+Satellite and aerial images can also be placed into maps, which requires the images to be georeferenced, or have location imformation associated with them. Formats for raster geodata include [GeoTIFF](https://trac.osgeo.org/geotiff/). If you need to make maps with raster geodata for your final projects, contact me for help!
 
 ### Assignment
 

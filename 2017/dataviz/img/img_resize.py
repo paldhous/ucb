@@ -18,7 +18,7 @@ for infile in glob.glob("*.png"):
     file, ext = os.path.splitext(infile)
     im = Image.open(infile)
     im.thumbnail(size, Image.ANTIALIAS)
-    im.save(file + ".jpg", "JPEG", quality = 100)
+    im.save(file + ".png", "png", quality = 100)
     print "processing " + file
 
 print "DONE!"

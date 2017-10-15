@@ -320,7 +320,7 @@ food_stamps_chart +
 
 ![](./img/class8_14.png)
 
-`geom_bar` works a little differently to the `geoms` we have considered previously. If you have not mapped data values to the Y axis with `aes`, its default behavior is to set the heights of the bars by counting the number of records for values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values in the data, use you must use `stat="identity"`.
+`geom_bar` works a little differently to the `geoms` we have considered previously. If you have not mapped data values to the Y axis with `aes`, its default behavior is to set the heights of the bars by counting the number of records for values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values in the data, you must use `stat="identity"`.
 
 #### The difference between color and fill
 
@@ -335,11 +335,11 @@ food_stamps_chart +
            color = "#888888", 
            fill = "#CCCCCC", 
            alpha = 0.5) +
-  ggtitle("Bar chart")
+  ggtitle("Column chart")
 ```
 When setting colors, `color` refers to the outline, `fill` to the interior of the shape.
 
-![](./img/class8_15.png)
+![](./img/class8_14a.png)
 
 #### Make a bar chart
 
@@ -528,18 +528,18 @@ ggplot(immun_top5_year, aes(x = start_year, y = proport_incomplete, color = coun
 ```r
 # heat map, all counties, by year
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = incomplete), colour = "white") +
+  geom_tile(aes(fill = proport_incomplete), colour = "white") +
   scale_fill_gradient(low = "white",
-                      high = "red", 
+                      high = "red",
                       name="",
                       labels = percent) +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
-  theme_minimal(base_size = 12) +
+  theme_minimal(base_size = 12, base_family = "Georgia") +
   xlab("") +
   ylab("County") +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        legend.position= "bottom",
+        legend.position="bottom",
         legend.key.height = unit(0.4, "cm")) +
   ggtitle("Immunization in California kindergartens, by county")
 ```

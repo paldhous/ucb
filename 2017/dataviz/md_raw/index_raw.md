@@ -5,7 +5,7 @@ This is a course in finding and telling visual stories from data. We will cover 
 
 ### Weekly schedule
 
-We will meet in **108/Lower NG** on Fridays from 9.30am - 12.30pm. Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **B1** from 1.30pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
+We will meet in **108/Lower NG** on Fridays from 9.30am - 12.30pm. Your instructor, [**Peter Aldhous**](http://www.peteraldhous.com/), will maintain office hours in **209/Greenhouse** from 1.30pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
 
 Class time will also be scheduled for each of you to critique and lead class discussion of a recently published news graphic/interactive.
 

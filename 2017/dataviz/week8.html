@@ -253,21 +253,21 @@ food_stamps_chart +
 food_stamps_chart +
   geom_bar(stat = <span class="hljs-string">"identity"</span>, color = <span class="hljs-string">"white"</span>) +
   ggtitle(<span class="hljs-string">"Column chart"</span>)
-</code></pre><p><img src="img/class8_14.png" alt=""></p><p><code>geom_bar</code> works a little differently to the <code>geoms</code> we have considered previously. If you have not mapped data values to the Y axis with <code>aes</code>, its default behavior is to set the heights of the bars by counting the number of records for values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values in the data, use you must use <code>stat="identity"</code>.</p><h4 id="the-difference-between-color-and-fill"><a name="the-difference-between-color-and-fill" href="#the-difference-between-color-and-fill"></a>The difference between color and fill</h4><p>In the code above, you may be confused that the    <code>color</code> is set to white, yes the bars are black.</p><p>For some <code>geoms</code>, notably <code>geom_bar</code>, you can set color for their outline as well as the interior of the shape. Here,<code>color</code> refers to the outline, <code>fill</code> to the interior of the shape.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># set color and fill
+</code></pre><p><img src="img/class8_14.png" alt=""></p><p><code>geom_bar</code> works a little differently to the <code>geoms</code> we have considered previously. If you have not mapped data values to the Y axis with <code>aes</code>, its default behavior is to set the heights of the bars by counting the number of records for values along the X axis. If you have mapped a variable to the Y axis, and want the heights of the bars to represent values in the data, you must use <code>stat="identity"</code>.</p><h4 id="the-difference-between-color-and-fill"><a name="the-difference-between-color-and-fill" href="#the-difference-between-color-and-fill"></a>The difference between color and fill</h4><p>In the code above, you may be confused that the    <code>color</code> is set to white, yes the bars are black.</p><p>For some <code>geoms</code>, notably <code>geom_bar</code>, you can set color for their outline as well as the interior of the shape. Here,<code>color</code> refers to the outline, <code>fill</code> to the interior of the shape.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># set color and fill
 food_stamps_chart +
   geom_bar(stat = &quot;identity&quot;, 
            color = &quot;#888888&quot;, 
            fill = &quot;#CCCCCC&quot;, 
            alpha = 0.5) +
-  ggtitle(&quot;Bar chart&quot;)
+  ggtitle(&quot;Column chart&quot;)
 </code></pre>"><span class="hljs-comment"># set color and fill</span>
 food_stamps_chart +
   geom_bar(stat = <span class="hljs-string">"identity"</span>, 
            color = <span class="hljs-string">"#888888"</span>, 
            fill = <span class="hljs-string">"#CCCCCC"</span>, 
            alpha = <span class="hljs-number">0.5</span>) +
-  ggtitle(<span class="hljs-string">"Bar chart"</span>)
-</code></pre><p>When setting colors, <code>color</code> refers to the outline, <code>fill</code> to the interior of the shape.</p><p><img src="img/class8_15.png" alt=""></p><h4 id="make-a-bar-chart"><a name="make-a-bar-chart" href="#make-a-bar-chart"></a>Make a bar chart</h4><p>You can make a bar chart using the same code for a column chart, and then using <code>coord_flip</code> to switch the X and Y axes.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Make a bar chart
+  ggtitle(<span class="hljs-string">"Column chart"</span>)
+</code></pre><p>When setting colors, <code>color</code> refers to the outline, <code>fill</code> to the interior of the shape.</p><p><img src="img/class8_14a.png" alt=""></p><h4 id="make-a-bar-chart"><a name="make-a-bar-chart" href="#make-a-bar-chart"></a>Make a bar chart</h4><p>You can make a bar chart using the same code for a column chart, and then using <code>coord_flip</code> to switch the X and Y axes.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Make a bar chart
 food_stamps_chart +
   geom_bar(stat = &quot;identity&quot;, 
            color = &quot;#888888&quot;, 
@@ -429,34 +429,34 @@ ggplot(immun_top5_year, aes(x = start_year, y = proport_incomplete, color = coun
   ggtitle(<span class="hljs-string">"Immunization in California kindergartens\n(five largest counties)"</span>)
 </code></pre><p><img src="img/class8_20.png" alt=""></p><h4 id="make-a-heat-map-showing-the-percentage-of-children-with-incomplete-immunization-for-each-california-county,-over-time"><a name="make-a-heat-map-showing-the-percentage-of-children-with-incomplete-immunization-for-each-california-county,-over-time" href="#make-a-heat-map-showing-the-percentage-of-children-with-incomplete-immunization-for-each-california-county,-over-time"></a>Make a heat map showing the percentage of children with incomplete immunization for each California county, over time</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># heat map, all counties, by year
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = incomplete), colour = &quot;white&quot;) +
+  geom_tile(aes(fill = proport_incomplete), colour = &quot;white&quot;) +
   scale_fill_gradient(low = &quot;white&quot;,
-                      high = &quot;red&quot;, 
+                      high = &quot;red&quot;,
                       name=&quot;&quot;,
                       labels = percent) +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
-  theme_minimal(base_size = 12) +
+  theme_minimal(base_size = 12, base_family = &quot;Georgia&quot;) +
   xlab(&quot;&quot;) +
   ylab(&quot;County&quot;) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        legend.position= &quot;bottom&quot;,
+        legend.position=&quot;bottom&quot;,
         legend.key.height = unit(0.4, &quot;cm&quot;)) +
   ggtitle(&quot;Immunization in California kindergartens, by county&quot;)
 </code></pre>"><span class="hljs-comment"># heat map, all counties, by year</span>
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = incomplete), colour = <span class="hljs-string">"white"</span>) +
+  geom_tile(aes(fill = proport_incomplete), colour = <span class="hljs-string">"white"</span>) +
   scale_fill_gradient(low = <span class="hljs-string">"white"</span>,
-                      high = <span class="hljs-string">"red"</span>, 
+                      high = <span class="hljs-string">"red"</span>,
                       name=<span class="hljs-string">""</span>,
                       labels = percent) +
   scale_x_continuous(breaks = c(<span class="hljs-number">2002</span>,<span class="hljs-number">2004</span>,<span class="hljs-number">2006</span>,<span class="hljs-number">2008</span>,<span class="hljs-number">2010</span>,<span class="hljs-number">2012</span>,<span class="hljs-number">2014</span>)) +
-  theme_minimal(base_size = <span class="hljs-number">12</span>) +
+  theme_minimal(base_size = <span class="hljs-number">12</span>, base_family = <span class="hljs-string">"Georgia"</span>) +
   xlab(<span class="hljs-string">""</span>) +
   ylab(<span class="hljs-string">"County"</span>) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
-        legend.position= <span class="hljs-string">"bottom"</span>,
+        legend.position=<span class="hljs-string">"bottom"</span>,
         legend.key.height = unit(<span class="hljs-number">0.4</span>, <span class="hljs-string">"cm"</span>)) +
   ggtitle(<span class="hljs-string">"Immunization in California kindergartens, by county"</span>)
 </code></pre><p><img src="img/class8_21.png" alt=""></p><p>This code uses <code>geom_tile</code> to make a heat map, and <code>scale_fill_gradient</code> to create a color gradient by manually setting the colors for the start and end of the scale. This is an alternative to using <code>scale_fill_distiller</code> to use a ColorBrewer sequential palette.</p><p>The <code>theme</code> function removes all grid lines from the chart, moves the legend to the bottom, and manually sets its height in centimeters.</p><h4 id="make-a-gapminder-style-bubble-chart-showing-the-relationship-between-gdp-per-capita-and-life-expectancy-for-the-world's-nations-in-2015"><a name="make-a-gapminder-style-bubble-chart-showing-the-relationship-between-gdp-per-capita-and-life-expectancy-for-the-world's-nations-in-2015" href="#make-a-gapminder-style-bubble-chart-showing-the-relationship-between-gdp-per-capita-and-life-expectancy-for-the-world's-nations-in-2015"></a>Make a Gapminder-style bubble chart showing the relationship between GDP per capita and life expectancy for the world’s nations in 2015</h4><p>Here’s another example, to further illustrate the diversity of charts that you can make by combining <strong>dplyr</strong> and <strong>ggplot2</strong> to process and chart data.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load data
