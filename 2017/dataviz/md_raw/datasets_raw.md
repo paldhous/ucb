@@ -75,6 +75,12 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
   - `start_year` Year of entry (for the 2015-2016 school year, for example, this would be 2015).
 - `nations.csv` Data from World Bank World Development Indicators portal, giving data on population, GDP per capita, life expectancy, birth rate, neonatal mortality rate, region and income group for the world's nations, from 1990 onwards, as used in week 3.
 
+#### [Download Week 9](./data/week9.zip)
+
+- `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
+- `refine_geocoder.json` JSON file to geocode using Open Refine.
+- `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
+
 
 
 ## Final projects
