@@ -8,600 +8,408 @@ It is also a geospatial database, allowing you to perform GIS analyses and proce
 
 ### The data we will use today
 
-Download the data from this session from [here](data/week11.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
+Download the data from this session from [here](data/class11.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
 
-- `ca_healthcare`
- - `ca_counties_medicare.zip` Zipped shapefile with data on Medicare reimbursement per enrollee by California county in 2012, as used in week 10.
- - `healthcare_facilities.csv` Locations and other data for hospitals and other healthcare facilities in California, as used in week 10.
-- `seismic_risk.zip` Zipped shapefile detailing the risk of experiencing a major earthquake across the continental United States, as used in week 10.
-- `sf`
- - `sf_test_addresses.csv` Sample of 100 addresses in San Francisco, geocoded in week 9.
- - `sfpd_stations.zip` Zipped shapefile with locations of San Francisco police stations.
+- `seismic.zip` Zipped shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+- `seismic_raw.zip` As above, but not clipped to the coast and borders of the United States.
+- `ne_50m_admin_0_countries_lakes.zip` Zipped [Natural Earth shapefile](http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/) with boundary data for the world's nations.
+- `sf_test_addresses.zip` Zipped shapefile of addresses we geocoded in week 9, with their coordinates derived from Bing Maps.
+- `quakes.csv` This file isn't in the folder. As for week 10, we will use the U.S. Geological Survey's [Earthquakes Archives](https://earthquake.usgs.gov/earthquakes/search/) API where we will search for all earthquakes since 1960 with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 6 or greater that occured witin 6,000 kilometers of the geographic center of the contiguous United States. Type this url into the address bar of your browser:
+```Javascript
+https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&format=csv&orderby=time
+```
+A file called `query.csv` should download. Rename it `quakes.csv` and add to the `class11` folder.
+- `test.html` A web page for embedding the Carto map we will make.
 
-All of the shapefiles have been compressed/zipped, as this is required to load them into Carto.
+### Map seismic risk and earthquakes
 
-### Map Medicare reimbursements and hospitals in California
+#### Import data to Carto
 
-#### Import the data
+Login to your Carto account, open the drop-down menu under `Maps` at top left and switch to `Your datasets`:
 
-To demonstrate Carto's core map-making functionality, we will first make an interactive online version of the static map we made in week 10.
+![](./img/class11_1.jpg)
 
-Login to your Carto account, open the drop-down menu under `Maps` at top left and switch to `Your datasets`. Then click the blue `NEW DATASET` button at top right.
+If you have not imported any data into Carto previously you will be in the `DATA LIBRARY` tab, which contains useful datasets that you can import into your own account.
+
+The top menu has a link to `DOCUMENTATION`, which has links to Carto's technical manuals.
+
+Now click the `NEW DATASET` button at top right.
 
 You should now see the following screen:
 
+![](./img/class11_2.jpg)
+
+With the `Data file` tab selected, click the `Browse` button, navigate to the zipped `seismic.zip` shapefile and click `Open`. Then click the `CONNECT DATASET` button at bottom right.
+
+Carto can import geodata in a variety of formats, including CSV, [KML](https://developers.google.com/kml/?hl=en), [GeoJSON](http://geojson.org/) and zipped [shapefiles](https://en.wikipedia.org/wiki/Shapefile).
+
+Once the data has imported, you will see the uploaded data table:
+
 ![](./img/class11_3.jpg)
 
-With the `Data file` tab selected, click the `Browse` button, navigate to the zipped `ca_counties_medicare.zip` shapefile and click `Open`. Then click the green `Connect dataset` button.
+Notice that, in addition to the `valuerange` field from the original data, each row has been given a `cartodb_id`, which is a unique identifier for each. The table also has a field called `the_geom`. This field is central to how Carto works, defining the geometry of any map you make. These geometries can be points, lines or polygons (areas) -- which is what we have here.
 
-Cartocan import data in a variety of formats, including CSV, KML, GeoJSON and zipped shapefiles. See [here](https://carto.com/docs/carto-engine/import-api/importing-geospatial-data/#supported-geospatial-data-formats) for more on supported data formats.
-
-Once the data has imported, you will see the uploaded data table in `DATA VIEW`:
+You can rename fields by double-clicking on their names:
 
 ![](./img/class11_4.jpg)
 
-Notice that, in addition to the fields from the original data, each row has been given a `cartodb_id`, which is a unique identifier for each. The table also has a field called `the_geom` which has the tag `GEO`. This field is central to how Carto works, defining the geometry of any map you make. As in QGIS, these geometries can be points, lines or polygons -- which is what we have here.
-
-You can rename fields, sort the table by the data in them, or change their data type (for example from numbers to strings of text), by clicking the downward-pointing triangle next to the header of each.
-
-Switch to `MAP VIEW` to see the basic, unstyled map:
+You can sort or order the table by the data in each field by clicking on the blue dots and then using the arrows:
 
 ![](./img/class11_5.jpg)
 
-Click the small return arrow at top left to go back to the overview of your datasets.
+And you can change the data type for each field (for example from numbers to strings of text), using the same menu.
 
-Notice that the top menu has a link to `DOCUMENTATION`, which has links to Carto's technical manuals. The `DATA LIBRARY` link contains useful datasets that you can import into your own account. Take a few minutes to explore what's there, before returning to your `DATASETS`.
-
-Now click the `NEW DATASER` button again and import the file `healthcare_facilities.csv`, which should look like this in the `DATA VIEW`:
+Click `PREVIEW` at bottom right to see the basic, unstyled map:
 
 ![](./img/class11_6.jpg)
 
-Notice that `the_geom` for points is given by their longitude and latitude co-ordinates.
-
-Click on the `MAP VIEW` to see the locations of all of the facilities:
+Now click `BACK` to close that map and click on the circle at top left to return to your datasets:
 
 ![](./img/class11_7.jpg)
 
-#### Create a visualization combining both datasets
-
-Exit the `healthcare_facilities` map and reopen the `ca_counties_medicare` dataset by clicking on its name in your `DATASETS`. Then click the `VISUALIZE` button at top right.
-
-You will then see a prompt to create a new map. Click the green `OK, CREATE MAP` button:
+Now click the `NEW DATASET` button again and import the file `quakes.csv`, which should look like this:
 
 ![](./img/class11_8.jpg)
 
-Rename this map `California hospitals` by clicking on its name at top left:
+Notice that `the_geom` for points is given by their longitude and latitude co-ordinates.
+
+Click `PREVIEW` to see the locations of all of the quakes:
 
 ![](./img/class11_9.jpg)
 
-Now add the `healthcare_facilities` to the map, by clicking on the blue `+` button to the right. Select the `healthcare_facilities` layer so that its icon is highlihgted in blue, then click the `ADD LAYER` button at bottom right.
+#### Create a map combining both datasets
 
-Now select `MAP VIEW` to see both layers on the same map:
+Exit the `quakes` map and reopen the `seismic` dataset by clicking on its name in your `DATASETS`. Then click the `CREATE MAP` button at bottom right.
+
+If this is your first time using Carto, you will be asked if you want to `TAKE A TOUR`. Instead click `EDIT YOUR MAP` to see this view:
+
+![](./img/class11_10.jpg)
+
+Now add the `quakes` to the map, by clicking on the `ADD` button. Select the `quakes` layer so that it is highlighted in blue, then click the `ADD LAYER` button at bottom right:
 
 ![](./img/class11_11.jpg)
 
-You can tell when you're in a map visualization, rather than a single dataset, because the `MAP VIEW` has a black border.
+You should now see both layers on the same map:
+
+![](./img/class11_12.jpg)
 
 #### Select a basemap
 
-Now choose a basemap for your visualization, by clicking `Change basemap` at bottom left. Take a few minutes to explore the built-in basemap options. You are not limited to these basemaps, however.
+Now choose a basemap for your visualization, by clicking the `Basemap` layer in the left panel. The default is a basemap from Carto called `Voyager`, with the `Labels` displayed over the data layers.
 
-To import another tiled basemap from elsewhere on the web, click the blue plus sign next to `Yours` to call up the following dialog box:
+Take a few minutes to explore the built-in basemap options using the `Source` and `Style` options. You are not limited to these basemaps, however.
 
-![](./img/class11_12.jpg)
+To import another tiled basemap from elsewhere on the web, click this icon under `Source`:
+
+![](./img/class11_13.jpg)
+
+Now click the blue plus sign under `Style` to call up the following dialog box:
+
+![](./img/class11_14.jpg)
 
 The `XYZ` tab allows you to call in publicly available basemaps using URLs in the following format:
 
 ```SQL
-https://{s}.tiles.mapbox.com/v3/mapbox.world-bright/{z}/{x}/{y}.png
+https://a.tiles.mapbox.com/v3/mapbox.blue-marble-topo-bathy-jan/{z}/{x}/{y}.png
 ```
 
-We will use this "world bright" basemap, provided by MapBox (see the other basemaps from MapBox [here](http://a.tiles.mapbox.com/v3/mapbox/maps.html)). The [Leaflet Providers preview](http://leaflet-extras.github.io/leaflet-providers/preview/) is a good place to look for available basemaps from other providers. It previews the maps and also exposes their `XYZ` URLs:
-
-![](./img/class11_13.jpg)
-
-Back in Carto, enter the `XYZ` URL for the MapBox world bright map and click `Add basemap`. The map should now look like this:
-
-![](./img/class11_14.jpg)
-
-#### Style the maps using the Carto wizard
-
-Notice that the toolbar at right has tabs numbered `1` and `2`. It you hover over them, you will see that they correspond to the `ca_counties_medicare` and `healthcare_facilities` layers respectively.
-
-Click on `1` to expose the `Visualization wizard` for the `ca_counties_medicare` layer, which can also be reached by clicking the paintbrush icon:
+This is the url for a "Blue Marble" satellite basemap, provided by MapBox (see the other basemaps from MapBox [here](http://a.tiles.mapbox.com/v3/mapbox/maps.html)). The [Leaflet Providers preview](https://leaflet-extras.github.io/leaflet-providers/preview//) is a good place to look for available basemaps from other providers. It previews the maps and also exposes their `XYZ` URLs:
 
 ![](./img/class11_15.jpg)
 
-(You can collapse the wizards at any time by clicking to the left of any of the icons.)
-
-Notice that opening the wizard has also exposed blue toggle controls for each layer, which can be used to turn the visibility for each on and off. Hide the `healthcare_facilities` layer so we can see what we are doing.
-
-Scroll from left to right through the visualization options, and select `CHOROPLETH` to make a choropleth map.
-
-Set `hospital` as the data `Column`, select `5 Buckets`, set them by `Quantile` and set the `Polygon Stroke` to zero to remove the lines from the map layer. The map should now look like this:
+You can also replace the basemap with a white or colored background by clicking on the paint-pot icon under `Source`:
 
 ![](./img/class11_16.jpg)
 
-Now click `2` to switch to the `healthcare_facilities` layer and turn on its visibility.
-
-In the `Visualization wizard` select `CATEGORY` and color the circles by the type of facility, by selecting `type` as the data `Column`. The map should look like this:
+Now switch the basemap to Carto's `Positron`, which is a good default:
 
 ![](./img/class11_17.jpg)
 
-We now have a rough approximation of the map we made in week 10 using QGIS, but there are important differences: We do not have the custom bins we used for the choropleth map; the circles are not scaled by area according to capacity of the healthcare facilities; we have not yet filtered the healthcare facilities for the two types we are interested in; and the colors haven't been fully customized.
+#### Create a new column in the quakes data to scale the points accurately by the size of the quakes
 
-#### Create a new column in the healthcare facilities data to scale the circles accurately by area, according to their capacity in beds
+We want to accurately and continuously vary the area of the circles representing the quakes according to their size.
 
-The Carto `Visualization wizard` does have a `BUBBLE` option, which sizes circles according to values in the data. However, it does not accurately and continuously vary the area of circles according to values in the data. To achieve that, we need to create a new column in the data, containing the square root of the values in the `capacity` column.
+To achieve that, we need to create a new column in the data using the formula `scale = sqrt(10^mag)`; that is, raise 10 to the power of the earthquake magititude, in the `mag` columns, then tak its square root.
 
-This is because web-based applications like Carto set the size of circles by their width, or twice their radius. From week 2, you should remember that we need to scale by the square root of the radius to size circles so that their area is proportional to values in the data.
+We discussed in week 10 that the size of a quake, in terms of the amount of shaking on a seismograph, is 10 to the power of its magnitude.
 
-Switch to the `DATA VIEW` for the `healthcare_facilities` layer. Open up the dropdown menu for the `capacity` field and select `Add new column...` Rename it as `scale` and then change its type from `string` to `number`:
+Here, we need to take the square root of these values, because web-based applications like Carto set the size of circles by their width, or twice their radius. From week 2, you should remember that we need to scale by the square root of the radius to size circles so that their area is proportional to values in the data.
 
-![](./img/class11_22.jpg)
-
-Now open the `SQL` tab, then enter and apply the following query:
-
-```SQL
-UPDATE healthcare_facilities SET scale=sqrt(capacity)
-```
-
-`UPDATE` queries change the data in the table, in this case updating the `healthcare_facilities` table to set the values for `scale`as the square root of the values in `capacity`.
-
-Click `Apply query` and see that the `scale` column has now been populated with values:
-
-![](./img/class11_23.jpg)
-
-#### Filter the healthcare facilities data
-
-To filter the data, we can use another simple SQL query. In the `SQL` tab, enter and apply the following query:
-
-```SQL
-SELECT *
-FROM healthcare_facilities
-WHERE type = 'GENERAL ACUTE CARE HOSPITAL' OR type = 'SKILLED NURSING FACILITY'
-```
-In this query, `*` is a wildcard that selects every column from the `healthcare_facilities` dataset. The `WHERE` clause applies the filter for the specific types we want to retain on the map.
-
-The map should now look like this in the `MAP VIEW`:
+Open the `quakes` layer by clicking on it in the left-hand panel, then click the blue `quakes` link at the top to open the dataset in a new browser tab:
 
 ![](./img/class11_18.jpg)
 
+Click `ADD COLUMN`, rename it as `scale` and then change its type from `string` to `number`:
+
+![](./img/class11_19.jpg)
+
+Slide the `METADATA/SQL` toggle control at bottom left to `SQL` to see the following view:
+
+![](./img/class11_20.jpg)
+
+Enter the following query in place of the default `SELECT * FROM quakes`:
+
+```SQL
+UPDATE quakes SET scale = sqrt(10^mag)
+```
+
+Now click `APPLY`.
+
+`UPDATE` queries change the data in the table, in this case updating the `quakes` table to set the values for `scale`.
+
+The `scale` column should have now been populated with values:
+
+![](./img/class11_21.jpg)
+
+Having confirmed that the new column has been created, close the browser tab showing the dataset.
+
+#### Style the maps using the point-and-click interface
+
+Back in your map, return to the layers view
+by clicking the blue back arrow at top left in the `quakes` layer. Then temporarily hide the `quakes` layer by clicking on its eye icon:
+
+![](./img/class11_22.jpg)
+
+Now click on the `seismic` layer to bring up this view:
+
+![](./img/class11_23.jpg)
+
+At this point, rename the layer `Risk of damaging quake in 2017`.
+
+In the `STYLE` tab, click on the color bar for `COLOR`. Then select `BY VALUE` and select the `valuerange` field to color the map by the values for earthquake risk:
+
+![](./img/class11_24.jpg)
+
+See [here](http://paldhous.github.io/kdmc-workshops/2017/intro-dataviz/carto.html) for an example of how this works for a continuous variable that has not already been binned into categories.
+
+At this point, we could set the colors for each of the bins individually by clicking on them.
+
+However, we are going to refine the styling of the maps using CSS code.
+
+Now return to the layers view for the map by clicking the blue back arrow, and restore the visibility of the `quakes` layer.
+
+Open the `quakes` layer, and in the `STYLE` tab, click on the color bar for `COLOR`. Select `SOLID` and set the color `value` to `#ffffff` for white, and the opacity/alpha, or `A`, to `0.5`.
+
+![](./img/class11_25.jpg)
+
+Now set the `STROKE` color to `#0000000`, for black, and the size to `0.2`:
+
+![](./img/class11_26.jpg)
+
+(For points, the different `Aggregation` options allow you to create other map types from a points layer, including hexagonal binned maps and animations. We will explore these options in class, as time allows.)
+
 #### Style the map using CartoCSS
 
-To exert finer control over the map styling, we can use CartoCSS, which styles maps in much the same way that conventional CSS styles web pages. See [here](https://github.com/mapbox/carto/blob/master/docs/latest.md) for a CartoCSS reference.
+To exert finer control over the map styling, we can use CartoCSS, which styles maps in much the same way that conventional CSS styles web pages. See [here](https://carto.com/docs/carto-engine/cartocss/) for a CartoCSS reference.
 
-In the `MAP VIEW`, select the `ca_counties_medicare` layer by clicking on `1`. Then click on the `CSS` icon, where you will see the following code:
+Still in the `quakes` slide the `VALUES/CARTOCSS` toggle control at bottom to `CARTOCSS`
+
+You should see the following code:
 
 ```CSS
-/** choropleth visualization */
-
-#ca_counties_medicare {
-  polygon-fill: #FFFFB2;
-  polygon-opacity: 0.8;
-  line-color: #FFF;
-  line-width: 0;
-  line-opacity: 0;
-}
-#ca_counties_medicare [ hospital <= 5627.16] {
-   polygon-fill: #BD0026;
-}
-#ca_counties_medicare [ hospital <= 4197.21] {
-   polygon-fill: #F03B20;
-}
-#ca_counties_medicare [ hospital <= 3801.62] {
-   polygon-fill: #FD8D3C;
-}
-#ca_counties_medicare [ hospital <= 3581.08] {
-   polygon-fill: #FECC5C;
-}
-#ca_counties_medicare [ hospital <= 3249] {
-   polygon-fill: #FFFFB2;
+#layer {
+  marker-width: 7;
+  marker-fill: #ffffff;
+  marker-fill-opacity: 0.5;
+  marker-allow-overlap: true;
+  marker-line-width: 0.2;
+  marker-line-color: #000000;
+  marker-line-opacity: 1;
 }
 ```
-Edit this to the following, to reset the breaks between the bins, and to use the same color scheme we used in week 10, using HEX values taken from [ColorBrewer](http://colorbrewer2.org/)
-
+Edit to the following, and click `APPLY`:
 
 ```CSS
-/** choropleth visualization */
-
-#ca_counties_medicare {
-  polygon-fill: #FFFFB2;
-  polygon-opacity: 0.5;
-  line-color: #FFF;
-  line-width: 0;
-  line-opacity: 0;
-}
-#ca_counties_medicare [ hospital <= 5627.16] {
-   polygon-fill: #a50f15;
-}
-#ca_counties_medicare [ hospital < 4000] {
-   polygon-fill: #de2d26;
-}
-#ca_counties_medicare [ hospital < 3750] {
-   polygon-fill: #fb6a4a;
-}
-#ca_counties_medicare [ hospital < 3500] {
-   polygon-fill: #fcae91;
-}
-#ca_counties_medicare [ hospital < 3250] {
-   polygon-fill: #fee5d9;
+#layer {
+  marker-width: [scale]/300;
+  marker-fill: #ffffff;
+  marker-fill-opacity: 0.5;
+  marker-allow-overlap: true;
+  marker-line-width: 0.2;
+  marker-line-color: #000000;
+  marker-line-opacity: 1;
 }
 ```
-Note that that we have also edited the operators for all but one of the formulas for the breaks from `<=` (less than or equal to) to `<` (less then). This will create the same breaks as we used in the QGIS map. Click the `Apply style` button at bottom right.
+Setting the `marker-width` to `[scale]`, with the name of the field in square brackets, accurately scales the area of the circles according the capacity of the facilities. It is often necessary, when scaling circles in this way, to use multiplication (`marker-width: [scale]*N;`) or division (`marker-width: [scale]/N;`) to increase or decrease the size of all the circles. Experiment with a value for `N` that works for your map. Here we have used a value of `300`.
 
-Now switch to the CartoCSS editor for the `healthcare_facilities` layer, where you will find the following code:
+The map should now look like this:
+
+![](./img/class11_27.jpg)
+
+Now switch to the `Risk of damaging quake in 2017` layer, select `STYLE` and again switch to the `CARTOCSS` view, where you will find the following code:
 
 ```CSS
-
-/** category visualization */
-
-#healthcare_facilities {
-   marker-fill-opacity: 0.9;
-   marker-line-color: #FFF;
-   marker-line-width: 1;
-   marker-line-opacity: 1;
-   marker-placement: point;
-   marker-type: ellipse;
-   marker-width: 10;
-   marker-allow-overlap: true;
+#layer {
+  polygon-fill: ramp([valuerange], (#5F4690, #1D6996, #38A6A5, #0F8554, #73AF48), ("1 - 2", "2 - 5", "5 - 10", "< 1", "10 - 12"), "=");
 }
-
-#healthcare_facilities[type="ADULT DAY HEALTH CARE		"] {
-   marker-fill: #A6CEE3;
+#layer::outline {
+  line-width: 1;
+  line-color: #FFFFFF;
+  line-opacity: 0.5;
 }
-#healthcare_facilities[type="CHRONIC DIALYSIS CLINIC	"] {
-   marker-fill: #1F78B4;
-}
-#healthcare_facilities[type="COMMUNITY CLINIC 	"] {
-   marker-fill: #B2DF8A;
-}
-#healthcare_facilities[type="GENERAL ACUTE CARE HOSPITAL"] {
-   marker-fill: #33A02C;
-}
-#healthcare_facilities[type="HOME HEALTH AGENCY		"] {
-   marker-fill: #FB9A99;
-}
-#healthcare_facilities[type="HOSPICE	"] {
-   marker-fill: #E31A1C;
-}
-#healthcare_facilities[type="INTERMEDIATE CARE FACILITY-DD/H/N"] {
-   marker-fill: #FDBF6F;
-}
-#healthcare_facilities[type="SKILLED NURSING FACILITY"] {
-   marker-fill: #FF7F00;
-}
-#healthcare_facilities[type="SURGICAL CLINIC 	"] {
-   marker-fill: #CAB2D6;
-}
-#healthcare_facilities[type="UNLICENSED/OTHER/MISSING"] {
-   marker-fill: #6A3D9A;
-}
-#healthcare_facilities {
-   marker-fill: #DDDDDD;
-}
-
 ```
 
 Edit this to the following:
 
 ```CSS
-#healthcare_facilities {
-   marker-fill-opacity: 0.5;
-   marker-line-color: #FFF;
-   marker-line-width: 1;
-   marker-line-opacity: 1;
-   marker-placement: point;
-   marker-type: ellipse;
-   marker-width: [scale];
-   marker-allow-overlap: true;
+#layer {
+  polygon-fill: ramp([valuerange], (#fee5d9,#fcae91,#fb6a4a,#de2d26,#a50f15), ("< 1", "1 - 2", "2 - 5", "5 - 10", "10 - 12"), "=");
 }
-
-#healthcare_facilities[type="GENERAL ACUTE CARE HOSPITAL"] {
-   marker-fill: #0000FF;
-}
-#healthcare_facilities[type="SKILLED NURSING FACILITY"] {
-   marker-fill: #FF8000;
+#layer::outline {
+  line-width: 0;
+  line-color: #FFFFFF;
+  line-opacity: 0.5;
 }
 ```
-Setting the `marker-width` to `[scale]`, with the name of the field in square brackets, accurately scales the area of the circles according the capacity of the facilities. If necessary, when scaling circles in this way, you can use multiplication (`marker-width: [scale]*2;`) or division (`marker-width: [scale]/2;`) to increase or decrease the size of all the circles.
 
-The CartoCSS above also makes the circles semi-transparent using `marker-fill-opacity: 0.5;`. It makes the hospitals blue using `marker-fill: #0000FF;`, and skilled nursing facilities orange using `marker-fill: #ff8000;`.
+Here we have edited the legend items so they appear in the correct order, used ColorBrewer `Reds` HEX values, and set the `line-width` to `0` to remove the polygon outlines.
 
-The map should now look like this:
-
-![](./img/class11_24.jpg)
-
-
-#### Edit the legend
-
-Notice that the legend still refers to the styling created by the wizard.
-
-For the `ca_counties_medicare` layer, click on the legends icon:
-
-![](./img/class11_25.jpg)
-
-Edit the title to `Medicare reimbursement per enrollee` and check `show`, change the `Left label` to `<$3,250` and the `Right label` to `>$4,000`; then change the colors to those that are now displayed on the map:
-
-![](./img/class11_26.jpg)
-
-Select the `</>` link to edit the HTML to the following:
-
-```CSS
-<div class='cartodb-legend choropleth'>   
-<div class="legend-title">Medicare reimbursement per enrollee</div>
-<ul>
-    <li class="min">
-        &lt;$3,250
-    </li>
-    <li class="max">
-        &gt;$4,000
-    </li>
-    <li class="graph count_315">
-    <div class="colors">
-    <div class="quartile" style="background-color:#fee5d9; opacity:0.5"></div>
-    <div class="quartile" style="background-color:#fcae91; opacity:0.5"></div>
-    <div class="quartile" style="background-color:#fb6a4a; opacity:0.5"></div>
-    <div class="quartile" style="background-color:#de2d26; opacity:0.5"></div>
-    <div class="quartile" style="background-color:#a50f15; opacity:0.5"></div>
-    </div>
-    </li>
-</ul>
-</div>
-```
-
-Adding `opacity: 0.5` to the styling for each of the legend items makes them match the semi-transparency of the map layer.
-
-Edit the legend for the `healthcare_facilities` similarly, changing the HTML to the following:
-
-```CSS
-<div class='cartodb-legend custom'>   
-<div class="legend-title">Healthcare facilities (scaled by capacity)</div>
-<p>
-  <ul>
-    <li>
-        <div class="bullet" style="background:#0000ff; opacity: 0.5"></div>
-        General acute care hospital
-    </li>
-    <li>
-        <div class="bullet" style="background:#ff7f00; opacity: 0.5"></div>
-        Skilled nursing facility
-    </li>
-</ul>
-</div>
-```
-
-
-### Configure tooltips
-
-Select the `ca_counties_medicare` layer, and click on one of the counties and click the infowindow icon:
-
-![](./img/class11_27.jpg)
-
-In the `Hover` tab, turn on the `hospital` toggle control, uncheck `title?`, then select the `</>` link to edit the HTML.
-
-Insert a `$` symbol in front of `{{hospital}}`:
-
-```CSS
-<div class="cartodb-tooltip-content-wrapper">
-  <div class="cartodb-tooltip-content">
-    <p>${{hospital}}</p>
-  </div>
-</div>
-```
-
-Click `Apply` and a tooltip showing the medicare reimbursement should now appear when you hover over each county.
-
-Now switch to the `healthcare_facilities` label, select the infowindow tab, and in the `Click` tab select the `capacity` and `name` toggle controls. This time keep `title?` checked for each.
-
-The map should now look like this:
+Click `APPLY` and the map should look like this:
 
 ![](./img/class11_28.jpg)
 
-#### Configure the map options, and publish
+#### Edit the legend
 
-We are almost ready to publish the visualization, but before doing so, click `Options` at the bottom left of the map to select the controls and other items you want to include. Here  the `Search box`, which geocodes locations entered by the user and zooms to them is disabled; the option to switch to a `Fullscreen` view of the map is enabled:
+Still in the `Risk of damaging quake in 2017` layer, switch to the `LEGEND` tab and uncheck the `TITLE` to remove `valuerange` from the legend.
+
+
+#### Configure tooltips/pop-ups
+
+Switch to the `quakes` layer, then click on `quakes` link at the top to open the dataset in a new browser tab. Find the `time` variable and change its data type to `String`:
 
 ![](./img/class11_29.jpg)
 
-I strongly recommend disabling the `Scroll wheel zoom` which will otherwise cause the map to zoom unintentionally when someone scrolls down a web page in which the map is embedded.
+This is necessary because dates and times don't show in Carto tooltips unless they are converted to plain text.
 
-Also explore the `Add Element` button at top left, which allows you to add a title and other annotations to your map.
+Close this browser tab and select the `POP-UP` tab in the `quakes` layer. Select `Hover` and the `LIGHT` style, and check `time` and `mag`, changing the text for the latter to `magnitude`.
 
-You can also click `Preview Map` to see you map will look on Desktop and Mobile devices, or `Export Image` to download a static image.
-
-Having finished working on the visualization, click the `PUBLISH` button at top right. This will call up the following options:
+When you hover over one of the quakes, the map should now look like this:
 
 ![](./img/class11_30.jpg)
 
-Copy the code from `Embed it` to obtain an [iframe](http://www.w3schools.com/tags/tag_iframe.asp) which will allow you to embed the map on any web page, in the following format:
+#### Configure the map options, and publish
 
-```CSS
-<iframe width="100%" height="520" frameborder="0" src="https://aldhousp.carto.com/viz/fc5728f0-992a-11e6-8b44-0ecd1babdde5/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
-```
-(Note that you can edit the dimensions of the iframe -- here set at `100%` of the width of the div in which it appears -- and `520` pixels high) as required.)
+Return to the main layers panel.
 
-Open the file `test.html` in your text editor, paste the iframe code between the `<body> </body>` tags and save the file. Then open in a web browser to see the completed map:
+We are almost ready to publish the visualization, but before doing so, click the `Settings` icon at left:
 
 ![](./img/class11_31.jpg)
 
-### Other visualization types with Carto
-
-Carto has wizards to create other visualization types, which again can be customized using CartoCSS. These include `Torque` animations. See [here](http://paldhous.github.io/kdmc-workshops/2015/advanced-mapping/cartodb.html) for a tutorial that includes an animated map of North Atlantic storms.
-
-
-### Process geodata and perform geospatial analysis using SQL
-
-Carto isn't just a database -- it is a "spatially aware" database that you can query to process geotdata, calculate distances or areas, and  perform other geospatial analyses. This is achieved using [PostGIS](http://postgis.net/), an extension to the open-source [PostgreSQL](http://www.postgresql.org/) database that drives Carto.
-
-#### Clip the seismic risk dataset to the borders of the United States
-
-From now on were are going to work with queries that use PostGIS spatial functions, which all have the prefix `ST_`.
-
-Navigate back to your datasets and import the zipped shapefile `seismic_risk`, which should look like this in the `MAP VIEW`:
+Here you have options to include or remove options including the `SEARCH BOX`, which geocodes locations entered by the user and zooms, the `ZOOM CONTROLS`, the `LAYER SELECTOR`, which allows the individual layers to be switched on and off, is enabled, and the `TOOLBAR`, which includes a link to the map author's account, and social sharing buttons:
 
 ![](./img/class11_32.jpg)
 
-In the `DATA VIEW`, notice that there are two fields containing data about the mapped polygons: `acc_val` and `valley`.
+I strongly recommend disabling the `SCROLL WHEEL ZOOM` which will otherwise cause the map to zoom unintentionally when someone scrolls down a web page in which the map is embedded.
 
-Navigate back to your datasets, click the `DATA LIBRARY` link, and `SEARCH` for the `World borders` dataset. Select and then click the `Connect dataset` link.
-
-In the `DATA VIEW`, notice that it contains a field with `iso3` country codes:
+Having finished working on the map, click the `PUBISH` button, and again at the next screen:
 
 ![](./img/class11_33.jpg)
 
-Open the `SQL` tab, and run the following query to replicate the clip we ran in week 10 using QGIS:
+Copy the code the code from `Embed it` to obtain an [iframe](http://www.w3schools.com/tags/tag_iframe.asp) which will allow you to embed the map on any web page, in the following format:
+
+```CSS
+<iframe width="100%" height="520" frameborder="0" src="https://paldhous-new.carto.com/builder/e0a4f4d1-18d5-48bf-a98f-b70ec34dd7ec/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>```
+
+You can edit the dimensions of the iframe -- here set at `100%` of the width of the div in which it appears -- and `520` pixels high) as required.
+
+Open the file `test.html` in your text editor, paste the iframe code between the `<body> </body>` tags and save the file. Then open in a web browser to see the completed map:
+
+![](./img/class11_34.jpg)
+
+### Process geodata and perform geospatial analysis using SQL
+
+Carto isn't just a database -- it is a "spatially aware" database that you can query to process geotdata, calculate distances or areas, and  perform other geospatial analyses. This is achieved using [PostGIS](https://postgis.net/), an extension to the open-source [PostgreSQL](https://www.postgresql.org/) database that drives Carto.
+
+#### Clip the seismic risk raw data to the borders of the United States
+
+Now we are going to work with queries that use PostGIS spatial functions, which all have the prefix `ST_`.
+
+Navigate back to your datasets and import the zipped shapefile `seismic_raw.zip`, which should look like this in the `PREVIEW`:
+
+![](./img/class11_35.jpg)
+
+Now import the `ne_50m_admin_0_countries_lakes.zip` zipped shapefile.
+
+Slide the `METADATA/SQL` toggle control at bottom left to `SQL`, and `APPLY` the following query to replicate the clip we ran in week 10 using QGIS:
 
 ```SQL
-SELECT seismic_risk.acc_val, seismic_risk.valley, ST_Intersection(seismic_risk.the_geom, world_borders.the_geom) AS the_geom_webmercator
-FROM seismic_risk, world_borders
-WHERE world_borders.iso3='USA'
+SELECT seismic_raw.valuerange, ST_Intersection(seismic_raw.the_geom, ne_50m_admin_0_countries_lakes.the_geom) AS the_geom_webmercator
+FROM seismic_raw, ne_50m_admin_0_countries_lakes
+WHERE ne_50m_admin_0_countries_lakes.iso_a3='USA'
 ```
 Let's break this query down:
 
-The `SELECT` clause selects the two data fields from the `seismic_risk` dataset, and creates a third column called `the_geom` using the PostGIS function `ST_Intersection`, which is the spatial overlap between the `seismic_risk` and `world_borders` maps.
+The `SELECT` clause selects the two data fields from the `seismic_risk` dataset, and creates a third column called `the_geom_webmercator` using the PostGIS function `ST_Intersection`, which is the spatial overlap between the `seismic_risk` and `world_borders` maps.
 
 The `FROM` clause needs to include both datasets mentioned in the `SELECT` clause, separated by commas.
 
 Finally, the `WHERE` clause filters the results so that the data returned overlaps with the United States only.
 
-Why does this query use `the_geom_webmercator` rather than `the_geom`? This is a quirk of Carto, which stores a projected version of the table's geometry in a "hidden" field of this name, as explained [here](https://carto.com/docs/tutorials/projections/). Some PostGIS functions will only work on this version of the geometry, but Carto should warn you when this is necessary -- try running the same query using `the_geom` and you should be prompted to use `the_geom_webmercator`.
+Why does this query use `the_geom_webmercator` rather than `the_geom`? This is a quirk of Carto, which stores a projected version of the table's geometry in a "hidden" field of this name, as explained [here](https://carto.com/docs/tutorials/projections/). Some PostGIS functions will only work on this version of the geometry. If you hit an error using `the_geom` try `the_geom_webmercator`.
 
-Click on the `Create dataset from query` link, rename it as `seismic_risk_clip`, and switch to the `MAP VIEW`, which should look like this:
+The header for the table now shows that SQL has been applied to this dataset:
 
-![](./img/class11_34.jpg)
+![](./img/class11_36.jpg)
 
-If you are processing data in Carto for use with other mapping tools, you would now want to export the data. To do this, click on the `Edit` link at top right, select `Export...` and choose the desired format:
+Click on the three blue dots to the right of the SQL icon and select `Create Dataset from query`:
 
-![](./img/class11_35.jpg)
+![](./img/class11_37.jpg)
 
-#### Create buffers around geocoded San Francisco addresses
-
-Import the file `sf_test_addresses.csv`. It will initially import with `the_geom` field containing `null` values, because there are no fields unambiguously labelled `longitude` and `latitude`:
-
-![](./img/class9_36.jpg)
-
-Click on the orange `geo` symbol, select `bing_longitude` and `bing_latitude` as geographic co-ordinates and click `CONTINUE`:
-
-![](./img/class9_37.jpg)
-
-Switch to `MAP VIEW` to confirm that the points are displaying correctly in San Francisco. Then select `Edit` at top right, `Duplicate dataset...` and change its name to `buffer`.
-
-In the `SQL` tab, run this query.
-
-```SQL
-UPDATE buffer SET the_geom = ST_Buffer(the_geom::geography, 304.8)::geometry
-```
-This changes the map so that instead of points, we now have circles drawn around each of the points with a radius of 1,000 feet, or 304.8 meters. Notice that the entries in `the_geom` field are now all `Polygon`. Switch to `MAP VIEW`:
+Rename the new dataset, which should look like this in the `PREVIEW`:
 
 ![](./img/class11_38.jpg)
 
-Let's break this query down to understand how it works. First, note that it is an `UPDATE` query, so rather than selecting records from a table, it is changing the table. The change being made is to `SET` the field `the_geom` using the PostGIS function `ST_Buffer`, which draws a buffer around an object using the value specified in meters.
-
-That's all fairly easy to understand, but why does the query contain `::geography` and `::geometry`? These are data conversions that are necessary for the buffers to be drawn. Carto stores `the_geom` in a `WGS84` datum, for which the units are degrees. The conversion from this `geometry` to `geography` is necessary for calculations to be made in meters. Once the buffer has been calculated, the data must be converted back to `geometry` to update the table in the database.
-
-This query reverses the process, turning each circle into a point at its center:
-
-```SQL
-UPDATE buffer SET the_geom = ST_Centroid(the_geom)
-```
-
-Try it out, then use the first query again to return to the buffered points. If you switch to the `DATA VIEW`, you will see that the values in `the_geom` are now `Polygon` rather than point coordinates.
-
-Now we will dissolve all of these separate circles into a single buffer layer, by running this query:
-
-```SQL
-SELECT ST_Union(the_geom_webmercator) AS the_geom_webmercator
-FROM buffer
-```
-`ST_Union` is a function that dissolves multiple geometries into one.
-
-In the data view, you will notice that there is now just a single field, called `the_geom_webmercator`, containing one `Polygon`. If you switch to the map view, you will see that the separate circles have now dissolved together:
+Return to the data table view. If you are processing data in Carto for use with other mapping tools, you would now want to export the data. To do this, click on the `EXPORT` link at top right and choose the desired format:
 
 ![](./img/class11_39.jpg)
 
-Select `create dataset from query` and rename the new dataset as `buffer_dissolved`.
+#### Create buffers around geocoded San Francisco addresses
 
-#### An example of what is possible with PostGIS
-
-Return to your datasets, open the original `sf_test_addresses` once more, and switch to the `MAP VIEW`.
-
-Now click `VISUALIZE` at top right to create a map. Click the blue `+` symbol at top right, click on `CONNECT DATASET` and import the zipped shapefile `sfpd_stations.zip`. using the `Data file` tab. Then use the `Simple` option in the `Visualization wizard` to color the points denoting the locations of San Francisco police stations black. The visualization, with its two layers, should now look like this:
+Import the zipped shapefile `sf_test_addresses.zip`. Select `Duplicate dataset` from the top menu and rename the copy as `buffer`. It should look like this in the `PREVIEW`:
 
 ![](./img/class11_40.jpg)
 
-Next we are going to run a query to calculate the distance from each of the geocoded addresses to the nearest police stations. But first we need to create a new field called `distance` in the `sf_test_addresses` dataset to hold the results of this query.
-
-Select this layer from the right toolbar, switch to `DATA VIEW` and then open the dropdown menu for any of the field headers. Select `Add new column...`, call it `distance` and make its type `number`.
-
-Now select the `SQL` tab and apply this query:
+Return to the data table view, and slide the `METADATA/SQL` toggle control to `SQL`. Now run this query:
 
 ```SQL
-UPDATE sf_test_addresses SET distance = (
-  SELECT ST_Distance(
-            sf_test_addresses.the_geom::geography, 
-            sfpd_stations.the_geom::geography
-          )
-  FROM sfpd_stations
-  ORDER BY sf_test_addresses.the_geom <-> sfpd_stations.the_geom 
-  LIMIT 1
-)
+SELECT ST_Union(ST_Buffer(the_geom::geography, 304.8)::geometry) AS the_geom
+FROM buffer
 ```
-The `distance` field should now have been populated with numbers, representing the distance in meters from that address to the nearest police station.
+This changes the map so that instead of points, we now have circles drawn around each of the points with a radius of 1,000 feet, or 304.8 meters, and dissolves those circles into a single polygon.
 
-`ST_Distance` is fairly straightfoward, and you will recognize why `the_geom` fields must be converted to geography so that distances can be calculated in meters. This time they do not need to be converted back to geometry because neither of the `the_geom` fields is being updated by the query.
+Let's break this query down to understand how it works.  The PostGIS function `ST_Buffer` draws a buffer around an object using the value specified in meters. That's fairly easy to understand, but why does the query contain `::geography` and `::geometry`? These are data conversions that are necessary for the buffers to be drawn. Carto stores `the_geom` in a `WGS84` datum, for which the units are degrees. The conversion from this `geometry` to `geography` is necessary for calculations to be made in meters. Once the buffer has been calculated, the data must be converted back to `geometry` to update the table in the database.
 
-The really clever part is this:
+The PostGIS function `ST_Union` dissolves the circles into a single polygon, and `AS the_geom` names the new geometry column.
 
-```SQL
-ORDER BY sf_test_addresses.the_geom <-> sfpd_stations.the_geom
-LIMIT 1
-```
+Again, click on the three blue dots to the right of the SQL icon and select `Create Dataset from query`.
 
-This is performs an [indexed nearest neighbor search](http://boundlessgeo.com/2011/09/indexed-nearest-neighbour-search-in-postgis/). `<->` measures the distance to each police station from each address, and then `ORDER BY` sorts these distances in ascending order, nearest first. Finally, `LIMIT 1` returns only the first value, which is the distance to the nearest police station from each address.
+Rename the resulting dataset as `buffered`. It should look like this in the `PREVIEW`:
 
-What if you want those distances in miles, rather than meters? One meter is 0.000621371 miles, so simply edit the query to include this conversion:
-
-```SQL
-UPDATE sf_test_addresses SET distance = (
-  SELECT (ST_Distance(
-            sf_test_addresses.the_geom::geography, 
-            sfpd_stations.the_geom::geography
-          ))*0.000621371
-  FROM sfpd_stations
-  ORDER BY sf_test_addresses.the_geom <-> sfpd_stations.the_geom 
-  LIMIT 1
-)
-```
+![](./img/class11_41.jpg)
 
 #### Next steps with PostGIS
 
-I hope these queries have whetted your appetite to learn more about PostGIS. I suggest continuing with the NICAR tutorial below, which provides some more examples of queries, and how they have been used by news media to generate stories and visualizations.
+I hope these queries have whetted your appetite to learn more about PostGIS.
 
 ### Assignment
 
-File a full project update via your GitHub account, so that I can see your visualizations, data etc. Also write a summary, including:
+File a full project update via your GitHub account, so that I can see your visualizations, data etc. Also write a summary in Markdown, including:
 
 - What you have done
--  What you intend to do
+- What you intend to do
 - Problems, obstacles
 
-Share this with me by **6pm** on **Wed Nov 9**.
-
+Share this with me by **6pm** on **Wed Nov 8**.
 
 ### Further reading/resources
-
 
 [Carto tutorials](https://carto.com/docs/tutorials/)
 
 [The Map Academy](https://carto.com/academy/)
 A series of exercies in Carto, organized by difficulty.
 
-[Carto/PostGIS workshop from NICAR 2014 meeting](https://github.com/csvsoundsystem/nicar-cartodb-postgis)
-Introduction to PostGIS and Carto from Andrew Hill of Vizzuality, the company behind Carto, and data journalist Michael Keller. From the annual meeting of the National Institute for Computer-Assisted Reporting.
-
 [Introduction to PostGIS](http://workshops.boundlessgeo.com/postgis-intro/index.html#)
-Detailed series of tutorials, from Boundless. While this uses the [OpenGeo Suite](http://boundlessgeo.com/solutions/opengeo-suite/download/), rather than Carto, the lessons should be transferrable -- but note that the OpenGeo Suite uses the field name `geom` rather than cartoDB's `the_geom`.
+Detailed series of tutorials, from Boundless. While this uses the OpenGeo Suite, rather than Carto, the lessons should be transferrable -- but note that the OpenGeo Suite uses the field name `geom` rather than Carto's `the_geom`.
 
 
 

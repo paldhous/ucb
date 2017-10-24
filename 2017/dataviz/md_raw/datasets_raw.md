@@ -81,7 +81,38 @@ Click on the title links to download the data. Please [contact me](mailto:peter@
 - `refine_geocoder.json` JSON file to geocode using Open Refine.
 - `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
 
+#### [Download Week 10](./data/week10.zip)
 
+
+
+- `seismic` Shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+- `seismic_raw` As above, but not clipped to the coast and borders of the United States.
+- `gdp_pc`
+ - `gpd_pc.csv` `gdp_pc.csvt` CSV file with [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on GDP per capita for the world's nations in 2015, plus ancillary file for QGIS to understand the data types for each field.
+- `ne_50m_admin_0_countries_lakes` [Natural Earth shapefile](http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/) with boundary data for the world's nations.
+- `sf_test_addresses` Shapefile derived from the addresses we geocoded in week 9.
+- `quakes.csv` This file isn't in the folder. Instead, we will
+use the U.S. Geological Survey's [Earthquakes Archives](https://earthquake.usgs.gov/earthquakes/search/) API where we will search for all earthquakes since 1960 with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 6 or greater that occured witin 6,000 kilometers of the geographic center of the contiguous United States, which [this site](https://tools.wmflabs.org/geohack/geohack.php?pagename=Geographic_center_of_the_contiguous_United_States&params=39.828175_N_98.579500_W_region:US_type:landmark) tells us lies at a latitude of `39.828175` degrees and a longitude of `-98.5795` degrees. Type this url into the address bar of your browser:
+```Javascript
+https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&format=csv&orderby=time
+```
+A file called `query.csv` should download. Rename it `quakes.csv` and add to the `week10` folder.
+
+
+#### [Download Week 11](./data/week11.zip)
+
+Download the data from this session from [here](data/week11.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
+
+- `seismic.zip` Zipped shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+- `seismic_raw.zip` As above, but not clipped to the coast and borders of the United States.
+- `ne_50m_admin_0_countries_lakes.zip` Zipped [Natural Earth shapefile](http://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/) with boundary data for the world's nations.
+- `sf_test_addresses.zip` Zipped shapefile of addresses we geocoded in week 9, with their coordinates derived from Bing Maps.
+- `quakes.csv` This file isn't in the folder. As for week 10, we will use the U.S. Geological Survey's [Earthquakes Archives](https://earthquake.usgs.gov/earthquakes/search/) API where we will search for all earthquakes since 1960 with a [magnitude](http://www.geo.mtu.edu/UPSeis/magnitude.html) of 6 or greater that occured witin 6,000 kilometers of the geographic center of the contiguous United States. Type this url into the address bar of your browser:
+```Javascript
+https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&format=csv&orderby=time
+```
+A file called `query.csv` should download. Rename it `quakes.csv` and add to the `week11` folder.
+- `test.html` A web page for embedding the Carto map we will make.
 
 ## Final projects
 

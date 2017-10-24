@@ -434,7 +434,7 @@ Many government agencies, such as the [U.S. Census Bureau](https://www.census.go
 
 ### Converting between vector geodata formats
 
-We will later learn how to use [QGIS](https://qgis.org/en/site/) to convert between the main geodata formats. In addition, [this site](http://shpescape.com/) converts shapefiles to GeoJSON and TopoJSON. [Mapshaper](http://mapshaper.org/), which we will later also use to simplify the geometry of geodata, will import and export data as Shapefile, GeoJSON, and TopoJSON, and so can also be used for data conversion.
+We will later learn how to use [QGIS](https://qgis.org/en/site/) to convert between the main geodata formats. In addition, [this site](http://shpescape.com/) converts shapefiles to GeoJSON and TopoJSON. [Mapshaper](http://mapshaper.org/) which is designed to simplify the geometry of geodata, will import and export data as Shapefile, GeoJSON, and TopoJSON, and so can also be used for data conversion.
 
 ### Mapping images: raster geodata
 
@@ -442,14 +442,16 @@ Satellite and aerial images can also be placed into maps, which requires the ima
 
 ### Assignment
 
- - Submit an update on your final project, detailing the data you are using, the questions you want to address.
- - Share your data and any visualizations made so far with me.
- - Pay particular attention to explaining any obstacles/problems, so we can brainstorm/solve.
- - From here on, you should arrange meetings to discuss your work as required. Make appointments on the Google Calendar we used previously to arrange meetings during my office hours, on Friday afternoons. I can stay as late as 6pm. If those times are not convenient, email me to arrange a time to talk by Skype.
+File an update on progress with your final project. Pay particular attention to identifying problems/obstacles.
+
+You can file the update as a markdown file in GitHub, or by email. Either way, make sure that your GitHub repo is up to date with data, charts etc, so that I can sync with my version of your project and review your progress. The update should be sufficiently detailed that I can look at your repo and understand what you are doing.
+
+If you are having trouble with GitHub, get in contact for a refresher.
+
 
 ### Further reading
 
-Mark Monmonier: *[How to Lie With Maps](http://www.amazon.com/How-Lie-Maps-2nd-Edition/dp/0226534219)*
+Mark Monmonier: *[How to Lie With Maps](https://www.amazon.com/How-Lie-Maps-2nd-Edition/dp/0226534219)*
 This popular exploration of how all maps distort reality, and how some can  seriously deceive, provides a good overview of cartographic principles.
 
 
