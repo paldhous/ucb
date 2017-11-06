@@ -8,7 +8,7 @@ It is also a geospatial database, allowing you to perform GIS analyses and proce
 
 ### The data we will use today
 
-Download the data from this session from [here](data/class11.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
+Download the data from this session from [here](data/week11.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
 
 - `seismic.zip` Zipped shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
 - `seismic_raw.zip` As above, but not clipped to the coast and borders of the United States.
