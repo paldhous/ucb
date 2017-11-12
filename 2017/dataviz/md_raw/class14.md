@@ -18,9 +18,9 @@ Launch RStudio, create a new RScript, and set the working directory to the folde
 
 #### Install devtools and gganimate packages
 
-We are going to animate **ggplot2** graphics using the **[gganimate](https://github.com/dgrtwo/gganimate)** package, which is an [extension](https://www.ggplot2-exts.org/ggiraph.html) to **ggplot2**. It depends upon ImageMagick and FFmpeg to make GIFs and videos.
+We are going to animate **ggplot2** graphics using the **[gganimate](https://github.com/dgrtwo/gganimate)** package, which is an [extension](http://www.ggplot2-exts.org/) to **ggplot2**. It depends upon ImageMagick and FFmpeg to make GIFs and videos.
 
-**gganimate** is available on GitHub. To install from there, you first need to install the [**devtools**](https://github.com/hadley/devtools) package. For all the code blocks that follow, copy them into your script and run.
+**gganimate** is available on GitHub. To install from there, you first need to install the [**devtools**](https://github.com/hadley/devtools) package.
 
 ```R
 # first install devtools
@@ -46,9 +46,9 @@ Apart from **gganimate**, we have encountered all of these packages in previous 
 
 ### Make a Gapminder-style animated bubble chart
 
-In week 8, we made the following chart, showing GDP per capita, life expectancy at birth and population for the world's nations in 2014:
+In week 8, we made the following chart, showing GDP per capita, life expectancy at birth and population for the world's nations in 2015:
 
-![](./img/class8_23.jpg)
+![](./img/class8_22.png)
 
 This was the code to generate that chart:
 
@@ -56,12 +56,12 @@ This was the code to generate that chart:
 # load data
 nations <- read_csv("nations.csv")
 
-# filter for 2014 data only
-nations2014 <- nations %>%
-  filter(year == 2014)
+# filter for 2015 data only
+nations2015 <- nations %>%
+  filter(year == 2015)
 
 # make bubble chart
-ggplot(nations2014, aes(x = gdp_percap, y = life_expect)) +
+ggplot(nations2015, aes(x = gdp_percap, y = life_expect)) +
   xlab("GDP per capita") +
   ylab("Life expectancy at birth") +
   theme_minimal(base_size = 12, base_family = "Georgia") +
@@ -81,9 +81,7 @@ Some reminders about what this code does:
 
  - `stat_smooth` works like `geom_smooth` but allows you to use a `formula` to specify the type of curve to use for to trend line fitted to the data, here a logarithmic curve.
 
-
-
-Now we will use **gganimate** to generate an animation of the chart, from 1990 to 2014. Here is the code:
+Now we will use **gganimate** to generate an animation of the chart, from 1990 to 2015. Here is the code:
 
 ```R
 nations_chart <- ggplot(nations, aes(x = gdp_percap, y = life_expect, frame = year)) +
@@ -103,7 +101,7 @@ Running this code will create an R object of type `gg` called `nations_chart`.
 Now display it in the `Viewer` panel by running the following:
 
 ```R
-gg_animate(nations_chart)
+gganimate(nations_chart)
 ```
 
 This should be the result:
@@ -114,7 +112,7 @@ This should be the result:
 
 I made a couple of small changes to the **ggplot2** code from the static graphic to optimise the appearance of the animation, increasing both the `base_size` for the text, and the `max_size` for the scaled circles.
 
-The most important change, however, is in the initial `ggplot()` function, which now includes `frame = year`. In the animation, this is the code that creates a separate chart for each year in the data.
+The most important change, however, is in the initial `ggplot` function, which now includes `frame = year`. In the animation, this is the code that creates a separate chart for each year in the data.
 
 Also notice that the code that creates the trend line now includes `aes(group = year)`. This is needed if we want to create a separate trend line for each year. Without this, a single trend line would be calculated for all the data across all the years, and would be static across the animation.
 
@@ -123,23 +121,46 @@ Also notice that the code that creates the trend line now includes `aes(group = 
 Having made an animation, we can now save it as a GIF or a video:
 
 ```R
+
 # save as a GIF
-gg_animate(nations_chart, "nations.gif", ani.width = 750, ani.height = 500, interval = 0.2)
+gganimate(nations_chart, "nations.gif", ani.width = 750, ani.height = 500, interval = 0.2)
 
 # save as a video 
-gg_animate(nations_chart, "nations.mp4", ani.width = 1600, ani.height = 900, interval = 0.1)
+gganimate(nations_chart, "nations.mp4", ani.width = 800, ani.height = 450, interval = 0.1)
 ```
-You can use the options `ani.width` and `ani.height` to set the dimensions, in pixels, of the animation; `interval` sets the interval between the frames, in seconds (the default is 1 second). For the video, I have set the ratio between width and height at 16:9, consistent with YouTube and Vimeo format.
+
+You can use the options `ani.width` and `ani.height` to set the dimensions, in pixels, of the animation; `interval` sets the interval between the frames, in seconds (the default is 1 second). For the video, I have set the ratio between width and height at 16:9, consistent with YouTube format.
 
 Here is the video:
 
-[embed goes here]
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="img/nations.mp4"></iframe>
+</div>
+
+### Add a pause to the final frame on a GIF
+
+When making GIFs, it is often a good idea to add a longer pause on the final frame before the animation repeats. You can do this with the following code:
+
+Here is the revised GIF:
+
+This should be the result:
+
+![](./img/nations_with_pause.gif)
+
+```R
+# increase delay on final frame
+system("convert nations.gif \\( +clone -set delay 300 \\) +swap +delete  nations_with_pause.gif")
+```
+
+This code uses the `system` function to send ImageMagick code to your wider computer system. It has same effect as if you ran the ImageMagick code in the Terminal.
+
+`convert` is one of the main commands in ImageMagick, used to convert between image formats as well as to manipulate images in a variety of ways. Here, `delay 300` increases the delay on the final frame to 3 seconds.
 
 ### Make a cumulative animation of historical global average temperature
 
 For the Gapminder-style video, we displayed only the data for the year in question in each frame. In some cases, however, you may want to animate by adding data with each frame, and leaving the previously added data in place.
 
-We will explore that now by making an animation of the dot-and-line chart in this video.
+We will explore that now by making an animation of the dot-and-line chart in [this video](https://www.facebook.com/BuzzFeedScience/videos/753675331429028/).
 
 Here is the code to make a static version of the chart:
 
@@ -169,11 +190,11 @@ This should be the result:
 
 The file `warming.csv` contains the fields `year` and `annual`, the latter being the global annual average temperature, compared to the 1951-1980 average.
 
-This code uses a palette of colors running from cool blues, through neutral yellows, to warm reds, and applies them to a sequence of values running from -2 to +2. This is so the chart uses the same color palette as the maps we will animate later on, and combine with the chart. 
+This code uses a palette of colors running from cool blues, through neutral yellows, to warm reds, and applies them to a sequence of values running from -2 to +2. This is so the chart uses the same color palette as the maps we will animate later on, and combine with the chart.
 
-The palette is then applied with the function `scale_fill_gradientn()`, see [here](http://docs.ggplot2.org/0.9.2.1/scale_gradientn.html) for more, including the scaling of the colors against the supplied values.
+The palette is then applied with the function `scale_fill_gradientn`, see [here](http://ggplot2.tidyverse.org/reference/scale_gradient.html) for more.
 
-As this is a dot-and-line chart, it includes both `geom_line()` and `geom_point()` layers. Notice that the `geom_point()` function also defines a numbered `shape`: `21` is a circle with a filled area, see [here](www.cookbook-r.com/Graphs/Shapes_and_line_types/) for other options. By using this shape, we can set the outline `color` to black and then use an `aes` mapping to fill it with color from the selected palette, according to the values for the `annual` variable.
+As this is a dot-and-line chart, it includes both `geom_line` and `geom_point` layers. Notice that the `geom_point` function also defines a numbered `shape`: `21` is a circle with a filled area, see [here](http://www.cookbook-r.com/Graphs/Shapes_and_line_types/) for other options. By using this shape, we can set the outline `color` to black and then use an `aes` mapping to fill it with color from the selected palette, according to the values for the `annual` variable.
 
 To animate this chart, adding a year with each frame, use the following code:
 
@@ -191,10 +212,10 @@ warming_chart <- ggplot(warming, aes(x = year, y = annual, frame = year, cumulat
   theme(text=element_text(size=16, family="Georgia"))
 
 # run in the viewer
-gg_animate(warming_chart, interval = 0.1)
+gganimate(warming_chart, interval = 0.1)
 ```
 
-This time, the initial `ggplot()` function also contains the code `cumulative = TRUE`, which adds one year of data with each frame, and leaves the previously added data in place.
+This time, the initial `ggplot` function also contains the code `cumulative = TRUE`, which adds one year of data with each frame, and leaves the previously added data in place.
 
 This should be the result:
 
@@ -204,15 +225,15 @@ Again, we can save as GIF and video:
 
 ```R
 # save as GIF and video
-gg_animate(warming_chart, "warming.gif", ani.width = 750, ani.height = 500, interval = 0.1)
-gg_animate(warming_chart, "warming.mp4", ani.width = 1600, ani.height = 900, interval = 0.1)
+gganimate(warming_chart, "warming.gif", ani.width = 750, ani.height = 500, interval = 0.1)
+gganimate(warming_chart, "warming.mp4", ani.width = 800, ani.height = 450, interval = 0.1)
 ```
 
 ### Combine the chart with maps to make a composite animation of the historical temperature record
 
-To replicate [this video](https://www.facebook.com/BuzzFeedScience/videos/753675331429028/), shown above, we need to combine the maps in the `maps` folder with individual images of each frame of the chart. So rather than using `gganimate`, we will now write a **for loop** to save the individual frames.
+To replicate [this video](https://www.facebook.com/BuzzFeedScience/videos/753675331429028/), we need to combine the maps in the `maps` folder with individual images of each frame of the chart. So rather than using `gganimate`, we will now write a **for loop** to save the individual frames.
 
-#### For loops: how they work
+#### For loops: How they work
 
 This code should help explain how a for loop works:
 
@@ -278,15 +299,15 @@ For each year, `y`, the code first makes an R object called `tmp`, which is the 
 
 Then it creates an R object called `chart`, which is a static **ggplot2** chart drawn from that data.
 
-It then saves that chart using the `ggsave()` function, at the defined dimensions and resolution, before printing a message to the R console giving a progress update on the loop.
+It then saves that chart using the `ggsave` function, at the defined dimensions and resolution, before printing a message to the R console giving a progress update on the loop.
 
-This code makes use of an R function called `paste0()`. It is the equivalent of `=concatenate()` in a spreadsheet formula, appending text into a single string. The elements to be combined are separated by commas, and can be either text, written in quote marks, or a named variable or object that contains text, or a number that can be rendered as text.
+This code makes use of the R function `paste0`. As we saw in week 13, it is the equivalent of `=concatenate` in a spreadsheet formula, appending text into a single string. The elements to be combined are separated by commas, and can be either text, written in quote marks, or a named variable or object that contains text, or a number that can be rendered as text.
 
 So when `y` is `1880`, `(paste0("charts/",y,".jpg")` is `"charts/1880.jpg"`. This is how the individual charts get saved with the appropriate names in the `charts` folder.
 
 #### Combine the charts and maps into a single frame for each year
 
-Again, we will use a for loop. This time the loop will be written in R, but it will send ImageMagick code to your wider system using the `system()` function. It has same effect as if you ran each line of ImageMagick code in the Terminal.
+Again, we will use a for loop. This time the loop will be written in R, but it  will send ImageMagick code to your wider computer system using the `system` function.
 
 ```R
 # combine the maps and charts with ImageMagick, add year label to each frame
@@ -300,8 +321,6 @@ Here's what the ImageMagick code looks like when `y` is 1880:
 ```SQL
 convert charts/1880.jpg maps/map1880.jpg -geometry +305+68 -composite -pointsize 100 -font Georgia -annotate +2000+1120 1880 combined/img1880.jpg
 ```
-
-`convert` is one of the main commands in ImageMagick, used to convert between image formats as well as to manipulate images in a variety of ways.
 
 This part of the code takes the two named files, and creates a composite, layering the second over the first with its top left hand corner 305 pixels from the left and 68 pixels from the top of the image:
 
@@ -339,16 +358,15 @@ Now make a video with FFmpeg:
 
 ```R
 # make a video with FFmpeg
-system("ffmpeg -f image2 -start_number 1880 -i combined/img%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b 64000k warming2.mp4")
+system("ffmpeg -f image2 -start_number 1880 -i combined/img%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming2.mp4")
 ```
 
 This code combined the images into a video called `warming2.mp4`.
 
-Don't worry too much about the details of this code, other than to know that it works. 
+Don't worry too much about the details of this code, other than to know that it works.
 
-`image2` creates a video from a sequence of images. Here the code looks for files with the format `combined/img%d.jpg`, where `%d` is an integer, starting at `1880`; `%03d` would look for file names ending with a number with three decimal places, for example `combined/img.001.jpg`. 
+`image2` creates a video from a sequence of images. Here the code looks for files with the format `combined/img%d.jpg`, where `%d` is an integer, starting at `1880`; `%03d` would look for file names ending with a number with three decimal places, for example `combined/img.001.jpg`.
 
-`-r` defines the frame rate, in frames per second.
 
 Having made a video, you can change its speed like this:
 
@@ -371,7 +389,7 @@ First, install and load **tweenr**
 install.packages("tweenr")
 library(tweenr)
 ```
-To interpolate data using **tweenr's** `tween_elements()` function, first create a data frame with the fields `x` for the co-ordinate on the X axis, `y` for the co-ordinate on the y axis, `time` for the data that will be used to make the frames, and `id` for the unique identifier for each point. You also need a variable called `ease`, which defines the method to use for the interpolation: `"linear"` will achieve a smooth, steady animation.
+To interpolate data using **tweenr's** `tween_elements` function, first create a data frame with the fields `x` for the co-ordinate on the X axis, `y` for the co-ordinate on the y axis, `time` for the data that will be used to make the frames, and `id` for the unique identifier for each point. You also need a variable called `ease`, which defines the method to use for the interpolation: `"linear"` will achieve a smooth, steady animation.
 
 This code prepares the nations data:
 
@@ -384,11 +402,9 @@ nations_edit <- nations %>%
   mutate(ease="linear")
 ```
 
-
 The new data frame `nations_edit` should look like this:
 
 ![](./img/class14_1.jpg)
-
 
 Now run the tween:
 
@@ -401,9 +417,9 @@ The new data frame `nations_tween` should look like this:
 
 ![](./img/class14_2.jpg)
 
-The function `tween_elements()` creates new variables called `.frame`, one for each of the specified number of frames, and `.group`, which corresponds to the `id` in the previous data frame, here the country names. It calculates new `x`, `y`, and `time` values for each frame. Scroll down and you will see that many of the `time` values now include decimal fractions.
+The function `tween_elements` creates new variables called `.frame`, one for each of the specified number of frames, and `.group`, which corresponds to the `id` in the previous data frame, here the country names. It calculates new `x`, `y`, and `time` values for each frame. Scroll down and you will see that many of the `time` values now include decimal fractions.
 
-To make the animated chart, we need to join to the original data, which means creating `year` and `country` variables, to match against the original data:
+To make the animated chart, we need to join to the original data, so we will now create `year` and `country` variables, to match against the original data:
 
 ```R
 # create year and country fields, for join
@@ -440,15 +456,15 @@ nations_tween_chart <- ggplot(nations_tween, aes(x = x, y = y, frame = .frame)) 
   scale_x_continuous(labels = dollar) +
   scale_color_brewer(name = "", palette = "Set2") +
   theme(legend.position=c(0.8,0.4))
-  
+
 # run in the viewer
-gg_animate(nations_tween_chart, title_frame = FALSE, interval = 0.05)
+gganimate(nations_tween_chart, title_frame = FALSE, interval = 0.05)
 ```
 This should be the result:
 
 ![](./img/nations2.gif)
 
-Notice that the `gg_animate()` function this time includes `title_frame = FALSE`, which prevents the frame number being shown on each chart. In practice, you would want to display the year on each frame, rather than the frame numbers, which are not informative in this case.
+Notice that the `gganimate` function this time includes `title_frame = FALSE`, which prevents the frame number being shown on each chart. In practice, you would want to display the year on each frame, rather than the frame numbers, which are not informative in this case.
 
 This is best done with ImageMagick. So rather than using **gganimate**, after creating the tweened data frame `nations_tween` and joining to the original data, you might instead generate individual image files for each frame using a loop, and then annotate each one.
 

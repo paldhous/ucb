@@ -31,7 +31,7 @@ library(htmlwidgets)
 
 ### Making ggplot2 charts interactive with ggiraph
 
-First we will explore **[ggiraph](https://davidgohel.github.io/ggiraph/articles/an_introduction.html)**, a package that adds some simple interactivity to charts made with ggplot2 code.
+**[ggiraph](https://davidgohel.github.io/ggiraph/articles/an_introduction.html)** is a package that adds some simple interactivity to charts made with ggplot2 code.
 
 The following code loads and installs the package, then loads the food stamps data we used previously to make **ggplot2** charts in week 8.
 
@@ -65,7 +65,7 @@ print(food_stamps_chart)
 
 This code saves a **ggplot2** chart in your environment, as we've seen before. But here we used `geom_point_interactive`, rather than `geom_point` to add the dots to the chart. Inside this function there is an `aes` mapping that assigns values from the `costs` variable to a tooltip. Simply plotting the saved chart gives a standard **ggplot2** chart in the `Plots` panel at bottom right.
 
-The following code uses the `ggiraph` function to turn the saved chart into a web page in which the chart is rendered using D3 as an SVG (scaleable vector graphic) object with hover tooltips.
+The following code uses the `ggiraph` function to turn the saved chart into a web page in which the chart is rendered using D3 as an SVG (scaleable vector graphic) with hover tooltips.
 
 ```R
 # make interactive version of the chart
@@ -101,7 +101,7 @@ food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) +
 
 # make interactive version
 food_stamps_interactive <- ggiraph(code = print(food_stamps_chart), 
-                                   height_svg=4,
+                                   height_svg = 4,
                                    hover_css = "cursor:pointer;fill-opacity:0.5;stroke:red;r:4px",
                                    tooltip_extra_css = "background-color:#f0f0f0;color:black;padding:5px")
 
@@ -113,7 +113,7 @@ saveWidget(food_stamps_interactive, "food_stamps.html", selfcontained = TRUE, li
 
 This code uses the R function `paste0` to produce a more useful tooltip, spelling out the costs in billions of dollars. `paste0` concatenates or pastes together strings of text, separated by commas.
 
-The `geom_point_interactive` function now includes `data_id = year`. Assigning a variable in the data to `data_id` is necessary to apply hover styling; you should use a variable that uniquely identifies each object -- here `year` works because there is only one point for each year.
+The `geom_point_interactive` function now includes `data_id = year`. Assigning a variable in the data to `data_id` is necessary to apply hover styling; you should use a variable that uniquely identifies each graphic element to which the hover styling applies -- here `year` works because there is only one point for each year.
 
 The `ggiraph` function now includes `hover_css`, which uses [**CSS**](https://www.w3.org/Style/CSS/Overview.en.html) (Cascading Style Sheets) code to change the appearance of the points when they are hovered over: This example changes makes the points semitransparent, gives them a red outline, and increases their diameter to 4 pixels.
 
@@ -204,14 +204,14 @@ food_stamps_column <- ggplot(food_stamps, aes(x = year, y = participants)) +
 
 # make interactive version of the chart
 food_stamps_column_interactive <- ggiraph(code = print(food_stamps_column), 
-                                   height_svg=4,
+                                   height_svg = 4,
                                    hover_css = "fill-opacity:1;stroke:red",
                                    tooltip_extra_css = "background-color:#f0f0f0;color:black;padding:5px")
 
 # save as a web page
 saveWidget(food_stamps_column_interactive, "food_stamps_column.html", selfcontained = TRUE, libdir = NULL, background = "white")
 ```
-Some `ggiraph` geometries may throw an error if you use numerical values for `data_id`. If this happens, as it does for `geom_bar_ineractive`, just use **dplyr** `mutate` to create a new variable with numbers converted to text, as above.
+Some `ggiraph` geometries may throw an error if you use numerical values for `data_id`. If this happens, as it does for `geom_bar_interactive`, just use **dplyr** `mutate` to create a new variable with numbers converted to text, as above.
 
 This should be the result of the code above:
 
@@ -228,7 +228,7 @@ This should be the result of the code above:
 
 #### Install and load required packages
 
-Install and load highcharter, plus **[RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf)**, which will make it possible to use [ColorBrewer](http://colorbrewer2.org) color palettes.
+Install and load **highcharter**, plus **[RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/RColorBrewer.pdf)**, which will make it possible to use [ColorBrewer](http://colorbrewer2.org) color palettes.
 
 Also load **dplyr** for loading and processing data.
 
@@ -273,7 +273,7 @@ The following chart should appear in the `Viewer` panel at bottom right:
 
 ![](./img/class13_2.jpg)
 
-In the code above, the function `hchart`  works similarly to `ggplot`, and `hcaes` works like `aes` in ggplot. Rather than adding geometries, however, you need to define a chart type, here `"line"`. See [here](https://www.highcharts.com/docs/chart-and-series-types/chart-types) for available Highcharts types.
+In the code above, the function `hchart`  works similarly to `ggplot`, and `hcaes` works like `aes` in **ggplot2**. Rather than adding geometries, however, you need to define a chart type, here `"line"`. See [here](https://www.highcharts.com/docs/chart-and-series-types/chart-types) for available Highcharts types.
 
 Now let's customize this chart:
 
@@ -316,7 +316,7 @@ To set options for the entire chart, such as the fonts used, use the `hc_chart` 
 
 The `hc_xAxis` and `hc_yAxis` functions can be used to add axis labels, to set the range of values for an axis, and to add reference lines or bands to a plot. See [here](http://jkunst.com/highcharter/highcharts-api.html#hc_xaxis-and-hc_yaxis) for more.
 
-#### Combine more than one Highchart stype into a single chart
+#### Combine more than one Highcharts chart type into a single chart
 
 It is also possible to combine different chart types into one, for example columns and dot-and-line.
 
@@ -347,7 +347,7 @@ print(food_stamps_combined)
 saveWidget(food_stamps_combined, "food_stamps_combined.html", selfcontained = TRUE, libdir = NULL, background = "white")
 
 ```
-![](./img/class13_2.jpg)
+
 
 This code uses the `highchart` function rather than `hchart`. It works a little differently, but allows you to add different variables for each chart type using the function `hc_add_series`.
 
@@ -433,7 +433,7 @@ This map should appear in the `Viewer`:
 
 ![](./img/class13_3.jpg)
 
-The ]`leaflet` function creates a leaflet map.
+The `leaflet` function creates a leaflet map.
 
 The `setView` function sets the starting position of the map, centering it on the defined coordinates and with the defined zoom level; `addTiles` adds [OpenStreetMap](https://www.openstreetmap.org/) tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.
 
@@ -497,9 +497,12 @@ Data attributes:
  2 - 5  : 8  
  5 - 10 : 4  
 ```
-The data defining the annual risk of a damaging earthquake is in the variable `ValueRange`. But as you may remember from our previous mapping classes, the categories of this binned variable are not in the right order. To correct that, we should convert them from text to a `factor`, or categorical variable, and then change the order, using an R package called `**forcats**`, which is part of the **tidyverse**.
+The data defining the annual risk of a damaging earthquake is in the variable `ValueRange`. But as you may remember from our previous mapping classes, the categories of this binned variable are not in the right order. To correct that, we should convert the variable from text to a `factor`, or categorical variable, and then change the order, using an R package called **[forcats](https://cran.r-project.org/web/packages/forcats/forcats.pdf)**, which is part of the **tidyverse**.
 
 ```R
+# load required package
+library(forcats)
+
 # convert to factor/categorical variable
 seismic$ValueRange <- as.factor(seismic$ValueRange)
 
@@ -570,17 +573,19 @@ seismic_map %>%
 
 The function `addPolygons` adds polygons to the map: `stroke = FALSE` gives them no outline; `fillOpacity = 0.7` makes them slightly transparent; `color = ~pal(ValueRange))` uses the color palette and breaks we set up earlier to color the polygons according to values in the `ValueRange` data.
 
+(To see how to set up a color palette for a continuous variable, see [this class](http://peteraldhous.com/ucb/2016/dataviz/week13.html) from last year.)
+
 `smoothFactor` controls the extent to which the polygons are simplified. See what happens to the map if you replace `0.1` with `10`. Simplified polygons will load more quickly, but there's a tradeoff with the appearance of the map. Choose an appropriate value for your maps through trial and error.
 
 `addCircles` adds circles to the map, using the `quakes` data; `color` sets the color for their outlines, while `weight` sets the thickness of these lines; `fillColor` and `fillOpacity` style the circles' interiors.
 
-The size of the circles is set by `radius = sqrt(quakes$mag^10)*53`. Here `53` is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable `mag` in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: Again, this is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.
+The size of the circles is set by `radius = sqrt(quakes$mag^10)*30`. Here `30` is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable `mag` in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: Again, this is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.
 
 When scaling circles, use the values from the data, and then take their square roots, using the `sqrt` function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.
 
 `popup` is used to define the HTML code the appears in the popup that appears when any quake is clicked or tapped. The code above uses the R function `paste` to paste together a series of elements, separated by commas, that will write the HTML. They include the `mag` and `time` values from the quakes data, the latter being formatted as an easy-to-read date using R's `format` function for dates. See [here](https://www.statmethods.net/input/dates.html) for more on formatting dates in R.
 
-We can add a legend, and a layer control to turn, by extending the code further:
+We can add a legend, and a layer control to turn the quakes layer on and off, and switch between different basemaps, by extending the code further:
 
 
 ```R
@@ -632,7 +637,6 @@ The final map should look like this:
 <iframe src="seismic.html" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 
 </div>
-
 
 I hope these examples illustrate the potential of **htmlwidgets**. There are many more which we have not covered. Understanding how the code for each will take some time. But if you follow the documentation, the results can be impressive.
 
