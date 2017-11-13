@@ -64,8 +64,8 @@ We will use them in conjunction with R to make animated graphics. They take some
 Here are the steps for installation:
 
  - Download and install **Xcode**. 
-  - If you have Mac OS 10.11 El Capitan, you should be able to download and install [from the App Store](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12). 
-  - If you have Mac OS 10.10 Yosemite, first sign up as an Apple Developer, [here](https://developer.apple.com/programs/enroll/). Then go [here](https://developer.apple.com/download/more/), and download and install **Xcode 7.2.1**. Later versions will not work.
+  - If you have Mac OS 10.12 Sierra or Mac OS 10.13 High Sierra, you should be able to download and install [from the App Store](https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12). 
+  - If you have older versions of Mac OS, first sign up as an Apple Developer, [here](https://developer.apple.com/programs/enroll/). Then go [here](https://developer.apple.com/download/more/), and download and install **Xcode 7.2.1**.
   - If you are unsure which version of the operating system you have, click the Apple symbol at the left of the top menu and select `About this Mac`.
   - You may need to launch **Xcode**  and agree to the terms of service.
 

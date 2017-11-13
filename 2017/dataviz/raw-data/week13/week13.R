@@ -1,0 +1,270 @@
+# install and load htmlwidgets
+library(htmlwidgets)
+library(readr)
+library(dplyr)
+
+library(ggplot2)
+library(ggiraph)
+
+# ggiraph
+food_stamps <- read_csv("food_stamps.csv")
+
+# initial version of chart
+food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) + 
+  xlab("Year") +
+  ylab("Participants (millions)") +
+  theme_minimal(base_size = 14, base_family = "Georgia") + 
+  geom_line() +
+  geom_point_interactive(aes(tooltip=costs))
+
+print(food_stamps_chart)
+
+# make interactive version of chart and plot
+food_stamps_interactive <- ggiraph(code = print(food_stamps_chart), height_svg=4)
+
+print(food_stamps_interactive)
+
+# save as web page
+saveWidget(food_stamps_interactive, "food_stamps.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+# customized version of chart
+
+food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) + 
+  xlab("Year") +
+  ylab("Participants (millions)") +
+  theme_minimal(base_size = 14, base_family = "Georgia") + 
+  geom_line() +
+  geom_point_interactive(aes(tooltip=paste0("cost: $",costs, " billion"), 
+                             data_id = year))
+
+food_stamps_interactive <- ggiraph(code = print(food_stamps_chart), 
+                                   height_svg=4,
+                                   hover_css = "fill-opacity:0.5;stroke:red;r:4px",
+                                   tooltip_extra_css = "background-color:#f0f0f0;color:black;padding:5px")
+
+print(food_stamps_interactive)
+saveWidget(food_stamps_interactive, "food_stamps.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+# column chart
+food_stamps <- food_stamps %>%
+  mutate(year2 = as.character(year))
+
+food_stamps_column <- ggplot(food_stamps, aes(x = year, y = participants)) + 
+  xlab("Year") +
+  ylab("Participants (millions)") +
+  theme_minimal(base_size = 14, base_family = "Georgia") + 
+  geom_bar_interactive(stat = "identity", 
+         color = "#888888", 
+         fill = "#CCCCCC", 
+         alpha = 0.5,
+         aes(tooltip = paste0("cost: $",costs, " billion"),
+             data_id = year2)) 
+
+food_stamps_column_interactive <- ggiraph(code = print(food_stamps_column), 
+                                   height_svg=4,
+                                   hover_css = "fill-opacity:1;stroke:red",
+                                   tooltip_extra_css = "background-color:#f0f0f0;color:black;padding:5px")
+
+saveWidget(food_stamps_column_interactive, "food_stamps_column.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+# install highcharter, RColorBrewer
+install.packages("highcharter","RColorBrewer")
+
+# load required packages
+library(highcharter)
+library(RColorBrewer)
+
+nations <- read_csv("nations.csv") %>%
+  mutate(gdp_tn = gdp_percap*population/10^12)
+
+# prepare data
+big4 <- nations %>%
+  filter(iso3c == "CHN" | iso3c == "DEU" | iso3c == "JPN" | iso3c == "USA") %>%
+  arrange(year)
+
+# https://rpubs.com/jbkunst/highcharter-hchart-data-frames
+
+# basic symbol-and-line chart, default settings
+hchart(big4, "line", hcaes(x = year, y = gdp_tn, group = country))
+
+# define color palette
+cols <- brewer.pal(4, "Set1")
+
+# adding a data frame, making chart
+big4_chart <- hchart(big4, "line", hcaes(x = year, y = gdp_tn, group = country)) %>%
+  hc_colors(cols) %>%
+  hc_chart(style = list(fontFamily = "Georgia",
+                        fontWeight = "bold")) %>%
+  hc_xAxis(title = list(text="Year")) %>%
+  hc_yAxis(title = list(text="GDP ($ trillion)")) %>%
+  hc_chart(style = list(fontFamily = "Georgia",
+                        fontWeight = "bold")) %>%
+  hc_plotOptions(series = list(marker = list(enabled = TRUE, symbol = "circle")))
+
+print(big4_chart)
+
+saveWidget(big4_chart, "big4.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+# multiple chart types
+
+# set colors
+cols2 <- c("red","black")
+
+food_stamps_combined <- highchart() %>%
+  hc_add_series(data = food_stamps$participants,
+                name = "Participants (millions)",
+                type = "column") %>%
+  hc_add_series(data = food_stamps$costs,
+                name = "Costs ($ billions)",
+                type = "line") %>%
+  hc_xAxis(categories = food_stamps$year,
+           tickInterval = 5) %>%
+  hc_colors(cols2) %>%
+  hc_chart(style = list(fontFamily = "Georgia",
+                        fontWeight = "bold"))
+
+print(food_stamps_combined)
+
+saveWidget(food_stamps_combined, "food_stamps_combined.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+
+# install and load quantmod
+install.packages("quantmod")
+library(quantmod)
+
+# retrieve data for each company
+google <- getSymbols("GOOG", src = "yahoo", auto.assign = FALSE)
+facebook <- getSymbols("FB", src = "yahoo", auto.assign = FALSE)
+amazon <- getSymbols("AMZN", src = "yahoo", auto.assign = FALSE)
+
+# set color palette
+cols <- brewer.pal(3,"Set1")
+
+# draw chart
+stock_chart <- highchart(type = "stock") %>% 
+  hc_colors(cols) %>%
+  hc_add_series(google$GOOG.Adjusted, name = "Google") %>%
+  hc_add_series(facebook$FB.Adjusted, name = "Facebook") %>%
+  hc_add_series(amazon$AMZN.Adjusted, name = "Amazon") %>%
+  hc_legend(enabled = TRUE,
+            verticalAlign = "bottom") %>% 
+  hc_chart(style = list(fontFamily = "Georgia",
+                        fontWeight = "bold")) %>%
+  hc_tooltip(borderColor = "black")
+
+print(stock_chart)
+
+saveWidget(stock_chart, "stock_chart.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+
+# install and load leaflet and rdgal
+install.packages("leaflet", "rgdal")
+library(leaflet)
+library(rgdal)
+library(forcats)
+
+# make leaflet map centered on Berkeley
+leaflet() %>% 
+  setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %>%
+  addTiles()
+
+# make leaflet map centered on Berkeley with CartoDB tiles
+leaflet() %>%
+  setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %>%
+  addProviderTiles("CartoDB.Positron")
+
+# load seismic risk shapefile
+seismic <- readOGR("seismic", "seismic")
+
+# view summary of seismic_risk data
+summary(seismic)
+
+# convert to factor/categorical variable
+seismic$ValueRange <- as.factor(seismic$ValueRange)
+
+# reorder the levels of the factor
+seismic$ValueRange <- fct_relevel(seismic$ValueRange, c("< 1","1 - 2","2 - 5","5 - 10", "10 - 12"))
+
+# view summary of seismic_risk data
+summary(seismic)
+
+# load quakes data
+quakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&minmagnitude=6&format=csv&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&orderby=magnitude")
+                   
+# load the seismic risk data into a leaflet map
+seismic_map <- leaflet(data=seismic)
+
+pal <- colorFactor("Reds", seismic$ValueRange)
+
+  seismic_map %>%
+    setView(lng = -98.5795, lat = 39.828175, zoom = 4) %>%
+    addProviderTiles("CartoDB.Positron") %>% 
+    addPolygons(
+      stroke = FALSE,
+      fillOpacity = 0.7,
+      smoothFactor = 0.1,
+      color = ~pal(ValueRange)
+    ) %>%
+    # add historical earthquakes
+    addCircles(
+      data = quakes, 
+      radius = sqrt(10^quakes$mag)*30, 
+      color = "#000000",
+      weight = 0.2,
+      fillColor ="#ffffff",
+      fillOpacity = 0.5,
+      popup = paste0("<strong>Magnitude: </strong>", quakes$mag, "</br>",
+                     "<strong>Date: </strong>", format(as.Date(quakes$time), "%b %d, %Y"))
+    )
+
+# make multi-layered leaflet map with layer-switching control
+# make choropleth map of seismic hazards
+seismic_final <- seismic_map %>%
+  setView(lng = -98.5795, lat = 39.828175, zoom = 4) %>%
+  addProviderTiles("CartoDB.Positron", group = "Carto") %>% 
+  addProviderTiles("Stamen.TonerLite", group = "Toner") %>%
+  addPolygons(
+    stroke = FALSE,
+    fillOpacity = 0.7,
+    smoothFactor = 0.1,
+    color = ~pal(ValueRange),
+    popup = seismic$ValueRange
+  ) %>%
+  # add historical earthquakes
+  addCircles(
+    data = quakes, 
+    radius = sqrt(10^quakes$mag)*30, 
+    color = "#000000",
+    weight = 0.2,
+    fillColor ="#ffffff",
+    fillOpacity = 0.5,
+    popup = paste0("<strong>Magnitude: </strong>", quakes$mag, "</br>",
+                   "<strong>Date: </strong>", format(as.Date(quakes$time), "%b %d, %Y")),
+    group = "Quakes"
+  ) %>%
+  # add legend
+  addLegend(
+    "bottomright", pal = pal, values = ~ValueRange,
+    title = "% risk of damaging quake in 2017",
+    opacity = 0.7,
+    labels = labels
+  ) %>%
+  # add layers control
+  addLayersControl(
+    baseGroups = c("Toner","Carto"),
+    overlayGroups = "Quakes",
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+# plot the map
+print(seismic_final)
+
+# save the map
+saveWidget(seismic_final, "seismic.html", selfcontained = TRUE, libdir = NULL, background = "white")
+
+
+
+
+
+
+

@@ -114,6 +114,21 @@ https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&l
 A file called `query.csv` should download. Rename it `quakes.csv` and add to the `week11` folder.
 - `test.html` A web page for embedding the Carto map we will make.
 
+#### [Download Week 13](./data/week13.zip)
+
+- `nations.csv` Data from the World Bank Indicators portal, as used in week 3 and subsequently.
+- `food_stamps.csv` [U.S. Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, and costs, in $ billions, of the federal Supplemental Nutrition Assistance Program from 1969 to 2016, as used in week 8.
+- `seismic.zip` Zipped shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+- `test.html` Web page to embed the interactive charts and maps we make today.
+
+
+#### [Download Week 14](./data/week14.zip)
+
+- `nations.csv` Data from the World Bank Indicators portal, as used in week 3 and subsequently.
+- `warming.csv` [NASA data](http://data.giss.nasa.gov/gistemp/graphs/) on the annual average global temperature, from 1880 to 2015, compared the the average from 1951-1980.
+- `maps` Folder containing individual frames, from 1880 to 2015, each showing annual average temperatures across the globe, from 1880 to 2015, again compared the the average from 1951-1980. These were made from NASA data, using [this software](http://www.giss.nasa.gov/tools/panoply/).
+- `charts` `combined` Empty folders into which we will save individual frames from which to make a video animation.
+
 ## Final projects
 
 These datasets are suggestions, in which there are definitely stories to be found and visualized. But you are encouraged to work on other datasets.

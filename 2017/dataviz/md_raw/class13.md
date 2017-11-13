@@ -29,7 +29,7 @@ install.packages("htmlwidgets")
 library(htmlwidgets)
 ```
 
-### Making ggplot2 charts interactive with ggiraph
+### Make ggplot2 charts interactive with ggiraph
 
 **[ggiraph](https://davidgohel.github.io/ggiraph/articles/an_introduction.html)** is a package that adds some simple interactivity to charts made with ggplot2 code.
 
@@ -58,7 +58,7 @@ food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) +
   ylab("Participants (millions)") +
   theme_minimal(base_size = 14, base_family = "Georgia") + 
   geom_line() +
-  geom_point_interactive(aes(tooltip = costs)
+  geom_point_interactive(aes(tooltip = costs))
 
 print(food_stamps_chart)
 ```
@@ -79,7 +79,7 @@ The following chart, with a hover tooltip, should appear in the `Viewer` panel:
 
 ![](./img/class13_1.jpg)
 
-Now we can save the chart as a webpage, using the following **htmlwidgets** code:
+Now we can save the chart as a web page, using the following **htmlwidgets** code:
 
 ```R
 # save chart as a web page
@@ -294,7 +294,6 @@ big4_chart <- hchart(big4, "line", hcaes(x = year, y = gdp_tn, group = country))
 print(big4_chart)
 
 # save as a web page
-```R
 saveWidget(big4_chart, "big4.html", selfcontained = TRUE, libdir = NULL, background = "white")
 ```
 
@@ -413,7 +412,8 @@ The time period shown can be filtered using the buttons and date boxes at the to
 
 ```R
 # install and load leaflet and rdgal
-install.packages("leaflet", "rgdal")
+install.packages("leaflet")
+install.packages("rgdal")
 library(leaflet)
 library(rgdal)
 
@@ -440,7 +440,7 @@ The `setView` function sets the starting position of the map, centering it on th
 We aren't limited to using OpenStreetMap tiles:
 
 ```R
-# make leaflet map centered on Berkeley with CartoDB tiles
+# make leaflet map centered on Berkeley with Carto tiles
 leaflet() %>%
   setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %>%
   addProviderTiles("CartoDB.Positron") 
@@ -452,7 +452,7 @@ The map should now look like this:
 
 The f`addProviderTiles` function uses the [Leaflet Providers](https://github.com/leaflet-extras/leaflet-providers) plugin to add various tiles to a map. As we discussed in week 11, you can see the available options [here](http://leaflet-extras.github.io/leaflet-providers/preview/).
 
-Now load the data we need to make the earthquakes map, starting with the `seismic_risk` shapefile, using the `readOGR()` function from **rgdal**.
+Now load the data we need to make the earthquakes map, starting with the `seismic` shapefile, using the `readOGR()` function from **rgdal**.
 
 ```R
 # load seismic risk shapefile
@@ -537,11 +537,11 @@ Now we will load the seismic risk data into a leaflet map:
 
 ```R
 # load the seismic risk data into a leaflet map
-seismic <- leaflet(data=seismic_risk)
+seismic_map <- leaflet(data=seismic)
 ```
 You should now see an object of type `leaflet` in your environment.
 
-Now we can make a map with two payers just a few lines of code:
+Now we can make a map with two layers just a few lines of code:
 
 ```R
 # set color palette
@@ -590,7 +590,7 @@ We can add a legend, and a layer control to turn the quakes layer on and off, an
 
 ```R
 # make multi-layered leaflet map with layer-switching control
-seismic_map %>%
+seismic_final <- seismic_map %>%
   setView(lng = -98.5795, lat = 39.828175, zoom = 4) %>%
   addProviderTiles("CartoDB.Positron") %>%
   # make choropleth map of seismic hazards
@@ -624,10 +624,10 @@ seismic_map %>%
   )
 
 # plot map
-print(seismic)
+print(seismic_final)
 
 # save the map
-saveWidget(seismic, "seismic.html", selfcontained = TRUE, libdir = NULL, background = "white")
+saveWidget(seismic_final, "seismic.html", selfcontained = TRUE, libdir = NULL, background = "white")
 ```
 
 The final map should look like this:

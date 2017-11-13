@@ -1,6 +1,6 @@
 # Iteration and animation: Loops, GIFs, and videos
 
-In today's class, we will make animated GIFs and videos from charts made in R using **ggplot2**. This depends on connecting R to two software libraries, [**ImageMagick**](http://imagemagick.org/script/index.php) (for processing images, inlcuding GIFs), and **[FFmpeg](http://ffmpeg.org/)** (for processing video). See the [software](software.html) page for installation instructions.
+In today's class, we will make animated GIFs and videos from charts made in R using **ggplot2**. This depends on connecting R to two software libraries, [**ImageMagick**](http://imagemagick.org/script/index.php) (for processing images, including GIFs), and **[FFmpeg](http://ffmpeg.org/)** (for processing video). See the [software](software.html) page for installation instructions.
 
 
 ### The data we will use today
@@ -141,12 +141,6 @@ Here is the video:
 
 When making GIFs, it is often a good idea to add a longer pause on the final frame before the animation repeats. You can do this with the following code:
 
-Here is the revised GIF:
-
-This should be the result:
-
-![](./img/nations_with_pause.gif)
-
 ```R
 # increase delay on final frame
 system("convert nations.gif \\( +clone -set delay 300 \\) +swap +delete  nations_with_pause.gif")
@@ -155,6 +149,10 @@ system("convert nations.gif \\( +clone -set delay 300 \\) +swap +delete  nations
 This code uses the `system` function to send ImageMagick code to your wider computer system. It has same effect as if you ran the ImageMagick code in the Terminal.
 
 `convert` is one of the main commands in ImageMagick, used to convert between image formats as well as to manipulate images in a variety of ways. Here, `delay 300` increases the delay on the final frame to 3 seconds.
+
+Here is the revised GIF:
+
+![](./img/nations_with_pause.gif)
 
 ### Make a cumulative animation of historical global average temperature
 
@@ -361,7 +359,7 @@ Now make a video with FFmpeg:
 system("ffmpeg -f image2 -start_number 1880 -i combined/img%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming2.mp4")
 ```
 
-This code combined the images into a video called `warming2.mp4`.
+This code combines the images into a video called `warming2.mp4`.
 
 Don't worry too much about the details of this code, other than to know that it works.
 

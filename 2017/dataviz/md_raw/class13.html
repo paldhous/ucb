@@ -16,7 +16,7 @@ library(htmlwidgets)
 </code></pre>"><span class="hljs-comment"># install and load htmlwidgets</span>
 install.packages(<span class="hljs-string">"htmlwidgets"</span>)
 <span class="hljs-keyword">library</span>(htmlwidgets)
-</code></pre><h3 id="making-ggplot2-charts-interactive-with-ggiraph"><a name="making-ggplot2-charts-interactive-with-ggiraph" href="#making-ggplot2-charts-interactive-with-ggiraph"></a>Making ggplot2 charts interactive with ggiraph</h3><p><strong><a href="https://davidgohel.github.io/ggiraph/articles/an_introduction.html">ggiraph</a></strong> is a package that adds some simple interactivity to charts made with ggplot2 code.</p><p>The following code loads and installs the package, then loads the food stamps data we used previously to make <strong>ggplot2</strong> charts in week 8.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load ggiraph
+</code></pre><h3 id="make-ggplot2-charts-interactive-with-ggiraph"><a name="make-ggplot2-charts-interactive-with-ggiraph" href="#make-ggplot2-charts-interactive-with-ggiraph"></a>Make ggplot2 charts interactive with ggiraph</h3><p><strong><a href="https://davidgohel.github.io/ggiraph/articles/an_introduction.html">ggiraph</a></strong> is a package that adds some simple interactivity to charts made with ggplot2 code.</p><p>The following code loads and installs the package, then loads the food stamps data we used previously to make <strong>ggplot2</strong> charts in week 8.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load ggiraph
 install.packages(&quot;ggiraph&quot;)
 library(ggiraph)
 
@@ -44,7 +44,7 @@ food_stamps_chart &amp;lt;- ggplot(food_stamps, aes(x = year, y = participants))
   ylab(&quot;Participants (millions)&quot;) +
   theme_minimal(base_size = 14, base_family = &quot;Georgia&quot;) + 
   geom_line() +
-  geom_point_interactive(aes(tooltip = costs)
+  geom_point_interactive(aes(tooltip = costs))
 
 print(food_stamps_chart)
 </code></pre>"><span class="hljs-comment"># dot-and-line chart of</span>
@@ -53,7 +53,7 @@ food_stamps_chart &lt;- ggplot(food_stamps, aes(x = year, y = participants)) +
   ylab(<span class="hljs-string">"Participants (millions)"</span>) +
   theme_minimal(base_size = <span class="hljs-number">14</span>, base_family = <span class="hljs-string">"Georgia"</span>) + 
   geom_line() +
-  geom_point_interactive(aes(tooltip = costs)
+  geom_point_interactive(aes(tooltip = costs))
 
 print(food_stamps_chart)
 </code></pre><p>This code saves a <strong>ggplot2</strong> chart in your environment, as we’ve seen before. But here we used <code>geom_point_interactive</code>, rather than <code>geom_point</code> to add the dots to the chart. Inside this function there is an <code>aes</code> mapping that assigns values from the <code>costs</code> variable to a tooltip. Simply plotting the saved chart gives a standard <strong>ggplot2</strong> chart in the <code>Plots</code> panel at bottom right.</p><p>The following code uses the <code>ggiraph</code> function to turn the saved chart into a web page in which the chart is rendered using D3 as an SVG (scaleable vector graphic) with hover tooltips.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make interactive version of the chart
@@ -64,7 +64,7 @@ print(food_stamps_interactive)
 food_stamps_interactive &lt;- ggiraph(code = print(food_stamps_chart), height_svg=<span class="hljs-number">4</span>)
 
 print(food_stamps_interactive)
-</code></pre><p>The code also sets the height of the resulting SVG object to 4 inches using <code>height_svg=4</code>.</p><p>The following chart, with a hover tooltip, should appear in the <code>Viewer</code> panel:</p><p><img src="img/class13_1.jpg" alt=""></p><p>Now we can save the chart as a webpage, using the following <strong>htmlwidgets</strong> code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save chart as a web page
+</code></pre><p>The code also sets the height of the resulting SVG object to 4 inches using <code>height_svg=4</code>.</p><p>The following chart, with a hover tooltip, should appear in the <code>Viewer</code> panel:</p><p><img src="img/class13_1.jpg" alt=""></p><p>Now we can save the chart as a web page, using the following <strong>htmlwidgets</strong> code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># save chart as a web page
 saveWidget(food_stamps_interactive, &quot;food_stamps.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
 </code></pre>"><span class="hljs-comment"># save chart as a web page</span>
 saveWidget(food_stamps_interactive, <span class="hljs-string">"food_stamps.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
@@ -241,7 +241,6 @@ big4_chart &amp;lt;- hchart(big4, &quot;line&quot;, hcaes(x = year, y = gdp_tn, 
 print(big4_chart)
 
 # save as a web page
-```R
 saveWidget(big4_chart, &quot;big4.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
 </code></pre>"><span class="hljs-comment"># define a ColorBrewer palette</span>
 cols &lt;- brewer.pal(<span class="hljs-number">4</span>, <span class="hljs-string">"Set1"</span>)
@@ -259,8 +258,7 @@ big4_chart &lt;- hchart(big4, <span class="hljs-string">"line"</span>, hcaes(x =
 print(big4_chart)
 
 <span class="hljs-comment"># save as a web page</span>
-```R
-saveWidget(big4_chart, "big4.html", selfcontained = TRUE, libdir = NULL, background = "white")
+saveWidget(big4_chart, <span class="hljs-string">"big4.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
 </code></pre><p>This should be the result:</p><div class="chart-container"><br><br><iframe src="big4.html" frameborder="0" marginheight="0" marginwidth="0"></iframe><br><br></div><p>Clicking on the legend items allows you to remove or add series from the chart.</p><p><strong>highcharter</strong> uses the <code>%&gt;%</code> or “then” operator, which we have previously used with <strong>dplyr</strong>.</p><p>The first line of the code above sets a palette with four colors, using the “Set1” palette from ColorBrewer. This is then fed to the function <code>hc_colors</code> to use those colors on the chart.</p><p>To set options for the entire chart, such as the fonts used, use the <code>hc_chart</code> function.</p><p>The <code>hc_xAxis</code> and <code>hc_yAxis</code> functions can be used to add axis labels, to set the range of values for an axis, and to add reference lines or bands to a plot. See <a href="http://jkunst.com/highcharter/highcharts-api.html#hc_xaxis-and-hc_yaxis">here</a> for more.</p><h4 id="combine-more-than-one-highcharts-chart-type-into-a-single-chart"><a name="combine-more-than-one-highcharts-chart-type-into-a-single-chart" href="#combine-more-than-one-highcharts-chart-type-into-a-single-chart"></a>Combine more than one Highcharts chart type into a single chart</h4><p>It is also possible to combine different chart types into one, for example columns and dot-and-line.</p><p>The following code does this for the food stamps data, plotting the number of participants as columns and the cost as dot-and-line.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set colors
 cols &amp;lt;- c(&quot;red&quot;,&quot;black&quot;)
 
@@ -362,11 +360,13 @@ print(stock_chart)
 <span class="hljs-comment"># save as web page</span>
 saveWidget(stock_chart, <span class="hljs-string">"stock_chart.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
 </code></pre><div class="chart-container"><br><br><iframe src="stock_chart.html" frameborder="0" marginheight="0" marginwidth="0"></iframe><br><br></div><p>The time period shown can be filtered using the buttons and date boxes at the top, or the slider at the bottom of the chart.</p><h3 id="make-maps-of-seismic-risk-and-earthquakes-using-leaflet"><a name="make-maps-of-seismic-risk-and-earthquakes-using-leaflet" href="#make-maps-of-seismic-risk-and-earthquakes-using-leaflet"></a>Make maps of seismic risk and earthquakes using Leaflet</h3><p><a href="http://leafletjs.com/">Leaflet</a> is the most widely-used JavaScript library for making interactive online maps. It can be accessed from R using the <a href="http://rstudio.github.io/leaflet/"><strong>leaflet</strong></a> package, another part of the <strong>htmlwidgets</strong> framework. So we need to install and load that, together with a package called <strong><a href="https://cran.r-project.org/web/packages/rgdal/rgdal.pdf">rgdal</a></strong>, which makes it possible to load shapefiles and other geodata into R.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># install and load leaflet and rdgal
-install.packages(&quot;leaflet&quot;, &quot;rgdal&quot;)
+install.packages(&quot;leaflet&quot;)
+install.packages(&quot;rgdal&quot;)
 library(leaflet)
 library(rgdal)
 </code></pre>"><span class="hljs-comment"># install and load leaflet and rdgal</span>
-install.packages(<span class="hljs-string">"leaflet"</span>, <span class="hljs-string">"rgdal"</span>)
+install.packages(<span class="hljs-string">"leaflet"</span>)
+install.packages(<span class="hljs-string">"rgdal"</span>)
 <span class="hljs-keyword">library</span>(leaflet)
 <span class="hljs-keyword">library</span>(rgdal)
 </code></pre><p>We are going to recreate a version of <a href="https://paldhous.github.io/earthquakes/">this map</a>, which I originally coded using Leaflet from scratch. After class, you may wish to download the code for that map from its <a href="https://github.com/paldhous/earthquakes">GitHub repository</a>, to compare with the R version.</p><p>First let’s see how to make a basic Leaflet map, centered on Berkeley:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley
@@ -377,15 +377,15 @@ leaflet() %&amp;gt;%
 leaflet() %&gt;% 
   setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
   addTiles()
-</code></pre><p>This map should appear in the <code>Viewer</code>:</p><p><img src="img/class13_3.jpg" alt=""></p><p>The <code>leaflet</code> function creates a leaflet map.</p><p>The <code>setView</code> function sets the starting position of the map, centering it on the defined coordinates and with the defined zoom level; <code>addTiles</code> adds <a href="https://www.openstreetmap.org/">OpenStreetMap</a> tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.</p><p>We aren’t limited to using OpenStreetMap tiles:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley with CartoDB tiles
+</code></pre><p>This map should appear in the <code>Viewer</code>:</p><p><img src="img/class13_3.jpg" alt=""></p><p>The <code>leaflet</code> function creates a leaflet map.</p><p>The <code>setView</code> function sets the starting position of the map, centering it on the defined coordinates and with the defined zoom level; <code>addTiles</code> adds <a href="https://www.openstreetmap.org/">OpenStreetMap</a> tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.</p><p>We aren’t limited to using OpenStreetMap tiles:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make leaflet map centered on Berkeley with Carto tiles
 leaflet() %&amp;gt;%
   setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %&amp;gt;%
   addProviderTiles(&quot;CartoDB.Positron&quot;)
-</code></pre>"><span class="hljs-comment"># make leaflet map centered on Berkeley with CartoDB tiles</span>
+</code></pre>"><span class="hljs-comment"># make leaflet map centered on Berkeley with Carto tiles</span>
 leaflet() %&gt;%
   setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
   addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>)
-</code></pre><p>The map should now look like this:</p><p><img src="img/class13_4.jpg" alt=""></p><p>The f<code>addProviderTiles</code> function uses the <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet Providers</a> plugin to add various tiles to a map. As we discussed in week 11, you can see the available options <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">here</a>.</p><p>Now load the data we need to make the earthquakes map, starting with the <code>seismic_risk</code> shapefile, using the <code>readOGR()</code> function from <strong>rgdal</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load seismic risk shapefile
+</code></pre><p>The map should now look like this:</p><p><img src="img/class13_4.jpg" alt=""></p><p>The f<code>addProviderTiles</code> function uses the <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet Providers</a> plugin to add various tiles to a map. As we discussed in week 11, you can see the available options <a href="http://leaflet-extras.github.io/leaflet-providers/preview/">here</a>.</p><p>Now load the data we need to make the earthquakes map, starting with the <code>seismic</code> shapefile, using the <code>readOGR()</code> function from <strong>rgdal</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load seismic risk shapefile
 seismic &amp;lt;- readOGR(&quot;seismic&quot;, &quot;seismic&quot;)
 </code></pre>"><span class="hljs-comment"># load seismic risk shapefile</span>
 seismic &lt;- readOGR(<span class="hljs-string">"seismic"</span>, <span class="hljs-string">"seismic"</span>)
@@ -480,10 +480,10 @@ Data attributes:
  <span class="hljs-number">5</span> - <span class="hljs-number">10</span> : <span class="hljs-number">4</span>  
  <span class="hljs-number">10</span> - <span class="hljs-number">12</span>: <span class="hljs-number">2</span>
 </code></pre><p>Now we will load the seismic risk data into a leaflet map:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load the seismic risk data into a leaflet map
-seismic &amp;lt;- leaflet(data=seismic_risk)
+seismic_map &amp;lt;- leaflet(data=seismic)
 </code></pre>"><span class="hljs-comment"># load the seismic risk data into a leaflet map</span>
-seismic &lt;- leaflet(data=seismic_risk)
-</code></pre><p>You should now see an object of type <code>leaflet</code> in your environment.</p><p>Now we can make a map with two payers just a few lines of code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set color palette
+seismic_map &lt;- leaflet(data=seismic)
+</code></pre><p>You should now see an object of type <code>leaflet</code> in your environment.</p><p>Now we can make a map with two layers just a few lines of code:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># set color palette
 pal &amp;lt;- colorFactor(&quot;Reds&quot;, seismic$ValueRange)
 
 # plot map
@@ -532,7 +532,7 @@ seismic_map %&gt;%
                    <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
   )
 </code></pre><p><img src="img/class13_5.jpg" alt=""></p><p>The function <code>addPolygons</code> adds polygons to the map: <code>stroke = FALSE</code> gives them no outline; <code>fillOpacity = 0.7</code> makes them slightly transparent; <code>color = ~pal(ValueRange))</code> uses the color palette and breaks we set up earlier to color the polygons according to values in the <code>ValueRange</code> data.</p><p>(To see how to set up a color palette for a continuous variable, see <a href="http://peteraldhous.com/ucb/2016/dataviz/week13.html">this class</a> from last year.)</p><p><code>smoothFactor</code> controls the extent to which the polygons are simplified. See what happens to the map if you replace <code>0.1</code> with <code>10</code>. Simplified polygons will load more quickly, but there’s a tradeoff with the appearance of the map. Choose an appropriate value for your maps through trial and error.</p><p><code>addCircles</code> adds circles to the map, using the <code>quakes</code> data; <code>color</code> sets the color for their outlines, while <code>weight</code> sets the thickness of these lines; <code>fillColor</code> and <code>fillOpacity</code> style the circles’ interiors.</p><p>The size of the circles is set by <code>radius = sqrt(quakes$mag^10)*30</code>. Here <code>30</code> is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable <code>mag</code> in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: Again, this is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.</p><p>When scaling circles, use the values from the data, and then take their square roots, using the <code>sqrt</code> function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.</p><p><code>popup</code> is used to define the HTML code the appears in the popup that appears when any quake is clicked or tapped. The code above uses the R function <code>paste</code> to paste together a series of elements, separated by commas, that will write the HTML. They include the <code>mag</code> and <code>time</code> values from the quakes data, the latter being formatted as an easy-to-read date using R’s <code>format</code> function for dates. See <a href="https://www.statmethods.net/input/dates.html">here</a> for more on formatting dates in R.</p><p>We can add a legend, and a layer control to turn the quakes layer on and off, and switch between different basemaps, by extending the code further:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make multi-layered leaflet map with layer-switching control
-seismic_map %&amp;gt;%
+seismic_final &amp;lt;- seismic_map %&amp;gt;%
   setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
   addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;%
   # make choropleth map of seismic hazards
@@ -566,12 +566,12 @@ seismic_map %&amp;gt;%
   )
 
 # plot map
-print(seismic)
+print(seismic_final)
 
 # save the map
-saveWidget(seismic, &quot;seismic.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
+saveWidget(seismic_final, &quot;seismic.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
 </code></pre>"><span class="hljs-comment"># make multi-layered leaflet map with layer-switching control</span>
-seismic_map %&gt;%
+seismic_final &lt;- seismic_map %&gt;%
   setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
   addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;%
   <span class="hljs-comment"># make choropleth map of seismic hazards</span>
@@ -605,10 +605,10 @@ seismic_map %&gt;%
   )
 
 <span class="hljs-comment"># plot map</span>
-print(seismic)
+print(seismic_final)
 
 <span class="hljs-comment"># save the map</span>
-saveWidget(seismic, <span class="hljs-string">"seismic.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
+saveWidget(seismic_final, <span class="hljs-string">"seismic.html"</span>, selfcontained = <span class="hljs-literal">TRUE</span>, libdir = <span class="hljs-literal">NULL</span>, background = <span class="hljs-string">"white"</span>)
 </code></pre><p>The final map should look like this:</p><div class="chart-container"><br><br><iframe src="seismic.html" frameborder="0" marginheight="0" marginwidth="0"></iframe><br><br></div><p>I hope these examples illustrate the potential of <strong>htmlwidgets</strong>. There are many more which we have not covered. Understanding how the code for each will take some time. But if you follow the documentation, the results can be impressive.</p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="http://www.htmlwidgets.org/showcase_leaflet.html">htmlwidgets Showcase</a><br>Links to documentation and code examples for the leading htmlwidgets.</p><p><a href="http://gallery.htmlwidgets.org/">htmlwidgets Gallery</a><br>A more extensive collection of htmlwidgets</p>
 
 <footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
