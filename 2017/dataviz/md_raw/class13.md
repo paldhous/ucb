@@ -587,18 +587,18 @@ When scaling circles, use the values from the data, and then take their square r
 
 We can add a legend, and a layer control to turn the quakes layer on and off, and switch between different basemaps, by extending the code further:
 
-
 ```R
-# make multi-layered leaflet map with layer-switching control
+# make multi-layered leaflet map with legend and layer-switching control
 seismic_final <- seismic_map %>%
   setView(lng = -98.5795, lat = 39.828175, zoom = 4) %>%
-  addProviderTiles("CartoDB.Positron") %>%
-  # make choropleth map of seismic hazards
+  addProviderTiles("CartoDB.Positron", group = "Carto") %>% 
+  addProviderTiles("Stamen.TonerLite", group = "Toner") %>%
   addPolygons(
     stroke = FALSE,
     fillOpacity = 0.7,
     smoothFactor = 0.1,
-    color = ~pal(ValueRange)
+    color = ~pal(ValueRange),
+    popup = seismic$ValueRange
   ) %>%
   # add historical earthquakes
   addCircles(
@@ -607,23 +607,26 @@ seismic_final <- seismic_map %>%
     color = "#000000",
     weight = 0.2,
     fillColor ="#ffffff",
-    fillOpacity = 0.3,
+    fillOpacity = 0.5,
     popup = paste0("<strong>Magnitude: </strong>", quakes$mag, "</br>",
-                   "<strong>Date: </strong>", format(as.Date(quakes$time), "%b %d, %Y"))
-  )
+                   "<strong>Date: </strong>", format(as.Date(quakes$time), "%b %d, %Y")),
+    group = "Quakes"
+  ) %>%
+  # add legend
   addLegend(
-            "bottomright", pal = pal, values = ~ValueRange,
-            title = "Seismic risk",
-            opacity = 0.7
+    "bottomright", pal = pal, values = ~ValueRange,
+    title = "% risk of damaging quake in 2017",
+    opacity = 0.7,
+    labels = labels
   ) %>%
   # add layers control
   addLayersControl(
-  baseGroups = c("CartoDB", "Toner"),
-  overlayGroups = "Quakes",
-  options = layersControlOptions(collapsed = FALSE)
+    baseGroups = c("Toner","Carto"),
+    overlayGroups = "Quakes",
+    options = layersControlOptions(collapsed = FALSE)
   )
 
-# plot map
+# plot the map
 print(seismic_final)
 
 # save the map

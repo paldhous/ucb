@@ -531,16 +531,17 @@ seismic_map %&gt;%
     popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
                    <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
   )
-</code></pre><p><img src="img/class13_5.jpg" alt=""></p><p>The function <code>addPolygons</code> adds polygons to the map: <code>stroke = FALSE</code> gives them no outline; <code>fillOpacity = 0.7</code> makes them slightly transparent; <code>color = ~pal(ValueRange))</code> uses the color palette and breaks we set up earlier to color the polygons according to values in the <code>ValueRange</code> data.</p><p>(To see how to set up a color palette for a continuous variable, see <a href="http://peteraldhous.com/ucb/2016/dataviz/week13.html">this class</a> from last year.)</p><p><code>smoothFactor</code> controls the extent to which the polygons are simplified. See what happens to the map if you replace <code>0.1</code> with <code>10</code>. Simplified polygons will load more quickly, but there’s a tradeoff with the appearance of the map. Choose an appropriate value for your maps through trial and error.</p><p><code>addCircles</code> adds circles to the map, using the <code>quakes</code> data; <code>color</code> sets the color for their outlines, while <code>weight</code> sets the thickness of these lines; <code>fillColor</code> and <code>fillOpacity</code> style the circles’ interiors.</p><p>The size of the circles is set by <code>radius = sqrt(quakes$mag^10)*30</code>. Here <code>30</code> is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable <code>mag</code> in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: Again, this is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.</p><p>When scaling circles, use the values from the data, and then take their square roots, using the <code>sqrt</code> function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.</p><p><code>popup</code> is used to define the HTML code the appears in the popup that appears when any quake is clicked or tapped. The code above uses the R function <code>paste</code> to paste together a series of elements, separated by commas, that will write the HTML. They include the <code>mag</code> and <code>time</code> values from the quakes data, the latter being formatted as an easy-to-read date using R’s <code>format</code> function for dates. See <a href="https://www.statmethods.net/input/dates.html">here</a> for more on formatting dates in R.</p><p>We can add a legend, and a layer control to turn the quakes layer on and off, and switch between different basemaps, by extending the code further:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make multi-layered leaflet map with layer-switching control
+</code></pre><p><img src="img/class13_5.jpg" alt=""></p><p>The function <code>addPolygons</code> adds polygons to the map: <code>stroke = FALSE</code> gives them no outline; <code>fillOpacity = 0.7</code> makes them slightly transparent; <code>color = ~pal(ValueRange))</code> uses the color palette and breaks we set up earlier to color the polygons according to values in the <code>ValueRange</code> data.</p><p>(To see how to set up a color palette for a continuous variable, see <a href="http://peteraldhous.com/ucb/2016/dataviz/week13.html">this class</a> from last year.)</p><p><code>smoothFactor</code> controls the extent to which the polygons are simplified. See what happens to the map if you replace <code>0.1</code> with <code>10</code>. Simplified polygons will load more quickly, but there’s a tradeoff with the appearance of the map. Choose an appropriate value for your maps through trial and error.</p><p><code>addCircles</code> adds circles to the map, using the <code>quakes</code> data; <code>color</code> sets the color for their outlines, while <code>weight</code> sets the thickness of these lines; <code>fillColor</code> and <code>fillOpacity</code> style the circles’ interiors.</p><p>The size of the circles is set by <code>radius = sqrt(quakes$mag^10)*30</code>. Here <code>30</code> is simply a scaling factor for all of the circles, set by trial and error to give a reasonable appearance on the map. The size of the circles is set from the variable <code>mag</code> in the quakes data, which is their magnitude. We have raised 10 to the power of these magnitude values: Again, this is a quirk of working with earthquake magnitudes, which are on a logarithmic scale, so that a magnitude difference of 1 corresponds to a 10-fold difference in earth movement, as recorded on a seismogram.</p><p>When scaling circles, use the values from the data, and then take their square roots, using the <code>sqrt</code> function. This is important, to ensure that the circles are scaled correctly, by area, rather than by radius, as we discussed in Week 2.</p><p><code>popup</code> is used to define the HTML code the appears in the popup that appears when any quake is clicked or tapped. The code above uses the R function <code>paste</code> to paste together a series of elements, separated by commas, that will write the HTML. They include the <code>mag</code> and <code>time</code> values from the quakes data, the latter being formatted as an easy-to-read date using R’s <code>format</code> function for dates. See <a href="https://www.statmethods.net/input/dates.html">here</a> for more on formatting dates in R.</p><p>We can add a legend, and a layer control to turn the quakes layer on and off, and switch between different basemaps, by extending the code further:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make multi-layered leaflet map with legend and layer-switching control
 seismic_final &amp;lt;- seismic_map %&amp;gt;%
   setView(lng = -98.5795, lat = 39.828175, zoom = 4) %&amp;gt;%
-  addProviderTiles(&quot;CartoDB.Positron&quot;) %&amp;gt;%
-  # make choropleth map of seismic hazards
+  addProviderTiles(&quot;CartoDB.Positron&quot;, group = &quot;Carto&quot;) %&amp;gt;% 
+  addProviderTiles(&quot;Stamen.TonerLite&quot;, group = &quot;Toner&quot;) %&amp;gt;%
   addPolygons(
     stroke = FALSE,
     fillOpacity = 0.7,
     smoothFactor = 0.1,
-    color = ~pal(ValueRange)
+    color = ~pal(ValueRange),
+    popup = seismic$ValueRange
   ) %&amp;gt;%
   # add historical earthquakes
   addCircles(
@@ -549,37 +550,41 @@ seismic_final &amp;lt;- seismic_map %&amp;gt;%
     color = &quot;#000000&quot;,
     weight = 0.2,
     fillColor =&quot;#ffffff&quot;,
-    fillOpacity = 0.3,
+    fillOpacity = 0.5,
     popup = paste0(&quot;&amp;lt;strong&amp;gt;Magnitude: &amp;lt;/strong&amp;gt;&quot;, quakes$mag, &quot;&amp;lt;/br&amp;gt;&quot;,
-                   &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;))
-  )
+                   &quot;&amp;lt;strong&amp;gt;Date: &amp;lt;/strong&amp;gt;&quot;, format(as.Date(quakes$time), &quot;%b %d, %Y&quot;)),
+    group = &quot;Quakes&quot;
+  ) %&amp;gt;%
+  # add legend
   addLegend(
-            &quot;bottomright&quot;, pal = pal, values = ~ValueRange,
-            title = &quot;Seismic risk&quot;,
-            opacity = 0.7
+    &quot;bottomright&quot;, pal = pal, values = ~ValueRange,
+    title = &quot;% risk of damaging quake in 2017&quot;,
+    opacity = 0.7,
+    labels = labels
   ) %&amp;gt;%
   # add layers control
   addLayersControl(
-  baseGroups = c(&quot;CartoDB&quot;, &quot;Toner&quot;),
-  overlayGroups = &quot;Quakes&quot;,
-  options = layersControlOptions(collapsed = FALSE)
+    baseGroups = c(&quot;Toner&quot;,&quot;Carto&quot;),
+    overlayGroups = &quot;Quakes&quot;,
+    options = layersControlOptions(collapsed = FALSE)
   )
 
-# plot map
+# plot the map
 print(seismic_final)
 
 # save the map
 saveWidget(seismic_final, &quot;seismic.html&quot;, selfcontained = TRUE, libdir = NULL, background = &quot;white&quot;)
-</code></pre>"><span class="hljs-comment"># make multi-layered leaflet map with layer-switching control</span>
+</code></pre>"><span class="hljs-comment"># make multi-layered leaflet map with legend and layer-switching control</span>
 seismic_final &lt;- seismic_map %&gt;%
   setView(lng = -<span class="hljs-number">98.5795</span>, lat = <span class="hljs-number">39.828175</span>, zoom = <span class="hljs-number">4</span>) %&gt;%
-  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>) %&gt;%
-  <span class="hljs-comment"># make choropleth map of seismic hazards</span>
+  addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>, group = <span class="hljs-string">"Carto"</span>) %&gt;% 
+  addProviderTiles(<span class="hljs-string">"Stamen.TonerLite"</span>, group = <span class="hljs-string">"Toner"</span>) %&gt;%
   addPolygons(
     stroke = <span class="hljs-literal">FALSE</span>,
     fillOpacity = <span class="hljs-number">0.7</span>,
     smoothFactor = <span class="hljs-number">0.1</span>,
-    color = ~pal(ValueRange)
+    color = ~pal(ValueRange),
+    popup = seismic$ValueRange
   ) %&gt;%
   <span class="hljs-comment"># add historical earthquakes</span>
   addCircles(
@@ -588,23 +593,26 @@ seismic_final &lt;- seismic_map %&gt;%
     color = <span class="hljs-string">"#000000"</span>,
     weight = <span class="hljs-number">0.2</span>,
     fillColor =<span class="hljs-string">"#ffffff"</span>,
-    fillOpacity = <span class="hljs-number">0.3</span>,
+    fillOpacity = <span class="hljs-number">0.5</span>,
     popup = paste0(<span class="hljs-string">"&lt;strong&gt;Magnitude: &lt;/strong&gt;"</span>, quakes$mag, <span class="hljs-string">"&lt;/br&gt;"</span>,
-                   <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>))
-  )
+                   <span class="hljs-string">"&lt;strong&gt;Date: &lt;/strong&gt;"</span>, format(as.Date(quakes$time), <span class="hljs-string">"%b %d, %Y"</span>)),
+    group = <span class="hljs-string">"Quakes"</span>
+  ) %&gt;%
+  <span class="hljs-comment"># add legend</span>
   addLegend(
-            <span class="hljs-string">"bottomright"</span>, pal = pal, values = ~ValueRange,
-            title = <span class="hljs-string">"Seismic risk"</span>,
-            opacity = <span class="hljs-number">0.7</span>
+    <span class="hljs-string">"bottomright"</span>, pal = pal, values = ~ValueRange,
+    title = <span class="hljs-string">"% risk of damaging quake in 2017"</span>,
+    opacity = <span class="hljs-number">0.7</span>,
+    labels = labels
   ) %&gt;%
   <span class="hljs-comment"># add layers control</span>
   addLayersControl(
-  baseGroups = c(<span class="hljs-string">"CartoDB"</span>, <span class="hljs-string">"Toner"</span>),
-  overlayGroups = <span class="hljs-string">"Quakes"</span>,
-  options = layersControlOptions(collapsed = <span class="hljs-literal">FALSE</span>)
+    baseGroups = c(<span class="hljs-string">"Toner"</span>,<span class="hljs-string">"Carto"</span>),
+    overlayGroups = <span class="hljs-string">"Quakes"</span>,
+    options = layersControlOptions(collapsed = <span class="hljs-literal">FALSE</span>)
   )
 
-<span class="hljs-comment"># plot map</span>
+<span class="hljs-comment"># plot the map</span>
 print(seismic_final)
 
 <span class="hljs-comment"># save the map</span>
