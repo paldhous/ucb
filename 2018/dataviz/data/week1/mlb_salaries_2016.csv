@@ -1,0 +1,854 @@
+playerID,nameFirst,nameLast,nameFull,teamID,teamName,salary,salary_mil
+ahmedni01,Nick,Ahmed,Nick Ahmed,ARI,Arizona Diamondbacks,521600,0.5216
+barreja01,Jake,Barrett,Jake Barrett,ARI,Arizona Diamondbacks,507500,0.5075
+brachsi01,Silvino,Bracho,Silvino Bracho,ARI,Arizona Diamondbacks,509300,0.5093
+britoso01,Socrates,Brito,Socrates Brito,ARI,Arizona Diamondbacks,508500,0.5085
+castiwe01,Welington,Castillo,Welington Castillo,ARI,Arizona Diamondbacks,3700000,3.7
+chafian01,Andrew,Chafin,Andrew Chafin,ARI,Arizona Diamondbacks,519700,0.5197
+clippty01,Tyler,Clippard,Tyler Clippard,ARI,Arizona Diamondbacks,6100000,6.1
+corbipa01,Patrick,Corbin,Patrick Corbin,ARI,Arizona Diamondbacks,2525000,2.525
+delarru01,Rubby,De La Rosa,Rubby De La Rosa,ARI,Arizona Diamondbacks,2350000,2.35
+delgara01,Randall,Delgado,Randall Delgado,ARI,Arizona Diamondbacks,1275000,1.275
+drurybr01,Brandon,Drury,Brandon Drury,ARI,Arizona Diamondbacks,508900,0.5089
+goldspa01,Paul,Goldschmidt,Paul Goldschmidt,ARI,Arizona Diamondbacks,5833333,5.833333
+gosseph01,Philip,Gosselin,Philip Gosselin,ARI,Arizona Diamondbacks,513900,0.5139
+greinza01,Zack,Greinke,Zack Greinke,ARI,Arizona Diamondbacks,31799030,31.79903
+herrmch01,Chris,Herrmann,Chris Herrmann,ARI,Arizona Diamondbacks,515900,0.5159
+hudsoda01,Daniel,Hudson,Daniel Hudson,ARI,Arizona Diamondbacks,2700000,2.7
+lambja01,Jake,Lamb,Jake Lamb,ARI,Arizona Diamondbacks,520300,0.5203
+millesh01,Shelby,Miller,Shelby Miller,ARI,Arizona Diamondbacks,4350000,4.35
+owingch01,Chris,Owings,Chris Owings,ARI,Arizona Diamondbacks,530500,0.5305
+peralda01,David,Peralta,David Peralta,ARI,Arizona Diamondbacks,529600,0.5296
+polloaj01,A. J.,Pollock,A. J. Pollock,ARI,Arizona Diamondbacks,3500000,3.5
+rayro02,Robbie,Ray,Robbie Ray,ARI,Arizona Diamondbacks,521000,0.521
+segurje01,Jean,Segura,Jean Segura,ARI,Arizona Diamondbacks,2600000,2.6
+tomasya01,Yasmany,Tomas,Yasmany Tomas,ARI,Arizona Diamondbacks,7500000,7.5
+weeksri01,Rickie,Weeks,Rickie Weeks,ARI,Arizona Diamondbacks,1500000,1.5
+zieglbr01,Brad,Ziegler,Brad Ziegler,ARI,Arizona Diamondbacks,5500000,5.5
+aybarer01,Erick,Aybar,Erick Aybar,ATL,Atlanta Braves,8500000,8.5
+banuema01,Manny,Banuelos,Manny Banuelos,ATL,Atlanta Braves,507500,0.5075
+beckhgo01,Gordon,Beckham,Gordon Beckham,ATL,Atlanta Braves,1250000,1.25
+flowety01,Tyler,Flowers,Tyler Flowers,ATL,Atlanta Braves,2000000,2
+francje02,Jeff,Francoeur,Jeff Francoeur,ATL,Atlanta Braves,1000000,1
+freemfr01,Freddie,Freeman,Freddie Freeman,ATL,Atlanta Braves,12359375,12.359375
+gantjo01,John,Gant,John Gant,ATL,Atlanta Braves,507500,0.5075
+garciad01,Adonis,Garcia,Adonis Garcia,ATL,Atlanta Braves,508750,0.50875
+grillja01,Jason,Grilli,Jason Grilli,ATL,Atlanta Braves,3625000,3.625
+inciaen01,Ender,Inciarte,Ender Inciarte,ATL,Atlanta Braves,523000,0.523
+johnsji04,Jim,Johnson,Jim Johnson,ATL,Atlanta Braves,2500000,2.5
+johnske05,Kelly,Johnson,Kelly Johnson,ATL,Atlanta Braves,2000000,2
+markani01,Nick,Markakis,Nick Markakis,ATL,Atlanta Braves,11000000,11
+mckiran01,Andrew,McKirahan,Andrew McKirahan,ATL,Atlanta Braves,511750,0.51175
+norribu01,Bud,Norris,Bud Norris,ATL,Atlanta Braves,2500000,2.5
+oflaher01,Eric,O'Flaherty,Eric O'Flaherty,ATL,Atlanta Braves,1750000,1.75
+ogandal01,Alexi,Ogando,Alexi Ogando,ATL,Atlanta Braves,2000000,2
+olivehe01,Hector,Olivera,Hector Olivera,ATL,Atlanta Braves,4000000,4
+perezwi01,Williams,Perez,Williams Perez,ATL,Atlanta Braves,511250,0.51125
+peterja01,Jace,Peterson,Jace Peterson,ATL,Atlanta Braves,520500,0.5205
+pierza.01,A.J.,Pierzynski,A.J. Pierzynski,ATL,Atlanta Braves,3000000,3
+ramirjo02,Jose,Ramirez,Jose Ramirez,ATL,Atlanta Braves,507500,0.5075
+rodrist02,Paco,Rodriguez,Paco Rodriguez,ATL,Atlanta Braves,520500,0.5205
+simmosh01,Shae,Simmons,Shae Simmons,ATL,Atlanta Braves,508000,0.508
+stubbdr01,Drew,Stubbs,Drew Stubbs,ATL,Atlanta Braves,507500,0.5075
+teherju01,Julio,Teheran,Julio Teheran,ATL,Atlanta Braves,3466666,3.466666
+vizcaar01,Arodys,Vizcaino,Arodys Vizcaino,ATL,Atlanta Braves,897500,0.8975
+winklda01,Daniel,Winkler,Daniel Winkler,ATL,Atlanta Braves,508500,0.5085
+wislema01,Matt,Wisler,Matt Wisler,ATL,Atlanta Braves,507500,0.5075
+alvarpe01,Pedro,Alvarez,Pedro Alvarez,BAL,Baltimore Orioles,5731704,5.731704
+brachbr01,Brad,Brach,Brad Brach,BAL,Baltimore Orioles,1250000,1.25
+brittza01,Zach,Britton,Zach Britton,BAL,Baltimore Orioles,6750000,6.75
+bundydy01,Dylan,Bundy,Dylan Bundy,BAL,Baltimore Orioles,1800000,1.8
+davisch02,Chris,Davis,Chris Davis,BAL,Baltimore Orioles,21268890,21.26889
+flahery01,Ryan,Flaherty,Ryan Flaherty,BAL,Baltimore Orioles,1500000,1.5
+gallayo01,Yovani,Gallardo,Yovani Gallardo,BAL,Baltimore Orioles,8728776,8.728776
+gausmke01,Kevin,Gausman,Kevin Gausman,BAL,Baltimore Orioles,532000,0.532
+givenmy01,Mychal,Givens,Mychal Givens,BAL,Baltimore Orioles,511500,0.5115
+hardyjj01,J. J.,Hardy,J. J. Hardy,BAL,Baltimore Orioles,12209424,12.209424
+jimenub01,Ubaldo,Jimenez,Ubaldo Jimenez,BAL,Baltimore Orioles,12673102,12.673102
+jonesad01,Adam,Jones,Adam Jones,BAL,Baltimore Orioles,16329674,16.329674
+josepca01,Caleb,Joseph,Caleb Joseph,BAL,Baltimore Orioles,523500,0.5235
+kimhy01,Hyun Soo,Kim,Hyun Soo Kim,BAL,Baltimore Orioles,2800000,2.8
+machama01,Manny,Machado,Manny Machado,BAL,Baltimore Orioles,5000000,5
+matusbr01,Brian,Matusz,Brian Matusz,BAL,Baltimore Orioles,3900000,3.9
+mcfartj01,T. J.,McFarland,T. J. McFarland,BAL,Baltimore Orioles,523500,0.5235
+mileywa01,Wade,Miley,Wade Miley,BAL,Baltimore Orioles,16329674,16.329674
+odayda01,Darren,O'Day,Darren O'Day,BAL,Baltimore Orioles,5854712,5.854712
+paredji01,Jimmy,Paredes,Jimmy Paredes,BAL,Baltimore Orioles,520000,0.52
+reimono01,Nolan,Reimold,Nolan Reimold,BAL,Baltimore Orioles,1300000,1.3
+rickajo01,Joey,Rickard,Joey Rickard,BAL,Baltimore Orioles,507500,0.5075
+schoojo01,Jonathan,Schoop,Jonathan Schoop,BAL,Baltimore Orioles,522500,0.5225
+tillmch01,Chris,Tillman,Chris Tillman,BAL,Baltimore Orioles,6225000,6.225
+trumbma01,Mark,Trumbo,Mark Trumbo,BAL,Baltimore Orioles,9150000,9.15
+wietema01,Matt,Wieters,Matt Wieters,BAL,Baltimore Orioles,15800000,15.8
+wilsoty01,Tyler,Wilson,Tyler Wilson,BAL,Baltimore Orioles,511500,0.5115
+worleva01,Vance,Worley,Vance Worley,BAL,Baltimore Orioles,2600000,2.6
+wrighmi01,Mike,Wright,Mike Wright,BAL,Baltimore Orioles,510500,0.5105
+barnema01,Matt,Barnes,Matt Barnes,BOS,Boston Red Sox,511000,0.511
+bettsmo01,Mookie,Betts,Mookie Betts,BOS,Boston Red Sox,566000,0.566
+bogaexa01,Xander,Bogaerts,Xander Bogaerts,BOS,Boston Red Sox,650000,0.65
+bradlja02,Jackie,Bradley,Jackie Bradley,BOS,Boston Red Sox,546500,0.5465
+buchhcl01,Clay,Buchholz,Clay Buchholz,BOS,Boston Red Sox,13000000,13
+castiru02,Rusney,Castillo,Rusney Castillo,BOS,Boston Red Sox,11400000,11.4
+hanigry01,Ryan,Hanigan,Ryan Hanigan,BOS,Boston Red Sox,3700000,3.7
+holtbr01,Brock,Holt,Brock Holt,BOS,Boston Red Sox,606000,0.606
+kellyjo05,Joe,Kelly,Joe Kelly,BOS,Boston Red Sox,2600000,2.6
+kimbrcr01,Craig,Kimbrel,Craig Kimbrel,BOS,Boston Red Sox,11000000,11
+layneto01,Tommy,Layne,Tommy Layne,BOS,Boston Red Sox,563750,0.56375
+ortizda01,David,Ortiz,David Ortiz,BOS,Boston Red Sox,16000000,16
+pedrodu01,Dustin,Pedroia,Dustin Pedroia,BOS,Boston Red Sox,12642511,12.642511
+porceri01,Rick,Porcello,Rick Porcello,BOS,Boston Red Sox,20125000,20.125
+priceda01,David,Price,David Price,BOS,Boston Red Sox,30000000,30
+ramirha01,Hanley,Ramirez,Hanley Ramirez,BOS,Boston Red Sox,22750000,22.75
+ramirno01,Noe,Ramirez,Noe Ramirez,BOS,Boston Red Sox,509500,0.5095
+rodried05,Eduardo,Rodriguez,Eduardo Rodriguez,BOS,Boston Red Sox,521000,0.521
+rossro01,Robbie,Ross,Robbie Ross,BOS,Boston Red Sox,1250000,1.25
+sandopa01,Pablo,Sandoval,Pablo Sandoval,BOS,Boston Red Sox,17600000,17.6
+shawtr01,Travis,Shaw,Travis Shaw,BOS,Boston Red Sox,515000,0.515
+smithca02,Carson,Smith,Carson Smith,BOS,Boston Red Sox,529000,0.529
+swihabl01,Blake,Swihart,Blake Swihart,BOS,Boston Red Sox,518500,0.5185
+tazawju01,Junichi,Tazawa,Junichi Tazawa,BOS,Boston Red Sox,3375000,3.375
+ueharko01,Koji,Uehara,Koji Uehara,BOS,Boston Red Sox,9000000,9
+vazquch01,Christian,Vazquez,Christian Vazquez,BOS,Boston Red Sox,513000,0.513
+workmbr01,Brandon,Workman,Brandon Workman,BOS,Boston Red Sox,539500,0.5395
+wrighst01,Steven,Wright,Steven Wright,BOS,Boston Red Sox,514500,0.5145
+youngch04,Chris,Young,Chris Young,BOS,Boston Red Sox,6500000,6.5
+arrieja01,Jake,Arrieta,Jake Arrieta,CHC,Chicago Cubs,10700000,10.7
+baezja01,Javier,Baez,Javier Baez,CHC,Chicago Cubs,512000,0.512
+beeleda01,Dallas,Beeler,Dallas Beeler,CHC,Chicago Cubs,508500,0.5085
+brookaa01,Aaron,Brooks,Aaron Brooks,CHC,Chicago Cubs,510000,0.51
+bryankr01,Kris,Bryant,Kris Bryant,CHC,Chicago Cubs,652000,0.652
+cahiltr01,Trevor,Cahill,Trevor Cahill,CHC,Chicago Cubs,4250000,4.25
+fowlede01,Dexter,Fowler,Dexter Fowler,CHC,Chicago Cubs,8000000,8
+grimmju01,Justin,Grimm,Justin Grimm,CHC,Chicago Cubs,1275000,1.275
+hammeja01,Jason,Hammel,Jason Hammel,CHC,Chicago Cubs,9000000,9
+hendrky01,Kyle,Hendricks,Kyle Hendricks,CHC,Chicago Cubs,541000,0.541
+heywaja01,Jason,Heyward,Jason Heyward,CHC,Chicago Cubs,19555288,19.555288
+lasteto01,Tommy,La Stella,Tommy La Stella,CHC,Chicago Cubs,532000,0.532
+lackejo01,John,Lackey,John Lackey,CHC,Chicago Cubs,16000000,16
+lestejo01,Jon,Lester,Jon Lester,CHC,Chicago Cubs,25000000,25
+montemi01,Miguel,Montero,Miguel Montero,CHC,Chicago Cubs,14000000,14
+ramirne01,Neil,Ramirez,Neil Ramirez,CHC,Chicago Cubs,524500,0.5245
+richacl01,Clayton,Richard,Clayton Richard,CHC,Chicago Cubs,2000000,2
+rizzoan01,Anthony,Rizzo,Anthony Rizzo,CHC,Chicago Cubs,5285714,5.285714
+rondohe01,Hector,Rondon,Hector Rondon,CHC,Chicago Cubs,4200000,4.2
+rossda01,David,Ross,David Ross,CHC,Chicago Cubs,2500000,2.5
+rosscza01,Zac,Rosscup,Zac Rosscup,CHC,Chicago Cubs,524500,0.5245
+russead02,Addison,Russell,Addison Russell,CHC,Chicago Cubs,527000,0.527
+schwaky01,Kyle,Schwarber,Kyle Schwarber,CHC,Chicago Cubs,522000,0.522
+solerjo01,Jorge,Soler,Jorge Soler,CHC,Chicago Cubs,3666666,3.666666
+stroppe01,Pedro,Strop,Pedro Strop,CHC,Chicago Cubs,4400000,4.4
+szczuma01,Matt,Szczur,Matt Szczur,CHC,Chicago Cubs,511500,0.5115
+warread01,Adam,Warren,Adam Warren,CHC,Chicago Cubs,1700000,1.7
+woodtr01,Travis,Wood,Travis Wood,CHC,Chicago Cubs,6170000,6.17
+zobribe01,Ben,Zobrist,Ben Zobrist,CHC,Chicago Cubs,10500000,10.5
+baileho02,Homer,Bailey,Homer Bailey,CIN,Cincinnati Reds,18000000,18
+barnhtu01,Tucker,Barnhart,Tucker Barnhart,CIN,Cincinnati Reds,517500,0.5175
+bruceja01,Jay,Bruce,Jay Bruce,CIN,Cincinnati Reds,12541666,12.541666
+cingrto01,Tony,Cingrani,Tony Cingrani,CIN,Cincinnati Reds,530000,0.53
+cothaca01,Caleb,Cotham,Caleb Cotham,CIN,Cincinnati Reds,509675,0.509675
+cozarza01,Zack,Cozart,Zack Cozart,CIN,Cincinnati Reds,2925000,2.925
+dejesiv02,Ivan,De Jesus,Ivan De Jesus,CIN,Cincinnati Reds,517000,0.517
+desclan01,Anthony,DeSclafani,Anthony DeSclafani,CIN,Cincinnati Reds,540000,0.54
+diazju03,Jumbo,Diaz,Jumbo Diaz,CIN,Cincinnati Reds,525000,0.525
+duvalad01,Adam,Duvall,Adam Duvall,CIN,Cincinnati Reds,510000,0.51
+finnebr01,Brandon,Finnegan,Brandon Finnegan,CIN,Cincinnati Reds,511500,0.5115
+hamilbi02,Billy,Hamilton,Billy Hamilton,CIN,Cincinnati Reds,570000,0.57
+holtty01,Tyler,Holt,Tyler Holt,CIN,Cincinnati Reds,508000,0.508
+hoovejj01,J. J.,Hoover,J. J. Hoover,CIN,Cincinnati Reds,1400000,1.4
+iglesra01,Raisel,Iglesias,Raisel Iglesias,CIN,Cincinnati Reds,3214285,3.214285
+lambjo02,John,Lamb,John Lamb,CIN,Cincinnati Reds,507500,0.5075
+lorenmi01,Michael,Lorenzen,Michael Lorenzen,CIN,Cincinnati Reds,516500,0.5165
+mesorde01,Devin,Mesoraco,Devin Mesoraco,CIN,Cincinnati Reds,5025000,5.025
+moscojo01,Jon,Moscot,Jon Moscot,CIN,Cincinnati Reds,508000,0.508
+ohlenro01,Ross,Ohlendorf,Ross Ohlendorf,CIN,Cincinnati Reds,800000,0.8
+phillbr01,Brandon,Phillips,Brandon Phillips,CIN,Cincinnati Reds,13083333,13.083333
+sampske01,Keyvius,Sampson,Keyvius Sampson,CIN,Cincinnati Reds,507500,0.5075
+schebsc01,Scott,Schebler,Scott Schebler,CIN,Cincinnati Reds,507500,0.5075
+simonal01,Alfredo,Simon,Alfredo Simon,CIN,Cincinnati Reds,2000000,2
+skipwky01,Kyle,Skipworth,Kyle Skipworth,CIN,Cincinnati Reds,508000,0.508
+straida01,Dan,Straily,Dan Straily,CIN,Cincinnati Reds,512100,0.5121
+suareeu01,Eugenio,Suarez,Eugenio Suarez,CIN,Cincinnati Reds,545000,0.545
+vottojo01,Joey,Votto,Joey Votto,CIN,Cincinnati Reds,20000000,20
+woodbl01,Blake,Wood,Blake Wood,CIN,Cincinnati Reds,600000,0.6
+allenco01,Cody,Allen,Cody Allen,CLE,Cleveland Indians,4150000,4.15
+anderco01,Cody,Anderson,Cody Anderson,CLE,Cleveland Indians,511400,0.5114
+bauertr01,Trevor,Bauer,Trevor Bauer,CLE,Cleveland Indians,1697500,1.6975
+brantmi02,Michael,Brantley,Michael Brantley,CLE,Cleveland Indians,7375000,7.375
+byrdma01,Marlon,Byrd,Marlon Byrd,CLE,Cleveland Indians,1000000,1
+carraca01,Carlos,Carrasco,Carlos Carrasco,CLE,Cleveland Indians,4500000,4.5
+chiselo01,Lonnie,Chisenhall,Lonnie Chisenhall,CLE,Cleveland Indians,2725000,2.725
+cowgico01,Collin,Cowgill,Collin Cowgill,CLE,Cleveland Indians,1000000,1
+davisra01,Rajai,Davis,Rajai Davis,CLE,Cleveland Indians,5250000,5.25
+detwiro01,Ross,Detwiler,Ross Detwiler,CLE,Cleveland Indians,1000000,1
+gomesya01,Yan,Gomes,Yan Gomes,CLE,Cleveland Indians,2583333,2.583333
+hunteto02,Tommy,Hunter,Tommy Hunter,CLE,Cleveland Indians,2000000,2
+kipnija01,Jason,Kipnis,Jason Kipnis,CLE,Cleveland Indians,6166667,6.166667
+klubeco01,Corey,Kluber,Corey Kluber,CLE,Cleveland Indians,4700000,4.7
+lindofr01,Francisco,Lindor,Francisco Lindor,CLE,Cleveland Indians,540300,0.5403
+manshje01,Jeff,Manship,Jeff Manship,CLE,Cleveland Indians,765000,0.765
+mcallza01,Zach,McAllister,Zach McAllister,CLE,Cleveland Indians,1300000,1.3
+napolmi01,Mike,Napoli,Mike Napoli,CLE,Cleveland Indians,7000000,7
+naquity01,Tyler,Naquin,Tyler Naquin,CLE,Cleveland Indians,507500,0.5075
+oteroda01,Dan,Otero,Dan Otero,CLE,Cleveland Indians,520000,0.52
+perezro02,Roberto,Perez,Roberto Perez,CLE,Cleveland Indians,515800,0.5158
+ramirjo01,Jose,Ramirez,Jose Ramirez,CLE,Cleveland Indians,518200,0.5182
+salazda01,Danny,Salazar,Danny Salazar,CLE,Cleveland Indians,536200,0.5362
+santaca01,Carlos,Santana,Carlos Santana,CLE,Cleveland Indians,8450000,8.45
+shawbr01,Bryan,Shaw,Bryan Shaw,CLE,Cleveland Indians,2750000,2.75
+tomlijo01,Josh,Tomlin,Josh Tomlin,CLE,Cleveland Indians,2250000,2.25
+uribeju01,Juan,Uribe,Juan Uribe,CLE,Cleveland Indians,4000000,4
+adamecr01,Cristhian,Adames,Cristhian Adames,COL,Colorado Rockies,509500,0.5095
+anderty01,Tyler,Anderson,Tyler Anderson,COL,Colorado Rockies,509500,0.5095
+arenano01,Nolan,Arenado,Nolan Arenado,COL,Colorado Rockies,5000000,5
+barnebr02,Brandon,Barnes,Brandon Barnes,COL,Colorado Rockies,1000000,1
+bergmch01,Christian,Bergman,Christian Bergman,COL,Colorado Rockies,512500,0.5125
+bettich01,Chad,Bettis,Chad Bettis,COL,Colorado Rockies,512500,0.5125
+blackch02,Charlie,Blackmon,Charlie Blackmon,COL,Colorado Rockies,3500000,3.5
+castrmi01,Miguel,Castro,Miguel Castro,COL,Colorado Rockies,509500,0.5095
+chatwty01,Tyler,Chatwood,Tyler Chatwood,COL,Colorado Rockies,1000000,1
+rosajo01,Jorge,De La Rosa,Jorge De La Rosa,COL,Colorado Rockies,12500000,12.5
+descada01,Daniel,Descalso,Daniel Descalso,COL,Colorado Rockies,2100000,2.1
+diazja01,Jairo,Diaz,Jairo Diaz,COL,Colorado Rockies,509500,0.5095
+gonzaca01,Carlos,Gonzalez,Carlos Gonzalez,COL,Colorado Rockies,17428571,17.428571
+grayjo02,Jon,Gray,Jon Gray,COL,Colorado Rockies,509500,0.5095
+gurkaja01,Jason,Gurka,Jason Gurka,COL,Colorado Rockies,660000,0.66
+hundlni01,Nick,Hundley,Nick Hundley,COL,Colorado Rockies,3150000,3.15
+lemahdj01,DJ,LeMahieu,DJ LeMahieu,COL,Colorado Rockies,3000000,3
+loganbo02,Boone,Logan,Boone Logan,COL,Colorado Rockies,6250000,6.25
+lylesjo01,Jordan,Lyles,Jordan Lyles,COL,Colorado Rockies,2975000,2.975
+matzety01,Tyler,Matzek,Tyler Matzek,COL,Colorado Rockies,509500,0.5095
+mcgeeja01,Jake,McGee,Jake McGee,COL,Colorado Rockies,4800000,4.8
+milleju02,Justin,Miller,Justin Miller,COL,Colorado Rockies,509500,0.5095
+motteja01,Jason,Motte,Jason Motte,COL,Colorado Rockies,5000000,5
+ottavad01,Adam,Ottavino,Adam Ottavino,COL,Colorado Rockies,1300000,1.3
+parrage01,Gerardo,Parra,Gerardo Parra,COL,Colorado Rockies,8000000,8
+paulsbe01,Ben,Paulsen,Ben Paulsen,COL,Colorado Rockies,512500,0.5125
+quallch01,Chad,Qualls,Chad Qualls,COL,Colorado Rockies,2250000,2.25
+raburry01,Ryan,Raburn,Ryan Raburn,COL,Colorado Rockies,1500000,1.5
+reyesjo01,Jose,Reyes,Jose Reyes,COL,Colorado Rockies,22000000,22
+reynoma01,Mark,Reynolds,Mark Reynolds,COL,Colorado Rockies,2600000,2.6
+rusinch01,Chris,Rusin,Chris Rusin,COL,Colorado Rockies,512500,0.5125
+storytr01,Trevor,Story,Trevor Story,COL,Colorado Rockies,507500,0.5075
+wolteto01,Tony,Wolters,Tony Wolters,COL,Colorado Rockies,507500,0.5075
+abreujo02,Jose,Abreu,Jose Abreu,CHW,Chicago White Sox,11666667,11.666667
+alberma01,Matt,Albers,Matt Albers,CHW,Chicago White Sox,2000000,2
+avilaal01,Alex,Avila,Alex Avila,CHW,Chicago White Sox,2500000,2.5
+cabreme01,Melky,Cabrera,Melky Cabrera,CHW,Chicago White Sox,14000000,14
+danksjo01,John,Danks,John Danks,CHW,Chicago White Sox,15750000,15.75
+dukeza01,Zach,Duke,Zach Duke,CHW,Chicago White Sox,5000000,5
+eatonad02,Adam,Eaton,Adam Eaton,CHW,Chicago White Sox,2750000,2.75
+frazito01,Todd,Frazier,Todd Frazier,CHW,Chicago White Sox,8250000,8.25
+garciav01,Avisail,Garcia,Avisail Garcia,CHW,Chicago White Sox,2100000,2.1
+jacksau01,Austin,Jackson,Austin Jackson,CHW,Chicago White Sox,5000000,5
+jennida01,Dan,Jennings,Dan Jennings,CHW,Chicago White Sox,810000,0.81
+jonesna01,Nate,Jones,Nate Jones,CHW,Chicago White Sox,900000,0.9
+lamboan01,Andrew,Lambo,Andrew Lambo,CHW,Chicago White Sox,3000000,3
+lawribr01,Brett,Lawrie,Brett Lawrie,CHW,Chicago White Sox,4125000,4.125
+navardi01,Dioner,Navarro,Dioner Navarro,CHW,Chicago White Sox,4000000,4
+petrija01,Jake,Petricka,Jake Petricka,CHW,Chicago White Sox,535000,0.535
+putnaza01,Zach,Putnam,Zach Putnam,CHW,Chicago White Sox,975000,0.975
+quintjo01,Jose,Quintana,Jose Quintana,CHW,Chicago White Sox,5400000,5.4
+roberda08,David,Robertson,David Robertson,CHW,Chicago White Sox,11000000,11
+rodonca01,Carlos,Rodon,Carlos Rodon,CHW,Chicago White Sox,518000,0.518
+rolliji01,Jimmy,Rollins,Jimmy Rollins,CHW,Chicago White Sox,2000000,2
+saladty01,Tyler,Saladino,Tyler Saladino,CHW,Chicago White Sox,513000,0.513
+salech01,Chris,Sale,Chris Sale,CHW,Chicago White Sox,9150000,9.15
+sandsje01,Jerry,Sands,Jerry Sands,CHW,Chicago White Sox,535000,0.535
+shuckja01,J. B.,Shuck,J. B. Shuck,CHW,Chicago White Sox,521000,0.521
+avilemi01,Mike,Aviles,Mike Aviles,DET,Detroit Tigers,2000000,2
+cabremi01,Miguel,Cabrera,Miguel Cabrera,DET,Detroit Tigers,28000000,28
+casteni01,Nick,Castellanos,Nick Castellanos,DET,Detroit Tigers,536500,0.5365
+collity01,Tyler,Collins,Tyler Collins,DET,Detroit Tigers,510500,0.5105
+farmebu01,Buck,Farmer,Buck Farmer,DET,Detroit Tigers,509500,0.5095
+ferreje01,Jeff,Ferrell,Jeff Ferrell,DET,Detroit Tigers,507500,0.5075
+gosean01,Anthony,Gose,Anthony Gose,DET,Detroit Tigers,525000,0.525
+greensh02,Shane,Greene,Shane Greene,DET,Detroit Tigers,517000,0.517
+hardybl01,Blaine,Hardy,Blaine Hardy,DET,Detroit Tigers,520500,0.5205
+iglesjo01,Jose,Iglesias,Jose Iglesias,DET,Detroit Tigers,2100000,2.1
+kensilo01,Logan,Kensing,Logan Kensing,DET,Detroit Tigers,575000,0.575
+kinslia01,Ian,Kinsler,Ian Kinsler,DET,Detroit Tigers,14000000,14
+lowema01,Mark,Lowe,Mark Lowe,DET,Detroit Tigers,5500000,5.5
+martijd02,J. D.,Martinez,J. D. Martinez,DET,Detroit Tigers,6750000,6.75
+martivi01,Victor,Martinez,Victor Martinez,DET,Detroit Tigers,18000000,18
+maybica01,Cameron,Maybin,Cameron Maybin,DET,Detroit Tigers,8000000,8
+mccanja02,James,McCann,James McCann,DET,Detroit Tigers,519500,0.5195
+nesbian01,Angel,Nesbitt,Angel Nesbitt,DET,Detroit Tigers,508500,0.5085
+norrida01,Daniel,Norris,Daniel Norris,DET,Detroit Tigers,514500,0.5145
+pelfrmi01,Mike,Pelfrey,Mike Pelfrey,DET,Detroit Tigers,8000000,8
+rodrifr03,Francisco,Rodriguez,Francisco Rodriguez,DET,Detroit Tigers,7383481,7.383481
+rominan01,Andrew,Romine,Andrew Romine,DET,Detroit Tigers,900000,0.9
+ryanky01,Kyle,Ryan,Kyle Ryan,DET,Detroit Tigers,509500,0.5095
+saltaja01,Jarrod,Saltalamacchia,Jarrod Saltalamacchia,DET,Detroit Tigers,507500,0.5075
+sanchan01,Anibal,Sanchez,Anibal Sanchez,DET,Detroit Tigers,16800000,16.8
+uptonju01,Justin,Upton,Justin Upton,DET,Detroit Tigers,22125000,22.125
+verhadr01,Drew,VerHagen,Drew VerHagen,DET,Detroit Tigers,509500,0.5095
+verlaju01,Justin,Verlander,Justin Verlander,DET,Detroit Tigers,28000000,28
+wilsoal01,Alex,Wilson,Alex Wilson,DET,Detroit Tigers,522500,0.5225
+wilsoju10,Justin,Wilson,Justin Wilson,DET,Detroit Tigers,1525000,1.525
+zimmejo02,Jordan,Zimmermann,Jordan Zimmermann,DET,Detroit Tigers,18000000,18
+altuvjo01,Jose,Altuve,Jose Altuve,HOU,Houston Astros,3687500,3.6875
+castrja01,Jason,Castro,Jason Castro,HOU,Houston Astros,5000000,5
+correca01,Carlos,Correa,Carlos Correa,HOU,Houston Astros,516700,0.5167
+duffyma01,Matt,Duffy,Matt Duffy,HOU,Houston Astros,510200,0.5102
+feldmsc01,Scott,Feldman,Scott Feldman,HOU,Houston Astros,8000000,8
+felizmi01,Michael,Feliz,Michael Feliz,HOU,Houston Astros,508200,0.5082
+fieldjo03,Josh,Fields,Josh Fields,HOU,Houston Astros,900000,0.9
+fiersmi01,Mike,Fiers,Mike Fiers,HOU,Houston Astros,524100,0.5241
+fistedo01,Doug,Fister,Doug Fister,HOU,Houston Astros,7000000,7
+gattiev01,Evan,Gattis,Evan Gattis,HOU,Houston Astros,3300000,3.3
+gileske01,Ken,Giles,Ken Giles,HOU,Houston Astros,528200,0.5282
+gomezca01,Carlos,Gomez,Carlos Gomez,HOU,Houston Astros,9000000,9
+gonzama01,Marwin,Gonzalez,Marwin Gonzalez,HOU,Houston Astros,2000000,2
+gregelu01,Luke,Gregerson,Luke Gregerson,HOU,Houston Astros,6750000,6.75
+harriwi10,Will,Harris,Will Harris,HOU,Houston Astros,525500,0.5255
+keuchda01,Dallas,Keuchel,Dallas Keuchel,HOU,Houston Astros,7250000,7.25
+kratzer01,Erik,Kratz,Erik Kratz,HOU,Houston Astros,850000,0.85
+marisja01,Jake,Marisnick,Jake Marisnick,HOU,Houston Astros,519500,0.5195
+mcculla02,Lance,McCullers,Lance McCullers,HOU,Houston Astros,516700,0.5167
+mchugco01,Collin,McHugh,Collin McHugh,HOU,Houston Astros,529000,0.529
+neshepa01,Pat,Neshek,Pat Neshek,HOU,Houston Astros,6500000,6.5
+rasmuco01,Colby,Rasmus,Colby Rasmus,HOU,Houston Astros,15800000,15.8
+sippto01,Tony,Sipp,Tony Sipp,HOU,Houston Astros,6000000,6
+springe01,George,Springer,George Springer,HOU,Houston Astros,522400,0.5224
+stassma01,Max,Stassi,Max Stassi,HOU,Houston Astros,508200,0.5082
+tuckepr01,Preston,Tucker,Preston Tucker,HOU,Houston Astros,515000,0.515
+valbulu01,Luis,Valbuena,Luis Valbuena,HOU,Houston Astros,6125000,6.125
+whitety01,Tyler,White,Tyler White,HOU,Houston Astros,507500,0.5075
+buterdr01,Drew,Butera,Drew Butera,KCR,Kansas City Royals,1162500,1.1625
+cainlo01,Lorenzo,Cain,Lorenzo Cain,KCR,Kansas City Royals,6500000,6.5
+colliti01,Tim,Collins,Tim Collins,KCR,Kansas City Royals,1475000,1.475
+colonch01,Christian,Colon,Christian Colon,KCR,Kansas City Royals,518425,0.518425
+daviswa01,Wade,Davis,Wade Davis,KCR,Kansas City Royals,8000000,8
+duffyda01,Danny,Duffy,Danny Duffy,KCR,Kansas City Royals,4225000,4.225
+dysonja01,Jarrod,Dyson,Jarrod Dyson,KCR,Kansas City Royals,1725000,1.725
+escobal02,Alcides,Escobar,Alcides Escobar,KCR,Kansas City Royals,5250000,5.25
+fuentre01,Reymond,Fuentes,Reymond Fuentes,KCR,Kansas City Royals,508450,0.50845
+geedi01,Dillon,Gee,Dillon Gee,KCR,Kansas City Royals,2000000,2
+gordoal01,Alex,Gordon,Alex Gordon,KCR,Kansas City Royals,12000000,12
+gorete01,Terrance,Gore,Terrance Gore,KCR,Kansas City Royals,508500,0.5085
+herreke01,Kelvin,Herrera,Kelvin Herrera,KCR,Kansas City Royals,2550000,2.55
+hochelu01,Luke,Hochevar,Luke Hochevar,KCR,Kansas City Royals,5500000,5.5
+hosmeer01,Eric,Hosmer,Eric Hosmer,KCR,Kansas City Royals,8250000,8.25
+infanom01,Omar,Infante,Omar Infante,KCR,Kansas City Royals,7750000,7.75
+kenneia01,Ian,Kennedy,Ian Kennedy,KCR,Kansas City Royals,7500000,7.5
+medlekr01,Kris,Medlen,Kris Medlen,KCR,Kansas City Royals,5500000,5.5
+minormi01,Mike,Minor,Mike Minor,KCR,Kansas City Royals,2000000,2
+moralke01,Kendrys,Morales,Kendrys Morales,KCR,Kansas City Royals,9000000,9
+moustmi01,Mike,Moustakas,Mike Moustakas,KCR,Kansas City Royals,5600000,5.6
+orlanpa01,Paulo,Orlando,Paulo Orlando,KCR,Kansas City Royals,514250,0.51425
+perezsa02,Salvador,Perez,Salvador Perez,KCR,Kansas City Royals,2000000,2
+soriajo01,Joakim,Soria,Joakim Soria,KCR,Kansas City Royals,7000000,7
+vargaja01,Jason,Vargas,Jason Vargas,KCR,Kansas City Royals,8500000,8.5
+ventuyo01,Yordano,Ventura,Yordano Ventura,KCR,Kansas City Royals,1200000,1.2
+volqued01,Edinson,Volquez,Edinson Volquez,KCR,Kansas City Royals,9500000,9.5
+wangch01,Chien-Ming,Wang,Chien-Ming Wang,KCR,Kansas City Royals,1000000,1
+youngch03,Chris,Young,Chris Young,KCR,Kansas City Royals,4250000,4.25
+alvarjo02,Jose,Alvarez,Jose Alvarez,LAA,Los Angeles Angels of Anaheim,507500,0.5075
+bedroca01,Cam,Bedrosian,Cam Bedrosian,LAA,Los Angeles Angels of Anaheim,510500,0.5105
+calhoko01,Kole,Calhoun,Kole Calhoun,LAA,Los Angeles Angels of Anaheim,3400000,3.4
+choiji01,Ji-Man,Choi,Ji-Man Choi,LAA,Los Angeles Angels of Anaheim,650000,0.65
+croncj01,C. J.,Cron,C. J. Cron,LAA,Los Angeles Angels of Anaheim,525000,0.525
+escobyu01,Yunel,Escobar,Yunel Escobar,LAA,Los Angeles Angels of Anaheim,7000000,7
+gentrcr01,Craig,Gentry,Craig Gentry,LAA,Los Angeles Angels of Anaheim,1000000,1
+giavojo01,Johnny,Giavotella,Johnny Giavotella,LAA,Los Angeles Angels of Anaheim,532500,0.5325
+heanean01,Andrew,Heaney,Andrew Heaney,LAA,Los Angeles Angels of Anaheim,515000,0.515
+morinmi01,Mike,Morin,Mike Morin,LAA,Los Angeles Angels of Anaheim,520000,0.52
+navada01,Daniel,Nava,Daniel Nava,LAA,Los Angeles Angels of Anaheim,1375000,1.375
+pennicl01,Cliff,Pennington,Cliff Pennington,LAA,Los Angeles Angels of Anaheim,1500000,1.5
+perezca02,Carlos,Perez,Carlos Perez,LAA,Los Angeles Angels of Anaheim,513000,0.513
+pujolal01,Albert,Pujols,Albert Pujols,LAA,Los Angeles Angels of Anaheim,25000000,25
+rasmuco02,Cory,Rasmus,Cory Rasmus,LAA,Los Angeles Angels of Anaheim,514500,0.5145
+richaga01,Garrett,Richards,Garrett Richards,LAA,Los Angeles Angels of Anaheim,6425000,6.425
+salasfe01,Fernando,Salas,Fernando Salas,LAA,Los Angeles Angels of Anaheim,2400000,2.4
+santihe01,Hector,Santiago,Hector Santiago,LAA,Los Angeles Angels of Anaheim,5000000,5
+shoemma01,Matt,Shoemaker,Matt Shoemaker,LAA,Los Angeles Angels of Anaheim,530000,0.53
+simmoan01,Andrelton,Simmons,Andrelton Simmons,LAA,Los Angeles Angels of Anaheim,6000000,6
+smithjo05,Joe,Smith,Joe Smith,LAA,Los Angeles Angels of Anaheim,5250000,5.25
+sotoge01,Geovany,Soto,Geovany Soto,LAA,Los Angeles Angels of Anaheim,2800000,2.8
+streehu01,Huston,Street,Huston Street,LAA,Los Angeles Angels of Anaheim,8000000,8
+troutmi01,Mike,Trout,Mike Trout,LAA,Los Angeles Angels of Anaheim,16083333,16.083333
+weaveje02,Jered,Weaver,Jered Weaver,LAA,Los Angeles Angels of Anaheim,20200000,20.2
+wilsocj01,C. J.,Wilson,C. J. Wilson,LAA,Los Angeles Angels of Anaheim,20500000,20.5
+anderbr04,Brett,Anderson,Brett Anderson,LAD,Los Angeles Dodgers,15800000,15.8
+baezpe01,Pedro,Baez,Pedro Baez,LAD,Los Angeles Dodgers,520000,0.52
+barneau01,Austin,Barnes,Austin Barnes,LAD,Los Angeles Dodgers,512500,0.5125
+blantjo01,Joe,Blanton,Joe Blanton,LAD,Los Angeles Dodgers,4000000,4
+bolsimi01,Mike,Bolsinger,Mike Bolsinger,LAD,Los Angeles Dodgers,515000,0.515
+colemlo01,Louis,Coleman,Louis Coleman,LAD,Los Angeles Dodgers,725000,0.725
+crawfca02,Carl,Crawford,Carl Crawford,LAD,Los Angeles Dodgers,20750000,20.75
+culbech01,Charlie,Culberson,Charlie Culberson,LAD,Los Angeles Dodgers,535000,0.535
+ellisaj01,A. J.,Ellis,A. J. Ellis,LAD,Los Angeles Dodgers,4500000,4.5
+ethiean01,Andre,Ethier,Andre Ethier,LAD,Los Angeles Dodgers,18000000,18
+garciyi01,Yimi,Garcia,Yimi Garcia,LAD,Los Angeles Dodgers,517500,0.5175
+gonzaad01,Adrian,Gonzalez,Adrian Gonzalez,LAD,Los Angeles Dodgers,21000000,21
+grandya01,Yasmani,Grandal,Yasmani Grandal,LAD,Los Angeles Dodgers,2800000,2.8
+guerral01,Alex,Guerrero,Alex Guerrero,LAD,Los Angeles Dodgers,7500000,7.5
+hatchch02,Chris,Hatcher,Chris Hatcher,LAD,Los Angeles Dodgers,1065000,1.065
+hernaen02,Enrique,Hernandez,Enrique Hernandez,LAD,Los Angeles Dodgers,520000,0.52
+howeljp01,J. P.,Howell,J. P. Howell,LAD,Los Angeles Dodgers,6250000,6.25
+janseke01,Kenley,Jansen,Kenley Jansen,LAD,Los Angeles Dodgers,10650000,10.65
+kazmisc01,Scott,Kazmir,Scott Kazmir,LAD,Los Angeles Dodgers,14985384,14.985384
+kendrho01,Howie,Kendrick,Howie Kendrick,LAD,Los Angeles Dodgers,9540378,9.540378
+kershcl01,Clayton,Kershaw,Clayton Kershaw,LAD,Los Angeles Dodgers,33000000,33
+maedake01,Kenta,Maeda,Kenta Maeda,LAD,Los Angeles Dodgers,3125000,3.125
+mccarbr01,Brandon,McCarthy,Brandon McCarthy,LAD,Los Angeles Dodgers,12500000,12.5
+montafr02,Frankie,Montas,Frankie Montas,LAD,Los Angeles Dodgers,510000,0.51
+pederjo01,Joc,Pederson,Joc Pederson,LAD,Los Angeles Dodgers,520000,0.52
+puigya01,Yasiel,Puig,Yasiel Puig,LAD,Los Angeles Dodgers,7214285,7.214285
+ravinjo01,Josh,Ravin,Josh Ravin,LAD,Los Angeles Dodgers,515000,0.515
+ryuhy01,Hyun-Jin,Ryu,Hyun-Jin Ryu,LAD,Los Angeles Dodgers,7833333,7.833333
+seageco01,Corey,Seager,Corey Seager,LAD,Los Angeles Dodgers,510000,0.51
+stripro01,Ross,Stripling,Ross Stripling,LAD,Los Angeles Dodgers,507500,0.5075
+thomptr01,Trayce,Thompson,Trayce Thompson,LAD,Los Angeles Dodgers,512500,0.5125
+turneju01,Justin,Turner,Justin Turner,LAD,Los Angeles Dodgers,5100000,5.1
+utleych01,Chase,Utley,Chase Utley,LAD,Los Angeles Dodgers,7000000,7
+vanslsc01,Scott,Van Slyke,Scott Van Slyke,LAD,Los Angeles Dodgers,1225000,1.225
+woodal02,Alex,Wood,Alex Wood,LAD,Los Angeles Dodgers,530000,0.53
+bourju01,Justin,Bour,Justin Bour,MIA,Miami Marlins,537500,0.5375
+breslcr01,Craig,Breslow,Craig Breslow,MIA,Miami Marlins,1500000,1.5
+cappsca01,Carter,Capps,Carter Capps,MIA,Miami Marlins,987500,0.9875
+chenwe02,Wei-Yin,Chen,Wei-Yin Chen,MIA,Miami Marlins,12500000,12.5
+conlead01,Adam,Conley,Adam Conley,MIA,Miami Marlins,512500,0.5125
+cosarja01,Jarred,Cosart,Jarred Cosart,MIA,Miami Marlins,550000,0.55
+dietrde01,Derek,Dietrich,Derek Dietrich,MIA,Miami Marlins,522500,0.5225
+dunnmi01,Mike,Dunn,Mike Dunn,MIA,Miami Marlins,3450000,3.45
+fernajo02,Jose,Fernandez,Jose Fernandez,MIA,Miami Marlins,2800000,2.8
+gordode01,Dee,Gordon,Dee Gordon,MIA,Miami Marlins,3242202,3.242202
+hechaad01,Adeiny,Hechavarria,Adeiny Hechavarria,MIA,Miami Marlins,2625000,2.625
+jacksed01,Edwin,Jackson,Edwin Jackson,MIA,Miami Marlins,507500,0.5075
+johnsch05,Chris,Johnson,Chris Johnson,MIA,Miami Marlins,8007500,8.0075
+koehlto01,Tom,Koehler,Tom Koehler,MIA,Miami Marlins,3500000,3.5
+lazora01,Raudel,Lazo,Raudel Lazo,MIA,Miami Marlins,508500,0.5085
+mathije01,Jeff,Mathis,Jeff Mathis,MIA,Miami Marlins,1500000,1.5
+mcgowdu01,Dustin,McGowan,Dustin McGowan,MIA,Miami Marlins,1000000,1
+morribr01,Bryan,Morris,Bryan Morris,MIA,Miami Marlins,1350000,1.35
+narvech01,Chris,Narveson,Chris Narveson,MIA,Miami Marlins,1200000,1.2
+ozunama01,Marcell,Ozuna,Marcell Ozuna,MIA,Miami Marlins,570000,0.57
+phelpda01,David,Phelps,David Phelps,MIA,Miami Marlins,2500000,2.5
+pradoma01,Martin,Prado,Martin Prado,MIA,Miami Marlins,11000000,11
+ramosaj01,A. J.,Ramos,A. J. Ramos,MIA,Miami Marlins,3400000,3.4
+realmjt01,J. T.,Realmuto,J. T. Realmuto,MIA,Miami Marlins,532500,0.5325
+rojasmi02,Miguel,Rojas,Miguel Rojas,MIA,Miami Marlins,511000,0.511
+stantmi03,Giancarlo,Stanton,Giancarlo Stanton,MIA,Miami Marlins,9000000,9
+suzukic01,Ichiro,Suzuki,Ichiro Suzuki,MIA,Miami Marlins,2000000,2
+yelicch01,Christian,Yelich,Christian Yelich,MIA,Miami Marlins,1000000,1
+anderch01,Chase,Anderson,Chase Anderson,MIL,Milwaukee Brewers,520200,0.5202
+barriyh01,Yhonathan,Barrios,Yhonathan Barrios,MIL,Milwaukee Brewers,509200,0.5092
+blazemi01,Michael,Blazek,Michael Blazek,MIL,Milwaukee Brewers,514200,0.5142
+boyerbl01,Blaine,Boyer,Blaine Boyer,MIL,Milwaukee Brewers,950000,0.95
+braunry02,Ryan,Braun,Ryan Braun,MIL,Milwaukee Brewers,19315013,19.315013
+broxtke01,Keon,Broxton,Keon Broxton,MIL,Milwaukee Brewers,508500,0.5085
+capuach01,Chris,Capuano,Chris Capuano,MIL,Milwaukee Brewers,1500000,1.5
+cartech02,Chris,Carter,Chris Carter,MIL,Milwaukee Brewers,2500000,2.5
+florera02,Ramon,Flores,Ramon Flores,MIL,Milwaukee Brewers,508800,0.5088
+garzama01,Matt,Garza,Matt Garza,MIL,Milwaukee Brewers,12209424,12.209424
+gennesc01,Scooter,Gennett,Scooter Gennett,MIL,Milwaukee Brewers,518100,0.5181
+hillaa01,Aaron,Hill,Aaron Hill,MIL,Milwaukee Brewers,12000000,12
+jeffrje01,Jeremy,Jeffress,Jeremy Jeffress,MIL,Milwaukee Brewers,519100,0.5191
+jungmta01,Taylor,Jungmann,Taylor Jungmann,MIL,Milwaukee Brewers,518500,0.5185
+knebeco01,Corey,Knebel,Corey Knebel,MIL,Milwaukee Brewers,513000,0.513
+liriary01,Rymer,Liriano,Rymer Liriano,MIL,Milwaukee Brewers,508500,0.5085
+lucrojo01,Jonathan,Lucroy,Jonathan Lucroy,MIL,Milwaukee Brewers,4100000,4.1
+maldoma01,Martin,Maldonado,Martin Maldonado,MIL,Milwaukee Brewers,1125000,1.125
+nelsoji02,Jimmy,Nelson,Jimmy Nelson,MIL,Milwaukee Brewers,522300,0.5223
+nieuwki01,Kirk,Nieuwenhuis,Kirk Nieuwenhuis,MIL,Milwaukee Brewers,514000,0.514
+nolinse01,Sean,Nolin,Sean Nolin,MIL,Milwaukee Brewers,509700,0.5097
+penaar01,Ariel,Pena,Ariel Pena,MIL,Milwaukee Brewers,510000,0.51
+peralwi01,Wily,Peralta,Wily Peralta,MIL,Milwaukee Brewers,2800000,2.8
+riverya01,Yadiel,Rivera,Yadiel Rivera,MIL,Milwaukee Brewers,508600,0.5086
+santado01,Domingo,Santana,Domingo Santana,MIL,Milwaukee Brewers,513800,0.5138
+smithwi04,Will,Smith,Will Smith,MIL,Milwaukee Brewers,1475000,1.475
+thornty01,Tyler,Thornburg,Tyler Thornburg,MIL,Milwaukee Brewers,513900,0.5139
+torreca01,Carlos,Torres,Carlos Torres,MIL,Milwaukee Brewers,1050000,1.05
+villajo01,Jonathan,Villar,Jonathan Villar,MIL,Milwaukee Brewers,512900,0.5129
+walshco02,Colin,Walsh,Colin Walsh,MIL,Milwaukee Brewers,507500,0.5075
+abadfe01,Fernando,Abad,Fernando Abad,MIN,Minnesota Twins,1250000,1.25
+arciaos01,Oswaldo,Arcia,Oswaldo Arcia,MIN,Minnesota Twins,535000,0.535
+buxtoby01,Byron,Buxton,Byron Buxton,MIN,Minnesota Twins,512500,0.5125
+doziebr01,Brian,Dozier,Brian Dozier,MIN,Minnesota Twins,3000000,3
+escobed01,Eduardo,Escobar,Eduardo Escobar,MIN,Minnesota Twins,2150000,2.15
+fienca01,Casey,Fien,Casey Fien,MIN,Minnesota Twins,2275000,2.275
+gibsoky01,Kyle,Gibson,Kyle Gibson,MIN,Minnesota Twins,587500,0.5875
+hugheph01,Phil,Hughes,Phil Hughes,MIN,Minnesota Twins,9200000,9.2
+jepseke01,Kevin,Jepsen,Kevin Jepsen,MIN,Minnesota Twins,5312000,5.312
+mauerjo01,Joe,Mauer,Joe Mauer,MIN,Minnesota Twins,23000000,23
+matzety01,Tyler,Matzek,Tyler Matzek,MIN,Minnesota Twins,545000,0.545
+milonto01,Tommy,Milone,Tommy Milone,MIN,Minnesota Twins,4500000,4.5
+murphjr01,J. R.,Murphy,J. R. Murphy,MIN,Minnesota Twins,528700,0.5287
+nolasri01,Ricky,Nolasco,Ricky Nolasco,MIN,Minnesota Twins,12000000,12
+nunezed02,Eduardo,Nunez,Eduardo Nunez,MIN,Minnesota Twins,1475000,1.475
+perkigl01,Glen,Perkins,Glen Perkins,MIN,Minnesota Twins,6300000,6.3
+plouftr01,Trevor,Plouffe,Trevor Plouffe,MIN,Minnesota Twins,7250000,7.25
+pressry01,Ryan,Pressly,Ryan Pressly,MIN,Minnesota Twins,520000,0.52
+rosared01,Eddie,Rosario,Eddie Rosario,MIN,Minnesota Twins,542500,0.5425
+sanomi01,Miguel,Sano,Miguel Sano,MIN,Minnesota Twins,547500,0.5475
+santada01,Danny,Santana,Danny Santana,MIN,Minnesota Twins,537500,0.5375
+santaer01,Ervin,Santana,Ervin Santana,MIN,Minnesota Twins,13500000,13.5
+suzukku01,Kurt,Suzuki,Kurt Suzuki,MIN,Minnesota Twins,6000000,6
+tonkimi01,Michael,Tonkin,Michael Tonkin,MIN,Minnesota Twins,515000,0.515
+bastaan01,Antonio,Bastardo,Antonio Bastardo,NYM,New York Mets,5375000,5.375
+blevije01,Jerry,Blevins,Jerry Blevins,NYM,New York Mets,4000000,4
+cabreas01,Asdrubal,Cabrera,Asdrubal Cabrera,NYM,New York Mets,8250000,8.25
+campber01,Eric,Campbell,Eric Campbell,NYM,New York Mets,513308,0.513308
+cespeyo01,Yoenis,Cespedes,Yoenis Cespedes,NYM,New York Mets,27328046,27.328046
+colonba01,Bartolo,Colon,Bartolo Colon,NYM,New York Mets,7250000,7.25
+confomi01,Michael,Conforto,Michael Conforto,NYM,New York Mets,517246,0.517246
+darnatr01,Travis,d'Arnaud,Travis d'Arnaud,NYM,New York Mets,542604,0.542604
+deazaal01,Alejandro,De Aza,Alejandro De Aza,NYM,New York Mets,5750000,5.75
+degroja01,Jacob,deGrom,Jacob deGrom,NYM,New York Mets,607000,0.607
+dudalu01,Lucas,Duda,Lucas Duda,NYM,New York Mets,6725000,6.725
+edginjo01,Josh,Edgin,Josh Edgin,NYM,New York Mets,625000,0.625
+familje01,Jeurys,Familia,Jeurys Familia,NYM,New York Mets,4100000,4.1
+florewi01,Wilmer,Flores,Wilmer Flores,NYM,New York Mets,526014,0.526014
+grandcu01,Curtis,Granderson,Curtis Granderson,NYM,New York Mets,16000000,16
+harvema01,Matt,Harvey,Matt Harvey,NYM,New York Mets,4325000,4.325
+hendeji01,Jim,Henderson,Jim Henderson,NYM,New York Mets,600000,0.6
+lagarju01,Juan,Lagares,Juan Lagares,NYM,New York Mets,2500000,2.5
+matzst01,Steven,Matz,Steven Matz,NYM,New York Mets,515750,0.51575
+plaweke01,Kevin,Plawecki,Kevin Plawecki,NYM,New York Mets,511360,0.51136
+reedad01,Addison,Reed,Addison Reed,NYM,New York Mets,5300000,5.3
+robleha01,Hansel,Robles,Hansel Robles,NYM,New York Mets,516500,0.5165
+syndeno01,Noah,Syndergaard,Noah Syndergaard,NYM,New York Mets,535375,0.535375
+verrelo01,Logan,Verrett,Logan Verrett,NYM,New York Mets,514875,0.514875
+walkene01,Neil,Walker,Neil Walker,NYM,New York Mets,10550000,10.55
+wheelza01,Zach,Wheeler,Zach Wheeler,NYM,New York Mets,546250,0.54625
+wrighda03,David,Wright,David Wright,NYM,New York Mets,19364801,19.364801
+ackledu01,Dustin,Ackley,Dustin Ackley,NYY,New York Yankees,3200000,3.2
+barbajo01,Johnny,Barbato,Johnny Barbato,NYY,New York Yankees,507500,0.5075
+beltrca01,Carlos,Beltran,Carlos Beltran,NYY,New York Yankees,15000000,15
+betande01,Dellin,Betances,Dellin Betances,NYY,New York Yankees,507500,0.5075
+birdgr01,Greg,Bird,Greg Bird,NYY,New York Yankees,525300,0.5253
+castrst01,Starlin,Castro,Starlin Castro,NYY,New York Yankees,7857142,7.857142
+cessalu01,Luis,Cessa,Luis Cessa,NYY,New York Yankees,507500,0.5075
+chapmar01,Aroldis,Chapman,Aroldis Chapman,NYY,New York Yankees,9468443,9.468443
+ellsbja01,Jacoby,Ellsbury,Jacoby Ellsbury,NYY,New York Yankees,21142857,21.142857
+eovalna01,Nathan,Eovaldi,Nathan Eovaldi,NYY,New York Yankees,5600000,5.6
+gardnbr01,Brett,Gardner,Brett Gardner,NYY,New York Yankees,13500000,13.5
+gregodi01,Didi,Gregorius,Didi Gregorius,NYY,New York Yankees,2425000,2.425
+headlch01,Chase,Headley,Chase Headley,NYY,New York Yankees,13000000,13
+hicksaa01,Aaron,Hicks,Aaron Hicks,NYY,New York Yankees,574000,0.574
+mccanbr01,Brian,McCann,Brian McCann,NYY,New York Yankees,17000000,17
+millean01,Andrew,Miller,Andrew Miller,NYY,New York Yankees,9000000,9
+mitchbr01,Bryan,Mitchell,Bryan Mitchell,NYY,New York Yankees,516650,0.51665
+novaiv01,Ivan,Nova,Ivan Nova,NYY,New York Yankees,4100000,4.1
+pinedmi01,Michael,Pineda,Michael Pineda,NYY,New York Yankees,4300000,4.3
+rodrial01,Alex,Rodriguez,Alex Rodriguez,NYY,New York Yankees,21000000,21
+rominau01,Austin,Romine,Austin Romine,NYY,New York Yankees,556000,0.556
+sabatc.01,CC,Sabathia,CC Sabathia,NYY,New York Yankees,25000000,25
+severlu01,Luis,Severino,Luis Severino,NYY,New York Yankees,521300,0.5213
+shrevch01,Chasen,Shreve,Chasen Shreve,NYY,New York Yankees,533400,0.5334
+tanakma01,Masahiro,Tanaka,Masahiro Tanaka,NYY,New York Yankees,22000000,22
+teixema01,Mark,Teixeira,Mark Teixeira,NYY,New York Yankees,23125000,23.125
+torrero01,Ronald,Torreyes,Ronald Torreyes,NYY,New York Yankees,508600,0.5086
+willima10,Mason,Williams,Mason Williams,NYY,New York Yankees,509700,0.5097
+yateski01,Kirby,Yates,Kirby Yates,NYY,New York Yankees,511900,0.5119
+alonsyo01,Yonder,Alonso,Yonder Alonso,OAK,Oakland Athletics,2650000,2.65
+alvarhe01,Henderson,Alvarez,Henderson Alvarez,OAK,Oakland Athletics,4250000,4.25
+alvarrj01,R. J.,Alvarez,R. J. Alvarez,OAK,Oakland Athletics,510000,0.51
+axforjo01,John,Axford,John Axford,OAK,Oakland Athletics,4500000,4.5
+bassich01,Chris,Bassitt,Chris Bassitt,OAK,Oakland Athletics,510000,0.51
+burnsbi02,Billy,Burns,Billy Burns,OAK,Oakland Athletics,512500,0.5125
+butlebi03,Billy,Butler,Billy Butler,OAK,Oakland Athletics,11666667,11.666667
+canhama01,Mark,Canha,Mark Canha,OAK,Oakland Athletics,512500,0.5125
+coghlch01,Chris,Coghlan,Chris Coghlan,OAK,Oakland Athletics,4800000,4.8
+crispco01,Coco,Crisp,Coco Crisp,OAK,Oakland Athletics,11000000,11
+daviskh01,Khris,Davis,Khris Davis,OAK,Oakland Athletics,524500,0.5245
+doolise01,Sean,Doolittle,Sean Doolittle,OAK,Oakland Athletics,1580000,1.58
+doubrfe01,Felix,Doubront,Felix Doubront,OAK,Oakland Athletics,2000000,2
+dullry01,Ryan,Dull,Ryan Dull,OAK,Oakland Athletics,507500,0.5075
+fuldsa01,Sam,Fuld,Sam Fuld,OAK,Oakland Athletics,1925000,1.925
+graveke01,Kendall,Graveman,Kendall Graveman,OAK,Oakland Athletics,512500,0.5125
+grayso01,Sonny,Gray,Sonny Gray,OAK,Oakland Athletics,527500,0.5275
+hendrli01,Liam,Hendriks,Liam Hendriks,OAK,Oakland Athletics,523400,0.5234
+hillri01,Rich,Hill,Rich Hill,OAK,Oakland Athletics,6000000,6
+lowrije01,Jed,Lowrie,Jed Lowrie,OAK,Oakland Athletics,7500000,7.5
+madsory01,Ryan,Madson,Ryan Madson,OAK,Oakland Athletics,6666667,6.666667
+parkeja02,Jarrod,Parker,Jarrod Parker,OAK,Oakland Athletics,850000,0.85
+phegljo01,Josh,Phegley,Josh Phegley,OAK,Oakland Athletics,512500,0.5125
+reddijo01,Josh,Reddick,Josh Reddick,OAK,Oakland Athletics,6575000,6.575
+rodrife02,Fernando,Rodriguez,Fernando Rodriguez,OAK,Oakland Athletics,1050000,1.05
+rzepcma01,Marc,Rzepczynski,Marc Rzepczynski,OAK,Oakland Athletics,2950000,2.95
+semiema01,Marcus,Semien,Marcus Semien,OAK,Oakland Athletics,512500,0.5125
+sogarer01,Eric,Sogard,Eric Sogard,OAK,Oakland Athletics,1500000,1.5
+valenda01,Danny,Valencia,Danny Valencia,OAK,Oakland Athletics,3150000,3.15
+vogtst01,Stephen,Vogt,Stephen Vogt,OAK,Oakland Athletics,527500,0.5275
+altheaa01,Aaron,Altherr,Aaron Altherr,PHI,Philadelphia Phillies,515500,0.5155
+ascheco01,Cody,Asche,Cody Asche,PHI,Philadelphia Phillies,530000,0.53
+blancan01,Andres,Blanco,Andres Blanco,PHI,Philadelphia Phillies,1450000,1.45
+bourjpe01,Peter,Bourjos,Peter Bourjos,PHI,Philadelphia Phillies,2000000,2
+burriem01,Emmanuel,Burriss,Emmanuel Burriss,PHI,Philadelphia Phillies,925000,0.925
+eickhje01,Jerad,Eickhoff,Jerad Eickhoff,PHI,Philadelphia Phillies,516000,0.516
+francma02,Maikel,Franco,Maikel Franco,PHI,Philadelphia Phillies,517500,0.5175
+galvifr01,Freddy,Galvis,Freddy Galvis,PHI,Philadelphia Phillies,2000000,2
+goeddty01,Tyler,Goeddel,Tyler Goeddel,PHI,Philadelphia Phillies,507500,0.5075
+gomezje01,Jeanmar,Gomez,Jeanmar Gomez,PHI,Philadelphia Phillies,1400000,1.4
+harrima01,Matt,Harrison,Matt Harrison,PHI,Philadelphia Phillies,13000000,13
+hellije01,Jeremy,Hellickson,Jeremy Hellickson,PHI,Philadelphia Phillies,7000000,7
+hernace02,Cesar,Hernandez,Cesar Hernandez,PHI,Philadelphia Phillies,525000,0.525
+hernada01,David,Hernandez,David Hernandez,PHI,Philadelphia Phillies,3900000,3.9
+herreod01,Odubel,Herrera,Odubel Herrera,PHI,Philadelphia Phillies,528000,0.528
+hinojda01,Dalier,Hinojosa,Dalier Hinojosa,PHI,Philadelphia Phillies,514000,0.514
+hollama01,Mario,Hollands,Mario Hollands,PHI,Philadelphia Phillies,512500,0.5125
+huntece01,Cedric,Hunter,Cedric Hunter,PHI,Philadelphia Phillies,507500,0.5075
+margoma01,Manuel,Margot,Manuel Margot,PHI,Philadelphia Phillies,512500,0.5125
+mortoch02,Charlie,Morton,Charlie Morton,PHI,Philadelphia Phillies,8000000,8
+nerishe01,Hector,Neris,Hector Neris,PHI,Philadelphia Phillies,515000,0.515
+nolaaa01,Aaron,Nola,Aaron Nola,PHI,Philadelphia Phillies,517500,0.5175
+oberhbr01,Brett,Oberholtzer,Brett Oberholtzer,PHI,Philadelphia Phillies,518000,0.518
+rufda01,Darin,Ruf,Darin Ruf,PHI,Philadelphia Phillies,527000,0.527
+ruizca01,Carlos,Ruiz,Carlos Ruiz,PHI,Philadelphia Phillies,8500000,8.5
+ruppca01,Cameron,Rupp,Cameron Rupp,PHI,Philadelphia Phillies,518000,0.518
+russeja02,James,Russell,James Russell,PHI,Philadelphia Phillies,1500000,1.5
+stumpda01,Daniel,Stumpf,Daniel Stumpf,PHI,Philadelphia Phillies,507500,0.5075
+velasvi01,Vince,Velasquez,Vince Velasquez,PHI,Philadelphia Phillies,516000,0.516
+caminar01,Arquimedes,Caminero,Arquimedes Caminero,PIT,Pittsburgh Pirates,532500,0.5325
+cervefr01,Francisco,Cervelli,Francisco Cervelli,PIT,Pittsburgh Pirates,3500000,3.5
+colege01,Gerrit,Cole,Gerrit Cole,PIT,Pittsburgh Pirates,548000,0.548
+diazel01,Elias,Diaz,Elias Diaz,PIT,Pittsburgh Pirates,510000,0.51
+felizne01,Neftali,Feliz,Neftali Feliz,PIT,Pittsburgh Pirates,3900000,3.9
+figueco01,Cole,Figueroa,Cole Figueroa,PIT,Pittsburgh Pirates,550000,0.55
+freesda01,David,Freese,David Freese,PIT,Pittsburgh Pirates,3000000,3
+harrijo05,Josh,Harrison,Josh Harrison,PIT,Pittsburgh Pirates,5250000,5.25
+hugheja02,Jared,Hughes,Jared Hughes,PIT,Pittsburgh Pirates,2175000,2.175
+jasojo01,John,Jaso,John Jaso,PIT,Pittsburgh Pirates,4000000,4
+joycema01,Matthew,Joyce,Matthew Joyce,PIT,Pittsburgh Pirates,1000000,1
+kangju01,Jung Ho,Kang,Jung Ho Kang,PIT,Pittsburgh Pirates,2500000,2.5
+liriafr01,Francisco,Liriano,Francisco Liriano,PIT,Pittsburgh Pirates,13666667,13.666667
+lobstky01,Kyle,Lobstein,Kyle Lobstein,PIT,Pittsburgh Pirates,520000,0.52
+lockeje01,Jeff,Locke,Jeff Locke,PIT,Pittsburgh Pirates,3025000,3.025
+luebkco01,Cory,Luebke,Cory Luebke,PIT,Pittsburgh Pirates,1000000,1
+martest01,Starling,Marte,Starling Marte,PIT,Pittsburgh Pirates,3333333,3.333333
+mccutan01,Andrew,McCutchen,Andrew McCutchen,PIT,Pittsburgh Pirates,13208333,13.208333
+melanma01,Mark,Melancon,Mark Melancon,PIT,Pittsburgh Pirates,9650000,9.65
+mercejo03,Jordy,Mercer,Jordy Mercer,PIT,Pittsburgh Pirates,2075000,2.075
+morsemi01,Mike,Morse,Mike Morse,PIT,Pittsburgh Pirates,8000000,8
+nicasju01,Juan,Nicasio,Juan Nicasio,PIT,Pittsburgh Pirates,3000000,3
+niesejo01,Jonathon,Niese,Jonathon Niese,PIT,Pittsburgh Pirates,9000000,9
+polangr01,Gregory,Polanco,Gregory Polanco,PIT,Pittsburgh Pirates,535000,0.535
+rodrise01,Sean,Rodriguez,Sean Rodriguez,PIT,Pittsburgh Pirates,2500000,2.5
+stewach01,Chris,Stewart,Chris Stewart,PIT,Pittsburgh Pirates,1350000,1.35
+vogelry01,Ryan,Vogelsong,Ryan Vogelsong,PIT,Pittsburgh Pirates,2000000,2
+watsoto01,Tony,Watson,Tony Watson,PIT,Pittsburgh Pirates,3450000,3.45
+baumabu01,Buddy,Baumann,Buddy Baumann,SDP,San Diego Padres,520000,0.52
+bethach01,Christian,Bethancourt,Christian Bethancourt,SDP,San Diego Padres,511200,0.5112
+blashja01,Jabari,Blash,Jabari Blash,SDP,San Diego Padres,507500,0.5075
+buchtry01,Ryan,Buchter,Ryan Buchter,SDP,San Diego Padres,520000,0.52
+cashnan01,Andrew,Cashner,Andrew Cashner,SDP,San Diego Padres,7150000,7.15
+edwarjo02,Jon,Edwards,Jon Edwards,SDP,San Diego Padres,509600,0.5096
+jankotr01,Travis,Jankowski,Travis Jankowski,SDP,San Diego Padres,508800,0.5088
+jayjo02,Jon,Jay,Jon Jay,SDP,San Diego Padres,6225000,6.225
+kempma01,Matt,Kemp,Matt Kemp,SDP,San Diego Padres,21500000,21.5
+maurebr01,Brandon,Maurer,Brandon Maurer,SDP,San Diego Padres,526400,0.5264
+myerswi01,Wil,Myers,Wil Myers,SDP,San Diego Padres,523900,0.5239
+norride01,Derek,Norris,Derek Norris,SDP,San Diego Padres,2925000,2.925
+perdolu02,Luis,Perdomo,Luis Perdomo,SDP,San Diego Padres,507500,0.5075
+pomerdr01,Drew,Pomeranz,Drew Pomeranz,SDP,San Diego Padres,1350000,1.35
+quackke01,Kevin,Quackenbush,Kevin Quackenbush,SDP,San Diego Padres,521200,0.5212
+ramiral03,Alexei,Ramirez,Alexei Ramirez,SDP,San Diego Padres,3000000,3
+reaco01,Colin,Rea,Colin Rea,SDP,San Diego Padres,510200,0.5102
+rodnefe01,Fernando,Rodney,Fernando Rodney,SDP,San Diego Padres,1600000,1.6
+rosalad01,Adam,Rosales,Adam Rosales,SDP,San Diego Padres,800000,0.8
+rossty01,Tyson,Ross,Tyson Ross,SDP,San Diego Padres,9625000,9.625
+shielja02,James,Shields,James Shields,SDP,San Diego Padres,21000000,21
+solarya01,Yangervis,Solarte,Yangervis Solarte,SDP,San Diego Padres,525500,0.5255
+spangco01,Cory,Spangenberg,Cory Spangenberg,SDP,San Diego Padres,517700,0.5177
+thornma01,Matt,Thornton,Matt Thornton,SDP,San Diego Padres,1600000,1.6
+uptonbj01,Melvin,Upton,Melvin Upton,SDP,San Diego Padres,15450000,15.45
+villaca01,Carlos,Villanueva,Carlos Villanueva,SDP,San Diego Padres,1490314,1.490314
+wallabr01,Brett,Wallace,Brett Wallace,SDP,San Diego Padres,1000000,1
+aokino01,Nori,Aoki,Nori Aoki,SEA,Seattle Mariners,5500000,5.5
+benoijo01,Joaquin,Benoit,Joaquin Benoit,SEA,Seattle Mariners,7500000,7.5
+canoro01,Robinson,Cano,Robinson Cano,SEA,Seattle Mariners,24000000,24
+cishest01,Steve,Cishek,Steve Cishek,SEA,Seattle Mariners,4000000,4
+clevest01,Steve,Clevenger,Steve Clevenger,SEA,Seattle Mariners,516500,0.5165
+cookry01,Ryan,Cook,Ryan Cook,SEA,Seattle Mariners,1100000,1.1
+cruzne02,Nelson,Cruz,Nelson Cruz,SEA,Seattle Mariners,14250000,14.25
+furbuch01,Charlie,Furbush,Charlie Furbush,SEA,Seattle Mariners,1600000,1.6
+gutiefr01,Franklin,Gutierrez,Franklin Gutierrez,SEA,Seattle Mariners,1500000,1.5
+hernafe02,Felix,Hernandez,Felix Hernandez,SEA,Seattle Mariners,25857143,25.857143
+iannech01,Chris,Iannetta,Chris Iannetta,SEA,Seattle Mariners,4250000,4.25
+iwakuhi01,Hisashi,Iwakuma,Hisashi Iwakuma,SEA,Seattle Mariners,10976096,10.976096
+karnsna01,Nate,Karns,Nate Karns,SEA,Seattle Mariners,523700,0.5237
+leeda02,Dae-ho,Lee,Dae-ho Lee,SEA,Seattle Mariners,1000000,1
+lindad01,Adam,Lind,Adam Lind,SEA,Seattle Mariners,8000000,8
+marteke01,Ketel,Marte,Ketel Marte,SEA,Seattle Mariners,515400,0.5154
+martile01,Leonys,Martin,Leonys Martin,SEA,Seattle Mariners,4150000,4.15
+montgmi01,Mike,Montgomery,Mike Montgomery,SEA,Seattle Mariners,515000,0.515
+nunovi01,Vidal,Nuno,Vidal Nuno,SEA,Seattle Mariners,532900,0.5329
+peraljo01,Joel,Peralta,Joel Peralta,SEA,Seattle Mariners,1250000,1.25
+sardilu01,Luis,Sardinas,Luis Sardinas,SEA,Seattle Mariners,512000,0.512
+scribev01,Evan,Scribner,Evan Scribner,SEA,Seattle Mariners,807500,0.8075
+seageky01,Kyle,Seager,Kyle Seager,SEA,Seattle Mariners,8000000,8
+smithse01,Seth,Smith,Seth Smith,SEA,Seattle Mariners,6750000,6.75
+sucreje01,Jesus,Sucre,Jesus Sucre,SEA,Seattle Mariners,512000,0.512
+vinceni01,Nick,Vincent,Nick Vincent,SEA,Seattle Mariners,525500,0.5255
+walketa01,Taijuan,Walker,Taijuan Walker,SEA,Seattle Mariners,528600,0.5286
+zychto01,Tony,Zych,Tony Zych,SEA,Seattle Mariners,511000,0.511
+adriaeh01,Ehire,Adrianza,Ehire Adrianza,SFG,San Francisco Giants,512500,0.5125
+beltbr01,Brandon,Belt,Brandon Belt,SFG,San Francisco Giants,6200000,6.2
+blancgr01,Gregor,Blanco,Gregor Blanco,SFG,San Francisco Giants,3900000,3.9
+browntr01,Trevor,Brown,Trevor Brown,SFG,San Francisco Giants,508500,0.5085
+bumgama01,Madison,Bumgarner,Madison Bumgarner,SFG,San Francisco Giants,9916667,9.916667
+cainma01,Matt,Cain,Matt Cain,SFG,San Francisco Giants,20833333,20.833333
+garcija01,Santiago,Casilla,Santiago Casilla,SFG,San Francisco Giants,6500000,6.5
+crawfbr01,Brandon,Crawford,Brandon Crawford,SFG,San Francisco Giants,6000000,6
+cuetojo01,Johnny,Cueto,Johnny Cueto,SFG,San Francisco Giants,17500000,17.5
+duffyma02,Matt,Duffy,Matt Duffy,SFG,San Francisco Giants,537500,0.5375
+gearrco01,Cory,Gearrin,Cory Gearrin,SFG,San Francisco Giants,550000,0.55
+hestoch01,Chris,Heston,Chris Heston,SFG,San Francisco Giants,530000,0.53
+kontoge01,George,Kontos,George Kontos,SFG,San Francisco Giants,1150000,1.15
+lopezja02,Javier,Lopez,Javier Lopez,SFG,San Francisco Giants,5000000,5
+osichjo01,Josh,Osich,Josh Osich,SFG,San Francisco Giants,512500,0.5125
+paganan01,Angel,Pagan,Angel Pagan,SFG,San Francisco Giants,11250000,11.25
+panikjo01,Joe,Panik,Joe Panik,SFG,San Francisco Giants,545000,0.545
+peavyja01,Jake,Peavy,Jake Peavy,SFG,San Francisco Giants,15000000,15
+pencehu01,Hunter,Pence,Hunter Pence,SFG,San Francisco Giants,18700000,18.7
+poseybu01,Buster,Posey,Buster Posey,SFG,San Francisco Giants,20777778,20.777778
+romose01,Sergio,Romo,Sergio Romo,SFG,San Francisco Giants,9000000,9
+samarje01,Jeff,Samardzija,Jeff Samardzija,SFG,San Francisco Giants,10800000,10.8
+spande01,Denard,Span,Denard Span,SFG,San Francisco Giants,5000000,5
+strichu01,Hunter,Strickland,Hunter Strickland,SFG,San Francisco Giants,517500,0.5175
+tomlike01,Kelby,Tomlinson,Kelby Tomlinson,SFG,San Francisco Giants,512500,0.5125
+adamsma01,Matt,Adams,Matt Adams,STL,St. Louis Cardinals,1650000,1.65
+bowmama01,Matthew,Bowman,Matthew Bowman,STL,St. Louis Cardinals,507500,0.5075
+broxtjo01,Jonathan,Broxton,Jonathan Broxton,STL,St. Louis Cardinals,3750000,3.75
+carpema01,Matt,Carpenter,Matt Carpenter,STL,St. Louis Cardinals,6500000,6.5
+fryerer01,Eric,Fryer,Eric Fryer,STL,St. Louis Cardinals,575000,0.575
+garcigr01,Greg,Garcia,Greg Garcia,STL,St. Louis Cardinals,507500,0.5075
+garcija02,Jaime,Garcia,Jaime Garcia,STL,St. Louis Cardinals,11500000,11.5
+grichra01,Randal,Grichuk,Randal Grichuk,STL,St. Louis Cardinals,520000,0.52
+gyorkje01,Jedd,Gyorko,Jedd Gyorko,STL,St. Louis Cardinals,4000000,4
+harrimi03,Mitch,Harris,Mitch Harris,STL,St. Louis Cardinals,509000,0.509
+hazelje01,Jeremy,Hazelbaker,Jeremy Hazelbaker,STL,St. Louis Cardinals,507500,0.5075
+hollima01,Matt,Holliday,Matt Holliday,STL,St. Louis Cardinals,17000000,17
+leakemi01,Mike,Leake,Mike Leake,STL,St. Louis Cardinals,12000000,12
+lynnla01,Lance,Lynn,Lance Lynn,STL,St. Louis Cardinals,7500000,7.5
+lyonsty01,Tyler,Lyons,Tyler Lyons,STL,St. Louis Cardinals,512500,0.5125
+manesse01,Seth,Maness,Seth Maness,STL,St. Louis Cardinals,1400000,1.4
+martica04,Carlos,Martinez,Carlos Martinez,STL,St. Louis Cardinals,539000,0.539
+molinya01,Yadier,Molina,Yadier Molina,STL,St. Louis Cardinals,14200000,14.2
+mossbr01,Brandon,Moss,Brandon Moss,STL,St. Louis Cardinals,8250000,8.25
+ohse01,Seung-hwan,Oh,Seung-hwan Oh,STL,St. Louis Cardinals,2500000,2.5
+penabr01,Brayan,Pena,Brayan Pena,STL,St. Louis Cardinals,2500000,2.5
+peraljh01,Jhonny,Peralta,Jhonny Peralta,STL,St. Louis Cardinals,12500000,12.5
+phamth01,Tommy,Pham,Tommy Pham,STL,St. Louis Cardinals,510000,0.51
+piscost01,Stephen,Piscotty,Stephen Piscotty,STL,St. Louis Cardinals,512500,0.5125
+rosentr01,Trevor,Rosenthal,Trevor Rosenthal,STL,St. Louis Cardinals,5600000,5.6
+siegrke01,Kevin,Siegrist,Kevin Siegrist,STL,St. Louis Cardinals,539000,0.539
+tejadru01,Ruben,Tejada,Ruben Tejada,STL,St. Louis Cardinals,1500000,1.5
+wachami01,Michael,Wacha,Michael Wacha,STL,St. Louis Cardinals,539000,0.539
+wainwad01,Adam,Wainwright,Adam Wainwright,STL,St. Louis Cardinals,19500000,19.5
+waldejo01,Jordan,Walden,Jordan Walden,STL,St. Louis Cardinals,3675000,3.675
+wongko01,Kolten,Wong,Kolten Wong,STL,St. Louis Cardinals,1250000,1.25
+archech01,Chris,Archer,Chris Archer,TBR,Tampa Bay Rays,2916667,2.916667
+beckhti01,Tim,Beckham,Tim Beckham,TBR,Tampa Bay Rays,514500,0.5145
+boxbebr01,Brad,Boxberger,Brad Boxberger,TBR,Tampa Bay Rays,519200,0.5192
+casalcu01,Curt,Casali,Curt Casali,TBR,Tampa Bay Rays,513600,0.5136
+cedenxa01,Xavier,Cedeno,Xavier Cedeno,TBR,Tampa Bay Rays,524100,0.5241
+cobbal01,Alex,Cobb,Alex Cobb,TBR,Tampa Bay Rays,4000000,4
+colomal01,Alex,Colome,Alex Colome,TBR,Tampa Bay Rays,521700,0.5217
+congeha01,Hank,Conger,Hank Conger,TBR,Tampa Bay Rays,1500000,1.5
+dickeco01,Corey,Dickerson,Corey Dickerson,TBR,Tampa Bay Rays,522900,0.5229
+evelada01,Dana,Eveland,Dana Eveland,TBR,Tampa Bay Rays,895000,0.895
+farquda01,Danny,Farquhar,Danny Farquhar,TBR,Tampa Bay Rays,527000,0.527
+forsylo01,Logan,Forsythe,Logan Forsythe,TBR,Tampa Bay Rays,2250000,2.25
+geltzst01,Steve,Geltz,Steve Geltz,TBR,Tampa Bay Rays,519300,0.5193
+guyerbr01,Brandon,Guyer,Brandon Guyer,TBR,Tampa Bay Rays,1185000,1.185
+jennide01,Desmond,Jennings,Desmond Jennings,TBR,Tampa Bay Rays,3300000,3.3
+kiermke01,Kevin,Kiermaier,Kevin Kiermaier,TBR,Tampa Bay Rays,514400,0.5144
+longoev01,Evan,Longoria,Evan Longoria,TBR,Tampa Bay Rays,12600018,12.600018
+millebr02,Brad,Miller,Brad Miller,TBR,Tampa Bay Rays,527600,0.5276
+moorema02,Matt,Moore,Matt Moore,TBR,Tampa Bay Rays,5100000,5.1
+morrilo01,Logan,Morrison,Logan Morrison,TBR,Tampa Bay Rays,4200000,4.2
+odorija01,Jake,Odorizzi,Jake Odorizzi,TBR,Tampa Bay Rays,520700,0.5207
+pearcst01,Steve,Pearce,Steve Pearce,TBR,Tampa Bay Rays,4750000,4.75
+ramirer02,Erasmo,Ramirez,Erasmo Ramirez,TBR,Tampa Bay Rays,2375000,2.375
+romeren01,Enny,Romero,Enny Romero,TBR,Tampa Bay Rays,510000,0.51
+smylydr01,Drew,Smyly,Drew Smyly,TBR,Tampa Bay Rays,3750000,3.75
+souzast01,Steven,Souza,Steven Souza,TBR,Tampa Bay Rays,516100,0.5161
+webbry01,Ryan,Webb,Ryan Webb,TBR,Tampa Bay Rays,1000000,1
+whitlch01,Chase,Whitley,Chase Whitley,TBR,Tampa Bay Rays,524525,0.524525
+alberha01,Hanser,Alberto,Hanser Alberto,TEX,Texas Rangers,511500,0.5115
+andruel01,Elvis,Andrus,Elvis Andrus,TEX,Texas Rangers,15333333,15.333333
+barneto01,Tony,Barnette,Tony Barnette,TEX,Texas Rangers,1500000,1.5
+beltrad01,Adrian,Beltre,Adrian Beltre,TEX,Texas Rangers,18000000,18
+chiriro01,Robinson,Chirinos,Robinson Chirinos,TEX,Texas Rangers,1550000,1.55
+choosh01,Shin-Soo,Choo,Shin-Soo Choo,TEX,Texas Rangers,20000000,20
+darviyu01,Yu,Darvish,Yu Darvish,TEX,Texas Rangers,10000000,10
+deshide02,Delino,DeShields,Delino DeShields,TEX,Texas Rangers,517300,0.5173
+desmoia01,Ian,Desmond,Ian Desmond,TEX,Texas Rangers,8000000,8
+diekmja01,Jake,Diekman,Jake Diekman,TEX,Texas Rangers,1255000,1.255
+dysonsa01,Sam,Dyson,Sam Dyson,TEX,Texas Rangers,525270,0.52527
+faulkan01,Andrew,Faulkner,Andrew Faulkner,TEX,Texas Rangers,508500,0.5085
+fieldpr01,Prince,Fielder,Prince Fielder,TEX,Texas Rangers,24000000,24
+gimench01,Chris,Gimenez,Chris Gimenez,TEX,Texas Rangers,975000,0.975
+hamelco01,Cole,Hamels,Cole Hamels,TEX,Texas Rangers,22500000,22.5
+hamiljo03,Josh,Hamilton,Josh Hamilton,TEX,Texas Rangers,24000000,24
+holadbr01,Bryan,Holaday,Bryan Holaday,TEX,Texas Rangers,519000,0.519
+jackslu01,Luke,Jackson,Luke Jackson,TEX,Texas Rangers,508500,0.5085
+kelake01,Keone,Kela,Keone Kela,TEX,Texas Rangers,518000,0.518
+kleinph01,Phil,Klein,Phil Klein,TEX,Texas Rangers,509500,0.5095
+lewisco01,Colby,Lewis,Colby Lewis,TEX,Texas Rangers,6000000,6
+morelmi01,Mitch,Moreland,Mitch Moreland,TEX,Texas Rangers,5700000,5.7
+odorro01,Rougned,Odor,Rougned Odor,TEX,Texas Rangers,522700,0.5227
+perezma02,Martin,Perez,Martin Perez,TEX,Texas Rangers,3150000,3.15
+ruary01,Ryan,Rua,Ryan Rua,TEX,Texas Rangers,510120,0.51012
+ruggiju01,Justin,Ruggiano,Justin Ruggiano,TEX,Texas Rangers,1650000,1.65
+schepta01,Tanner,Scheppers,Tanner Scheppers,TEX,Texas Rangers,900000,0.9
+tollesh01,Shawn,Tolleson,Shawn Tolleson,TEX,Texas Rangers,3275000,3.275
+wilheto01,Tom,Wilhelmsen,Tom Wilhelmsen,TEX,Texas Rangers,3100000,3.1
+barneda01,Darwin,Barney,Darwin Barney,TOR,Toronto Blue Jays,1050000,1.05
+bautijo02,Jose,Bautista,Jose Bautista,TOR,Toronto Blue Jays,14000000,14
+biagijo01,Joe,Biagini,Joe Biagini,TOR,Toronto Blue Jays,507500,0.5075
+carreez01,Ezequiel,Carrera,Ezequiel Carrera,TOR,Toronto Blue Jays,521800,0.5218
+cecilbr01,Brett,Cecil,Brett Cecil,TOR,Toronto Blue Jays,3800000,3.8
+chaveje01,Jesse,Chavez,Jesse Chavez,TOR,Toronto Blue Jays,4000000,4
+colabch01,Chris,Colabello,Chris Colabello,TOR,Toronto Blue Jays,521300,0.5213
+dicker.01,R.A.,Dickey,R.A. Dickey,TOR,Toronto Blue Jays,12000000,12
+donaljo02,Josh,Donaldson,Josh Donaldson,TOR,Toronto Blue Jays,11650000,11.65
+encared01,Edwin,Encarnacion,Edwin Encarnacion,TOR,Toronto Blue Jays,10000000,10
+estrama01,Marco,Estrada,Marco Estrada,TOR,Toronto Blue Jays,11500000,11.5
+floydga01,Gavin,Floyd,Gavin Floyd,TOR,Toronto Blue Jays,1000000,1
+goinsry01,Ryan,Goins,Ryan Goins,TOR,Toronto Blue Jays,520200,0.5202
+happja01,J. A.,Happ,J. A. Happ,TOR,Toronto Blue Jays,10000000,10
+leonar01,Arnold,Leon,Arnold Leon,TOR,Toronto Blue Jays,510500,0.5105
+loupaa01,Aaron,Loup,Aaron Loup,TOR,Toronto Blue Jays,1050000,1.05
+martiru01,Russell,Martin,Russell Martin,TOR,Toronto Blue Jays,15000000,15
+moralfr01,Franklin,Morales,Franklin Morales,TOR,Toronto Blue Jays,2000000,2
+osunaro01,Roberto,Osuna,Roberto Osuna,TOR,Toronto Blue Jays,516100,0.5161
+pillake01,Kevin,Pillar,Kevin Pillar,TOR,Toronto Blue Jays,521100,0.5211
+sanchaa01,Aaron,Sanchez,Aaron Sanchez,TOR,Toronto Blue Jays,517800,0.5178
+saundmi01,Michael,Saunders,Michael Saunders,TOR,Toronto Blue Jays,2900000,2.9
+schulbo02,Bo,Schultz,Bo Schultz,TOR,Toronto Blue Jays,513300,0.5133
+smoakju01,Justin,Smoak,Justin Smoak,TOR,Toronto Blue Jays,3900000,3.9
+storedr01,Drew,Storen,Drew Storen,TOR,Toronto Blue Jays,8375000,8.375
+stromma01,Marcus,Stroman,Marcus Stroman,TOR,Toronto Blue Jays,515900,0.5159
+tholejo01,Josh,Thole,Josh Thole,TOR,Toronto Blue Jays,800000,0.8
+travide01,Devon,Travis,Devon Travis,TOR,Toronto Blue Jays,511200,0.5112
+tulowtr01,Troy,Tulowitzki,Troy Tulowitzki,TOR,Toronto Blue Jays,20000000,20
+barreaa01,Aaron,Barrett,Aaron Barrett,WSN,Washington Nationals,519400,0.5194
+belisma01,Matt,Belisle,Matt Belisle,WSN,Washington Nationals,1250000,1.25
+drewst01,Stephen,Drew,Stephen Drew,WSN,Washington Nationals,3000000,3
+espinda01,Danny,Espinosa,Danny Espinosa,WSN,Washington Nationals,2875000,2.875
+gonzagi01,Gio,Gonzalez,Gio Gonzalez,WSN,Washington Nationals,12100000,12.1
+harpebr03,Bryce,Harper,Bryce Harper,WSN,Washington Nationals,5000000,5
+heisech01,Chris,Heisey,Chris Heisey,WSN,Washington Nationals,1250000,1.25
+kellesh01,Shawn,Kelley,Shawn Kelley,WSN,Washington Nationals,4000000,4
+lobatjo01,Jose,Lobaton,Jose Lobaton,WSN,Washington Nationals,1387500,1.3875
+murphda08,Daniel,Murphy,Daniel Murphy,WSN,Washington Nationals,8000000,8
+papeljo01,Jonathan,Papelbon,Jonathan Papelbon,WSN,Washington Nationals,10936574,10.936574
+perezol01,Oliver,Perez,Oliver Perez,WSN,Washington Nationals,3000000,3
+petityu01,Yusmeiro,Petit,Yusmeiro Petit,WSN,Washington Nationals,2500000,2.5
+ramoswi01,Wilson,Ramos,Wilson Ramos,WSN,Washington Nationals,5350000,5.35
+rendoan01,Anthony,Rendon,Anthony Rendon,WSN,Washington Nationals,2800000,2.8
+reverbe01,Ben,Revere,Ben Revere,WSN,Washington Nationals,6250000,6.25
+riverfe01,Felipe,Rivero,Felipe Rivero,WSN,Washington Nationals,516100,0.5161
+roarkta01,Tanner,Roark,Tanner Roark,WSN,Washington Nationals,543400,0.5434
+robincl01,Clint,Robinson,Clint Robinson,WSN,Washington Nationals,534900,0.5349
+rossjo01,Joe,Ross,Joe Ross,WSN,Washington Nationals,514400,0.5144
+scherma01,Max,Scherzer,Max Scherzer,WSN,Washington Nationals,22142857,22.142857
+strasst01,Stephen,Strasburg,Stephen Strasburg,WSN,Washington Nationals,10400000,10.4
+taylomi02,Michael,Taylor,Michael Taylor,WSN,Washington Nationals,524000,0.524
+treinbl01,Blake,Treinen,Blake Treinen,WSN,Washington Nationals,524900,0.5249
+werthja01,Jayson,Werth,Jayson Werth,WSN,Washington Nationals,21733615,21.733615
+zimmery01,Ryan,Zimmerman,Ryan Zimmerman,WSN,Washington Nationals,14000000,14
