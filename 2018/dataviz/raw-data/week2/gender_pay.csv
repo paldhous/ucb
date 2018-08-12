@@ -1,547 +1,547 @@
 job,total_workers,median_pay,men_workers,men_median_pay,women_workers,women_median_pay
-Chief executives,"1,150","2,303",832,"2,419",318,"1,876"
-General and operations managers,876,"1,266",626,"1,358",250,"1,037"
-Legislators,11,,6,,6,
-Advertising and promotions managers,56,"1,332",24,,32,
-Marketing and sales managers,921,"1,468",518,"1,745",403,"1,142"
-Public relations and fundraising managers,60,"1,532",21,,38,
-Administrative services managers,172,"1,261",101,"1,398",71,952
-Computer and information systems managers,592,"1,738",443,"1,756",150,"1,680"
-Financial managers,"1,105","1,423",527,"1,670",578,"1,157"
-Compensation and benefits managers,16,,3,,12,
-Human resources managers,263,"1,340",73,"1,737",190,"1,283"
-Training and development managers,58,"1,507",27,,31,
-Industrial production managers,267,"1,361",201,"1,409",66,"1,219"
-Purchasing managers,187,"1,274",95,"1,400",92,"1,169"
-"Transportation, storage, and distribution managers",288,990,237,990,51,988
-"Farmers, ranchers, and other agricultural managers",119,892,102,906,17,
-Construction managers,487,"1,395",452,"1,401",35,
-Education administrators,838,"1,381",297,"1,528",541,"1,280"
-Architectural and engineering managers,143,"2,258",134,"2,265",9,
-Food service managers,760,739,410,853,350,632
-Funeral service managers,13,,11,,1,
-Gaming managers,18,,14,,4,
-Lodging managers,124,929,59,"1,068",64,764
-Medical and health services managers,533,"1,402",133,"1,610",399,"1,254"
-Natural sciences managers,14,,6,,8,
-Postmasters and mail superintendents,23,,12,,11,
-"Property, real estate, and community association managers",402,959,181,"1,157",221,815
-Social and community service managers,363,"1,079",115,"1,206",248,992
-Emergency management directors,8,,5,,3,
-"Managers, all other","2,960","1,422","1,845","1,542","1,115","1,188"
-"Agents and business managers of artists, performers, and athletes",23,,11,,12,
-"Buyers and purchasing agents, farm products",8,,8,,0,
-"Wholesale and retail buyers, except farm products",152,838,68,942,83,765
-"Purchasing agents, except wholesale, retail, and farm products",253,"1,024",128,"1,037",125,974
-"Claims adjusters, appraisers, examiners, and investigators",321,969,114,"1,139",206,912
-Compliance officers,252,"1,243",106,"1,274",146,"1,163"
-Cost estimators,104,"1,159",96,"1,172",9,
-Human resources workers,631,"1,139",166,"1,364",465,"1,089"
-"Compensation, benefits, and job analysis specialists",72,"1,069",21,,51,"1,001"
-Training and development specialists,129,"1,103",47,,82,959
-Logisticians,111,"1,011",75,"1,116",37,
-Management analysts,585,"1,476",332,"1,586",253,"1,342"
-"Meeting, convention, and event planners",119,867,30,,88,852
-Fundraisers,64,"1,111",22,,42,
-Market research analysts and marketing specialists,246,"1,171",116,"1,345",130,"1,097"
-"Business operations specialists, all other",257,"1,125",110,"1,263",146,"1,001"
-Accountants and auditors,"1,451","1,153",559,"1,441",892,"1,018"
-Appraisers and assessors of real estate,31,,19,,13,
-Budget analysts,48,,22,,26,
-Credit analysts,28,,15,,13,
-Financial analysts,277,"1,525",173,"1,747",104,"1,252"
-Personal financial advisors,399,"1,404",258,"1,714",142,953
-Insurance underwriters,102,"1,113",34,,68,910
-Financial examiners,13,,7,,6,
-Credit counselors and loan officers,351,"1,054",151,"1,331",200,926
-"Tax examiners and collectors, and revenue agents",58,"1,138",20,,38,
-Tax preparers,53,"1,049",20,,33,
-"Financial specialists, all other",56,"1,155",20,,37,
-Computer and information research scientists,20,,13,,7,
-Computer systems analysts,496,"1,393",314,"1,475",182,"1,328"
-Information security analysts,85,"1,617",65,"1,826",20,
-Computer programmers,403,"1,398",300,"1,466",104,"1,312"
-"Software developers, applications and systems software","1,351","1,776","1,084","1,863",266,"1,553"
-Web developers,142,"1,236",97,"1,284",45,
-Computer support specialists,491,"1,060",367,"1,078",124,"1,014"
-Database administrators,83,"1,731",46,,37,
-Network and computer systems administrators,197,"1,232",168,"1,250",29,
-Computer network architects,105,"1,502",93,"1,535",12,
-Actuaries,12,,11,,1,
-Mathematicians,4,,3,,0,
-Operations research analysts,125,"1,315",59,"1,382",66,"1,300"
-Statisticians,65,"1,405",30,,35,
-"Architects, except naval",178,"1,339",135,"1,462",43,
-"Surveyors, cartographers, and photogrammetrists",28,,19,,9,
-Aerospace engineers,124,"1,854",114,"1,846",10,
-Agricultural engineers,2,,2,,0,
-Biomedical engineers,14,,12,,2,
-Chemical engineers,91,"1,877",73,"1,901",18,
-Civil engineers,389,"1,504",350,"1,526",39,
-Computer hardware engineers,58,"1,843",46,,12,
-Electrical and electronics engineers,271,"1,729",245,"1,736",26,
-Environmental engineers,31,,27,,5,
-"Industrial engineers, including health and safety",215,"1,526",169,"1,580",46,
-Marine engineers and naval architects,19,,18,,1,
-Materials engineers,26,,21,,5,
-Mechanical engineers,335,"1,560",311,"1,567",24,
-"Mining and geological engineers, including mining safety engineers",8,,7,,0,
-Nuclear engineers,8,,7,,1,
-Petroleum engineers,35,,32,,3,
-"Engineers, all other",493,"1,573",430,"1,659",63,"1,401"
-Drafters,93,990,83,"1,030",10,
-"Engineering technicians, except drafters",350,997,275,"1,075",75,793
-Surveying and mapping technicians,67,811,61,790,5,
-Agricultural and food scientists,32,,20,,12,
-Biological scientists,81,"1,346",46,,35,
-Conservation scientists and foresters,26,,23,,4,
-Medical scientists,127,"1,211",69,"1,250",57,"1,169"
-"Life scientists, all other",3,,0,,3,
-Astronomers and physicists,20,,16,,4,
-Atmospheric and space scientists,6,,5,,1,
-Chemists and materials scientists,93,"1,306",56,"1,504",36,
-Environmental scientists and geoscientists,79,"1,555",58,"1,591",21,
-"Physical scientists, all other",241,"1,416",131,"1,727",111,"1,323"
-Economists,22,,14,,9,
-Survey researchers,1,,1,,0,
-Psychologists,91,"1,260",25,,66,"1,187"
-Sociologists,4,,1,,3,
-Urban and regional planners,34,,21,,13,
-Miscellaneous social scientists and related workers,30,,19,,11,
-Agricultural and food science technicians,24,,17,,6,
-Biological technicians,19,,11,,8,
-Chemical technicians,75,919,50,919,25,
-Geological and petroleum technicians,17,,15,,2,
-Nuclear technicians,4,,3,,1,
-Social science research assistants,1,,1,,0,
-"Miscellaneous life, physical, and social science technicians",119,894,62,949,57,826
-Counselors,657,904,184,892,473,907
-Social workers,684,906,127,"1,039",557,884
-Probation officers and correctional treatment specialists,100,992,39,,61,"1,004"
-Social and human service assistants,151,736,29,,122,727
+Chief executives,1136,2296,823,2415,313,1920
+General and operations managers,920,1328,598,1488,321,1134
+Legislators,14,,5,,9,
+Advertising and promotions managers,53,1330,24,,29,
+Marketing and sales managers,994,1509,566,1747,428,1288
+Public relations and fundraising managers,71,1318,24,,47,
+Administrative services managers,147,1233,89,1629,57,1013
+Computer and information systems managers,594,1843,428,1897,165,1629
+Financial managers,1111,1412,500,1719,611,1222
+Compensation and benefits managers,16,,5,,11,
+Human resources managers,304,1448,92,1748,211,1280
+Training and development managers,58,1396,23,,35,
+Industrial production managers,265,1486,202,1526,63,1312
+Purchasing managers,194,1271,90,1420,104,1138
+"Transportation, storage, and distribution managers",274,1039,225,1061,49,
+"Farmers, ranchers, and other agricultural managers",121,1001,100,963,21,
+Construction managers,582,1428,526,1439,56,1243
+Education administrators,801,1367,304,1561,497,1243
+Architectural and engineering managers,128,1999,119,2020,10,
+Food service managers,816,753,421,894,394,674
+Funeral service managers,9,,4,,5,
+Gaming managers,23,,17,,6,
+Lodging managers,116,882,54,982,62,844
+Medical and health services managers,610,1319,177,1490,433,1177
+Natural sciences managers,17,,10,,7,
+Postmasters and mail superintendents,23,,13,,10,
+"Property, real estate, and community association managers",421,957,181,1163,241,873
+Social and community service managers,337,1136,101,1281,236,1052
+Emergency management directors,10,,4,,7,
+"Managers, all other",3004,1488,1841,1629,1163,1251
+"Agents and business managers of artists, performers, and athletes",23,,8,,15,
+"Buyers and purchasing agents, farm products",10,,6,,4,
+"Wholesale and retail buyers, except farm products",154,886,67,882,87,888
+"Purchasing agents, except wholesale, retail, and farm products",240,1132,143,1144,96,1085
+"Claims adjusters, appraisers, examiners, and investigators",346,1002,128,1108,218,925
+Compliance officers,240,1391,106,1501,134,1296
+Cost estimators,113,1139,100,1157,13,
+Human resources workers,664,1086,182,1236,482,1035
+"Compensation, benefits, and job analysis specialists",60,1042,21,,39,
+Training and development specialists,114,1099,59,1255,55,937
+Logisticians,101,1230,67,1358,33,
+Management analysts,606,1499,351,1651,255,1315
+"Meeting, convention, and event planners",102,1080,14,,89,1064
+Fundraisers,72,1152,17,,55,1152
+Market research analysts and marketing specialists,258,1174,110,1357,149,1061
+"Business operations specialists, all other",250,1136,118,1361,132,1013
+Accountants and auditors,1512,1173,622,1389,890,1065
+Appraisers and assessors of real estate,55,1074,35,,20,
+Budget analysts,54,1377,29,,26,
+Credit analysts,27,,13,,15,
+Financial analysts,264,1530,156,1590,108,1369
+Personal financial advisors,398,1425,267,1662,131,979
+Insurance underwriters,92,1153,35,,57,1115
+Financial examiners,15,,8,,7,
+Credit counselors and loan officers,320,1070,127,1332,193,958
+"Tax examiners and collectors, and revenue agents",62,1078,28,,33,
+Tax preparers,56,791,18,,39,
+"Financial specialists, all other",36,,11,,24,
+Computer and information research scientists,23,,13,,9,
+Computer systems analysts,522,1409,311,1495,211,1270
+Information security analysts,94,1725,74,1773,20,
+Computer programmers,423,1483,333,1539,89,1363
+"Software developers, applications and systems software",1439,1792,1174,1863,265,1543
+Web developers,144,1235,98,1342,46,
+Computer support specialists,443,1068,319,1134,124,919
+Database administrators,93,1381,56,1745,37,
+Network and computer systems administrators,193,1395,155,1396,38,
+Computer network architects,100,1636,97,1659,3,
+Actuaries,23,,16,,7,
+Mathematicians,2,,2,,0,
+Operations research analysts,146,1396,71,1570,74,1205
+Statisticians,77,1433,36,,41,
+"Architects, except naval",196,1453,150,1650,46,
+"Surveyors, cartographers, and photogrammetrists",30,,25,,5,
+Aerospace engineers,137,1892,128,1891,9,
+Agricultural engineers,3,,3,,0,
+Biomedical engineers,16,,11,,4,
+Chemical engineers,78,1626,66,1631,12,
+Civil engineers,393,1494,332,1524,61,1343
+Computer hardware engineers,73,1771,60,1793,13,
+Electrical and electronics engineers,276,1803,245,1772,30,
+Environmental engineers,32,,21,,11,
+"Industrial engineers, including health and safety",213,1496,168,1520,46,
+Marine engineers and naval architects,7,,7,,0,
+Materials engineers,32,,28,,5,
+Mechanical engineers,337,1534,311,1533,26,
+"Mining and geological engineers, including mining safety engineers",12,,10,,1,
+Nuclear engineers,7,,7,,0,
+Petroleum engineers,23,,17,,6,
+"Engineers, all other",546,1561,473,1571,73,1436
+Drafters,122,1126,100,1149,21,
+"Engineering technicians, except drafters",339,1053,269,1102,70,884
+Surveying and mapping technicians,63,1109,61,1114,2,
+Agricultural and food scientists,25,,14,,10,
+Biological scientists,82,1140,41,,41,
+Conservation scientists and foresters,26,,15,,11,
+Medical scientists,162,1378,82,1383,80,1270
+"Life scientists, all other",4,,1,,3,
+Astronomers and physicists,16,,15,,1,
+Atmospheric and space scientists,6,,4,,2,
+Chemists and materials scientists,98,1425,56,1451,41,
+Environmental scientists and geoscientists,80,1639,51,1746,30,
+"Physical scientists, all other",270,1529,147,1565,122,1409
+Economists,29,,18,,12,
+Survey researchers,2,,1,,1,
+Psychologists,106,1454,35,,71,1437
+Sociologists,2,,2,,0,
+Urban and regional planners,34,,18,,16,
+Miscellaneous social scientists and related workers,27,,18,,9,
+Agricultural and food science technicians,30,,20,,10,
+Biological technicians,23,,8,,15,
+Chemical technicians,62,1013,45,,16,
+Geological and petroleum technicians,13,,9,,4,
+Nuclear technicians,6,,4,,2,
+Social science research assistants,4,,0,,4,
+"Miscellaneous life, physical, and social science technicians",132,826,70,970,63,766
+Counselors,650,897,178,901,472,894
+Social workers,714,906,122,935,591,900
+Probation officers and correctional treatment specialists,90,881,36,,55,858
+Social and human service assistants,189,739,48,,141,701
 "Miscellaneous community and social service specialists, including health 
-educators and community health workers",83,831,20,,63,767
-Clergy,368,"1,039",315,"1,070",53,893
-"Directors, religious activities and education",49,,23,,26,
-"Religious workers, all other",42,,21,,21,
-Lawyers,745,"1,897",446,"2,086",299,"1,619"
-Judicial law clerks,14,,7,,7,
-"Judges, magistrates, and other judicial workers",56,"1,560",35,,21,
-Paralegals and legal assistants,351,874,43,,308,863
-Miscellaneous legal support workers,128,"1,009",30,,98,867
-Postsecondary teachers,980,"1,247",535,"1,356",445,"1,152"
-Preschool and kindergarten teachers,530,626,13,,518,621
-Elementary and middle school teachers,"2,836","1,009",605,"1,126","2,231",981
-Secondary school teachers,965,"1,111",403,"1,146",562,"1,074"
-Special education teachers,313,"1,021",49,,264,"1,018"
-Other teachers and instructors,370,938,156,"1,135",214,786
-"Archivists, curators, and museum technicians",36,,11,,25,
-Librarians,140,987,23,,117,980
-Library technicians,10,,2,,8,
-Teacher assistants,588,523,56,501,532,525
-"Other education, training, and library workers",91,"1,107",24,,67,"1,068"
-Artists and related workers,61,"1,236",38,,23,
-Designers,586,"1,086",290,"1,267",297,922
-Actors,13,,8,,5,
-Producers and directors,128,"1,163",78,"1,228",50,"1,030"
-"Athletes, coaches, umpires, and related workers",141,826,106,862,35,
-Dancers and choreographers,5,,2,,4,
-"Musicians, singers, and related workers",37,,24,,13,
-"Entertainers and performers, sports and related workers, all other",13,,9,,4,
-Announcers,32,,24,,8,
-"News analysts, reporters and correspondents",58,"1,166",30,,27,
-Public relations specialists,107,"1,228",40,,67,"1,134"
-Editors,120,"1,053",64,"1,112",56,"1,035"
-Technical writers,56,"1,253",29,,27,
-Writers and authors,99,"1,070",39,,60,983
-Miscellaneous media and communication workers,59,745,24,,36,
-Broadcast and sound engineering technicians and radio operators,80,"1,020",67,"1,099",13,
-Photographers,43,,24,,19,
-"Television, video, and motion picture camera operators and editors",31,,24,,7,
-"Media and communication equipment workers, all other",1,,1,,0,
-Chiropractors,18,,10,,7,
-Dentists,61,"1,850",34,,27,
-Dietitians and nutritionists,82,986,11,,71,997
-Optometrists,18,,3,,15,
-Pharmacists,222,"1,924",89,"2,096",133,"1,839"
-Physicians and surgeons,806,"1,916",497,"2,343",308,"1,476"
-Physician assistants,75,"1,544",25,,50,"1,547"
-Podiatrists,4,,3,,0,
-Audiologists,11,,2,,8,
-Occupational therapists,71,"1,365",10,,61,"1,315"
-Physical therapists,197,"1,325",69,"1,348",128,"1,306"
-Radiation therapists,11,,1,,10,
-Recreational therapists,9,,6,,3,
-Respiratory therapists,76,998,22,,54,993
-Speech-language pathologists,112,"1,200",3,,109,"1,172"
-Exercise physiologists,1,,0,,1,
-"Therapists, all other",137,920,32,,106,913
-Veterinarians,65,"1,338",19,,46,
-Registered nurses,"2,498","1,154",285,"1,261","2,213","1,143"
-Nurse anesthetists,14,,8,,6,
+educators and community health workers",68,829,17,,51,791
+Clergy,342,1058,297,1073,46,
+"Directors, religious activities and education",61,844,36,,25,
+"Religious workers, all other",50,831,13,,37,
+Lawyers,781,1901,444,2105,337,1753
+Judicial law clerks,13,,7,,6,
+"Judges, magistrates, and other judicial workers",59,1742,42,,17,
+Paralegals and legal assistants,370,945,49,,321,934
+Miscellaneous legal support workers,156,957,26,,130,904
+Postsecondary teachers,985,1312,551,1414,434,1208
+Preschool and kindergarten teachers,530,657,12,,518,654
+Elementary and middle school teachers,2838,1023,614,1139,2224,987
+Secondary school teachers,917,1139,392,1226,524,1091
+Special education teachers,386,1024,54,1051,332,1017
+Other teachers and instructors,419,897,155,1128,265,820
+"Archivists, curators, and museum technicians",42,,18,,24,
+Librarians,135,1009,31,,104,972
+Library technicians,16,,2,,14,
+Teacher assistants,590,550,67,642,523,537
+"Other education, training, and library workers",120,1049,44,,77,956
+Artists and related workers,70,1209,43,,27,
+Designers,600,1012,327,1172,273,857
+Actors,17,,11,,6,
+Producers and directors,131,1489,89,1708,43,
+"Athletes, coaches, umpires, and related workers",149,898,104,1031,45,
+Dancers and choreographers,9,,4,,5,
+"Musicians, singers, and related workers",41,,29,,12,
+"Entertainers and performers, sports and related workers, all other",24,,10,,13,
+Announcers,24,,18,,7,
+"News analysts, reporters and correspondents",72,945,30,,42,
+Public relations specialists,92,1339,35,,57,1203
+Editors,124,1084,56,1123,68,992
+Technical writers,67,1222,30,,37,
+Writers and authors,106,1137,50,1171,57,1045
+Miscellaneous media and communication workers,53,809,25,,28,
+Broadcast and sound engineering technicians and radio operators,81,1150,71,1160,10,
+Photographers,66,931,40,,25,
+"Television, video, and motion picture camera operators and editors",46,,38,,8,
+"Media and communication equipment workers, all other",5,,3,,2,
+Chiropractors,11,,9,,2,
+Dentists,41,,16,,25,
+Dietitians and nutritionists,88,991,8,,80,996
+Optometrists,19,,6,,13,
+Pharmacists,254,1923,107,2228,147,1834
+Physicians and surgeons,815,1918,463,2277,352,1759
+Physician assistants,97,1747,31,,66,1640
+Podiatrists,7,,3,,4,
+Audiologists,13,,1,,12,
+Occupational therapists,74,1301,12,,62,1273
+Physical therapists,182,1317,64,1341,118,1297
+Radiation therapists,11,,3,,8,
+Recreational therapists,5,,1,,3,
+Respiratory therapists,83,961,27,,56,904
+Speech-language pathologists,106,1213,4,,102,1214
+Exercise physiologists,5,,1,,3,
+"Therapists, all other",142,983,29,,114,947
+Veterinarians,60,1840,20,,40,
+Registered nurses,2536,1150,283,1260,2253,1143
+Nurse anesthetists,30,,13,,17,
 Nurse midwives,5,,0,,5,
-Nurse practitioners,144,"1,750",11,,133,"1,753"
-"Health diagnosing and treating practitioners, all other",8,,1,,8,
-Clinical laboratory technologists and technicians,295,887,97,"1,071",198,834
-Dental hygienists,75,"1,034",2,,73,"1,045"
-Diagnostic related technologists and technicians,254,"1,041",79,"1,156",175,936
-Emergency medical technicians and paramedics,174,779,114,821,60,650
-Health practitioner support technologists and technicians,474,662,113,712,361,643
-Licensed practical and licensed vocational nurses,525,749,44,,481,743
-Medical records and health information technicians,170,798,11,,159,793
-"Opticians, dispensing",42,,14,,28,
-Miscellaneous health technologists and technicians,107,745,43,,64,714
-"Nursing, psychiatric, and home health aides","1,386",503,194,534,"1,192",498
-Occupational therapy assistants and aides,13,,1,,12,
-Physical therapist assistants and aides,48,,15,,32,
-Massage therapists,45,,15,,30,
-Dental assistants,199,592,19,,180,583
-Medical assistants,488,572,36,,452,562
-Medical transcriptionists,23,,0,,23,
-Pharmacy aides,21,,2,,19,
-Veterinary assistants and laboratory animal caretakers,24,,7,,17,
-Phlebotomists,84,586,12,,71,570
-First-line supervisors of correctional officers,55,873,35,,20,
-First-line supervisors of police and detectives,120,"1,324",97,"1,361",23,
-First-line supervisors of fire fighting and prevention workers,45,,41,,3,
-"First-line supervisors of protective service workers, all other",89,880,66,895,23,
-Firefighters,252,"1,065",244,"1,056",8,
-Fire inspectors,16,,15,,1,
-"Bailiffs, correctional officers, and jailers",365,749,275,793,91,672
-Detectives and criminal investigators,132,"1,182",104,"1,251",28,
-Fish and game wardens,8,,7,,1,
-Parking enforcement workers,6,,4,,2,
-Police and sheriff's patrol officers,709,"1,004",609,"1,008",100,938
-Transit and railroad police,2,,2,,0,
-Animal control workers,6,,4,,2,
-Private detectives and investigators,60,904,31,,29,
-Security guards and gaming surveillance officers,727,585,576,597,152,516
-Crossing guards,23,,11,,12,
-Transportation security screeners,40,,23,,16,
-"Lifeguards and other recreational, and all other protective service workers",42,,28,,14,
-Chefs and head cooks,356,614,288,632,68,519
-First-line supervisors of food preparation and serving workers,425,528,174,666,251,485
-Cooks,"1,408",444,892,459,515,421
-Food preparation workers,477,419,215,432,262,413
-Bartenders,253,602,131,701,122,498
-"Combined food preparation and serving workers, including fast food",196,396,72,381,125,402
-"Counter attendants, cafeteria, food concession, and coffee shop",68,374,20,,49,
-Waiters and waitresses,949,470,342,504,607,441
-"Food servers, nonrestaurant",104,479,33,,71,445
-Dining room and cafeteria attendants and bartender helpers,133,420,82,465,51,407
-Dishwashers,172,389,142,388,30,
-"Hosts and hostesses, restaurant, lounge, and coffee shop",74,442,24,,50,432
-"Food preparation and serving related workers, all other",3,,2,,1,
-First-line supervisors of housekeeping and janitorial workers,189,655,119,702,71,524
+Nurse practitioners,141,1841,12,,129,1832
+"Health diagnosing and treating practitioners, all other",15,,3,,12,
+Clinical laboratory technologists and technicians,297,890,94,1061,203,845
+Dental hygienists,78,1033,5,,73,1028
+Diagnostic related technologists and technicians,271,1162,85,1404,186,1041
+Emergency medical technicians and paramedics,203,984,145,1119,58,733
+Health practitioner support technologists and technicians,469,710,98,858,371,678
+Licensed practical and licensed vocational nurses,501,815,62,817,438,814
+Medical records and health information technicians,151,763,11,,140,761
+"Opticians, dispensing",43,,13,,30,
+Miscellaneous health technologists and technicians,143,811,48,,95,746
+"Nursing, psychiatric, and home health aides",1387,500,164,583,1223,493
+Occupational therapy assistants and aides,13,,1,,11,
+Physical therapist assistants and aides,47,,15,,33,
+Massage therapists,51,632,15,,36,
+Dental assistants,215,608,12,,203,602
+Medical assistants,457,594,39,,418,597
+Medical transcriptionists,21,,3,,18,
+Pharmacy aides,25,,11,,14,
+Veterinary assistants and laboratory animal caretakers,37,,4,,33,
+Phlebotomists,97,635,16,,82,639
+First-line supervisors of correctional officers,50,899,38,,12,
+First-line supervisors of police and detectives,94,1348,81,1347,13,
+First-line supervisors of fire fighting and prevention workers,43,,42,,2,
+"First-line supervisors of protective service workers, all other",69,953,58,938,11,
+Firefighters,272,1123,264,1136,8,
+Fire inspectors,22,,22,,0,
+"Bailiffs, correctional officers, and jailers",390,771,284,825,106,669
+Detectives and criminal investigators,142,1256,110,1291,32,
+Fish and game wardens,5,,5,,0,
+Parking enforcement workers,4,,2,,2,
+Police and sheriff's patrol officers,688,1015,595,1024,94,985
+Transit and railroad police,6,,4,,2,
+Animal control workers,12,,8,,4,
+Private detectives and investigators,86,963,42,,44,
+Security guards and gaming surveillance officers,740,596,570,616,170,548
+Crossing guards,23,,17,,6,
+Transportation security screeners,43,,32,,11,
+"Lifeguards and other recreational, and all other protective service workers",49,,30,,19,
+Chefs and head cooks,382,634,310,655,72,514
+First-line supervisors of food preparation and serving workers,427,537,200,613,227,500
+Cooks,1365,466,859,481,506,436
+Food preparation workers,510,425,242,449,269,410
+Bartenders,210,554,98,600,112,515
+"Combined food preparation and serving workers, including fast food",175,407,75,415,100,401
+"Counter attendants, cafeteria, food concession, and coffee shop",65,460,29,,36,
+Waiters and waitresses,911,493,319,533,592,475
+"Food servers, nonrestaurant",88,473,28,,59,468
+Dining room and cafeteria attendants and bartender helpers,134,458,79,444,55,481
+Dishwashers,131,401,111,408,19,
+"Hosts and hostesses, restaurant, lounge, and coffee shop",67,401,9,,58,400
+"Food preparation and serving related workers, all other",1,,1,,1,
+First-line supervisors of housekeeping and janitorial workers,190,661,113,749,77,515
 "First-line supervisors of landscaping, lawn service, and groundskeeping 
-workers",113,707,112,710,1,
-Janitors and building cleaners,"1,580",526,"1,139",564,441,476
-Maids and housekeeping cleaners,781,441,120,497,661,427
-Pest control workers,61,655,59,649,2,
-Grounds maintenance workers,878,502,844,503,34,
-First-line supervisors of gaming workers,127,792,68,840,59,717
-First-line supervisors of personal service workers,62,651,25,,37,
-Animal trainers,24,,13,,11,
-Nonfarm animal caretakers,88,485,17,,71,489
-Gaming services workers,64,624,33,,31,
-Motion picture projectionists,2,,2,,0,
-"Ushers, lobby attendants, and ticket takers",14,,6,,8,
-Miscellaneous entertainment attendants and related workers,79,481,48,,31,
-Embalmers and funeral attendants,3,,1,,2,
-"Morticians, undertakers, and funeral directors",23,,18,,5,
-Barbers,56,584,48,,8,
-"Hairdressers, hairstylists, and cosmetologists",307,510,27,,281,500
-Miscellaneous personal appearance workers,205,490,37,,167,466
-"Baggage porters, bellhops, and concierges",56,625,46,,10,
-Tour and travel guides,18,,10,,8,
-Childcare workers,405,452,24,,381,451
-Personal care aides,762,477,125,514,636,469
-Recreation and fitness workers,192,596,92,668,100,517
-Residential advisors,19,,8,,11,
-"Personal care and service workers, all other",61,573,35,,26,
-First-line supervisors of retail sales workers,"2,368",743,"1,321",857,"1,047",630
-First-line supervisors of non-retail sales workers,781,"1,137",552,"1,161",230,"1,004"
-Cashiers,"1,367",414,402,475,965,403
-Counter and rental clerks,84,517,47,,36,
-Parts salespersons,96,639,85,643,11,
-Retail salespersons,"1,831",623,"1,103",730,728,514
-Advertising sales agents,203,"1,023",122,"1,034",81,999
-Insurance sales agents,423,839,218,"1,166",205,676
-"Securities, commodities, and financial services sales agents",219,"1,351",155,"1,458",63,951
-Travel agents,46,,8,,38,
-"Sales representatives, services, all other",427,"1,040",282,"1,202",145,826
-"Sales representatives, wholesale and manufacturing","1,121","1,047",819,"1,140",302,872
-"Models, demonstrators, and product promoters",14,,8,,6,
-Real estate brokers and sales agents,493,983,209,"1,222",284,780
-Sales engineers,40,,35,,5,
-Telemarketers,42,,17,,25,
-"Door-to-door sales workers, news and street vendors, and related workers",34,,23,,11,
-"Sales and related workers, all other",171,805,103,946,68,709
-First-line supervisors of office and administrative support workers,"1,203",848,383,942,819,809
-"Switchboard operators, including answering service",17,,3,,14,
-Telephone operators,36,,5,,31,
-"Communications equipment operators, all other",5,,1,,4,
-Bill and account collectors,144,625,39,,105,650
-Billing and posting clerks,404,666,44,,360,660
-"Bookkeeping, accounting, and auditing clerks",756,722,115,790,641,716
-Gaming cage workers,9,,1,,8,
-Payroll and timekeeping clerks,125,786,15,,110,785
-Procurement clerks,25,,9,,16,
-Tellers,235,542,39,,195,539
-"Financial clerks, all other",62,708,18,,44,
-Brokerage clerks,3,,2,,1,
-Correspondence clerks,5,,0,,5,
-"Court, municipal, and license clerks",79,691,19,,60,681
-"Credit authorizers, checkers, and clerks",41,,8,,33,
-Customer service representatives,"1,850",640,664,676,"1,185",623
-"Eligibility interviewers, government programs",72,828,17,,55,735
-File clerks,134,676,21,,113,680
-"Hotel, motel, and resort desk clerks",102,513,36,,66,500
-"Interviewers, except eligibility and loan",105,639,7,,98,634
-"Library assistants, clerical",45,,8,,38,
-Loan interviewers and clerks,124,774,25,,100,756
-New accounts clerks,21,,0,,21,
-Order clerks,85,646,40,,45,
-"Human resources assistants, except payroll and timekeeping",36,,4,,32,
-Receptionists and information clerks,951,583,103,600,848,581
-Reservation and transportation ticket agents and travel clerks,102,705,46,,56,646
-"Information and record clerks, all other",104,654,31,,73,631
-Cargo and freight agents,23,,14,,9,
-Couriers and messengers,160,726,135,739,25,
-Dispatchers,279,704,126,734,153,671
-"Meter readers, utilities",30,,28,,1,
-Postal service clerks,111,901,58,999,53,805
-Postal service mail carriers,304,981,185,"1,020",119,931
-"Postal service mail sorters, processors, and processing machine operators",56,783,33,,23,
-"Production, planning, and expediting clerks",224,853,113,935,111,765
-"Shipping, receiving, and traffic clerks",473,596,322,602,151,583
-Stock clerks and order fillers,"1,014",530,643,533,371,526
-"Weighers, measurers, checkers, and samplers, recordkeeping",45,,21,,24,
-Secretaries and administrative assistants,"2,210",713,133,831,"2,078",708
-Computer operators,78,811,41,,37,
-Data entry keyers,221,638,51,655,170,630
-Word processors and typists,56,730,7,,48,
-Desktop publishers,0,,0,,0,
-Insurance claims and policy processing clerks,251,665,40,,210,658
-"Mail clerks and mail machine operators, except postal service",56,619,33,,23,
-"Office clerks, general",900,654,140,707,760,648
-"Office machine operators, except computer",30,,14,,16,
-Proofreaders and copy markers,5,,0,,5,
-Statistical assistants,7,,5,,2,
-"Office and administrative support workers, all other",457,768,107,855,351,751
-"First-line supervisors of farming, fishing, and forestry workers",28,,25,,3,
-Agricultural inspectors,18,,13,,5,
-Animal breeders,2,,1,,1,
-"Graders and sorters, agricultural products",74,511,25,,48,
-Miscellaneous agricultural workers,659,508,547,524,111,423
-Fishers and related fishing workers,4,,4,,0,
-Hunters and trappers,1,,1,,0,
-Forest and conservation workers,17,,17,,1,
-Logging workers,39,,39,,0,
-First-line supervisors of construction trades and extraction workers,558,"1,091",540,"1,101",18,
-Boilermakers,26,,26,,0,
-"Brickmasons, blockmasons, and stonemasons",119,741,119,741,0,
-Carpenters,839,730,828,733,11,
-"Carpet, floor, and tile installers and finishers",93,593,91,597,2,
-"Cement masons, concrete finishers, and terrazzo workers",47,,47,,0,
-Construction laborers,"1,322",692,"1,281",697,41,
-"Paving, surfacing, and tamping equipment operators",11,,11,,0,
-Pile-driver operators,4,,4,,0,
-Operating engineers and other construction equipment operators,334,920,328,922,6,
-"Drywall installers, ceiling tile installers, and tapers",138,600,137,601,1,
-Electricians,667,952,649,951,18,
-Glaziers,48,,47,,1,
-Insulation workers,42,,40,,2,
-"Painters, construction and maintenance",392,612,375,615,17,
-Paperhangers,0,,0,,0,
-"Pipelayers, plumbers, pipefitters, and steamfitters",475,927,464,925,11,
-Plasterers and stucco masons,25,,25,,0,
-Reinforcing iron and rebar workers,12,,12,,0,
-Roofers,161,623,158,624,3,
-Sheet metal workers,117,819,115,820,3,
-Structural iron and steel workers,61,976,60,983,1,
-Solar photovoltaic installers,10,,10,,0,
-"Helpers, construction trades",42,,40,,2,
-Construction and building inspectors,68,996,62,"1,040",6,
-Elevator installers and repairers,41,,41,,0,
-Fence erectors,30,,29,,0,
-Hazardous materials removal workers,28,,24,,4,
-Highway maintenance workers,85,745,83,723,2,
-Rail-track laying and maintenance equipment operators,8,,8,,0,
-Septic tank servicers and sewer pipe cleaners,9,,9,,0,
-Miscellaneous construction and related workers,17,,17,,0,
-"Derrick, rotary drill, and service unit operators, oil, gas, and mining",29,,29,,0,
-"Earth drillers, except oil and gas",23,,23,,0,
-"Explosives workers, ordnance handling experts, and blasters",10,,9,,0,
-Mining machine operators,48,,48,,0,
-"Roof bolters, mining",3,,3,,0,
+workers",111,723,102,760,9,
+Janitors and building cleaners,1595,539,1136,574,459,481
+Maids and housekeeping cleaners,815,450,128,508,687,439
+Pest control workers,94,616,89,617,5,
+Grounds maintenance workers,837,525,805,526,31,
+First-line supervisors of gaming workers,126,797,73,837,53,763
+First-line supervisors of personal service workers,76,619,31,,45,
+Animal trainers,23,,16,,7,
+Nonfarm animal caretakers,99,506,21,,78,504
+Gaming services workers,66,692,37,,28,
+Motion picture projectionists,0,,0,,0,
+"Ushers, lobby attendants, and ticket takers",8,,6,,2,
+Miscellaneous entertainment attendants and related workers,74,517,39,,36,
+Embalmers and funeral attendants,15,,8,,7,
+"Morticians, undertakers, and funeral directors",22,,19,,3,
+Barbers,54,590,47,,8,
+"Hairdressers, hairstylists, and cosmetologists",324,528,22,,302,521
+Miscellaneous personal appearance workers,235,567,48,,187,538
+"Baggage porters, bellhops, and concierges",70,547,56,543,14,
+Tour and travel guides,21,,14,,6,
+Childcare workers,448,482,35,,413,474
+Personal care aides,735,486,127,520,608,479
+Recreation and fitness workers,200,616,82,726,118,565
+Residential advisors,27,,10,,17,
+"Personal care and service workers, all other",76,570,37,,40,
+First-line supervisors of retail sales workers,2388,764,1376,891,1013,639
+First-line supervisors of non-retail sales workers,815,1062,541,1151,274,965
+Cashiers,1360,438,378,493,982,422
+Counter and rental clerks,78,607,48,,31,
+Parts salespersons,115,786,108,800,7,
+Retail salespersons,1896,615,1160,704,736,523
+Advertising sales agents,193,887,87,895,106,882
+Insurance sales agents,440,897,198,1058,242,795
+"Securities, commodities, and financial services sales agents",231,1332,154,1416,77,911
+Travel agents,57,665,10,,47,
+"Sales representatives, services, all other",458,1147,339,1332,120,902
+"Sales representatives, wholesale and manufacturing",1105,1157,796,1222,308,956
+"Models, demonstrators, and product promoters",16,,4,,12,
+Real estate brokers and sales agents,488,953,219,1159,269,818
+Sales engineers,39,,36,,3,
+Telemarketers,37,,11,,27,
+"Door-to-door sales workers, news and street vendors, and related workers",41,,27,,15,
+"Sales and related workers, all other",195,971,107,1147,89,799
+First-line supervisors of office and administrative support workers,1261,867,408,987,854,819
+"Switchboard operators, including answering service",16,,3,,12,
+Telephone operators,35,,9,,27,
+"Communications equipment operators, all other",5,,4,,2,
+Bill and account collectors,130,674,38,,92,655
+Billing and posting clerks,405,696,58,718,347,691
+"Bookkeeping, accounting, and auditing clerks",718,719,92,743,625,716
+Gaming cage workers,11,,0,,11,
+Payroll and timekeeping clerks,103,765,13,,89,767
+Procurement clerks,29,,14,,15,
+Tellers,209,572,25,,184,562
+"Financial clerks, all other",74,902,26,,48,
+Brokerage clerks,5,,2,,3,
+Correspondence clerks,6,,0,,5,
+"Court, municipal, and license clerks",79,738,17,,62,718
+"Credit authorizers, checkers, and clerks",50,807,20,,31,
+Customer service representatives,1881,654,646,712,1234,637
+"Eligibility interviewers, government programs",66,849,16,,50,779
+File clerks,135,704,26,,109,706
+"Hotel, motel, and resort desk clerks",84,486,35,,49,
+"Interviewers, except eligibility and loan",106,671,16,,89,683
+"Library assistants, clerical",45,,8,,37,
+Loan interviewers and clerks,114,742,19,,95,725
+New accounts clerks,36,,8,,28,
+Order clerks,80,629,38,,42,
+"Human resources assistants, except payroll and timekeeping",45,,8,,37,
+Receptionists and information clerks,892,602,66,652,826,599
+Reservation and transportation ticket agents and travel clerks,99,739,43,,56,691
+"Information and record clerks, all other",92,691,19,,74,683
+Cargo and freight agents,14,,10,,4,
+Couriers and messengers,155,725,131,751,24,
+Dispatchers,255,710,110,753,145,691
+"Meter readers, utilities",14,,12,,2,
+Postal service clerks,104,940,48,,56,925
+Postal service mail carriers,266,944,158,965,108,856
+"Postal service mail sorters, processors, and processing machine operators",49,,26,,23,
+"Production, planning, and expediting clerks",238,911,118,1043,120,798
+"Shipping, receiving, and traffic clerks",544,611,379,616,165,596
+Stock clerks and order fillers,982,559,643,571,339,538
+"Weighers, measurers, checkers, and samplers, recordkeeping",43,,22,,21,
+Secretaries and administrative assistants,2165,739,119,852,2046,735
+Computer operators,63,809,27,,35,
+Data entry keyers,224,650,48,,176,640
+Word processors and typists,80,683,8,,72,667
+Desktop publishers,1,,0,,1,
+Insurance claims and policy processing clerks,223,714,34,,189,711
+"Mail clerks and mail machine operators, except postal service",46,,30,,16,
+"Office clerks, general",935,682,142,780,793,670
+"Office machine operators, except computer",27,,10,,17,
+Proofreaders and copy markers,6,,2,,4,
+Statistical assistants,17,,7,,10,
+"Office and administrative support workers, all other",473,758,122,768,352,756
+"First-line supervisors of farming, fishing, and forestry workers",51,711,47,,4,
+Agricultural inspectors,14,,10,,4,
+Animal breeders,3,,3,,0,
+"Graders and sorters, agricultural products",99,500,32,,67,487
+Miscellaneous agricultural workers,701,517,574,553,127,453
+Fishers and related fishing workers,21,,21,,0,
+Hunters and trappers,2,,0,,1,
+Forest and conservation workers,25,,23,,2,
+Logging workers,47,,46,,1,
+First-line supervisors of construction trades and extraction workers,520,1158,506,1166,14,
+Boilermakers,15,,15,,0,
+"Brickmasons, blockmasons, and stonemasons",121,787,121,787,0,
+Carpenters,870,789,851,789,19,
+"Carpet, floor, and tile installers and finishers",115,631,114,628,1,
+"Cement masons, concrete finishers, and terrazzo workers",47,,45,,2,
+Construction laborers,1443,670,1400,667,43,
+"Paving, surfacing, and tamping equipment operators",12,,12,,0,
+Pile-driver operators,2,,2,,0,
+Operating engineers and other construction equipment operators,324,868,318,868,6,
+"Drywall installers, ceiling tile installers, and tapers",114,634,112,628,1,
+Electricians,726,979,711,974,15,
+Glaziers,39,,39,,0,
+Insulation workers,52,768,49,,3,
+"Painters, construction and maintenance",347,683,328,689,20,
+Paperhangers,1,,1,,0,
+"Pipelayers, plumbers, pipefitters, and steamfitters",497,866,489,865,8,
+Plasterers and stucco masons,24,,24,,0,
+Reinforcing iron and rebar workers,13,,13,,0,
+Roofers,174,621,174,621,0,
+Sheet metal workers,136,865,132,866,3,
+Structural iron and steel workers,43,,41,,2,
+Solar photovoltaic installers,7,,7,,0,
+"Helpers, construction trades",57,621,53,627,4,
+Construction and building inspectors,63,974,60,1068,4,
+Elevator installers and repairers,38,,38,,0,
+Fence erectors,26,,25,,1,
+Hazardous materials removal workers,27,,20,,6,
+Highway maintenance workers,91,761,88,770,4,
+Rail-track laying and maintenance equipment operators,10,,10,,0,
+Septic tank servicers and sewer pipe cleaners,6,,6,,0,
+Miscellaneous construction and related workers,15,,14,,1,
+"Derrick, rotary drill, and service unit operators, oil, gas, and mining",27,,27,,0,
+"Earth drillers, except oil and gas",17,,17,,0,
+"Explosives workers, ordnance handling experts, and blasters",12,,12,,0,
+Mining machine operators,49,,49,,0,
+"Roof bolters, mining",2,,2,,0,
 "Roustabouts, oil and gas",4,,4,,0,
-Helpers--extraction workers,3,,3,,0,
-Other extraction workers,29,,29,,0,
-"First-line supervisors of mechanics, installers, and repairers",246,"1,020",221,"1,016",25,
-"Computer, automated teller, and office machine repairers",165,851,150,861,15,
-Radio and telecommunications equipment installers and repairers,132,950,110,975,22,
-Avionics technicians,8,,8,,0,
-"Electric motor, power tool, and related repairers",26,,23,,2,
+Helpers--extraction workers,5,,5,,1,
+Other extraction workers,54,900,52,907,2,
+"First-line supervisors of mechanics, installers, and repairers",244,1092,225,1089,19,
+"Computer, automated teller, and office machine repairers",173,819,156,833,17,
+Radio and telecommunications equipment installers and repairers,121,1010,113,1069,8,
+Avionics technicians,7,,7,,0,
+"Electric motor, power tool, and related repairers",30,,30,,0,
 "Electrical and electronics installers and repairers, transportation 
-equipment",3,,3,,0,
-"Electrical and electronics repairers, industrial and utility",15,,14,,1,
-"Electronic equipment installers and repairers, motor vehicles",8,,8,,0,
-Electronic home entertainment equipment installers and repairers,33,,32,,1,
-Security and fire alarm systems installers,69,927,68,909,1,
-Aircraft mechanics and service technicians,136,"1,047",134,"1,053",2,
-Automotive body and related repairers,117,761,112,770,5,
-Automotive glass installers and repairers,14,,14,,0,
-Automotive service technicians and mechanics,688,730,677,729,11,
-Bus and truck mechanics and diesel engine specialists,298,874,297,875,1,
-Heavy vehicle and mobile equipment service technicians and mechanics,198,964,198,964,0,
-Small engine mechanics,32,,30,,1,
+equipment",1,,1,,0,
+"Electrical and electronics repairers, industrial and utility",14,,14,,0,
+"Electronic equipment installers and repairers, motor vehicles",11,,11,,0,
+Electronic home entertainment equipment installers and repairers,38,,38,,0,
+Security and fire alarm systems installers,71,945,68,943,3,
+Aircraft mechanics and service technicians,153,1169,146,1175,6,
+Automotive body and related repairers,124,821,122,832,1,
+Automotive glass installers and repairers,21,,21,,0,
+Automotive service technicians and mechanics,752,761,737,764,15,
+Bus and truck mechanics and diesel engine specialists,367,887,362,887,4,
+Heavy vehicle and mobile equipment service technicians and mechanics,177,993,173,1005,4,
+Small engine mechanics,26,,26,,0,
 "Miscellaneous vehicle and mobile equipment mechanics, installers, and 
-repairers",74,641,73,646,0,
-Control and valve installers and repairers,33,,32,,1,
-"Heating, air conditioning, and refrigeration mechanics and installers",361,864,357,868,4,
-Home appliance repairers,25,,25,,0,
-Industrial and refractory machinery mechanics,385,968,374,973,11,
-"Maintenance and repair workers, general",514,796,502,797,13,
-"Maintenance workers, machinery",20,,19,,1,
-Millwrights,35,,35,,0,
-Electrical power-line installers and repairers,126,"1,161",125,"1,165",1,
-Telecommunications line installers and repairers,172,850,168,824,4,
-Precision instrument and equipment repairers,56,910,46,,10,
-Wind turbine service technicians,5,,5,,0,
-"Coin, vending, and amusement machine servicers and repairers",27,,24,,3,
-Commercial divers,1,,1,,0,
-Locksmiths and safe repairers,12,,12,,0,
-Manufactured building and mobile home installers,7,,7,,0,
-Riggers,11,,11,,0,
-Signal and track switch repairers,4,,4,,0,
-"Helpers--installation, maintenance, and repair workers",10,,9,,1,
-"Other installation, maintenance, and repair workers",137,773,130,782,8,
-First-line supervisors of production and operating workers,729,923,599,972,131,723
-"Aircraft structure, surfaces, rigging, and systems assemblers",6,,4,,2,
-"Electrical, electronics, and electromechanical assemblers",105,590,55,618,50,554
-Engine and other machine assemblers,6,,6,,0,
-Structural metal fabricators and fitters,22,,22,,0,
-Miscellaneous assemblers and fabricators,990,601,645,625,345,559
-Bakers,138,494,55,562,83,480
-"Butchers and other meat, poultry, and fish processing workers",244,526,183,571,61,449
-"Food and tobacco roasting, baking, and drying machine operators and tenders",16,,14,,2,
-Food batchmakers,81,537,40,,42,
-Food cooking machine operators and tenders,7,,6,,1,
-"Food processing workers, all other",129,547,88,579,41,
-Computer control programmers and operators,85,802,80,843,6,
+repairers",64,613,64,613,0,
+Control and valve installers and repairers,25,,25,,0,
+"Heating, air conditioning, and refrigeration mechanics and installers",376,830,369,832,7,
+Home appliance repairers,26,,26,,0,
+Industrial and refractory machinery mechanics,395,923,379,932,16,
+"Maintenance and repair workers, general",511,828,490,834,20,
+"Maintenance workers, machinery",25,,25,,0,
+Millwrights,40,,39,,1,
+Electrical power-line installers and repairers,132,1191,132,1191,0,
+Telecommunications line installers and repairers,187,879,181,876,5,
+Precision instrument and equipment repairers,44,,34,,10,
+Wind turbine service technicians,6,,6,,0,
+"Coin, vending, and amusement machine servicers and repairers",24,,23,,1,
+Commercial divers,0,,0,,0,
+Locksmiths and safe repairers,20,,18,,2,
+Manufactured building and mobile home installers,3,,3,,0,
+Riggers,13,,13,,0,
+Signal and track switch repairers,11,,11,,0,
+"Helpers--installation, maintenance, and repair workers",15,,14,,2,
+"Other installation, maintenance, and repair workers",156,774,150,772,6,
+First-line supervisors of production and operating workers,722,966,588,1007,133,716
+"Aircraft structure, surfaces, rigging, and systems assemblers",1,,0,,1,
+"Electrical, electronics, and electromechanical assemblers",123,624,73,682,50,587
+Engine and other machine assemblers,14,,11,,2,
+Structural metal fabricators and fitters,25,,24,,1,
+Miscellaneous assemblers and fabricators,957,630,595,700,362,559
+Bakers,135,472,67,488,68,464
+"Butchers and other meat, poultry, and fish processing workers",259,587,196,621,63,487
+"Food and tobacco roasting, baking, and drying machine operators and tenders",7,,4,,3,
+Food batchmakers,70,575,32,,38,
+Food cooking machine operators and tenders,8,,3,,5,
+"Food processing workers, all other",171,676,119,701,52,545
+Computer control programmers and operators,100,868,88,912,12,
 "Extruding and drawing machine setters, operators, and tenders, metal and 
-plastic",13,,11,,2,
-"Forging machine setters, operators, and tenders, metal and plastic",5,,5,,0,
-"Rolling machine setters, operators, and tenders, metal and plastic",13,,9,,3,
+plastic",18,,17,,1,
+"Forging machine setters, operators, and tenders, metal and plastic",9,,8,,1,
+"Rolling machine setters, operators, and tenders, metal and plastic",9,,6,,2,
 "Cutting, punching, and press machine setters, operators, and tenders, metal 
-and plastic",86,639,68,672,18,
+and plastic",84,665,74,688,9,
 "Drilling and boring machine tool setters, operators, and tenders, metal and 
-plastic",8,,8,,0,
+plastic",7,,7,,0,
 "Grinding, lapping, polishing, and buffing machine tool setters, operators, 
-and tenders, metal and plastic",45,,42,,3,
+and tenders, metal and plastic",40,,35,,4,
 "Lathe and turning machine tool setters, operators, and tenders, metal and 
-plastic",13,,12,,0,
+plastic",14,,13,,1,
 "Milling and planing machine setters, operators, and tenders, metal and 
-plastic",2,,2,,0,
-Machinists,326,824,313,844,13,
-"Metal furnace operators, tenders, pourers, and casters",31,,30,,1,
-"Model makers and patternmakers, metal and plastic",3,,3,,0,
+plastic",5,,3,,2,
+Machinists,343,831,326,834,16,
+"Metal furnace operators, tenders, pourers, and casters",23,,20,,3,
+"Model makers and patternmakers, metal and plastic",3,,1,,3,
 "Molders and molding machine setters, operators, and tenders, metal and 
-plastic",28,,21,,7,
-"Multiple machine tool setters, operators, and tenders, metal and plastic",2,,1,,1,
-Tool and die makers,43,,43,,0,
-"Welding, soldering, and brazing workers",558,743,535,753,23,
-"Heat treating equipment setters, operators, and tenders, metal and plastic",2,,2,,0,
-"Layout workers, metal and plastic",6,,6,,0,
+plastic",43,,38,,5,
+"Multiple machine tool setters, operators, and tenders, metal and plastic",5,,4,,1,
+Tool and die makers,59,1007,56,1021,3,
+"Welding, soldering, and brazing workers",541,812,517,821,24,
+"Heat treating equipment setters, operators, and tenders, metal and plastic",2,,1,,1,
+"Layout workers, metal and plastic",11,,11,,0,
 "Plating and coating machine setters, operators, and tenders, metal and 
-plastic",21,,20,,2,
-"Tool grinders, filers, and sharpeners",4,,4,,0,
-"Metal workers and plastic workers, all other",380,626,306,658,74,565
-Prepress technicians and workers,15,,8,,7,
-Printing press operators,170,701,137,748,33,
-Print binding and finishing workers,11,,9,,2,
-Laundry and dry-cleaning workers,135,454,55,486,80,436
-"Pressers, textile, garment, and related materials",30,,10,,20,
-Sewing machine operators,165,437,52,407,114,452
-Shoe and leather workers and repairers,4,,3,,1,
-Shoe machine operators and tenders,1,,1,,0,
-"Tailors, dressmakers, and sewers",32,,7,,25,
+plastic",16,,14,,2,
+"Tool grinders, filers, and sharpeners",7,,7,,0,
+"Metal workers and plastic workers, all other",381,654,303,679,78,574
+Prepress technicians and workers,13,,8,,4,
+Printing press operators,151,758,126,789,26,
+Print binding and finishing workers,8,,4,,4,
+Laundry and dry-cleaning workers,106,450,27,,79,443
+"Pressers, textile, garment, and related materials",19,,10,,9,
+Sewing machine operators,157,519,49,,108,521
+Shoe and leather workers and repairers,1,,0,,1,
+Shoe machine operators and tenders,3,,2,,1,
+"Tailors, dressmakers, and sewers",31,,10,,21,
 Textile bleaching and dyeing machine operators and tenders,0,,0,,0,
-"Textile cutting machine setters, operators, and tenders",7,,4,,3,
-"Textile knitting and weaving machine setters, operators, and tenders",13,,2,,11,
+"Textile cutting machine setters, operators, and tenders",6,,2,,4,
+"Textile knitting and weaving machine setters, operators, and tenders",17,,8,,9,
 "Textile winding, twisting, and drawing out machine setters, operators, and 
-tenders",6,,2,,4,
+tenders",12,,4,,8,
 "Extruding and forming machine setters, operators, and tenders, synthetic 
 and glass fibers",0,,0,,0,
-Fabric and apparel patternmakers,1,,1,,0,
-Upholsterers,20,,19,,1,
-"Textile, apparel, and furnishings workers, all other",13,,11,,2,
-Cabinetmakers and bench carpenters,35,,30,,5,
-Furniture finishers,9,,8,,1,
-"Model makers and patternmakers, wood",0,,0,,0,
-"Sawing machine setters, operators, and tenders, wood",31,,27,,4,
-"Woodworking machine setters, operators, and tenders, except sawing",23,,19,,4,
-"Woodworkers, all other",17,,15,,1,
-"Power plant operators, distributors, and dispatchers",39,,37,,2,
-Stationary engineers and boiler operators,77,924,72,954,4,
-Water and wastewater treatment plant and system operators,76,883,72,885,3,
-Miscellaneous plant and system operators,42,,38,,3,
-"Chemical processing machine setters, operators, and tenders",50,924,46,,4,
-"Crushing, grinding, polishing, mixing, and blending workers",88,643,82,642,6,
-Cutting workers,62,576,50,546,13,
+Fabric and apparel patternmakers,1,,0,,1,
+Upholsterers,22,,18,,4,
+"Textile, apparel, and furnishings workers, all other",19,,10,,9,
+Cabinetmakers and bench carpenters,38,,36,,2,
+Furniture finishers,8,,7,,1,
+"Model makers and patternmakers, wood",1,,1,,0,
+"Sawing machine setters, operators, and tenders, wood",26,,26,,0,
+"Woodworking machine setters, operators, and tenders, except sawing",16,,12,,4,
+"Woodworkers, all other",19,,15,,4,
+"Power plant operators, distributors, and dispatchers",47,,45,,2,
+Stationary engineers and boiler operators,76,1088,72,1142,4,
+Water and wastewater treatment plant and system operators,107,907,102,910,5,
+Miscellaneous plant and system operators,41,,34,,6,
+"Chemical processing machine setters, operators, and tenders",58,877,55,879,3,
+"Crushing, grinding, polishing, mixing, and blending workers",70,771,62,795,8,
+Cutting workers,51,521,40,,12,
 "Extruding, forming, pressing, and compacting machine setters, operators, 
-and tenders",24,,19,,4,
-"Furnace, kiln, oven, drier, and kettle operators and tenders",11,,10,,1,
-"Inspectors, testers, sorters, samplers, and weighers",686,714,445,834,241,584
-Jewelers and precious stone and metal workers,18,,11,,7,
-"Medical, dental, and ophthalmic laboratory technicians",64,615,33,,31,
-Packaging and filling machine operators and tenders,224,488,112,574,113,425
-Painting workers,158,701,147,713,11,
-Photographic process workers and processing machine operators,23,,11,,12,
-Semiconductor processors,2,,2,,0,
-Adhesive bonding machine operators and tenders,12,,7,,5,
-"Cleaning, washing, and metal pickling equipment operators and tenders",2,,2,,0,
-Cooling and freezing equipment operators and tenders,0,,0,,0,
-Etchers and engravers,3,,3,,0,
-"Molders, shapers, and casters, except metal and plastic",16,,14,,2,
-"Paper goods machine setters, operators, and tenders",27,,21,,7,
-Tire builders,11,,10,,1,
-Helpers--production workers,25,,23,,3,
-"Production workers, all other",887,622,641,690,246,515
-Supervisors of transportation and material moving workers,165,807,126,843,39,
-Aircraft pilots and flight engineers,119,"1,582",112,"1,600",7,
-Air traffic controllers and airfield operations specialists,28,,19,,10,
-Flight attendants,68,873,19,,49,
-"Ambulance drivers and attendants, except emergency medical technicians",15,,13,,2,
-Bus drivers,343,641,197,691,146,589
-Driver/sales workers and truck drivers,"2,809",780,"2,689",787,120,630
-Taxi drivers and chauffeurs,261,580,222,595,38,
-"Motor vehicle operators, all other",25,,23,,2,
-Locomotive engineers and operators,45,,45,,0,
-"Railroad brake, signal, and switch operators",3,,3,,1,
-Railroad conductors and yardmasters,52,"1,160",51,"1,148",1,
-"Subway, streetcar, and other rail transportation workers",13,,13,,1,
-Sailors and marine oilers,15,,14,,1,
-Ship and boat captains and operators,28,,26,,1,
-Ship engineers,4,,4,,0,
-Bridge and lock tenders,3,,3,,0,
-Parking lot attendants,67,519,62,513,4,
-Automotive and watercraft service attendants,73,462,67,456,5,
-Transportation inspectors,25,,20,,5,
-"Transportation attendants, except flight attendants",20,,10,,10,
-Other transportation workers,31,,24,,7,
-Conveyor operators and tenders,4,,4,,0,
-Crane and tower operators,66,909,66,909,0,
-"Dredge, excavating, and loading machine operators",27,,27,,0,
-Hoist and winch operators,11,,10,,0,
-Industrial truck and tractor operators,564,602,510,604,54,563
-Cleaners of vehicles and equipment,252,491,224,487,28,
-"Laborers and freight, stock, and material movers, hand","1,417",566,"1,196",580,221,509
-Machine feeders and offbearers,27,,14,,13,
-"Packers and packagers, hand",383,456,166,468,216,437
-Pumping station operators,13,,11,,1,
-Refuse and recyclable material collectors,68,562,64,584,4,
+and tenders",13,,10,,3,
+"Furnace, kiln, oven, drier, and kettle operators and tenders",5,,5,,0,
+"Inspectors, testers, sorters, samplers, and weighers",717,765,443,853,275,637
+Jewelers and precious stone and metal workers,24,,20,,5,
+"Medical, dental, and ophthalmic laboratory technicians",57,598,16,,40,
+Packaging and filling machine operators and tenders,275,553,128,598,147,516
+Painting workers,131,693,117,705,14,
+Photographic process workers and processing machine operators,23,,16,,7,
+Semiconductor processors,2,,0,,2,
+Adhesive bonding machine operators and tenders,4,,4,,0,
+"Cleaning, washing, and metal pickling equipment operators and tenders",10,,8,,2,
+Cooling and freezing equipment operators and tenders,2,,1,,1,
+Etchers and engravers,5,,3,,2,
+"Molders, shapers, and casters, except metal and plastic",25,,21,,4,
+"Paper goods machine setters, operators, and tenders",28,,23,,5,
+Tire builders,10,,10,,0,
+Helpers--production workers,30,,19,,11,
+"Production workers, all other",890,663,653,716,238,570
+Supervisors of transportation and material moving workers,192,881,160,919,31,
+Aircraft pilots and flight engineers,112,1736,105,1750,7,
+Air traffic controllers and airfield operations specialists,16,,11,,5,
+Flight attendants,71,860,20,,51,873
+"Ambulance drivers and attendants, except emergency medical technicians",8,,7,,1,
+Bus drivers,356,605,209,671,148,517
+Driver/sales workers and truck drivers,2828,797,2689,807,139,589
+Taxi drivers and chauffeurs,362,604,308,623,54,453
+"Motor vehicle operators, all other",33,,28,,5,
+Locomotive engineers and operators,43,,36,,7,
+"Railroad brake, signal, and switch operators",5,,5,,0,
+Railroad conductors and yardmasters,42,,39,,2,
+"Subway, streetcar, and other rail transportation workers",9,,7,,2,
+Sailors and marine oilers,19,,19,,0,
+Ship and boat captains and operators,29,,29,,0,
+Ship engineers,3,,3,,0,
+Bridge and lock tenders,5,,3,,2,
+Parking lot attendants,65,560,49,,16,
+Automotive and watercraft service attendants,80,514,73,535,7,
+Transportation inspectors,41,,33,,8,
+"Transportation attendants, except flight attendants",21,,11,,10,
+Other transportation workers,20,,19,,1,
+Conveyor operators and tenders,1,,1,,0,
+Crane and tower operators,52,902,51,898,1,
+"Dredge, excavating, and loading machine operators",29,,28,,1,
+Hoist and winch operators,6,,6,,0,
+Industrial truck and tractor operators,584,624,538,632,46,
+Cleaners of vehicles and equipment,237,530,197,531,40,
+"Laborers and freight, stock, and material movers, hand",1450,578,1196,595,254,500
+Machine feeders and offbearers,29,,14,,15,
+"Packers and packagers, hand",368,480,158,500,210,462
+Pumping station operators,19,,19,,0,
+Refuse and recyclable material collectors,56,522,49,,7,
 Mine shuttle car operators,0,,0,,0,
-"Tank car, truck, and ship loaders",3,,2,,0,
-"Material moving workers, all other",46,,40,,6,
+"Tank car, truck, and ship loaders",6,,6,,0,
+"Material moving workers, all other",41,,34,,6,

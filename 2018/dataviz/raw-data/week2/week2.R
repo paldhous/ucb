@@ -221,7 +221,8 @@ ggplot(immun, aes(x=start_year, y=incomplete_pc/100)) +
   
 # gender pay gap
 
-# load data (scraped in Google Sheets from https://www.bls.gov/cps/cpsaat39.htm)
+# load data (scraped in Google Sheets from https://www.bls.gov/cps/cpsaat39.htm, with =importhtml("https://www.bls.gov/cps/cpsaat39.htm", "table", 2
+)
 gender_pay <- read_csv("gender_pay.csv")
 
 gender_pay_chart <- ggplot(gender_pay, aes(x=men_median_pay, y=women_median_pay)) + 
@@ -232,7 +233,7 @@ gender_pay_chart <- ggplot(gender_pay, aes(x=men_median_pay, y=women_median_pay)
   scale_y_continuous(labels = dollar) + 
   scale_x_continuous(labels = dollar) +
   theme_minimal(base_size = 14, base_family = "Georgia") +
-  ggtitle("Median weekly earnings, by job type (2016)")
+  ggtitle("Median weekly earnings, by job type (2017)")
 
 gender_pay_chart_edited <- gender_pay_chart + 
   geom_abline(intercept = 0, slope = 1, size=0.2) + 

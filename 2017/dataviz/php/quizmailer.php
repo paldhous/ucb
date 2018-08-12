@@ -130,7 +130,7 @@ function show_error($myError)
 		</div>
 
 	</div> <!-- /.container all -->
-	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery.min.js"></script>
 	<script src="../../../js/bootstrap.min.js"></script>
 </body>
 </html>
