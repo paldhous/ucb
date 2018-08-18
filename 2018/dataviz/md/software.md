@@ -38,14 +38,18 @@ A powerful tool for data cleaning, once owned by Google, now open source. Downlo
 ### [Mr. Data Converter](https://shancarter.github.io/mr-data-converter/)
 Allows you to convert tabular (spreadsheet/CSV) data to web-friendly formats including JSON. Web app: no installation required.
 
+### [R](https://www.r-project.org/) and [R Studio](https://www.rstudio.com/)
+R is a software environment and programming language for statistical computing and graphics. Download the for OSX from [here](https://cran.rstudio.com/). R Studio provides a user interface that makes it much easier to use. Download the latest free version of RStudio Desktop [from here](https://www.rstudio.com/products/rstudio/download/).
+
 ### [GPS Visualizer batch geocoder](http://www.gpsvisualizer.com/geocoder/)
 Allows you to convert addresses to latitude and longitude coordinates. Web app: no installation required; however, you will need to sign up for API keys for the geocoding services it uses.
 
 ### [QGIS](https://qgis.org/en/site/)
 The leading open source Geographic Information System, which we will use to make maps and process geodata. Download version 3.2 from [here](https://qgis.org/en/site/forusers/download.html), and download Python 3.6 from [this link](https://www.python.org/ftp/python/3.6.5/python-3.6.5-macosx10.9.pkg). First install Python 3.6, then install GDAL Complete from the QGIS Download, and finally install QGIS.
 
-### [R](https://www.r-project.org/) and [R Studio](https://www.rstudio.com/)
-R is a software environment and programming language for statistical computing and graphics. Download the for OSX from [here](https://cran.rstudio.com/). R Studio provides a user interface that makes it much easier to use. Download the latest free version of RStudio Desktop [from here](https://www.rstudio.com/products/rstudio/download/).
+### [Mapbox Studio](https://www.mapbox.com/mapbox-studio/)
+
+Web-based map design studio. Sign up [here](https://www.mapbox.com/signup/) for a free Mapbox account.
 
 ### [ImageMagick](https://imagemagick.org/script/index.php) and [FFmpeg](https://ffmpeg.org/)
 

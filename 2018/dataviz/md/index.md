@@ -67,7 +67,7 @@ We will use [QGIS](https://qgis.org/en/site/) to make a multi-layered map. We wi
 
 
 -  ####**Nov.2:** [**Making interactive maps**](week11.html)
-We will use a web-based mapping app to create interactive online maps.
+We will use [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) to create interactive online maps.
 
   -  **Assignment:** Submit a full project update, via your GitHub account, for review in next week's meetings.
 
