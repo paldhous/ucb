@@ -454,9 +454,9 @@ A logarithmic curve is just one example of a “non-linear” mathematical relat
 - Load the file `wealth_life_2016.csv` into Google Sheets.
 - Calculate the values needed to group nations into five quantile bins, according to the 2016 GDP per capita (`gdp_per_cap`) data.
 - Make a histogram chart showing the distribution of the GDP per capita data.
-- Make a scatterplot showing the relationship between life expectancy (`life_expect`), on the X axis, and GDP per capita for the world's nations, on the Y axis, in 2016. Add a logarithmic trend line to the chart, and then change the X axis to a logarithmic scale. You will need to highlight both columns before making this chart, and explore the `CUSTOMIZE` options.
+- Make a scatterplot showing the relationship between GDP per capita , on the X axis, and life expectancy at birth (`life_expect`) for the world's nations, on the Y axis, in 2016. Add a logarithmic trend line to the chart, and then change the X axis to a logarithmic scale. You will need to highlight both columns before making this chart, and explore the `CUSTOMIZE` options.
 - Subscribe to visualization blogs, follow visualization thought leaders on Twitter, and take other steps to track developments in data viz and data journalism.
-- Share your Google spreadsheet with your calculated quantile values and charts, and send your initial list of visualization blogs etc by the start of next week's class.
+- Via bCourses, share the url to your Google spreadsheet with your calculated quantile values and charts, and send your initial list of visualization blogs etc by the start of next week's class.
 
 ### Further reading
 

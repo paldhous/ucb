@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8' />
+  <title>Display a map</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body { margin:0; padding:0; }
+    #map { position:absolute; top:0; bottom:0; width:100%; }
+
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+
+    #legend {
+    padding: 10px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    line-height: 18px;
+    margin-bottom: 40px;
+    }
+
+    .legend-key {
+      display: inline-block;
+      border-radius: 20%;
+      width: 10px;
+      height: 10px;
+      margin-right: 5px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div id='map'></div>
+
+<div class='map-overlay' id='legend'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1IjoicGFsZGhvdXMiLCJhIjoiRlVuSTQyMCJ9.rI4OZyypY0ovTA7SkmHudg';
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/paldhous/cjkybdbt14vnu2rqss0qhwfs2',
+  center: [-99, 40],
+  zoom: 3
+});
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
+
+// Disable scroll zooming
+map.scrollZoom.disable();
+
+
+// Create legend
+map.on('load', function() {
+
+  var layers = ['<1%', '1-2%', '2-5%', '5-10%', '10-12%'];
+  var colors = ['#fee5d9','#fcae91','#fb6a4a','#de2d26','#a50f15'];
+
+  for (i = 0; i < layers.length; i++) {
+    var layer = layers[i];
+    var color = colors[i];
+    var item = document.createElement('div');
+    var key = document.createElement('span');
+    key.className = 'legend-key';
+    key.style.backgroundColor = color;
+
+    var value = document.createElement('span');
+    value.innerHTML = layer;
+    item.appendChild(key);
+    item.appendChild(value);
+    legend.appendChild(item);
+ }
+});
+
+// Add popup
+map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['quakes'] // replace this with the name of the layer
+  });
+
+  if (!features.length) {
+    return;
+  }
+
+  var feature = features[0];
+
+  var popup = new mapboxgl.Popup({ offset: [0, -15] })
+    .setLngLat(feature.geometry.coordinates)
+    .setHTML('<b>Magitude: </b>' + feature.properties.mag + '<br><b>Time: </b>' + feature.properties.time + '<br><b>Depth: </b>' + feature.properties.depth + 'km')
+    .setLngLat(feature.geometry.coordinates)
+    .addTo(map);
+});
+
+
+</script>
+
+</body>
+</html>
