@@ -43,6 +43,7 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
 
 #### [Download Week 6](./data/week6.zip)
 
+- `nations.csv` As for week 3, but lacking the variable for life expectancy.
 
 #### [Download Week 7](./data/week7.zip)
 
