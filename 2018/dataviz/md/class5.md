@@ -208,9 +208,9 @@ When you launch Tabula, it opens in your web browser. However, any data you load
 
 ![](./img/class5_9.jpg)
 
-Click `Browse`, navigate to the file ``wr_50m_jun_21_2018.pdf`, and then click `Import`.
+Click `Browse`, navigate to the file `wr_50m_jun_21_2018.pdf`, and then click `Import`.
 
-Once the PSF has been imported, highlight the section of the first table showing individual records for men:
+Once the PDF has been imported, highlight the section of the first table showing individual records for men:
 
 ![](./img/class5_10.jpg)
 
@@ -222,7 +222,7 @@ Now click `Export` to download as a CSV file, and rename as `men_swimming_record
 
 Repeat the process for individual swimming records for women.
 
-If you have a PDF with a table spread over multiple pages in the same location, clicking `Repeat this Selection` will select all of the data for extraction. (Before proceeding, however, make sure the highlighting is correct on every page, and adjust the area highlighted on some pages if necessary.)
+If you have a PDF with a table spread over multiple pages in the same location on each page, clicking `Repeat this Selection` will select all of the data for extraction. (Before proceeding, however, make sure the highlighting is correct on every page, and adjust the area highlighted on some pages if necessary.)
 
 Tabula will not work with PDFs created by scanning the original document as an image, which have to be interpreted using Optical Character Recognition (OCR) software.
 
@@ -312,6 +312,12 @@ Click the Open Refine logo at top left to return to the opening screen. Create a
 
 Again, each field/column has a button with a downward-pointing triangle. Click on these buttons and you get the option to create “facets” for the column, which provide a powerful way to edit and clean data.
 
+The `All` columns dropdown menu in Open Refine can be useful to remove unwanted columns and quickly recorder those you want to retain. Select `Edit Columns>Re-order / remove columns` to pull up this dialog box:
+
+![](./img/class5_17a.jpg)
+
+Here we will keep all the data, however.
+
 Click on the button for the field `Recipent City`, and select `Facet>Text facet`. A summary of the various entries now appears in the panel to the left:
 
 ![](./img/class5_18.jpg)
@@ -353,6 +359,12 @@ Select `Edit colum>Add column based on this column...` and fill in the dialog bo
 
 ![](./img/class5_23.jpg)
 
+Here is what I entered under `Expression`:
+
+```Javascript
+value.replace('$','').replace(',','').replace('(','-').replace(')','')
+```
+
 Here `value` refers to the value in the original column, and `replace` is a function that replaces characters in the value. We can run several `replace` operations by "chaining" them together.
 
 Here we are replacing the "$" symbols, the commas separating thousands, and the closing brackets with nothing; we are replacing the opening brackets with a hyphen to designate negative numbers.
@@ -383,11 +395,37 @@ When you are finished cleaning and processing your data, click the `Export` butt
 
 Open Refine is a very powerful tool that will reward efforts to explore its wide range of its functions for manipulating data. See the "Further reading" for more.
 
-#### Excercise
+#### Filtering data in Open Refine
 
-XXXXXX
+Clicking `Export` will export the data currently being viewed.
+
+This means you can filter data based on values of a continuous variable using the slider control on a numeric facet.
+
+To filter data based on text or categorical variables, you can create a text filter.
+
+From the dropdown menu for `Recipient`, select `Text filter` and type `Berkeley`. This will filter the data to the 1387 grants awarded to Berkeley.
+
+To delete records based on a text filter, set the filter and then select `Edit rows>Remove all matching rows` from the `All` columns dropdown.
 
 
+#### Exercise
+
+Load the CSV for women's swimming records we extracted from the file `wr_50m_jun_21_2018.pdf`.
+
+Process the data so it contains the following columns:
+
+`event` `first_name` `last name` `nationality` `city` `country` `date` (which should be in international standard format).
+
+Finally create new columns from `time` with `minutes` and `seconds` extracted from `time`. To do this, you will need to use the following expression:
+
+```Javascript
+substring(value, x, y)
+```
+Here, x and y are indexed positions in a string of characters. The first character is 0, the second is 1 and so on. You can also index from the end: The last character is -1, the second last -2, and so on.
+
+To extract the minutes and seconds from the time values, you will need to index from the end!
+
+Save the JSON with your operations and use this to repeat for the men's records.
 
 ### Standardize names with Mr People
 
@@ -456,16 +494,16 @@ To convert data from JSON or XML into text files, you can use Open Refine. First
 
 ### Assignment
 
-XXXXXXXXX
-
 - Grab the data for the historical budgets of all of the agencies within the NIH, from [this page](https://www.nih.gov/about-nih/what-we-do/nih-almanac/appropriations-section-1). (Remember that you will have to grab the data from the `Section 2` link, as well!)
 - Use Open Refine to process this data as follows:
- - The data is in a wide format, with columns for each agency. So convert it into long format, with one column for each variable: `FY`, `Agency`, `Budget`.
- - You will need to perform some further edits. Notice that many of the agency abbreviations contain numbers, which correspond to footnotes. So you want to create a cleaned-up Agency column without these numbers. You can do this by creating a new column with the following formula, which tells Open Refine to replace all digits with a blank: `value.replace(/\d/,''))`.
- - In 1976 the definition of Fiscal Year or `FY` changed, which is why there is a row for 1976 TQ, which stands for transition quarter. So before exporting the processed data as a CSV file, filter to include only data from 1980 onwards, using a numeric facet as follows (you will need to uncheck the `Non-numeric` box as well as moving the slider):
- ![](./img/class5_30.jpg)
+ - The data is in a wide format, with columns for each agency. So you need to convert it into long format, with one column for each variable: `FY`, `Agency`, `Budget`.
+ - The original tables contain a column with `Total`. This should be removed. The total for each year can easily be calculated, but if you include the annual totals in the data by agency, it will cause problems when summarizing the data later on.
+ - You will need to perform some further edits. Notice that many of the agency abbreviations contain numbers, which correspond to footnotes. And some of the years have footnotes, too. You will need to work out how to move these footnotes into separate columns: Look for options under `Edit columns`.
+ - Many of the numbers will contain commas, which will need to be removed. After that, you should convert numbers stored as text to actual numbers.
+ - In 1976 the definition of Fiscal Year or `FY` changed, which is why you now will have data for `1976` and `1976 TQ`, where `TQ` stands for transition quarter. So before exporting the processed data as a CSV file, filter to include only data from 1980 onwards, using a numeric facet as follows:
+![](./img/class5_30.jpg)
 - Extract the operations to process this data, and save in a file with the extension `.json`.
-- Send me your CSV file with the processed data and your JSON file with the operations to repeat what you did.
+- Via bCourses, send me your unprocessed and processed CSV files and your JSON file with the operations to repeat what you did.
 
 ### Further reading
 

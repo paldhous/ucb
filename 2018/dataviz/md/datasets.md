@@ -35,6 +35,11 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
 
 #### [Download Week 5](./data/week5.zip)
 
+- `gdp_percap.csv` [World Bank data](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on Gross Domestic Product (GDP) per capita for nations and groups of nations, from 1990 to 2016, in current international dollars, corrected for purchasing power in different territories.
+
+- `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/).
+
+- `wr_50m_jun_21_2018.pdf` PDF with current world swimming records, [from FINA](https://www.fina.org/content/swimming-records), the international federation for swimming and other water sports.
 
 #### [Download Week 6](./data/week6.zip)
 
