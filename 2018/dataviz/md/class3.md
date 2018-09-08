@@ -423,7 +423,7 @@ Tableau also allows you to create stories, which combine successive dashboards i
 
  This should be a challenging exercise that will help you learn how Tableau works. If you get stuck, download my visualization and study how it is put together.
 
-- By next week's class, send me the url for your second dashboard. (Don't worry about designing for different devices.)
+- By next week's class, file the url for your second dashboard via bCourses. (Don't worry about designing for different devices.)
 
 ### Further reading/viewing
 
