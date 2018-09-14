@@ -1,6 +1,6 @@
 # Using GitHub and starting your final projects
 
-In this week's class we will learn the basics of version control, so that you can work on your final projects in a clean folder with a single set of files, but can save snapshots of versions of your work at each point and return to them if necessary.
+In this week's class we will learn the basics of version control, so that you can work on your final projects in a clean folder with a single set of files, but can save snapshots of versions of your work at each Thpoint and return to them if necessary.
 
 This avoids the hell of having to search through multiple versions of similar files. That, as Ben Welsh of the *Los Angeles Times* explains in [this video](https://www.youtube.com/watch?v=2l-In12IqNQ), legendary in data journalism circles as "Ben's rant," is nihilism!
 
@@ -62,7 +62,9 @@ Back on the GitHub website, click on the `Emails` link in the panel at left. If 
 
 Now click on the `Security` link. I strongly recommend that you click on `Set up two-factor authentication` to set up this important security feature for your account. It will require you to enter a six-digit code sent to your phone each time you sign on from an unfamiliar device or location.
 
-At the next screen, click `Set up using SMS`. Then enter your phone number, send a code to your phone and enter it where shown:
+I recommend using an authentication app such as Duo Security or Google Authenticator. Download them from the [IOS App Store](https://www.apple.com/ios/app-store/) or [Google Play](https://play.google.com/store?hl=en)
+
+Alternatively, you can receive text messages to your phone, although this is not so secure. If going this route, at the next screen, click `Set up using SMS`. Then enter your phone number, send a code to your phone and enter it where shown:
 
 ![](img/class4_7.jpg)
 
@@ -70,9 +72,11 @@ At the next screen click `Download` recovery codes. These will allow you to get 
 
 Click `Enable two-factor authentication`.
 
+You can change your authentication method at any time.
+
 ### Open and authenticate GitHub desktop
 
-Open the GitHub Desktop app. At the opening screen, click `Sign into GitHub Com`:
+Open the GitHub Desktop app. At the opening screen, click `Sign into GitHub.com`:
 
 ![](img/class4_8.jpg)
 
@@ -205,6 +209,10 @@ Now go the the url `https://[username].github.io/my-first-repo/`, where `[userna
 
 ![](img/class4_33.jpg)
 
+### If you mess up and decide you need to go back to an earlier commit
+
+Follow [these instructions](https://help.github.com/desktop/guides/contributing-to-projects/reverting-a-commit/). Make sure to commit and sync to GitHub regularly, otherwise reverting to an earlier stage of your project will lose a lot of work!
+
 ### Introducing Markdown, Haroopad, and Bootstrap
 
 [**Markdown**](https://en.wikipedia.org/wiki/Markdown) provides a simple way to write text documents that can easily be converted to HTML, without having to worry about writing all of the tags to produce a properly formatted web page.
@@ -251,7 +259,7 @@ See [here](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) for
 
 Save `README.md` in Haroopad and close it.
 
-With Github Desktop in the `master` branch, delete `index.html` from your repo, and copy into the repo the file `index2.html` and the folders `js`, `css`, and `fonts`. Rename `index2.html` to `index.html`.
+With Github Desktop in the `master` branch, delete `index.html` from your repo, and copy into the repo the file `index2.html`.
 
 You now have a template Bootstrap page with a navigation bar at the top. Open in a browser, and it should look like this:
 
