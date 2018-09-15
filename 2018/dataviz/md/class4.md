@@ -1,6 +1,6 @@
 # Using GitHub and starting your final projects
 
-In this week's class we will learn the basics of version control, so that you can work on your final projects in a clean folder with a single set of files, but can save snapshots of versions of your work at each Thpoint and return to them if necessary.
+In this week's class we will learn the basics of version control, so that you can work on your final projects in a clean folder with a single set of files, but can save snapshots or versions of your work at each point and return to them if necessary.
 
 This avoids the hell of having to search through multiple versions of similar files. That, as Ben Welsh of the *Los Angeles Times* explains in [this video](https://www.youtube.com/watch?v=2l-In12IqNQ), legendary in data journalism circles as "Ben's rant," is nihilism!
 
@@ -321,17 +321,16 @@ There are various sites on the web that provide customized Bootstrap themes -- s
 
 ### Assignment
 
-- Create a repository on GitHub to host your final project and clone to your computer so you can manage the project in GitHub Desktop.
+- Create a repository on GitHub and clone to your computer so you can manage in GitHub Desktop.
 - In Markdown, write a pitch for your final project in a file called `project-pitch.md`. Your final project accounts for 45% of your grade for this class, so it's important that you get off to a good start with a substantial and thoughtful pitch. You will also be graded separately on this pitch assignment.
  - Explain the goals of your project.
  - Detail the data sources you intend to use, and explain how you intend to search for data if you have not identified them.
  - Identify the questions you wish to address.
  - Building from these questions, provide an initial outline of how you intend the visualize the data, describing the charts/maps you are considering.
-
 - Using Haroopad, save the Markdown document as an HTML file with the same name.
-- Create a `gh-pages` branch for your repository and publish it on GitHub. View the webpage at created at `http://[username].github.io/[project]/project-pitch.html` where `[username]` is your GitHub user name and `[project]` is the name of your project repository.
-
-- Share that url with me so I can read your project pitch and provide feedback.
+- Create a `gh-pages` branch for your repository and publish it on GitHub. View the webpage at created at `http://[username].github.io/[repo]/project-pitch.html` where `[username]` is your GitHub user name and `[project]` is the name of your project repository.
+- Share that url with me via bCourses so I can read your project pitch and provide feedback.
+- If you would rather not publish your project pitch in a public repo, and have not yet obtained a GitHub Education account to secure private repos, go through the exercise above with some generic text, rather than that your pitch, so I can verify that you've grapsed the basics of using GitHub. Then file your pitch directly through bCourses as a Markdown document.
 
 ### Further reading
 
