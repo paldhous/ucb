@@ -328,7 +328,7 @@ There are various sites on the web that provide customized Bootstrap themes -- s
  - Identify the questions you wish to address.
  - Building from these questions, provide an initial outline of how you intend the visualize the data, describing the charts/maps you are considering.
 - Using Haroopad, save the Markdown document as an HTML file with the same name.
-- Create a `gh-pages` branch for your repository and publish it on GitHub. View the webpage at created at `http://[username].github.io/[repo]/project-pitch.html` where `[username]` is your GitHub user name and `[project]` is the name of your project repository.
+- Create a `gh-pages` branch for your repository and publish it on GitHub. View the webpage at created at `http://[username].github.io/[repo]/project-pitch.html` where `[username]` is your GitHub user name and `[repo]` is the name of your repository.
 - Share that url with me via bCourses so I can read your project pitch and provide feedback.
 - If you would rather not publish your project pitch in a public repo, and have not yet obtained a GitHub Education account to secure private repos, go through the exercise above with some generic text, rather than that your pitch, so I can verify that you've grapsed the basics of using GitHub. Then file your pitch directly through bCourses as a Markdown document.
 
