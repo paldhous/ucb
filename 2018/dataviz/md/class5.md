@@ -16,7 +16,7 @@ Download the data for this session from [here](data/week5.zip), unzip the folder
 
 - `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/).
 
-- `wr_50m_jun_21_2018.pdf` PDF with current world swimming records, [from FINA](https://www.fina.org/content/swimming-records), the international federation for swimming and other water sports.
+- `wr_50m_sept_6_2018.pdf` PDF with current world swimming records, [from FINA](https://www.fina.org/content/swimming-records), the international federation for swimming and other water sports.
 
 
 ### Data portals
@@ -60,6 +60,9 @@ The options to search by `site or domain` and `file type` can be especially usef
 The file type search offers a drop-down menu, with the options including Excel spreadsheets, and Google Earth `KML` and `KMZ` files. These are common data formats, but you are not limited to those on the menu. In a regular Google search, type a space after your search terms followed by `filetype:xxx`, where `xxx` is the suffix for the file type in question. For example, `dbf` will look for database tables in this format. Combining file type and domain searches can be a good way to find data an agency has posted online -- some of which may not otherwise be readily accessible.
 
 Searching for PDFs and `PPT` presentations can be a good way to find documents that may not otherwise be easy to find.
+
+Google has also recently launched [Dataset Search](https://toolbox.google.com/datasetsearch), which aims to simplify the process of finding high-quality datasets, published in standard formats.
+
 
 ### Search online databases
 
@@ -208,13 +211,13 @@ When you launch Tabula, it opens in your web browser. However, any data you load
 
 ![](./img/class5_9.jpg)
 
-Click `Browse`, navigate to the file `wr_50m_jun_21_2018.pdf`, and then click `Import`.
+Click `Browse`, navigate to the file `wr_50m_sept_6_2018.pdf`, and then click `Import`.
 
 Once the PDF has been imported, highlight the section of the first table showing individual records for men:
 
 ![](./img/class5_10.jpg)
 
-Click `Preview` to see the extracted data:
+Click `Preview & Export Extracted Data` to see the extracted data:
 
 ![](./img/class5_11.jpg)
 
@@ -410,7 +413,7 @@ To delete records based on a text filter, set the filter and then select `Edit r
 
 #### Exercise
 
-Load the CSV for women's swimming records we extracted from the file `wr_50m_jun_21_2018.pdf`.
+Load the CSV for women's swimming records we extracted from the file `wr_50m_sept_6_2018.pdf`.
 
 Process the data so it contains the following columns:
 
@@ -429,7 +432,7 @@ Save the JSON with your operations and use this to repeat for the men's records.
 
 ### Standardize names with Mr People
 
-For processing names from a string of text into a standardized format with multiple fields, you may wish to experiment with **[Mr People](http://people.ericson.net/)**, a web app made by Matt Ericson, a member of the graphics team at *The New York Times*.
+For processing names from a string of text into a standardized format with multiple fields, you may wish to experiment with **[Mr People](http://people.ericson.net/)**, a web app made by Matt Ericson of *The New York Times*.
 
 ![](./img/class5_26.jpg)
 

@@ -35,6 +35,9 @@ Point-and-click GUI for version control of your projects, and synching with remo
 ### [Open Refine](http://openrefine.org/)
 A powerful tool for data cleaning, once owned by Google, now open source. Download the **version 2.8** [from here](http://openrefine.org/download.html). When launched, Open Refine will work in your default web browser; note that your data remains on your computer, and is not uploaded to the web.
 
+### [Tabula](https://tabula.technology/)
+A tool for extracting tables of data from digital PDFs. Downlaod from [here](https://tabula.technology/). When launched, Tabula will work in your default web browser; again, your data remains on your computer, and is not uploaded to the web.
+
 ### [Mr. Data Converter](https://shancarter.github.io/mr-data-converter/)
 Allows you to convert tabular (spreadsheet/CSV) data to web-friendly formats including JSON. Web app: no installation required.
 
