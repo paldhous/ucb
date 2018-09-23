@@ -10,7 +10,7 @@ Data from the [Transportation Injury Mapping System](https://tims.berkeley.edu/)
 
  - `CASE_ID` Unique identifying code for each collision.
  - `ACCIDENT_YEAR` Year of accident.
- - `INTERSECTION` Did the collision happen at an intersection? `Y`, `N`, or blank.
+ - `INTERSECTION` Did the collision happen at an intersection? `Y` yes, `N` no, or blank.
  - `COLLISION_DATE` Date of accident, in the international standard format `YYYY-MM-DD`.
  - `COLLISION_TIME` Time of accident, on 24-hour clock; `0915` is 9:15am, `22:20` is 10.20pm, and so on.
  - `DAY_OF_WEEK` Numbered day of the week on which collision happened; `1` is Monday, `7` is Sunday.
@@ -42,7 +42,7 @@ Data from the [Transportation Injury Mapping System](https://tims.berkeley.edu/)
 
 Data on immunization in kindergartens from the [California Department of Public Health](http://www.shotsforschool.org/k-12/reporting-data/).
 
-`shots_kindergartens.csv` Data for each school, from the 2001-02 school year, to the 2015-16 school year, with the following variables:
+`shots_kindergartens.csv` Data for each school, from the 2001-02 school year to the 2015-16 school year, with the following variables:
  - `district` School district.
  - `sch_code` Unique identifying code for each school.
  - `county` 
@@ -51,11 +51,11 @@ Data on immunization in kindergartens from the [California Department of Public 
  - `enrollment` Number of children enrolled.
  - `complete` Number of children with all required immunizations.
  - `condit` Nimber of children enrolled who do not have an exemption but have not yet completed required immunizations.
- - `pme` Number of children with medical exemption from required immunization.
- - `pbe` Number of children with personal belief exemption from required immunizations.
- - `prejan_pbe` For the `2014-15` school year, number of chidlren with personal belief exemption obtained prior to January 1, 2014, where a parent signed an affidavit requesting the exemption.
- - `doc_couns_pbe` Number of children with personal belief exemption from required immunizations after counselling from health care professional.
- - `relig_pbe` Number of children with a religious belief exemption from required immunizations. 
+ - `pme` Number of children with a medical exemption from required immunizations.
+ - `pbe` Number of children with a personal belief exemption from required immunizations.
+ - `prejan_pbe` For the `2014-15` school year, number of children with a personal belief exemption obtained prior to January 1, 2014, where a parent signed an affidavit requesting the exemption.
+ - `doc_couns_pbe` Number of children with a personal belief exemption from required immunizations after counselling from health care professional.
+ - `relig_pbe` Number of children with a religious belief exemption from required immunizations.
  - `dtp` Number of children immunized against diptheria, tetanus, and pertussis.
  - `polio` Number of children immunized against polio.
  - `mmr` Number of children immunized against measles, mumps, and rubella.
@@ -87,7 +87,7 @@ Data from the U.S. Census Bureau's [American Community Survey](https://www.censu
 `census_rent.csv`
 
  - `zip` Zip code.
- - `year` For the ACS data, i.e. all variables except `rent_index` the data is summarized from five years of the survey; i.e. `2012-16` for `2016`, and so on.
+ - `year` For the ACS data, i.e. all variables except `rent_index` the data is summarized from five years of the survey; i.e. data is from `2012-16` where year is `2016`, and so on.
  - `city` 
  - `median_income` Median household income, in dollars.
  - `median_income_moe` Margin of error for the above.
