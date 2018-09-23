@@ -1,0 +1,25 @@
+filter out those for which we don't have rent info
+
+calculate % of median income to rent a typical house
+
+calculate % of households in poverty
+
+filter 2016
+
+sort by median income, rent, rent_income, pc_poverty - find interesting places to report on
+
+repeat 2011
+
+countif(K:K, "<0.33")
+
+calculate increase in rent
+
+=exact(A2,'2011'!A2)
+
+pivot table on 2016 data, by city, households in poverty, households, calc field
+
+get them to repeat on 2011
+
+
+
+
