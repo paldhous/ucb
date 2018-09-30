@@ -4,7 +4,7 @@
 
 In today's class we will work with **[R](http://www.r-project.org/)**, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as "free software environment for statistical computing and graphics," R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.
 
-Our goal for today's class is to get used to processing and analyzing using the **[dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)** package.
+Our goal for today's class is to get used to processing and analyzing data using the **[dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)** package.
 
 **[RStudio](https://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a user-friendly interface.
 
@@ -12,7 +12,9 @@ Launch RStudio, and the screen should look like this:
 
 ![](./img/class7_1.jpg)
 
-The main panel to the left is the R Console. Type valid R code into here, hit `return`, and it will be run. See what happens if you run:
+The main panel to the left is the R Console. It shows the version of R you are running, here `3.5.1`.
+
+Type valid R code into here, hit `return`, and it will be run. See what happens if you run:
 
 ```R
 print("Hello World!")
@@ -107,16 +109,16 @@ Anything that appears on a line after `#` will be treated as a comment, and will
 - When entering two or more values as a list, combine them using the function `c`, with the values separated by commas, for example: `c("2018-08-26","2018-09-04")`
 - As in a spreadsheet, you can specify a range of values with a colon, for example: `c(1:10)` creates a list of integers (whole numbers) from one to ten.
 - Some common operators:
- - `+` `-` add, subtract.
- -  `*` `/` multiply, divide.
- -  `>` `<` greater than, less than.
- -  `>=` `<=` greater than or equal to, less than or equal to.
- -  `!=` not equal to.
+ - `+` `-` Add, subtract.
+ -  `*` `/` Multiply, divide.
+ -  `>` `<` Greater than, less than.
+ -  `>=` `<=` Greater than or equal to, less than or equal to.
+ -  `!=` Not equal to.
 
 - Equals signs can be a little confusing, but see how they are used in the code we use today:
 
- -  `==` test whether an object is equal to a value. This is often used when filtering data, as we will see.
- -  `=` make an object equal to a value; works like `<-`, but used within the brackets of a function.
+ -  `==` Test whether an object is equal to a value. This is often used when filtering data, as we will see.
+ -  `=` Make an object equal to a value; works like `<-`, but used within the brackets of a function.
 
 - Handling null values:
  - Nulls are designated as `NA`.
@@ -125,7 +127,7 @@ Anything that appears on a line after `#` will be treated as a comment, and will
 
 Here, `is.na` is a **function**. Functions are followed by parentheses, and act on the data/code in the parenthesis.
 
-**Important:** Object and variable names in R should not contain spaces.
+==**Important:**== Object and variable names in R should not contain spaces.
 
 ### Install and load R packages
 
@@ -136,7 +138,7 @@ In this class, we will work with two incredibly useful packages developed by [Ha
 - **[readr](https://cran.r-project.org/web/packages/readr/readr.pdf)** Reads and writes CSV and other text files.
 - **[dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)** Processes and analyzes data, using the operations we discussed in the first class.
 
-These and several other useful packages have been combined into a super-package called **[tidyverse](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/)**.
+These and several other useful packages have been combined into a super-package called the **[tidyverse](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/)**.
 
 To install a package, click on the `Install` icon in the `Packages` tab, type its name into the dialog box, and make sure that `Install dependencies` is checked, as some packages will only run correctly if other packages are also installed. Click `Install` and all of the required packages should install:
 
@@ -158,9 +160,7 @@ Installing a package makes it available to you, but to use it in any R session y
 library(readr)
 library(dplyr)
 ```
-
 At this point, and at regular intervals, save your script, by clicking the save/disk icon in the script panel, or using the `⌘-S` keyboard shortcut.
-
 
 ### Load and view data
 
@@ -234,7 +234,9 @@ If you need to change the data type for any column, use the following functions:
 - `as.Date` converts to a date.
 - `as.POSIXct` converts to a full date and timestamp.
 
-So this code will convert the population numbers from integers to numbers that could hold decimal fractions:
+(To convert a date/time written as a string of text to a date or a full timestamp, you may also need to specify the format, see [here](https://www.r-bloggers.com/date-formats-in-r/) for more.)
+
+This code will convert the population numbers from integers to numbers that could hold decimal fractions:
 
 ```r
 # convert population to numeric
@@ -323,7 +325,7 @@ Here are some of the most useful functions in **dplyr**:
 	- `n_distinct(x`) Count the number of unique values in variable `x`.
 - `mutate` Create new column(s) in the data, or change existing column(s).
 - `rename` Rename column(s).
-- `bind_rows` Merge two data frames into one, combining data from columns with the same name.
+- `bind_rows` Merge two or more data frames into one, combining data from columns with the same name.
 
 There are also various functions to **join** data, which we will explore below.
 
@@ -333,24 +335,24 @@ These functions can be chained together using the "pipe" operator `%>%`, which m
 
 Now we will **filter** and **sort** the data in specific ways. For each of the following examples, copy the code that follows into your script, and view the results. Notice how we create new objects to hold the processed data.
 
-##### Filter the data for 2015 only
+##### Filter the data for 2016 only
 
 ```r
-# filter data for 2015 only, and select columns for country, life expectancy, income group, and region
+# filter data for 2016 only, and select columns for country, life expectancy, income group, and region
 longevity <- nations %>%
-  filter(year == 2015 & !is.na(life_expect)) %>%
+  filter(year == 2016 & !is.na(life_expect)) %>%
   select(country, life_expect, income, region)
 ```
-In this code, we create a new object called `longevity` from `nations` and then (`%>%`) filter it for just the data for 2015 and to include only non-null values. Then we select just four variables from the ten in the original data frame. There should be data returned for 195 countries.
+In this code, we created a new object called `longevity` from `nations` and then (`%>%`) filtered it for just the data for 2016 and to include only non-null values. Then we select just four variables from the ten in the original data frame. There should be data returned for 195 countries.
 
 Here are the first few records in the new object:
 
 ![](img/class7_6.jpg)
 
-##### Find the ten high-income countries with the lowest life expectancy in 2015
+##### Find the ten high-income countries with the shortest life expectancy in 2016
 
 ```r
-# find the ten high-income countries with the lowest life expectancy
+# find the ten high-income countries with the shortest life expectancy
 high_income_short_life <- longevity %>%
   filter(income == "High income") %>%
   arrange(life_expect) %>%
@@ -358,11 +360,25 @@ high_income_short_life <- longevity %>%
 ```
 This code takes the previous `longevity` object, filters it for countries in the high income group only, then sorts the data, using `arrange` (the default is ascending order). Finally it uses `head(10)` to return the first ten countries in the sorted data.
 
+##### Find countries in North America or Europe & Central Asia with a life expectancy in 2016 of between 75 and 80.
+
+```R
+# find countries in North America or Europe & Central Asia with a life expectancy in 2016 of 75 - 80
+eur_na_75_80 <- longevity %>%
+  filter(life_expect > 75 & life_expect < 80 & (region == "Europe & Central Asia" | region == "North America")) %>%
+  arrange(desc(life_expect))
+```
+
 This should be the result:
 
-![](img/class7_7.jpg)
+![](img/class7_8.jpg)
 
-##### Find the 20 countries with the longest life expectancy in 2015, plus the United States with its rank, if it lies outside the top 20
+Whereas in the initial filter of the data to create the `longevity` data frame we used `&` to return data meeting both criteria, this time we also used `|` to include data meeting either criteria. `&` and `|` are equivalent to `AND` and `OR` in Boolean logic. Notice how the `|` part of the filter is wrapped in parentheses. Look at what happens if you remove them, and work out what is going on.
+
+**==Note:==** When combining `&` and `|` in more complex filters, use parentheses to determine which parts of the evaluation should be carried out first.
+
+
+##### Find the 20 countries with the longest life expectancy in 2016, plus the United States with its rank, if it lies outside the top 20
 
 ```r
 # find the 20 countries with the longest life expectancies, 
@@ -372,17 +388,26 @@ long_life <- longevity %>%
   arrange(rank_le) %>%
   filter(rank_le <= 20 | country == "United States")
 ```
-This should be the result, showing the United States to rank a lowly 43rd:
+This should be the result, showing the United States to rank a lowly 42nd:
 
-![](img/class7_8.jpg)
+![](img/class7_9.jpg)
 
-Hopefully the logic and flexibility of **dplyr** code is now becoming clear. Here we start by creating a new variable in the data called `rank_le`, using the `mutate` function from dplyr and the` rank` [function](https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/rank) from base R.
+Here we started by creating a new variable in the data called `rank_le`, using the `mutate` function from dplyr and the `rank` [function](https://www.rdocumentation.org/packages/base/versions/3.4.3/topics/rank) from base R.
 
-Finally we filter the data for the top 20 countries, plus the United States.
-
-Whereas in the initial filter of the data to create `longevity` data frame we used `&` to return data meeting both criteria, this time we used `|` to include data meeting either criteria. `&` and `|` are equivalent to `AND` and `OR` in Boolean logic. When combining `&` and `|` in more complex filters, use parentheses to determine which parts of the evaluation should be carried out first.
+Finally we filtered the data for the top 20 countries, plus the United States.
 
 Notice also in this code that a single `=` is used to change or create values, while `==` is used to test whether a value is equal to something.
+
+This code produces exactly the same result, Make sure you understand why:
+
+```R
+long_life <- nations %>%
+  filter(year == 2016 & !is.na(life_expect)) %>%
+  select(country, life_expect, income, region) %>%
+  mutate(rank_le = rank(desc(life_expect))) %>%
+  arrange(rank_le) %>%
+  filter(rank_le <= 20 | country == "United States")
+```
 
 ##### Now let's find out where Russia ranks, too
 ```r
@@ -391,14 +416,26 @@ Notice also in this code that a single `=` is used to change or create values, w
 long_life <- longevity %>%
   mutate(rank_le = rank(desc(life_expect))) %>%
   arrange(rank_le) %>%
-  filter(rank_le <= 20 | grepl("United States|Russia", country)
+  filter(rank_le <= 20 | grepl("United States|Russia", country))
 ```
 
 This should be the result:
 
-![](img/class7_9.jpg)
+![](img/class7_10.jpg)
 
-This code demonstrates some simple pattern matching on text, using the function `grepl("pattern_a|pattern_b", x)`, which searches variable `x` for values containing any of a list of text values. This is useful for fuzzy text matching. Notice how searching for `Russia` returns `Russian Federation`, which is the country's full name.
+This code demonstrates some simple pattern matching on text, using the function `grepl("pattern_a|pattern_b", x)`, which searches variable `x` for values containing any of a list of text values. This is useful for fuzzy text matching. Notice how searching for `Russia` returns `Russian Federation`, which is the country's full name. (`!grepl` will return text strings that *don't* contain the specified pattern.)
+
+
+**==Note:==** When combining `&` and `|` in more complex filters, use parentheses to determine which parts of the evaluation should be carried out first.
+
+
+#### Some practice with filtering and sorting
+
+- Find the countries with a life expectancy of between 50 and 60 years in 1990, arranged in descending order of life expectancy.
+
+- Find upper and lower middle income countries with a life expectancy of between 60 and 70 in 1990. Sort in descending order of life expectancy.
+
+- Find countries that in 1990 had a GDP per capita of more than $50,000 dollars and a life expectancy of 70 years or more that were not in Europe or North America. Sort them in ascending order of life expectancy.
 
 #### Write data to a CSV file
 
@@ -428,11 +465,11 @@ longevity_summary <- nations %>%
 
 This should be the result:
 
-![](img/class7_10.jpg)
+![](img/class7_11.jpg)
 
 This code introduces the functions `group_by` and `summarize`. The entire `summarize` function could be written on one line, but I have started a new line after each summary statistic for clarity.
 
-In this example, we calculate the number of countries for which we have data in each year, then the maximum and minimum country-level life expectancies. Having done that, we use `mutate` function to calculate the range of values by subtracting the minimum from the maximum.
+In this example, we calculated the number of countries for which we have data in each year, then the maximum and minimum country-level life expectancies. Having done that, we used the `mutate` function to calculate the range of values by subtracting the minimum from the maximum.
 
 ##### Calculate total GDP by region and year
 
@@ -446,17 +483,23 @@ gdp_regions <- nations %>%
 ```
 Here are the first few rows in the data that is returned:
 
-![](img/class7_11.jpg)
+![](img/class7_12.jpg)
 
-We could also write `10^12` (10 raised to the power of 12 instead of `1000000000000` in this example.
+We could also write `10^12` (10 raised to the power of 12) instead of `1000000000000` in this example.
 
 Notice that variables created within a `mutate` function can be immediately used within the same function.
 
-Here the `group_by()` function groups on two variables, `region` and`year`.
+Here the `group_by` function groups on two variables, `region` and `year`.
 
 Notice that the `sum` function used to add up the GDP values across countries within each region and year includes the argument `na.rm = TRUE`, to remove the `NA` values before running the calculation. See what happens if you don't include this. Previously this wasn't necessary because I had started by filtering out the `NA`s.
 
-Get into the habit of including `na.rm = TRUE` in your summary functions, to avoid problems cuased by null values!
+**==Note:==** Get into the habit of including `na.rm = TRUE` in your summary functions, to avoid problems caused by null values!
+
+#### Some practice with grouping and summarizing (and filtering and sorting)
+
+- Calculate the total GDP by income group and year. Sort the results in descending order of years and, within year, in descending order of GDP.
+
+- Calculate the total GDP for the East Asia & Pacific region, by income group and year.
 
 #### Join data from two data frames
 
@@ -490,17 +533,16 @@ In the joined data frame, we can now calculate the total carbon dioxide emission
 ```r
 # total carbon dioxide, in gigatonnes, by region, over time
 co2_regions <- nations %>%
-  filter(year != 2015) %>%
+  filter(year <= 2014) %>%
   mutate(co2 = co2_percap * population / 10^9) %>%
   group_by(region, year) %>%
   summarize(total_co2 = sum(co2, na.rm = TRUE))
 ```
 Here are the first few rows in the data that is returned:
 
-![](img/class7_12.jpg)
+![](img/class7_13.jpg)
 
-Notice that variables created within a `mutate` function can be immediately used within the same function.
-
+The carbon dioxide emissions data ends in 2014, so first we filtered the data to remove the subsequent two years, before creating a new variable for total emissions from the per capita value, dividing by a billion, or 10 to the power of nine, to get the result in billions of tonnes (gigatonnes). Finally we grouped and summarized by year and region.
 
 ### Load California kindergarten immunization data
 
@@ -531,7 +573,7 @@ immun_2015 <- read_csv("kindergarten_2015.csv",  col_types = list(
 
 We need to append the data for 2015 to the older data. So this code specifies the data type for each variable, to be sure that there won't be any mismatches in data type that would cause an error in the next step.
 
-#### Append the 2015 data to the older data
+#### Append the 2015 data to the older data using `bind_rows`
 
 ```r
 # append the 2015 data to the older data
@@ -544,7 +586,7 @@ This code introduces the `bind_rows` fucntion, which appends one data frame to a
 
 The data contains the number of children enrolled in each kindergarten across the state, and the number who has the complete recommended immunizations at the start of the year.
 
-From this, we can calculate the percentage of children who did not have the complete achedule of immunizations. The following code runs these calculations for each year, first for the entire state, summing across all kindergartens grouped by year, and then for each of California's 58 counties, by changing the `group_by` function.
+From this, we can calculate the percentage of children who did not have the complete schedule of immunizations. The following code runs these calculations for each year, first for the entire state, summing across all kindergartens grouped by year, and then for each of California's 58 counties, by changing the `group_by` function.
 
 ```r
 # percentage incomplete, entire state, by year
@@ -556,7 +598,7 @@ immun_year <- immun %>%
 ```
 This should be the result:
 
-![](img/class7_13.jpg)
+![](img/class7_14.jpg)
 
 Notice how the `round(x),n` function is used to round values for `x`, here the percentage incomplete calculation, to `n` decimal places, here 2. Using negative numbers for `n` will round to tens, hundreds, and so on.
 
@@ -570,7 +612,7 @@ immun_counties_year <- immun %>%
 ```
 Here are the first few rows of the data that should be returned:
 
-![](img/class7_14.jpg)
+![](img/class7_15.jpg)
 
 Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:
 
@@ -588,10 +630,28 @@ immun_top5_year <- semi_join(immun_counties_year, top5)
 ```
 Notice the use of `semi_join` to filter the data for just the five counties with the largest kindergarten enrollment.
 
-### Closing RStudio
+### Close RStudio
 
-Before you exir RStudio, save and close you script, and close any data files you have open in `View`. If you don't RStudio will try to open then next time you launch it.
+Before you exit RStudio, save and close you script, and close any data files you have open in `View`. If you don't RStudio will try to open then next time you launch it.
 
+### Keep R and RStudio up to date
+
+From time to time, check [here](https://www.r-project.org/) to see if you have the latest version of R. If you don't, close RStudio and download the latest version of R and install. RStudio will automatically find this version when you open it once more.
+
+When R moves to a major new version, for example from `3.4` to `3.5`, it creates a new folder for your packages for that version, which will not include the packages you installed previously. The code below will reinstall your packages for the new version. (The number in the file path should reflect the *old* version from which you are upgrading.)
+
+```R
+# update installed packages for new R version
+package_df <- as.data.frame(installed.packages("/Library/Frameworks/R.framework/Versions/3.4/Resources/library"))
+
+package_list <- as.character(package_df$Package)
+
+install.packages(package_list)
+```
+
+You do not need to do this when updating to a new minor version, for example from `3.5.1` to `3.5.2`.
+
+Finally, from time to time check you have the latest verion of RStudio by selecting `Help>Check for Updates` from the top menu. If you do not have the latest version you will be given an option to quit and download the last version.
 ### Further reading
 
 **[Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)**
