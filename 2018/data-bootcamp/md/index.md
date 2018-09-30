@@ -1,137 +1,251 @@
 
-# Introduction to Data Visualization, Fall 2018
+# Journalism with spreadsheets
 
-This is a course in finding and telling visual stories from data. We will cover fundamental principles of data analysis and visual presentation, chart types and when to use them, and how to acquire, process and “interview” data. We will make interactive and static charts and maps using free software. We will be making graphics by writing code, as well as using point-and-click software. The emphasis is on gaining practical skills that students can apply in a newsroom setting.
+In this session we will cover the basics of working with data in [Google Sheets,](https://www.google.com/sheets/about/) the spreadsheet application within [Google Drive](https://drive.google.com/drive/).
 
-### Weekly schedule
+More importantly, from our perspective as reporters, we will consider how to "interview" data using some basic operations, outlined below. Knowing how to do this can help you find leads for stories, and allow you to place other reporting in context.
 
-We will meet in **108/Lower NG** on Fridays from 9.00am - 12.00noon. Your instructor, [**Peter Aldhous**](https://www.peteraldhous.com/), will maintain office hours from 1.00pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
+## Before we get started
 
-Class time will also be scheduled for each of you to critique and lead class discussion of a recently published news graphic/interactive.
+### Variables
 
- - ####**Aug. 24:**	[**What is data?**](week1.html)
-Categorical and continuous variables; basic operations for interviewing a dataset; sampling and margins of error; plotting and summarizing distributions; choosing bins for your data; basic newsroom math; correlation and its pitfalls; exploring differences between groups; scatter plots.
+Data journalists often use the term “variable” or "field," This simply means any measure or attribute describing a particular item, or "record,” in a dataset. For example, school students might gather data about themselves for a class project, recording their gender and eye color, and height and weight. Each of these is a variable.
 
-  - **Assignment:** Calculate summary statistics and make charts in Google Sheets; subscribe to data viz blogs etc to follow latest developments in visualization.
+### Well-structured data
 
-- ####**Aug. 31:** 	[**Data visualization: basic principles**](week2.html)
-Encoding data using visual cues; choosing chart types to show comparisons, composition (parts of the whole) and connections; using color effectively; using chart furniture, minimizing chart junk and highlighting the story; avoiding pitfalls; good practice, including for interactive graphics.
+Usually, when analyzing data in a spreadsheet you want it to be structured so that each column contains values for a single variable.
 
- - **Assignment:** Quiz on good practice in visualization and data analysis.
+Here, for example, is some data downloaded from the [World Bank's data site](http://data.worldbank.org/indicator/?tab=all) on the [value of high-technology exports](http://data.worldbank.org/indicator/TX.VAL.TECH.CD?view=chart) for different countries and groups of countries over time, expressed in U.S. dollars. There are four variables in this data, which I've color-coded to make them easier to spot:
 
+The variables are:
+- `Country Name` Yellow
+- `Country Code` Green
+- `Year` Blue
+- `High-Tech Exports` Pink
 
-- ####**Sept. 7:** [**Interviewing data: exploratory graphical analysis**](week3.html)
-We will use [Tableau Public](https://public.tableau.com/s/) to explore and visualize World Bank data on neonatal deaths across the globe, creating an interactive online dashboard.
+**Here the data is structured in with one variable in one column:**
 
- - **Assignment:** Make another dashboard from the same data.
+![](./img/img1.jpg)
 
+**Here it is not:**
 
-- ####**Sept. 14:** [**Using GitHub, and starting your final projects**](week4.html)
-We will explore how to use [GitHub](https://github.com/) for version control of a project, before you pitch ideas for your project work.
+![](./img/img2.jpg)
 
- - **Assignment:** Submit a pitch for your final project; also make an appointment to discuss this with your instructor the following week.
+The data prepared for these classes is [here](datasets.html), and is in the first format.
 
+### Types of data: categorical vs. continuous
 
-- ####**Sept. 21:** [**Acquiring, cleaning, and processing data**](week5.html)
-Data search and download tricks; cleaning data with [Open Refine](http://openrefine.org/); converting data between different formats using [Mr. Data Converter](https://shancarter.github.io/mr-data-converter/).
+Going back to our school students, there’s an important difference between gender and eye color, called "categorical" variables, and height and weight, termed "continuous."
 
- - **Assignment:** Data cleaning task.
+- **Categorical** variables are descriptive labels given to individual records, assigning them to different groups. The simplest categorical data is dichotomous, meaning that there are just two possible groups -- in an election, for instance, people either voted, or they did not. More commonly, there are multiple categories. When analyzing traffic accidents, for example, you might consider the day of the week on which each incident occurred, giving seven possible categories.
 
+- **Continuous** data is richer, consisting of numbers that can have a range of values on a sliding scale. When working with weather data, for instance, continuous variables might include temperature and amount of rainfall.
 
-- ####**Sep. 28:** [Let's apply what we've learned so far](week6.html)
-You will obtain and process World Bank data and then create a Tableau visualization inspired by [this Gapminder video](https://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/).
+We also often need to consider **date and time**, which can be treated as continuous, like a sequence of years; or categorical, like the days of the week. A common task in data journalism is to consider how a the values for a variable or variables have changed over time.
 
- - **Assignment:** Download and process World Bank data on nations' carbon dioxide emissions per capita, and make a simple Tableau dashboard.
+### How do I interview data? The basic operations
 
+The goal of this session is to get used to asking questions of data by performing the following basic operations in a spreadsheet:
 
-- #### **Oct. 5:**	[**Processing data with R**](week7.html)
-Introduction to [R](https://www.r-project.org/), [R Studio](https://www.rstudio.com/) and the [dplyr](https://dplyr.tidyverse.org/) package for data processing.
+- **Sort:** Largest to smallest, oldest to newest, alphabetical etc.
 
+- **Filter:** Select a defined subset of the data.
 
-- #### **Oct. 12:** [**Making static graphics with R**](week8.html)
-Making charts with the [ggplot2](https://ggplot2.tidyverse.org/) R package.
+- **Summarize:** Derive one value from a series of other values to produce a summary statistic. Examples include:
+ - **Count**. The number of records.
+ - **Sum**. Add the values of a continuous variable.
+ - **Mean** or **average**. The sum of values for a continuous variable divided by the count.
+ - **Median**. The value in the middle, if the values for a continuous variable are sorted in ascending or descending order of magnitude.
+ - **Maximum**, **Minimum**. The largest and smallest value for a continuous value, respectively.
 
- - **Assignment:** Process data and make charts using R.
+Often you will **group** by a categorical variable first, and then summarize a continuous variable for each category.
 
+## Interviewing data with spreadsheets
 
--  ####**Oct. 19:**[** Principles of mapping**](week9.html)
-Basic mapping principles:  projections, geocoding, geodata formats; approaches to putting data onto maps, including choropleth maps, scaled symbols, hexagonal binning and cartograms.
+Each J200 class will work with data chosen to be relevant to your reporting, so the questions we'll ask and the data we'll use will be different in each class. The notes below use the fatal and injury traffic data for Richmond, and illustrate the basic approach of framing questions to ask of the data, and then answering them by making some simple calculations, and using the operations described above.
 
- - **Assignment:** Continue work on final project, delivering a progress report.
+### Import data into Google Sheets
 
+Navigate in your browser to your [**Google Drive**](https://drive.google.com/) account, then click the `+ New` button at top left and select `File upload`. Navigate to the file `richmond_collisions.csv` and click `Open`.
 
--  ####**Oct. 26:** [**Making static maps and processing geodata with GIS software**](week10.html)
-We will use [QGIS](https://qgis.org/en/site/) to make a multi-layered map. We will also learn how to use QGIS to process geodata.
+When the file has uploaded, double-click on its icon in the main panel of your Google Drive, then select `Open with Google Sheets`.
 
- - **Assignment:** continue work on final project, delivering a progress report.
+When the data has uploaded, drag the darker gray line at the bottom of the light gray cell at top left below row `1`, so that the first row becomes a header. You may also want to make the header row bold to make it easier to distinguish:
 
+**Before:**
 
--  ####**Nov.2:** [**Making interactive maps**](week11.html)
-We will use [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) to create interactive online maps.
+![](./img/img3.jpg)
 
-  -  **Assignment:** Submit a full project update, via your GitHub account, for review in next week's meetings.
+**After:**
 
+![](./img/img4.jpg)
 
-- ####**Nov. 9:** No Class
-Instead, one-on-one meetings will be arranged with instructor to discuss progress with your final projects.
+You may notice that some of the column headers or text entries can't be read in full. To fix this, hit `shift` and click on the letter `A` at the top of that column. Still holding `shift`, move the right arrow until all columns are highlighted.
 
+Now right-click anywhere in the highlighted area and select `Resize columns A-Y`:
 
-- ####**Nov. 16:**	[**From R to interactive charts and maps**](week13.html)
-We will explore R packages called [htmlwidgets](https://www.htmlwidgets.org/) that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
+![](./img/img5.jpg)
 
- -  **Assignment:** Continue work on final project, delivering a progress report.
+At the next dialog box, select `Fit to data` and click `OK`:
 
+![](./img/img6.jpg)
 
-- ####**Nov 23:** Thanksgiving -- No Class
+### Some initial questions to ask about this data
 
- - **Assignment:** Continue work on your final project.
+1. **In which collision were the most people killed or injured?**
+2. **How many people were killed or injured in collisions in Richmond in 2015?**
+3. **How many people were killed or injured in collisions in Richmond in each year?**
+4. **In each year, how many people were killed or injured in collisions involving alcohol or not?**
 
+### Make simple calculations in a new column
 
-- ####**Nov 30:** [Animation: making GIFs and videos](week14.html)
-We will use [ImageMagick](https://imagemagick.org/script/index.php), [FFmpeg](https://ffmpeg.org/) and the [gganimate](https://github.com/thomasp85/gganimate) package to make animated GIFs and videos.
+The data has variables for how many people were killed in each collision, and how many were injured. To get total casualties, killed and injured, for each collision, we need to add these columns together.
 
- - **Assignment:** complete your final project, file via your GitHub account.
+So scroll right to these columns, then right-click on the `NUMBER_INJURED` column and insert a new column:
 
+![](./img/img7.jpg)
 
-- ####**Dec. 7:** [Student presentations on final projects](week15.html)
-You will each present your final project work to the class, explain the process of creating the graphics, choices in  analysis and design, and problems that arose and how these were addressed.
+Call the new variable `KILLED_INJURED`.
 
-### Recommended reading
+==**Note:**==  When performing any calculation in a spreadsheet, you start by typing `=`. 
 
-Alberto Cairo: [*The Functional Art: An Introduction to Information Graphics and Visualization*](https://www.amazon.com/The-Functional-Art-introduction-visualization/dp/0321834739/)
-Nathan Yau: [*Data Points: Visualization That Means Something*](https://www.amazon.com/Data-Points-Visualization-Means-Something/dp/111846219X)
+So to calculate the number killed and injured for the first cell of the new column as follows:
 
-Further reading/viewing will be recommended to support weekly class material.
+![](./img/img8.jpg)
 
-### Attendance
+To perform the same calculation down the entire column, you can use a spreadsheet `autofill`. Hover over the bottom left column of the cell with the formula until the cursor turns into a cross, then double-click:
 
-Unexcused absence from two classes will drop you one letter grade; a third unexcused absence will result in an F. Excused absences will be permitted only in extraordinary circumstances. Regardless of the reason for an absence, students will be responsible for any assignments due and for learning material covered in class.
+![](./img/img9.jpg)
 
-### Grading
+Notice how the formula in the first cell is `=I2+J2`, the formula in the next is `=I3+J3`, and so on.
 
-Class participation, weekly assignments: **45%**
-Final project: **45%**
-Attendance:	**10%**
+==**Note:**== Filling down columns in this way is the default behavior for `autofill`. If ever you need to perform a calculation down a column based on a number from a single cell, rather than moving down the cells in another column, you should "anchor" the calculation to that cell using dollar symbols: for example `$I$2`, rather than `I2`.
 
-### Good manners
+**==Note:==** `autofill` only continues down a column if there is data in adjacent columns. If there are blanks or nulls, it will stop at that point. So always check that the calcuation has been performed for the entire column. If necessary, you may need to manually copy and paste the formula to ensure that this occurs.
 
-Students must turn off the ringers on their cell phones before class begins. Students may not check e-mail, social media sites or other websites during lecture portions of class or while working on class exercises.
+==**Note:**== Sometimes when working in a spreadsheet you may choose to delete columns or cells that you have finished working with. If these are being used in formulas to calculate other values, those values will be lost. So you may sometimes choose to replace formulas with the actual calculated values, to prevent this happening.
 
-### Academic dishonesty and plagiarism
+To do this for column of calculated values, select the entire column by clicking on the letter letter at the top, then copy the entire column by typing `⌘-C`. Now select `Edit>Paste special>Paste values only` from the top menu. Do this for the new `KILLED_INJURED` column and notice that the formulas have been replaced by numbers:
 
-The high academic standard at the University of California, Berkeley, is reflected in each degree that is awarded. As a result, it is up to every student to maintain this high standard by ensuring that all academic work reflects his/her own ideas or properly attributes the ideas to the original sources.
+![](./img/img10.jpg)
 
-These are some basic expectations of students with regards to academic integrity:
+### Sort data
 
-- Any work submitted should be your own individual thoughts, and should not have been submitted for credit in another course unless you have prior written permission to re-use it in this course from this instructor.
+To answer our first question, we can now sort the data on the `KILLED_INJURED` colums to find the collision with the largest number of total casualities.
 
-- All assignments must use “proper attribution,” meaning that you have identified the original source of words or ideas that you reproduce or use in your assignment. This includes drafts and homework assignments!
+Click on the letter `K` for this column, then select `Data>Sort sheet by column K,Z->A` from the top menu. This will sort the collisions in descending order of the total number of people killed or injured:
 
-- If you are unclear about expectations, ask your instructor.
+![](./img/img11.jpg)
 
-### Disability accommodations
+This reveals that the collision with most casualties happened on Sept 5, 2014, at the intersection of 18th St. and Burbeck Ave., in which 11 people were injured and no one was killed.
 
-If you need disability-related accommodations in this class, if you have emergency medical information you wish to share with the instructor, or if you need special arrangements in case the building must be evacuated, please inform the instructor as soon as possible by seeing him after class or making an appointment to visit during office hours. If you are not currently listed with DSP (Disabled Students’ Program) but believe that you could benefit from their support, you may [apply online](https://dsp.berkeley.edu/).
+![](./img/img12.jpg)
+
+### Filter data
+
+To answer our second question, we first need to filter the data for collisions that happened in 2015 only.
+
+Select `Data>Create a filter` from the top menu. The spreadsheet should now look like this:
+
+![](./img/img13.jpg)
+
+Click on the downwards-pointing triangle on the `ACCIDENT_YEAR` column, click on `Clear` link and now type `2015` into the box and then check that value by clicking on it:
+
+![](./img/img14.jpg)
+
+Click `OK` to filter the data, which should now look like this:
+
+![](./img/img15.jpg)
+
+Click the top left gray rectangle, left of column `A` and above row `1`. Now copy all the filtered data by typing 
+`⌘-C`.
+
+Click on the `+` at bottom left to open a new sheet and type `⌘-V` to paste in the filtered data:
+
+![](./img/img16.jpg)
+
+Set up the header row as before. Then click on the downwards-pointing triangle on the `Sheet1` tab at the bottom and `Rename` as 2015.
+
+Back in the original sheet, select `Data>Turn off filter` to remove the filter and return to the complete data.
+
+### Summarize data
+
+Now to answer our second question, we need to add up the numbers in the `KILLED_INJURED` variable, or column `K`, in the filtered 2015 data.
+
+In an empty cell in that sheet, type the formula `=SUM(K:K)`:
+
+![](./img/img17.jpg)
+
+Hit return, and see that 579 people were killed or injured in 2015.
+
+In the formular above, `SUM` is a function, which adds up all the values. A function acts on the data specified in the parentheses. Here we specified a range of data, which also could have been written as `K2:K407`, for all the rows in the data. Just using the letters makes the function apply to the entire column, how ever many rows are present.
+
+As you started to type `SUM`, Google Sheets will have suggested possible functions to use:
+
+![](./img/img18.jpg)
+
+[Here](https://support.google.com/docs/table/25273?hl=en) is a reference for all of the functions available in Google Sheets.
+
+### Group and summarize data
+
+To answer our third question, we could repeat the process above for every year in the data. However, it is much more efficient to **group** the data by year, and then **summarize** by adding up the numbers killed for each year.
+
+To achieve this, we will use a **pivot table**, which allows us to quickly **group** and **summarize** data. Here we need to group by `ACCIDENT_YEAR` and then calculate the `SUM` of `KILLED_INJURED` in each year.
+
+Return to the original sheet with **all** the data. Then select `Data>Pivot table ...` from the top menu.
+
+The following sheet should now open up:
+
+![](./img/img19.jpg)
+
+In the `Pivot table editor` to the right, click the `ADD` link under `Rows` and select `ACCIDENT_YEAR`.
+
+The pivot table should now look like this:
+
+![](./img/img20.jpg)
+
+Now click `ADD` under `Values` and select `KILLED_INJURED`. Make sure the data is being summarized by `SUM`. You can click on the downwards-pointing triangle to select a different summary statistic:
+
+![](./img/img21.jpg)
+
+The pivot table should now look like this:
+
+![](./img/img22.jpg)
+
+Rename the sheet `Casualties by year` so you know what is in it.
+
+To answer our fourth question, we need to group by `ACCIDENT_YEAR` and the variable `ALCOHOL_INVOLVED`.
+
+Agsin return to the original sheet with **all** the data, and select  `Data>Pivot table ...` from the top menu. Repeat the process for the first pivot table, but this time also `ADD` the variable `ALCOHOL_INVOLVED` under `Columns`.
+
+The pictor table now breaks down the number of casualties by year, and by the involvement of alcohol (`Y` or blank):
+
+![](./img/img23.jpg)
+
+Rename this sheet `Casualities by year/alcohol`.
+
+### Check your work
+
+When working in a spreadsheet, always perform frequent "reality checks" on the results. For example:
+
+- Check that spreadsheet formulas are referring to the correct cells, and are using the correct formulas.
+
+- Pull out some of the numbers and check them using a calculator. Do you get the same result? If not, you *must* work out what went wrong and reconcile the difference.
+
+- Use your common sense to spot obvious errors. If a calculated mean or median value is larger than the maximum value in your data, for example, it must be wrong.
+
+
+
+### Further reading
+
+Sarah Cohen: [*Numbers in the Newsroom: Using Math and Statistics in News*](https://store.ire.org/products/numbers-in-the-newsroom-using-math-and-statistics-in-news-second-edition)
+
+Paul Bradshaw: [*Finding Stories in Spreadsheets*](https://leanpub.com/spreadsheetstories)
+More tips and tricks for using spreadsheets in journalism.
+
+
+
+
 
 
 

@@ -2,6 +2,9 @@
 
 Click on the title links to download the data. Place on your desktop, then double-click to unzip.
 
+These files are in CSV format, which stands for comma-separated values; they have a `.csv` extension. These are plain text files, in which columns in the data are separated by commas. CSV is a common format for storing and exchanging data. Values that are intended to be treated as text, rather than numbers, are often enclosed in quote marks.
+
+
 #### [Oakland: Injury traffic collisions](./data/oakland.zip)
 
 Data from the [Transportation Injury Mapping System](https://tims.berkeley.edu/), which details injury and fatal traffic accidents recorded in the California Highway Patrol's [Statewide Integrated Traffic Records System](http://iswitrs.chp.ca.gov/Reports/jsp/userLogin.jsp), geocoded for mapping by UC Berkeley's Safe Transportation Research & Education Center.
