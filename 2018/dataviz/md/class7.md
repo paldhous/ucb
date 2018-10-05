@@ -138,7 +138,7 @@ In this class, we will work with two incredibly useful packages developed by [Ha
 - **[readr](https://cran.r-project.org/web/packages/readr/readr.pdf)** Reads and writes CSV and other text files.
 - **[dplyr](https://cran.r-project.org/web/packages/dplyr/dplyr.pdf)** Processes and analyzes data, using the operations we discussed in the first class.
 
-These and several other useful packages have been combined into a super-package called the **[tidyverse](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/)**.
+These and several other useful packages have been combined into a super-package called the **[tidyverse](https://www.tidyverse.org/)**.
 
 To install a package, click on the `Install` icon in the `Packages` tab, type its name into the dialog box, and make sure that `Install dependencies` is checked, as some packages will only run correctly if other packages are also installed. Click `Install` and all of the required packages should install:
 
@@ -584,7 +584,7 @@ This code introduces the `bind_rows` fucntion, which appends one data frame to a
 
 #### Calculate the percentage of children with incomplete immunizations, for the entire state, and by county
 
-The data contains the number of children enrolled in each kindergarten across the state, and the number who has the complete recommended immunizations at the start of the year.
+The data contains the number of children enrolled in each kindergarten across the state, and the number who had the complete recommended immunizations at the start of the year.
 
 From this, we can calculate the percentage of children who did not have the complete schedule of immunizations. The following code runs these calculations for each year, first for the entire state, summing across all kindergartens grouped by year, and then for each of California's 58 counties, by changing the `group_by` function.
 
@@ -600,7 +600,7 @@ This should be the result:
 
 ![](img/class7_14.jpg)
 
-Notice how the `round(x),n` function is used to round values for `x`, here the percentage incomplete calculation, to `n` decimal places, here 2. Using negative numbers for `n` will round to tens, hundreds, and so on.
+Notice how the `round(x,n)` function is used to round values for `x`, here the percentage incomplete calculation, to `n` decimal places, here 2. Using negative numbers for `n` will round to tens (-1), hundreds (-2), and so on.
 
 ```r
 # percentage incomplete, by county, by year

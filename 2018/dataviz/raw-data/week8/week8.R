@@ -233,11 +233,11 @@ ggplot(immun_counties_year, aes(x = start_year, y = county)) +
 nations <- read_csv("nations.csv")
 
 # filter for 2015 data only
-nations2015 <- nations %>%
-  filter(year == 2015)
+nations2016 <- nations %>%
+  filter(year == 2016)
 
 # make bubble chart
-ggplot(nations2015, aes(x = gdp_percap, y = life_expect)) +
+ggplot(nations2016, aes(x = gdp_percap, y = life_expect)) +
   xlab("GDP per capita") +
   ylab("Life expectancy at birth") +
   theme_minimal(base_size = 12, base_family = "Georgia") +
