@@ -62,7 +62,7 @@ Often you will **group** by a categorical variable first, and then summarize a c
 
 ## Interviewing data with spreadsheets
 
-Each J200 class will work with data chosen to be relevant to your reporting, so the questions we'll ask and the data we'll use will be different in each class. The notes below use the fatal and injury traffic data for Richmond, and illustrate the basic approach of framing questions to ask of the data, and then answering them by making some simple calculations, and using the operations described above.
+Each J200 class will work with data chosen to be relevant to your reporting, so the questions we'll ask and the data we'll use will be different in each class. The notes below use the fatal and injury traffic data for Richmond. They illustrate the basic approach of framing questions to ask of the data, and then answering them by making some simple calculations, and using the operations described above.
 
 ### Import data into Google Sheets
 
@@ -107,13 +107,13 @@ So scroll right to these columns, then right-click on the `NUMBER_INJURED` colum
 
 Call the new variable `KILLED_INJURED`.
 
-==**Note:**==  When performing any calculation in a spreadsheet, you start by typing `=`. 
+==**Note:**==  When performing any calculation in a spreadsheet, you start by typing `=`.
 
 So to calculate the number killed and injured for the first cell of the new column as follows:
 
 ![](./img/img8.jpg)
 
-To perform the same calculation down the entire column, you can use a spreadsheet `autofill`. Hover over the bottom left column of the cell with the formula until the cursor turns into a cross, then double-click:
+To perform the same calculation down the entire column, you can use a spreadsheet `autofill`. Hover over the bottom-right corner of the cell with the formula until the cursor turns into a cross, then double-click:
 
 ![](./img/img9.jpg)
 
@@ -125,19 +125,19 @@ Notice how the formula in the first cell is `=I2+J2`, the formula in the next is
 
 ==**Note:**== Sometimes when working in a spreadsheet you may choose to delete columns or cells that you have finished working with. If these are being used in formulas to calculate other values, those values will be lost. So you may sometimes choose to replace formulas with the actual calculated values, to prevent this happening.
 
-To do this for column of calculated values, select the entire column by clicking on the letter letter at the top, then copy the entire column by typing `⌘-C`. Now select `Edit>Paste special>Paste values only` from the top menu. Do this for the new `KILLED_INJURED` column and notice that the formulas have been replaced by numbers:
+To do this for column of calculated values, select the entire column by clicking on the letter letter at the top, then copy the entire column by typing `⌘-C`. Now select `Edit>Paste special>Paste values only` from the top menu. Do this for the new `KILLED_INJURED` column and notice that the formulas in the formula bar (`fx`, at top left) have been replaced by numbers:
 
 ![](./img/img10.jpg)
 
 ### Sort data
 
-To answer our first question, we can now sort the data on the `KILLED_INJURED` colums to find the collision with the largest number of total casualities.
+To answer our first question, we can now sort the data on the `KILLED_INJURED` column to find the collision with the largest number of total casualties.
 
 Click on the letter `K` for this column, then select `Data>Sort sheet by column K,Z->A` from the top menu. This will sort the collisions in descending order of the total number of people killed or injured:
 
 ![](./img/img11.jpg)
 
-This reveals that the collision with most casualties happened on Sept 5, 2014, at the intersection of 18th St. and Burbeck Ave., in which 11 people were injured and no one was killed.
+This reveals that the collision with most casualties happened on Sept. 5, 2014, at the intersection of 18th St. and Burbeck Ave., in which 11 people were injured and no one was killed.
 
 ![](./img/img12.jpg)
 
@@ -218,7 +218,7 @@ To answer our fourth question, we need to group by `ACCIDENT_YEAR` and the varia
 
 Agsin return to the original sheet with **all** the data, and select  `Data>Pivot table ...` from the top menu. Repeat the process for the first pivot table, but this time also `ADD` the variable `ALCOHOL_INVOLVED` under `Columns`.
 
-The pictor table now breaks down the number of casualties by year, and by the involvement of alcohol (`Y` or blank):
+The pivot table now breaks down the number of casualties by year, and by the involvement of alcohol (`Y` or blank):
 
 ![](./img/img23.jpg)
 
@@ -233,7 +233,6 @@ When working in a spreadsheet, always perform frequent "reality checks" on the r
 - Pull out some of the numbers and check them using a calculator. Do you get the same result? If not, you *must* work out what went wrong and reconcile the difference.
 
 - Use your common sense to spot obvious errors. If a calculated mean or median value is larger than the maximum value in your data, for example, it must be wrong.
-
 
 
 ### Further reading
