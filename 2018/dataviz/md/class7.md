@@ -22,7 +22,7 @@ print("Hello World!")
 
 ### The data we will use today
 
-Download the data for this session from [here](data/data-processing-r.zip), unzip the folder and place it on your desktop. It contains the following files:
+Download the data for this session from [here](data/week7.zip), unzip the folder and place it on your desktop. It contains the following files:
 
 - `nations.csv` Data from the [World Bank Indicators](https://data.worldbank.org/indicator/) portal. Contains the following fields:
  -  `iso2c` `iso3c` Two- and Three-letter codes for each country, assigned by the [International Organization for Standardization](https://www.iso.org/standard/63545.html).
@@ -79,13 +79,13 @@ The panel at top right has three tabs, the first showing the `Environment`, or a
 Click on the save/disk icon in the `Environment` panel to save and call the file `week7.RData`. You should see the following code appear in the Console:
 
 ```r
-save.image("~/Desktop/week7/week7RData")
+save.image("~/Desktop/week7/week7.RData")
 ```
 Copy this code into your script, placing it at the end, with a comment, explaining what it does:
 
 ```r
 # save session data
-save.image("~/Desktop/data-processing-r/data-processing.RData")
+save.image("~/Desktop/week7/week7.RData")
 ```
 Now if you run your entire script, the last action will be to save the data in your environment.
 
@@ -93,7 +93,7 @@ From the top menu, select `RStudio>Preferences`, and change `Save workspace to .
 
 ![](./img/class7_3a.jpg)
 
-This change in your settings will ensure that the contents of your environment are not saved into a generic file that will load eacvh time you open RStudio.
+This change in your settings will ensure that the contents of your environment are not saved into a generic file that will load each time you open RStudio.
 
 ### Comment your code
 
@@ -118,14 +118,14 @@ Anything that appears on a line after `#` will be treated as a comment, and will
 - Equals signs can be a little confusing, but see how they are used in the code we use today:
 
  -  `==` Test whether an object is equal to a value. This is often used when filtering data, as we will see.
- -  `=` Make an object equal to a value; works like `<-`, but used within the brackets of a function.
+ -  `=` Make an object equal to a value; works like `<-`, but used within the parentheses of a function.
 
 - Handling null values:
  - Nulls are designated as `NA`.
  - `is.na(x)` looks for nulls within variable `x`.
  - `!is.na(x)` looks for non-null values within variable `x`.
 
-Here, `is.na` is a **function**. Functions are followed by parentheses, and act on the data/code in the parenthesis.
+In the code above, `is.na`, `c`, `setwd`, `print`, and so on are **functions**. Functions are followed by parentheses, and act on the data/code in the parenthesis.
 
 ==**Important:**== Object and variable names in R should not contain spaces.
 
@@ -180,14 +180,16 @@ Notice that the `Environment` now contains two objects, of the type `tbl_df`, a 
 
 ![](img/class7_5.jpg)
 
+If your enviroment is in the `List` view (look at top right), use the drop-down menu to switch to the `Grid` view.
+
 The `Value` for each data frame details the number of columns, and the number of rows, or observations, in the data.
 
-You can remove any object from your environment by checking it in the `Grid` view and clicking the broom icon.
+You can remove any object from your environment by checking it in the `Grid` view and clicking the broom icon. You can also use the code `rm(object)`.
 
 
 #### Examine the data
 
-We can `View` data at any time by clicking on its table icon in the `Environment` tab in the `Grid` view.
+We can `View` data at any time by clicking on its table icon in the `Environment` tab in the `Grid` view, or with the code `View(object)`.
 
 The `glimpse` function will tell you more about the columns in your data, including their data type. Copy this code into your script and `Run`:
 
@@ -240,7 +242,7 @@ This code will convert the population numbers from integers to numbers that coul
 
 ```r
 # convert population to numeric
-nations$population <- as.(nations$population)
+nations$population <- as.numeric(nations$population)
 glimpse(nations)
 ```
 Notice that the data type for `population` has now changed:
@@ -262,7 +264,6 @@ $ income             <chr> "High income", "High income", "High income", "...
 ```
 
 The `summary` function will run a quick statistical summary of a data frame, calculating mean, median and quartile values for continuous variables:
-summary` function will run a quick statistical summary of a data frame, calculating mean, median and quartile values for continuous variables:
 
 ```r
 # summary of nations data
@@ -322,10 +323,10 @@ Here are some of the most useful functions in **dplyr**:
 	- `min(x)` Find the minimum value.
 	- `sum(x)` Add all the values together.
 	- `n()` Count the number of records. Here there isn't a variable in the brackets of the function, because the number of records applies to all variables.
-	- `n_distinct(x`) Count the number of unique values in variable `x`.
+	- `n_distinct(x)` Count the number of unique values in variable `x`.
 - `mutate` Create new column(s) in the data, or change existing column(s).
 - `rename` Rename column(s).
-- `bind_rows` Merge two or more data frames into one, combining data from columns with the same name.
+- `bind_rows` Append one data data frame to another, combining data from columns with the same name.
 
 There are also various functions to **join** data, which we will explore below.
 
@@ -343,7 +344,7 @@ longevity <- nations %>%
   filter(year == 2016 & !is.na(life_expect)) %>%
   select(country, life_expect, income, region)
 ```
-In this code, we created a new object called `longevity` from `nations` and then (`%>%`) filtered it for just the data for 2016 and to include only non-null values. Then we select just four variables from the ten in the original data frame. There should be data returned for 195 countries.
+In this code, we created a new object called `longevity` from `nations` and then (`%>%`) filtered it for just the data for 2016 and to include only non-null values. Then we selected just four variables from the 11 in the original data frame. There should be data returned for 195 countries.
 
 Here are the first few records in the new object:
 
@@ -358,6 +359,9 @@ high_income_short_life <- longevity %>%
   arrange(life_expect) %>%
   head(10)
 ```
+
+![](img/class7_8.jpg)
+
 This code takes the previous `longevity` object, filters it for countries in the high income group only, then sorts the data, using `arrange` (the default is ascending order). Finally it uses `head(10)` to return the first ten countries in the sorted data.
 
 ##### Find countries in North America or Europe & Central Asia with a life expectancy in 2016 of between 75 and 80.
@@ -371,7 +375,7 @@ eur_na_75_80 <- longevity %>%
 
 This should be the result:
 
-![](img/class7_8.jpg)
+![](img/class7_7.jpg)
 
 Whereas in the initial filter of the data to create the `longevity` data frame we used `&` to return data meeting both criteria, this time we also used `|` to include data meeting either criteria. `&` and `|` are equivalent to `AND` and `OR` in Boolean logic. Notice how the `|` part of the filter is wrapped in parentheses. Look at what happens if you remove them, and work out what is going on.
 
@@ -433,7 +437,7 @@ This code demonstrates some simple pattern matching on text, using the function 
 
 - Find the countries with a life expectancy of between 50 and 60 years in 1990, arranged in descending order of life expectancy.
 
-- Find upper and lower middle income countries with a life expectancy of between 60 and 70 in 1990. Sort in descending order of life expectancy.
+- Find upper middle and lower middle income countries with a life expectancy of between 60 and 70 in 1990. Sort in descending order of life expectancy.
 
 - Find countries that in 1990 had a GDP per capita of more than $50,000 dollars and a life expectancy of 70 years or more that were not in Europe or North America. Sort them in ascending order of life expectancy.
 
@@ -580,7 +584,7 @@ We need to append the data for 2015 to the older data. So this code specifies th
 immun <- bind_rows(immun, immun_2015)
 ```
 
-This code introduces the `bind_rows` fucntion, which appends one data frame to another, based on matching column names and data types. (If a column exists in one data frame but not in the other, `NA`s will be added where necessary.)
+This code introduces the `bind_rows` function, which appends one data frame to another, based on matching column names and data types. (If a column exists in one data frame but not in the other, `NA`s will be added where necessary.)
 
 #### Calculate the percentage of children with incomplete immunizations, for the entire state, and by county
 

@@ -47,7 +47,13 @@ ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
   xlab(<span class="hljs-string">"Infectious disease prevalence score"</span>) + 
   ylab(<span class="hljs-string">"Democratization score"</span>) +
   theme_minimal(base_size = <span class="hljs-number">14</span>, base_family = <span class="hljs-string">"Georgia"</span>)
-</code></pre><p><img src="img/class8_3.png" alt=""></p><p>Notice how the <code>base_family</code> and <code>base_size</code> can be used with a built-in theme to change font face and size. R’s basic fonts are fairly limited (run <code>names(postscriptFonts())</code> to view those available). However, you can use the <strong><a href="https://github.com/wch/extrafont">extrafont</a></strong> package to make other fonts available.</p><h4 id="save-the-basic-chart-template"><a name="save-the-basic-chart-template" href="#save-the-basic-chart-template"></a>Save the basic chart template</h4><p>You can save a <strong>ggplot2</strong> chart as an object in your environment using the <code>&lt;-</code> assignment operator. So we’ll do that here to save the basic template, with no <code>geom</code> layers.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save chart template, and plot
+</code></pre><p><img src="img/class8_3.png" alt=""></p><p>Notice how the <code>base_family</code> and <code>base_size</code> can be used with a built-in theme to change font face and size. R’s basic fonts are fairly limited (run <code>names(postscriptFonts())</code> to view those available). However, you can use the <strong><a href="https://github.com/wch/extrafont">extrafont</a></strong> package to make other fonts available. Install <strong>extrafont</strong>, then  run this code to make the fonts on your computer available to R:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>library(extrafont)
+font_import()
+loadfonts()
+</code></pre>"><span class="hljs-keyword">library</span>(extrafont)
+font_import()
+loadfonts()
+</code></pre><h4 id="save-the-basic-chart-template"><a name="save-the-basic-chart-template" href="#save-the-basic-chart-template"></a>Save the basic chart template</h4><p>You can save a <strong>ggplot2</strong> chart as an object in your environment using the <code>&lt;-</code> assignment operator. So we’ll do that here to save the basic template, with no <code>geom</code> layers.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save chart template, and plot
 disease_democ_chart &amp;lt;- ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
   xlab(&quot;Infectious disease prevalence score&quot;) + 
   ylab(&quot;Democratization score&quot;) +
@@ -141,7 +147,7 @@ ggplot(disease_democ, aes(x = infect_rate, y = democ_score, color=income_group))
   scale_color_brewer(palette = <span class="hljs-string">"Set1"</span>,
                      name=<span class="hljs-string">"Income group"</span>,
                      breaks=c(<span class="hljs-string">"High income: OECD"</span>,<span class="hljs-string">"High income: non-OECD"</span>,<span class="hljs-string">"Upper middle income"</span>,<span class="hljs-string">"Lower middle income"</span>,<span class="hljs-string">"Low income"</span>))
-</code></pre><p><img src="img/class8_9.png" alt=""></p><p>Notice how the first two <code>scale</code> functions are used to set the ranges for the axis, which are entered as a list, using the <code>c</code> function we saw last week.</p><p>We also applied a <a href="http://colorbrewer2.org">ColorBrewer</a> qualitative palette using the <code>scale_color_brewer</code> function, and naming the desired <code>palette</code>. You can add the text you want to appear as a legend title using <code>name</code>, and specify the order in which the legend items appear using <code>breaks</code>).</p><p>I separated this code inside the parantheses of the <code>scale_color_brewer</code> function into three lines to make it easier to read.</p><h3 id="export-your-charts-as-images"><a name="export-your-charts-as-images" href="#export-your-charts-as-images"></a>Export your charts as images</h3><p>Having made a series of charts, you can browse through them using the blue arrows at the top of the <code>Plots</code> tab in the panel at bottom right. The broom icon will clear all of your charts; the icon to its immediate left remove the chart in the current view.</p><p>You can export any chart by selecting <code>Export&gt;Save as Image...</code> in the <code>Plots</code> tab. At the dialog box, you can select the desired image format, and size.</p><p>If you wish to subsquently edit or annotate the chart in a vector graphics editor such as <a href="https://helpx.adobe.com/illustrator/how-to/what-is-illustrator.html">Abode Illustrator</a>, export as an SVG file. To do this on the Mac, you will first need to install <a href="https://www.xquartz.org/">XQuartz</a>.</p><p><img src="img/class8_10.jpg" alt=""></p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save final disease and democracy chart
+</code></pre><p><img src="img/class8_9.png" alt=""></p><p>Notice how the first two <code>scale</code> functions are used to set the ranges for the axis, which are entered as a list, using the <code>c</code> function we saw last week.</p><p>We also applied a <a href="http://colorbrewer2.org">ColorBrewer</a> qualitative palette using the <code>scale_color_brewer</code> function, and naming the desired <code>palette</code>. You can add the text you want to appear as a legend title using <code>name</code>, and specify the order in which the legend items appear using <code>breaks</code>).</p><p>I separated the code inside the parantheses of the <code>scale_color_brewer</code> function into three lines to make it easier to read.</p><h3 id="export-your-charts-as-images"><a name="export-your-charts-as-images" href="#export-your-charts-as-images"></a>Export your charts as images</h3><p>Having made a series of charts, you can browse through them using the blue arrows at the top of the <code>Plots</code> tab in the panel at bottom right. The broom icon will clear all of your charts; the icon to its immediate left remove the chart in the current view.</p><p>You can export any chart by selecting <code>Export&gt;Save as Image...</code> in the <code>Plots</code> tab. At the dialog box, you can select the desired image format, and size.</p><p>If you wish to subsquently edit or annotate the chart in a vector graphics editor such as <a href="https://helpx.adobe.com/illustrator/how-to/what-is-illustrator.html">Abode Illustrator</a>, export as an SVG file. To do this on the Mac, you will first need to install <a href="https://www.xquartz.org/">XQuartz</a>.</p><p><img src="img/class8_10.jpg" alt=""></p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># save final disease and democracy chart
 final_disease_democ_chart &amp;lt;- disease_democ_chart +
   geom_point(size = 3, alpha = 0.5, aes(color = income_group)) +
   geom_smooth(method = lm, se = FALSE, color = &quot;black&quot;, linetype = &quot;dotdash&quot;, size = 0.3) +
@@ -164,7 +170,7 @@ food_stamps &amp;lt;- read_csv(&quot;food_stamps.csv&quot;)
 
 # save basic chart template
 food_stamps_chart &amp;lt;- ggplot(food_stamps, aes(x = year, y = participants)) +
-  xlab(&quot;Year&quot;) +cl
+  xlab(&quot;Year&quot;) +
   ylab(&quot;Participants (millions)&quot;) +
   theme_minimal(base_size = 14, base_family = &quot;Georgia&quot;)
 </code></pre>"><span class="hljs-comment"># load data</span>
@@ -172,7 +178,7 @@ food_stamps &lt;- read_csv(<span class="hljs-string">"food_stamps.csv"</span>)
 
 <span class="hljs-comment"># save basic chart template</span>
 food_stamps_chart &lt;- ggplot(food_stamps, aes(x = year, y = participants)) +
-  xlab(<span class="hljs-string">"Year"</span>) +cl
+  xlab(<span class="hljs-string">"Year"</span>) +
   ylab(<span class="hljs-string">"Participants (millions)"</span>) +
   theme_minimal(base_size = <span class="hljs-number">14</span>, base_family = <span class="hljs-string">"Georgia"</span>)
 </code></pre><h4 id="make-a-line-chart"><a name="make-a-line-chart" href="#make-a-line-chart"></a>Make a line chart</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># line chart
@@ -237,7 +243,7 @@ food_stamps_chart +
            alpha = <span class="hljs-number">0.5</span>) +
   ggtitle(<span class="hljs-string">"Bar chart"</span>) + 
   coord_flip()
-</code></pre><p><img src="img/class8_15.png" alt=""></p><h4 id="map-color-to-the-values-of-a-continuous-variable"><a name="map-color-to-the-values-of-a-continuous-variable" href="#map-color-to-the-values-of-a-continuous-variable"></a>Map color to the values of a continuous variable</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># fill the bars according to values for the cost of the program
+</code></pre><p><img src="img/class8_15.png" alt=""></p><h4 id="map-color-to-the-values-of-a-continuous-variable"><a name="map-color-to-the-values-of-a-continuous-variable" href="#map-color-to-the-values-of-a-continuous-variable"></a>Map color to the values of a continuous variable</h4><p>You can also map color gradients onto values for a continous variable. We will now color the bars according to the cost of the program, in billions of dollars.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># fill the bars according to values for the cost of the program
 food_stamps_chart +
   geom_bar(stat = &quot;identity&quot;, 
            color= &quot;white&quot;, 
@@ -247,7 +253,7 @@ food_stamps_chart +
   geom_bar(stat = <span class="hljs-string">"identity"</span>, 
            color= <span class="hljs-string">"white"</span>, 
            aes(fill = costs))
-</code></pre><p><img src="img/class8_16.png" alt=""></p><p>This code uses an <code>aes</code> mapping to color the bars according values for the costs of the program, in billions of dollars. <em>ggplot2</em> recognizes that <code>costs</code> is a continuous variable, but its default sequential scheme applies more intense blues to lower values, which is counterintuitive.</p><h4 id="use-a-colorbrewer-sequential-color-palette"><a name="use-a-colorbrewer-sequential-color-palette" href="#use-a-colorbrewer-sequential-color-palette"></a>Use a ColorBrewer sequential color palette</h4><p>You can also map color gradients onto values for a continous variable. We will now color the bars according to the cost of the program, in billions of dollars.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># use a colorbrewer sequential palette
+</code></pre><p><img src="img/class8_16.png" alt=""></p><p>This code uses an <code>aes</code> mapping to color the bars according values for the costs of the program, in billions of dollars. <strong>ggplot2</strong> recognizes that <code>costs</code> is a continuous variable, but its default sequential scheme applies more intense blues to lower values, which is counterintuitive.</p><p>So let’s use a ColorBrewer sequential color palette, and fix that.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># use a colorbrewer sequential palette
 food_stamps_chart +
   geom_bar(stat = &quot;identity&quot;, 
            color = &quot;#888888&quot;, 
@@ -285,7 +291,7 @@ immun &amp;lt;- read_csv(&quot;kindergarten.csv&quot;)
 
 <span class="hljs-comment"># load data</span>
 immun &lt;- read_csv(<span class="hljs-string">"kindergarten.csv"</span>)
-</code></pre><h4 id="calculate-number-of-children-with-incomplete-immunizations-for-each-school"><a name="calculate-number-of-children-with-incomplete-immunizations-for-each-school" href="#calculate-number-of-children-with-incomplete-immunizations-for-each-school"></a>Calculate number of children with incomplete immunizations for each school</h4><p>Preparing the data requires some initial work using <strong>dplyr</strong>.</p><p>As we saw last week, this data has <code>enrollment</code> numbers for each school and year, the number of children with <code>complete</code> immunizations.</p><h4 id="calculate-proportion-of-children-with-incomplete-immunizations,-fo-the-entire-state,-and-by-county."><a name="calculate-proportion-of-children-with-incomplete-immunizations,-fo-the-entire-state,-and-by-county." href="#calculate-proportion-of-children-with-incomplete-immunizations,-fo-the-entire-state,-and-by-county."></a>Calculate proportion of children with incomplete immunizations, fo the entire state, and by county.</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># percentage incomplete, entire state, by year
+</code></pre><h4 id="calculate-number-of-children-with-incomplete-immunizations-for-each-school"><a name="calculate-number-of-children-with-incomplete-immunizations-for-each-school" href="#calculate-number-of-children-with-incomplete-immunizations-for-each-school"></a>Calculate number of children with incomplete immunizations for each school</h4><p>Preparing the data requires some initial work using <strong>dplyr</strong>.</p><p>As we saw last week, this data has <code>enrollment</code> numbers for each school and year, and the number of children with <code>complete</code> immunizations, for each kindergarten.</p><h4 id="calculate-proportion-of-children-with-incomplete-immunizations,-fo-the-entire-state,-and-by-county."><a name="calculate-proportion-of-children-with-incomplete-immunizations,-fo-the-entire-state,-and-by-county." href="#calculate-proportion-of-children-with-incomplete-immunizations,-fo-the-entire-state,-and-by-county."></a>Calculate proportion of children with incomplete immunizations, fo the entire state, and by county.</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># percentage incomplete, entire state, by year
 immun_year &amp;lt;- immun %&amp;gt;%
   group_by(start_year) %&amp;gt;%
   summarize(enrolled = sum(enrollment, na.rm=TRUE),
@@ -297,7 +303,7 @@ immun_counties_year &amp;lt;- immun %&amp;gt;%
   group_by(county,start_year) %&amp;gt;%
   summarize(enrolled = sum(enrollment, na.rm = TRUE),
             completed = sum(complete, na.rm = TRUE)) %&amp;gt;%
-  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+  mutate(pc_incomplete = enrolled-completed/enrolled*100),2))
 </code></pre>"><span class="hljs-comment"># percentage incomplete, entire state, by year</span>
 immun_year &lt;- immun %&gt;%
   group_by(start_year) %&gt;%
@@ -310,8 +316,8 @@ immun_counties_year &lt;- immun %&gt;%
   group_by(county,start_year) %&gt;%
   summarize(enrolled = sum(enrollment, na.rm = <span class="hljs-literal">TRUE</span>),
             completed = sum(complete, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
-  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*<span class="hljs-number">100</span>),<span class="hljs-number">2</span>))
-</code></pre><h4 id="identify-the-five-counties-with-the-largest-enrollment-over-all-years,-then-filter-the-counties-summary-data-to-include-these-counties-only"><a name="identify-the-five-counties-with-the-largest-enrollment-over-all-years,-then-filter-the-counties-summary-data-to-include-these-counties-only" href="#identify-the-five-counties-with-the-largest-enrollment-over-all-years,-then-filter-the-counties-summary-data-to-include-these-counties-only"></a>Identify the five counties with the largest enrollment over all years, then filter the counties summary data to include these counties only</h4><p>To do this, we will sum the enrollment numbers by county across all the years, sort gthe counties in descending order, filter for the top five using <code>head(5)</code> and then select the county names.</p><p>Having done that, we can use a <code>semi_join</code> to filter the counties summary data.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># identify five counties with the largest enrollment over all years
+  mutate(pc_incomplete = enrolled-completed/enrolled*<span class="hljs-number">100</span>),<span class="hljs-number">2</span>))
+</code></pre><h4 id="identify-the-five-counties-with-the-largest-enrollment-over-all-years,-then-filter-the-counties-summary-data-to-include-these-counties-only"><a name="identify-the-five-counties-with-the-largest-enrollment-over-all-years,-then-filter-the-counties-summary-data-to-include-these-counties-only" href="#identify-the-five-counties-with-the-largest-enrollment-over-all-years,-then-filter-the-counties-summary-data-to-include-these-counties-only"></a>Identify the five counties with the largest enrollment over all years, then filter the counties summary data to include these counties only</h4><p>To do this, we will sum the enrollment numbers by county across all the years, sort the counties in descending order, filter for the top five using <code>head(5)</code> and then select the county names.</p><p>Having done that, we can use a <code>semi_join</code> to filter the counties summary data.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># identify five counties with the largest enrollment over all years
 top5 &amp;lt;- immun %&amp;gt;%
   group_by(county) %&amp;gt;%
   summarize(enrolled = sum(enrollment, na.rm = TRUE)) %&amp;gt;%
@@ -333,11 +339,10 @@ top5 &lt;- immun %&gt;%
 immun_top5_year &lt;- semi_join(immun_counties_year, top5)
 </code></pre><h4 id="make-a-heat-map-showing-the-percentage-of-children-with-incomplete-immunization-for-each-california-county,-over-time"><a name="make-a-heat-map-showing-the-percentage-of-children-with-incomplete-immunization-for-each-california-county,-over-time" href="#make-a-heat-map-showing-the-percentage-of-children-with-incomplete-immunization-for-each-california-county,-over-time"></a>Make a heat map showing the percentage of children with incomplete immunization for each California county, over time</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># heat map, all counties, by year
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = proport_incomplete), colour = &quot;white&quot;) +
+  geom_tile(aes(fill = pc_incomplete), color = &quot;white&quot;) +
   scale_fill_gradient(low = &quot;white&quot;,
                       high = &quot;red&quot;,
-                      name=&quot;&quot;,
-                      labels = percent) +
+                      name=&quot;% incomplete&quot;) +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
   theme_minimal(base_size = 12, base_family = &quot;Georgia&quot;) +
   xlab(&quot;&quot;) +
@@ -349,11 +354,10 @@ ggplot(immun_counties_year, aes(x = start_year, y = county)) +
   ggtitle(&quot;Immunization in California kindergartens, by county&quot;)
 </code></pre>"><span class="hljs-comment"># heat map, all counties, by year</span>
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = proport_incomplete), colour = <span class="hljs-string">"white"</span>) +
+  geom_tile(aes(fill = pc_incomplete), color = <span class="hljs-string">"white"</span>) +
   scale_fill_gradient(low = <span class="hljs-string">"white"</span>,
                       high = <span class="hljs-string">"red"</span>,
-                      name=<span class="hljs-string">""</span>,
-                      labels = percent) +
+                      name=<span class="hljs-string">"% incomplete"</span>) +
   scale_x_continuous(breaks = c(<span class="hljs-number">2002</span>,<span class="hljs-number">2004</span>,<span class="hljs-number">2006</span>,<span class="hljs-number">2008</span>,<span class="hljs-number">2010</span>,<span class="hljs-number">2012</span>,<span class="hljs-number">2014</span>)) +
   theme_minimal(base_size = <span class="hljs-number">12</span>, base_family = <span class="hljs-string">"Georgia"</span>) +
   xlab(<span class="hljs-string">""</span>) +

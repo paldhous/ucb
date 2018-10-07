@@ -1,6 +1,7 @@
 # load required packages
 library(ggplot2)
 library(readr)
+library(dplyr)
 
 # load disease and democracy data
 disease_democ <- read_csv("disease_democ.csv")
@@ -33,6 +34,13 @@ disease_democ_chart +
 disease_democ_chart +
   geom_point() +
   geom_smooth()
+
+names(postscriptFonts())
+
+library(extrafont)
+font_import()
+loadfonts()
+
 
 # customize the two geom layers
 disease_democ_chart +
@@ -278,4 +286,48 @@ ggplot(regions, aes(x=year,y=gdp_tn,fill=region)) +
   geom_area(color="white") +
   scale_fill_brewer(palette = "Set2", name="")
 
+install.packages("esquisse")
 
+
+# percentage incomplete, entire state, by year
+immun_year <- immun %>%
+  group_by(start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm=TRUE),
+            completed = sum(complete, na.rm=TRUE)) %>%
+  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+
+immun_year <- immun %>%
+  group_by(start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm=TRUE),
+            completed = sum(complete, na.rm=TRUE)) %>%
+  mutate(pc_incomplete = (enrolled-completed)/enrolled)
+
+
+# percentage incomplete, by county, by year
+immun_counties_year <- immun %>%
+  group_by(county,start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE),
+            completed = sum(complete, na.rm = TRUE)) %>%
+  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+
+# percentage incomplete, by county, by year
+immun_counties_year <- immun %>%
+  group_by(county,start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE),
+            completed = sum(complete, na.rm = TRUE)) %>%
+  mutate(pc_incomplete = (enrolled-completed)/enrolled)
+
+ggplot(immun_counties_year, aes(x = start_year, y = county)) +
+  geom_tile(aes(fill = pc_incomplete), color = "white") +
+  scale_fill_gradient(low = "white",
+                      high = "red",
+                      name="% incomplete") +
+  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
+  theme_minimal(base_size = 12, base_family = "Georgia") +
+  xlab("") +
+  ylab("County") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position="bottom",
+        legend.key.height = unit(0.4, "cm")) +
+  ggtitle("Immunization in California kindergartens, by county")

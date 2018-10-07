@@ -96,7 +96,13 @@ ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
 
 ![](./img/class8_3.png)
 
-Notice how the `base_family` and `base_size` can be used with a built-in theme to change font face and size. R's basic fonts are fairly limited (run `names(postscriptFonts())` to view those available). However, you can use the **[extrafont](https://github.com/wch/extrafont)** package to make other fonts available.
+Notice how the `base_family` and `base_size` can be used with a built-in theme to change font face and size. R's basic fonts are fairly limited (run `names(postscriptFonts())` to view those available). However, you can use the **[extrafont](https://github.com/wch/extrafont)** package to make other fonts available. Install **extrafont**, then  run this code to make the fonts on your computer available to R:
+
+```R
+library(extrafont)
+font_import()
+loadfonts()
+```
 
 #### Save the basic chart template
 
@@ -230,7 +236,7 @@ Notice how the first two `scale` functions are used to set the ranges for the ax
 
 We also applied a [ColorBrewer](http://colorbrewer2.org) qualitative palette using the `scale_color_brewer` function, and naming the desired `palette`. You can add the text you want to appear as a legend title using `name`, and specify the order in which the legend items appear using `breaks`).
 
-I separated this code inside the parantheses of the `scale_color_brewer` function into three lines to make it easier to read.
+I separated the code inside the parantheses of the `scale_color_brewer` function into three lines to make it easier to read.
 
 ### Export your charts as images
 
@@ -266,7 +272,7 @@ food_stamps <- read_csv("food_stamps.csv")
 
 # save basic chart template
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) +
-  xlab("Year") +cl
+  xlab("Year") +
   ylab("Participants (millions)") +
   theme_minimal(base_size = 14, base_family = "Georgia")
 ```
@@ -355,6 +361,8 @@ food_stamps_chart +
 
 #### Map color to the values of a continuous variable
 
+You can also map color gradients onto values for a continous variable. We will now color the bars according to the cost of the program, in billions of dollars.
+
 ```r
 # fill the bars according to values for the cost of the program
 food_stamps_chart +
@@ -365,11 +373,9 @@ food_stamps_chart +
 
 ![](./img/class8_16.png)
 
-This code uses an `aes` mapping to color the bars according values for the costs of the program, in billions of dollars. *ggplot2* recognizes that `costs` is a continuous variable, but its default sequential scheme applies more intense blues to lower values, which is counterintuitive.
+This code uses an `aes` mapping to color the bars according values for the costs of the program, in billions of dollars. **ggplot2** recognizes that `costs` is a continuous variable, but its default sequential scheme applies more intense blues to lower values, which is counterintuitive.
 
-#### Use a ColorBrewer sequential color palette
-
-You can also map color gradients onto values for a continous variable. We will now color the bars according to the cost of the program, in billions of dollars.
+So let's use a ColorBrewer sequential color palette, and fix that.
 
 ```r
 # use a colorbrewer sequential palette
@@ -430,7 +436,7 @@ immun <- read_csv("kindergarten.csv")
 
 Preparing the data requires some initial work using **dplyr**.
 
-As we saw last week, this data has `enrollment` numbers for each school and year, the number of children with `complete` immunizations.
+As we saw last week, this data has `enrollment` numbers for each school and year, and the number of children with `complete` immunizations, for each kindergarten.
 
 #### Calculate proportion of children with incomplete immunizations, fo the entire state, and by county.
 
@@ -447,12 +453,12 @@ immun_counties_year <- immun %>%
   group_by(county,start_year) %>%
   summarize(enrolled = sum(enrollment, na.rm = TRUE),
             completed = sum(complete, na.rm = TRUE)) %>%
-  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+  mutate(pc_incomplete = enrolled-completed/enrolled*100),2))
 ```
 
 #### Identify the five counties with the largest enrollment over all years, then filter the counties summary data to include these counties only
 
-To do this, we will sum the enrollment numbers by county across all the years, sort gthe counties in descending order, filter for the top five using `head(5)` and then select the county names.
+To do this, we will sum the enrollment numbers by county across all the years, sort the counties in descending order, filter for the top five using `head(5)` and then select the county names.
 
 Having done that, we can use a `semi_join` to filter the counties summary data.
 
@@ -474,11 +480,10 @@ immun_top5_year <- semi_join(immun_counties_year, top5)
 ```r
 # heat map, all counties, by year
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = proport_incomplete), colour = "white") +
+  geom_tile(aes(fill = pc_incomplete), color = "white") +
   scale_fill_gradient(low = "white",
                       high = "red",
-                      name="",
-                      labels = percent) +
+                      name="% incomplete") +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
   theme_minimal(base_size = 12, base_family = "Georgia") +
   xlab("") +
