@@ -162,27 +162,27 @@ library(dplyr)
 # load data
 immun <- read_csv("kindergarten.csv")
 
-write.csv(immun, "kindergarten.csv", na="", row.names=F)
+# write.csv(immun, "kindergarten.csv", na="", row.names=F)
 
 
 # create new column with numbers of children with incomplete immunizations
 immun <- immun %>%
   mutate(incomplete = enrollment - complete)
   
-# proportion incomplete, entire state, by year
+# percentage incomplete, entire state, by year
 immun_year <- immun %>%
   group_by(start_year) %>%
-  summarize(enrollment = sum(enrollment, na.rm=TRUE), 
-            incomplete = sum(incomplete, na.rm=TRUE)) %>%
-  mutate(proport_incomplete = incomplete/enrollment)
+  summarize(enrolled = sum(enrollment, na.rm=TRUE),
+            completed = sum(complete, na.rm=TRUE)) %>%
+  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
 
-# proportion incomplete, by county and year
+# percentage incomplete, by county, by year
 immun_counties_year <- immun %>%
   group_by(county,start_year) %>%
-  summarize(enrollment = sum(enrollment, na.rm=TRUE), 
-            incomplete = sum(incomplete, na.rm=TRUE)) %>%
-  mutate(proport_incomplete = incomplete/enrollment)
-  
+  summarize(enrolled = sum(enrollment, na.rm = TRUE),
+            completed = sum(complete, na.rm = TRUE)) %>%
+  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+
 # identify the five counties with the largest enrollment over all years
 top5 <- immun %>%
   group_by(county) %>%
@@ -191,42 +191,29 @@ top5 <- immun %>%
   head(5) %>%
   select(county)
 
-# proportion incomplete, top 5 counties for enrollment, by year
+# pc incomplete, top 5 counties for enrollment, by year
 immun_top5_year <- semi_join(immun_counties_year, top5)
 
-# bar chart by year, entire state
-ggplot(immun_top5_year, aes(x = start_year, y = proport_incomplete, color = county)) + 
-  scale_color_brewer(palette = "Set1", name = "") +
-  geom_line(size=1) +
-  geom_point(size=3) +
-  theme_minimal(base_size = 12, base_family = "Georgia") +
-  scale_y_continuous(labels = percent, limits = c(0,0.15)) +
-  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
-  xlab("") +
-  ylab("Incomplete") +
-  theme(legend.position = "bottom") +
-  ggtitle("Immunization in California kindergartens\n(five largest counties)")
 
 # dot and line chart, top5 counties, by year
-ggplot(immun_top5_year, aes(x = start_year, y = proport_incomplete, color = county)) + 
+ggplot(immun_top5_year, aes(x = start_year, y = pc_incomplete, color = county)) + 
   scale_color_brewer(palette = "Set1", name = "") +
   geom_line(size=1) +
   geom_point(size=3) +
   theme_minimal(base_size = 12, base_family = "Georgia") +
-  scale_y_continuous(labels = percent, limits = c(0,0.15)) +
+  scale_y_continuous(limits = c(0,15)) +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
   xlab("") +
-  ylab("Incomplete") +
+  ylab("% incomplete") +
   theme(legend.position = "bottom") +
   ggtitle("Immunization in California kindergartens\n(five largest counties)")
 
 # heat map, all counties, by year
 ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = proport_incomplete), colour = "white") +
+  geom_tile(aes(fill = pc_incomplete), colour = "white") +
   scale_fill_gradient(low = "white",
                       high = "red",
-                      name="",
-                      labels = percent) +
+                      name="") +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
   theme_minimal(base_size = 12, base_family = "Georgia") +
   xlab("") +
@@ -236,6 +223,18 @@ ggplot(immun_counties_year, aes(x = start_year, y = county)) +
         legend.position="bottom",
         legend.key.height = unit(0.4, "cm")) +
   ggtitle("Immunization in California kindergartens, by county")
+
+# bar chart by year, entire state
+ggplot(immun_year, aes(x=start_year, y=pc_incomplete)) +
+  geom_bar(stat="identity", fill="red", alpha=0.7) +
+  theme_minimal(base_size = 14, base_family = "Georgia") +
+  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
+  xlab("") +
+  ylab("% incomplete") +
+  ggtitle("Immunization in California kindergartens",subtitle="Percent of children without complete shots, entire state") +
+  theme(panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank())
+
 
 # load data
 nations <- read_csv("nations.csv")
@@ -255,6 +254,10 @@ ggplot(nations2016, aes(x = gdp_percap, y = life_expect)) +
   stat_smooth(formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype="dotted") +
   scale_color_brewer(name = "", palette = "Set2") +
   theme(legend.position=c(0.8,0.4))
+
+
+
+
 
 # assignment
 
@@ -289,45 +292,3 @@ ggplot(regions, aes(x=year,y=gdp_tn,fill=region)) +
 install.packages("esquisse")
 
 
-# percentage incomplete, entire state, by year
-immun_year <- immun %>%
-  group_by(start_year) %>%
-  summarize(enrolled = sum(enrollment, na.rm=TRUE),
-            completed = sum(complete, na.rm=TRUE)) %>%
-  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
-
-immun_year <- immun %>%
-  group_by(start_year) %>%
-  summarize(enrolled = sum(enrollment, na.rm=TRUE),
-            completed = sum(complete, na.rm=TRUE)) %>%
-  mutate(pc_incomplete = (enrolled-completed)/enrolled)
-
-
-# percentage incomplete, by county, by year
-immun_counties_year <- immun %>%
-  group_by(county,start_year) %>%
-  summarize(enrolled = sum(enrollment, na.rm = TRUE),
-            completed = sum(complete, na.rm = TRUE)) %>%
-  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
-
-# percentage incomplete, by county, by year
-immun_counties_year <- immun %>%
-  group_by(county,start_year) %>%
-  summarize(enrolled = sum(enrollment, na.rm = TRUE),
-            completed = sum(complete, na.rm = TRUE)) %>%
-  mutate(pc_incomplete = (enrolled-completed)/enrolled)
-
-ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = pc_incomplete), color = "white") +
-  scale_fill_gradient(low = "white",
-                      high = "red",
-                      name="% incomplete") +
-  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
-  theme_minimal(base_size = 12, base_family = "Georgia") +
-  xlab("") +
-  ylab("County") +
-  theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        legend.position="bottom",
-        legend.key.height = unit(0.4, "cm")) +
-  ggtitle("Immunization in California kindergartens, by county")
