@@ -1,0 +1,2236 @@
+<!DOCTYPE qgis PUBLIC 'http://mrcc.com/qgis.dtd' 'SYSTEM'>
+<qgis version="3.0.3-Girona" projectname="">
+  <title></title>
+  <autotransaction active="0"/>
+  <evaluateDefaultValues active="0"/>
+  <trust active="0"/>
+  <projectCrs>
+    <spatialrefsys>
+      <proj4>+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs</proj4>
+      <srsid>27131</srsid>
+      <srid>102008</srid>
+      <authid>EPSG:102008</authid>
+      <description>North_America_Albers_Equal_Area_Conic</description>
+      <projectionacronym>aea</projectionacronym>
+      <ellipsoidacronym></ellipsoidacronym>
+      <geographicflag>false</geographicflag>
+    </spatialrefsys>
+  </projectCrs>
+  <layer-tree-group>
+    <customproperties/>
+    <layer-tree-layer source="file:///Users/peteraldhous/Dropbox/ucb/2018/dataviz/data/week10/quakes.csv?type=csv&amp;xField=longitude&amp;yField=latitude&amp;crs=EPSG:4326&amp;spatialIndex=no&amp;subsetIndex=no&amp;watchFile=no" name="quakes" expanded="1" id="quakes_71512608_8fc4_46af_acfc_065b37c631a2" checked="Qt::Checked" providerKey="delimitedtext">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer source="../../data/week10/seismic/seismic.shp" name="seismic" expanded="1" id="seismic_5ba204fd_bb4f_43fd_8bc8_a87c20a41c12" checked="Qt::Checked" providerKey="ogr">
+      <customproperties/>
+    </layer-tree-layer>
+    <layer-tree-layer source="../../data/week10/ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp" name="ne_50m_admin_0_countries_lakes" expanded="1" id="ne_50m_admin_0_countries_lakes_a776332f_3d1f_4bf7_a084_2de05f6301ac" checked="Qt::Checked" providerKey="ogr">
+      <customproperties/>
+    </layer-tree-layer>
+    <custom-order enabled="0">
+      <item>seismic_5ba204fd_bb4f_43fd_8bc8_a87c20a41c12</item>
+      <item>ne_50m_admin_0_countries_lakes_a776332f_3d1f_4bf7_a084_2de05f6301ac</item>
+      <item>quakes_71512608_8fc4_46af_acfc_065b37c631a2</item>
+    </custom-order>
+  </layer-tree-group>
+  <snapping-settings intersection-snapping="0" tolerance="12" mode="2" unit="1" enabled="0" type="1">
+    <individual-layer-settings>
+      <layer-setting units="1" id="seismic_5ba204fd_bb4f_43fd_8bc8_a87c20a41c12" tolerance="12" enabled="0" type="1"/>
+      <layer-setting units="1" id="quakes_71512608_8fc4_46af_acfc_065b37c631a2" tolerance="12" enabled="0" type="1"/>
+      <layer-setting units="1" id="ne_50m_admin_0_countries_lakes_a776332f_3d1f_4bf7_a084_2de05f6301ac" tolerance="12" enabled="0" type="1"/>
+    </individual-layer-settings>
+  </snapping-settings>
+  <relations/>
+  <mapcanvas name="theMapCanvas" annotationsVisible="1">
+    <units>meters</units>
+    <extent>
+      <xmin>-3055112.04092707950621843</xmin>
+      <ymin>-1792842.41288820840418339</ymin>
+      <xmax>2865845.39189834892749786</xmax>
+      <ymax>1561236.18841389985755086</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=aea +lat_1=20 +lat_2=60 +lat_0=40 +lon_0=-96 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs</proj4>
+        <srsid>27131</srsid>
+        <srid>102008</srid>
+        <authid>EPSG:102008</authid>
+        <description>North_America_Albers_Equal_Area_Conic</description>
+        <projectionacronym>aea</projectionacronym>
+        <ellipsoidacronym></ellipsoidacronym>
+        <geographicflag>false</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+  </mapcanvas>
+  <legend updateDrawingOrder="true">
+    <legendlayer name="quakes" drawingOrder="-1" checked="Qt::Checked" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" visible="1" layerid="quakes_71512608_8fc4_46af_acfc_065b37c631a2"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="seismic" drawingOrder="-1" checked="Qt::Checked" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" visible="1" layerid="seismic_5ba204fd_bb4f_43fd_8bc8_a87c20a41c12"/>
+      </filegroup>
+    </legendlayer>
+    <legendlayer name="ne_50m_admin_0_countries_lakes" drawingOrder="-1" checked="Qt::Checked" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" visible="1" layerid="ne_50m_admin_0_countries_lakes_a776332f_3d1f_4bf7_a084_2de05f6301ac"/>
+      </filegroup>
+    </legendlayer>
+  </legend>
+  <mapViewDocks/>
+  <mapViewDocks3D/>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+  </mapcanvas>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+  </mapcanvas>
+  <mapcanvas name="mAreaCanvas" annotationsVisible="1">
+    <units>degrees</units>
+    <extent>
+      <xmin>0</xmin>
+      <ymin>0</ymin>
+      <xmax>0</xmax>
+      <ymax>0</ymax>
+    </extent>
+    <rotation>0</rotation>
+    <destinationsrs>
+      <spatialrefsys>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>WGS84</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </destinationsrs>
+    <rendermaptile>0</rendermaptile>
+  </mapcanvas>
+  <projectlayers>
+    <maplayer refreshOnNotifyMessage="" maxScale="0" simplifyLocal="1" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" labelsEnabled="0" readOnly="0" simplifyAlgorithm="0" simplifyMaxScale="1" autoRefreshEnabled="0" simplifyDrawingTol="1" refreshOnNotifyEnabled="0" geometry="Polygon" minScale="1e+8" autoRefreshTime="0" type="vector">
+      <extent>
+        <xmin>-180</xmin>
+        <ymin>-89.99892578125002274</ymin>
+        <xmax>180.00000000000011369</xmax>
+        <ymax>83.59960937500008527</ymax>
+      </extent>
+      <id>ne_50m_admin_0_countries_lakes_a776332f_3d1f_4bf7_a084_2de05f6301ac</id>
+      <datasource>../../data/week10/ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>ne_50m_admin_0_countries_lakes</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent>
+          <spatial minx="0" minz="0" maxx="0" miny="0" dimensions="2" maxy="0" maxz="0" crs=""/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
+        <links/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <renderer-v2 forceraster="0" symbollevels="0" enableorderby="0" type="singleSymbol">
+        <symbols>
+          <symbol name="0" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="204,204,204,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="255,255,255,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory penColor="#000000" maxScaleDenominator="1e+8" rotationOffset="270" diagramOrientation="Up" barWidth="5" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" sizeType="MM" lineSizeType="MM" minimumSize="0" backgroundAlpha="255" backgroundColor="#ffffff" minScaleDenominator="0" width="15" sizeScale="3x:0,0,0,0,0,0" scaleDependency="Area" penWidth="0" height="15" penAlpha="255" opacity="1" enabled="0">
+          <fontProperties style="" description=".SF NS Text,13,-1,5,50,0,0,0,0,0"/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings dist="0" zIndex="0" obstacle="0" showAll="1" priority="0" placement="0" linePlacementFlags="18">
+        <properties>
+          <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties"/>
+            <Option name="type" type="QString" value="collection"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
+      <fieldConfiguration>
+        <field name="scalerank">
+          <editWidget type="Range">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="featurecla">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="labelrank">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="sovereignt">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="sov_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="adm0_dif">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="level">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="type">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="admin">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="adm0_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="geou_dif">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="geounit">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="gu_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="su_dif">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="subunit">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="su_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="brk_diff">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="name">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="name_long">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="brk_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="brk_name">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="brk_group">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="abbrev">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="postal">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="formal_en">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="formal_fr">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="note_adm0">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="note_brk">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="name_sort">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="name_alt">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="mapcolor7">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="mapcolor8">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="mapcolor9">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="mapcolor13">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="pop_est">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="gdp_md_est">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="pop_year">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="lastcensus">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="gdp_year">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="economy">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="income_grp">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="wikipedia">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="fips_10">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="iso_a2">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="iso_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="iso_n3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="un_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="wb_a2">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="wb_a3">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="woe_id">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="adm0_a3_is">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="adm0_a3_us">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="adm0_a3_un">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="adm0_a3_wb">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="continent">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="region_un">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="subregion">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="region_wb">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="name_len">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="long_len">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="abbrev_len">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="tiny">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="homepart">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="scalerank" index="0"/>
+        <alias name="" field="featurecla" index="1"/>
+        <alias name="" field="labelrank" index="2"/>
+        <alias name="" field="sovereignt" index="3"/>
+        <alias name="" field="sov_a3" index="4"/>
+        <alias name="" field="adm0_dif" index="5"/>
+        <alias name="" field="level" index="6"/>
+        <alias name="" field="type" index="7"/>
+        <alias name="" field="admin" index="8"/>
+        <alias name="" field="adm0_a3" index="9"/>
+        <alias name="" field="geou_dif" index="10"/>
+        <alias name="" field="geounit" index="11"/>
+        <alias name="" field="gu_a3" index="12"/>
+        <alias name="" field="su_dif" index="13"/>
+        <alias name="" field="subunit" index="14"/>
+        <alias name="" field="su_a3" index="15"/>
+        <alias name="" field="brk_diff" index="16"/>
+        <alias name="" field="name" index="17"/>
+        <alias name="" field="name_long" index="18"/>
+        <alias name="" field="brk_a3" index="19"/>
+        <alias name="" field="brk_name" index="20"/>
+        <alias name="" field="brk_group" index="21"/>
+        <alias name="" field="abbrev" index="22"/>
+        <alias name="" field="postal" index="23"/>
+        <alias name="" field="formal_en" index="24"/>
+        <alias name="" field="formal_fr" index="25"/>
+        <alias name="" field="note_adm0" index="26"/>
+        <alias name="" field="note_brk" index="27"/>
+        <alias name="" field="name_sort" index="28"/>
+        <alias name="" field="name_alt" index="29"/>
+        <alias name="" field="mapcolor7" index="30"/>
+        <alias name="" field="mapcolor8" index="31"/>
+        <alias name="" field="mapcolor9" index="32"/>
+        <alias name="" field="mapcolor13" index="33"/>
+        <alias name="" field="pop_est" index="34"/>
+        <alias name="" field="gdp_md_est" index="35"/>
+        <alias name="" field="pop_year" index="36"/>
+        <alias name="" field="lastcensus" index="37"/>
+        <alias name="" field="gdp_year" index="38"/>
+        <alias name="" field="economy" index="39"/>
+        <alias name="" field="income_grp" index="40"/>
+        <alias name="" field="wikipedia" index="41"/>
+        <alias name="" field="fips_10" index="42"/>
+        <alias name="" field="iso_a2" index="43"/>
+        <alias name="" field="iso_a3" index="44"/>
+        <alias name="" field="iso_n3" index="45"/>
+        <alias name="" field="un_a3" index="46"/>
+        <alias name="" field="wb_a2" index="47"/>
+        <alias name="" field="wb_a3" index="48"/>
+        <alias name="" field="woe_id" index="49"/>
+        <alias name="" field="adm0_a3_is" index="50"/>
+        <alias name="" field="adm0_a3_us" index="51"/>
+        <alias name="" field="adm0_a3_un" index="52"/>
+        <alias name="" field="adm0_a3_wb" index="53"/>
+        <alias name="" field="continent" index="54"/>
+        <alias name="" field="region_un" index="55"/>
+        <alias name="" field="subregion" index="56"/>
+        <alias name="" field="region_wb" index="57"/>
+        <alias name="" field="name_len" index="58"/>
+        <alias name="" field="long_len" index="59"/>
+        <alias name="" field="abbrev_len" index="60"/>
+        <alias name="" field="tiny" index="61"/>
+        <alias name="" field="homepart" index="62"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default field="scalerank" applyOnUpdate="0" expression=""/>
+        <default field="featurecla" applyOnUpdate="0" expression=""/>
+        <default field="labelrank" applyOnUpdate="0" expression=""/>
+        <default field="sovereignt" applyOnUpdate="0" expression=""/>
+        <default field="sov_a3" applyOnUpdate="0" expression=""/>
+        <default field="adm0_dif" applyOnUpdate="0" expression=""/>
+        <default field="level" applyOnUpdate="0" expression=""/>
+        <default field="type" applyOnUpdate="0" expression=""/>
+        <default field="admin" applyOnUpdate="0" expression=""/>
+        <default field="adm0_a3" applyOnUpdate="0" expression=""/>
+        <default field="geou_dif" applyOnUpdate="0" expression=""/>
+        <default field="geounit" applyOnUpdate="0" expression=""/>
+        <default field="gu_a3" applyOnUpdate="0" expression=""/>
+        <default field="su_dif" applyOnUpdate="0" expression=""/>
+        <default field="subunit" applyOnUpdate="0" expression=""/>
+        <default field="su_a3" applyOnUpdate="0" expression=""/>
+        <default field="brk_diff" applyOnUpdate="0" expression=""/>
+        <default field="name" applyOnUpdate="0" expression=""/>
+        <default field="name_long" applyOnUpdate="0" expression=""/>
+        <default field="brk_a3" applyOnUpdate="0" expression=""/>
+        <default field="brk_name" applyOnUpdate="0" expression=""/>
+        <default field="brk_group" applyOnUpdate="0" expression=""/>
+        <default field="abbrev" applyOnUpdate="0" expression=""/>
+        <default field="postal" applyOnUpdate="0" expression=""/>
+        <default field="formal_en" applyOnUpdate="0" expression=""/>
+        <default field="formal_fr" applyOnUpdate="0" expression=""/>
+        <default field="note_adm0" applyOnUpdate="0" expression=""/>
+        <default field="note_brk" applyOnUpdate="0" expression=""/>
+        <default field="name_sort" applyOnUpdate="0" expression=""/>
+        <default field="name_alt" applyOnUpdate="0" expression=""/>
+        <default field="mapcolor7" applyOnUpdate="0" expression=""/>
+        <default field="mapcolor8" applyOnUpdate="0" expression=""/>
+        <default field="mapcolor9" applyOnUpdate="0" expression=""/>
+        <default field="mapcolor13" applyOnUpdate="0" expression=""/>
+        <default field="pop_est" applyOnUpdate="0" expression=""/>
+        <default field="gdp_md_est" applyOnUpdate="0" expression=""/>
+        <default field="pop_year" applyOnUpdate="0" expression=""/>
+        <default field="lastcensus" applyOnUpdate="0" expression=""/>
+        <default field="gdp_year" applyOnUpdate="0" expression=""/>
+        <default field="economy" applyOnUpdate="0" expression=""/>
+        <default field="income_grp" applyOnUpdate="0" expression=""/>
+        <default field="wikipedia" applyOnUpdate="0" expression=""/>
+        <default field="fips_10" applyOnUpdate="0" expression=""/>
+        <default field="iso_a2" applyOnUpdate="0" expression=""/>
+        <default field="iso_a3" applyOnUpdate="0" expression=""/>
+        <default field="iso_n3" applyOnUpdate="0" expression=""/>
+        <default field="un_a3" applyOnUpdate="0" expression=""/>
+        <default field="wb_a2" applyOnUpdate="0" expression=""/>
+        <default field="wb_a3" applyOnUpdate="0" expression=""/>
+        <default field="woe_id" applyOnUpdate="0" expression=""/>
+        <default field="adm0_a3_is" applyOnUpdate="0" expression=""/>
+        <default field="adm0_a3_us" applyOnUpdate="0" expression=""/>
+        <default field="adm0_a3_un" applyOnUpdate="0" expression=""/>
+        <default field="adm0_a3_wb" applyOnUpdate="0" expression=""/>
+        <default field="continent" applyOnUpdate="0" expression=""/>
+        <default field="region_un" applyOnUpdate="0" expression=""/>
+        <default field="subregion" applyOnUpdate="0" expression=""/>
+        <default field="region_wb" applyOnUpdate="0" expression=""/>
+        <default field="name_len" applyOnUpdate="0" expression=""/>
+        <default field="long_len" applyOnUpdate="0" expression=""/>
+        <default field="abbrev_len" applyOnUpdate="0" expression=""/>
+        <default field="tiny" applyOnUpdate="0" expression=""/>
+        <default field="homepart" applyOnUpdate="0" expression=""/>
+      </defaults>
+      <constraints>
+        <constraint notnull_strength="0" constraints="0" field="scalerank" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="featurecla" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="labelrank" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="sovereignt" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="sov_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="adm0_dif" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="level" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="type" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="admin" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="adm0_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="geou_dif" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="geounit" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="gu_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="su_dif" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="subunit" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="su_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="brk_diff" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="name" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="name_long" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="brk_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="brk_name" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="brk_group" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="abbrev" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="postal" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="formal_en" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="formal_fr" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="note_adm0" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="note_brk" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="name_sort" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="name_alt" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="mapcolor7" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="mapcolor8" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="mapcolor9" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="mapcolor13" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="pop_est" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="gdp_md_est" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="pop_year" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="lastcensus" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="gdp_year" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="economy" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="income_grp" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="wikipedia" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="fips_10" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="iso_a2" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="iso_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="iso_n3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="un_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="wb_a2" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="wb_a3" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="woe_id" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="adm0_a3_is" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="adm0_a3_us" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="adm0_a3_un" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="adm0_a3_wb" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="continent" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="region_un" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="subregion" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="region_wb" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="name_len" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="long_len" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="abbrev_len" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="tiny" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="homepart" unique_strength="0" exp_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint exp="" field="scalerank" desc=""/>
+        <constraint exp="" field="featurecla" desc=""/>
+        <constraint exp="" field="labelrank" desc=""/>
+        <constraint exp="" field="sovereignt" desc=""/>
+        <constraint exp="" field="sov_a3" desc=""/>
+        <constraint exp="" field="adm0_dif" desc=""/>
+        <constraint exp="" field="level" desc=""/>
+        <constraint exp="" field="type" desc=""/>
+        <constraint exp="" field="admin" desc=""/>
+        <constraint exp="" field="adm0_a3" desc=""/>
+        <constraint exp="" field="geou_dif" desc=""/>
+        <constraint exp="" field="geounit" desc=""/>
+        <constraint exp="" field="gu_a3" desc=""/>
+        <constraint exp="" field="su_dif" desc=""/>
+        <constraint exp="" field="subunit" desc=""/>
+        <constraint exp="" field="su_a3" desc=""/>
+        <constraint exp="" field="brk_diff" desc=""/>
+        <constraint exp="" field="name" desc=""/>
+        <constraint exp="" field="name_long" desc=""/>
+        <constraint exp="" field="brk_a3" desc=""/>
+        <constraint exp="" field="brk_name" desc=""/>
+        <constraint exp="" field="brk_group" desc=""/>
+        <constraint exp="" field="abbrev" desc=""/>
+        <constraint exp="" field="postal" desc=""/>
+        <constraint exp="" field="formal_en" desc=""/>
+        <constraint exp="" field="formal_fr" desc=""/>
+        <constraint exp="" field="note_adm0" desc=""/>
+        <constraint exp="" field="note_brk" desc=""/>
+        <constraint exp="" field="name_sort" desc=""/>
+        <constraint exp="" field="name_alt" desc=""/>
+        <constraint exp="" field="mapcolor7" desc=""/>
+        <constraint exp="" field="mapcolor8" desc=""/>
+        <constraint exp="" field="mapcolor9" desc=""/>
+        <constraint exp="" field="mapcolor13" desc=""/>
+        <constraint exp="" field="pop_est" desc=""/>
+        <constraint exp="" field="gdp_md_est" desc=""/>
+        <constraint exp="" field="pop_year" desc=""/>
+        <constraint exp="" field="lastcensus" desc=""/>
+        <constraint exp="" field="gdp_year" desc=""/>
+        <constraint exp="" field="economy" desc=""/>
+        <constraint exp="" field="income_grp" desc=""/>
+        <constraint exp="" field="wikipedia" desc=""/>
+        <constraint exp="" field="fips_10" desc=""/>
+        <constraint exp="" field="iso_a2" desc=""/>
+        <constraint exp="" field="iso_a3" desc=""/>
+        <constraint exp="" field="iso_n3" desc=""/>
+        <constraint exp="" field="un_a3" desc=""/>
+        <constraint exp="" field="wb_a2" desc=""/>
+        <constraint exp="" field="wb_a3" desc=""/>
+        <constraint exp="" field="woe_id" desc=""/>
+        <constraint exp="" field="adm0_a3_is" desc=""/>
+        <constraint exp="" field="adm0_a3_us" desc=""/>
+        <constraint exp="" field="adm0_a3_un" desc=""/>
+        <constraint exp="" field="adm0_a3_wb" desc=""/>
+        <constraint exp="" field="continent" desc=""/>
+        <constraint exp="" field="region_un" desc=""/>
+        <constraint exp="" field="subregion" desc=""/>
+        <constraint exp="" field="region_wb" desc=""/>
+        <constraint exp="" field="name_len" desc=""/>
+        <constraint exp="" field="long_len" desc=""/>
+        <constraint exp="" field="abbrev_len" desc=""/>
+        <constraint exp="" field="tiny" desc=""/>
+        <constraint exp="" field="homepart" desc=""/>
+      </constraintExpressions>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
+        <columns>
+          <column hidden="0" name="scalerank" width="-1" type="field"/>
+          <column hidden="0" name="featurecla" width="-1" type="field"/>
+          <column hidden="0" name="labelrank" width="-1" type="field"/>
+          <column hidden="0" name="sovereignt" width="-1" type="field"/>
+          <column hidden="0" name="sov_a3" width="-1" type="field"/>
+          <column hidden="0" name="adm0_dif" width="-1" type="field"/>
+          <column hidden="0" name="level" width="-1" type="field"/>
+          <column hidden="0" name="type" width="-1" type="field"/>
+          <column hidden="0" name="admin" width="-1" type="field"/>
+          <column hidden="0" name="adm0_a3" width="-1" type="field"/>
+          <column hidden="0" name="geou_dif" width="-1" type="field"/>
+          <column hidden="0" name="geounit" width="-1" type="field"/>
+          <column hidden="0" name="gu_a3" width="-1" type="field"/>
+          <column hidden="0" name="su_dif" width="-1" type="field"/>
+          <column hidden="0" name="subunit" width="-1" type="field"/>
+          <column hidden="0" name="su_a3" width="-1" type="field"/>
+          <column hidden="0" name="brk_diff" width="-1" type="field"/>
+          <column hidden="0" name="name" width="-1" type="field"/>
+          <column hidden="0" name="name_long" width="-1" type="field"/>
+          <column hidden="0" name="brk_a3" width="-1" type="field"/>
+          <column hidden="0" name="brk_name" width="-1" type="field"/>
+          <column hidden="0" name="brk_group" width="-1" type="field"/>
+          <column hidden="0" name="abbrev" width="-1" type="field"/>
+          <column hidden="0" name="postal" width="-1" type="field"/>
+          <column hidden="0" name="formal_en" width="-1" type="field"/>
+          <column hidden="0" name="formal_fr" width="-1" type="field"/>
+          <column hidden="0" name="note_adm0" width="-1" type="field"/>
+          <column hidden="0" name="note_brk" width="-1" type="field"/>
+          <column hidden="0" name="name_sort" width="-1" type="field"/>
+          <column hidden="0" name="name_alt" width="-1" type="field"/>
+          <column hidden="0" name="mapcolor7" width="-1" type="field"/>
+          <column hidden="0" name="mapcolor8" width="-1" type="field"/>
+          <column hidden="0" name="mapcolor9" width="-1" type="field"/>
+          <column hidden="0" name="mapcolor13" width="-1" type="field"/>
+          <column hidden="0" name="pop_est" width="-1" type="field"/>
+          <column hidden="0" name="gdp_md_est" width="-1" type="field"/>
+          <column hidden="0" name="pop_year" width="-1" type="field"/>
+          <column hidden="0" name="lastcensus" width="-1" type="field"/>
+          <column hidden="0" name="gdp_year" width="-1" type="field"/>
+          <column hidden="0" name="economy" width="-1" type="field"/>
+          <column hidden="0" name="income_grp" width="-1" type="field"/>
+          <column hidden="0" name="wikipedia" width="-1" type="field"/>
+          <column hidden="0" name="fips_10" width="-1" type="field"/>
+          <column hidden="0" name="iso_a2" width="-1" type="field"/>
+          <column hidden="0" name="iso_a3" width="-1" type="field"/>
+          <column hidden="0" name="iso_n3" width="-1" type="field"/>
+          <column hidden="0" name="un_a3" width="-1" type="field"/>
+          <column hidden="0" name="wb_a2" width="-1" type="field"/>
+          <column hidden="0" name="wb_a3" width="-1" type="field"/>
+          <column hidden="0" name="woe_id" width="-1" type="field"/>
+          <column hidden="0" name="adm0_a3_is" width="-1" type="field"/>
+          <column hidden="0" name="adm0_a3_us" width="-1" type="field"/>
+          <column hidden="0" name="adm0_a3_un" width="-1" type="field"/>
+          <column hidden="0" name="adm0_a3_wb" width="-1" type="field"/>
+          <column hidden="0" name="continent" width="-1" type="field"/>
+          <column hidden="0" name="region_un" width="-1" type="field"/>
+          <column hidden="0" name="subregion" width="-1" type="field"/>
+          <column hidden="0" name="region_wb" width="-1" type="field"/>
+          <column hidden="0" name="name_len" width="-1" type="field"/>
+          <column hidden="0" name="long_len" width="-1" type="field"/>
+          <column hidden="0" name="abbrev_len" width="-1" type="field"/>
+          <column hidden="0" name="tiny" width="-1" type="field"/>
+          <column hidden="0" name="homepart" width="-1" type="field"/>
+          <column hidden="1" width="-1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable>
+        <field name="abbrev" editable="1"/>
+        <field name="abbrev_len" editable="1"/>
+        <field name="adm0_a3" editable="1"/>
+        <field name="adm0_a3_is" editable="1"/>
+        <field name="adm0_a3_un" editable="1"/>
+        <field name="adm0_a3_us" editable="1"/>
+        <field name="adm0_a3_wb" editable="1"/>
+        <field name="adm0_dif" editable="1"/>
+        <field name="admin" editable="1"/>
+        <field name="brk_a3" editable="1"/>
+        <field name="brk_diff" editable="1"/>
+        <field name="brk_group" editable="1"/>
+        <field name="brk_name" editable="1"/>
+        <field name="continent" editable="1"/>
+        <field name="economy" editable="1"/>
+        <field name="featurecla" editable="1"/>
+        <field name="fips_10" editable="1"/>
+        <field name="formal_en" editable="1"/>
+        <field name="formal_fr" editable="1"/>
+        <field name="gdp_md_est" editable="1"/>
+        <field name="gdp_year" editable="1"/>
+        <field name="geou_dif" editable="1"/>
+        <field name="geounit" editable="1"/>
+        <field name="gu_a3" editable="1"/>
+        <field name="homepart" editable="1"/>
+        <field name="income_grp" editable="1"/>
+        <field name="iso_a2" editable="1"/>
+        <field name="iso_a3" editable="1"/>
+        <field name="iso_n3" editable="1"/>
+        <field name="labelrank" editable="1"/>
+        <field name="lastcensus" editable="1"/>
+        <field name="level" editable="1"/>
+        <field name="long_len" editable="1"/>
+        <field name="mapcolor13" editable="1"/>
+        <field name="mapcolor7" editable="1"/>
+        <field name="mapcolor8" editable="1"/>
+        <field name="mapcolor9" editable="1"/>
+        <field name="name" editable="1"/>
+        <field name="name_alt" editable="1"/>
+        <field name="name_len" editable="1"/>
+        <field name="name_long" editable="1"/>
+        <field name="name_sort" editable="1"/>
+        <field name="note_adm0" editable="1"/>
+        <field name="note_brk" editable="1"/>
+        <field name="pop_est" editable="1"/>
+        <field name="pop_year" editable="1"/>
+        <field name="postal" editable="1"/>
+        <field name="region_un" editable="1"/>
+        <field name="region_wb" editable="1"/>
+        <field name="scalerank" editable="1"/>
+        <field name="sov_a3" editable="1"/>
+        <field name="sovereignt" editable="1"/>
+        <field name="su_a3" editable="1"/>
+        <field name="su_dif" editable="1"/>
+        <field name="subregion" editable="1"/>
+        <field name="subunit" editable="1"/>
+        <field name="tiny" editable="1"/>
+        <field name="type" editable="1"/>
+        <field name="un_a3" editable="1"/>
+        <field name="wb_a2" editable="1"/>
+        <field name="wb_a3" editable="1"/>
+        <field name="wikipedia" editable="1"/>
+        <field name="woe_id" editable="1"/>
+      </editable>
+      <labelOnTop>
+        <field name="abbrev" labelOnTop="0"/>
+        <field name="abbrev_len" labelOnTop="0"/>
+        <field name="adm0_a3" labelOnTop="0"/>
+        <field name="adm0_a3_is" labelOnTop="0"/>
+        <field name="adm0_a3_un" labelOnTop="0"/>
+        <field name="adm0_a3_us" labelOnTop="0"/>
+        <field name="adm0_a3_wb" labelOnTop="0"/>
+        <field name="adm0_dif" labelOnTop="0"/>
+        <field name="admin" labelOnTop="0"/>
+        <field name="brk_a3" labelOnTop="0"/>
+        <field name="brk_diff" labelOnTop="0"/>
+        <field name="brk_group" labelOnTop="0"/>
+        <field name="brk_name" labelOnTop="0"/>
+        <field name="continent" labelOnTop="0"/>
+        <field name="economy" labelOnTop="0"/>
+        <field name="featurecla" labelOnTop="0"/>
+        <field name="fips_10" labelOnTop="0"/>
+        <field name="formal_en" labelOnTop="0"/>
+        <field name="formal_fr" labelOnTop="0"/>
+        <field name="gdp_md_est" labelOnTop="0"/>
+        <field name="gdp_year" labelOnTop="0"/>
+        <field name="geou_dif" labelOnTop="0"/>
+        <field name="geounit" labelOnTop="0"/>
+        <field name="gu_a3" labelOnTop="0"/>
+        <field name="homepart" labelOnTop="0"/>
+        <field name="income_grp" labelOnTop="0"/>
+        <field name="iso_a2" labelOnTop="0"/>
+        <field name="iso_a3" labelOnTop="0"/>
+        <field name="iso_n3" labelOnTop="0"/>
+        <field name="labelrank" labelOnTop="0"/>
+        <field name="lastcensus" labelOnTop="0"/>
+        <field name="level" labelOnTop="0"/>
+        <field name="long_len" labelOnTop="0"/>
+        <field name="mapcolor13" labelOnTop="0"/>
+        <field name="mapcolor7" labelOnTop="0"/>
+        <field name="mapcolor8" labelOnTop="0"/>
+        <field name="mapcolor9" labelOnTop="0"/>
+        <field name="name" labelOnTop="0"/>
+        <field name="name_alt" labelOnTop="0"/>
+        <field name="name_len" labelOnTop="0"/>
+        <field name="name_long" labelOnTop="0"/>
+        <field name="name_sort" labelOnTop="0"/>
+        <field name="note_adm0" labelOnTop="0"/>
+        <field name="note_brk" labelOnTop="0"/>
+        <field name="pop_est" labelOnTop="0"/>
+        <field name="pop_year" labelOnTop="0"/>
+        <field name="postal" labelOnTop="0"/>
+        <field name="region_un" labelOnTop="0"/>
+        <field name="region_wb" labelOnTop="0"/>
+        <field name="scalerank" labelOnTop="0"/>
+        <field name="sov_a3" labelOnTop="0"/>
+        <field name="sovereignt" labelOnTop="0"/>
+        <field name="su_a3" labelOnTop="0"/>
+        <field name="su_dif" labelOnTop="0"/>
+        <field name="subregion" labelOnTop="0"/>
+        <field name="subunit" labelOnTop="0"/>
+        <field name="tiny" labelOnTop="0"/>
+        <field name="type" labelOnTop="0"/>
+        <field name="un_a3" labelOnTop="0"/>
+        <field name="wb_a2" labelOnTop="0"/>
+        <field name="wb_a3" labelOnTop="0"/>
+        <field name="wikipedia" labelOnTop="0"/>
+        <field name="woe_id" labelOnTop="0"/>
+      </labelOnTop>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <expressionfields/>
+      <previewExpression>name</previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" maxScale="0" simplifyLocal="1" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="0" labelsEnabled="0" readOnly="0" simplifyAlgorithm="0" simplifyMaxScale="1" autoRefreshEnabled="0" simplifyDrawingTol="1" refreshOnNotifyEnabled="0" geometry="Point" minScale="1e+8" autoRefreshTime="0" type="vector">
+      <extent>
+        <xmin>-168.86500000000000909</xmin>
+        <ymin>-10.67999999999999972</ymin>
+        <xmax>-28.62600000000000122</xmax>
+        <ymax>75.35099999999999909</ymax>
+      </extent>
+      <id>quakes_71512608_8fc4_46af_acfc_065b37c631a2</id>
+      <datasource>file:../../data/week10/quakes.csv?type=csv&amp;xField=longitude&amp;yField=latitude&amp;crs=EPSG:4326&amp;spatialIndex=no&amp;subsetIndex=no&amp;watchFile=no</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>quakes</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent>
+          <spatial minx="0" minz="0" maxx="0" miny="0" dimensions="2" maxy="0" maxz="0" crs=""/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
+        <links/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">delimitedtext</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <expressionfields>
+        <field comment="" name="amplitude" length="-1" typeName="double precision" precision="-1" subType="0" type="6" expression="10^mag/100000"/>
+      </expressionfields>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <renderer-v2 forceraster="0" symbollevels="0" enableorderby="0" type="singleSymbol">
+        <symbols>
+          <symbol name="0" type="marker" alpha="0.5" clip_to_extent="1">
+            <layer pass="0" class="SimpleMarker" enabled="1" locked="0">
+              <prop v="0" k="angle"/>
+              <prop v="255,255,255,255" k="color"/>
+              <prop v="1" k="horizontal_anchor_point"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="circle" k="name"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="solid" k="outline_style"/>
+              <prop v="0" k="outline_width"/>
+              <prop v="3x:0,0,0,0,0,0" k="outline_width_map_unit_scale"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="diameter" k="scale_method"/>
+              <prop v="2" k="size"/>
+              <prop v="3x:0,0,0,0,0,0" k="size_map_unit_scale"/>
+              <prop v="MM" k="size_unit"/>
+              <prop v="1" k="vertical_anchor_point"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties" type="Map">
+                    <Option name="size" type="Map">
+                      <Option name="active" type="bool" value="true"/>
+                      <Option name="field" type="QString" value="amplitude"/>
+                      <Option name="transformer" type="Map">
+                        <Option name="d" type="Map">
+                          <Option name="exponent" type="double" value="0.5"/>
+                          <Option name="maxSize" type="double" value="100"/>
+                          <Option name="maxValue" type="double" value="15848.931925"/>
+                          <Option name="minSize" type="double" value="0"/>
+                          <Option name="minValue" type="double" value="0"/>
+                          <Option name="nullSize" type="double" value="0"/>
+                          <Option name="scaleType" type="int" value="1"/>
+                        </Option>
+                        <Option name="t" type="int" value="1"/>
+                      </Option>
+                      <Option name="type" type="int" value="2"/>
+                    </Option>
+                  </Option>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory penColor="#000000" maxScaleDenominator="1e+8" rotationOffset="270" diagramOrientation="Up" barWidth="5" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" sizeType="MM" lineSizeType="MM" minimumSize="0" backgroundAlpha="255" backgroundColor="#ffffff" minScaleDenominator="0" width="15" sizeScale="3x:0,0,0,0,0,0" scaleDependency="Area" penWidth="0" height="15" penAlpha="255" opacity="1" enabled="0">
+          <fontProperties style="" description=".SF NS Text,13,-1,5,50,0,0,0,0,0"/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings dist="0" zIndex="0" obstacle="0" showAll="1" priority="0" placement="0" linePlacementFlags="18">
+        <properties>
+          <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties"/>
+            <Option name="type" type="QString" value="collection"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
+      <fieldConfiguration>
+        <field name="time">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="latitude">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="longitude">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="depth">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="mag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="magType">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="nst">
+          <editWidget type="Range">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="gap">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="dmin">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="rms">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="net">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="id">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="updated">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="place">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="type">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="horizontalError">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="depthError">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="magError">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="magNst">
+          <editWidget type="Range">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="status">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="locationSource">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="magSource">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="amplitude">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="time" index="0"/>
+        <alias name="" field="latitude" index="1"/>
+        <alias name="" field="longitude" index="2"/>
+        <alias name="" field="depth" index="3"/>
+        <alias name="" field="mag" index="4"/>
+        <alias name="" field="magType" index="5"/>
+        <alias name="" field="nst" index="6"/>
+        <alias name="" field="gap" index="7"/>
+        <alias name="" field="dmin" index="8"/>
+        <alias name="" field="rms" index="9"/>
+        <alias name="" field="net" index="10"/>
+        <alias name="" field="id" index="11"/>
+        <alias name="" field="updated" index="12"/>
+        <alias name="" field="place" index="13"/>
+        <alias name="" field="type" index="14"/>
+        <alias name="" field="horizontalError" index="15"/>
+        <alias name="" field="depthError" index="16"/>
+        <alias name="" field="magError" index="17"/>
+        <alias name="" field="magNst" index="18"/>
+        <alias name="" field="status" index="19"/>
+        <alias name="" field="locationSource" index="20"/>
+        <alias name="" field="magSource" index="21"/>
+        <alias name="" field="amplitude" index="22"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default field="time" applyOnUpdate="0" expression=""/>
+        <default field="latitude" applyOnUpdate="0" expression=""/>
+        <default field="longitude" applyOnUpdate="0" expression=""/>
+        <default field="depth" applyOnUpdate="0" expression=""/>
+        <default field="mag" applyOnUpdate="0" expression=""/>
+        <default field="magType" applyOnUpdate="0" expression=""/>
+        <default field="nst" applyOnUpdate="0" expression=""/>
+        <default field="gap" applyOnUpdate="0" expression=""/>
+        <default field="dmin" applyOnUpdate="0" expression=""/>
+        <default field="rms" applyOnUpdate="0" expression=""/>
+        <default field="net" applyOnUpdate="0" expression=""/>
+        <default field="id" applyOnUpdate="0" expression=""/>
+        <default field="updated" applyOnUpdate="0" expression=""/>
+        <default field="place" applyOnUpdate="0" expression=""/>
+        <default field="type" applyOnUpdate="0" expression=""/>
+        <default field="horizontalError" applyOnUpdate="0" expression=""/>
+        <default field="depthError" applyOnUpdate="0" expression=""/>
+        <default field="magError" applyOnUpdate="0" expression=""/>
+        <default field="magNst" applyOnUpdate="0" expression=""/>
+        <default field="status" applyOnUpdate="0" expression=""/>
+        <default field="locationSource" applyOnUpdate="0" expression=""/>
+        <default field="magSource" applyOnUpdate="0" expression=""/>
+        <default field="amplitude" applyOnUpdate="0" expression=""/>
+      </defaults>
+      <constraints>
+        <constraint notnull_strength="0" constraints="0" field="time" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="latitude" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="longitude" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="depth" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="mag" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="magType" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="nst" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="gap" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="dmin" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="rms" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="net" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="id" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="updated" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="place" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="type" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="horizontalError" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="depthError" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="magError" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="magNst" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="status" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="locationSource" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="magSource" unique_strength="0" exp_strength="0"/>
+        <constraint notnull_strength="0" constraints="0" field="amplitude" unique_strength="0" exp_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint exp="" field="time" desc=""/>
+        <constraint exp="" field="latitude" desc=""/>
+        <constraint exp="" field="longitude" desc=""/>
+        <constraint exp="" field="depth" desc=""/>
+        <constraint exp="" field="mag" desc=""/>
+        <constraint exp="" field="magType" desc=""/>
+        <constraint exp="" field="nst" desc=""/>
+        <constraint exp="" field="gap" desc=""/>
+        <constraint exp="" field="dmin" desc=""/>
+        <constraint exp="" field="rms" desc=""/>
+        <constraint exp="" field="net" desc=""/>
+        <constraint exp="" field="id" desc=""/>
+        <constraint exp="" field="updated" desc=""/>
+        <constraint exp="" field="place" desc=""/>
+        <constraint exp="" field="type" desc=""/>
+        <constraint exp="" field="horizontalError" desc=""/>
+        <constraint exp="" field="depthError" desc=""/>
+        <constraint exp="" field="magError" desc=""/>
+        <constraint exp="" field="magNst" desc=""/>
+        <constraint exp="" field="status" desc=""/>
+        <constraint exp="" field="locationSource" desc=""/>
+        <constraint exp="" field="magSource" desc=""/>
+        <constraint exp="" field="amplitude" desc=""/>
+      </constraintExpressions>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
+        <columns>
+          <column hidden="0" name="time" width="-1" type="field"/>
+          <column hidden="0" name="latitude" width="-1" type="field"/>
+          <column hidden="0" name="longitude" width="-1" type="field"/>
+          <column hidden="0" name="depth" width="-1" type="field"/>
+          <column hidden="0" name="mag" width="-1" type="field"/>
+          <column hidden="0" name="magType" width="-1" type="field"/>
+          <column hidden="0" name="nst" width="-1" type="field"/>
+          <column hidden="0" name="gap" width="-1" type="field"/>
+          <column hidden="0" name="dmin" width="-1" type="field"/>
+          <column hidden="0" name="rms" width="-1" type="field"/>
+          <column hidden="0" name="net" width="-1" type="field"/>
+          <column hidden="0" name="id" width="-1" type="field"/>
+          <column hidden="0" name="updated" width="-1" type="field"/>
+          <column hidden="0" name="place" width="-1" type="field"/>
+          <column hidden="0" name="type" width="-1" type="field"/>
+          <column hidden="0" name="horizontalError" width="-1" type="field"/>
+          <column hidden="0" name="depthError" width="-1" type="field"/>
+          <column hidden="0" name="magError" width="-1" type="field"/>
+          <column hidden="0" name="magNst" width="-1" type="field"/>
+          <column hidden="0" name="status" width="-1" type="field"/>
+          <column hidden="0" name="locationSource" width="-1" type="field"/>
+          <column hidden="0" name="magSource" width="-1" type="field"/>
+          <column hidden="0" name="amplitude" width="-1" type="field"/>
+          <column hidden="1" width="-1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable>
+        <field name="amplitude" editable="0"/>
+        <field name="depth" editable="1"/>
+        <field name="depthError" editable="1"/>
+        <field name="dmin" editable="1"/>
+        <field name="gap" editable="1"/>
+        <field name="horizontalError" editable="1"/>
+        <field name="id" editable="1"/>
+        <field name="latitude" editable="1"/>
+        <field name="locationSource" editable="1"/>
+        <field name="longitude" editable="1"/>
+        <field name="mag" editable="1"/>
+        <field name="magError" editable="1"/>
+        <field name="magNst" editable="1"/>
+        <field name="magSource" editable="1"/>
+        <field name="magType" editable="1"/>
+        <field name="net" editable="1"/>
+        <field name="nst" editable="1"/>
+        <field name="place" editable="1"/>
+        <field name="rms" editable="1"/>
+        <field name="status" editable="1"/>
+        <field name="time" editable="1"/>
+        <field name="type" editable="1"/>
+        <field name="updated" editable="1"/>
+      </editable>
+      <labelOnTop>
+        <field name="amplitude" labelOnTop="0"/>
+        <field name="depth" labelOnTop="0"/>
+        <field name="depthError" labelOnTop="0"/>
+        <field name="dmin" labelOnTop="0"/>
+        <field name="gap" labelOnTop="0"/>
+        <field name="horizontalError" labelOnTop="0"/>
+        <field name="id" labelOnTop="0"/>
+        <field name="latitude" labelOnTop="0"/>
+        <field name="locationSource" labelOnTop="0"/>
+        <field name="longitude" labelOnTop="0"/>
+        <field name="mag" labelOnTop="0"/>
+        <field name="magError" labelOnTop="0"/>
+        <field name="magNst" labelOnTop="0"/>
+        <field name="magSource" labelOnTop="0"/>
+        <field name="magType" labelOnTop="0"/>
+        <field name="net" labelOnTop="0"/>
+        <field name="nst" labelOnTop="0"/>
+        <field name="place" labelOnTop="0"/>
+        <field name="rms" labelOnTop="0"/>
+        <field name="status" labelOnTop="0"/>
+        <field name="time" labelOnTop="0"/>
+        <field name="type" labelOnTop="0"/>
+        <field name="updated" labelOnTop="0"/>
+      </labelOnTop>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <expressionfields>
+        <field comment="" name="amplitude" length="-1" typeName="double precision" precision="-1" subType="0" type="6" expression="10^mag/100000"/>
+      </expressionfields>
+      <previewExpression>id</previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+    <maplayer refreshOnNotifyMessage="" maxScale="0" simplifyLocal="1" hasScaleBasedVisibilityFlag="0" simplifyDrawingHints="1" labelsEnabled="0" readOnly="0" simplifyAlgorithm="0" simplifyMaxScale="1" autoRefreshEnabled="0" simplifyDrawingTol="1" refreshOnNotifyEnabled="0" geometry="Polygon" minScale="1e+8" autoRefreshTime="0" type="vector">
+      <extent>
+        <xmin>-124.70996094000000198</xmin>
+        <ymin>24.60000000000000142</ymin>
+        <xmax>-66.98701171999999815</xmax>
+        <ymax>49.36967772999999937</ymax>
+      </extent>
+      <id>seismic_5ba204fd_bb4f_43fd_8bc8_a87c20a41c12</id>
+      <datasource>../../data/week10/seismic/seismic.shp</datasource>
+      <keywordList>
+        <value></value>
+      </keywordList>
+      <layername>seismic</layername>
+      <srs>
+        <spatialrefsys>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>WGS84</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type></type>
+        <title></title>
+        <abstract></abstract>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys>
+            <proj4></proj4>
+            <srsid>0</srsid>
+            <srid>0</srid>
+            <authid></authid>
+            <description></description>
+            <projectionacronym></projectionacronym>
+            <ellipsoidacronym></ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent>
+          <spatial minx="0" minz="0" maxx="0" miny="0" dimensions="2" maxy="0" maxz="0" crs=""/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
+        <links/>
+      </resourceMetadata>
+      <provider encoding="UTF-8">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies/>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <renderer-v2 forceraster="0" symbollevels="0" enableorderby="0" type="categorizedSymbol" attr="ValueRange">
+        <categories>
+          <category symbol="0" label="&lt; 1" render="true" value="&lt; 1"/>
+          <category symbol="1" label="1 - 2" render="true" value="1 - 2"/>
+          <category symbol="2" label="2 - 5" render="true" value="2 - 5"/>
+          <category symbol="3" label="5 - 10" render="true" value="5 - 10"/>
+          <category symbol="4" label="10 - 12" render="true" value="10 - 12"/>
+        </categories>
+        <symbols>
+          <symbol name="0" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="254,229,217,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="no" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+          <symbol name="1" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="252,174,145,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="no" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+          <symbol name="2" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="251,106,74,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="no" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+          <symbol name="3" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="222,45,38,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="no" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+          <symbol name="4" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="165,15,21,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="no" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <source-symbol>
+          <symbol name="0" type="fill" alpha="1" clip_to_extent="1">
+            <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+              <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+              <prop v="146,27,52,255" k="color"/>
+              <prop v="bevel" k="joinstyle"/>
+              <prop v="0,0" k="offset"/>
+              <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+              <prop v="MM" k="offset_unit"/>
+              <prop v="35,35,35,255" k="outline_color"/>
+              <prop v="no" k="outline_style"/>
+              <prop v="0.26" k="outline_width"/>
+              <prop v="MM" k="outline_width_unit"/>
+              <prop v="solid" k="style"/>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""/>
+                  <Option name="properties"/>
+                  <Option name="type" type="QString" value="collection"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </source-symbol>
+        <colorramp name="[source]" type="colorbrewer">
+          <prop v="5" k="colors"/>
+          <prop v="0" k="inverted"/>
+          <prop v="colorbrewer" k="rampType"/>
+          <prop v="Reds" k="schemeName"/>
+        </colorramp>
+        <rotation/>
+        <sizescale/>
+      </renderer-v2>
+      <customproperties>
+        <property key="dualview/previewExpressions">
+          <value>"ValueRange"</value>
+        </property>
+        <property key="embeddedWidgets/count" value="0"/>
+        <property key="variableNames"/>
+        <property key="variableValues"/>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+        <DiagramCategory penColor="#000000" maxScaleDenominator="1e+8" rotationOffset="270" diagramOrientation="Up" barWidth="5" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" scaleBasedVisibility="0" sizeType="MM" lineSizeType="MM" minimumSize="0" backgroundAlpha="255" backgroundColor="#ffffff" minScaleDenominator="0" width="15" sizeScale="3x:0,0,0,0,0,0" scaleDependency="Area" penWidth="0" height="15" penAlpha="255" opacity="1" enabled="0">
+          <fontProperties style="" description=".SF NS Text,13,-1,5,50,0,0,0,0,0"/>
+        </DiagramCategory>
+      </SingleCategoryDiagramRenderer>
+      <DiagramLayerSettings dist="0" zIndex="0" obstacle="0" showAll="1" priority="0" placement="0" linePlacementFlags="18">
+        <properties>
+          <Option type="Map">
+            <Option name="name" type="QString" value=""/>
+            <Option name="properties"/>
+            <Option name="type" type="QString" value="collection"/>
+          </Option>
+        </properties>
+      </DiagramLayerSettings>
+      <fieldConfiguration>
+        <field name="ValueRange">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias name="" field="ValueRange" index="0"/>
+      </aliases>
+      <excludeAttributesWMS/>
+      <excludeAttributesWFS/>
+      <defaults>
+        <default field="ValueRange" applyOnUpdate="0" expression=""/>
+      </defaults>
+      <constraints>
+        <constraint notnull_strength="0" constraints="0" field="ValueRange" unique_strength="0" exp_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint exp="" field="ValueRange" desc=""/>
+      </constraintExpressions>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
+        <columns>
+          <column hidden="0" name="ValueRange" width="-1" type="field"/>
+          <column hidden="1" width="-1" type="actions"/>
+        </columns>
+      </attributetableconfig>
+      <editform></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+	geom = feature.geometry()
+	control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable>
+        <field name="ValueRange" editable="1"/>
+      </editable>
+      <labelOnTop>
+        <field name="ValueRange" labelOnTop="0"/>
+      </labelOnTop>
+      <widgets/>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <expressionfields/>
+      <previewExpression>ValueRange</previewExpression>
+      <mapTip></mapTip>
+    </maplayer>
+  </projectlayers>
+  <layerorder>
+    <layer id="seismic_5ba204fd_bb4f_43fd_8bc8_a87c20a41c12"/>
+    <layer id="ne_50m_admin_0_countries_lakes_a776332f_3d1f_4bf7_a084_2de05f6301ac"/>
+    <layer id="quakes_71512608_8fc4_46af_acfc_065b37c631a2"/>
+  </layerorder>
+  <properties>
+    <WMSOnlineResource type="QString"></WMSOnlineResource>
+    <WMSKeywordList type="QStringList">
+      <value></value>
+    </WMSKeywordList>
+    <WFSUrl type="QString"></WFSUrl>
+    <WMSContactPosition type="QString"></WMSContactPosition>
+    <WMSContactPerson type="QString"></WMSContactPerson>
+    <WMSSegmentizeFeatureInfoGeometry type="bool">false</WMSSegmentizeFeatureInfoGeometry>
+    <WMSServiceTitle type="QString"></WMSServiceTitle>
+    <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <SpatialRefSys>
+      <ProjectionsEnabled type="int">1</ProjectionsEnabled>
+    </SpatialRefSys>
+    <WMSContactPhone type="QString"></WMSContactPhone>
+    <Paths>
+      <Absolute type="bool">false</Absolute>
+    </Paths>
+    <WMSImageQuality type="int">90</WMSImageQuality>
+    <Gui>
+      <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
+      <CanvasColorGreenPart type="int">104</CanvasColorGreenPart>
+      <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
+      <CanvasColorRedPart type="int">104</CanvasColorRedPart>
+      <SelectionColorBluePart type="int">0</SelectionColorBluePart>
+      <SelectionColorRedPart type="int">255</SelectionColorRedPart>
+      <CanvasColorBluePart type="int">104</CanvasColorBluePart>
+    </Gui>
+    <PAL>
+      <SearchMethod type="int">0</SearchMethod>
+      <CandidatesPoint type="int">16</CandidatesPoint>
+      <ShowingCandidates type="bool">false</ShowingCandidates>
+      <CandidatesPolygon type="int">30</CandidatesPolygon>
+      <ShowingAllLabels type="bool">false</ShowingAllLabels>
+      <CandidatesLine type="int">50</CandidatesLine>
+      <ShowingPartialsLabels type="bool">true</ShowingPartialsLabels>
+      <DrawRectOnly type="bool">false</DrawRectOnly>
+      <DrawOutlineLabels type="bool">true</DrawOutlineLabels>
+    </PAL>
+    <WMSServiceAbstract type="QString"></WMSServiceAbstract>
+    <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
+    <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
+    <WMSPrecision type="QString">8</WMSPrecision>
+    <WMSUrl type="QString"></WMSUrl>
+    <Macros>
+      <pythonCode type="QString"></pythonCode>
+    </Macros>
+    <Legend>
+      <filterByMap type="bool">false</filterByMap>
+    </Legend>
+    <WFSLayers type="QStringList"/>
+    <WMSRequestDefinedDataSources type="bool">false</WMSRequestDefinedDataSources>
+    <DefaultStyles>
+      <Marker type="QString"></Marker>
+      <Opacity type="double">1</Opacity>
+      <ColorRamp type="QString"></ColorRamp>
+      <RandomColors type="bool">true</RandomColors>
+      <Line type="QString"></Line>
+      <Fill type="QString"></Fill>
+    </DefaultStyles>
+    <WMSContactOrganization type="QString"></WMSContactOrganization>
+    <WCSUrl type="QString"></WCSUrl>
+    <Identify>
+      <disabledLayers type="QStringList"/>
+    </Identify>
+    <Measurement>
+      <AreaUnits type="QString">m2</AreaUnits>
+      <DistanceUnits type="QString">meters</DistanceUnits>
+    </Measurement>
+    <PositionPrecision>
+      <DecimalPlaces type="int">2</DecimalPlaces>
+      <DegreeFormat type="QString">MU</DegreeFormat>
+      <Automatic type="bool">true</Automatic>
+    </PositionPrecision>
+    <WFSTLayers>
+      <Delete type="QStringList"/>
+      <Update type="QStringList"/>
+      <Insert type="QStringList"/>
+    </WFSTLayers>
+    <WMSContactMail type="QString"></WMSContactMail>
+    <WCSLayers type="QStringList"/>
+    <Measure>
+      <Ellipsoid type="QString">NONE</Ellipsoid>
+    </Measure>
+    <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
+    <WMSFees type="QString">conditions unknown</WMSFees>
+  </properties>
+  <visibility-presets/>
+  <transformContext/>
+  <Annotations/>
+  <Layouts>
+    <Layout units="mm" name="seismic" printResolution="300" worldFileMap="{0c3f4402-a7f2-413d-8b68-ec3823c8f35d}">
+      <Snapper snapToItems="1" snapToGuides="1" tolerance="5" snapToGrid="0"/>
+      <Grid offsetX="0" resolution="10" offsetY="0" offsetUnits="mm" resUnits="mm"/>
+      <PageCollection>
+        <symbol name="" type="fill" alpha="1" clip_to_extent="1">
+          <layer pass="0" class="SimpleFill" enabled="1" locked="0">
+            <prop v="3x:0,0,0,0,0,0" k="border_width_map_unit_scale"/>
+            <prop v="255,255,255,255" k="color"/>
+            <prop v="miter" k="joinstyle"/>
+            <prop v="0,0" k="offset"/>
+            <prop v="3x:0,0,0,0,0,0" k="offset_map_unit_scale"/>
+            <prop v="MM" k="offset_unit"/>
+            <prop v="35,35,35,255" k="outline_color"/>
+            <prop v="no" k="outline_style"/>
+            <prop v="0.26" k="outline_width"/>
+            <prop v="MM" k="outline_width_unit"/>
+            <prop v="solid" k="style"/>
+            <data_defined_properties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""/>
+                <Option name="properties"/>
+                <Option name="type" type="QString" value="collection"/>
+              </Option>
+            </data_defined_properties>
+          </layer>
+        </symbol>
+        <LayoutItem positionOnPage="0,0,mm" id="" frame="false" position="0,0,mm" background="true" frameJoinStyle="miter" zValue="0" outlineWidthM="0.3,mm" excludeFromExports="0" size="297,210,mm" referencePoint="0" blendMode="0" groupUuid="" visibility="1" uuid="{d6e2541e-58ba-43cc-a816-321259041be3}" itemRotation="0" positionLock="false" templateUuid="{d6e2541e-58ba-43cc-a816-321259041be3}" type="65638" opacity="1">
+          <FrameColor blue="0" red="0" alpha="255" green="0"/>
+          <BackgroundColor blue="255" red="255" alpha="255" green="255"/>
+          <LayoutObject>
+            <dataDefinedProperties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""/>
+                <Option name="properties"/>
+                <Option name="type" type="QString" value="collection"/>
+              </Option>
+            </dataDefinedProperties>
+            <customproperties/>
+          </LayoutObject>
+        </LayoutItem>
+        <GuideCollection visible="1"/>
+      </PageCollection>
+      <LayoutItem positionOnPage="-4.05646,0,mm" id="" frame="false" position="-4.05646,0,mm" background="true" frameJoinStyle="miter" zValue="1" outlineWidthM="0.3,mm" excludeFromExports="0" drawCanvasItems="true" size="303.866,212.78,mm" referencePoint="0" blendMode="0" mapRotation="0" groupUuid="" visibility="1" uuid="{0c3f4402-a7f2-413d-8b68-ec3823c8f35d}" itemRotation="0" positionLock="false" templateUuid="{0c3f4402-a7f2-413d-8b68-ec3823c8f35d}" type="65639" followPresetName="" keepLayerSet="false" opacity="1" followPreset="false">
+        <FrameColor blue="0" red="0" alpha="255" green="0"/>
+        <BackgroundColor blue="104" red="104" alpha="255" green="104"/>
+        <LayoutObject>
+          <dataDefinedProperties>
+            <Option type="Map">
+              <Option name="name" type="QString" value=""/>
+              <Option name="properties"/>
+              <Option name="type" type="QString" value="collection"/>
+            </Option>
+          </dataDefinedProperties>
+          <customproperties/>
+        </LayoutObject>
+        <Extent xmin="-3055112.04092707950621843" ymin="-2188856.77652130043134093" ymax="1957250.55204699141904712" xmax="2865845.39189834892749786"/>
+        <LayerSet/>
+        <AtlasMap atlasDriven="0" margin="0.10000000000000001" scalingMode="2"/>
+      </LayoutItem>
+      <customproperties>
+        <property key="atlasRasterFormat" value="png"/>
+      </customproperties>
+      <Atlas sortFeatures="0" filenamePattern="'output_'||@atlas_featurenumber" enabled="0" filterFeatures="0" pageNameExpression="" coverageLayer="" hideCoverage="0"/>
+    </Layout>
+  </Layouts>
+</qgis>

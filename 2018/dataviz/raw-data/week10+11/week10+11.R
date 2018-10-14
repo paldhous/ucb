@@ -9,7 +9,7 @@ library(readr)
 ############### 
 # GDP per capita data
 
-gdp_pc <- WDI(indicator="NY.GDP.PCAP.PP.CD", country="all", start=2015, end=2015, extra=TRUE) %>%
+gdp_pc <- WDI(indicator="NY.GDP.PCAP.PP.CD", country="all", start=2016, end=2016, extra=TRUE) %>%
   filter(income != "Aggregates") %>%
   select(2,5,3) %>%
   rename(gdp_percap=NY.GDP.PCAP.PP.CD)

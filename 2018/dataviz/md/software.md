@@ -48,7 +48,7 @@ R is a software environment and programming language for statistical computing a
 Allows you to convert addresses to latitude and longitude coordinates. Web app: no installation required; however, you will need to sign up for API keys for the geocoding services it uses.
 
 ### [QGIS](https://qgis.org/en/site/)
-The leading open source Geographic Information System, which we will use to make maps and process geodata. Download version 3.2 from [here](https://qgis.org/en/site/forusers/download.html), and download Python 3.6 from [this link](https://www.python.org/ftp/python/3.6.5/python-3.6.5-macosx10.9.pkg). First install Python 3.6, then install GDAL Complete from the QGIS Download, and finally install QGIS.
+The leading open source Geographic Information System, which we will use to make maps and process geodata. Download version 3.0 from my website [here](https://peteraldhous.com/QGIS-macOS-3.0.3-1.dmg), and download Python 3.6 from [this link](https://www.python.org/ftp/python/3.6.5/python-3.6.5-macosx10.9.pkg). First install Python 3.6, then install GDAL Complete from the QGIS Download, and finally install QGIS.
 
 ### [Mapbox Studio](https://www.mapbox.com/mapbox-studio/)
 
