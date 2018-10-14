@@ -1,21 +1,23 @@
+1. In which collision were the most people killed or injured?
+	Add killed and injured (paste special)
+	Sort to find the collision  with most people killed and injured.
 
-Add killed and injured (paste special)
+2. How many people were killed or injured in collisions in Richmond in 2015?
+	Filter for 2015, put into new sheet
+	How many people were killed and injured in this year? 579 Richmond; 3179 Oakland (show the other functions)
 
-Find the collision  with most people killed and injured.
 
-Filter for 2015, put into new sheet
+3. How many people were killed or injured in collisions in Richmond in each year?
 
-How many people were killed and injured in this year? 579 (show the other functions)
+Pivot table (rows only)
 
-Repeat for 2014.
+4. In each year, how many people were killed or injured in collisions involving alcohol or not?
 
-People killed and injured per year
+Pivot table (rows and columns)
 
-Alcohol involved or not, days of the week, total killed and injured
+5. Alcohol involved or not, days of the week, total killed and injured
 
-Alcohol involved or not, year, total killed and injured
-
-Find intersection where most people killed and injured (for Oakland, do just 2015, PointX,PointY,PrimaryRd,SecondaryRd)
+6. Find intersection where most people killed and injured (for Oakland, do just 2015, PointX,PointY,PrimaryRd,SecondaryRd)
 
 Talk about dirty data. Clean data.
 

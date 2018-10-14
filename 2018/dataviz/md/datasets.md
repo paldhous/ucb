@@ -90,6 +90,9 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
 
 #### [Download Week 9](./data/week9.zip)
 
+- `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
+- `refine_geocoder.json` JSON file to geocode using Open Refine.
+- `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
 
 #### [Download Week 10](./data/week10.zip)
 
