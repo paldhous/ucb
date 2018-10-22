@@ -1,0 +1,25 @@
+1.  Which school had highest percent incomplete at start of 2015-16 school year?
+	Add pc_incomplete and pc_no_mmr
+	Filter data for 2015-16
+	Sort on pc incomplete
+	Small schools > so which school with enrollment of more than 75 had highest incomplete
+
+2. How many children were enrolled, statewide, in 2015? How many had complete immunizations? What was the statewide percentage incomplete in 2015?
+
+3. Repeat for MMR only
+	
+4. MMR complete rates by years (pivot table on shots_counties). Draw a column chart
+
+5. Enrolled by county in 2015. Add Pub and private
+
+5. What were rates of MMR vaccination in public versus private schools in 2015-2016 year?
+
+6. Which county had the highest MMR refusal rate in 2015-16?
+
+7. Counties and pub versus private (pivot table with rows and colums)
+
+
+
+
+
+

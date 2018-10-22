@@ -45,7 +45,7 @@ Data from the [Transportation Injury Mapping System](https://tims.berkeley.edu/)
 
 Data on immunization in kindergartens from the [California Department of Public Health](http://www.shotsforschool.org/k-12/reporting-data/).
 
-`shots_kindergartens.csv` Data for each school, from the 2001-02 school year to the 2015-16 school year, with the following variables:
+`shots_kindergartens.csv` Data for each school, from the 2011-12 school year to the 2015-16 school year, with the following variables:
  - `district` School district.
  - `sch_code` Unique identifying code for each school.
  - `county` 
