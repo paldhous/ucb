@@ -65,7 +65,7 @@ Data on immunization in kindergartens from the [California Department of Public 
  - `hepb` Number of children immunized against hepatitis B.
  - `vari`  Number of children immunized against varicella-zoster virus (chicken pox).
  - `reported` Did the school report its immunization data? `Y` yes or `N` no.
- - `year` School year, `2001-02`, `2002-03`, and so on.
+ - `year` School year, `2011-12`, `2012-13`, and so on.
  - `start_year` First calendar year from the above.
  - `city`
  - `overdue` For the `2015-16` school year, number of children excluded from school because immunizations are overdue.
