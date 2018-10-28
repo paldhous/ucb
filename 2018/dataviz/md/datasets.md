@@ -118,7 +118,6 @@ https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&l
 ```
 A file called `query.csv` should download. Rename it `quakes.csv` and add to the `class11` folder.
 - `world.zip` Zipped shapefile including the variable `gdp_percap`, giving World Bank data from 2016 on [Gross Domestic Product (GDP) per capita](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) for the world's nations, in current international dollars, corrected for purchasing power in different territories.
-- `seismic.html` `gdp2016.html` Web pages for publishing the maps we will make
 
 #### [Download Week 13](./data/week13.zip)
 
