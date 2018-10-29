@@ -13,36 +13,9 @@ zips <- read_csv("bayarea_zipcodes.csv") %>%
   select(city = PO_NAME, zip = ZIP) %>%
   mutate(zip = as.character(zip))
 
-years <- c(2011:2016)
+years <- c(2011:2017)
 
-# censusapi version
-Sys.setenv(CENSUS_KEY="f6811bb29b8f3f4de930ececf654c6d0ebe6c7be")
-
-apis <- listCensusApis()
-View(apis)
-
-acs1 <- data_frame()
-
-# this is failing in 2012 for acs5, failing on unsupported geometry
-for (y in years) {
-  print(y)
-  tmp <- getCensus(name = "acs/acs5", vintage = y,
-                       vars = c("B19013_001E", "B19013_001M", 
-                                "B11005_001E", "B11005_001M", 
-                                "B11005_002E", "B11005_002M"),
-                       region = "zip code tabulation area") 
-  names(tmp) <- c("zip",
-                  "med_income","med_income_moe",
-                  "households","households_moe",
-                  "households_poverty","households_poverty_moe")
-  tmp <- tmp %>%
-    inner_join(zips) %>%
-    mutate(year=y)
-  acs5 <- bind_rows(acs5,tmp)
-}
-
-
-# tidycensus version
+# tidycensus 
 
 census_api_key("f6811bb29b8f3f4de930ececf654c6d0ebe6c7be", install = TRUE)
 
@@ -69,7 +42,7 @@ households <- data_frame()
 for (y in years) {
   tmp <- get_acs(geography = "zcta",
                  year = y,
-                 variables = c("B11005_001")) %>%
+                 variables = c("B17017_001")) %>%
     mutate(year = y) %>%
     rename(households=estimate,
            households_moe=moe,
@@ -85,7 +58,7 @@ households_poverty <- data_frame()
 for (y in years) {
   tmp <- get_acs(geography = "zcta",
                  year = y,
-                 variables = c("B11005_002")) %>%
+                 variables = c("B17017_002")) %>%
     mutate(year = y) %>%
     rename(households_poverty=estimate,
            households_poverty_moe=moe,
