@@ -1,32 +1,34 @@
-calculate % of households in poverty
+https://www.socialexplorer.com/data/ACS2015/metadata/?ds=ACS15&var=B17017002
+
+calculate % of households in poverty, rent as % of median income
 
 In 2016, which 10 zip codes have highest % of households in poverty? (filter > 1000 households)
 
-In 2016, which 10
+Take some time to think about these zip codes - which ones might be most interesting to look at?
 
-Take some time to think about these zip codes - 
+% of households in poverty in 2016 across all of the Bay Area
+=SUM(H:H)/SUM(F:F)
+
+Filter out no rent index
+
+In 2016, which 10 zip codes had the highest rent index, as a pc of median income?
+How many were less than 30%?
+countif(K:K, "<0.30”)
+
+Do the same for 2011 < class exercise
+
+Pivot tables
+
+Which cities had biggest % of households in poverty in 2016?
+
+In 2011
+
+% of households in poverty by city and year - caution
+
+Which zip code has had biggest increase in rent?
+Sort by zip, exact, then calculate
 
 
-
-calculate % of median income to rent a typical house
-
-calculate % of households in poverty
-
-filter 2016
-
-sort by median income, rent, rent_income, pc_poverty - find interesting places to report on
-
-repeat 2011
-
-countif(K:K, "<0.33")
-
-calculate increase in rent
-
-=exact(A2,'2011'!A2)
-
-pivot table on 2016 data, by city, households in poverty, households, calc field
-
-get them to repeat on 2011
 
 
 

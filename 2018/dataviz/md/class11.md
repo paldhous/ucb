@@ -2,7 +2,7 @@
 
 ### Introducing Mapbox Studio
 
-[**Mapbox Studio**](https://carto.com/) is a web-based mapping application that makes it easy to produce elegantly styled, interactive, online maps.
+[**Mapbox Studio**](https://www.mapbox.com/mapbox-studio/) is a web-based mapping application that makes it easy to produce elegantly styled, interactive, online maps.
 
 ### The data we will use today
 
@@ -26,7 +26,7 @@ You should now see the following screen:
 
 ![](./img/class11_1.jpg)
 
-Each new map in Mapbox is a `Style`. The first task is to select a basemap. The suggested `Basic` template is rather budy for a map with data layers, so click `More options` and select the `Light` template by clicking its `Create` button.
+Each new map in Mapbox is a `Style`. The first task is to select a basemap. The suggested `Basic` template is rather busy for a map with data layers, so click `More options` and select the `Light` template by clicking its `Create` button.
 
 ![](./img/class11_2.jpg)
 
@@ -75,7 +75,7 @@ Add the quakes layer, following the same process as before for the files `quakes
 
 ![](./img/class11_11.jpg)
 
-Remember from week 10 that we need to use a formula to convert the `mag` values for earthquake magnitude into the amount of shaking each caused. So click with `Radius` highighted, click `Use a formula` and fill in as follows:
+Remember from week 10 that we need to use a formula to convert the `mag` values for earthquake magnitude into the amount of shaking each caused. So with `Radius` highighted, click `Use a formula` and fill in as follows:
 
 ![](./img/class11_12.jpg)
 
