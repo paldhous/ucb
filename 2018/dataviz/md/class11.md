@@ -184,6 +184,17 @@ Then add this HTML immediately beneath `<div id='map'></div>`:
 To style the legend, add the following CSS code above the closing `</style>` tag:
 
 ```Javascript
+    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+
     #legend {
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -245,11 +256,12 @@ Make a web page to display the map.
 
 ### Assignment
 
-File a full project update via your GitHub account, so that I can see your visualizations, data etc. Also write a summary in Markdown, including:
+- File a full project update via your GitHub account, so that I can see your visualizations, data etc. Make sure that your GitHub repo is up to date with data, charts etc, so that I can sync with my version of your project and review your progress.
 
-- What you have done.
-- What you intend to do.
-- Problems, obstacles.
+- This should include a summary in Markdown. Explain:
+	- What you have done.
+	- What you intend to do.
+	- Any problems, obstacles, you are experiencing. Pay particular attention to this, so that we can work on solutions when we meet next week.
 
 Share this with me by **6pm** on **Wed Nov 7**.
 
@@ -258,6 +270,8 @@ Share this with me by **6pm** on **Wed Nov 7**.
 [Mapbox tutorials](https://www.mapbox.com/help/tutorials/)
 
 [Mapbox Studio manual](https://www.mapbox.com/studio-manual/overview/)
+
+[Mapbox GL documentation](https://www.mapbox.com/mapbox-gl-js/api/)
 
 
 

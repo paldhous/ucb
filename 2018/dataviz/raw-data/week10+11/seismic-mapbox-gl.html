@@ -49,7 +49,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoicGFsZGhvdXMiLCJhIjoiRlVuSTQyMCJ9.rI4OZyypY0ovTA7SkmHudg';
 const map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/paldhous/cjkybdbt14vnu2rqss0qhwfs2',
+  style: 'mapbox://styles/paldhous/cjo0904f50umy2snh7xs2zqy3',
   center: [-99, 40],
   zoom: 3
 });
@@ -86,7 +86,7 @@ map.on('load', function() {
 // Add popup
 map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point, {
-    layers: ['quakes'] // replace this with the name of the layer
+    layers: ['quakes-d9gluh'] // replace this with the name of the layer
   });
 
   if (!features.length) {
@@ -97,7 +97,7 @@ map.on('click', function(e) {
 
   var popup = new mapboxgl.Popup({ offset: [0, -15] })
     .setLngLat(feature.geometry.coordinates)
-    .setHTML('<b>Magitude: </b>' + feature.properties.mag + '<br><b>Time: </b>' + feature.properties.time + '<br><b>Depth: </b>' + feature.properties.depth + 'km')
+    .setHTML('<b>Mangitude: </b>' + feature.properties.mag + '<br><b>Time: </b>' + feature.properties.time + '<br><b>Depth: </b>' + feature.properties.depth + 'km')
     .setLngLat(feature.geometry.coordinates)
     .addTo(map);
 });

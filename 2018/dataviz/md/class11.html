@@ -123,7 +123,18 @@ map.on(<span class="hljs-string">'load'</span>, <span class="hljs-function"><spa
 });
 </code></pre><p>Then add this HTML immediately beneath <code>&lt;div id='map'&gt;&lt;/div&gt;</code>:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>&amp;lt;div class='map-overlay' id='legend'&amp;gt;&amp;lt;/div&amp;gt;
 </code></pre>">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">'map-overlay'</span> id=<span class="hljs-string">'legend'</span>&gt;<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-</span></code></pre><p>To style the legend, add the following CSS code above the closing <code>&lt;/style&gt;</code> tag:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    #legend {
+</span></code></pre><p>To style the legend, add the following CSS code above the closing <code>&lt;/style&gt;</code> tag:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>    .map-overlay {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.8);
+      margin-right: 20px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: 3px;
+    }
+
+    #legend {
     padding: 10px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     line-height: 18px;
@@ -137,7 +148,18 @@ map.on(<span class="hljs-string">'load'</span>, <span class="hljs-function"><spa
       height: 10px;
       margin-right: 5px;
     }
-</code></pre>">    #legend {
+</code></pre>">    .map-overlay {
+      position: absolute;
+      bottom: <span class="hljs-number">0</span>;
+      right: <span class="hljs-number">0</span>;
+      background: rgba(<span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">255</span>, <span class="hljs-number">0.8</span>);
+      margin-right: <span class="hljs-number">20</span>px;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+      border-radius: <span class="hljs-number">3</span>px;
+    }
+
+    #legend {
     padding: <span class="hljs-number">10</span>px;
     box-shadow: <span class="hljs-number">0</span> <span class="hljs-number">1</span>px <span class="hljs-number">2</span>px rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);
     line-height: <span class="hljs-number">18</span>px;
@@ -189,8 +211,12 @@ map.on(<span class="hljs-string">'click'</span>, <span class="hljs-function"><sp
 });
 </code></pre><p>The code in the <code>setHTML</code> function writes the HTML to appear in the pop-up. It pulls data for each quake using the format: <code>feature.properties.variablename</code>.</p><p>This web page can now be embedded in any other web page with a simple iframe of the following form:</p><pre class="javascript hljs"><code class="Javascript" data-origin="<pre><code class=&quot;Javascript&quot;>&amp;lt;iframe src=&quot;seismic.html&quot;&amp;gt; width = 100% height = 500 &amp;lt;/iframe&amp;gt;
 </code></pre>">&lt;iframe src="seismic.html"&gt; width = 100% height = 500 &lt;/iframe&gt;
-</code></pre><h3 id="exercise:-map-gdp-per-capita-in-2016-for-the-world's-nations"><a name="exercise:-map-gdp-per-capita-in-2016-for-the-world's-nations" href="#exercise:-map-gdp-per-capita-in-2016-for-the-world's-nations"></a>Exercise: Map GDP per capita in 2016 for the world’s nations</h3><p>Return to the main <a href="https://www.mapbox.com/studio/">Mapbox Studio</a> page and select a <code>Light</code> basemap as before. Rename the <code>Style</code> as <code>GDPpercap</code>, and upload and add the <code>world.zip</code> zipped shapefile as a new layer.</p><p>Style it to mimic the approach used in the map below, made in QGIS:</p><p><img src="img/class1_18.png" alt=""></p><p>You will have to use <code>Style with data conditions</code>. Because the variable <code>gdp_percap</code> has decimal numbers, you will need to include a decimal point in the numbers you select for the breaks for the bins.</p><p>Make a web page to display the map.</p><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><p>File a full project update via your GitHub account, so that I can see your visualizations, data etc. Also write a summary in Markdown, including:</p><ul>
-<li>What you have done.</li><li>What you intend to do.</li><li>Problems, obstacles.</li></ul><p>Share this with me by <strong>6pm</strong> on <strong>Wed Nov 7</strong>.</p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="https://www.mapbox.com/help/tutorials/">Mapbox tutorials</a></p><p><a href="https://www.mapbox.com/studio-manual/overview/">Mapbox Studio manual</a></p>
+</code></pre><h3 id="exercise:-map-gdp-per-capita-in-2016-for-the-world's-nations"><a name="exercise:-map-gdp-per-capita-in-2016-for-the-world's-nations" href="#exercise:-map-gdp-per-capita-in-2016-for-the-world's-nations"></a>Exercise: Map GDP per capita in 2016 for the world’s nations</h3><p>Return to the main <a href="https://www.mapbox.com/studio/">Mapbox Studio</a> page and select a <code>Light</code> basemap as before. Rename the <code>Style</code> as <code>GDPpercap</code>, and upload and add the <code>world.zip</code> zipped shapefile as a new layer.</p><p>Style it to mimic the approach used in the map below, made in QGIS:</p><p><img src="img/class1_18.png" alt=""></p><p>You will have to use <code>Style with data conditions</code>. Because the variable <code>gdp_percap</code> has decimal numbers, you will need to include a decimal point in the numbers you select for the breaks for the bins.</p><p>Make a web page to display the map.</p><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
+<li><p>File a full project update via your GitHub account, so that I can see your visualizations, data etc. Make sure that your GitHub repo is up to date with data, charts etc, so that I can sync with my version of your project and review your progress.</p>
+</li><li><p>This should include a summary in Markdown. Explain:</p>
+<ul>
+<li>What you have done.</li><li>What you intend to do.</li><li>Any problems, obstacles, you are experiencing. Pay particular attention to this, so that we can work on solutions when we meet next week.</li></ul>
+</li></ul><p>Share this with me by <strong>6pm</strong> on <strong>Wed Nov 7</strong>.</p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="https://www.mapbox.com/help/tutorials/">Mapbox tutorials</a></p><p><a href="https://www.mapbox.com/studio-manual/overview/">Mapbox Studio manual</a></p><p><a href="https://www.mapbox.com/mapbox-gl-js/api/">Mapbox GL documentation</a></p>
 
 <footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">generated by <a href="http://pad.haroopress.com" target="_blank">haroopad</a></footer>
 </body>
