@@ -121,9 +121,29 @@ A file called `query.csv` should download. Rename it `quakes.csv` and add to the
 
 #### [Download Week 13](./data/week13.zip)
 
+- `food_stamps.csv` [US Department of Agriculture data](http://www.fns.usda.gov/pd/supplemental-nutrition-assistance-program-snap) on the number of participants, in millions, in the federal Supplemental Nutrition Assistance Program from 1969 to 2016, as used previously.
+
+- `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, as used previously.
+
+- `kindergarten.csv` Data from the [California Department of Public Health](https://data.chhs.ca.gov/dataset/school-immunizations-in-kindergarten-by-academic-year), documenting enrollment and the number of children with complete immunizations at entry into kindergartens in California from 2001 to 2015, as used previously.
+- `nations.csv` Data from the World Bank Indicators portal, as used previously.
+- `seismic.zip` Zipped shapefile with data on the annual risk of a damaging earthquake for the continental United States, from the [US Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+
+- `test.html` Web page to embed the interactive charts and maps we make today.
+
+
 #### [Download Week 14](./data/week14.zip)
 
+- `nations.csv` Data from the World Bank Indicators portal, as used in week 3 and subsequently.
+- `warming.csv` [National Oceanic and Atmospheric Administration data](https://www.ncdc.noaa.gov/cag/global/time-series/globe/land_ocean/ytd/12/1880-2017.csv) on the annual average global temperature, from 1880 to 2017.
+  - `year`
+  - `value` Average global temperature, compared to average from 1900-2000.
+- `simulations.csv` Data from NASA simulations of historical temperatures, estimating the effect of natural and human influences on climate, processed from the [raw data](https://www.bloomberg.com/graphics/2015-whats-warming-the-world/data/forcings.csv) used for this [piece from Bloomberg News](https://www.bloomberg.com/graphics/2015-whats-warming-the-world/). Contains the following variables:
+  - `year`
+  - `type` Natural or Human
+  - `value` Global average temperature from the simulation, relative to average simulated value from 1990-2000.
 
+- `charts` Empty folder into which we will save individual frames from which to make an animation.
 
 ## Final projects
 

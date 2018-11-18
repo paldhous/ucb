@@ -1,5 +1,13 @@
-# install required packages
-devtools::install_github("dgrtwo/gganimate")
+# first install devtools
+install.packages("devtools")
+
+# then gganimate
+devtools::install_github('thomasp85/gganimate')
+
+# and transformr
+devtools::install_github("thomasp85/transformr")
+
+#### Load the packages we will use today
 
 # load required packages
 library(readr)
@@ -7,16 +15,17 @@ library(ggplot2)
 library(gganimate)
 library(scales)
 library(dplyr)
+library(tidyr)
 
 # load data
 nations <- read_csv("nations.csv")
 
 # filter for 2015 data only
-nations2015 <- nations %>%
-  filter(year == 2015)
+nations2016 <- nations %>%
+  filter(year == 2016)
 
 # make bubble chart
-ggplot(nations2015, aes(x = gdp_percap, y = life_expect)) +
+ggplot(nations2016, aes(x = gdp_percap, y = life_expect)) +
   xlab("GDP per capita") +
   ylab("Life expectancy at birth") +
   theme_minimal(base_size = 12, base_family = "Georgia") +
@@ -27,148 +36,175 @@ ggplot(nations2015, aes(x = gdp_percap, y = life_expect)) +
   scale_color_brewer(name = "", palette = "Set2") +
   theme(legend.position=c(0.8,0.4))
 
-# animate
-nations_chart <- ggplot(nations, aes(x = gdp_percap, y = life_expect, frame = year)) +
+# animate entire time series with gganimate
+nations_plot <- ggplot(nations, aes(x = gdp_percap, y = life_expect)) +
   xlab("GDP per capita") +
   ylab("Life expectancy at birth") +
   theme_minimal(base_size = 16, base_family = "Georgia") +
   geom_point(aes(size = population, color = region), alpha = 0.7) +
-  scale_size_area(guide = FALSE, max_size = 20) +
+  scale_size_area(guide = FALSE, max_size = 15) +
   scale_x_continuous(labels = dollar) +
-  stat_smooth(aes(group = year), formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype="dotted") +
+  stat_smooth(formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype="dotted") +
   scale_color_brewer(name = "", palette = "Set2") +
-  theme(legend.position=c(0.8,0.4))
+  theme(legend.position=c(0.8,0.4)) +
+  # gganimate code
+  ggtitle("{frame_time}") +
+  transition_time(year) +
+  ease_aes("linear") +
+  enter_fade() + # explain the alternatives
+  exit_fade()
 
-gganimate(nations_chart)
+  shadow_wake() +
+  shadow_wake()
+  
+animate(nations_plot)
 
-# save as a GIF
-gganimate(nations_chart, "nations.gif", ani.width = 750, ani.height = 500, interval = 0.2)
+# gif
+nations_anim <- animate(nations_plot, fps = 10, width = 750, height = 450)
+anim_save("nations.gif") 
 
-# save as a video 
-gganimate(nations_chart, "nations.mp4", ani.width = 800, ani.height = 450, interval = 0.1)
+# video
+nations_anim <- animate(nations_plot, renderer = ffmpeg_renderer(), width = 800, height = 450)
+anim_save("nations.mp4") 
 
-# add delay to final frame of GIF
+# increase delay on final frame of gif
 system("convert nations.gif \\( +clone -set delay 300 \\) +swap +delete  nations_with_pause.gif")
 
-# load data
-warming <- read_csv("warming.csv")
+# slow down the video
+system("ffmpeg -i nations.mp4 -vf 'setpts=2*PTS' nations_slow.mp4")
 
-# set color palette and sequence of values to apply it to
-pal <- c("#313695","#4575b4","#74add1","#abd9e9","#e0f3f8","#ffffbf","#fee090","#fdae61","#f46d43","#d73027","#a50026")
-vals <- seq(-2, 2, length = 11)
+
+# individual frames 
+nations_anim <- animate(nations_plot, device = "png", width = 750, height = 450, renderer = file_renderer("~/Desktop/gganim", prefix = "gganim_plot", overwrite = TRUE))
+anim_save()
+
+####
+
+# load data
+warming <- read_csv("https://www.ncdc.noaa.gov/cag/global/time-series/globe/land_ocean/ytd/12/1880-2017.csv", skip=4)
+names(warming) <- c("year","value")
+write_csv(warming, "warming.csv", na="")
+
+# load
+warming <- read_csv("warming.csv")
+glimpse(warming)
 
 # draw chart
-ggplot(warming, aes(x = year, y = annual)) +
+warming_plot <- ggplot(warming, aes(x = year, y = value)) +
   geom_line(colour="black") +
-  geom_point(shape = 21, colour="black", aes(fill=annual), size=5, stroke=1) +
-  scale_x_continuous(limits=c(1880,2015)) +
-  scale_y_continuous(limits=c(-0.5,1)) +
-  theme_minimal() +
-  scale_fill_gradientn(colors = pal, values = vals, rescaler = function(x, ...) x, oob = identity, guide=FALSE) +
+  geom_point(shape = 21, colour = "black", aes(fill = value), size=5, stroke=1) +
+  scale_x_continuous(limits = c(1880,2017)) +
+  scale_y_continuous(limits = c(-0.5,1)) +
+  scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
   xlab("") +
-  ylab("Difference from 1951-1980 (ºC)") +
-  theme(text=element_text(size=16, family="Georgia"))
+  ylab("Difference from 1900-2000 (ºC)") +
+  theme_minimal(base_size = 16, base_family = "Georgia") +
+  # gganimate code
+  transition_reveal(id = 1, along = year) +
+  transition_time(year) +
+  shadow_mark()
 
-# create the animation
-warming_chart <- ggplot(warming, aes(x = year, y = annual, frame = year, cumulative = TRUE)) +
-  geom_line(colour="black") +
-  geom_point(shape = 21, colour="black", aes(fill=annual), size=5, stroke=1) +
-  scale_x_continuous(limits=c(1880,2015)) +
-  scale_y_continuous(limits=c(-0.5,1)) +
-  theme_minimal() +
-  scale_fill_gradientn(colors = pal, values = vals, rescaler = function(x, ...) x, oob = identity, guide=FALSE) +
+warming_anim <- animate(warming_plot, fps = 10, width = 750, height = 450)
+anim_save("warming.gif")
+
+# draw chart
+warming_points <- ggplot(warming, aes(x = year, y = value)) +
+  geom_point(shape = 21, colour = "black", aes(fill = value), size=5, stroke=1) +
+  scale_x_continuous(limits = c(1880,2017)) +
+  scale_y_continuous(limits = c(-0.5,1)) +
+  scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
   xlab("") +
-  ylab("Difference from 1951-1980 (ºC)") +
-  theme(text=element_text(size=16, family="Georgia"))
+  ylab("Difference from 1900-2000 (ºC)") +
+  theme_minimal(base_size = 16, base_family = "Georgia") +
+  # gganimate code
+  transition_time(year) +
+  shadow_mark()
 
-# run in the viewer
-gganimate(warming_chart, interval = 0.1)
+warming_anim <- animate(warming_points, fps = 10, width = 750, height = 450)
+anim_save("warming_points.gif")
 
-# save as GIF and video
-gganimate(warming_chart, "warming.gif", ani.width = 750, ani.height = 500, interval = 0.1)
-gganimate(warming_chart, "warming.mp4", ani.width = 800, ani.height = 450, interval = 0.1)
 
-# make a list of years, from 1880 to 2015
-years <- c(1880:2015)
+# so we need to write a loop and save out the individual frames
+
+# make a list of years, from 1880 to 2017
+years <- c(1880:2017)
 
 # loop to make a chart for each year
 for (y in years) {
   tmp <- warming %>%
     filter(year <= y)
-  chart <- ggplot(tmp, aes(x=year,y=annual)) %>%
-    + geom_line(colour="black") %>%
-    + geom_point(shape = 21, colour="black", aes(fill=annual), size=5, stroke=1) %>%
-    + scale_x_continuous(limits=c(1880,2015)) %>%
-    + scale_y_continuous(limits=c(-0.5,1)) %>%
-    + theme_minimal() %>%
-    + scale_fill_gradientn(colors = pal, values=vals, rescaler = function(x, ...) x, oob = identity, guide=FALSE) %>%
-    + xlab("") %>%
-    + ylab("Difference from 1951-1980 (ºC)") %>%
-    + theme(text=element_text(size=16,family="Georgia"))
-  ggsave(file=paste0("charts/",y,".jpg"), plot = chart, width = 8, height = 4.5, units = "in", dpi=300)
+  chart <- ggplot(tmp, aes(x = year, y = value)) + 
+    geom_line(colour = "black") +
+    geom_point(shape = 21, colour="black", aes(fill = value), size = 5, stroke = 1) +
+    scale_x_continuous(limits = c(1880,2017)) +
+    scale_y_continuous(limits = c(-0.5,1)) +
+    scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
+    xlab("") +
+    ylab("Difference from 1900-2000 (ºC)") +
+    theme_minimal(base_size = 16, base_family = "Georgia")
+  ggsave(file = paste0("charts/",y,".jpg"), plot = chart, width = 8, height = 4.5, units = "in", dpi = 300)
   print(paste0("processing: ",y))
-}
+}  
 
-# combine the maps and charts with ImageMagick, add year label to each frame
-for (y in years) {
-  system(paste0("convert charts/",y,".jpg maps/map",y,".jpg -geometry +305+68 -composite -pointsize 100 -font Georgia -annotate +2000+1120 ",y," combined/img",y,".jpg"))
-  print(paste0("processing: ",y))
-}
-
-system("convert -delay 10 combined/*.jpg warming2.gif")
-
+# make a GIF with ImageMagick
+system("convert -delay 10 charts/*.jpg warming2.gif") # on windows shell
 
 # make a video with FFmpeg
-system("ffmpeg -f image2 -start_number 1880 -i combined/img%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming2.mp4")
+system("ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming.mp4")
 
-y
 # change the speed of the video
-system("ffmpeg -i warming2.mp4 -vf 'setpts=2*PTS' warming3.mp4")
+system("ffmpeg -i warming.mp4 -vf 'setpts=2*PTS' warming_slow.mp4")
 
 
-# install and load tweenr
-install.packages("tweenr")
-library(tweenr)
+#### climate forcings
 
-# prepare data
-nations_edit <- nations %>%
-  arrange(country, year) %>%
-  select(gdp_percap,life_expect,year,country) %>%
-  rename(x=gdp_percap,y=life_expect,time=year,id=country) %>%
-  mutate(ease="linear")
+# load model simulation data
+simulations <- read_csv("https://www.bloomberg.com/graphics/2015-whats-warming-the-world/data/forcings.csv") %>%
+  filter(between(Year, 1880, 2005)) %>%
+  rename(`Earth’s orbit` = `Orbital changes`,
+         Aerosols = `Anthropogenic tropospheric aerosol`,
+         `Solar radiation` = Solar)
 
-nations_tween <- tween_elements(nations_edit, "time", "id", "ease", nframes = 300)
+# calculate average for 1900-2000 baseline from simulations
+baseline <- simulations %>%
+  filter(between(Year, 1900, 2000)) %>%
+  select(2:11) %>%
+  summarise_all(mean)
 
-# create year and country fields, for join
-nations_tween <- nations_tween %>%
-  mutate(year = round(time),
-         country = .group)
+# subtract these values from the simulation data
+years <- data_frame(Year = 1880:2005)
+years <- cbind(years,baseline)
+simulations <- simulations[2:11]-years[2:11] 
+simulations <- simulations %>%
+  mutate(Year=1880:2005) %>%
+  gather(Type, Value, -Year) 
 
-# join
-nations_tween <- inner_join(nations_tween,nations)
+# combined natural vs. combined human factors
+hum_nat <- simulations %>%
+  filter(grepl("Natural|Human",Type))
+names(hum_nat) <- c("year","type","value")
 
+write_csv(hum_nat,"simulations.csv")
 
-# make animated chart
-nations_tween_chart <- ggplot(nations_tween, aes(x = x, y = y, frame = .frame)) +
-  xlab("GDP per capita") +
-  ylab("Life expectancy at birth") +
-  theme_minimal(base_size = 16, base_family = "Georgia") +
-  geom_point(aes(size = population, color = region), alpha = 0.7) +
-  scale_size_area(guide = FALSE, max_size = 20) +
-  scale_x_continuous(labels = dollar) +
-  stat_smooth(aes(group = .frame), formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype="dotted") +
-  scale_color_brewer(name = "", palette = "Set2") +
-  theme(legend.position=c(0.8,0.4))
+simulations <- read_csv("simulations.csv")
 
-# run in the viewer
-gganimate(nations_tween_chart, title_frame = FALSE, interval = 0.05)
+simulations_plot <- ggplot(simulations, aes(x=year, y=value, color = value)) +
+  geom_line(size = 1) +
+  theme_dark(base_size = 16, base_family = "Georgia") +
+  scale_y_continuous(limits = c(-0.6,0.75)) +
+  scale_colour_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
+  ylab("Diff. from 1900-2000 average (ºC)") +
+  xlab("") +
+  #gganimate code
+  ggtitle("{closest_state}") +
+  transition_states(
+    type,
+    transition_length = 0.5,
+    state_length = 2
+  ) +
+  ease_aes("cubic-in-out")
 
-
-
-
-
-
-
-
+animate(simulations_plot, width = 750, height = 450)
+anim_save("simulations.gif")
 
 
