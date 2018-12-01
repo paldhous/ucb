@@ -30,8 +30,9 @@ Launch RStudio, create a new RScript, and set the working directory to the folde
 # first install devtools
 install.packages("devtools")
 
-# then gganimate
-devtools::install_github('thomasp85/gganimate')
+# then gganimate (and transformr, a dependency that helps with smooth transitions for polygons and lines)
+devtools::install_github("thomasp85/gganimate")
+devtools::install_github("thomasp85/transformr")
 ```
 
 #### Load the packages we will use today
@@ -437,6 +438,7 @@ The GIF should look like this:
 [ImageMagick examples](https://www.imagemagick.org/Usage/)
 
 [FFmpeg documentation](https://ffmpeg.org/ffmpeg.html)
+
 
 
 

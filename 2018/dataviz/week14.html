@@ -65,13 +65,15 @@
 </li></ul><h3 id="setting-up"><a name="setting-up" href="#setting-up"></a>Setting up</h3><p>Launch RStudio, create a new RScript, and set the working directory to the folder with your downloaded data by selecting <code>Session&gt;Set Working Directory&gt;To Source File Location</code>. Save the script as <code>week14.R</code>.</p><h4 id="install-devtools-and-gganimate-packages"><a name="install-devtools-and-gganimate-packages" href="#install-devtools-and-gganimate-packages"></a>Install devtools and gganimate packages</h4><p><strong>gganimate</strong> is not in the main CRAN repository of R pacages, but is available on GitHub. To install from there, you first need to install the <a href="https://github.com/hadley/devtools"><strong>devtools</strong></a> package.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># first install devtools
 install.packages(&quot;devtools&quot;)
 
-# then gganimate
-devtools::install_github('thomasp85/gganimate')
+# then gganimate (and transformr, a dependency that helps with smooth transitions for polygons and lines)
+devtools::install_github(&quot;thomasp85/gganimate&quot;)
+devtools::install_github(&quot;thomasp85/transformr&quot;)
 </code></pre>"><span class="hljs-comment"># first install devtools</span>
 install.packages(<span class="hljs-string">"devtools"</span>)
 
-<span class="hljs-comment"># then gganimate</span>
-devtools::install_github(<span class="hljs-string">'thomasp85/gganimate'</span>)
+<span class="hljs-comment"># then gganimate (and transformr, a dependency that helps with smooth transitions for polygons and lines)</span>
+devtools::install_github(<span class="hljs-string">"thomasp85/gganimate"</span>)
+devtools::install_github(<span class="hljs-string">"thomasp85/transformr"</span>)
 </code></pre><h4 id="load-the-packages-we-will-use-today"><a name="load-the-packages-we-will-use-today" href="#load-the-packages-we-will-use-today"></a>Load the packages we will use today</h4><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load required packages
 library(readr)
 library(ggplot2)

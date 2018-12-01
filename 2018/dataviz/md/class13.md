@@ -471,5 +471,11 @@ Links to documentation and code examples for the leading htmlwidgets.
 [htmlwidgets Gallery](https://gallery.htmlwidgets.org/)
 A more extensive collection of htmlwidgets
 
+[Plotly with ggplot2](https://plot.ly/ggplot2/)
+
+[Plotly for R](https://plot.ly/r/)
+Look here for more options to customize your charts, including [layout options](https://plot.ly/r/#layout-options) like formatting tooltips. Note, you can also make charts directly in R without going through ggplot2.
+
+
 
 
