@@ -67,7 +67,7 @@ food_stamps_interactive &lt;- ggplotly(food_stamps_chart) %&gt;%
   config(displayModeBar = <span class="hljs-literal">FALSE</span>)
 
 print(food_stamps_interactive)
-</code></pre><p>To reformat the tooltips, we need to modify both the <strong>ggplot2</strong> and <strong>plotly</strong> code, like this:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize the toolips
+</code></pre><p>To reformat the tooltips, we need to modify both the <strong>ggplot2</strong> and <strong>plotly</strong> code, like this:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># customize the tooltips
 food_stamps_chart &amp;lt;- ggplot(food_stamps, aes(x = year, 
                                              y = participants,
                                              text = paste0(&quot;&amp;lt;b&amp;gt;Year: &amp;lt;/b&amp;gt;&quot;, year,&quot;&amp;lt;br&amp;gt;&quot;,
@@ -81,10 +81,12 @@ food_stamps_chart &amp;lt;- ggplot(food_stamps, aes(x = year,
   geom_line()
 
 food_stamps_interactive &amp;lt;- ggplotly(food_stamps_chart, tooltip = &quot;text&quot;) %&amp;gt;% 
-  config(displayModeBar = FALSE)
+  config(displayModeBar = FALSE) %&amp;gt;%
+  layout(hoverlabel = list(bgcolor = &quot;white&quot;,
+                           font = list(family = &quot;Georgia&quot;)))
 
 print(food_stamps_interactive)
-</code></pre>"><span class="hljs-comment"># customize the toolips</span>
+</code></pre>"><span class="hljs-comment"># customize the tooltips</span>
 food_stamps_chart &lt;- ggplot(food_stamps, aes(x = year, 
                                              y = participants,
                                              text = paste0(<span class="hljs-string">"&lt;b&gt;Year: &lt;/b&gt;"</span>, year,<span class="hljs-string">"&lt;br&gt;"</span>,
@@ -98,10 +100,12 @@ food_stamps_chart &lt;- ggplot(food_stamps, aes(x = year,
   geom_line()
 
 food_stamps_interactive &lt;- ggplotly(food_stamps_chart, tooltip = <span class="hljs-string">"text"</span>) %&gt;% 
-  config(displayModeBar = <span class="hljs-literal">FALSE</span>)
+  config(displayModeBar = <span class="hljs-literal">FALSE</span>) %&gt;%
+  layout(hoverlabel = list(bgcolor = <span class="hljs-string">"white"</span>,
+                           font = list(family = <span class="hljs-string">"Georgia"</span>)))
 
 print(food_stamps_interactive)
-</code></pre><p>This code creates a custom tooltip inside the <strong>ggplot2</strong> aesthetic mapping (<code>aes</code>), setting <code>text</code> as the text we want to display, including values drawn from variables in the data. The code uses R’s <code>paste0</code> function to concatenate text; <code>&lt;br&gt;</code> is HTML code for a new line; <code>&lt;b&gt;&lt;/b&gt;</code> are HTML tags that mark text to appear in bold.</p><p>When writing a custom tooltip, we also need to include <code>group = 1</code> in the <code>aes</code> mapping.</p><p>We can now save the chart as a standalone web page by selecting <code>Export&gt;Save as Web Page...</code> from the <code>Viewer</code> tab menu.</p><p>Open the saved web page in your browser and notice that the chart is completely responsive: It will adjust its size to fit the space available.</p><p>So now we can embed the chart in the file <code>test.html</code>, just like we did for the chart exported from the Plotly web up in a previous class:</p><p>Open the <code>test.html</code> file in Sublime Text. Insert the code into the page and edit as follows:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>&amp;lt;div class=&quot;container&quot;&amp;gt;
+</code></pre><p>This code creates a custom tooltip inside the <strong>ggplot2</strong> aesthetic mapping (<code>aes</code>), setting <code>text</code> as the text we want to display, including values drawn from variables in the data. The code uses R’s <code>paste0</code> function to concatenate text; <code>&lt;br&gt;</code> is HTML code for a new line; <code>&lt;b&gt;&lt;/b&gt;</code> are HTML tags that mark text to appear in bold.</p><p>When writing a custom tooltip, we also need to include <code>group = 1</code> in the <code>aes</code> mapping.</p><p>Code code in the final <code>layout</code> function styles the tooltip, using a white background and changing the font family to be consistent with the rest of the chart. See <a href="https://plot.ly/r/#layout-options">here</a> for more Plotly chart layout options.</p><p>We can now save the chart as a standalone web page by selecting <code>Export&gt;Save as Web Page...</code> from the <code>Viewer</code> tab menu.</p><p>Open the saved web page in your browser and notice that the chart is completely responsive: It will adjust its size to fit the space available.</p><p>So now we can embed the chart in the file <code>test.html</code>, just like we did for the chart exported from the Plotly web up in a previous class:</p><p>Open the <code>test.html</code> file in Sublime Text. Insert the code into the page and edit as follows:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>&amp;lt;div class=&quot;container&quot;&amp;gt;
 
     &amp;lt;iframe width=&quot;100%&quot; height=&quot;450&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; src=&quot;food_stamps_interactive.html&quot;&amp;gt;&amp;lt;/iframe&amp;gt;
 

@@ -82,7 +82,7 @@ print(food_stamps_interactive)
 To reformat the tooltips, we need to modify both the **ggplot2** and **plotly** code, like this:
 
 ```R
-# customize the toolips
+# customize the tooltips
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, 
                                              y = participants,
                                              text = paste0("<b>Year: </b>", year,"<br>",
@@ -96,7 +96,9 @@ food_stamps_chart <- ggplot(food_stamps, aes(x = year,
   geom_line()
 
 food_stamps_interactive <- ggplotly(food_stamps_chart, tooltip = "text") %>% 
-  config(displayModeBar = FALSE)
+  config(displayModeBar = FALSE) %>%
+  layout(hoverlabel = list(bgcolor = "white",
+                           font = list(family = "Georgia")))
 
 print(food_stamps_interactive)
 ```
@@ -104,6 +106,8 @@ print(food_stamps_interactive)
 This code creates a custom tooltip inside the **ggplot2** aesthetic mapping (`aes`), setting `text` as the text we want to display, including values drawn from variables in the data. The code uses R's `paste0` function to concatenate text; `<br>` is HTML code for a new line; `<b></b>` are HTML tags that mark text to appear in bold.
 
 When writing a custom tooltip, we also need to include `group = 1` in the `aes` mapping.
+
+Code code in the final `layout` function styles the tooltip, using a white background and changing the font family to be consistent with the rest of the chart. See [here](https://plot.ly/r/#layout-options) for more Plotly chart layout options.
 
 We can now save the chart as a standalone web page by selecting `Export>Save as Web Page...` from the `Viewer` tab menu.
 
