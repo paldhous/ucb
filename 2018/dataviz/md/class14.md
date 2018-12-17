@@ -374,7 +374,7 @@ Now make a video with FFmpeg:
 
 ```R
 # make a video with FFmpeg
-system("ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming.mp4")
+system("ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' warming.mp4")
 
 # change the speed of the video
 system("ffmpeg -i warming.mp4 -vf 'setpts=2*PTS' warming_slow.mp4")
@@ -432,6 +432,8 @@ The GIF should look like this:
 ![](./img/simulations.gif)
 
 ### Further reading/resources
+
+gganimate
 
 [gganimate GitHub repo](https://github.com/thomasp85/gganimate)
 

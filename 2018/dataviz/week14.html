@@ -362,12 +362,12 @@ system(<span class="hljs-string">"convert -delay 10 charts/*.jpg warming2.gif"</
 <span class="hljs-comment"># increase delay on final frame of GIF</span>
 system(<span class="hljs-string">"convert warming2.gif \\( +clone -set delay 300 \\) +swap +delete warming2_with_pause.gif"</span>)
 </code></pre><p>This code creates a GIF called <code>warming2.gif</code> ; <code>-delay</code> defines the interval between each frame in hundredths of a second, so here the delay is 0.1 seconds. The second line increase the delay on the final frame, as before.</p><p><img src="img/warming2_with_pause.gif" alt=""></p><p>Now make a video with FFmpeg:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># make a video with FFmpeg
-system(&quot;ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming.mp4&quot;)
+system(&quot;ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' warming.mp4&quot;)
 
 # change the speed of the video
 system(&quot;ffmpeg -i warming.mp4 -vf 'setpts=2*PTS' warming_slow.mp4&quot;)
 </code></pre>"><span class="hljs-comment"># make a video with FFmpeg</span>
-system(<span class="hljs-string">"ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming.mp4"</span>)
+system(<span class="hljs-string">"ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' warming.mp4"</span>)
 
 <span class="hljs-comment"># change the speed of the video</span>
 system(<span class="hljs-string">"ffmpeg -i warming.mp4 -vf 'setpts=2*PTS' warming_slow.mp4"</span>)
@@ -420,7 +420,7 @@ anim_save(<span class="hljs-string">"simulations.gif"</span>)
 </code></pre><h4 id="how-the-gganimate-code-works"><a name="how-the-gganimate-code-works" href="#how-the-gganimate-code-works"></a>How the gganimate code works</h4><ul>
 <li><p><code>transition_state</code>. This switches between different filtered states of the data, here defined by the variable <code>type</code>. <code>transition_length</code> is the length of the transition in seconds, and <code>state_length</code> is the pause at each state, again in seconds.</p>
 </li><li><p><code>ease_aes</code> With a state transition animation, using options that  vary the speed of the transition, with a slower start and finish than the middle section, give a more visually pleaseing effect. Try <code>"cubic-in-out"</code> or <code>"sine_in_out"</code></p>
-</li><li>Using <code>"{closest_state}"</code> in the <code>ggtitle</code> function displays the appropriate value for the variable used to define the states, here <code>type</code>.</li></ul><p>The GIF should look like this:</p><p><img src="img/simulations.gif" alt=""></p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p><a href="https://github.com/thomasp85/gganimate">gganimate GitHub repo</a></p><p><a href="https://www.imagemagick.org/Usage/">ImageMagick examples</a></p><p><a href="https://ffmpeg.org/ffmpeg.html">FFmpeg documentation</a></p>
+</li><li>Using <code>"{closest_state}"</code> in the <code>ggtitle</code> function displays the appropriate value for the variable used to define the states, here <code>type</code>.</li></ul><p>The GIF should look like this:</p><p><img src="img/simulations.gif" alt=""></p><h3 id="further-reading/resources"><a name="further-reading/resources" href="#further-reading/resources"></a>Further reading/resources</h3><p>gganimate</p><p><a href="https://github.com/thomasp85/gganimate">gganimate GitHub repo</a></p><p><a href="https://www.imagemagick.org/Usage/">ImageMagick examples</a></p><p><a href="https://ffmpeg.org/ffmpeg.html">FFmpeg documentation</a></p>
 
 	</div> <!-- /.container all -->
 	<script src="https://code.jquery.com/jquery.min.js"></script>

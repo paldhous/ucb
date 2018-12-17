@@ -4,7 +4,7 @@ library(readr)
 library(dplyr)
 
 # load data
-food_stamps <- read_csv("food_stamps2.csv")
+food_stamps <- read_csv("food_stamps.csv")
 
 # dot-and-line chart
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) +
@@ -23,7 +23,14 @@ print(food_stamps_interactive)
 
 # remove plotly controls
 food_stamps_interactive <- ggplotly(food_stamps_chart) %>% 
-  config(displayModeBar = FALSE)
+  config(displayModeBar = FALSE) %>%
+  layout(hoverlabel = list(bgcolor = "white"))
+                           
+
+
+
+    font: {color: 'white'}
+  })
 
 print(food_stamps_interactive)
 
@@ -41,7 +48,9 @@ food_stamps_chart <- ggplot(food_stamps, aes(x = year,
   geom_line()
 
 food_stamps_interactive <- ggplotly(food_stamps_chart, tooltip = "text") %>% 
-  config(displayModeBar = FALSE)
+  config(displayModeBar = FALSE) %>%
+  layout(hoverlabel = list(bgcolor = "white",
+                           font = list(family = "Georgia")))
 
 print(food_stamps_interactive)
 
@@ -101,7 +110,7 @@ plot(disease_democ_chart)
 
 # make interactive version
 disease_democ_interactive <- ggplotly(disease_democ_chart, tooltip="text") %>% 
-  config(displayModeBar = FALSE)
+  config(displayModeBar = FALSE) 
 
 print(disease_democ_interactive)
 
@@ -143,7 +152,7 @@ plot(immun_counties_year_chart)
 immun_counties_year_chart_interactive <- ggplotly(immun_counties_year_chart, tooltip = "text") %>% 
   config(displayModeBar = FALSE)
 
-print(immun_counties_year_chart_interactive)
+print(immun_counties_year_chart_interactive) 
 
 ########
 # seismic risk and quakes map with leaflet
