@@ -15,13 +15,13 @@ food_stamps <- food_stamps %>%
   select(1,2,6)
 names(food_stamps) <- c("year","participants","costs")
 food_stamps <- food_stamps %>%
-  filter(!is.na(participants)) %>%
   mutate(participants = participants * 1000,
-         year = as.integer(year))
+         year = as.integer(year)) %>%
+  filter(!is.na(year))
 
 # charts
-ggplot(food_stamps, aes(x=year, y=participants/1000000)) +
-  geom_bar(stat = "identity", fill = "red", color = "white") + 
+ggplot(food_stamps, aes(x=year, y=participants/10^6)) +
+  geom_col(fill = "red", color = "white") + 
   xlab("") + 
   ylab("Participants (millions)") +
   # scale_x_continuous(breaks = c(1970,1980,1990,2000,2010)) +
@@ -60,7 +60,7 @@ ggplot(food_stamps, aes(x=year, y=participants/1000000)) +
   theme_minimal(base_size = 14, base_family = "Georgia") +
   ggtitle("Dot and column chart")
 
-write_csv(food_stamps,"food_stamps.csv",na="")
+write.csv(food_stamps,"food_stamps.csv",row.names = FALSE, na="")
 
 # CA immunization
 
@@ -221,8 +221,7 @@ ggplot(immun, aes(x=start_year, y=incomplete_pc/100)) +
   
 # gender pay gap
 
-# load data (scraped in Google Sheets from https://www.bls.gov/cps/cpsaat39.htm, with =importhtml("https://www.bls.gov/cps/cpsaat39.htm", "table", 2
-)
+# load data (scraped in Google Sheets from https://www.bls.gov/cps/cpsaat39.htm, with =importhtml("https://www.bls.gov/cps/cpsaat39.htm", "table", 2)
 gender_pay <- read_csv("gender_pay.csv")
 
 gender_pay_chart <- ggplot(gender_pay, aes(x=men_median_pay, y=women_median_pay)) + 
@@ -233,7 +232,7 @@ gender_pay_chart <- ggplot(gender_pay, aes(x=men_median_pay, y=women_median_pay)
   scale_y_continuous(labels = dollar) + 
   scale_x_continuous(labels = dollar) +
   theme_minimal(base_size = 14, base_family = "Georgia") +
-  ggtitle("Median weekly earnings, by job type (2017)")
+  ggtitle("Median weekly earnings, by job type (2018)")
 
 gender_pay_chart_edited <- gender_pay_chart + 
   geom_abline(intercept = 0, slope = 1, size=0.2) + 
