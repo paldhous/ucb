@@ -74,28 +74,26 @@ We will use [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) to create int
   -  **Assignment:** Submit a full project update, via your GitHub account, for review in next week's meetings.
 
 
-- ####**Nov. 22:** No Class
-Instead, one-on-one meetings will be arranged with instructor to discuss progress with your final projects.
+- ####**Nov. 22:** [**From R to interactive charts and maps**](week13.html)
+We will explore R packages called [htmlwidgets](https://www.htmlwidgets.org/) that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
+
+ -  **Assignment:** Continue work on final project, delivering a progress report.
+
 
 - ####**Nov. 29:** Thanksgiving -- No Class
 
  - **Assignment:** Continue work on your final project.
 
 
-- ####**Dec. 6:** [**From R to interactive charts and maps**](week13.html)
-We will explore R packages called [htmlwidgets](https://www.htmlwidgets.org/) that allow you to create JavaScript visualizations straight from your data with a minimum of coding.
-
- -  **Assignment:** Continue work on final project, delivering a progress report.
-
-
-- ####**Dec. 13:** [Animation: making GIFs and videos](week14.html)
+- ####**Dec. 6:** [Animation: making GIFs and videos](week14.html)
 We will use the [gganimate](https://gganimate.com/) R package to make animated GIFs and videos.
 
  - **Assignment:** complete your final project, file via your GitHub account.
 
 
-- ####**Dec. 20:** Student presentations on final projects
+- ####**Dec. 13:** Student presentations on final projects
 You will each present your final project work to the class, explain the process of creating the graphics, choices in  analysis and design, and problems that arose and how these were addressed.
+
 
 ### Recommended reading
 
