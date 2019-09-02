@@ -2,19 +2,21 @@
 
 ### Introducing Tableau Public
 
-Today we will work with [**Tableau Public**](https://public.tableau.com/s/), which allows you to create a wide variety of interactive charts, maps and tables and organize them into **dashboards** and **stories** that can be saved to the cloud and embedded on the web.
-
-The free Public version of the software requires you to save your visualizations to the open web. If you have sensitive data that needs to be kept within your organization, you will need a license for the [Desktop](https://www.tableau.com/products) version of the software. Members of Investigative Reporters and Editors can [obtain a free license](https://www.ire.org/blog/ire-news/2013/06/20/tableau-makes-its-desktop-software-free-ire-member/).
+Today we will work with [**Tableau Public**](https://public.tableau.com/s/), which allows you to create a wide variety of interactive charts, maps and tables and organize them into **dashboards** that can be saved to the cloud and embedded on the web.
 
 Tableau was developed for exploratory graphical data analysis, so it is a good tool for exploring a new dataset -- filtering, sorting and summarizing/aggregating the data in different ways while experimenting with various chart types, to find stories in the data.
 
+It also explicitly allows you to use the basic operations
+
 Although Tableau was not designed as a publication tool, the ability to embed finished dashboards and stories has also allowed allowed newsrooms and individual journalists lacking JavaScript coding expertise to create interactive online graphics.
+
+You can also use it to quickly prototype charts that you may later make for publication using another tool.
 
 ### The data we will use today
 
 Download the data for this session from [here](data/week3.zip), unzip the folder and place it on your desktop. It contains the following file:
 
-- `nations.csv` Data from the [World Bank Indicators](https://data.worldbank.org/indicator/) portal. Contains the following fields:
+- `nations.csv` Data from the [World Bank Indicators](https://data.worldbank.org/indicator/) portal. Contains the following variables, with data from 1990 to 2017 for each country where available:
  -  `iso2c` `iso3c` Two- and Three-letter codes for each country, assigned by the [International Organization for Standardization](https://www.iso.org/standard/63545.html).
  - `country` Country name.
  - `year`
@@ -41,7 +43,7 @@ Under the `Connect` heading at top left, select `Text File`, navigate to the fil
  - Dates: calendar symbol
  - Geography: globe symbol
 
-You can edit fields to give them the correct data type if there are any problems:
+You can edit variables to give them the correct data type if there are any problems:
 
 ![](./img/class3_2.jpg)
 
@@ -67,6 +69,8 @@ The starting point for creating any chart or map in Tableau is to place fields i
 
 #### Some questions to ask this data
 
+Remember our discussion about interviewing data  from week 1? Let's frame some questions to ask today:
+
 - How has the neonatal death rate for each country changed over time?
 - How has the total number of neonatal deaths changed over time, globally, regionally, and nationally?
 
@@ -90,11 +94,11 @@ Here we have simply run some simple arithmetic, but it's possible to use a wide 
 
 As we work through today's exercises, notice that Tableau routinely summarizes or aggregates measures that are dropped into `Columns` and `Rows`, calculating a `SUM` or `AVG` (average or mean), for example.
 
-This behavior *can* be turned off by selecting `Analysis` from the top menu and unchecking `Aggregate Measures`. However, I do not recommend doing this, as it will disable some Tableau functions. Instead, if you don't want to summarize *all* of the data, drop categorical variables into the `Detail` shelf so that any summary statistic will be calculated at the correct level for your analysis. If necessary, you can set the aggregation so it is being performed on a single data point, and therefore has no effect.
+This behavior *can* be turned off by selecting `Analysis` from the top menu and unchecking `Aggregate Measures`. However, I do not recommend doing this, as it will disable some Tableau functions. Instead, if you don't want to summarize *all* of the data, drop categorical variables into the `Detail` shelf so that any summary statistic will be calculated at the correct level for your analysis. If you do want to see every data point, you can adjust what you drop into this shelf so the summary is being performed on every single row in the data, and therefore has no effect. We'll spend some time in class seeing how this works.
 
 #### Make a line chart showing neonatal mortality rate by country over time
 
-To address our second question, and explore the neonatal death rate over time by country, we can use a line chart.
+To address our first question, and explore the neonatal death rate over time by country, we can use a line chart.
 
 First, select `Neonat Mortal Rate` in the `Measures` panel and click the small downward-pointing triangle at right to bring up its menu. Select `Rename` and change to `Neonatal death rate (per 1,000 births)`.
 
@@ -110,7 +114,7 @@ Adding rates together across countries makes no sense. And we aren't interested 
 
 ![](./img/class3_8.jpg)
 
-Notice that changing the summary function now makes no difference to the chart, apart from the wording of the axis. This is because the chart is plotting values for each country in each year, for which there is onlyb one record. So the `SUM` or `AVG` is the sum or mean of just one number.
+Notice that changing the summary function now makes no difference to the chart, apart from the wording of the axis. This is because the chart is plotting values for each country in each year, for which there is only one record. So the `SUM` or `AVG` is the sum or mean of just one number.
 
 We can use color to distinguish the different regions, so drag region to `Color`:
 
@@ -118,19 +122,19 @@ We can use color to distinguish the different regions, so drag region to `Color`
 
 `Region` is a categorical variable, and Tableau has selected its default qualitative color palette. For a more subtle color scheme, click on `Color`, select `Edit Colors...` and at the dialog box select the `Tableau Classic Medium` qualitative color scheme, then click `Assign Palette` and `OK`.
 
-Tableau's qualitative color palettes are well designed, so there is no need to adopt a ColorBrewer scheme. However, it is possible to edit colors individually if you wish, by double clicking on each data item at this dialog box and inputing RGB or HEX values.
+Tableau's qualitative color palettes are well designed, so there is no need to adopt a ColorBrewer palette. However, it is possible to edit colors individually if you wish, by double clicking on each data item at this dialog box and inputing RGB or HEX values.
 
 ![](./img/class3_10.jpg)
 
 Click on `Color` again and set transparency to 75%. (For your assignment you will create a chart with overlapping circles, which will benefit from using some transparency to allow all circles to be seen. So we are setting transparency now for consistency.)
 
-Now right-click on the X axis, select `Edit Axis`, edit the dialog box as follows and then close it:
+Now we'll tidy up the X axis to make the lines fill the chart area. Right-click on the X axis, select `Edit Axis`, edit the dialog box as follows and then close it:
 
 ![](./img/class3_11.jpg)
 
 Notice that a pin has now appeared on the axis, letting you know that it has been fixed.
 
-Right-click on the X axis again, select `Format`, change `Alignment` to `Up` and use the dropdown menu set the `Font` to bold. Close the `Format` panel and the chart should now look like this:
+Right-click on the X axis again, select `Format` and use the dropdown menu set the `Font` for the entire worksheet to bold. Close the `Format` panel and the chart should now look like this:
 
 ![](./img/class3_12.jpg)
 
@@ -156,13 +160,11 @@ Now remove this legend from the visualization, by opening its dropdown menu and 
 
 To freeze the Y axis, right-click on it, select `Edit Axis...`, make it `Fixed` and close the dialog box:
 
-Right-click on the Y axis again, select `Format...`, make the font bold, and close the `Format` panel.
-
 Now drag `Country` to `Filters`, make sure `All` are checked, and at the dialog box, click `OK`:
 
 ![](./img/class3_15.jpg)
 
-Now we need to add a filter control to select countries to compare. On `Country` in the `Filters` shelf, select `Show Filter`. A default filter control, with a checkbox for each nation, will appear to the right of the chart:
+So far we have made all countries available to be filtered, but we have not filtered any from the chart. Now we need to add a filter control to select countries to compare. On `Country` in the `Filters` shelf, select `Show Filter`. A default filter control, with a checkbox for each nation, will appear to the right of the chart:
 
 ![](./img/class3_16.jpg)
 
@@ -170,7 +172,7 @@ This isn't the best filter control for this visualization. To change it, click o
 
 Take some time to explore how this filter works.
 
-In the `Data` panel et left, rename `Income` to `Income group`. Then add `Region` and `Income group` to `Filters`, making sure that `All` options are checked for each. Select `Show Filter` for both of these filters, and select `Single Value Dropdown` for the control. Reset both of these filters to `All`, and the chart should now look like this:
+In the `Data` panel at left, rename `Income` to `Income group`. Then add `Region` and `Income group` to `Filters`, making sure that `All` options are checked for each. Select `Show Filter` for both of these filters, and select `Single Value Dropdown` for the control. Reset both of these filters to `All`, and the chart should now look like this:
 
 ![](./img/class3_17.jpg)
 
@@ -188,10 +190,11 @@ Click on `Tooltip` and edit as follows. (Unchecking `Include command buttons` di
 
 Right click on `Sheet 1` at bottom left and `Rename Sheet` to `Line chart`. Then select `File>Save to Tableau Public...` from the top menu. At the logon dialog box enter your Tableau Public account details, give the Workbook a suitable name and click `Save`. When the save is complete, a view of the  visualization on Tableau's servers will open in your default browser.
 
+Note: Each time you save, you save the entire workbook, with all the worksheets and dashboards in that project. So as you save your work, keep saving under the same name (don't use `Save As`).
 
 #### An alternative to filtering: highlight countries for comparison with color
 
-I this morning's session, we looked at Alberto Cairo's visualizations of Brazilian demography, which included a line chart of fertility rates over time for different countries with most of those lines grayed out, and just a few countries highlighted in color.
+In week 2, we looked at Alberto Cairo's visualizations of Brazilian demography, which included a line chart of fertility rates over time for different countries with most of those lines grayed out, and just a few countries highlighted in color.
 
 To achieve something similar for our chart, open up the menu for the sheet and select `Duplicate` to copy the chart.
 
@@ -218,7 +221,7 @@ Now drag `Country2` onto `Color` and the chart should look like this:
 
 ![](./img/class3_21.jpg)
 
-Select `Color>Edit Colors...` and change the colors manually, selecting a light gray for `Other`:
+Select `Color>Edit Colors...` and change the colors manually, selecting a light gray, such as HEX `#dcdcdc` for `Other`:
 
 ![](./img/class3_22.jpg)
 
@@ -238,23 +241,27 @@ Rename the sheet `Line chart alt`.
 
 #### Make a map to use as a color legend for the first chart
 
-Select `Worksheet>New Worksheet` from the top menu, and double-click on `Country`. Tableau recognizes the names of countries and states/provinces; for the U.S., it also recognizes counties. Its default map-making behavior is to put a circle at the geographic center, or centroid, of each area, which can be scaled and colored to reflect values from the data:
+Select `Worksheet>New Worksheet` from the top menu, and double-click on `Country`. Tableau recognizes the names of countries and states/provinces; for the U.S., it also recognizes geographies including counties, zip codes, and congressional districts. Click on `unknown` at bottom right to manually edit any countries that haven't been recognized:
 
 ![](./img/class3_26.jpg)
 
-However, we need each country to be filled with color by region. Using `Show Me`, switch to the `filled maps` option, and each nation should fill with color. Drag `Region` to `Color` and see how the same color scheme we used previously carries over to the map. Click on `Color`, set the transparency to 75% to match the line chart and remove the borders. Also click on `Tooltip` and uncheck `Show tooltip` so that no tooltip appears on the legend.
-
-We will use this map as a color legend, so its separate color legend is unnecessary. Click the color legend’s title bar and select `Hide Card` to remove it from the visualization. Also remove the `Sheet 3` title.
-
-Center the map in the view by clicking on it, holding and panning, just as you would on Google Maps.
-
-From the top menu, select `Map>Map Options...` and uncheck all the options at the dialog box to remove the controls from the map:
+Tableau's default map-making behavior is to put a circle at the geographic center, or centroid, of each area, which can be scaled and colored to reflect values from the data:
 
 ![](./img/class3_27.jpg)
 
-The map should now look something like this:
+However, we need each country to be filled with color by region. Using `Show Me`, switch to the `filled maps` option, and each nation should fill with color. Drag `Region` to `Color` and see how the same color scheme we used previously carries over to the map. Click on `Color`, set the transparency to 75% to match the line chart and remove the borders. Also click on `Tooltip` and uncheck `Show tooltips` so that no tooltip appears on the legend.
+
+We will use this map as a color legend, so its separate color legend is unnecessary. Click the color legend’s title bar and select `Hide Card` to remove it from the visualization. Also remove the `Sheet 3` title.
+
+Center the map in the view by clicking on it, holding and panning, as you would on Google Maps.
+
+From the top menu, select `Map>Map Options...` and uncheck all the options at the dialog box to remove the controls from the map:
 
 ![](./img/class3_28.jpg)
+
+The map should now look something like this:
+
+![](./img/class3_29.jpg)
 
 Rename the worksheet `Map legend` and save to the web again.
 
@@ -263,45 +270,51 @@ Rename the worksheet `Map legend` and save to the web again.
 
 Select `Worksheet>New Worksheet` from the top menu to open a new sheet.
 
-Treemaps allow us to directly compare the neonatal deaths in each country, nested by region.
+Remember our second question:
+
+- How has the total number of neonatal deaths changed over time, globally, regionally, and nationally?
+
+To address this question in a single chart, we can use a series of treemps, which allow us to directly compare the neonatal deaths in each country, nested by region.
 
 Drag `Country` and `Region` onto `Columns` and `Neonatal deaths` onto `Rows`. Then open `Show Me` and select the `treemap` option. The initial chart should look like this:
 
-![](./img/class3_29.jpg)
+![](./img/class3_30.jpg)
 
 Look at the `Marks` shelf and see that the size and color of the rectangles reflect the `SUM` of `Neonatal deaths` for each country, while each rectangle is labeled with `Region` and `Country`.
 
-Now drag `Region` from `Label` to `Color` to remove it from the `Label` and color the rectangles by region. Tableau will rember the region color palette you selected previously in the same worksheet. Click on `Color` and again set the opacity to 75%.
+Now drag `Region` to `Color` to color the rectangles by region. Tableau will rember the region color palette you selected previously in the same worksheet. Click on `Color` and again set the opacity to 75%. Remove the color legend and the sheet title.
 
 The treemap should now look like this:
 
-![](./img/class3_30.jpg)
+![](./img/class3_31.jpg)
 
 Tableau has by default aggregated `Neonatal deaths` using the `SUM` function, so what we are seeing is the number for each country added up across the years.
 
 To see one year at a time, we need to filter by year. If you drag the existing `Year` variable to the `Filters` shelf, you will get the option to filter by a range of numbers, which isn't what we need:
 
-![](./img/class3_31.jpg)
+![](./img/class3_32.jpg)
 
 Instead, we need to be able check individual years, and draw a treemap for each one. To do that, select `Year` in the `Dimensions` panel and `Duplicate`.
 
-Select the new variable and `Convert to Discrete` and then `Rename`	it `Year (discrete)`. Now drag this new variable to `Filters`, select 2016, and click `OK`:
+Select the new variable and `Convert to Discrete` and then `Rename`	it `Year (discrete)`. This allows each year to be selected individually, rather than as part of a range of numbers.
 
-![](./img/class3_32.jpg)
-
-The treemap now displays the data for 2016:
+Now drag this new variable to `Filters`, select 2017, and click `OK`:
 
 ![](./img/class3_33.jpg)
+
+The treemap now displays the data for 2017:
+
+![](./img/class3_34.jpg)
 
 That's good for a snapshot of the data, but with a little tinkering, we can adapt this visualization to show change in the number of neonatal deaths over time at the national, regional and global levels.
 
 Select `Year (discrete)` in the `Filters` shelf and `Edit Filter...` to edit the filter. Select every fifth year, starting with 1990, and click `OK`:
 
-![](./img/class3_34.jpg)
+![](./img/class3_35.jpg)
 
 Now drag `Year (discrete)` onto `Rows` and the chart should look like this:
 
-![](./img/class3_35.jpg)
+![](./img/class3_36.jpg)
 
 The formatting needs work, but notice that we now have a bar chart made out of treemaps.
 
@@ -311,23 +324,27 @@ Extend the chart area to the right by changing from `Standard` to `Entire View` 
 
 I find it more intuitive to have the most recent year at the top, so select `Year (discrete)` in the `Rows` shelf, select `Sort` and fill in the dialog box so that the years are sorted in `Descending` order:
 
-![](./img/class3_37.jpg)
+![](./img/class3_38.jpg)
 
 The chart should now look like this:
 
-![](./img/class3_38.jpg)
-
-Now we can clean up the chart a little, first removing the `Region` color legend. To remove some more clutter from the chart, select `Format>Borders` from the top menu, and under `Sheet>Row Divider`, set `Pane` to `None`. Then close the `Format Borders` panel.
-
-Right-click on the `Sheet 4` title for the chart and select `Hide Title`. Also right-click on `Year (discrete)` at the top left of the chart and select `Hide Field Labels for Rows`. Hover just above the left hand edge of the bars until you see a double headed arrow, and then drag the bars a little closer to the year labels.
-
-The labels will only appear in the larger rectangles. Rather than removing them entirely, let’s just leave a label for India in 2015, to make it clear that this is the country with by far the largest number of neonatal deaths. Click on `Label` in the Marks shelf, and switch from `All` to `Selected` under `Marks to Label`. Then right-click on the rectangle for India in 2015, and select `Mark Label>Always Show`. The chart should now look like this:
-
 ![](./img/class3_39.jpg)
+
+To remove some more clutter from the chart, select `Format>Borders...` from the top menu, and under `Sheet>Row Divider`, set `Pane` to `None`. Then close the `Format Borders` panel.
+
+Select `Format>Font...` and set a Bold font for the entire worksheet. Then close the `Format Font` panel.
+
+Right-click on `Year (discrete)` at the top left of the chart and select `Hide Field Labels for Rows`. Hover just above the left hand edge of the bars until you see a double headed arrow, and then drag the bars a little closer to the year labels.
+
+The labels will only appear in the larger rectangles. Rather than removing them entirely, let’s just leave a label for India in 2015, to make it clear that this is the country with by far the largest number of neonatal deaths. 
+
+First drag the `Region` label from the `Marks` shelf to remove it. Then click on `Label` in the Marks shelf, and switch from `All` to `Selected` under `Marks to Label`. Then right-click on the rectangle for India in 2015, and select `Mark Label>Always Show`. The chart should now look like this:
+
+![](./img/class3_40.jpg)
 
 Click on `Tooltip` and edit as follows:
 
-![](./img/class3_40.jpg)
+![](./img/class3_41.jpg)
 
 Rename the sheet `Treemap bar chart` and save to the web.
 
@@ -335,7 +352,7 @@ Rename the sheet `Treemap bar chart` and save to the web.
 
 From the top menu, select `Dashboard>New Dashboard`. Set its `Size` to `Automatic`, so that the dashboard will fill to the size of any screen on which it is displayed:
 
-![](./img/class3_41.jpg)
+![](./img/class3_42.jpg)
 
 To make a dashboard, drag charts, and other elements from the left-hand panel to the dashboard area. Notice that Tableau allows you to add items including: horizontal and vertical containers, text boxes, images (useful for adding a publication's logo), embedded web pages and blank space. These can be added `Tiled`, which means they cannot overlap, or `Floating`, which allows one element to be placed over another.
 
@@ -343,11 +360,11 @@ Drag `Treemap bar chart` from the panel at left to the main panel. The default t
 
 Now add `Line Chart` to the right of the dashboard (the gray area will show where it will appear) and edit its title to `Death rates`. Also add a note to explain that line widths are proportional to the total number of deaths. The dashboard should now look like this:
 
-![](./img/class3_42.jpg)
+![](./img/class3_43.jpg)
 
 Notice that the `Country`, `Region` and `Income group` filters control only the line chart. To make them control the treemaps, too, click on each filter, open up the dropdown menu form the downward-pointing triangle, and select `Apply to Worksheets>Selected Worksheets...` and fill in the dialog box as follows:
 
-![](./img/class3_43.jpg)
+![](./img/class3_44.jpg)
 
 The filters will now control both charts.
 
@@ -355,43 +372,43 @@ Add `Map legend` for a color legend at bottom right. (You will probably need to 
 
 We can also allow the highlighting of a country on one chart to be carried across the entire dashboard. Select `Dashboard>Actions...` from the top menu, and at the first dialog box select `Add action>Highlight`. Filling the second dialog box as follows will cause each country to be highlighted across the dashboard when it is clicked on just one of the charts:
 
-![](./img/class3_44.jpg)
+![](./img/class3_45.jpg)
 
 Click `OK` on both dialog boxes to apply this action.
 
 Select `Dashboard>Show Title` from the top menu. Right-click on it, select `Edit Title...` and change from the default to something more informative:
 
-![](./img/class3_45.jpg)
+![](./img/class3_46.jpg)
 
 Now drag a `Text` box to the bottom of the dashboard and add a footnote giving source information:
 
-![](./img/class3_46.jpg)
+![](./img/class3_47.jpg)
 
 The dashboard should now look like this:
 
-![](./img/class3_47.jpg)
+![](./img/class3_48.jpg)
 
 #### Design for different devices
 
 This dashboard works on a large screen, but not on a small phone. To see this, click the `Device Preview` button at top left and select `Phone` under `Device type`. In portrait orientation, this layout does not work at all:
 
-![](./img/class3_48.jpg)
+![](./img/class3_49.jpg)
 
 Click the `Add Phone Layout` at top right, and then click `Custom` tab under `Layout - Phone` in the left-hand panel. You can then rearrange and if necessary remove elements for different devices. Here I have removed the line chart and filter controls, and changed the legend to a `Floating` element so that it sits in the blank space to the top right of the bar chart of treemaps.
 
-![](./img/class3_49.jpg)
+![](./img/class3_50.jpg)
 
 Switch back to the `Default` device, and save to the web once more. Once the dashboard is online, use the `Share` link at the bottom to obtain an embed code, which can be inserted into the HTML of any web page.
 
 (You can also `Download` a static view of the graphic as a PNG image or a PDF.)
 
-You can download the workbook for any Tableau visualization by clicking the `Download Workbook` link. The files (which will have the extension `.twbx`) will open in Tableau Public.
+You can download the workbook for a Tableau visualization by clicking the `Download Workbook` link. The files (which will have the extension `.twbx`) will open in Tableau Public.
 
 Having saved a Tableau visualization to the web, you can reopen it by selecting `File>Open from Tableau Public...` from the top menu.
 
 #### Another approach to responsive design
 
-As an alternative to using Tableau's built-in device options, you may wish to create three different dashboards, each with a size appropriate for phones, tablets, and desktops respectively. You can then follow the instructions [here](https://public.tableau.com/s/blog/2014/11/making-responsive-tableau-dashboards) to put the embed codes for each of these dashboards into a `div` with a separate class, and then use `@media` CSS rules to ensure that only the div with the correct dashboard displays, depending on the size of the device.
+As an alternative to using Tableau's built-in device options, you may wish to create different dashboards, each with sizes appropriate for phones, tablets, and desktops respectively. You can then follow the instructions [here](https://public.tableau.com/s/blog/2014/11/making-responsive-tableau-dashboards) to put the embed codes for each of these dashboards into a `div` with a separate class, and then use `@media` CSS rules to ensure that only the div with the correct dashboard displays, depending on the size of the device.
 
 When making responsively designed web pages, make sure to include this line of code between the `<head></head>` tags of your HTML:
 
@@ -399,14 +416,9 @@ When making responsively designed web pages, make sure to include this line of c
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 ```
 
-
-#### From dashboards to stories
-
-Tableau also allows you to create stories, which combine successive dashboards into a step-by-step narrative. Select `Story>New Story` from the top menu. Having already made a dashboard, you should find these simple and intuitive to create. Select `New Blank Point` to add a new scene to the narrative.
-
 ### Assignment
 
-- Create [this second dashboard](https://public.tableau.com/views/class3_5/Dashboard2?:embed=y&:display_count=yes) from the `nations.csv` data.
+- Create [a second dashboard](https://public.tableau.com/views/class3_5/Dashboard2?:embed=y&:display_count=yes) like this from the `nations.csv` data.
 
  Here are some hints:
 
@@ -417,7 +429,7 @@ Tableau also allows you to create stories, which combine successive dashboards i
  - Create a single trend line for each year's data, so that the line shifts with the circles from year to year. Do this by dragging `Trend line` into the chart area from the `Analytics` panel. You will then need to select `Analysis>Trend Lines>Edit Trend Lines...` and adjust the options to give a single line with the correct behavior.
  -  Getting the smaller circles rendered on top of the larger ones, so their tooltips can be accessed, is tricky. To solve this, open the dropdown menu for `Country` in the `Marks` shelf, select `Sort` and fill in the dialog box as follows:
 
-   ![](./img/class3_50.jpg)
+   ![](./img/class3_51.jpg)
 
    Now drag `Country` so it appears at the top of the list of fields in the `Marks` shelf.
 

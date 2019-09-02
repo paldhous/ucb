@@ -10,7 +10,7 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
 
 - `disease_democ.csv` Data illustrating a [controversial theory](https://www.newscientist.com/article/mg21028133.300-genes-germs-and-the-origins-of-politics.html) suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, from the [Global Infectious Diseases and Epidemiology Network](https://www.gideononline.com/) and *[Democratization: A Comparative Analysis of 170 Countries](https://www.amazon.com/Democratization-Comparative-Analysis-Countries-Routledge/dp/0415318602)*.
 
-- `life_wealth_2016.csv` World Bank data from 2016 on [Gross Domestic Product (GDP) per capita](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) for the world's nations, in current international dollars, corrected for purchasing power in different territories, and [life expectancy at birth](https://data.worldbank.org/indicator/SP.DYN.LE00.IN).
+- `life_wealth_2017.csv` World Bank data from 2016 on [Gross Domestic Product (GDP) per capita](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) for the world's nations, in current international dollars, corrected for purchasing power in different territories, and [life expectancy at birth](https://data.worldbank.org/indicator/SP.DYN.LE00.IN).
 
 
 #### [Download Week 3](./data/week3.zip)
@@ -22,7 +22,6 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
  - `population` Estimated [total population](https://data.worldbank.org/indicator/SP.POP.TOTL) at mid-year, including all residents apart from refugees.
  - `gdp_percap` [Gross Domestic Product per capita](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) in current international dollars, corrected for purchasing power in different territories.
  - `life_expect` [Life expectancy at birth](https://data.worldbank.org/indicator/SP.DYN.LE00.IN), in years.
- - `population` Estimated [total population](https://data.worldbank.org/indicator/SP.POP.TOTL) at mid-year, including all residents apart from refugees.
  - `birth_rate` [Live births during the year per 1,000 people](https://data.worldbank.org/indicator/SP.DYN.CBRT.IN), based on mid-year population estimate.
  - `neonat_mortal_rate` [Neonatal mortality rate](https://data.worldbank.org/indicator/SH.DYN.NMRT): babies dying before reaching 28 days of age, per 1,000 live births in a given year.
  - `region` `income` World Bank [regions and income groups](https://siteresources.worldbank.org/DATASTATISTICS/Resources/CLASS.XLS), explained [here](https://datahelpdesk.worldbank.org/knowledgebase/articles/906519).
