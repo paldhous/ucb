@@ -7,7 +7,7 @@ You will also produce a substantial visualization project of your own. This will
 
 ### Weekly schedule
 
-We will meet in **106/Upper NG** on Fridays from 9.00am - 12.00noon. Your instructor, [**Peter Aldhous**](https://www.peteraldhous.com/), will maintain office hours from ~1.00pm - 5.00pm, following each class. You are encouraged to arrange appointments to discuss your work.
+We will meet in **Lower Newsroom** on Fridays from 9.00am - 12.00noon. Your instructor, [**Peter Aldhous**](https://www.peteraldhous.com/), will maintain office hours from ~12.45pm - 5.15pm, following each class. You are encouraged to arrange appointments to discuss your work.
 
 Class time will also be scheduled for you to critique and lead class discussions of published news graphics/interactives.
 
@@ -68,10 +68,14 @@ We will use [QGIS](https://qgis.org/en/site/) to make multi-layered maps.
  - **Assignment:** continue work on final project, delivering a progress report.
 
 
--  ####**Nov.15:** [**Making interactive maps**](week11.html)
+-  ####**Nov.8:** [**Making interactive maps**](week11.html)
 We will use [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) to create interactive online maps.
 
   -  **Assignment:** Submit a full project update, via your GitHub account, for review in next week's meetings.
+
+
+-  ####**Nov.15:** **No Class**
+ Instead, one-on-one meetings will be arranged with instructor to discuss progress with your final projects.
 
 
 - ####**Nov. 22:** [**From R to interactive charts and maps**](week13.html)
