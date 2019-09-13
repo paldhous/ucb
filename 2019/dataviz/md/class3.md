@@ -6,7 +6,7 @@ Today we will work with [**Tableau Public**](https://public.tableau.com/s/), whi
 
 Tableau was developed for exploratory graphical data analysis, so it is a good tool for exploring a new dataset -- filtering, sorting and summarizing/aggregating the data in different ways while experimenting with various chart types, to find stories in the data.
 
-It also explicitly allows you to use the basic operations
+It also explicitly allows you to use the basic operations.
 
 Although Tableau was not designed as a publication tool, the ability to embed finished dashboards and stories has also allowed allowed newsrooms and individual journalists lacking JavaScript coding expertise to create interactive online graphics.
 
@@ -126,7 +126,7 @@ Tableau's qualitative color palettes are well designed, so there is no need to a
 
 ![](./img/class3_10.jpg)
 
-Click on `Color` again and set transparency to 75%. (For your assignment you will create a chart with overlapping circles, which will benefit from using some transparency to allow all circles to be seen. So we are setting transparency now for consistency.)
+Click on `Color` again and set opacity to 75%. (For your assignment you will create a chart with overlapping circles, which will benefit from using some transparency to allow all circles to be seen. So we are setting opcacity/transparency now for consistency.)
 
 Now we'll tidy up the X axis to make the lines fill the chart area. Right-click on the X axis, select `Edit Axis`, edit the dialog box as follows and then close it:
 
@@ -215,7 +215,7 @@ ELSE 'Other'
 END
 ```
 
-This formula use some simple functions to name the four highlighted countries according to their three-letter county codes, and label all the rest as `Other`.
+This formula uses some simple functions to name the four highlighted countries according to their three-letter county codes, and label all the rest as `Other`.
 
 Now drag `Country2` onto `Color` and the chart should look like this:
 
@@ -249,7 +249,7 @@ Tableau's default map-making behavior is to put a circle at the geographic cente
 
 ![](./img/class3_27.jpg)
 
-However, we need each country to be filled with color by region. Using `Show Me`, switch to the `filled maps` option, and each nation should fill with color. Drag `Region` to `Color` and see how the same color scheme we used previously carries over to the map. Click on `Color`, set the transparency to 75% to match the line chart and remove the borders. Also click on `Tooltip` and uncheck `Show tooltips` so that no tooltip appears on the legend.
+However, we need each country to be filled with color by region. Using `Show Me`, switch to the `filled maps` option, and each nation should fill with color. Drag `Region` to `Color` and see how the same color scheme we used previously carries over to the map. Click on `Color`, set the transparency to 75% to match the line chart and remove the borders. Also click on `Tooltip` and uncheck `Show tooltips` so that no tooltip appears on the map legend.
 
 We will use this map as a color legend, so its separate color legend is unnecessary. Click the color legend’s title bar and select `Hide Card` to remove it from the visualization. Also remove the `Sheet 3` title.
 
