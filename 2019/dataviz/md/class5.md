@@ -12,24 +12,21 @@ In this class, we will cover some tips and tricks for finding the data you need 
 
 Download the data for this session from [here](data/week5.zip), unzip the folder and place it on your desktop. It contains the following files:
 
-- `gdp_percap.csv` [World Bank data](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on Gross Domestic Product (GDP) per capita for nations and groups of nations, from 1990 to 2016, in current international dollars, corrected for purchasing power in different territories.
+- `gdp_percap.csv` [World Bank data](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on Gross Domestic Product (GDP) per capita for nations and groups of nations, from 1990 to 2018, in current international dollars, corrected for purchasing power in different territories.
 
 - `ucb_stanford_2014.csv` Data on federal government grants to UC Berkeley and Stanford University in 2014, downloaded from [USASpending.gov](https://www.usaspending.gov/).
-
-- `wr_50m_sept_6_2018.pdf` PDF with current world swimming records, [from FINA](https://www.fina.org/content/swimming-records), the international federation for swimming and other water sports.
-
 
 ### Data portals
 
 Life is much easier if you can find everything you need in one place. The main effort to centralize access to data by the U.S. federal government is [Data.gov](https://www.data.gov/). You can search for data from the home page, or follow the [Data](http://catalog.data.gov/dataset) and Topics links from the top menu.
 
-Be warned, however, that Data.gov is a work in progress, and does not contain all of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. The Federal Committee on Statistical Methodology has [links to agencies](https://nces.ed.gov/FCSM/related_agencies.asp) with with some the most important data collections.
+Be warned, however, that Data.gov does not contain all of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. The Federal Committee on Statistical Methodology has [links to agencies](https://nces.ed.gov/FCSM/related_agencies.asp) with with some the most important data collections.
 
-It is worth familiarizing yourself with the main government agencies that have responsibility for the beats you are interested in, and the datasets they maintain.
+Familiarize yourself with the main government agencies that have responsibility for the beats you are interested in and the datasets they maintain.
 
 Here are some examples of agencies with useful data:
 
-- **[U.S. Census Bureau](https://www.census.gov/)**: population, demographic, economic and other data, including trade and manufacturing statistics. The [American FactFinder](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml) is especially useful for summary data about specific geographical areas. As well as running the decadal national census, the bureau operates other surveys, which provide more detailed information from representative samples of the U.S. population, including the [Current Population Survey](https://www.census.gov/programs-surveys/cps.html) (run jointly with the Bureau of Labor Statistics, see below) and the [American Community Survey](https://www.census.gov/programs-surveys/acs/).
+- **[U.S. Census Bureau](https://www.census.gov/)**: population, demographic, economic and other data, including trade and manufacturing statistics. Start searching for data from [here](https://data.census.gov). As well as running the decadal national census, the bureau operates other surveys, which provide more detailed information from representative samples of the U.S. population, including the [Current Population Survey](https://www.census.gov/programs-surveys/cps.html) (run jointly with the Bureau of Labor Statistics, see below) and the [American Community Survey](https://www.census.gov/programs-surveys/acs/).
 
 - **[Bureau of Labor Statistics](https://www.bls.gov/)**: employment and unemployment, workplace injuries, time use, pay and consumer spending, including the [Consumer Price Index](https://www.bls.gov/cpi/), a key measure of inflation. Browse its datasets [here](https://www.bls.gov/data/).
 
@@ -61,7 +58,7 @@ The file type search offers a drop-down menu, with the options including Excel s
 
 Searching for PDFs and `PPT` presentations can be a good way to find documents that may not otherwise be easy to find.
 
-Google has also recently launched [Dataset Search](https://toolbox.google.com/datasetsearch), which aims to simplify the process of finding high-quality datasets, published in standard formats.
+Google has also launched [Dataset Search](https://toolbox.google.com/datasetsearch), which aims to simplify the process of finding high-quality datasets, published in standard formats.
 
 
 ### Search online databases
@@ -115,7 +112,7 @@ Open up the `Advanced` menu and select `Downloads`, then change to the location 
 
 The Batch Link Downloader downloads the target of any link on a web page. If it's a link to an image it will download an image; if it's a link to another webpage it will download that webpage; if it's a link to a data file such as a CSV file, it will download the file.
 
-Now, back on the Gapminder data page, hover over some of the spreadsheet download icons, and see that the links all end with: `&Output=xlsx`. This is because they are the links to export Excel spreadhseets from the Google Sheets in which the data is stored.
+Now, back on the Gapminder data page, hover over some of the spreadsheet download icons, and see that the links all end with: `&Output=xlsx`. This is because they are the links to export Excel spreadsheets from the Google Sheets in which the data is stored.
 
 Now click the Batch Link Downloaded icon:
 
@@ -201,19 +198,17 @@ Web scraping by coding is beyond the scope of this class. However, the underlyin
 
 We have already been performing some of the elements of web scraping, by manipulating urls on web search forms and downloading the individual links *en masse*.
 
+If you need to scrape a website to gather data for your project, I can help you.
+
 ### PDFs: the bane of data journalism
 
 Some organizations persist in making data available as PDFs, rather than text files, spreadsheets or databases. This makes the data hard to extract. While you should always ask for data in a more friendly format -- ideally a CSV or other simple text file -- as a data journalist you are at some point likely to find yourself needing to pull data out of a PDF.
 
 **[Tabula](https://tabula.technology/)** can extract data from tables in digital PDFS. (To determine if you have a digital PDF, see if you can highlight individual cells within a table. If so, your PDF if digital; if the entire page is highlighted, it is a scanned image, and Tabula will not work.)
 
-When you launch Tabula, it opens in your web browser. However, any data you load into the program will remain on your computer -- it does not get posted online.
+When you launch Tabula, it opens in your web browser. However, any data you load into the program will remain on your computer -- it does not get posted online. Click `Browse`, navigate to your PDF file click `Import`.
 
-![](./img/class5_9.jpg)
-
-Click `Browse`, navigate to the file `wr_50m_sept_6_2018.pdf`, and then click `Import`.
-
-Once the PDF has been imported, highlight the section of the first table showing individual records for men:
+Once the PDF has been imported, highlight the section of the table you wish to extract:
 
 ![](./img/class5_10.jpg)
 
@@ -221,17 +216,15 @@ Click `Preview & Export Extracted Data` to see the extracted data:
 
 ![](./img/class5_11.jpg)
 
-Now click `Export` to download as a CSV file, and rename as `men_swimming_records.csv`.
-
-Repeat the process for individual swimming records for women.
+Now click `Export` to download as a CSV file.
 
 If you have a PDF with a table spread over multiple pages in the same location on each page, clicking `Repeat this Selection` will select all of the data for extraction. (Before proceeding, however, make sure the highlighting is correct on every page, and adjust the area highlighted on some pages if necessary.)
 
 Tabula will not work with PDFs created by scanning the original document as an image, which have to be interpreted using Optical Character Recognition (OCR) software.
 
-The online service **[Cometdocs](https://www.cometdocs.com/)** can be useful in these cases. While it is a commercial tool, members of Investigative Reporters and Editors can [obtain a free account](https://ire.org/blog/ire-news/2013/05/22/ire-announces-partnership-cometdocs/). Cometdocs can read scanned PDFs, however its accuracy will vary depending on how well the OCR works on the document in question.
-
 **[Adobe Acrobat Pro](https://acrobat.adobe.com/us/en/products/acrobat-pro.html)** will also perform OCR on scanned PDFs.
+
+**[Abby FineReader Pro](https://www.abbyy.com/en-us/finereader/pro-for-mac/)** offers the best quality OCR, in my experience. I have this software, so if you have a difficult OCR job for your project, let me know!
 
 [Here](https://github.com/jsfenfen/parsing-prickly-pdfs) is a useful set of resources detailing more advanced tools for dealing with hard-to-parse PDFs.
 
@@ -297,7 +290,7 @@ When you are satisfied that the data has been read correctly, click the `Create 
 
 ![](./img/class5_15.jpg)
 
-As you can see, the data is in wide format, with values for oil production by region organized in columns, one for each year. To convert this to long format, click on the small downward-pointing triangle for the first of these year columns, and select `Transpose>Transpose cells across columns into rows`.
+As you can see, the data is in wide format, with values for GDP per capitaorganized in columns, one for each year. To convert this to long format, click on the small downward-pointing triangle for the first of these year columns, and select `Transpose>Transpose cells across columns into rows`.
 
 Fill in the dialog box as below, making sure that `From Column` and `To Column` are highlighted correctly, that the `Key column` and `Value column` have been given appropriate names, and that `Fill down in other columns` is checked. (Failing to do check this box will mean that the region names each will only appear once in the reshaped data, rather than being copied down to appear next to the corresponding data for year and oil production.)
 
@@ -411,40 +404,9 @@ From the dropdown menu for `Recipient`, select `Text filter` and type `Berkeley`
 To delete records based on a text filter, set the filter and then select `Edit rows>Remove all matching rows` from the `All` columns dropdown.
 
 
-#### Exercise
-
-Load the CSV for women's swimming records we extracted from the file `wr_50m_sept_6_2018.pdf`.
-
-Process the data so it contains the following columns:
-
-`event` `first_name` `last name` `nationality` `city` `country` `date` (which should be in international standard format).
-
-Finally create new columns from `time` with `minutes` and `seconds` extracted from `time`. To do this, you will need to use the following expression:
-
-```Javascript
-substring(value, x, y)
-```
-Here, x and y are indexed positions in a string of characters. The first character is 0, the second is 1 and so on. You can also index from the end: The last character is -1, the second last -2, and so on.
-
-To extract the minutes and seconds from the time values, you will need to index from the end!
-
-Save the JSON with your operations and use this to repeat for the men's records.
-
-### Standardize names with Mr People
-
-For processing names from a string of text into a standardized format with multiple fields, you may wish to experiment with **[Mr People](http://people.ericson.net/)**, a web app made by Matt Ericson of *The New York Times*.
-
-![](./img/class5_26.jpg)
-
-(Source: [Mr People](http://people.ericson.net/))
-
-It takes a simple list of names and turns them into separate fields for title, first name, last name, middle name and suffix.
-
-Mr People can save you time, but it is not infallible -- it may give errors with Spanish family names, for instance, or if people have multiple titles or suffixes, such as “MD, PhD.” So always check the results before moving on to further analysis and visualization.
-
 ### Correct for inflation (and cost of living)
 
-A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2014 dollars for a time series ending in 2014. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
+A common task in data journalism and visualization is to compare currency values over time. When doing so, it usually makes sense to show the values after correcting for inflation -- for example in constant 2018 dollars for a time series ending in 2018. Some data sources, such as the World Bank, provide some data both in raw form or in a given year's constant dollars.
 
 So pay attention to whether currency values have already been corrected for inflation, or whether you will need to do so yourself. When correcting for inflation in the United States, the most widely-used method is the [**Consumer Price Index**](https://www.bls.gov/cpi/), or CPI, which is based on prices paid by urban consumers for a representative basket of goods and services. Use these [online](https://cpiinflationcalculator.com/) [calculators](https://data.bls.gov/cgi-bin/cpicalc.pl) to obtain conversions.
 
@@ -512,7 +474,7 @@ To convert data from JSON or XML into text files, you can use Open Refine. First
 
 Paul Bradshaw. *[Scraping For Journalists](https://leanpub.com/scrapingforjournalists)*
 
-Hadley Wickham's [rvest](https://github.com/hadley/rvest) package
+Hadley Wickham's [rvest](https://rvest.tidyverse.org/) package
 This is the R package I usually use for web scraping.
 
 [Open Refine Wiki](https://github.com/OpenRefine/OpenRefine/wiki)
