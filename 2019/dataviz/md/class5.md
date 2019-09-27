@@ -20,7 +20,7 @@ Download the data for this session from [here](data/week5.zip), unzip the folder
 
 Life is much easier if you can find everything you need in one place. The main effort to centralize access to data by the U.S. federal government is [Data.gov](https://www.data.gov/). You can search for data from the home page, or follow the [Data](http://catalog.data.gov/dataset) and Topics links from the top menu.
 
-Be warned, however, that Data.gov does not contain all of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. The Federal Committee on Statistical Methodology has [links to agencies](https://nces.ed.gov/FCSM/related_agencies.asp) with with some the most important data collections.
+Be warned, however, that Data.gov does not contain all of the U.S. government’s data. Some of the most useful datasets are still only available on the websites of individual federal agencies. The Federal Committee on Statistical Methodology has [links to agencies](https://nces.ed.gov/FCSM/related_agencies.asp) with some the most important data collections.
 
 Familiarize yourself with the main government agencies that have responsibility for the beats you are interested in and the datasets they maintain.
 
@@ -351,7 +351,7 @@ Often we may need to convert fields to text, numbers or dates. For example, clic
 Notice the field `Award amount`, which is a value in dollars. Negative values are given in brackets. Because of these symbols, the field is being
 recognized as a string of text, rather than a number. So to fix this problem, we have to remove the symbols.
 
-Select `Edit colum>Add column based on this column...` and fill in the dialog box as follows:
+Select `Edit column>Add column based on this column...` and fill in the dialog box as follows:
 
 ![](./img/class5_23.jpg)
 
@@ -393,15 +393,15 @@ Open Refine is a very powerful tool that will reward efforts to explore its wide
 
 #### Filtering data in Open Refine
 
-Clicking `Export` will export the data currently being viewed.
-
-This means you can filter data based on values of a continuous variable using the slider control on a numeric facet.
+You can filter data based on values of a continuous variable using the slider control on a numeric facet.
 
 To filter data based on text or categorical variables, you can create a text filter.
 
 From the dropdown menu for `Recipient`, select `Text filter` and type `Berkeley`. This will filter the data to the 1387 grants awarded to Berkeley.
 
 To delete records based on a text filter, set the filter and then select `Edit rows>Remove all matching rows` from the `All` columns dropdown.
+
+Clicking `Export` will export the data currently being viewed.
 
 
 ### Correct for inflation (and cost of living)
