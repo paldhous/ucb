@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Introduction to data visualization</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="../../css/custom.css" rel="stylesheet">
+</head>
+
+<body class="markdown github">
+
+	<header class="navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<nav role="navigation">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="index.html" class="navbar-brand">Intro Data Viz</a>
+				</div> <!-- /.navbar-header -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Class notes<b class="caret"></b></a>
+							<ul class="dropdown-menu">
+								<li><a href="week1.html">What is data?</a></li>
+								<li><a href="week2.html">Data visualization: basic principles</a></li>
+								<li><a href="week3.html">Interviewing data: exploratory graphical analysis</a></li>
+								<li><a href="week4.html">Using GitHub</a></li>
+								<li><a href="week5.html">Acquiring, cleaning, and processing data</a></li>
+								<li><a href="week6.html">Let's apply what we've learned so far</a></li>
+								<li><a href="week7.html">Processing data with R</a></li>
+								<li><a href="week8.html">Making static graphics with R</a></li>
+								<li><a href="week9.html">Principles of mapping</a></li>
+								<li><a href="week10.html">Making static maps</a></li>
+								<li><a href="week11.html">Making interactive maps</a></li>
+								<li><a href="week13.html">From R to interactive charts and maps</a></li>				
+								<li><a href="week14.html">Animation: making GIFs and videos</a></li>	
+							</ul>
+						</li>
+						<li><a href="software.html">Software</a></li>
+						<li><a href="datasets.html">Data</a></li>
+						<li><a href="mailto:p.aldhous@gmail.com">Email instructor</a></li>					
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</nav>
+		</div> <!-- /.navbar-header -->
+	</header>
+
+	<div class="container all">
+		
+<h1 id="let's-apply-what-we've-learned-so-far"><a name="let's-apply-what-we've-learned-so-far" href="#let's-apply-what-we've-learned-so-far"></a>Let’s apply what we’ve learned so far</h1><p>Your task for this week’s class is to create a Tableau version of the visualization in <a href="https://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/">this Gapminder video</a>, using data from the World Bank’s <a href="https://data.worldbank.org/indicator/?tab=all">World Development Indicators</a> (WDI):</p><p class="oembeded"><iframe src="http://www.youtube.com/embed/jbkSRLYSojo?wmode=transparent&amp;jqoemcache=KbReo" width="425" height="349" allowfullscreen="true" allowscriptaccess="always" scrolling="no" frameborder="0"></iframe></p><p>(Source: <a href="http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/">BBC/Gapminder</a>)</p><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data for this session from <a href="data/week6.zip">here</a>, unzip the folder and place it on your desktop. It contains the following files:</p><ul>
+<li><p><code>nations.csv</code> As used in week 3, but lacking the variable for life expectancy at birth.</p>
+</li><li><p><code>co2.csv</code> From the <a href="http://www.globalcarbonatlas.org/en/CO2-emissions">Global Carbon Atlas</a>. Contains the following fields:</p>
+<ul>
+<li><code>iso3c</code> Three-letter code for each country.</li><li><code>country</code> Country name.</li><li><code>year</code></li><li><code>emissions</code> Carbon dioxide emissions, in millions of tonnes.</li></ul>
+</li></ul><h3 id="how-to-proceed"><a name="how-to-proceed" href="#how-to-proceed"></a>How to proceed</h3><ul>
+<li><p>Download data in Excel format for life expectancy at birth by nation over time from <a href="https://data.worldbank.org/indicator/SP.DYN.LE00.IN">here</a>.</p>
+</li><li><p>Process this data using Open Refine to remove the rows above the header row, and remove columns to leave just the country names, country codes, and data from 1960 onwards. Then convert from wide to long format. When doing this, I would call the new column with life expectancy data <code>life_expectancy</code>. I would also rename <code>Country Code</code> to <code>iso3c</code> and rename <code>Country Name</code> to <code>country</code>. Then the variable names will match those in <code>nations.csv</code>. Place this file in the <code>week6</code> folder.</p>
+</li><li><p>Export the data in CSV format with the filename <code>life_expectancy.csv</code> and place this file in the <code>week6</code> folder.</p>
+</li><li><p>Launch Tableau, and connect to the <code>life_expectancy.csv</code> file in the <code>week6</code> folder.</p>
+<p><img src="img/class6_1.jpg" alt=""></p>
+<p>Now double-click on the file <code>nations.csv</code>. Tableau will now attempt to <strong>join</strong> the data based on common fields:</p>
+<p><img src="img/class6_2.jpg" alt=""></p>
+</li></ul><p>To control how the join is performed, click on the circles with the blue area of overlap. Remember that there is one row in this data for each country in each year. So to join the data appropriately, we need to join by <code>year</code> and the <code>iso3c</code> country code (joining by unambiguous codes is generally a better idea than joining by names).</p><p>There are four types of join in Tableau:</p><p> <img src="img/class6_3.jpg" alt=""></p><p><strong>Inner Join:</strong> Returns values from both tables that match on the selected variables. The rest of the data is discarded.<br><strong>Left Join:</strong> Returns all the values from the left-hand table, plus those from the from the right-hand table that match on the selected variables. Where there is no match, values will be null.<br><strong>Right Join:</strong> Returns all the values from the right-hand table, plus those from the from the left-hand table that match on the selected variables. Where there is no match, values will be null.<br><strong>Full Outer Join:</strong> Returns all the values from the both tables, matching them on the selected variables where possible. Where there is no match, values will be null.</p><p>For this exercise, choose an inner join.</p><p> <img src="img/class6_4.jpg" alt=""></p><p>The joined data should look like this in a Tableau worksheet. You can see which variables came from which file:</p><p> <img src="img/class6_5.jpg" alt=""></p><ul>
+<li>Use the joined data to create a version of the Gapminder visualization, covering the period from 1990 to 2017.</li></ul><h3 id="assignment"><a name="assignment" href="#assignment"></a>Assignment</h3><ul>
+<li><p>Join the file <code>co2.csv</code> to the file <code>nations.csv</code> in Tableau as above, then create <a href="https://public.tableau.com/profile/paldhous.workshops#!/vizhome/co22019dataviz/Dashboard1?publish=yes">this simple dashboard</a> shown below, recording total carbon dioxide emissions by region and nation, from 1990 to 2017. </p>
+<p><img src="img/class6_6.jpg" alt=""></p>
+</li></ul>
+
+	</div> <!-- /.container all -->
+	<script src="https://code.jquery.com/jquery.min.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+</body>
+</html>

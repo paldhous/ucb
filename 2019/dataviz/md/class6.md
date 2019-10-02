@@ -6,31 +6,39 @@ Your task for this week's class is to create a Tableau version of the visualizat
 
 (Source: [BBC/Gapminder](http://www.gapminder.org/videos/200-years-that-changed-the-world-bbc/))
 
-Rather than using the data from week 3, start from [this version](data/week6.zip) of the data, which lacks the variable giving life expectancy at birth.
+### The data we will use today
 
-How to proceed:
+Download the data for this session from [here](data/week6.zip), unzip the folder and place it on your desktop. It contains the following files:
+
+- `nations.csv` As used in week 3, but lacking the variable for life expectancy at birth.
+
+- `co2.csv` From the [Global Carbon Atlas](http://www.globalcarbonatlas.org/en/CO2-emissions). Contains the following fields:
+ - `iso3c` Three-letter code for each country.
+ - `country` Country name.
+ - `year`
+ - `emissions` Carbon dioxide emissions, in millions of tonnes.
+
+### How to proceed
 
 - Download data in Excel format for life expectancy at birth by nation over time from [here](https://data.worldbank.org/indicator/SP.DYN.LE00.IN).
 
-- Open in a spreadsheet and edit to remove the couple of rows above the header row, and remove columns to leave just the country names, country codes, and data from 1990 onwards.
+- Process this data using Open Refine to remove the rows above the header row, and remove columns to leave just the country names, country codes, and data from 1960 onwards. Then convert from wide to long format. When doing this, I would call the new column with life expectancy data `life_expectancy`. I would also rename `Country Code` to `iso3c` and rename `Country Name` to `country`. Then the variable names will match those in `nations.csv`. Place this file in the `week6` folder.
 
-- Process this data using Open Refine to convert from wide to long format. When doing this, I would call the new column with life expectancy data something generic like `value`, so that it can be used on other World Bank data in the same format. I would also rename `Country Code` to `iso3c` and rename `Country Name` to `country`.  Then the variable names will match those in `nations.csv`.
+- Export the data in CSV format with the filename `life_expectancy.csv` and place this file in the `week6` folder.
 
-- Export the data in CSV format, and save the steps from Open Refine that will enable you to process WDI data in the same way in future (you can then use this for the assignment). Place this file in your `week6` folder.
-
-- Launch Tableau, and connect to the `nations.csv` file in the `week6` folder.
+- Launch Tableau, and connect to the `life_expectancy.csv` file in the `week6` folder.
 
  ![](./img/class6_1.jpg)
 
- Now double-click on the file with the life expectancy data. Tableau will now attempt to **join** the data based on common fields:
- 
+ Now double-click on the file `nations.csv`. Tableau will now attempt to **join** the data based on common fields:
+
  ![](./img/class6_2.jpg)
- 
- To control how the join is performed, click on the circles with the blue area of overlap. Remember that there is one row in this data for each country in each year. So to join the data appropriately, we need to join by `year` and the `iso3c` country code (joining by unambiguous codes is generally a better idea than joining by names). 
+
+To control how the join is performed, click on the circles with the blue area of overlap. Remember that there is one row in this data for each country in each year. So to join the data appropriately, we need to join by `year` and the `iso3c` country code (joining by unambiguous codes is generally a better idea than joining by names).
 
 There are four types of join in Tableau:
 
- ![](./img/class6_2a.jpg)
+ ![](./img/class6_3.jpg)
 
 **Inner Join:** Returns values from both tables that match on the selected variables. The rest of the data is discarded.
 **Left Join:** Returns all the values from the left-hand table, plus those from the from the right-hand table that match on the selected variables. Where there is no match, values will be null.
@@ -39,24 +47,19 @@ There are four types of join in Tableau:
 
 For this exercise, choose an inner join.
 
- ![](./img/class6_3.jpg)
+ ![](./img/class6_4.jpg)
 
 The joined data should look like this in a Tableau worksheet. You can see which variables came from which file:
 
- ![](./img/class6_4.jpg)
+ ![](./img/class6_5.jpg)
 
- At this point, I would rename `value` to `Life expectancy at birth`.
-
-- Use the joined data to create a version of the Gapminder visualization, covering the period from 1990 to 2016.
+- Use the joined data to create a version of the Gapminder visualization, covering the period from 1990 to 2017.
 
 ### Assignment
 
-- Download data in Excel format on carbon dioxide emissions in metric tonnes per capita, from [here](https://data.worldbank.org/indicator/EN.ATM.CO2E.PC).
+-  Join the file `co2.csv` to the file `nations.csv` in Tableau as above, then create [this simple dashboard](https://public.tableau.com/profile/paldhous.workshops#!/vizhome/co22019dataviz/Dashboard1?publish=yes) shown below, recording total carbon dioxide emissions by region and nation, from 1990 to 2017. 
 
-- Process this data in Open Refine using the JSON you saved from the class exercise above, and export as a CSV file.
--  Join to the exported data to the file `nations.csv` in Tableau as above, then create the simple dashboard shown below, recording total carbon dioxide emissions by region and nation, from 2000 to 2014. Hint: You will need to create a calculated variable for total emissions, using the per capita emissions data and the population data from `nations.csv`.
-
- ![](./img/class6_5.jpg)
+ ![](./img/class6_6.jpg)
 
 
 

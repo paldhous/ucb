@@ -40,7 +40,13 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
 
 #### [Download Week 6](./data/week6.zip)
 
-- `nations.csv` As for week 3, but lacking the variable for life expectancy.
+- `nations.csv` As used in week 3, but lacking the variable for life expectancy at birth.
+
+- `co2.csv` From the [Global Carbon Atlas](http://www.globalcarbonatlas.org/en/CO2-emissions). Contains the following fields:
+ - `iso3c` Three-letter code for each country.
+ - `country` Country name.
+ - `year`
+ - `emissions` Carbon dioxide emissions, in millions of tonnes.
 
 #### [Download Week 7](./data/week7.zip)
 
