@@ -1,0 +1,23 @@
+country,life_expect,income,region,rank_le
+"Hong Kong SAR, China",84.6804878048781,High income,East Asia & Pacific,1
+Japan,84.099756097561,High income,East Asia & Pacific,2
+"Macao SAR, China",83.991,High income,East Asia & Pacific,3
+Switzerland,83.6024390243903,High income,Europe & Central Asia,4
+Spain,83.3292682926829,High income,Europe & Central Asia,5
+Italy,83.2439024390244,High income,Europe & Central Asia,6
+Singapore,82.8951219512195,High income,East Asia & Pacific,7
+Luxembourg,82.6853658536585,High income,Europe & Central Asia,8
+"Korea, Rep.",82.6268292682927,High income,East Asia & Pacific,9
+Israel,82.6024390243903,High income,Middle East & North Africa,10
+France,82.5243902439024,High income,Europe & Central Asia,11
+Norway,82.509756097561,High income,Europe & Central Asia,12
+Australia,82.4975609756098,High income,East Asia & Pacific,13
+Canada,82.4704878048781,High income,North America,14
+Malta,82.4536585365854,High income,Middle East & North Africa,15
+Faroe Islands,82.4,High income,Europe & Central Asia,16
+Sweden,82.3073170731707,High income,Europe & Central Asia,17
+Liechtenstein,82.2585365853659,High income,Europe & Central Asia,18
+Iceland,82.2048780487805,High income,Europe & Central Asia,19
+Ireland,81.9560975609756,High income,Europe & Central Asia,20
+United States,78.5390243902439,High income,North America,44
+Russian Federation,72.1190243902439,Upper middle income,Europe & Central Asia,116
