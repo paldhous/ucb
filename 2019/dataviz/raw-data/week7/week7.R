@@ -15,8 +15,8 @@ glimpse(nations)
 # print values for population in the nations data
 nations$population
 
-# convert population to numeric
-nations$population <- as.numeric(nations$population)
+# convert population to integer
+nations$population <- as.integer(nations$population)
 glimpse(nations)
 
 # summary of nations data
@@ -131,6 +131,23 @@ immun_year <- immun %>%
   summarize(enrolled = sum(enrollment, na.rm=TRUE),
             completed = sum(complete, na.rm=TRUE)) %>%
   mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+
+# percentage incomplete, by county, by year
+immun_counties_year <- immun %>%
+  group_by(county,start_year) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE),
+            completed = sum(complete, na.rm = TRUE)) %>%
+  mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
+
+# identify five counties with the largest enrollment over all years
+top5 <- immun %>%
+  group_by(county) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE)) %>%
+  arrange(desc(enrolled)) %>%
+  head(5) %>%
+  select(county)
+
+immun_top5_year <- semi_join(immun_counties_year, top5)
 
 
 # save session data

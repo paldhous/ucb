@@ -4,7 +4,7 @@
 
 In today's class we will work with **[R](http://www.r-project.org/)**, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as "free software environment for statistical computing and graphics," R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.
 
-Our goal for today's class is to get used to processing and analyzing data using the **[dplyr](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html)** package.
+Our goal for today's class is to get used to processing and analyzing data using the **[dplyr](https://dplyr.tidyverse.org/)** package.
 
 **[RStudio](https://www.rstudio.com/)** is an "integrated development environment," or IDE, for R that provides a user-friendly interface.
 
@@ -241,7 +241,7 @@ The output will be the first 1,000 values for that column.
 If you need to change the data type for any column, use the following functions:
 
 - `as.character` converts to a text string.
-- `as.numeric` converts to a number that can include decimal fractions.
+- `as.double` converts to a number that can include decimal fractions.
 - `as.factor` converts to a categorical variable.
 - `as.integer` converts to an integer.
 - `as.Date` converts to a date.
@@ -249,11 +249,11 @@ If you need to change the data type for any column, use the following functions:
 
 (To convert a date/time written as a string of text to a date or a full timestamp, you may also need to specify the format, see [here](https://www.r-bloggers.com/date-formats-in-r/) for more.)
 
-This code will convert the population numbers from integers to numbers that could hold decimal fractions:
+This code will convert the population numbers fromnumbers that could hold decimal fractions to integers:
 
 ```r
-# convert population to numeric
-nations$population <- as.numeric(nations$population)
+# convert population to integer
+nations$population <- as.integer(nations$population)
 glimpse(nations)
 ```
 Notice that the data type for `population` has now changed:
@@ -261,18 +261,17 @@ Notice that the data type for `population` has now changed:
 ```JSON
 Observations: 6,048
 Variables: 11
-$ iso2c              <chr> "AD", "AD", "AD", "AD", "AD", "AD", "AD",…
-$ iso3c              <chr> "AND", "AND", "AND", "AND", "AND", "AND",…
-$ country            <chr> "Andorra", "Andorra", "Andorra", "Andorra…
-$ year               <dbl> 1990, 1995, 1996, 1997, 1998, 1999, 2000,…
-$ gdp_percap         <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ life_expect        <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ population         <dbl> 54509, 63850, 64360, 64327, 64142, 64370,…
-$ birth_rate         <dbl> 11.9, 11.0, 10.9, 11.2, 11.9, 12.6, 11.3,…
-$ neonat_mortal_rate <dbl> 3.9, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1, 2.0, 1…
-$ region             <chr> "Europe & Central Asia", "Europe & Centra…
-$ income             <chr> "High income", "High income", "High incom…
-```
+$ iso2c              <chr> "AD", "AD", "AD", "AD", "AD", "AD", "…
+$ iso3c              <chr> "AND", "AND", "AND", "AND", "AND", "A…
+$ country            <chr> "Andorra", "Andorra", "Andorra", "And…
+$ year               <dbl> 1990, 1995, 1996, 1997, 1998, 1999, 2…
+$ gdp_percap         <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ life_expect        <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ population         <int> 54509, 63850, 64360, 64327, 64142, 64…
+$ birth_rate         <dbl> 11.9, 11.0, 10.9, 11.2, 11.9, 12.6, 1…
+$ neonat_mortal_rate <dbl> 3.9, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1, 2.…
+$ region             <chr> "Europe & Central Asia", "Europe & Ce…
+$ income             <chr> "High income", "High income", "High i…```
 
 The `summary` function will run a quick statistical summary of a data frame, calculating mean, median and quartile values for continuous variables:
 
@@ -283,26 +282,35 @@ summary(nations)
 Here is the console output:
 
 ```JSON
-      year        gdp_percap        life_expect      population       
- Min.   :1990   Min.   :   247.8   Min.   :27.61   Min.   :8.913e+03  
- 1st Qu.:1997   1st Qu.:  2563.7   1st Qu.:62.51   1st Qu.:6.075e+05  
- Median :2004   Median :  7279.9   Median :70.75   Median :5.300e+06  
- Mean   :2004   Mean   : 14306.3   Mean   :68.39   Mean   :2.958e+07  
- 3rd Qu.:2010   3rd Qu.: 19787.7   3rd Qu.:75.52   3rd Qu.:1.797e+07  
- Max.   :2017   Max.   :139962.3   Max.   :85.42   Max.   :1.386e+09  
-                NA's   :847        NA's   :496     NA's   :17         
-   birth_rate    neonat_mortal_rate    region         
- Min.   : 6.90   Min.   : 0.900     Length:6048       
- 1st Qu.:13.30   1st Qu.: 5.875     Class :character  
- Median :21.30   Median :14.500     Mode  :character  
- Mean   :23.72   Mean   :18.708                       
- 3rd Qu.:33.10   3rd Qu.:28.400                       
- Max.   :55.56   Max.   :73.500                       
- NA's   :361     NA's   :672                          
-    income         
- Length:6048       
- Class :character  
- Mode  :character ```
+    iso2c              iso3c             country         
+ Length:6048        Length:6048        Length:6048       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+                                                         
+                                                         
+                                                         
+                                                         
+      year        gdp_percap        life_expect   
+ Min.   :1990   Min.   :   247.8   Min.   :27.61  
+ 1st Qu.:1997   1st Qu.:  2563.7   1st Qu.:62.51  
+ Median :2004   Median :  7279.9   Median :70.75  
+ Mean   :2004   Mean   : 14306.3   Mean   :68.39  
+ 3rd Qu.:2010   3rd Qu.: 19787.7   3rd Qu.:75.52  
+ Max.   :2017   Max.   :139962.3   Max.   :85.42  
+                NA's   :847        NA's   :496    
+   population          birth_rate    neonat_mortal_rate
+ Min.   :8.913e+03   Min.   : 6.90   Min.   : 0.900    
+ 1st Qu.:6.075e+05   1st Qu.:13.30   1st Qu.: 5.875    
+ Median :5.300e+06   Median :21.30   Median :14.500    
+ Mean   :2.958e+07   Mean   :23.72   Mean   :18.708    
+ 3rd Qu.:1.797e+07   3rd Qu.:33.10   3rd Qu.:28.400    
+ Max.   :1.386e+09   Max.   :55.56   Max.   :73.500    
+ NA's   :17          NA's   :361     NA's   :672       
+    region             income         
+ Length:6048        Length:6048       
+ Class :character   Class :character  
+ Mode  :character   Mode  :character  
+ ```
 
 ### Process and analyze data with dplyr
 
@@ -332,7 +340,7 @@ Here are some of the most useful functions in **dplyr**:
 	- `n_distinct(x)` Count the number of unique values in variable `x`.
 - `mutate` Create new column(s) in the data, or change existing column(s).
 - `rename` Rename column(s).
-- `bind_rows` Append one data data frame to another, combining data from columns with the same name.
+- `bind_rows` Append one data frame to another, combining data from columns with the same name.
 
 There are also various functions to **join** data, which we will explore below.
 
@@ -383,7 +391,7 @@ This should be the result:
 
 ![](img/class7_10.jpg)
 
-Whereas in the initial filter of the data to create the `longevity` data frame we used `&` to return data meeting both criteria, this time we also used `|` to include data meeting either criteria. `&` and `|` are equivalent to `AND` and `OR` in Boolean logic. Notice how the `|` part of the filter is wrapped in parentheses. Look at what happens if you remove them, and work out what is going on.
+Whereas in the initial filter of the data to create the `longevity_2017` data frame we used `&` to return data meeting both criteria, this time we also used `|` to include data meeting either criteria. `&` and `|` are equivalent to `AND` and `OR` in Boolean logic. Notice how the `|` part of the filter is wrapped in parentheses. Look at what happens if you remove them, and work out what is going on.
 
 **==Note:==** When combining `&` and `|` in more complex filters, use parentheses to determine which parts of the evaluation should be carried out first.
 
@@ -392,7 +400,7 @@ Whereas in the initial filter of the data to create the `longevity` data frame w
 ```r
 # find the 20 countries with the longest life expectancies in 2017, 
 # plus the United States with its rank, if it lies outside the top 20
-long_life <- longevity %>%
+long_life <- longevity_2017 %>%
   mutate(rank_le = rank(desc(life_expect))) %>%
   arrange(rank_le) %>%
   filter(rank_le <= 20 | country == "United States")
@@ -630,7 +638,7 @@ immun_year <- immun %>%
 ```
 This should be the result:
 
-![](img/class7_14.jpg)
+![](img/class7_16.jpg)
 
 Notice how the `round(x,n)` function is used to round values for `x`, here the percentage incomplete calculation, to `n` decimal places, here 2. Using negative numbers for `n` will round to tens (-1), hundreds (-2), and so on.
 
@@ -644,7 +652,7 @@ immun_counties_year <- immun %>%
 ```
 Here are the first few rows of the data that should be returned:
 
-![](img/class7_15.jpg)
+![](img/class7_17.jpg)
 
 Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:
 
@@ -664,7 +672,7 @@ Notice the use of `semi_join` to filter the data for just the five counties with
 
 ### Close RStudio
 
-Before you exit RStudio, save and close you script, and close any data files you have open in `View`. If you don't do this, they will be opened the next time your launchc RStudio.
+Before you exit RStudio, save and close you script, and close any data files you have open in `View`. If you don't do this, they will be opened the next time your launch RStudio.
 
 ### Keep R and RStudio up to date
 

@@ -55,7 +55,7 @@
 
 	<div class="container all">
 		
-<h1 id="processing-data-with-r"><a name="processing-data-with-r" href="#processing-data-with-r"></a>Processing data with R</h1><h3 id="introducing-r-and-rstudio"><a name="introducing-r-and-rstudio" href="#introducing-r-and-rstudio"></a>Introducing R and RStudio</h3><p>In today’s class we will work with <strong><a href="http://www.r-project.org/">R</a></strong>, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as “free software environment for statistical computing and graphics,” R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.</p><p>Our goal for today’s class is to get used to processing and analyzing data using the <strong><a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">dplyr</a></strong> package.</p><p><strong><a href="https://www.rstudio.com/">RStudio</a></strong> is an “integrated development environment,” or IDE, for R that provides a user-friendly interface.</p><p>Launch RStudio, and the screen should look like this:</p><p><img src="img/class7_1.jpg" alt=""></p><p>The main panel to the left is the R Console. It shows the version of R you are running, here <code>3.6.1</code>.</p><p>Type valid R code into here, hit <code>return</code>, and it will be run. See what happens if you run:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>print(&quot;Hello World!&quot;)
+<h1 id="processing-data-with-r"><a name="processing-data-with-r" href="#processing-data-with-r"></a>Processing data with R</h1><h3 id="introducing-r-and-rstudio"><a name="introducing-r-and-rstudio" href="#introducing-r-and-rstudio"></a>Introducing R and RStudio</h3><p>In today’s class we will work with <strong><a href="http://www.r-project.org/">R</a></strong>, which is a very powerful tool, designed by statisticians for data analysis. Described on its website as “free software environment for statistical computing and graphics,” R is a programming language that opens a world of possibilities for making graphics and analyzing and processing data. Indeed, just about anything you may want to do with data can be done with R, from web scraping to making interactive graphics.</p><p>Our goal for today’s class is to get used to processing and analyzing data using the <strong><a href="https://dplyr.tidyverse.org/">dplyr</a></strong> package.</p><p><strong><a href="https://www.rstudio.com/">RStudio</a></strong> is an “integrated development environment,” or IDE, for R that provides a user-friendly interface.</p><p>Launch RStudio, and the screen should look like this:</p><p><img src="img/class7_1.jpg" alt=""></p><p>The main panel to the left is the R Console. It shows the version of R you are running, here <code>3.6.1</code>.</p><p>Type valid R code into here, hit <code>return</code>, and it will be run. See what happens if you run:</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;>print(&quot;Hello World!&quot;)
 </code></pre>">print(<span class="hljs-string">"Hello World!"</span>)
 </code></pre><p>You can customize the appearance of RStudio by selecting <code>Tools&gt;Global Options&gt;Appearance</code> from the top menu:</p><p><img src="img/class7_2.jpg" alt=""></p><h3 id="the-data-we-will-use-today"><a name="the-data-we-will-use-today" href="#the-data-we-will-use-today"></a>The data we will use today</h3><p>Download the data for this session from <a href="data/week7.zip">here</a>, unzip the folder and place it on your desktop. It contains the following files:</p><ul>
 <li><p><code>nations.csv</code> As used in week 3.</p>
@@ -138,82 +138,98 @@ nations$population
 </code></pre>"><span class="hljs-comment"># print values for population in the nations data</span>
 nations$population
 </code></pre><p>The output will be the first 1,000 values for that column.</p><p>If you need to change the data type for any column, use the following functions:</p><ul>
-<li><code>as.character</code> converts to a text string.</li><li><code>as.numeric</code> converts to a number that can include decimal fractions.</li><li><code>as.factor</code> converts to a categorical variable.</li><li><code>as.integer</code> converts to an integer.</li><li><code>as.Date</code> converts to a date.</li><li><code>as.POSIXct</code> converts to a full date and timestamp.</li></ul><p>(To convert a date/time written as a string of text to a date or a full timestamp, you may also need to specify the format, see <a href="https://www.r-bloggers.com/date-formats-in-r/">here</a> for more.)</p><p>This code will convert the population numbers from integers to numbers that could hold decimal fractions:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># convert population to numeric
-nations$population &amp;lt;- as.numeric(nations$population)
+<li><code>as.character</code> converts to a text string.</li><li><code>as.double</code> converts to a number that can include decimal fractions.</li><li><code>as.factor</code> converts to a categorical variable.</li><li><code>as.integer</code> converts to an integer.</li><li><code>as.Date</code> converts to a date.</li><li><code>as.POSIXct</code> converts to a full date and timestamp.</li></ul><p>(To convert a date/time written as a string of text to a date or a full timestamp, you may also need to specify the format, see <a href="https://www.r-bloggers.com/date-formats-in-r/">here</a> for more.)</p><p>This code will convert the population numbers fromnumbers that could hold decimal fractions to integers:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># convert population to integer
+nations$population &amp;lt;- as.integer(nations$population)
 glimpse(nations)
-</code></pre>"><span class="hljs-comment"># convert population to numeric</span>
-nations$population &lt;- as.numeric(nations$population)
+</code></pre>"><span class="hljs-comment"># convert population to integer</span>
+nations$population &lt;- as.integer(nations$population)
 glimpse(nations)
 </code></pre><p>Notice that the data type for <code>population</code> has now changed:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>Observations: 6,048
 Variables: 11
-$ iso2c              &amp;lt;chr&amp;gt; &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;,…
-$ iso3c              &amp;lt;chr&amp;gt; &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;,…
-$ country            &amp;lt;chr&amp;gt; &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra…
-$ year               &amp;lt;dbl&amp;gt; 1990, 1995, 1996, 1997, 1998, 1999, 2000,…
-$ gdp_percap         &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ life_expect        &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ population         &amp;lt;dbl&amp;gt; 54509, 63850, 64360, 64327, 64142, 64370,…
-$ birth_rate         &amp;lt;dbl&amp;gt; 11.9, 11.0, 10.9, 11.2, 11.9, 12.6, 11.3,…
-$ neonat_mortal_rate &amp;lt;dbl&amp;gt; 3.9, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1, 2.0, 1…
-$ region             &amp;lt;chr&amp;gt; &quot;Europe &amp;amp; Central Asia&quot;, &quot;Europe &amp;amp; Centra…
-$ income             &amp;lt;chr&amp;gt; &quot;High income&quot;, &quot;High income&quot;, &quot;High incom…
+$ iso2c              &amp;lt;chr&amp;gt; &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;AD&quot;, &quot;…
+$ iso3c              &amp;lt;chr&amp;gt; &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;, &quot;AND&quot;, &quot;A…
+$ country            &amp;lt;chr&amp;gt; &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;Andorra&quot;, &quot;And…
+$ year               &amp;lt;dbl&amp;gt; 1990, 1995, 1996, 1997, 1998, 1999, 2…
+$ gdp_percap         &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ life_expect        &amp;lt;dbl&amp;gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ population         &amp;lt;int&amp;gt; 54509, 63850, 64360, 64327, 64142, 64…
+$ birth_rate         &amp;lt;dbl&amp;gt; 11.9, 11.0, 10.9, 11.2, 11.9, 12.6, 1…
+$ neonat_mortal_rate &amp;lt;dbl&amp;gt; 3.9, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1, 2.…
+$ region             &amp;lt;chr&amp;gt; &quot;Europe &amp;amp; Central Asia&quot;, &quot;Europe &amp;amp; Ce…
+$ income             &amp;lt;chr&amp;gt; &quot;High income&quot;, &quot;High income&quot;, &quot;High i…
 </code></pre>">Observations: 6,048
 Variables: 11
-$ iso2c              &lt;chr&gt; "AD", "AD", "AD", "AD", "AD", "AD", "AD",…
-$ iso3c              &lt;chr&gt; "AND", "AND", "AND", "AND", "AND", "AND",…
-$ country            &lt;chr&gt; "Andorra", "Andorra", "Andorra", "Andorra…
-$ year               &lt;dbl&gt; 1990, 1995, 1996, 1997, 1998, 1999, 2000,…
-$ gdp_percap         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ life_expect        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
-$ population         &lt;dbl&gt; 54509, 63850, 64360, 64327, 64142, 64370,…
-$ birth_rate         &lt;dbl&gt; 11.9, 11.0, 10.9, 11.2, 11.9, 12.6, 11.3,…
-$ neonat_mortal_rate &lt;dbl&gt; 3.9, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1, 2.0, 1…
-$ region             &lt;chr&gt; "Europe &amp; Central Asia", "Europe &amp; Centra…
-$ income             &lt;chr&gt; "High income", "High income", "High incom…
+$ iso2c              &lt;chr&gt; "AD", "AD", "AD", "AD", "AD", "AD", "…
+$ iso3c              &lt;chr&gt; "AND", "AND", "AND", "AND", "AND", "A…
+$ country            &lt;chr&gt; "Andorra", "Andorra", "Andorra", "And…
+$ year               &lt;dbl&gt; 1990, 1995, 1996, 1997, 1998, 1999, 2…
+$ gdp_percap         &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ life_expect        &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ population         &lt;int&gt; 54509, 63850, 64360, 64327, 64142, 64…
+$ birth_rate         &lt;dbl&gt; 11.9, 11.0, 10.9, 11.2, 11.9, 12.6, 1…
+$ neonat_mortal_rate &lt;dbl&gt; 3.9, 2.8, 2.6, 2.4, 2.3, 2.2, 2.1, 2.…
+$ region             &lt;chr&gt; "Europe &amp; Central Asia", "Europe &amp; Ce…
+$ income             &lt;chr&gt; "High income", "High income", "High i…
 </code></pre><p>The <code>summary</code> function will run a quick statistical summary of a data frame, calculating mean, median and quartile values for continuous variables:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># summary of nations data
 summary(nations)
 </code></pre>"><span class="hljs-comment"># summary of nations data</span>
 summary(nations)
-</code></pre><p>Here is the console output:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>      year        gdp_percap        life_expect      population       
- Min.   :1990   Min.   :   247.8   Min.   :27.61   Min.   :8.913e+03  
- 1st Qu.:1997   1st Qu.:  2563.7   1st Qu.:62.51   1st Qu.:6.075e+05  
- Median :2004   Median :  7279.9   Median :70.75   Median :5.300e+06  
- Mean   :2004   Mean   : 14306.3   Mean   :68.39   Mean   :2.958e+07  
- 3rd Qu.:2010   3rd Qu.: 19787.7   3rd Qu.:75.52   3rd Qu.:1.797e+07  
- Max.   :2017   Max.   :139962.3   Max.   :85.42   Max.   :1.386e+09  
-                NA's   :847        NA's   :496     NA's   :17         
-   birth_rate    neonat_mortal_rate    region         
- Min.   : 6.90   Min.   : 0.900     Length:6048       
- 1st Qu.:13.30   1st Qu.: 5.875     Class :character  
- Median :21.30   Median :14.500     Mode  :character  
- Mean   :23.72   Mean   :18.708                       
- 3rd Qu.:33.10   3rd Qu.:28.400                       
- Max.   :55.56   Max.   :73.500                       
- NA's   :361     NA's   :672                          
-    income         
- Length:6048       
- Class :character  
- Mode  :character
-</code></pre>">      year        gdp_percap        life_expect      population       
- Min.   :1990   Min.   :   247.8   Min.   :27.61   Min.   :8.913e+03  
- 1st Qu.:1997   1st Qu.:  2563.7   1st Qu.:62.51   1st Qu.:6.075e+05  
- Median :2004   Median :  7279.9   Median :70.75   Median :5.300e+06  
- Mean   :2004   Mean   : 14306.3   Mean   :68.39   Mean   :2.958e+07  
- 3rd Qu.:2010   3rd Qu.: 19787.7   3rd Qu.:75.52   3rd Qu.:1.797e+07  
- Max.   :2017   Max.   :139962.3   Max.   :85.42   Max.   :1.386e+09  
-                NA's   :847        NA's   :496     NA's   :17         
-   birth_rate    neonat_mortal_rate    region         
- Min.   : 6.90   Min.   : 0.900     Length:6048       
- 1st Qu.:13.30   1st Qu.: 5.875     Class :character  
- Median :21.30   Median :14.500     Mode  :character  
- Mean   :23.72   Mean   :18.708                       
- 3rd Qu.:33.10   3rd Qu.:28.400                       
- Max.   :55.56   Max.   :73.500                       
- NA's   :361     NA's   :672                          
-    income         
- Length:6048       
- Class :character  
- Mode  :character
+</code></pre><p>Here is the console output:</p><pre class="json hljs"><code class="JSON" data-origin="<pre><code class=&quot;JSON&quot;>    iso2c              iso3c             country         
+ Length:6048        Length:6048        Length:6048       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+
+
+
+
+      year        gdp_percap        life_expect   
+ Min.   :1990   Min.   :   247.8   Min.   :27.61  
+ 1st Qu.:1997   1st Qu.:  2563.7   1st Qu.:62.51  
+ Median :2004   Median :  7279.9   Median :70.75  
+ Mean   :2004   Mean   : 14306.3   Mean   :68.39  
+ 3rd Qu.:2010   3rd Qu.: 19787.7   3rd Qu.:75.52  
+ Max.   :2017   Max.   :139962.3   Max.   :85.42  
+                NA's   :847        NA's   :496    
+   population          birth_rate    neonat_mortal_rate
+ Min.   :8.913e+03   Min.   : 6.90   Min.   : 0.900    
+ 1st Qu.:6.075e+05   1st Qu.:13.30   1st Qu.: 5.875    
+ Median :5.300e+06   Median :21.30   Median :14.500    
+ Mean   :2.958e+07   Mean   :23.72   Mean   :18.708    
+ 3rd Qu.:1.797e+07   3rd Qu.:33.10   3rd Qu.:28.400    
+ Max.   :1.386e+09   Max.   :55.56   Max.   :73.500    
+ NA's   :17          NA's   :361     NA's   :672       
+    region             income         
+ Length:6048        Length:6048       
+ Class :character   Class :character  
+ Mode  :character   Mode  :character
+</code></pre>">    iso2c              iso3c             country         
+ Length:6048        Length:6048        Length:6048       
+ Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character  
+
+
+
+
+      year        gdp_percap        life_expect   
+ Min.   :1990   Min.   :   247.8   Min.   :27.61  
+ 1st Qu.:1997   1st Qu.:  2563.7   1st Qu.:62.51  
+ Median :2004   Median :  7279.9   Median :70.75  
+ Mean   :2004   Mean   : 14306.3   Mean   :68.39  
+ 3rd Qu.:2010   3rd Qu.: 19787.7   3rd Qu.:75.52  
+ Max.   :2017   Max.   :139962.3   Max.   :85.42  
+                NA's   :847        NA's   :496    
+   population          birth_rate    neonat_mortal_rate
+ Min.   :8.913e+03   Min.   : 6.90   Min.   : 0.900    
+ 1st Qu.:6.075e+05   1st Qu.:13.30   1st Qu.: 5.875    
+ Median :5.300e+06   Median :21.30   Median :14.500    
+ Mean   :2.958e+07   Mean   :23.72   Mean   :18.708    
+ 3rd Qu.:1.797e+07   3rd Qu.:33.10   3rd Qu.:28.400    
+ Max.   :1.386e+09   Max.   :55.56   Max.   :73.500    
+ NA's   :17          NA's   :361     NA's   :672       
+    region             income         
+ Length:6048        Length:6048       
+ Class :character   Class :character  
+ Mode  :character   Mode  :character
 </code></pre><h3 id="process-and-analyze-data-with-dplyr"><a name="process-and-analyze-data-with-dplyr" href="#process-and-analyze-data-with-dplyr"></a>Process and analyze data with dplyr</h3><p>Now we will use <strong>dplyr</strong> to process the data, using the basic operations we discussed in the first class:</p><ul>
 <li><p><strong>Sort:</strong> Largest to smallest, oldest to newest, alphabetical etc.</p>
 </li><li><p><strong>Filter:</strong> Select a defined subset of the data.</p>
@@ -222,7 +238,7 @@ summary(nations)
 </li></ul><p>Here are some of the most useful functions in <strong>dplyr</strong>:</p><ul>
 <li><code>select</code> Choose which columns to include.</li><li><code>filter</code> <strong>Filter</strong> the data.</li><li><code>arrange</code> <strong>Sort</strong> the data, by size for continuous variables, by date, or alphabetically.</li><li><code>group_by</code> <strong>Group</strong> the data by a categorical variable.</li><li><code>summarize</code> <strong>Summarize</strong>, or aggregate (for each group if following <code>group_by</code>). Often used in conjunction with functions including:<ul>
 <li><code>mean(x)</code> Calculate the mean, or average, for variable <code>x</code>.</li><li><code>median(x)</code> Calculate the median.</li><li><code>max(x)</code> Find the maximum value.</li><li><code>min(x)</code> Find the minimum value.</li><li><code>sum(x)</code> Add all the values together.</li><li><code>n()</code> Count the number of records. Here there isn’t a variable in the brackets of the function, because the number of records applies to all variables.</li><li><code>n_distinct(x)</code> Count the number of unique values in variable <code>x</code>.</li></ul>
-</li><li><code>mutate</code> Create new column(s) in the data, or change existing column(s).</li><li><code>rename</code> Rename column(s).</li><li><code>bind_rows</code> Append one data data frame to another, combining data from columns with the same name.</li></ul><p>There are also various functions to <strong>join</strong> data, which we will explore below.</p><p>These functions can be chained together using the “pipe” operator <code>%&gt;%</code>, which makes the output of one line of code the input for the next. This allows you to run through a series of operations in a logical order. I find it helpful to think of <code>%&gt;%</code> as meaning “then.”</p><h4 id="filter-and-sort-data"><a name="filter-and-sort-data" href="#filter-and-sort-data"></a>Filter and sort data</h4><p>Now we will <strong>filter</strong> and <strong>sort</strong> the data in specific ways. For each of the following examples, copy the code that follows into your script, and view the results. Notice how we will create new objects to hold the processed data.</p><h5 id="filter-the-data-for-2017-only"><a name="filter-the-data-for-2017-only" href="#filter-the-data-for-2017-only"></a>Filter the data for 2017 only</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># filter data for 2017 only, and select columns for country, life expectancy, income group, and region
+</li><li><code>mutate</code> Create new column(s) in the data, or change existing column(s).</li><li><code>rename</code> Rename column(s).</li><li><code>bind_rows</code> Append one data frame to another, combining data from columns with the same name.</li></ul><p>There are also various functions to <strong>join</strong> data, which we will explore below.</p><p>These functions can be chained together using the “pipe” operator <code>%&gt;%</code>, which makes the output of one line of code the input for the next. This allows you to run through a series of operations in a logical order. I find it helpful to think of <code>%&gt;%</code> as meaning “then.”</p><h4 id="filter-and-sort-data"><a name="filter-and-sort-data" href="#filter-and-sort-data"></a>Filter and sort data</h4><p>Now we will <strong>filter</strong> and <strong>sort</strong> the data in specific ways. For each of the following examples, copy the code that follows into your script, and view the results. Notice how we will create new objects to hold the processed data.</p><h5 id="filter-the-data-for-2017-only"><a name="filter-the-data-for-2017-only" href="#filter-the-data-for-2017-only"></a>Filter the data for 2017 only</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># filter data for 2017 only, and select columns for country, life expectancy, income group, and region
 longevity_2017 &amp;lt;- nations %&amp;gt;%
   filter(year == 2017 &amp;amp; !is.na(life_expect)) %&amp;gt;%
   select(country, life_expect, income, region)
@@ -248,15 +264,15 @@ eur_na_75_80 &amp;lt;- longevity_2017 %&amp;gt;%
 eur_na_75_80 &lt;- longevity_2017 %&gt;%
   filter(life_expect &gt; <span class="hljs-number">75</span> &amp; life_expect &lt; <span class="hljs-number">80</span> &amp; (region == <span class="hljs-string">"Europe &amp; Central Asia"</span> | region == <span class="hljs-string">"North America"</span>)) %&gt;%
   arrange(desc(life_expect))
-</code></pre><p>This should be the result:</p><p><img src="img/class7_10.jpg" alt=""></p><p>Whereas in the initial filter of the data to create the <code>longevity</code> data frame we used <code>&amp;</code> to return data meeting both criteria, this time we also used <code>|</code> to include data meeting either criteria. <code>&amp;</code> and <code>|</code> are equivalent to <code>AND</code> and <code>OR</code> in Boolean logic. Notice how the <code>|</code> part of the filter is wrapped in parentheses. Look at what happens if you remove them, and work out what is going on.</p><p><strong><mark>Note:</mark></strong> When combining <code>&amp;</code> and <code>|</code> in more complex filters, use parentheses to determine which parts of the evaluation should be carried out first.</p><h5 id="find-the-20-countries-with-the-longest-life-expectancy-in-2017,-plus-the-united-states-with-its-rank,-if-it-lies-outside-the-top-20"><a name="find-the-20-countries-with-the-longest-life-expectancy-in-2017,-plus-the-united-states-with-its-rank,-if-it-lies-outside-the-top-20" href="#find-the-20-countries-with-the-longest-life-expectancy-in-2017,-plus-the-united-states-with-its-rank,-if-it-lies-outside-the-top-20"></a>Find the 20 countries with the longest life expectancy in 2017, plus the United States with its rank, if it lies outside the top 20</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># find the 20 countries with the longest life expectancies in 2017, 
+</code></pre><p>This should be the result:</p><p><img src="img/class7_10.jpg" alt=""></p><p>Whereas in the initial filter of the data to create the <code>longevity_2017</code> data frame we used <code>&amp;</code> to return data meeting both criteria, this time we also used <code>|</code> to include data meeting either criteria. <code>&amp;</code> and <code>|</code> are equivalent to <code>AND</code> and <code>OR</code> in Boolean logic. Notice how the <code>|</code> part of the filter is wrapped in parentheses. Look at what happens if you remove them, and work out what is going on.</p><p><strong><mark>Note:</mark></strong> When combining <code>&amp;</code> and <code>|</code> in more complex filters, use parentheses to determine which parts of the evaluation should be carried out first.</p><h5 id="find-the-20-countries-with-the-longest-life-expectancy-in-2017,-plus-the-united-states-with-its-rank,-if-it-lies-outside-the-top-20"><a name="find-the-20-countries-with-the-longest-life-expectancy-in-2017,-plus-the-united-states-with-its-rank,-if-it-lies-outside-the-top-20" href="#find-the-20-countries-with-the-longest-life-expectancy-in-2017,-plus-the-united-states-with-its-rank,-if-it-lies-outside-the-top-20"></a>Find the 20 countries with the longest life expectancy in 2017, plus the United States with its rank, if it lies outside the top 20</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># find the 20 countries with the longest life expectancies in 2017, 
 # plus the United States with its rank, if it lies outside the top 20
-long_life &amp;lt;- longevity %&amp;gt;%
+long_life &amp;lt;- longevity_2017 %&amp;gt;%
   mutate(rank_le = rank(desc(life_expect))) %&amp;gt;%
   arrange(rank_le) %&amp;gt;%
   filter(rank_le &amp;lt;= 20 | country == &quot;United States&quot;)
 </code></pre>"><span class="hljs-comment"># find the 20 countries with the longest life expectancies in 2017, </span>
 <span class="hljs-comment"># plus the United States with its rank, if it lies outside the top 20</span>
-long_life &lt;- longevity %&gt;%
+long_life &lt;- longevity_2017 %&gt;%
   mutate(rank_le = rank(desc(life_expect))) %&gt;%
   arrange(rank_le) %&gt;%
   filter(rank_le &lt;= <span class="hljs-number">20</span> | country == <span class="hljs-string">"United States"</span>)
@@ -418,7 +434,7 @@ immun_year &lt;- immun %&gt;%
   summarize(enrolled = sum(enrollment, na.rm = <span class="hljs-literal">TRUE</span>),
             completed = sum(complete, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
   mutate(pc_incomplete = round(((enrolled-completed)/enrolled*<span class="hljs-number">100</span>),<span class="hljs-number">2</span>))
-</code></pre><p>This should be the result:</p><p><img src="img/class7_14.jpg" alt=""></p><p>Notice how the <code>round(x,n)</code> function is used to round values for <code>x</code>, here the percentage incomplete calculation, to <code>n</code> decimal places, here 2. Using negative numbers for <code>n</code> will round to tens (-1), hundreds (-2), and so on.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># percentage incomplete, by county, by year
+</code></pre><p>This should be the result:</p><p><img src="img/class7_16.jpg" alt=""></p><p>Notice how the <code>round(x,n)</code> function is used to round values for <code>x</code>, here the percentage incomplete calculation, to <code>n</code> decimal places, here 2. Using negative numbers for <code>n</code> will round to tens (-1), hundreds (-2), and so on.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># percentage incomplete, by county, by year
 immun_counties_year &amp;lt;- immun %&amp;gt;%
   group_by(county,start_year) %&amp;gt;%
   summarize(enrolled = sum(enrollment, na.rm = TRUE),
@@ -430,7 +446,7 @@ immun_counties_year &lt;- immun %&gt;%
   summarize(enrolled = sum(enrollment, na.rm = <span class="hljs-literal">TRUE</span>),
             completed = sum(complete, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
   mutate(pc_incomplete = round(((enrolled-completed)/enrolled*<span class="hljs-number">100</span>),<span class="hljs-number">2</span>))
-</code></pre><p>Here are the first few rows of the data that should be returned:</p><p><img src="img/class7_15.jpg" alt=""></p><p>Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># identify five counties with the largest enrollment over all years
+</code></pre><p>Here are the first few rows of the data that should be returned:</p><p><img src="img/class7_17.jpg" alt=""></p><p>Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># identify five counties with the largest enrollment over all years
 top5 &amp;lt;- immun %&amp;gt;%
   group_by(county) %&amp;gt;%
   summarize(enrolled = sum(enrollment, na.rm = TRUE)) %&amp;gt;%
@@ -450,7 +466,7 @@ top5 &lt;- immun %&gt;%
 
 <span class="hljs-comment"># proportion incomplete, top 5 counties by enrollment, by year</span>
 immun_top5_year &lt;- semi_join(immun_counties_year, top5)
-</code></pre><p>Notice the use of <code>semi_join</code> to filter the data for just the five counties with the largest kindergarten enrollment.</p><h3 id="close-rstudio"><a name="close-rstudio" href="#close-rstudio"></a>Close RStudio</h3><p>Before you exit RStudio, save and close you script, and close any data files you have open in <code>View</code>. If you don’t do this, they will be opened the next time your launchc RStudio.</p><h3 id="keep-r-and-rstudio-up-to-date"><a name="keep-r-and-rstudio-up-to-date" href="#keep-r-and-rstudio-up-to-date"></a>Keep R and RStudio up to date</h3><p>From time to time, check <a href="https://www.r-project.org/">here</a> to see if you have the latest version of R. If you don’t, close RStudio and download the latest version of R and install. RStudio will automatically find this version when you open it once more.</p><p>When R moves to a major new version, for example from <code>3.6</code> to <code>3.7</code>, it creates a new folder for your packages for that version, which will not include the packages you installed previously. The code below will reinstall your packages for the new version. (The number in the file path should reflect the <em>old</em> version from which you are upgrading.)</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># update installed packages for new R version
+</code></pre><p>Notice the use of <code>semi_join</code> to filter the data for just the five counties with the largest kindergarten enrollment.</p><h3 id="close-rstudio"><a name="close-rstudio" href="#close-rstudio"></a>Close RStudio</h3><p>Before you exit RStudio, save and close you script, and close any data files you have open in <code>View</code>. If you don’t do this, they will be opened the next time your launch RStudio.</p><h3 id="keep-r-and-rstudio-up-to-date"><a name="keep-r-and-rstudio-up-to-date" href="#keep-r-and-rstudio-up-to-date"></a>Keep R and RStudio up to date</h3><p>From time to time, check <a href="https://www.r-project.org/">here</a> to see if you have the latest version of R. If you don’t, close RStudio and download the latest version of R and install. RStudio will automatically find this version when you open it once more.</p><p>When R moves to a major new version, for example from <code>3.6</code> to <code>3.7</code>, it creates a new folder for your packages for that version, which will not include the packages you installed previously. The code below will reinstall your packages for the new version. (The number in the file path should reflect the <em>old</em> version from which you are upgrading.)</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># update installed packages for new R version
 package_df &amp;lt;- as.data.frame(installed.packages(&quot;/Library/Frameworks/R.framework/Versions/3.6/Resources/library&quot;))
 
 package_list &amp;lt;- as.character(package_df$Package)
