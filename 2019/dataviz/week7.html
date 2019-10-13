@@ -246,7 +246,7 @@ longevity_2017 &amp;lt;- nations %&amp;gt;%
 longevity_2017 &lt;- nations %&gt;%
   filter(year == <span class="hljs-number">2017</span> &amp; !is.na(life_expect)) %&gt;%
   select(country, life_expect, income, region)
-</code></pre><p>In this code, we created a new object called <code>longevity_2017</code> from <code>nations</code> and then (<code>%&gt;%</code>) filtered it for just the data for 2017 and to include only non-null values. Then we selected just four variables from the 11 in the original data frame. There should be data returned for 198 countries.</p><p>Here are the first few records in the new object:</p><p><img src="img/class7_8.jpg" alt=""></p><h5 id="find-the-ten-high-income-countries-with-the-shortest-life-expectancy-in-2016"><a name="find-the-ten-high-income-countries-with-the-shortest-life-expectancy-in-2016" href="#find-the-ten-high-income-countries-with-the-shortest-life-expectancy-in-2016"></a>Find the ten high-income countries with the shortest life expectancy in 2016</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># find the ten high-income countries with the shortest life expectancy in 2017
+</code></pre><p>In this code, we created a new object called <code>longevity_2017</code> from <code>nations</code> and then (<code>%&gt;%</code>) filtered it for just the data for 2017 and to include only non-null values. Then we selected just four variables from the 11 in the original data frame. There should be data returned for 198 countries.</p><p>Here are the first few records in the new object:</p><p><img src="img/class7_8.jpg" alt=""></p><h5 id="find-the-ten-high-income-countries-with-the-shortest-life-expectancy-in-2017"><a name="find-the-ten-high-income-countries-with-the-shortest-life-expectancy-in-2017" href="#find-the-ten-high-income-countries-with-the-shortest-life-expectancy-in-2017"></a>Find the ten high-income countries with the shortest life expectancy in 2017</h5><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># find the ten high-income countries with the shortest life expectancy in 2017
 high_income_short_life &amp;lt;- longevity_2017 %&amp;gt;%
   filter(income == &quot;High income&quot;) %&amp;gt;%
   arrange(life_expect) %&amp;gt;%
@@ -446,7 +446,7 @@ immun_counties_year &lt;- immun %&gt;%
   summarize(enrolled = sum(enrollment, na.rm = <span class="hljs-literal">TRUE</span>),
             completed = sum(complete, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
   mutate(pc_incomplete = round(((enrolled-completed)/enrolled*<span class="hljs-number">100</span>),<span class="hljs-number">2</span>))
-</code></pre><p>Here are the first few rows of the data that should be returned:</p><p><img src="img/class7_17.jpg" alt=""></p><p>Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># identify five counties with the largest enrollment over all years
+</code></pre><p>Here are the first few rows of the data that should be returned:</p><p><img src="img/class7_17.jpg" alt=""></p><p>Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># identify the five counties with the largest enrollment over all years
 top5 &amp;lt;- immun %&amp;gt;%
   group_by(county) %&amp;gt;%
   summarize(enrolled = sum(enrollment, na.rm = TRUE)) %&amp;gt;%
@@ -454,9 +454,9 @@ top5 &amp;lt;- immun %&amp;gt;%
   head(5) %&amp;gt;%
   select(county)
 
-# proportion incomplete, top 5 counties by enrollment, by year
+# percentage incomplete, top 5 counties by enrollment, by year
 immun_top5_year &amp;lt;- semi_join(immun_counties_year, top5)
-</code></pre>"><span class="hljs-comment"># identify five counties with the largest enrollment over all years</span>
+</code></pre>"><span class="hljs-comment"># identify the five counties with the largest enrollment over all years</span>
 top5 &lt;- immun %&gt;%
   group_by(county) %&gt;%
   summarize(enrolled = sum(enrollment, na.rm = <span class="hljs-literal">TRUE</span>)) %&gt;%
@@ -464,7 +464,7 @@ top5 &lt;- immun %&gt;%
   head(<span class="hljs-number">5</span>) %&gt;%
   select(county)
 
-<span class="hljs-comment"># proportion incomplete, top 5 counties by enrollment, by year</span>
+<span class="hljs-comment"># percentage incomplete, top 5 counties by enrollment, by year</span>
 immun_top5_year &lt;- semi_join(immun_counties_year, top5)
 </code></pre><p>Notice the use of <code>semi_join</code> to filter the data for just the five counties with the largest kindergarten enrollment.</p><h3 id="close-rstudio"><a name="close-rstudio" href="#close-rstudio"></a>Close RStudio</h3><p>Before you exit RStudio, save and close you script, and close any data files you have open in <code>View</code>. If you don’t do this, they will be opened the next time your launch RStudio.</p><h3 id="keep-r-and-rstudio-up-to-date"><a name="keep-r-and-rstudio-up-to-date" href="#keep-r-and-rstudio-up-to-date"></a>Keep R and RStudio up to date</h3><p>From time to time, check <a href="https://www.r-project.org/">here</a> to see if you have the latest version of R. If you don’t, close RStudio and download the latest version of R and install. RStudio will automatically find this version when you open it once more.</p><p>When R moves to a major new version, for example from <code>3.6</code> to <code>3.7</code>, it creates a new folder for your packages for that version, which will not include the packages you installed previously. The code below will reinstall your packages for the new version. (The number in the file path should reflect the <em>old</em> version from which you are upgrading.)</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># update installed packages for new R version
 package_df &amp;lt;- as.data.frame(installed.packages(&quot;/Library/Frameworks/R.framework/Versions/3.6/Resources/library&quot;))

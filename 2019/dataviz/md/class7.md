@@ -364,7 +364,7 @@ Here are the first few records in the new object:
 
 ![](img/class7_8.jpg)
 
-##### Find the ten high-income countries with the shortest life expectancy in 2016
+##### Find the ten high-income countries with the shortest life expectancy in 2017
 
 ```r
 # find the ten high-income countries with the shortest life expectancy in 2017
@@ -657,7 +657,7 @@ Here are the first few rows of the data that should be returned:
 Now we can identify the five largest counties with the largest enrollment over the years, and use a join to filter the data by counties for just these five:
 
 ```r
-# identify five counties with the largest enrollment over all years
+# identify the five counties with the largest enrollment over all years
 top5 <- immun %>%
   group_by(county) %>%
   summarize(enrolled = sum(enrollment, na.rm = TRUE)) %>%
@@ -665,7 +665,7 @@ top5 <- immun %>%
   head(5) %>%
   select(county)
 
-# proportion incomplete, top 5 counties by enrollment, by year
+# percentage incomplete, top 5 counties by enrollment, by year
 immun_top5_year <- semi_join(immun_counties_year, top5)
 ```
 Notice the use of `semi_join` to filter the data for just the five counties with the largest kindergarten enrollment.

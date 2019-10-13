@@ -1,3 +1,6 @@
+# set working directory to the folder containing this script
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
 # load required packages
 library(ggplot2)
 library(readr)
@@ -30,22 +33,22 @@ disease_democ_chart <- ggplot(disease_democ, aes(x = infect_rate, y = democ_scor
 disease_democ_chart +
   geom_point()
 
+# themed scatterplot
+ggplot(disease_democ, aes(x = infect_rate, y = democ_score)) +
+  xlab("Infectious disease prevalence score") + 
+  ylab("Democratization score") +
+  theme_minimal(base_size = 14, base_family = "Georgia") +
+  geom_point()
+
 # add a trend line
 disease_democ_chart +
   geom_point() +
   geom_smooth()
 
-names(postscriptFonts())
-
-library(extrafont)
-font_import()
-loadfonts()
-
-
 # customize the two geom layers
 disease_democ_chart +
   geom_point(size = 3, alpha = 0.5) +
-  geom_smooth(method = lm, se=FALSE, color = "red")
+  geom_smooth(method = lm, se = FALSE, color = "red")
 
 # customize again, coloring the points by income group
 disease_democ_chart + 
@@ -67,23 +70,15 @@ disease_democ_chart +
   scale_x_continuous(limits=c(0,60)) +
   scale_y_continuous(limits=c(0,100)) +
   scale_color_brewer(palette = "Set1",
-                     name="Income group", 
-                     breaks=c("High income: OECD","High income: non-OECD","Upper middle income","Lower middle income","Low income"))
+                     name = "", 
+                     breaks = c("High income: OECD","High income: non-OECD","Upper middle income","Lower middle income","Low income")) +
+  theme(legend.position = "top") +
+  guides(col = guide_legend(nrow = 3,
+                            title.position = NULL))
 
-# save final disease and democracy chart
-final_disease_democ_chart <- disease_democ_chart +
-  geom_point(size = 3, alpha = 0.5, aes(color = income_group)) +
-  geom_smooth(method = lm, se = FALSE, color = "black", linetype = "dotdash", size = 0.3) +
-  scale_x_continuous(limits=c(0,60)) +
-  scale_y_continuous(limits=c(0,100)) +
-  scale_color_brewer(palette = "Set1",
-                     name="Income group", 
-                     breaks=c("High income: OECD","High income: non-OECD","Upper middle income","Lower middle income","Low income"))  
-  
+
 # load data
 food_stamps <- read_csv("food_stamps.csv")
-
-write.csv(food_stamps,"food_stamps.csv",na="",row.names = F)
 
 # save basic chart template
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) +
@@ -108,8 +103,9 @@ food_stamps_chart +
 
 # Make a column chart
 food_stamps_chart +
-  geom_bar(stat = "identity", color = "white") +
-  ggtitle("Column chart") 
+  geom_col(color = "white") +
+  ggtitle("Column chart")
+
 
 # set color and fill
 food_stamps_chart +
@@ -128,6 +124,11 @@ food_stamps_chart +
   ggtitle("Bar chart") + 
   coord_flip()
 
+# fill the bars according to values for the cost of the program
+food_stamps_chart +
+  geom_bar(stat = "identity", 
+           color= "white", 
+           aes(fill = costs))
 
 # fill the columns according to values for the cost of the program
 food_stamps_chart +
@@ -153,7 +154,9 @@ food_stamps_chart +
   scale_fill_distiller(name = "Cost\n($ billion)", 
                        palette = "Reds", 
                        direction = 1) +
-  theme(legend.position=c(0.15,0.8))
+  theme(legend.position=c(0.15,0.8)) 
+
+
 
 # load required package
 library(scales)
@@ -165,15 +168,11 @@ immun <- read_csv("kindergarten.csv")
 # write.csv(immun, "kindergarten.csv", na="", row.names=F)
 
 
-# create new column with numbers of children with incomplete immunizations
-immun <- immun %>%
-  mutate(incomplete = enrollment - complete)
-  
 # percentage incomplete, entire state, by year
 immun_year <- immun %>%
   group_by(start_year) %>%
-  summarize(enrolled = sum(enrollment, na.rm=TRUE),
-            completed = sum(complete, na.rm=TRUE)) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE),
+            completed = sum(complete, na.rm = TRUE)) %>%
   mutate(pc_incomplete = round(((enrolled-completed)/enrolled*100),2))
 
 # percentage incomplete, by county, by year
@@ -186,14 +185,31 @@ immun_counties_year <- immun %>%
 # identify the five counties with the largest enrollment over all years
 top5 <- immun %>%
   group_by(county) %>%
-  summarize(enrollment = sum(enrollment, na.rm = TRUE)) %>%
-  arrange(desc(enrollment)) %>%
+  summarize(enrolled = sum(enrollment, na.rm = TRUE)) %>%
+  arrange(desc(enrolled)) %>%
   head(5) %>%
   select(county)
 
-# pc incomplete, top 5 counties for enrollment, by year
+# percentage incomplete, top 5 counties by enrollment, by year
 immun_top5_year <- semi_join(immun_counties_year, top5)
 
+# heat map, all counties, by year
+ggplot(immun_counties_year, aes(x = start_year, y = county)) +
+  geom_tile(aes(fill = pc_incomplete), color = "white") +
+  scale_fill_gradient(low = "white",
+                      high = "red",
+                      name = "% incomplete",
+                      na.value = "#CCCCCC",
+                      guide = guide_colorbar(title.position = "top")) +
+  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
+  theme_minimal(base_size = 12, base_family = "Georgia") +
+  xlab("") +
+  ylab("") +
+  theme(panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        legend.position = "bottom",
+        legend.key.height = unit(0.4, "cm")) +
+  ggtitle("Immunization in California kindergartens, by county")
 
 # dot and line chart, top5 counties, by year
 ggplot(immun_top5_year, aes(x = start_year, y = pc_incomplete, color = county)) + 
@@ -208,30 +224,14 @@ ggplot(immun_top5_year, aes(x = start_year, y = pc_incomplete, color = county)) 
   theme(legend.position = "bottom") +
   ggtitle("Immunization in California kindergartens\n(five largest counties)")
 
-# heat map, all counties, by year
-ggplot(immun_counties_year, aes(x = start_year, y = county)) +
-  geom_tile(aes(fill = pc_incomplete), colour = "white") +
-  scale_fill_gradient(low = "white",
-                      high = "red",
-                      name="") +
-  scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
-  theme_minimal(base_size = 12, base_family = "Georgia") +
-  xlab("") +
-  ylab("County") +
-  theme(panel.grid.major = element_blank(),
-        panel.grid.minor = element_blank(),
-        legend.position="bottom",
-        legend.key.height = unit(0.4, "cm")) +
-  ggtitle("Immunization in California kindergartens, by county")
-
 # bar chart by year, entire state
-ggplot(immun_year, aes(x=start_year, y=pc_incomplete)) +
-  geom_bar(stat="identity", fill="red", alpha=0.7) +
+ggplot(immun_year, aes(x= start_year, y = pc_incomplete)) +
+  geom_col(fill = "red", alpha = 0.7) +
   theme_minimal(base_size = 14, base_family = "Georgia") +
   scale_x_continuous(breaks = c(2002,2004,2006,2008,2010,2012,2014)) +
   xlab("") +
   ylab("% incomplete") +
-  ggtitle("Immunization in California kindergartens",subtitle="Percent of children without complete shots, entire state") +
+  ggtitle("Immunization in California kindergartens") +
   theme(panel.grid.major.x = element_blank(),
       panel.grid.minor.x = element_blank())
 
@@ -239,30 +239,27 @@ ggplot(immun_year, aes(x=start_year, y=pc_incomplete)) +
 # load data
 nations <- read_csv("nations.csv")
 
-# filter for 2015 data only
-nations2016 <- nations %>%
-  filter(year == 2016)
+# filter for 2017 data only
+nations2017 <- nations %>%
+  filter(year == 2017) %>%
+  arrange(desc(population))
 
 # make bubble chart
-ggplot(nations2016, aes(x = gdp_percap, y = life_expect)) +
+ggplot(nations2017, aes(x = gdp_percap, y = life_expect)) +
   xlab("GDP per capita") +
   ylab("Life expectancy at birth") +
   theme_minimal(base_size = 12, base_family = "Georgia") +
   geom_point(aes(size = population, color = region), alpha = 0.7) +
   scale_size_area(guide = FALSE, max_size = 15) +
   scale_x_continuous(labels = dollar) +
-  stat_smooth(formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype="dotted") +
+  stat_smooth(formula = y ~ log10(x), se = FALSE, size = 0.5, color = "black", linetype = "dotted") +
   scale_color_brewer(name = "", palette = "Set2") +
-  theme(legend.position=c(0.8,0.4))
-
-
-
-
+  theme(legend.position = c(0.8,0.4))
 
 # assignment
 
 nations <- nations %>%
-  mutate(gdp_tn = gdp_percap*population/1000000000000)
+  mutate(gdp_tn = gdp_percap*population/10^12)
 
 # chart1
 top_nations <- nations %>%
@@ -287,8 +284,9 @@ ggplot(regions, aes(x=year,y=gdp_tn,fill=region)) +
   xlab("") +
   ylab("GDP ($ trillion)") +
   geom_area(color="white") +
-  scale_fill_brewer(palette = "Set2", name="")
+  scale_fill_brewer(palette = "Set2", name="") +
+  
 
-install.packages("esquisse")
+
 
 
