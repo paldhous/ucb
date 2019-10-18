@@ -198,12 +198,6 @@ disease_democ_chart +
   scale_color_brewer(palette = &quot;Set1&quot;,
                      name = &quot;Income group&quot;, 
                      breaks = c(&quot;High income: OECD&quot;,&quot;High income: non-OECD&quot;,&quot;Upper middle income&quot;,&quot;Lower middle income&quot;,&quot;Low income&quot;))
-
-
-                     +
-  theme(legend.position = &quot;top&quot;) +
-  guides(col = guide_legend(nrow = 3,
-                            title.position = &quot;top&quot;))
 </code></pre>"><span class="hljs-comment"># set the axis ranges, change color palette</span>
 disease_democ_chart +
   geom_point(size = <span class="hljs-number">3</span>, alpha = <span class="hljs-number">0.5</span>, aes(color = income_group)) +
@@ -213,12 +207,6 @@ disease_democ_chart +
   scale_color_brewer(palette = <span class="hljs-string">"Set1"</span>,
                      name = <span class="hljs-string">"Income group"</span>, 
                      breaks = c(<span class="hljs-string">"High income: OECD"</span>,<span class="hljs-string">"High income: non-OECD"</span>,<span class="hljs-string">"Upper middle income"</span>,<span class="hljs-string">"Lower middle income"</span>,<span class="hljs-string">"Low income"</span>))
-
-
-                     +
-  theme(legend.position = <span class="hljs-string">"top"</span>) +
-  guides(col = guide_legend(nrow = <span class="hljs-number">3</span>,
-                            title.position = <span class="hljs-string">"top"</span>))
 </code></pre><p><img src="img/class8_9.png" alt=""></p><p>Notice how the first two <code>scale</code> functions are used to set the ranges for the axis, which are entered together, using the <code>c</code> function we saw last week.</p><p>We also applied a <a href="http://colorbrewer2.org">ColorBrewer</a> qualitative palette using the <code>scale_color_brewer</code> function, and naming the desired <code>palette</code>. You can add the text you want to appear as a legend title using <code>name</code> (here, and specify the order in which the legend items appear using <code>breaks</code>).</p><p>(I separated the code inside the perantheses of the <code>scale_color_brewer</code> function into three lines to make it easier to read.)</p><p>Finally, we moved the legend to the top and arranged the items in three rows.</p><h4 id="change-position-of-the-legend"><a name="change-position-of-the-legend" href="#change-position-of-the-legend"></a>Change position of the legend</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># set the axis ranges, change color palette
 disease_democ_chart +
   geom_point(size = 3, alpha = 0.5, aes(color = income_group)) +
@@ -294,70 +282,66 @@ food_stamps_chart +
 </code></pre><p><img src="img/class8_15.png" alt=""></p><h4 id="the-difference-between-color-and-fill"><a name="the-difference-between-color-and-fill" href="#the-difference-between-color-and-fill"></a>The difference between color and fill</h4><p>In the code above, you may be confused that the    <code>color</code> is set to white, yet the bars are black.</p><p>For some <code>geoms</code>, notably <code>geom_col</code>, you can set color for their outline as well as the interior of the shape.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;>
 # set color and fill
 food_stamps_chart +
-  geom_bar(stat = &quot;identity&quot;, 
-           color = &quot;#888888&quot;, 
+  geom_col(color = &quot;#888888&quot;, 
            fill = &quot;#CCCCCC&quot;, 
            alpha = 0.5) +
   ggtitle(&quot;Column chart&quot;)
 </code></pre>">
 <span class="hljs-comment"># set color and fill</span>
 food_stamps_chart +
-  geom_bar(stat = <span class="hljs-string">"identity"</span>, 
-           color = <span class="hljs-string">"#888888"</span>, 
+  geom_col(color = <span class="hljs-string">"#888888"</span>, 
            fill = <span class="hljs-string">"#CCCCCC"</span>, 
            alpha = <span class="hljs-number">0.5</span>) +
   ggtitle(<span class="hljs-string">"Column chart"</span>)
 </code></pre><p>When setting colors, <code>color</code> refers to the outline, <code>fill</code> to the interior of the shape.</p><p><img src="img/class8_16.png" alt=""></p><h4 id="make-a-bar-chart"><a name="make-a-bar-chart" href="#make-a-bar-chart"></a>Make a bar chart</h4><p>You can make a bar chart using the same code for a column chart, and then using <code>coord_flip</code> to switch the X and Y axes.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># Make a bar chart
 food_stamps_chart +
-  geom_bar(stat = &quot;identity&quot;, 
-           color = &quot;#888888&quot;, 
+  geom_col(color = &quot;#888888&quot;, 
            fill = &quot;#CCCCCC&quot;, 
            alpha = 0.5) +
   ggtitle(&quot;Bar chart&quot;) + 
   coord_flip()
 </code></pre>"><span class="hljs-comment"># Make a bar chart</span>
 food_stamps_chart +
-  geom_bar(stat = <span class="hljs-string">"identity"</span>, 
-           color = <span class="hljs-string">"#888888"</span>, 
+  geom_col(color = <span class="hljs-string">"#888888"</span>, 
            fill = <span class="hljs-string">"#CCCCCC"</span>, 
            alpha = <span class="hljs-number">0.5</span>) +
   ggtitle(<span class="hljs-string">"Bar chart"</span>) + 
   coord_flip()
 </code></pre><p><img src="img/class8_17.png" alt=""></p><h4 id="map-color-to-the-values-of-a-continuous-variable"><a name="map-color-to-the-values-of-a-continuous-variable" href="#map-color-to-the-values-of-a-continuous-variable"></a>Map color to the values of a continuous variable</h4><p>You can also map color gradients onto values for a continous variable. We will now color the bars according to the cost of the program, in billions of dollars.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># fill the bars according to values for the cost of the program
 food_stamps_chart +
-  geom_bar(stat = &quot;identity&quot;, 
-           color= &quot;white&quot;, 
+  geom_col(color= &quot;white&quot;, 
            aes(fill = costs))
 </code></pre>"><span class="hljs-comment"># fill the bars according to values for the cost of the program</span>
 food_stamps_chart +
-  geom_bar(stat = <span class="hljs-string">"identity"</span>, 
-           color= <span class="hljs-string">"white"</span>, 
+  geom_col(color= <span class="hljs-string">"white"</span>, 
            aes(fill = costs))
 </code></pre><p><img src="img/class8_18.png" alt=""></p><p>This code uses an <code>aes</code> mapping to color the bars according values for the costs of the program, in billions of dollars. <strong>ggplot2</strong> recognizes that <code>costs</code> is a continuous variable, but its default sequential scheme applies more intense blues to lower values, which is counterintuitive.</p><p>So let’s use a ColorBrewer sequential color palette, and fix that.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># use a colorbrewer sequential palette
 food_stamps_chart +
-  geom_bar(stat = &quot;identity&quot;, 
-           color = &quot;#888888&quot;, 
+  geom_col(color = &quot;#888888&quot;, 
            aes(fill = costs)) +
   scale_fill_distiller(name = &quot;Cost\n($ billion)&quot;,
                        palette = &quot;Reds&quot;,
                        direction = 1)
 </code></pre>"><span class="hljs-comment"># use a colorbrewer sequential palette</span>
 food_stamps_chart +
-  geom_bar(stat = <span class="hljs-string">"identity"</span>, 
-           color = <span class="hljs-string">"#888888"</span>, 
+  geom_col(color = <span class="hljs-string">"#888888"</span>, 
            aes(fill = costs)) +
   scale_fill_distiller(name = <span class="hljs-string">"Cost\n($ billion)"</span>,
                        palette = <span class="hljs-string">"Reds"</span>,
                        direction = <span class="hljs-number">1</span>)
 </code></pre><p><img src="img/class8_19.png" alt=""></p><p><code>scale_fill_distiller</code> (and <code>scale_color_distiller</code>) work like <code>scale_color_brewer</code>, but set color gradients for ColorBrewer’s sequential and diverging color palettes; <code>direction = 1</code> ensures that larger numbers are mapped to more intense colors (<code>direction = -1</code> reverses the color mapping).</p><p>Notice also the <code>\n</code> in the title for the legend. This introduces a new line.</p><h4 id="change-the-position-of-the-legend"><a name="change-the-position-of-the-legend" href="#change-the-position-of-the-legend"></a>Change the position of the legend</h4><p>This code uses the <code>theme</code> function to move the legend from its default position to the right of the chart to use some empty space on the chart itself.</p><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># change position of legend
 food_stamps_chart +
-  geom_bar(stat=&quot;identity&quot;, color = &quot;#888888&quot;, aes(fill=costs)) +
-  scale_fill_distiller(name = &quot;Cost\n($ billion)&quot;, palette = &quot;Reds&quot;, direction = 1) +
+  geom_col(color = &quot;#888888&quot;, aes(fill=costs)) +
+  scale_fill_distiller(name = &quot;Cost\n($ billion)&quot;,
+                         palette = &quot;Reds&quot;, 
+                       direction = 1) +
   theme(legend.position = c(0.15,0.8))
 </code></pre>"><span class="hljs-comment"># change position of legend</span>
 food_stamps_chart +
-  geom_bar(stat=<span class="hljs-string">"identity"</span>, color = <span class="hljs-string">"#888888"</span>, aes(fill=costs)) +
-  scale_fill_distiller(name = <span class="hljs-string">"Cost\n($ billion)"</span>, palette = <span class="hljs-string">"Reds"</span>, direction = <span class="hljs-number">1</span>) +
+  geom_col(color = <span class="hljs-string">"#888888"</span>, aes(fill=costs)) +
+  scale_fill_distiller(name = <span class="hljs-string">"Cost\n($ billion)"</span>,
+                         palette = <span class="hljs-string">"Reds"</span>, 
+                       direction = <span class="hljs-number">1</span>) +
   theme(legend.position = c(<span class="hljs-number">0.15</span>,<span class="hljs-number">0.8</span>))
 </code></pre><p><img src="img/class8_20.png" alt=""></p><p>The coordinates for the legend are given as a list: The first number sets the horizontal position, from left to right, on a scale from 0 to 1; the second number sets the vertical position, from bottom to top, again on a scale from 0 to 1.</p><h3 id="other-useful-packages-to-use-with-ggplot2"><a name="other-useful-packages-to-use-with-ggplot2" href="#other-useful-packages-to-use-with-ggplot2"></a>Other useful packages to use with ggplot2</h3><p>The <a href="https://www.ggplot2-exts.org/">ggplot2 extensions</a> page documents a series of packges that extend the capabilities of ggplot2. See the <a href="https://www.ggplot2-exts.org/gallery/">gallery</a>.</p><p>The <strong><a href="https://cran.r-project.org/web/packages/scales/scales.pdf">scales</a></strong> package allows you to format axes to display as currency, as percentages, or so that large numbers use commas as thousands separators.</p><h3 id="putting-it-all-together"><a name="putting-it-all-together" href="#putting-it-all-together"></a>Putting it all together</h3><p>Here are some examples of using <strong>dplyr</strong>, <strong>ggplot2</strong>, and <strong>scales</strong> to process data and make charts.</p><h4 id="load-california-immunization-and-immunization-data"><a name="load-california-immunization-and-immunization-data" href="#load-california-immunization-and-immunization-data"></a>Load California immunization and immunization data</h4><pre class="r hljs"><code class="r" data-origin="<pre><code class=&quot;r&quot;># load required package
 library(scales)

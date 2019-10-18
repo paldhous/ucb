@@ -235,12 +235,6 @@ disease_democ_chart +
   scale_color_brewer(palette = "Set1",
                      name = "Income group", 
                      breaks = c("High income: OECD","High income: non-OECD","Upper middle income","Lower middle income","Low income"))
-                     
-                     
-                     +
-  theme(legend.position = "top") +
-  guides(col = guide_legend(nrow = 3,
-                            title.position = "top"))
 ```
 
 ![](./img/class8_9.png)
@@ -357,8 +351,7 @@ For some `geoms`, notably `geom_col`, you can set color for their outline as wel
 
 # set color and fill
 food_stamps_chart +
-  geom_bar(stat = "identity", 
-           color = "#888888", 
+  geom_col(color = "#888888", 
            fill = "#CCCCCC", 
            alpha = 0.5) +
   ggtitle("Column chart")
@@ -374,8 +367,7 @@ You can make a bar chart using the same code for a column chart, and then using 
  ```r
 # Make a bar chart
 food_stamps_chart +
-  geom_bar(stat = "identity", 
-           color = "#888888", 
+  geom_col(color = "#888888", 
            fill = "#CCCCCC", 
            alpha = 0.5) +
   ggtitle("Bar chart") + 
@@ -391,8 +383,7 @@ You can also map color gradients onto values for a continous variable. We will n
 ```r
 # fill the bars according to values for the cost of the program
 food_stamps_chart +
-  geom_bar(stat = "identity", 
-           color= "white", 
+  geom_col(color= "white", 
            aes(fill = costs))
 ```
 
@@ -405,8 +396,7 @@ So let's use a ColorBrewer sequential color palette, and fix that.
 ```r
 # use a colorbrewer sequential palette
 food_stamps_chart +
-  geom_bar(stat = "identity", 
-           color = "#888888", 
+  geom_col(color = "#888888", 
            aes(fill = costs)) +
   scale_fill_distiller(name = "Cost\n($ billion)",
                        palette = "Reds",
@@ -426,8 +416,10 @@ This code uses the `theme` function to move the legend from its default position
 ```r
 # change position of legend
 food_stamps_chart +
-  geom_bar(stat="identity", color = "#888888", aes(fill=costs)) +
-  scale_fill_distiller(name = "Cost\n($ billion)", palette = "Reds", direction = 1) +
+  geom_col(color = "#888888", aes(fill=costs)) +
+  scale_fill_distiller(name = "Cost\n($ billion)",
+  					   palette = "Reds", 
+                       direction = 1) +
   theme(legend.position = c(0.15,0.8))
 ```
 

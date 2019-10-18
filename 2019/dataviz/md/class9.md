@@ -8,8 +8,8 @@ Maps can also be used to visualize data, which will be our main focus in the com
 
 Download the data for this session from [here](data/week9.zip), unzip the folder and place it on your desktop. It contains the following files:
 
-- `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
 - `refine_geocoder.json` JSON file to geocode using Open Refine.
+- `sf_test_addresses.tsv` Text file with list of 100 addresses in San Francisco, for geocoding exercise.
 - `sf_test_addresses_short.tsv` The first 10 addresses from the previous file.
 
 The first two files can also be downloaded from [this Github respository](https://github.com/paldhous/refine-geocoder).
