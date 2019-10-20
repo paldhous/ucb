@@ -91,7 +91,7 @@ Click on the title links to download the data. Please [contact me](mailto:p.aldh
 
 #### [Download Week 10](./data/week10.zip)
 
-- `seismic` Shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+- `seismic` Shapefile with data on the risk of a damaging earthquake in 2018 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
 - `seismic_raw` As above, but not clipped to the coast and borders of the United States.
 - `gdp_pc`
  - `gpd_pc.csv` `gdp_pc.csvt` CSV file with [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on GDP per capita for the world's nations in 2016, plus ancillary file for QGIS to understand the data types for each field.
@@ -102,7 +102,12 @@ use the U.S. Geological Survey's [Earthquakes Archives](https://earthquake.usgs.
 ```Javascript
 https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&format=csv&orderby=time
 ```
-A file called `query.csv` should download. Rename it `quakes.csv` and add to the `week10` folder.
+- `ridgecrest_quakes.csv` Earthquakes larger than magnitude 2.5 in a bounding box including Ridgecrest, California, from June 20 to July 6, 2019.
+- ```Javascript
+https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2019-06-2T20:00:00&endtime=2019-07-06T23:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=2.5&orderby=time
+```
+In both cases, a file called `query.csv` should download. Rename them and add to the `week10` folder. Type this url into the address bar of your browser:
+
 
 #### [Download Week 11](./data/week11.zip)
 

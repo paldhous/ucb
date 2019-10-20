@@ -4,28 +4,25 @@
 
 [**GQIS**](https://qgis.org/en/site/) is the leading free, open source Geographic Information Systems (GIS) application. It is capable of sophisticated geodata processing and analysis, and also can be used to design publication-quality data-driven maps.
 
-The possibilities are almost endless, but you don't need to be a GIS expert to put it to effective use for both displaying and processing geographic data, whether for online or print maps.
-
 Launch QGIS, and you should see a screen like this:
 
 ![](./img/class10_1.jpg)
 
-(Ignore the suggestion to download a new QGIS version: It currently has a bug on MacOS, which is why we are using version 3.0.)
 
 If your screen looks different, select `View>Panels` from the top menu and check the options as follows:
 
-![](./img/class10_1b.jpg)
+![](./img/class10_2.jpg)
 
 Then select `View>Toolbars` and check the options as follows:
 
-![](./img/class10_1c.jpg)
+![](./img/class10_3.jpg)
 
 
 ### The data we will use today
 
 Download the data from this session from [here](data/week10.zip), unzip the folder and place it on your desktop. It contains the following folders and files:
 
-- `seismic` Shapefile with data on the risk of a damaging earthquake in 2017 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
+- `seismic` Shapefile with data on the risk of a damaging earthquake in 2018 for the continental United States, from the [U.S. Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
 - `seismic_raw` As above, but not clipped to the coast and borders of the United States.
 - `gdp_pc`
  - `gpd_pc.csv` `gdp_pc.csvt` CSV file with [World Bank data](http://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) on GDP per capita for the world's nations in 2016, plus ancillary file for QGIS to understand the data types for each field.
@@ -36,7 +33,12 @@ use the U.S. Geological Survey's [Earthquakes Archives](https://earthquake.usgs.
 ```Javascript
 https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&minmagnitude=6&format=csv&orderby=time
 ```
-A file called `query.csv` should download. Rename it `quakes.csv` and add to the `week10` folder.
+- `ridgecrest_quakes.csv` Earthquakes larger than magnitude 2.5 in a bounding box including Ridgecrest, California, from June 20 to July 6, 2019.
+- ```Javascript
+https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2019-06-2T20:00:00&endtime=2019-07-06T23:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=2.5&orderby=time
+```
+In both cases, a file called `query.csv` should download. Rename them and add to the `week10` folder. Type this url into the address bar of your browser:
+
 
 ### Map seismic risk and earthquakes
 
@@ -48,25 +50,25 @@ We will first import the shapefile in the `seismic` folder.
 
 Select `Layer>Add Layer>Add Vector Layer...` or click on this icon:
 
-![](./img/class10_2.jpg)
+![](./img/class10_4.jpg)
 
 At the dialog box, click the button with the three dots under `Source` and navigate to the file `seismic`. It is important that you select the file with the `.shp` extension. Then click `Add` and `Close` and the following map should appear, filled with a random color:
 
-![](./img/class10_3.jpg)
+![](./img/class10_5.jpg)
 
 The `Layers` panel on the left should now show the `seismic` layer. You can turn off the visibility of any layer by unchecking its box in the `Layers` panel. This can be useful to see the status of layers that would otherwise be obscured.
 
 These controls allow you to pan and zoom the display:
 
-![](./img/class10_4.jpg)
+![](./img/class10_6.jpg)
 
 You can focus the display on the full extent of any layer by right-clicking it in the `Layers` panel and selecting `Zoom to layer`.
 
 Notice `EPSG:4326` at the bottom right. This defines the map projection and datum for the layer.
 
-Right-click on `seismic` in the `Layers` panel at left and select `Properties>Source`. You should see the following under `Coordinate reference system`:
+Right-click on `seismic` in the `Layers` panel at left and select `Properties>Source`. You should see the following under `Geometry and Coordinate Reference System`:
 
-![](./img/class10_5.jpg)
+![](./img/class10_7.jpg)
 
 `EPSG:4326` and `WGS84` mean that this shapefile is in an [equirectangular projection](http://en.wikipedia.org/wiki/Equirectangular_projection), and the [WGS84](https://en.wikipedia.org/wiki/World_Geodetic_System) datum. This is also the default for QGIS if no projection is specified.
 
@@ -74,9 +76,9 @@ We will select another projection for our map later. Click `Cancel` or `OK` to c
 
 Now we need to color the areas for the `sesimic` layer by values in the data. Right-click on the layer in the `Layers` panel and select `Open Attribute Table`, which corresponds to the `.dbf` of the shapefile:
 
-![](./img/class10_6.jpg)
+![](./img/class10_8.jpg)
 
-There is one variable, `ValueRange`, which gives ranges for the percentage chance of experiencing a damaging quake in 2017.
+There is one variable, `ValueRange`, which gives ranges for the percentage chance of experiencing a damaging quake in 2018.
 
 Close the attribute table and open `Properties>Symbology` for the `seismic` layer. Select `Categorized` from the dropdown menu at top, which is the option to color data according to values of a categorical variable, and then select `ValueRange` under `Column`.
 
@@ -84,83 +86,83 @@ Close the attribute table and open `Properties>Symbology` for the `seismic` laye
 
 Click the `Classify` button and the values in the data will be assigned random colors:
 
-![](./img/class10_7.jpg)
-
-Notice that the range `10-12` is out of order, and we also have a blank range at the bottom. First select this blank and click the red minus symbol to remove it. Now click and drag the range `10-12` to the correct position.
-
-![](./img/class10_8.jpg)
-
-Now click on the `Color ramp` dropdown menu, select `Create New Color Ramp, and at the next dialog box select `Catalog: ColorBrewer`:
-
 ![](./img/class10_9.jpg)
 
-Select the ColorBrewer `Reds` palette, click `OK`, and the map should look like this:
+Notice that the range `10 - 14` is out of order, and we also have a blank range at the bottom. First select this blank and click the red minus symbol to remove it. Now click and drag the range `10 - 14` to the correct position.
 
 ![](./img/class10_10.jpg)
 
-Next we'll remove the black outlines around the polygons. Open `Properties>Symbology` again, and click on the colored square under `Symbol`. Select `Simple fill` in the dialog box, and change `Stroke style` to `No Pen`:
+Now click on the `Color ramp` dropdown menu, select `Create New Color Ramp`, and at the next dialog box select `Catalog: ColorBrewer`:
+
+![](./img/class10_11.jpg)
+
+Select the ColorBrewer `Reds` palette, click `OK`, and the map should look like this:
 
 ![](./img/class10_12.jpg)
 
-Click on `OK` at each of the dialog boxes and the map should now look like this:
+Next we'll remove the black outlines around the polygons. Open `Properties>Symbology` again, and click on the colored square under `Symbol`. Select `Simple fill` in the dialog box, and change `Stroke style` to `No Pen`:
 
 ![](./img/class10_13.jpg)
+
+Click on `OK` at each of the dialog boxes and the map should now look like this:
+
+![](./img/class10_14.jpg)
 
 It is also possible to edit the colors for each value individually.
 
 If you are likely to want to style data with the same column headings in the same way in future, click the `Style` button in `Properties>Symbology` and select `Save Style>QGIS Layer Style File...`. This saves the style in `QML`, which is a variant of [XML](https://www.w3.org/XML/). When loaded using the `Style>Load Style`, it will automatically apply the saved styling to future maps.
 
-Now is a good time to give the project a projection: We will use a variant of the [Albers Equal Area Conic projection](http://en.wikipedia.org/wiki/Albers_projection), optimized for maps of North America.
+Now is a good time to give the map a projection: We will use a variant of the [Albers Equal Area Conic projection](http://en.wikipedia.org/wiki/Albers_projection), optimized for maps of North America.
 
-Select `Project>Project Properties>CRS` (for Coordinate Reference System) from the top menu, type `Albers `into the `Filter` box and select `North_America_Albers_Equal_Area_Conic`, which has the code `EPSG:102008`:
-
-![](./img/class10_14.jpg)
-
-Click `OK` and the map should reproject. Notice how `EPSG:102008` now appears at bottom right. Right-click on the layer and `Zoom to Layer` so that the view is optimized for this projection:
+Select `Project>Properties>CRS` (for Coordinate Reference System) from the top menu, type `Albers `into the `Filter` box and select `North_America_Albers_Equal_Area_Conic`, which has the code `EPSG:102008`:
 
 ![](./img/class10_15.jpg)
 
-Save the project, by selecting `Project>Save` from the top menu.
-
-#### Add a base layer showing countries
-
-Add the `ne_50m_admin_0_countries_lakes` layer, as before. It will appear above our choropleth map:
+Click `OK` and the map should reproject. Notice how `EPSG:102008` now appears at bottom right. Right-click on the layer and `Zoom to Layer` so that the view is optimized for this projection:
 
 ![](./img/class10_16.jpg)
 
-So click and drag the `ne_50m_admin_0_countries_lakes` layer below the `seismic` layer in the `Layers Panel`.
+Save the project, by selecting `Project>Save` from the top menu.
+
+#### Add a base layer showing land and countries
+
+Add the `ne_50m_admin_0_countries_lakes` layer, as before. It will appear above our choropleth map:
 
 ![](./img/class10_17.jpg)
 
-Now open up `Properties>Symbology` for the `ne_50m_admin_0_countries_lakes` layer, select `Simple fill`, and click on the `Fill` color to change it to `#cccccc` for a light gray. Also change the `Outline` to `#ffffff` for white:
+So click and drag the `ne_50m_admin_0_countries_lakes` layer below the `seismic` layer in the `Layers Panel`.
 
 ![](./img/class10_18.jpg)
 
-Click `OK` and the map should look like this:
+Now open up `Properties>Symbology` for the `ne_50m_admin_0_countries_lakes` layer, select `Simple fill`, and click on the `Fill` color to change it to `#cccccc` for a light gray. Also change the `Outline` to `#ffffff` for white:
 
 ![](./img/class10_19.jpg)
 
-Now select `Project>Project Properties...>General`, click on the `Background color` and set it to `#686868` for a dark gray:
+Click `OK` and the map should look like this:
 
 ![](./img/class10_20.jpg)
 
-The map should now look like this:
+Now select `Project>Project Properties...>General`, click on the `Background color` and set it to `#f5f5f5` for a lighter gray:
 
 ![](./img/class10_21.jpg)
+
+The map should now look like this:
+
+![](./img/class10_22.jpg)
 
 #### Add the earthquakes layer
 
 To import a CSV or other delimited text file with points described by latitude and longitude coordinates, select `Layer>AddLayer>Add Delimited Text Layer` from the top menu or click this icon:
 
-![](./img/class10_22.jpg)
+![](./img/class10_23.jpg)
 
 Navigate to the file `quakes.csv`, and ensure that the dialog box is filled in like this:
 
-![](./img/class10_23.jpg)
+![](./img/class10_24.jpg)
 
 If your text file is not a CSV you may have to select the correct delimiter, and if your latitude and longitude fields have other names, you may have to select the `X field` (longitude) and `Y field` (latitude) manually.
 
-==**Important:**== Do not change the CRS, or projection to the same Albers projection we have set for the project, but this will cause an error. QGIS will handle the conversion to that projection: Because the data in the CSV file is not yet projected, so stick with the default equirectangular projection `WGS 84 EPSG:4326` at this dialog box.
+==**Important:**== Do not change the CRS, or projection to the same Albers projection we have set for the project. QGIS will handle the conversion to that projection. Because the data in the CSV file is not yet projected, stick with the default equirectangular projection `WGS 84 EPSG:4326` at this dialog box.
 
 Click `Add` and a large number of points will be added to the map:
 
@@ -182,7 +184,7 @@ Fill in the dialog box as follows:
 
 The formula  is: `amplitude = 10^mag/100000`. The final division by 100,000 helps keep the values in a range that is easy to read and understand, which will help when we set the size of the points. The `Output preview` at the bottom shows the resulting value for the first row in the attribute table. Click `OK` to create the new `amplitude` variable.
 
-Select `Properties>Symbology` for the `quakes` layer, set the `Color` to `#ffffff` for white and the `transparency` to `50%`:
+Select `Properties>Symbology` for the `quakes` layer, set the `Color` to `#ffffff` for white and the `Opacity` to `50%`:
 
 ![](./img/class10_29.jpg)
 
@@ -198,50 +200,79 @@ Using the `Scale method` of `Surface` will scale the circles by area, according 
 
 By default, QGIS will select the range of values in the data, when you hit the refresh icon:
 
-![](./img/class10_31b.jpg)
+![](./img/class10_32.jpg)
 
 Make sure to set both `Size from` and `Values from` to zero to ensure that the area of the points scales accurately according to values in the data.
 
 Click `OK` until you return to the map, which should now look like this:
 
-![](./img/class10_32.jpg)
+![](./img/class10_33.jpg)
 
 #### Export the finished map in raster image or vector graphic formats
 
-To export the map as a JPG, PNG, or other raster image format, select `Project>Save Map as Image...` from the top menu.
+To export the map as a JPG, PNG, or other raster image format, select `Project>Import/Export>Exoert Map To Image...` from the top menu.
 
-Exporting using `Project>Save Map as PDF` will give a vector graphic that can be further edited in [Adobe Illustrator](http://www.adobe.com/products/illustrator.html) or another vector graphic editing program.
+Exporting using `Project>Import/Export>Expert Map To PDF...` will give a vector graphic that can be further edited in [Adobe Illustrator](http://www.adobe.com/products/illustrator.html) or another vector graphic editing program.
 
-To export as a vector graphic with other features, select `Project>New Print Laout`, give the composer an appropriate name and click `OK`. Set `Page size` as required, then click the `Add new map` icon:
+To export as a vector graphic with other features, select `Project>New Print Layout`, give the composer an appropriate name and click `OK`. Set `Page size` as required, then click the `Add new map` icon:
 
-![](./img/class10_33.jpg)
-
+![](./img/class10_34.jpg)
 
 Draw a rectangle over the page area, and the map should appear. At this point, you may need to alter the zoom level and position of your map in the main QGIS display to get a pleasing display in the print layout.
 
 Your print layout should now look something like this:
 
-![](./img/class10_34.jpg)
+![](./img/class10_35.jpg)
 
 The print layout also allows you to add and edit a legend, by clicking this icon:
 
-![](./img/class10_35.jpg)
+![](./img/class10_36.jpg)
 
 You can also add text and other items. In practice, however, you may find it easier to add legends and labels in Adbobe Illustrator.
 
 The map can be exported in SVG and PDF vector formats by clicking these export icons:
 
-![](./img/class10_36.jpg)
+![](./img/class10_37.jpg)
 
 Finally, save the QGIS project.
 
-#### Join external data to a shapefile
+### Make a map with tiled basemap
 
 Open a new project by selecting `Project>New` from the top menu.
 
-In this new project, import the `ne_50m_admin_0_countries_lakes` shapefile. Right-click on it in the `Layers` panel and `Save As ...` an `ESRI shapefile`, keeping the default `WGS 84` CRS. `Browse` to the `gdp_pc` folder, call the new file `gdp_pc` and check the option to `Add saved file to map`.
+We will now make a map showing the earthquakes that rocked Ridgecrest, California, in July 2019 superimposed on a tiled basemap.
 
-Now remove the original shapefile, by right-clicking on that layer and selecting `Remove`.
+To pull in the baemap, we will use a QGIS plugin called `QuickMapServices`. Select `Plugins>Manage and Install Plugins...` from the top menu and search for 	`QuickMapServices`:
+
+![](./img/class10_38.jpg)
+
+Click `Install Plugin`, and close the dialog box.
+
+This icon should now appear somewhere in your toolbar:
+
+![](./img/class10_39.jpg)
+
+This plugin allows you to search for layers with basemaps and place labels. We will explore some of the options available in class. Search for `ESRI Terrain`, click `Add` when the layer appears and then close the `Search QMS` panel at right:
+
+![](./img/class10_40.jpg)
+
+Add the `ridgecrest_quakes.csv` data as a delimited text layer, as we did for the quakes on the previous map.
+
+Zoom in until you find the swarm of quakes around Ridgecrest:
+
+![](./img/class10_41.jpg)
+
+We can now style the quakes as before:
+
+![](./img/class10_42.jpg)
+
+### Join external data to a shapefile
+
+Open a new project by selecting `Project>New` from the top menu.
+
+In this new project, import the `ne_50m_admin_0_countries_lakes` shapefile. Right-click on it in the `Layers` panel and select `Export>Save Features As ...` an save as `ESRI shapefile`, keeping the default `WGS 84` CRS. `Browse` to the `gdp_pc` folder, call the new file `gdp_pc` and check the option to `Add saved file to map`.
+
+Now remove the original shapefile, by right-clicking on that layer and selecting `Remove Layer`.
 
 Open the attribute table of the new shapefile and notice that it contains a field called `iso_a3`, which is a [three-letter code](https://unstats.un.org/unsd/tradekb/Knowledgebase/Country-Code) for each country, assigned by the [International Organization for Standardization](https://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=63545).
 
@@ -249,11 +280,11 @@ Now use `Add Vector Layer` to import the file `gdp_pc.csv`. (Note that when join
 
 After import, this file will appear as an isolated table in the `Layers` panel.
 
-![](./img/class10_37.jpg)
+![](./img/class10_43.jpg)
 
-Select it and open the attribute table to view the data, which contains country names, the three-letter country codes, and data on GDP per capita in 2016:
+Select it and open the attribute table to view the data, which contains country names, the three-letter country codes, and data on GDP per capita in 2017:
 
-![](./img/class10_38.jpg)
+![](./img/class10_44.jpg)
 
 Notice that some cells contain the value `-99`, which is here being used to designate `null` values, where there is no data.
 
@@ -267,37 +298,35 @@ When we make the join, this will tell QGIS what sort of data is in each field of
 
 Close the attribute table once more, right-click on the `gdp_pc` shapefile and select `Properties>Joins`. Click the green plus sign and fill in the dialog box as follows to join the CSV file to the shapefile by the `iso_a3` three-letter country codes:
 
-![](./img/class10_39.jpg)
+![](./img/class10_45.jpg)
 
 Click `OK` at each dialog box to complete the join, then open shapefile's attribute table once more to confirm that the data from the CSV file has appeared.
 
 #### Save the joined data in another geodata format
 
-Right-click on the joined shapefile, select `Save As ...` and notice the `Format` options include ESRI shapefile, GeoJSON and KML. You are also able to choose a projection (CRS) for the new file and restrict its extent by latitude and longitude coordinates.
-
-Save this file in the `gpd_pc` folder as GeoJSON with an appropriate name, keeping the default `WGS 84` CRS.
+Right-click on the joined shapefile, select `Export>Save Features As ...` and save this file in the `gpd_pc` folder as GeoJSON with an appropriate name, keeping the default `WGS 84` CRS.
 
 #### Use QGIS's vector geoprocessing tools
 
-Start a new project, and import both the `ne_50m_admin_0_countries_lakes` shapefile, and the `seismic_raw` shapefile. Note that it extends beyond the boundaries and coastline of the U.S.:
+Start a new project, and import both the `ne_50m_admin_0_countries_lakes` shapefile, and the `seismic_raw` shapefile. Note that it extends beyond the coastline of the U.S.:
 
-![](./img/class10_40.jpg)
+![](./img/class10_46.jpg)
 
 Turn off the visibility of the  `seismic_raw` layer, turn on the visibility of the `ne_50m_admin_0_countries_lake` layer, select it in the `Layers Panel`, and click the `Select feature(s)` button:
 
-![](./img/class10_41.jpg)
+![](./img/class10_47.jpg)
 
 Now click anywhere within the borders of the United States to select the nation, which should now appear yellow:
 
-![](./img/class10_42.jpg)
+![](./img/class10_48.jpg)
 
 Select `Vector>Geoprocessing Tools>Intersection` from the top menu and fill in the dialog box as follows:
 
-![](./img/class10_43.jpg)
+![](./img/class10_49.jpg)
 
-Click `Run in Background` and a new layer will be created, clipped to the borders and coastline of the United States:
+Click `Run` and a new layer will be created, clipped to coastline of the United States:
 
-![](./img/class10_44.jpg)
+![](./img/class10_50.jpg)
 
 Its attribute table will contain data from both layers used for the intersection.
 
@@ -311,23 +340,23 @@ This is important, because we are going to create a "buffer" defining areas with
 
 To confirm the units for the `Web Mercator` projection, click on the button showing the CRS at bottom-right:
 
-![](./img/class10_45.jpg)
+![](./img/class10_51.jpg)
 
-You should see that the CRS/projection information that appears near the bottom of the dialog box contains `+units=m`, which tells us that distances in this projection are measure in meters:
+You should see that the CRS/projection information that appears near the bottom of the dialog box contains `+units=m`, which tells us that distances in this projection are measured in meters:
 
-![](./img/class10_46.jpg)
+![](./img/class10_52.jpg)
 
 Creating a buffer shapefile is a task you might perform if, for example, working out which areas are off-limits for sex offenders under [residency restrictions](http://www.atsa.com/pdfs/Policy/2014SOResidenceRestrictions.pdf).
 
 Select `Vector>Geoprocessing Tools>Fixed distance buffer` and fill in the dialog box as follows:
 
-![](./img/class10_47.jpg)
+![](./img/class10_53.jpg)
 
-Selecting `99` under `Segments to approximate` ensures that the resulting shapes are as smooth circles. `Buffer distance` is set to `304.8` because the projection's units are meters; this value gives the 1,000 feet we require. Checking `Dissolve result` merges overlapping buffers into the same polygon.
+Selecting `99` under `Segments to approximate` ensures that the resulting shapes are as smooth circles. Checking `Dissolve result` merges overlapping buffers into the same polygon.
 
-Click `Run in Background`, and this should be the result:
+Click `Run`, and this should be the result:
 
-![](./img/class10_48.jpg)
+![](./img/class10_54.jpg)
 
 Again, you can now right-click on the new `Buffer` layer and `Save As ...` as a shapefile, GeoJSON, or another geodata format.
 
@@ -335,7 +364,7 @@ Again, you can now right-click on the new `Buffer` layer and `Save As ...` as a 
 
 File an update on progress with your final project. Pay particular attention to identifying problems/obstacles.
 
-You can file the update as a markdown file in GitHub. Either way, make sure that your GitHub repo is up to date with data, charts etc, so that I can sync with my version of your project and review your progress. The update should be sufficiently detailed that I can look at your repo and understand what you are doing.
+You can file the update as a markdown file in GitHub. Make sure that your GitHub repo is up to date with data, charts etc, so that I can sync with my version of your project and review your progress. The update should be sufficiently detailed that I can look at your repo and understand what you are doing.
 
 If you are having trouble with GitHub, get in contact for a refresher.
 
