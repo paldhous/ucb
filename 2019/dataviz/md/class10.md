@@ -37,8 +37,7 @@ https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&l
 - ```Javascript
 https://earthquake.usgs.gov/fdsnws/event/1/query.csv?starttime=2019-06-2T20:00:00&endtime=2019-07-06T23:59:59&maxlatitude=50&minlatitude=24.6&maxlongitude=-65&minlongitude=-125&minmagnitude=2.5&orderby=time
 ```
-In both cases, a file called `query.csv` should download. Rename them and add to the `week10` folder. Type this url into the address bar of your browser:
-
+In both cases, a file called `query.csv` should download. Rename them and add to the `week10` folder.
 
 ### Map seismic risk and earthquakes
 
@@ -142,7 +141,7 @@ Click `OK` and the map should look like this:
 
 ![](./img/class10_20.jpg)
 
-Now select `Project>Project Properties...>General`, click on the `Background color` and set it to `#f5f5f5` for a lighter gray:
+Now select `Project>Properties...>General`, click on the `Background color` and set it to `#f5f5f5` for a lighter gray:
 
 ![](./img/class10_21.jpg)
 
@@ -210,7 +209,7 @@ Click `OK` until you return to the map, which should now look like this:
 
 #### Export the finished map in raster image or vector graphic formats
 
-To export the map as a JPG, PNG, or other raster image format, select `Project>Import/Export>Exoert Map To Image...` from the top menu.
+To export the map as a JPG, PNG, or other raster image format, select `Project>Import/Export>Export Map To Image...` from the top menu.
 
 Exporting using `Project>Import/Export>Expert Map To PDF...` will give a vector graphic that can be further edited in [Adobe Illustrator](http://www.adobe.com/products/illustrator.html) or another vector graphic editing program.
 
@@ -242,7 +241,7 @@ Open a new project by selecting `Project>New` from the top menu.
 
 We will now make a map showing the earthquakes that rocked Ridgecrest, California, in July 2019 superimposed on a tiled basemap.
 
-To pull in the baemap, we will use a QGIS plugin called `QuickMapServices`. Select `Plugins>Manage and Install Plugins...` from the top menu and search for 	`QuickMapServices`:
+To pull in the basemap, we will use a QGIS plugin called `QuickMapServices`. Select `Plugins>Manage and Install Plugins...` from the top menu and search for 	`QuickMapServices`:
 
 ![](./img/class10_38.jpg)
 
