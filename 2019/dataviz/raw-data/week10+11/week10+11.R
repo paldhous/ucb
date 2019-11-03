@@ -2,9 +2,10 @@
 library(rgdal)
 library(rgeos)
 library(dplyr)
-library(raster)
+# library(raster)
 library(WDI)
 library(readr)
+library(sf)
 
 
 ############### 
@@ -14,7 +15,7 @@ gdp_pc <- WDI(indicator="NY.GDP.PCAP.PP.CD", country="all", start=2017, end=2017
   filter(income != "Aggregates") %>%
   select(2,5,3) %>%
   rename(gdp_percap=NY.GDP.PCAP.PP.CD)
-gdp_pc[is.na(gdp_pc)] <- -99 
+# gdp_pc[is.na(gdp_pc)] <- -99 
 
 write_csv(gdp_pc,"gdp_pc.csv",na="")
 
@@ -56,6 +57,15 @@ us_clip@data$ValueRange <- gsub("10-12", "10 - 12", us_clip@data$ValueRange)
 writeOGR(us_clip, "seismic", "seismic", driver="ESRI Shapefile", overwrite_layer = TRUE)
 
 
+# read countries as sf object
+countries <- st_read("ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp")
 
+glimpse(countries)
 
+# join to gdp_percap data
+countries <- left_join(countries,gdp_pc, by = c("iso_a3" = "iso3c"))
 
+countries <- countries %>%
+  select(name,iso_a3,gdp_percap,geometry)
+
+st_write(countries, "world/world.shp", delete_dsn =  TRUE)
