@@ -15,7 +15,7 @@ https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&l
 ```
 A file called `query.csv` should download. Rename it `quakes.csv` and add to the `week11` folder.
 - `world.zip` Zipped shapefile including the variable `gdp_percap`, giving World Bank data from 2017 on [Gross Domestic Product (GDP) per capita](https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD) for the world's nations, in current international dollars, corrected for purchasing power in different territories.
-- `template.html` A web page with a basiv template for displaying a map made with Mapbox Studio using the [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/api/) JavaScript library.
+- `template.html` A web page with a basic template for displaying a map made with Mapbox Studio using the [Mapbox GL](https://docs.mapbox.com/mapbox-gl-js/api/) JavaScript library.
 
 ### Map seismic risk and earthquakes for the continental United States
 
