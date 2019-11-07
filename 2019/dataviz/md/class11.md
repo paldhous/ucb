@@ -49,7 +49,7 @@ Click `+` at top left and then `+ Upload` in the `New layer` panel:
 
 ![](./img/class11_6.jpg)
 
-This pop-up shoudl appear:
+This pop-up should appear:
 
 ![](./img/class11_7.jpg)
 
@@ -110,9 +110,9 @@ Click on the blue `Publish` button at top right, and click `Publish` again at th
 
 ![](./img/class11_18.jpg)
 
-Click `Share` at top right, and copy `Your style URL` and `Your access token`
+Click `Share` at top right, and copy your `Style URL` and `Access token`:
 
-![](./img/class11_16.jpg)
+![](./img/class11_19.jpg)
 
 Make a copy of `template.html` and rename it as `seismic.html`.
 
@@ -250,7 +250,7 @@ The code in the `setHTML` function writes the HTML to appear in the pop-up. It p
 
 The finished map should look like this:
 
-<iframe src="seismic.html"> width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+<iframe src="seismic.html" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0"></iframe>
 
 This web page can now be embedded in any other web page, as I have done here, with a simple iframe of the following form:
 

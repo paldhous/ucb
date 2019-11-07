@@ -60,10 +60,14 @@ writeOGR(us_clip, "seismic", "seismic", driver="ESRI Shapefile", overwrite_layer
 # read countries as sf object
 countries <- st_read("ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp")
 
+# filter out countries with no data
+gdp_pc <- gdp_pc %>%
+  filter(!is.na(gdp_percap))
+
 glimpse(countries)
 
 # join to gdp_percap data
-countries <- left_join(countries,gdp_pc, by = c("iso_a3" = "iso3c"))
+countries <- inner_join(countries,gdp_pc, by = c("iso_a3" = "iso3c"))
 
 countries <- countries %>%
   select(name,iso_a3,gdp_percap,geometry)
