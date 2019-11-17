@@ -23,16 +23,10 @@ print(food_stamps_interactive)
 
 # remove plotly controls
 food_stamps_interactive <- ggplotly(food_stamps_chart) %>% 
-  config(displayModeBar = FALSE) %>%
-  layout(hoverlabel = list(bgcolor = "white"))
-                           
-
-
-
-    font: {color: 'white'}
-  })
+  config(displayModeBar = FALSE)
 
 print(food_stamps_interactive)
+
 
 # customize the tooltips
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, 
@@ -72,7 +66,6 @@ disease_democ_chart <- ggplot(disease_democ, aes(x = infect_rate,
 
 plot(disease_democ_chart)
 
-
 # make interactive version
 disease_democ_interactive <- ggplotly(disease_democ_chart, tooltip = "text") %>%
   config(displayModeBar = FALSE)
@@ -82,8 +75,8 @@ print(disease_democ_interactive)
 
 # make static chart
 disease_democ <- disease_democ %>%
-  mutate(income_group = factor(income_group, levels = c("High income: non-OECD",
-                                               "High income: OECD",
+  mutate(income_group = factor(income_group, levels = c("High income: OECD",
+                                               "High income: non-OECD",
                                                "Upper middle income",
                                                "Lower middle income",
                                                "Low income"))) %>%
@@ -113,6 +106,19 @@ disease_democ_interactive <- ggplotly(disease_democ_chart, tooltip="text") %>%
   config(displayModeBar = FALSE) 
 
 print(disease_democ_interactive)
+
+# convert income_group to a categorical variable, or factor
+disease_democ <- disease_democ %>%
+  mutate(income_group = factor(income_group, 
+                               levels = c("High income: non-OECD",
+                                          "High income: OECD",
+                                          "Upper middle income",
+                                          "Lower middle income",
+                                          "Low income"))) %>%
+  arrange(income_group)
+
+# check data types
+glimpse(disease_democ)
 
 ## CA immunization
 
@@ -144,13 +150,13 @@ immun_counties_year_chart <- ggplot(immun_counties_year, aes(x = start_year,
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         legend.position="bottom",
-        legend.key.height = unit(0.4, "cm")) +
-  ggtitle("Immunization in California kindergartens, by county")
+        legend.key.height = unit(0.4, "cm"))
 
 plot(immun_counties_year_chart)
 
 immun_counties_year_chart_interactive <- ggplotly(immun_counties_year_chart, tooltip = "text") %>% 
-  config(displayModeBar = FALSE)
+  config(displayModeBar = FALSE) %>%
+  layout(legend = list(orientation = "h"))
 
 print(immun_counties_year_chart_interactive) 
 

@@ -4,7 +4,7 @@ It is possible to make online, interactive charts and maps directly from R/RStud
 
 These packages take instructions in R code, and write the JavaScript and HTML necessary to make charts using popular JavaScript visualization libraries. They also allow you to easily export the charts that you create in R as responsively designed web pages, which can be embedded in other projects through simple [**iframes**](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe).
 
-This means you can work in a single environment to both process data and make online charts. Maintaining a simple, streamlined workflow makes it easier to produce graphics quickly on news deadlines.
+This means you can work in a single environment to both process data and make online charts. Maintaining a simple, streamlined workflow makes it easy to produce graphics quickly on news deadlines.
 
 ### The data we will use
 
@@ -15,7 +15,9 @@ Download the data for this session from [here](data/week13.zip), unzip the folde
 - `disease_democ.csv` Data illustrating a controversial theory suggesting that the emergence of democratic political systems has depended largely on nations having low rates of infectious disease, as used previously.
 
 - `kindergarten.csv` Data from the [California Department of Public Health](https://data.chhs.ca.gov/dataset/school-immunizations-in-kindergarten-by-academic-year), documenting enrollment and the number of children with complete immunizations at entry into kindergartens in California from 2001 to 2015, as used previously.
+
 - `nations.csv` Data from the World Bank Indicators portal, as used previously.
+
 - `seismic.zip` Zipped shapefile with data on the annual risk of a damaging earthquake for the continental United States, from the [US Geological Survey](https://earthquake.usgs.gov/hazards/induced/).
 
 - `test.html` Web page to embed the interactive charts and maps we make today.
@@ -202,16 +204,33 @@ Notice that the `scale_color_brewer` code that ordered the items in the legend i
 But we can fix that by first running this code:
 
 ```R
+# convert income_group to a categorical variable, or factor
 disease_democ <- disease_democ %>%
-  mutate(income_group = factor(income_group, levels = c("High income: non-OECD",
-                                               "High income: OECD",
+  mutate(income_group = factor(income_group, levels = c("High income: OECD",
+                                               "High income: non-OECD",
                                                "Upper middle income",
                                                "Lower middle income",
                                                "Low income"))) %>%
   arrange(income_group)
 ```
 
-This converts `income_group` into a categorical variable, or `factor`, and then sorts the data frame in order of its categories, or levels.
+This converts `income_group` into a categorical variable, or `factor`, and then sorts the data frame in order of its categories, or levels. You can check the data type for `income_group`:
+
+```R
+# check data types
+glimpse(disease_democ)
+```
+
+The following output should appear in the console:
+
+```R
+Observations: 168
+Variables: 4
+$ country      <chr> "New Zealand", "Germany", "Luxembo…
+$ income_group <fct> High income: OECD, High income: OE…
+$ democ_score  <dbl> 72.6, 77.8, 81.2, 82.0, 84.6, 86.6…
+$ infect_rate  <dbl> 23, 24, 24, 24, 24, 24, 25, 25, 25…
+```
 
 Running the chart code as before will now fix the order of the items in the legend in the interactive chart.
 
@@ -251,8 +270,7 @@ immun_counties_year_chart <- ggplot(immun_counties_year, aes(x = start_year,
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         legend.position="bottom",
-        legend.key.height = unit(0.4, "cm")) +
-  ggtitle("Immunization in California kindergartens, by county")
+        legend.key.height = unit(0.4, "cm"))
 
 plot(immun_counties_year_chart)
 
@@ -265,29 +283,31 @@ print(immun_counties_year_chart_interactive)
 
 This should be the result:
 
-<iframe width="100%" height="450" frameborder="0" scrolling="no" src="immun_heatmap.html"></iframe>
+<iframe width="100%" height="750" frameborder="0" scrolling="no" src="immun_heatmap.html"></iframe>
+
+(Note, **plotly** currently [doesn't allow](https://github.com/plotly/plotly.js/issues/1244) for colorbar legends, like this one, to be displayed horizontally.
 
 
 ### Practice making other interactive charts
 
 In class, as time allows, we'll use **plotly** to create interactive versions of these **ggplot2** charts from week 8 and its assignment:
 
-![](img/class8_17.png)
+![](img/class8_19.png)
 
-![](img/class8_23.png)
+![](img/class8_25.png)
 
-![](img/class8_24.png)
+![](img/class8_26.png)
 
 ### Make a map of seismic risk and earthquakes using Leaflet
 
-[Leaflet](https://leafletjs.com/) is the most widely-used JavaScript library for making interactive online maps. It can be used from R with the [**leaflet**](https://rstudio.github.io/leaflet/) package, another part of the **htmlwidgets** framework. So we need to install and load that, together with a package called **[rgdal](https://cran.r-project.org/web/packages/rgdal/rgdal.pdf)**, which makes it possible to load shapefiles and other geodata into R.
+[Leaflet](https://leafletjs.com/) is the most widely-used JavaScript library for making interactive online maps. It can be used from R with the [**leaflet**](https://rstudio.github.io/leaflet/) package, another part of the **htmlwidgets** framework. So we need to install and load that, together with a package called **[sf](https://r-spatial.github.io/sf/index.html)**, which makes it easy to load shapefiles and other geodata into R, creating "simple features" or `sf` objects that can be processed like regular R data frames.
 
 ```R
 # install and load leaflet and rdgal
 install.packages("leaflet")
-install.packages("rgdal")
+install.packages("sf")
 library(leaflet)
-library(rgdal)
+library(sf)
 ```
 
 We are going to recreate a version of the map we made in week 11 using MapBox Studio.
@@ -304,7 +324,6 @@ This map should appear in the `Viewer`:
 
 <iframe width="100%" height="450" frameborder="0" scrolling="no" src="berkeley1.html"></iframe>
 
-
 The `leaflet` function creates a leaflet map.
 
 The `setView` function sets the starting position of the map, centering it on the defined coordinates and with the defined zoom level; `addTiles` adds [OpenStreetMap](https://www.openstreetmap.org/) tiles to the map, which would otherwise be blank. Notice that the map is interactive, and can be panned and zoomed just like a Google Map.
@@ -317,30 +336,32 @@ leaflet() %>%
   setView(lng = -122.2705383, lat = 37.8698807, zoom = 11) %>%
   addProviderTiles("CartoDB.Positron")
 ```
+
 The map should now look like this:
 
 <iframe width="100%" height="450" frameborder="0" scrolling="no" src="berkeley2.html"></iframe>
 
 The `addProviderTiles` function uses the [Leaflet Providers](https://github.com/leaflet-extras/leaflet-providers) plugin to add various tiles to a map. You can see the available options [here](https://leaflet-extras.github.io/leaflet-providers/preview/).
 
-Now load the data we need to make the earthquakes map, starting with the `seismic` shapefile, using the `readOGR` function from **rgdal**.
+Now load the data we need to make the earthquakes map, starting with the `seismic` shapefile, using the `st_write` function from **sf**.
 
 ```R
 # load seismic risk shapefile
-seismic <- readOGR("seismic", "seismic")
+seismic <- st_read("seismic/seismic.shp")
 ```
-The two mentions of `seismic` refer to the folder and the shapefile within it, respectively.
 
-You should now have in your environment an object called `seismic` which is a `SpatialPolygonsDataFrame`.
+You should now have in your environment an `sf` object called `seismic` which has the values for seismic risk in a variable called `ValueRange`, and the geometry for the map in a variable called `geometry`:
 
-We can also load data on earthquakes, directly from the US Geological Survey earthquakes API, described in the notes for the class on finding and downloading data:
+![](img/class13_2.jpg)
+
+We can also load data on earthquakes, directly from the US Geological Survey earthquakes API:
 
 ```R
 # load quakes data from USGS earthquakes API
 quakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&minmagnitude=6&format=csv&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&orderby=magnitude")
 ```
 
-Using this url, we have loaded earthquakes since the start of 1960 that had a magnitude of 6 and above, within a 6,000 kilometer radius of the geographic center of the continental United States.
+Using this url, we have loaded earthquakes since the start of 1960 that had a magnitude of 6 and above, within a 6,000 kilometer radius of the geographic center of the continental United States. (Ordering the quakes by magnitude will ensure that smaller ones are plotted last when we make our map.)
 
 Let's look at a summary of the `seismic` data:
 
@@ -352,28 +373,22 @@ summary(seismic)
 This should be returned in the R Console:
 
 ```R
-Object of class SpatialPolygonsDataFrame
-Coordinates:
-      min       max
-x -124.71 -66.98701
-y   24.60  49.36968
-Is projected: FALSE 
-proj4string :
-[+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
-Data attributes:
-   ValueRange
- < 1    : 3  
- 1 - 2  :12  
- 10 - 12: 2  
- 2 - 5  : 8  
- 5 - 10 : 4  
+   ValueRange          geometry 
+ < 1    : 5   MULTIPOLYGON :34  
+ 1 - 2  :13   epsg:4326    : 0  
+ 10 - 14: 2   +proj=long...: 0  
+ 2 - 5  :10                     
+ 5 - 10 : 4   
 ```
-The data defining the annual risk of a damaging earthquake is in the variable `ValueRange`. But the categories of this binned variable are not in the right order. To correct that, we should convert the variable from text to a `factor`, or categorical variable, with its `levels` in the right order.
+
+The values for the binned variable `ValueRange` are not in the right order. To correct that, we should convert the variable from text to a `factor`, or categorical variable, and then use the function `ordered` to put its `levels` in the right order.
 
 ```R
-# convert to factor/categorical variable
-seismic@data <- seismic@data %>%
-  mutate(ValueRange = factor(ValueRange, levels = c("< 1","1 - 2","2 - 5","5 - 10", "10 - 12")))
+# convert to ordered factor/categorical variable
+seismic <- seismic %>%
+  mutate(ValueRange = factor(ValueRange,
+                             levels = c("< 1","1 - 2","10 - 14","2 - 5","5 - 10")),
+        ValueRange = ordered(ValueRange, levels = c("< 1","1 - 2","2 - 5","5 - 10","10 - 14")))
 
 # view summary of seismic_risk data
 summary(seismic)
@@ -382,48 +397,28 @@ summary(seismic)
 Now the categories should be in the correct order:
 
 ```R
-Object of class SpatialPolygonsDataFrame
-Coordinates:
-      min       max
-x -124.71 -66.98701
-y   24.60  49.36968
-Is projected: FALSE 
-proj4string :
-[+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0]
-Data attributes:
-   ValueRange
- < 1    : 3  
- 1 - 2  :12  
- 2 - 5  : 8  
- 5 - 10 : 4  
- 10 - 12: 2 
+   ValueRange          geometry 
+ < 1    : 5   MULTIPOLYGON :34  
+ 1 - 2  :13   epsg:4326    : 0  
+ 2 - 5  :10   +proj=long...: 0  
+ 5 - 10 : 4                     
+ 10 - 14: 2  
 ```
 
-Notice that to run **dplyr** code to `mutate`
-
-Next we will load the seismic risk data into a leaflet map:
-
-```R
-# load the seismic risk data into a leaflet map
-seismic_map <- leaflet(data = seismic)
-```
-You should now see an object of type `leaflet` in your environment.
-
-Now we can make a map with two layers just a few lines of code:
+Now we can make a map with two layers with just a few lines of code:
 
 ```R
 # set color palette
 pal <- colorFactor("Reds", seismic$ValueRange)
 
 # plot map
-seismic_map %>%
+leaflet(data = seismic) %>%
   setView(lng = -98.5795, lat = 39.828175, zoom = 4) %>%
   addProviderTiles("CartoDB.Positron") %>% 
-  addPolygons(
-    stroke = FALSE,
-    fillOpacity = 0.7,
-    smoothFactor = 0.1,
-    color = ~pal(ValueRange)
+  addPolygons(stroke = FALSE,
+              fillOpacity = 0.7,
+              smoothFactor = 0.1,
+              color = ~pal(ValueRange)
   ) %>%
   # add historical earthquakes
   addCircles(
@@ -480,6 +475,7 @@ A more extensive collection of htmlwidgets
 [Plotly for R](https://plot.ly/r/)
 Look here for more options to customize your charts, including [layout options](https://plot.ly/r/#layout-options) like formatting tooltips. Note, you can also make charts directly in R without going through ggplot2.
 
+[Leaflet for R](https://rstudio.github.io/leaflet/)
 
 
 
