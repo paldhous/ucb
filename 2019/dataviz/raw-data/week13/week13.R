@@ -164,7 +164,7 @@ print(immun_counties_year_chart_interactive)
 # seismic risk and quakes map with leaflet
 
 # load required packages
-library(rgdal)
+library(sf)
 library(leaflet)
 
 # make leaflet map centered on Berkeley
@@ -178,12 +178,10 @@ leaflet() %>%
   addProviderTiles("CartoDB.Positron")
 
 # load seismic risk shapefile
-seismic <- readOGR("seismic", "seismic")
+seismic <- st_read("seismic/seismic.shp")
 
-# view summary of seismic_risk data
-summary(seismic)
-
-glimpse(seismic@data)
+# view seismic_risk data
+glimpse(seismic)
 
 # view summary of seismic_risk data
 summary(seismic)
@@ -193,10 +191,12 @@ summary(seismic)
 quakes <- read_csv("https://earthquake.usgs.gov/fdsnws/event/1/query?starttime=1960-01-01T00:00:00&minmagnitude=6&format=csv&latitude=39.828175&longitude=-98.5795&maxradiuskm=6000&orderby=magnitude")
 
 # convert to factor/categorical variable
-seismic@data <- seismic@data %>%
-  mutate(ValueRange = factor(ValueRange, levels = c("< 1","1 - 2","2 - 5","5 - 10", "10 - 12")))
+seismic <- seismic %>%
+  mutate(ValueRange = factor(ValueRange,
+                             levels = c("< 1","1 - 2","10 - 14","2 - 5","5 - 10")),
+        ValueRange = ordered(ValueRange, levels = c("< 1","1 - 2","2 - 5","5 - 10","10 - 14")))
 
-levels(seismic@data$ValueRange)
+seismic$ValueRange
 
 # view summary of seismic_risk data
 summary(seismic)
@@ -204,14 +204,13 @@ summary(seismic)
 # set color palette
 pal <- colorFactor("Reds", seismic$ValueRange)
 
-leaflet(data = seismic) %>%
+leaflet(data = seismic, options = leafletOptions(wwheelDebounceTime = 1000)) %>%
   setView(lng = -98.5795, lat = 39.828175, zoom = 4) %>%
   addProviderTiles("CartoDB.Positron") %>% 
-  addPolygons(
-    stroke = FALSE,
-    fillOpacity = 0.7,
-    smoothFactor = 0.1,
-    color = ~pal(ValueRange)
+  addPolygons(stroke = FALSE,
+              fillOpacity = 0.7,
+              smoothFactor = 0.1,
+              color = ~pal(ValueRange)
   ) %>%
   # add historical earthquakes
   addCircles(

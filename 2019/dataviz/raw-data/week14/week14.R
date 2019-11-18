@@ -1,12 +1,3 @@
-# first install devtools
-install.packages("devtools")
-
-# then gganimate
-devtools::install_github('thomasp85/gganimate')
-
-# and transformr
-devtools::install_github("thomasp85/transformr")
-
 #### Load the packages we will use today
 
 # load required packages
@@ -18,14 +9,17 @@ library(dplyr)
 library(tidyr)
 
 # load data
-nations <- read_csv("nations.csv")
+nations <- read_csv("nations.csv") 
 
-# filter for 2015 data only
-nations2016 <- nations %>%
-  filter(year == 2016)
+nations <- nations %>%
+  mutate(year = as.integer(year))
+
+# filter for 2017 data only
+nations2017 <- nations %>%
+  filter(year == 2017) 
 
 # make bubble chart
-ggplot(nations2016, aes(x = gdp_percap, y = life_expect)) +
+ggplot(nations2017, aes(x = gdp_percap, y = life_expect)) +
   xlab("GDP per capita") +
   ylab("Life expectancy at birth") +
   theme_minimal(base_size = 12, base_family = "Georgia") +
@@ -54,13 +48,11 @@ nations_plot <- ggplot(nations, aes(x = gdp_percap, y = life_expect)) +
   enter_fade() + # explain the alternatives
   exit_fade()
 
-  shadow_wake() +
-  shadow_wake()
-  
 animate(nations_plot)
 
+
 # gif
-nations_anim <- animate(nations_plot, fps = 10, width = 750, height = 450)
+nations_anim <- animate(nations_plot, fps = 10, end_pause = 30, width = 750, height = 450)
 anim_save("nations.gif") 
 
 # video
@@ -89,71 +81,42 @@ write_csv(warming, "warming.csv", na="")
 warming <- read_csv("warming.csv")
 glimpse(warming)
 
+ggplot(warming, aes(x = year, y = value)) +
+  geom_line(color = "black") +
+  geom_point(shape = 21, 
+             color = "black", 
+             size = 5, 
+             stroke = 1,
+             aes(fill = value)) +
+  scale_x_continuous(limits = c(1880,2018)) +
+  scale_y_continuous(limits = c(-0.5,1)) +
+  scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
+  xlab("") +
+  ylab("Difference from 1900-2000 (°C)") +
+  theme_minimal(base_size = 16, base_family = "Georgia")
+
+
 # draw chart
 warming_plot <- ggplot(warming, aes(x = year, y = value)) +
-  geom_line(colour="black") +
-  geom_point(shape = 21, colour = "black", aes(fill = value), size=5, stroke=1) +
-  scale_x_continuous(limits = c(1880,2017)) +
+  geom_line(color="black") +
+  geom_point(shape = 21, 
+             size = 5, 
+             stroke = 1,
+             color = "black", 
+             aes(fill = value, group = year)) +
+  scale_x_continuous(limits = c(1880,2018)) +
   scale_y_continuous(limits = c(-0.5,1)) +
   scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
   xlab("") +
-  ylab("Difference from 1900-2000 (ºC)") +
+  ylab("Difference from 1900-2000 (°C)") +
   theme_minimal(base_size = 16, base_family = "Georgia") +
   # gganimate code
-  transition_reveal(id = 1, along = year) +
-  transition_time(year) +
+  transition_reveal(year, keep_last = TRUE) +
+  # transition_time(year) +
   shadow_mark()
 
-warming_anim <- animate(warming_plot, fps = 10, width = 750, height = 450)
+warming_anim <- animate(warming_plot, fps = 10, end_pause = 30, width = 750, height = 450)
 anim_save("warming.gif")
-
-# draw chart
-warming_points <- ggplot(warming, aes(x = year, y = value)) +
-  geom_point(shape = 21, colour = "black", aes(fill = value), size=5, stroke=1) +
-  scale_x_continuous(limits = c(1880,2017)) +
-  scale_y_continuous(limits = c(-0.5,1)) +
-  scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
-  xlab("") +
-  ylab("Difference from 1900-2000 (ºC)") +
-  theme_minimal(base_size = 16, base_family = "Georgia") +
-  # gganimate code
-  transition_time(year) +
-  shadow_mark()
-
-warming_anim <- animate(warming_points, fps = 10, width = 750, height = 450)
-anim_save("warming_points.gif")
-
-
-# so we need to write a loop and save out the individual frames
-
-# make a list of years, from 1880 to 2017
-years <- c(1880:2017)
-
-# loop to make a chart for each year
-for (y in years) {
-  tmp <- warming %>%
-    filter(year <= y)
-  chart <- ggplot(tmp, aes(x = year, y = value)) + 
-    geom_line(colour = "black") +
-    geom_point(shape = 21, colour="black", aes(fill = value), size = 5, stroke = 1) +
-    scale_x_continuous(limits = c(1880,2017)) +
-    scale_y_continuous(limits = c(-0.5,1)) +
-    scale_fill_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
-    xlab("") +
-    ylab("Difference from 1900-2000 (ºC)") +
-    theme_minimal(base_size = 16, base_family = "Georgia")
-  ggsave(file = paste0("charts/",y,".jpg"), plot = chart, width = 8, height = 4.5, units = "in", dpi = 300)
-  print(paste0("processing: ",y))
-}  
-
-# make a GIF with ImageMagick
-system("convert -delay 10 charts/*.jpg warming2.gif") # on windows shell
-
-# make a video with FFmpeg
-system("ffmpeg -f image2 -start_number 1880 -i charts/%d.jpg -vf 'scale=trunc(iw/2)*2:trunc(ih/2)*2' -b:a 64000k warming.mp4")
-
-# change the speed of the video
-system("ffmpeg -i warming.mp4 -vf 'setpts=2*PTS' warming_slow.mp4")
 
 
 #### climate forcings
@@ -193,18 +156,16 @@ simulations_plot <- ggplot(simulations, aes(x=year, y=value, color = value)) +
   theme_dark(base_size = 16, base_family = "Georgia") +
   scale_y_continuous(limits = c(-0.6,0.75)) +
   scale_colour_distiller(palette = "RdYlBu", limits = c(-1,1), guide = FALSE) +
-  ylab("Diff. from 1900-2000 average (ºC)") +
+  ylab("Diff. from 1900-2000 average (°C)") +
   xlab("") +
   #gganimate code
   ggtitle("{closest_state}") +
   transition_states(
     type,
-    transition_length = 0.5,
-    state_length = 2
+    transition_length = 1,
+    state_length = 4
   ) +
   ease_aes("cubic-in-out")
 
 animate(simulations_plot, width = 750, height = 450)
 anim_save("simulations.gif")
-
-
