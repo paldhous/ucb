@@ -51,7 +51,7 @@ food_stamps <- read_csv("food_stamps.csv")
 food_stamps_chart <- ggplot(food_stamps, aes(x = year, y = participants)) +
   xlab("Year") +
   ylab("Participants (millions)") +
-  theme_minimal(base_size = 14, base_family = "Georgia")
+  theme_minimal(base_size = 14, base_family = "Georgia") +
   geom_point() +
   geom_line()
 
@@ -109,7 +109,7 @@ This code creates a custom tooltip inside the **ggplot2** aesthetic mapping (`ae
 
 When writing a custom tooltip, we also need to include `group = 1` in the `aes` mapping.
 
-Code code in the final `layout` function styles the tooltip, using a white background and changing the font family to be consistent with the rest of the chart. See [here](https://plot.ly/r/#layout-options) for more Plotly chart layout options.
+The code in the final `layout` function styles the tooltip, using a white background and changing the font family to be consistent with the rest of the chart. See [here](https://plot.ly/r/#layout-options) for more Plotly chart layout options.
 
 We can now save the chart as a standalone web page by selecting `Export>Save as Web Page...` from the `Viewer` tab menu.
 
@@ -343,7 +343,7 @@ The map should now look like this:
 
 The `addProviderTiles` function uses the [Leaflet Providers](https://github.com/leaflet-extras/leaflet-providers) plugin to add various tiles to a map. You can see the available options [here](https://leaflet-extras.github.io/leaflet-providers/preview/).
 
-Now load the data we need to make the earthquakes map, starting with the `seismic` shapefile, using the `st_write` function from **sf**.
+Now load the data we need to make the earthquakes map, starting with the `seismic` shapefile, using the `st_read` function from **sf**.
 
 ```R
 # load seismic risk shapefile

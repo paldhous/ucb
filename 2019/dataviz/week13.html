@@ -79,7 +79,7 @@ food_stamps &amp;lt;- read_csv(&quot;food_stamps.csv&quot;)
 food_stamps_chart &amp;lt;- ggplot(food_stamps, aes(x = year, y = participants)) +
   xlab(&quot;Year&quot;) +
   ylab(&quot;Participants (millions)&quot;) +
-  theme_minimal(base_size = 14, base_family = &quot;Georgia&quot;)
+  theme_minimal(base_size = 14, base_family = &quot;Georgia&quot;) +
   geom_point() +
   geom_line()
 
@@ -91,7 +91,7 @@ food_stamps &lt;- read_csv(<span class="hljs-string">"food_stamps.csv"</span>)
 food_stamps_chart &lt;- ggplot(food_stamps, aes(x = year, y = participants)) +
   xlab(<span class="hljs-string">"Year"</span>) +
   ylab(<span class="hljs-string">"Participants (millions)"</span>) +
-  theme_minimal(base_size = <span class="hljs-number">14</span>, base_family = <span class="hljs-string">"Georgia"</span>)
+  theme_minimal(base_size = <span class="hljs-number">14</span>, base_family = <span class="hljs-string">"Georgia"</span>) +
   geom_point() +
   geom_line()
 
@@ -152,7 +152,7 @@ food_stamps_interactive &lt;- ggplotly(food_stamps_chart, tooltip = <span class=
                            font = list(family = <span class="hljs-string">"Georgia"</span>)))
 
 print(food_stamps_interactive)
-</code></pre><p>This code creates a custom tooltip inside the <strong>ggplot2</strong> aesthetic mapping (<code>aes</code>), setting <code>text</code> as the text we want to display, including values drawn from variables in the data. The code uses R’s <code>paste0</code> function to concatenate text; <code>&lt;br&gt;</code> is HTML code for a new line; <code>&lt;b&gt;&lt;/b&gt;</code> are HTML tags that mark text to appear in bold.</p><p>When writing a custom tooltip, we also need to include <code>group = 1</code> in the <code>aes</code> mapping.</p><p>Code code in the final <code>layout</code> function styles the tooltip, using a white background and changing the font family to be consistent with the rest of the chart. See <a href="https://plot.ly/r/#layout-options">here</a> for more Plotly chart layout options.</p><p>We can now save the chart as a standalone web page by selecting <code>Export&gt;Save as Web Page...</code> from the <code>Viewer</code> tab menu.</p><p>Open the saved web page in your browser and notice that the chart is completely responsive: It will adjust its size to fit the space available.</p><p>So now we can embed the chart in the file <code>test.html</code>, just like we did for the chart exported from the Plotly web up in a previous class:</p><p>Open the <code>test.html</code> file in Sublime Text. Insert the code into the page and edit as follows:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>&amp;lt;div class=&quot;container&quot;&amp;gt;
+</code></pre><p>This code creates a custom tooltip inside the <strong>ggplot2</strong> aesthetic mapping (<code>aes</code>), setting <code>text</code> as the text we want to display, including values drawn from variables in the data. The code uses R’s <code>paste0</code> function to concatenate text; <code>&lt;br&gt;</code> is HTML code for a new line; <code>&lt;b&gt;&lt;/b&gt;</code> are HTML tags that mark text to appear in bold.</p><p>When writing a custom tooltip, we also need to include <code>group = 1</code> in the <code>aes</code> mapping.</p><p>The code in the final <code>layout</code> function styles the tooltip, using a white background and changing the font family to be consistent with the rest of the chart. See <a href="https://plot.ly/r/#layout-options">here</a> for more Plotly chart layout options.</p><p>We can now save the chart as a standalone web page by selecting <code>Export&gt;Save as Web Page...</code> from the <code>Viewer</code> tab menu.</p><p>Open the saved web page in your browser and notice that the chart is completely responsive: It will adjust its size to fit the space available.</p><p>So now we can embed the chart in the file <code>test.html</code>, just like we did for the chart exported from the Plotly web up in a previous class:</p><p>Open the <code>test.html</code> file in Sublime Text. Insert the code into the page and edit as follows:</p><pre class="javascript hljs"><code class="JavaScript" data-origin="<pre><code class=&quot;JavaScript&quot;>&amp;lt;div class=&quot;container&quot;&amp;gt;
 
     &amp;lt;iframe width=&quot;100%&quot; height=&quot;450&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; src=&quot;food_stamps_interactive.html&quot;&amp;gt;&amp;lt;/iframe&amp;gt;
 
@@ -384,7 +384,7 @@ leaflet() %&amp;gt;%
 leaflet() %&gt;%
   setView(lng = -<span class="hljs-number">122.2705383</span>, lat = <span class="hljs-number">37.8698807</span>, zoom = <span class="hljs-number">11</span>) %&gt;%
   addProviderTiles(<span class="hljs-string">"CartoDB.Positron"</span>)
-</code></pre><p>The map should now look like this:</p><iframe width="100%" height="450" frameborder="0" scrolling="no" src="berkeley2.html"></iframe><p>The <code>addProviderTiles</code> function uses the <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet Providers</a> plugin to add various tiles to a map. You can see the available options <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">here</a>.</p><p>Now load the data we need to make the earthquakes map, starting with the <code>seismic</code> shapefile, using the <code>st_write</code> function from <strong>sf</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load seismic risk shapefile
+</code></pre><p>The map should now look like this:</p><iframe width="100%" height="450" frameborder="0" scrolling="no" src="berkeley2.html"></iframe><p>The <code>addProviderTiles</code> function uses the <a href="https://github.com/leaflet-extras/leaflet-providers">Leaflet Providers</a> plugin to add various tiles to a map. You can see the available options <a href="https://leaflet-extras.github.io/leaflet-providers/preview/">here</a>.</p><p>Now load the data we need to make the earthquakes map, starting with the <code>seismic</code> shapefile, using the <code>st_read</code> function from <strong>sf</strong>.</p><pre class="r hljs"><code class="R" data-origin="<pre><code class=&quot;R&quot;># load seismic risk shapefile
 seismic &amp;lt;- st_read(&quot;seismic/seismic.shp&quot;)
 </code></pre>"><span class="hljs-comment"># load seismic risk shapefile</span>
 seismic &lt;- st_read(<span class="hljs-string">"seismic/seismic.shp"</span>)
